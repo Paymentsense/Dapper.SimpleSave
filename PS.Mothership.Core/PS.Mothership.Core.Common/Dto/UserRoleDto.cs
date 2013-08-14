@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
+using PS.Mothership.Core.Common.Template;
 
 namespace PS.Mothership.Core.Common.Dto
 {
@@ -29,6 +30,9 @@ namespace PS.Mothership.Core.Common.Dto
     [DataContract]
     public class UserPermissionDto
     {
+        [DataMember]
+        public PermissionLutEnum PermissionEnums { get; set; }
+
         [DataMember]
         public long PermissionId { get; set; }
 
