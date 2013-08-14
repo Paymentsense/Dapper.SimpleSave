@@ -1,0 +1,109 @@
+﻿<#@ assembly name="EnvDTE" #>
+<#@ assembly name="System.Configuration" #>
+<#@ import namespace="System.Configuration" #>
+<#@ import namespace="System.Text.RegularExpressions" #>
+
+<#+
+ 
+
+public class ConfigurationAccessor
+{
+ 
+ 
+ 
+    /// <summary>
+    /// Typical usage from T4 template:
+    /// <code>ConfigurationAccessor config = new ConfigurationAccessor((IServiceProvider)this.Host);</code>
+    /// </summary>
+    public ConfigurationAccessor(IServiceProvider host)
+    {
+        // Get the instance of Visual Studio that is hosting the calling file
+        EnvDTE.DTE env = (EnvDTE.DTE)host.GetService(typeof(EnvDTE.DTE));
+ 
+        // Gets an array of currently selected projects. Since you are either in this file saving it or
+        // right-clicking the item in solution explorer to invoke the context menu it stands to reason
+        // that there is 1 ActiveSolutionProject and that it is the parent of this file....
+        _project = (EnvDTE.Project)((Array)env.ActiveSolutionProjects).GetValue(0);
+ 
+        string configurationFilename=null;  
+ 
+        // examine each project item's filename looking for app.config or web.config
+        foreach (EnvDTE.ProjectItem item in _project.ProjectItems)
+        {
+            if (Regex.IsMatch(item.Name,"(app|web).config",RegexOptions.IgnoreCase))
+            {
+                // TODO: try this with linked files. is the filename pointing to the source?
+                configurationFilename=item.get_FileNames(0);
+                break;
+            }
+        }
+ 
+        if(!string.IsNullOrEmpty(configurationFilename))
+        {
+            // found it, map it and expose salient members as properties
+            ExeConfigurationFileMap configFile = null;
+            configFile = new ExeConfigurationFileMap();
+            configFile.ExeConfigFilename=configurationFilename;
+            _configuration = System.Configuration.ConfigurationManager.OpenMappedExeConfiguration(configFile, ConfigurationUserLevel.None);
+        }
+    }
+ 
+    private EnvDTE.Project _project;
+    private Configuration _configuration;
+ 
+ 
+    /// <summary>
+    /// Provides access to the host project.
+    /// </summary>
+    /// <remarks>see http://msdn.microsoft.com/en-us/library/envdte.project.aspx</remarks>
+    public EnvDTE.Project Project
+    {
+        get { return _project; }
+    }
+ 
+    /// <summary>
+    /// Convenience getter for Project.Properties.
+    /// Examples:
+    /// <code>string thisAssemblyName = config.Properties.Item("AssemblyName").Value.ToString();</code>
+    /// <code>string thisAssemblyName = config.Properties.Item("AssemblyName").Value.ToString();</code>
+    /// </summary>
+    /// <remarks>see http://msdn.microsoft.com/en-us/library/envdte.project_properties.aspx</remarks>
+    public EnvDTE.Properties Properties 
+    {
+        get { return _project.Properties;}
+    }
+ 
+    /// <summary>
+    /// Provides access to the application/web configuration file.
+    /// </summary>
+    /// <remarks>see http://msdn.microsoft.com/en-us/library/system.configuration.configuration.aspx</remarks>
+    public Configuration Configuration
+    {
+        get { return _configuration; }
+    }   
+ 
+    /// <summary>
+    /// Provides access to the appSettings section of the configuration file.
+    /// Behavior differs from typical AppSettings usage in that the indexed
+    /// item's .Value must be explicitly addressed.
+    /// <code>string setting = config.AppSettings["MyAppSetting"].Value;</code>
+    /// </summary>
+    /// <remarks>see http://msdn.microsoft.com/en-us/library/system.configuration.configuration.appsettings.aspx</remarks>
+    public  KeyValueConfigurationCollection AppSettings
+    {
+        get { return _configuration.AppSettings.Settings;}
+    }
+ 
+    /// <summary>
+    /// Provides access to the connectionStrings section of the configuration file.
+    /// Behavior is as expected; items are accessed by string key or integer index.
+    /// <code>string northwindProvider = config.ConnectionStrings["northwind"].ProviderName;</code>
+    /// </summary>
+    /// <remarks>see http://msdn.microsoft.com/en-us/library/system.configuration.configuration.connectionstrings.aspx</remarks>
+    public  ConnectionStringSettingsCollection ConnectionStrings
+    {
+        get { return _configuration.ConnectionStrings.ConnectionStrings;}
+    }
+ 
+}
+#>
