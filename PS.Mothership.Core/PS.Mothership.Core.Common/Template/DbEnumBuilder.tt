@@ -100,10 +100,12 @@ foreach (var tableName in enumTables)
 #>
 
 using System;
+using System.Runtime.Serialization;
 
 namespace <#=enumNameSpace#>
 {
     [Flags]
+    [DataContract]
 	public enum <#=enumName#>Enum : <#=GetType(columnType)#> 
 	{
 
@@ -112,13 +114,14 @@ namespace <#=enumNameSpace#>
 
     // after finding the column read through
     // and build the enum
-    dataCount =0;
+    dataCount =0; 
     while (columnReader.Read())
     {
 		//Fill only the values that the field "enumDescriptionColumnName" have value
 		if(!string.IsNullOrEmpty(columnReader[queryColumnName].ToString().Trim()))
 		{
                 dataCount++;
+                this.WriteLine("[EnumMember]");
 	#>	<#=columnReader[queryColumnName].ToString()#> = <#=columnReader[0].ToString()#>,
 	<#	}
 	}

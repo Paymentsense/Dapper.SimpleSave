@@ -1,13 +1,17 @@
 
 using System;
+using System.Runtime.Serialization;
 
 namespace PS.Mothership.Core.Common.Template
 {
     [Flags]
+    [DataContract]
 	public enum LoginUserResultStatusLutEnum : int 
 	{
 
-		ValidLogin = 1,
-		InValidLogin = 2,
+	[EnumMember]
+	ValidLogin = 1,
+	[EnumMember]
+	InValidLogin = 2,
 	}
 }
