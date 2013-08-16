@@ -10,6 +10,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{743F8E
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{F9B0503A-7EF3-41A5-95AA-40F6473EB2B8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PS.Mothership.Core.UnitTest", "PS.Mothership.Core.UnitTest\PS.Mothership.Core.UnitTest.csproj", "{601E8D01-68C0-41B8-AB99-12C9899DB36D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,8 +24,15 @@ Global
 		{2E26F270-5FB3-447D-83B6-416A1BDBB0FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2E26F270-5FB3-447D-83B6-416A1BDBB0FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2E26F270-5FB3-447D-83B6-416A1BDBB0FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{601E8D01-68C0-41B8-AB99-12C9899DB36D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{601E8D01-68C0-41B8-AB99-12C9899DB36D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{601E8D01-68C0-41B8-AB99-12C9899DB36D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{601E8D01-68C0-41B8-AB99-12C9899DB36D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{601E8D01-68C0-41B8-AB99-12C9899DB36D} = {F9B0503A-7EF3-41A5-95AA-40F6473EB2B8}
 	EndGlobalSection
 EndGlobal
