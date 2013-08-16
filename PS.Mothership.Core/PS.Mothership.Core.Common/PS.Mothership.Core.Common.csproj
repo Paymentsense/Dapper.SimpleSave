@@ -84,6 +84,7 @@
     <Compile Include="Config\ILayerIocBuilder.cs" />
     <Compile Include="Config\IocBuildSettings.cs" />
     <Compile Include="Config\WcfMode.cs" />
+    <Compile Include="Cryptography\Crypto.cs" />
     <Compile Include="Dto\AccountDto.cs" />
     <Compile Include="Dto\AddressDto.cs" />
     <Compile Include="Dto\CaseDto.cs" />
