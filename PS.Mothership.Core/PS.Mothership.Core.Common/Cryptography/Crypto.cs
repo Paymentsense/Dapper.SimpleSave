@@ -22,7 +22,7 @@ namespace PS.Mothership.Core.Common.Cryptography
         public static string Encrypt(string encryptValue)
         {
             //Create a UnicodeEncoder to convert between byte array and string.
-            var ByteConverter = new ASCIIEncoding();
+            var ByteConverter = new UnicodeEncoding();
 
             //Create byte arrays to hold original, encrypted, and decrypted data. 
             byte[] dataToEncrypt = ByteConverter.GetBytes(encryptValue);
@@ -48,7 +48,7 @@ namespace PS.Mothership.Core.Common.Cryptography
         public static string Decrypt(string decryptValue)
         {
             //Create a UnicodeEncoder to convert between byte array and string.
-            var ByteConverter = new ASCIIEncoding();
+            var ByteConverter = new UnicodeEncoding();
 
             //Create byte arrays to hold original, encrypted, and decrypted data. 
             byte[] dataToDecrypt = ByteConverter.GetBytes(decryptValue);
