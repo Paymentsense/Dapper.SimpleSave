@@ -1,7 +1,7 @@
 using System;
 using System.Runtime.Serialization;
 
-namespace PS.Mothership.Core.Common.Template
+namespace PS.Mothership.Core.Common.Template.PsMsContext
 {
     
     [DataContract]

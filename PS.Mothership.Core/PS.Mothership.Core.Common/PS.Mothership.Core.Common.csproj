@@ -110,10 +110,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Helper.tt</DependentUpon>
     </Compile>
-    <Compile Include="Template\LoginUserResultStatusLutEnum.cs">
+    <Compile Include="Template\PsMsContextLoginUserResultStatusLutEnum.cs">
       <DependentUpon>DbEnumBuilder.tt</DependentUpon>
     </Compile>
-    <Compile Include="Template\PermissionFlagLutEnum.cs">
+    <Compile Include="Template\PsMsContextPermissionFlagLutEnum.cs">
       <DependentUpon>DbEnumBuilder.tt</DependentUpon>
     </Compile>
   </ItemGroup>

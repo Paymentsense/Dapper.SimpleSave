@@ -23,6 +23,43 @@
  #>
 
 <#+
+
+        public string GetDataBaseName(string connectionString)
+        {
+            var dbName=string.Empty;
+
+            using (var connection = new SqlConnection(connectionString))
+            {
+                SqlDataReader reader = null;
+
+                try
+                {
+                    var command = new SqlCommand("SELECT DB_NAME() AS DataBaseName", connection);
+                    connection.Open();
+
+                    reader = command.ExecuteReader();
+
+                    // Call Read before accessing data. 
+                    var idxName = reader.GetOrdinal("DataBaseName");
+                    while (reader.Read())
+                    {
+                        dbName = reader.GetString(idxName);                                                
+                    }
+                }
+                catch(Exception)
+                {
+                    // log the sql, as the exception                                        
+                }
+                finally
+                {
+                    // Call Close when done reading.
+                    if (reader != null)
+                        reader.Close();
+                }
+
+                return dbName;
+            }
+        }
        /// <summary>
         /// Get all the table name
         /// </summary>
@@ -177,6 +214,9 @@
         {
             KeyValue = new Dictionary<string,string>();
         }
+
+        public string ContextName{ get; set;}
+        public string DataBaseName { get; set;}
         public string TableName{ get; set;}
         public Dictionary<string,string> KeyValue { get; set;}        
         public string Type { get; set;}

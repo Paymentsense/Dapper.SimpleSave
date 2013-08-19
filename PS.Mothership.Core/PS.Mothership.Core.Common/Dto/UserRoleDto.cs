@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
-using PS.Mothership.Core.Common.Template;
+using PS.Mothership.Core.Common.Template.PsMsContext;
 
 namespace PS.Mothership.Core.Common.Dto
 {
