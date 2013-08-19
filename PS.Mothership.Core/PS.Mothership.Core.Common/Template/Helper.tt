@@ -1,0 +1,181 @@
+﻿<#@ assembly name="System" #>
+<#@ assembly name="System.Xml" #>
+<#@ assembly Name="System.Core" #>
+<#@ assembly Name="System.Data" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.Text.RegularExpressions" #>
+<#@ import namespace="System.Data" #> 
+<#@ import namespace="System.Xml" #>
+<#@ import namespace="System.Data.SqlClient" #> 
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Text" #>
+
+
+<#
+    const string SYS_TABLES_SQL = @"SELECT DISTINCT t.NAME FROM SYS.tables as t
+        INNER JOIN SYS.columns AS c ON t.object_id = c.object_id
+        AND c.name like '%{0}' and t.name like '%{1}'";
+
+    const string USER_TABLES_SQL=@"SELECT * FROM {0}";
+
+    const string FLAG_VALUES= "[Flags]";
+
+ #>
+
+<#+
+       /// <summary>
+        /// Get all the table name
+        /// </summary>
+        /// <param name="dynamicQueryString"></param>
+        /// <returns></returns>
+        public List<string> GetTableNames(string dynamicQueryString, string connectionString)
+        {
+            var tableNames= new List<string>();
+
+            using (var connection = new SqlConnection(connectionString))
+            {
+                SqlDataReader reader = null;
+
+                try
+                {
+                    var command = new SqlCommand(dynamicQueryString, connection);
+                    connection.Open();
+
+                    reader = command.ExecuteReader();
+
+                    // Call Read before accessing data. 
+                    var idxName = reader.GetOrdinal("Name");
+                    while (reader.Read())
+                    {
+                        tableNames.Add(reader.GetString(idxName));                                                
+                    }
+                }
+                catch(Exception)
+                {
+                    // log the sql, as the exception                                        
+                }
+                finally
+                {
+                    // Call Close when done reading.
+                    if (reader != null)
+                        reader.Close();
+                }
+            }
+
+            // return
+            return tableNames;
+    }
+              
+    public void GetEnumData(string dynamicQueryString, string connectionString, 
+                                string enumDescriptionColumnName, ref DataHolder dataHolder)
+    {           
+           var columnName = string.Empty;           
+           var columnType=string.Empty;
+           var queryColumnName =string.Empty;
+            
+           using (var connection = new SqlConnection(connectionString))
+           {
+                SqlDataReader reader = null;
+
+                try
+                {
+                    var command = new SqlCommand(dynamicQueryString, connection);
+                    connection.Open();
+
+                    reader = command.ExecuteReader();                
+                    columnType=reader.GetFieldType(0).ToString();
+                                       
+                    // load into dataHolder
+                    dataHolder.Type = GetType(columnType);     
+                    
+                    for (int col = 0; col < reader.FieldCount; col++)
+                    {
+                        // Gets the column name 
+                        columnName =reader.GetName(col).ToString();                
+                        if(columnName.EndsWith(enumDescriptionColumnName))
+                        {   
+                            queryColumnName = columnName;                                                        
+                        }                
+                    }   
+ 
+                    while (reader.Read())
+                    {
+                        if(!string.IsNullOrEmpty(reader[queryColumnName].ToString().Trim()))
+                        {                            
+                            dataHolder.KeyValue.Add(reader[queryColumnName].ToString(), reader[0].ToString());
+                        }
+                    }  
+                }
+                catch(Exception)
+                {
+                    // log the sql, as the exception                                        
+                }
+                finally
+                {
+                    // Call Close when done reading.
+                    if (reader != null)
+                        reader.Close();
+                }
+            }        
+    }
+         
+      
+
+        /// <summary>
+        /// Converts the phrase to specified convention.
+        /// </summary>
+        /// <param name="phrase"></param>
+        /// <param name="cases">The cases.</param>
+        /// <returns>string</returns>
+        public static string ConvertCaseString(string phrase)
+        {
+            phrase = phrase.ToLower().Replace("_", " ");
+            string[] splittedPhrase = phrase.Split(' ', '-', '.');
+            var sb = new StringBuilder();
+
+            sb = new StringBuilder();
+
+            foreach (String s in splittedPhrase)
+            {
+                char[] splittedPhraseChars = s.ToCharArray();
+                if (splittedPhraseChars.Length > 0)
+                {
+                    splittedPhraseChars[0] = ((new String(splittedPhraseChars[0], 1)).ToUpper().ToCharArray())[0];
+                }
+                sb.Append(new String(splittedPhraseChars));
+            }
+            return sb.ToString();
+        }
+
+        public static string GetType(string originalType)
+        {
+            var d = new Dictionary<string, string>()
+            {
+                {"System.Int32", "int"},
+                {"System.Int64", "long"},
+            };
+
+            if (d.ContainsKey(originalType))
+                return d[originalType];
+
+            return "int";
+        }          
+
+ #>
+
+
+
+<#+
+    public class DataHolder 
+    {
+        public DataHolder()
+        {
+            KeyValue = new Dictionary<string,string>();
+        }
+        public string TableName{ get; set;}
+        public Dictionary<string,string> KeyValue { get; set;}        
+        public string Type { get; set;}
+        public bool isFlag { get; set;}
+        public string FlagValue { get; set;}        
+    }
+ #>

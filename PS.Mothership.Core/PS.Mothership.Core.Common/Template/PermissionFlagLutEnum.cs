@@ -3,12 +3,13 @@ using System.Runtime.Serialization;
 
 namespace PS.Mothership.Core.Common.Template
 {
-    
+    [Flags]
     [DataContract]
-    public enum LoginUserResultStatusLutEnum : int
+    public enum PermissionFlagLutEnum : long
     {
-       [EnumMember]ValidLogin = 1,
-       [EnumMember]InValidLogin = 2,
+       [EnumMember]Add = 1,
+       [EnumMember]Read = 2,
+       [EnumMember]Delete = 4,
         
     }
 }

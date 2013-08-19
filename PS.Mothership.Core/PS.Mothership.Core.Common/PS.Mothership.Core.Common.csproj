@@ -105,10 +105,15 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
+    <Compile Include="Template\Helper.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Helper.tt</DependentUpon>
+    </Compile>
     <Compile Include="Template\LoginUserResultStatusLutEnum.cs">
       <DependentUpon>DbEnumBuilder.tt</DependentUpon>
     </Compile>
-    <Compile Include="Template\PermissionLutEnum.cs">
+    <Compile Include="Template\PermissionFlagLutEnum.cs">
       <DependentUpon>DbEnumBuilder.tt</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -124,6 +129,10 @@
     <None Include="Template\DbEnumBuilder.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>DbEnumBuilder.txt</LastGenOutput>
+    </None>
+    <None Include="Template\Helper.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Helper.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>

@@ -31,7 +31,7 @@ namespace PS.Mothership.Core.Common.Dto
     public class UserPermissionDto
     {
         [DataMember]
-        public PermissionLutEnum PermissionEnums { get; set; }        
+        public PermissionFlagLutEnum PermissionEnums { get; set; }        
 
         [DataMember]
         public string PermissionName { get; set; }
