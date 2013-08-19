@@ -72,7 +72,8 @@
            var columnName = string.Empty;           
            var columnType=string.Empty;
            var queryColumnName =string.Empty;
-            
+           var dataCount=0;    
+
            using (var connection = new SqlConnection(connectionString))
            {
                 SqlDataReader reader = null;
@@ -103,8 +104,12 @@
                         if(!string.IsNullOrEmpty(reader[queryColumnName].ToString().Trim()))
                         {                            
                             dataHolder.KeyValue.Add(reader[queryColumnName].ToString(), reader[0].ToString());
+                            dataCount++;
                         }
                     }  
+
+                    // load the data
+                    dataHolder.DataCount = dataCount;
                 }
                 catch(Exception)
                 {
@@ -176,6 +181,7 @@
         public Dictionary<string,string> KeyValue { get; set;}        
         public string Type { get; set;}
         public bool isFlag { get; set;}
-        public string FlagValue { get; set;}        
+        public string FlagValue { get; set;}     
+        public int DataCount { get;set;}
     }
  #>

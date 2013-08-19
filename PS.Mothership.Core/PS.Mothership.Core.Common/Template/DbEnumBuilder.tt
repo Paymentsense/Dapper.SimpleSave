@@ -84,6 +84,8 @@
 <#
      foreach (var cls in classList)
     {
+          // if there is no data, contiune to the next one
+        if(cls.DataCount == 0) continue;
         var enumName = ConvertCaseString(cls.TableName);	    
         fileManager.StartNewFile(enumName + "Enum.cs");
 #>
