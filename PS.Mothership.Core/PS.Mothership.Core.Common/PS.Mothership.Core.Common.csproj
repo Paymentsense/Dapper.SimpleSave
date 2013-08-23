@@ -80,6 +80,7 @@
     <Compile Include="Contracts\IApplicationService.cs" />
     <Compile Include="Contracts\ICompanyService.cs" />
     <Compile Include="Contracts\ILoggingService.cs" />
+    <Compile Include="Contracts\INotificationService.cs" />
     <Compile Include="Contracts\Security\IAuthenticationService.cs" />
     <Compile Include="Config\ILayerIocBuilder.cs" />
     <Compile Include="Config\IocBuildSettings.cs" />
