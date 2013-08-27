@@ -10,7 +10,6 @@
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="System.Text" #>
 
-
 <#
     const string SYS_TABLES_SQL = @"SELECT DISTINCT t.NAME FROM SYS.tables as t
         INNER JOIN SYS.columns AS c ON t.object_id = c.object_id
@@ -24,6 +23,59 @@
 
 <#+
 
+    public string ResolvePathLocal(string fileDirectory)
+        {                    
+            string[] files = null;
+
+                if (fileDirectory == null)
+                {
+                    throw new ArgumentNullException("the file name cannot be null");
+                }
+                           
+               string filePath = fileDirectory;
+               string directoryName;
+               int i = 0;
+
+                while (filePath != null)
+                {
+                    directoryName = Path.GetDirectoryName(filePath);                    
+                    filePath = directoryName;
+
+                    try
+                    {
+                        files = Directory.GetFiles(filePath);
+                        foreach (string file in files)
+                        {
+                            try
+                            {
+                                // get all the file
+                                FileInfo fi = new FileInfo(file);
+                                if (Regex.IsMatch(fi.Name,"(app|web).config",RegexOptions.IgnoreCase))
+                                {
+                                     return Path.Combine(filePath, fi.Name);
+                                }
+                            }
+                            catch (FileNotFoundException)
+                            {                            
+                                continue;
+                            }
+                        }
+                    }
+                    // This is thrown if even one of the files requires permissions greater 
+                    // than the application provides. 
+                    catch (UnauthorizedAccessException)
+                    {
+                    }                    
+
+                    if (i == 1)
+                    {
+                        filePath = directoryName + @"\";  // this will preserve the previous path
+                    }
+                    i++;
+                }
+            
+            return string.Empty;
+        }
         public string GetDataBaseName(string connectionString)
         {
             var dbName=string.Empty;

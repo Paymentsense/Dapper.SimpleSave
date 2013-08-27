@@ -17,7 +17,8 @@
 <#
 
 ///////////////////////TEMPLATE PARAMETES////////////////////////////////////
-    var config = new ConfigurationAccessor((IServiceProvider)this.Host);
+    var config = new ConfigurationAccessor(this.ResolvePathLocal(Path.GetDirectoryName(Host.TemplateFile)));
+    
     var connections = config.ConnectionStrings;
     var appSettings = config.AppSettings;
     
