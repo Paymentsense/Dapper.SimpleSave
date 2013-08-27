@@ -2,6 +2,16 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
+  </PropertyGroup>
+  <!--<Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />-->
+  <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{2E26F270-5FB3-447D-83B6-416A1BDBB0FC}</ProjectGuid>
@@ -132,6 +142,31 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <Import Project="$(VSToolsPath)\TextTemplating\Microsoft.TextTemplating.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\TextTemplating\Microsoft.TextTemplating.targets" Condition="false" />
+  <PropertyGroup>
+    <IncludeFolders>$(MSBuildProgramFiles32)\Microsoft Visual Studio 11.0\Common7\IDE\Extensions\Microsoft\Entity Framework Tools\Templates\Includes</IncludeFolders>
+    <TransformOnBuild>true</TransformOnBuild>
+    <OverwriteReadOnlyOutputFiles>true</OverwriteReadOnlyOutputFiles>
+    <TransformOutOfDateOnly>false</TransformOutOfDateOnly>
+    <IncludeDslT4Settings>false</IncludeDslT4Settings>
+  </PropertyGroup>
+  <!--if we set IncludeDslT4Settings to true, then we don't need the below-->
+  <ItemGroup>
+    <T4ReferencePath Include="$(VsIdePath)PublicAssemblies\">
+      <InProject>False</InProject>
+    </T4ReferencePath>
+  </ItemGroup>
+  <PropertyGroup>
+    <BeforeTransform>CustomPreTransform</BeforeTransform>
+    <AfterTransform>CustomPostTransform;$(AfterTransform)</AfterTransform>
+  </PropertyGroup>
+  <Target Name="CustomPreTransform">
+    <Message Text="In CustomPreTransform..." Importance="High" />
+  </Target>
+  <Target Name="CustomPostTransform">
+    <Message Text="In CustomPostTransform..." Importance="High" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

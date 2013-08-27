@@ -13,7 +13,7 @@
 <#@ include file="ConfigurationAccessor.tt" #>
 <#@ include file="Helper.tt" #>
 <#@ output extension=".txt" #>
-
+ 
 <#
 
 ///////////////////////TEMPLATE PARAMETES////////////////////////////////////
