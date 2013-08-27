@@ -101,16 +101,6 @@
     <Compile Include="Extension\EnumerableExtension.cs" />
     <Compile Include="Enums\UserRoleType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Template\ConfigurationAccessor.cs">
-      <DependentUpon>ConfigurationAccessor.tt</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-    </Compile>
-    <Compile Include="Template\Helper.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Helper.tt</DependentUpon>
-    </Compile>
     <Compile Include="Template\PsMsContextLoginUserResultStatusLutEnum.cs">
       <DependentUpon>DbEnumBuilder.tt</DependentUpon>
     </Compile>
@@ -123,18 +113,12 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Template\ConfigurationAccessor.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ConfigurationAccessor.cs</LastGenOutput>
-    </None>
+    <None Include="Template\ConfigurationAccessor.tt" />
     <None Include="Template\DbEnumBuilder.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>DbEnumBuilder.txt</LastGenOutput>
     </None>
-    <None Include="Template\Helper.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Helper.cs</LastGenOutput>
-    </None>
+    <None Include="Template\Helper.tt" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
