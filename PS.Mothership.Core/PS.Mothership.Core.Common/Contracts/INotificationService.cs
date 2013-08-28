@@ -12,7 +12,7 @@ namespace PS.Mothership.Core.Common.Contracts
     public interface INotificationService
     {
         [OperationContract(IsOneWay = false)]
-        void Subscribe(Guid subscriptionId, string[] eventNames);
+        void Subscribe(Guid subscriptionId, string userName, string[] eventNames);
         [OperationContract(IsOneWay = true)]
         void EndSubscribe(Guid subscriptionId);
     }
@@ -28,7 +28,7 @@ namespace PS.Mothership.Core.Common.Contracts
     public class NotificationResultDto
     {
         [DataMember]
-        public string SubscriptionID { get; set; }
+        public string UserName { get; set; }
         [DataMember]
         public string NotificationMessage { get; set; }
     }
