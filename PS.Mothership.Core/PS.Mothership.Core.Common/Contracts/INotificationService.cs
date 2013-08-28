@@ -28,6 +28,8 @@ namespace PS.Mothership.Core.Common.Contracts
     public class NotificationResultDto
     {
         [DataMember]
+        public string SubscriptionID { get; set; }
+        [DataMember]
         public string NotificationMessage { get; set; }
     }
 }
