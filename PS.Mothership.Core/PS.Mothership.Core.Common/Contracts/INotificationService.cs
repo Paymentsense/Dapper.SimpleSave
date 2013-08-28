@@ -17,7 +17,7 @@ namespace PS.Mothership.Core.Common.Contracts
         void EndSubscribe(Guid subscriptionId);
     }
 
-
+    [ServiceContract]
     public interface INotificationCallback
     {
         [OperationContract(IsOneWay = true)]
