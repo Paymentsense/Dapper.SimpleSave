@@ -157,6 +157,11 @@
     <T4ReferencePath Include="$(VsIdePath)PublicAssemblies\">
       <InProject>False</InProject>
     </T4ReferencePath>
+    <DirectiveProcessor Include="T4VSHost">
+      <Class>Microsoft.Data.Entity.Design.VisualStudio.Directives.FallbackT4VSHostProcessor</Class>
+      <CodeBase>$(MSBuildProgramFiles32)\Microsoft Visual Studio 11.0\Common7\IDE\Microsoft.Data.Entity.Design.dll</CodeBase>
+      <InProject>False</InProject>
+    </DirectiveProcessor>
   </ItemGroup>
   <PropertyGroup>
     <BeforeTransform>CustomPreTransform</BeforeTransform>
