@@ -9,6 +9,7 @@ namespace PS.Mothership.Core.Common.Dto
         public string UserName { get; set; }
         public bool IsPersistent { get; set; }
         public bool IsValid { get; set; }
+        public bool IsImpersonate { get; set; }
         public MembershipCreateStatus Status { get; set; }
         public string Message { get; set; }
     }
