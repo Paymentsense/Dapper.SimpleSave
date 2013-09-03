@@ -11,8 +11,11 @@ namespace PS.Mothership.Core.Common.Contracts.Security
         AccountDto Login(LoginCredentialsDto loginCredentialsDto);
 
         [OperationContract]
-        AccountDto Register(RegisterDto registerDto);        
-        
+        AccountDto Register(RegisterDto registerDto);
+
+        [OperationContract]
+        AccountDto GetUserAccount(long userId);        
+
         [OperationContract]
         IEnumerable<UserGroupDto> GetGroups(long userId);
 
