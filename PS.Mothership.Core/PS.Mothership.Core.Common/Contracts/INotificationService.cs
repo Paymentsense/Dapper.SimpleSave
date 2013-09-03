@@ -5,11 +5,12 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
+using Quartz;
 
 namespace PS.Mothership.Core.Common.Contracts
 {
     [ServiceContract(CallbackContract = typeof(INotificationCallback))]
-    public interface INotificationService
+    public interface INotificationService : IJob
     {
         [OperationContract(IsOneWay = false)]
         void Subscribe(string applicationName);
