@@ -14,7 +14,10 @@ namespace PS.Mothership.Core.Common.Contracts.Security
         AccountDto Register(RegisterDto registerDto);
 
         [OperationContract]
-        AccountDto GetUserAccount(long userId);        
+        AccountDto GetUserAccount(long userId);
+
+        [OperationContract]
+        IEnumerable<UserProfileDto> GetUserProfile(long departmentId, UserProfileDto accessUserProfile, DataRequestDto dataRequestDto);
 
         [OperationContract]
         IEnumerable<UserGroupDto> GetGroups(long userId);

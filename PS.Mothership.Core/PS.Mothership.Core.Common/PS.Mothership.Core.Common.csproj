@@ -107,6 +107,7 @@
     <Compile Include="Dto\CaseDto.cs" />
     <Compile Include="Dto\CaseSummaryDto.cs" />
     <Compile Include="Dto\CompanyDto.cs" />
+    <Compile Include="Dto\DataRequestDto.cs" />
     <Compile Include="Dto\LoginCredentialsDto.cs" />
     <Compile Include="Dto\IDto.cs" />
     <Compile Include="Dto\RegisterDto.cs" />
