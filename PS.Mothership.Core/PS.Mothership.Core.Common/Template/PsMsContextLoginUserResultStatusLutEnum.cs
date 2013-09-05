@@ -9,6 +9,7 @@ namespace PS.Mothership.Core.Common.Template.PsMsContext
     {
        [EnumMember]ValidLogin = 1,
        [EnumMember]InValidLogin = 2,
+       [EnumMember]Impersonated = 3,
         
     }
 }
