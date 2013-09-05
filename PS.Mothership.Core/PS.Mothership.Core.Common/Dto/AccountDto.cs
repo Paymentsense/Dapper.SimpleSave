@@ -6,10 +6,7 @@ namespace PS.Mothership.Core.Common.Dto
 {
     [DataContract]
     public class AccountDto
-    {
-        [DataMember]
-        public long UserId { get; set; }
-
+    {       
         [DataMember]
         public MembershipCreateStatus Status { get; set; }
 
