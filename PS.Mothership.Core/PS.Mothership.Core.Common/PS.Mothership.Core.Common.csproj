@@ -97,7 +97,8 @@
     <Compile Include="Contracts\IApplicationService.cs" />
     <Compile Include="Contracts\ICompanyService.cs" />
     <Compile Include="Contracts\ILoggingService.cs" />
-    <Compile Include="Contracts\INotificationService.cs" />
+    <Compile Include="Contracts\ITaskNotificationCallback.cs" />
+    <Compile Include="Contracts\ITaskNotificationService.cs" />
     <Compile Include="Contracts\Security\IAuthenticationService.cs" />
     <Compile Include="Config\ILayerIocBuilder.cs" />
     <Compile Include="Config\IocBuildSettings.cs" />
@@ -110,7 +111,10 @@
     <Compile Include="Dto\DataRequestDto.cs" />
     <Compile Include="Dto\LoginCredentialsDto.cs" />
     <Compile Include="Dto\IDto.cs" />
+    <Compile Include="Dto\NotificationDetail.cs" />
+    <Compile Include="Dto\NotificationResultDto.cs" />
     <Compile Include="Dto\RegisterDto.cs" />
+    <Compile Include="Dto\TaskDto.cs" />
     <Compile Include="Dto\UserRoleDto.cs" />
     <Compile Include="Dto\TblCaseDTO.cs" />
     <Compile Include="Dto\UserDto.cs" />
