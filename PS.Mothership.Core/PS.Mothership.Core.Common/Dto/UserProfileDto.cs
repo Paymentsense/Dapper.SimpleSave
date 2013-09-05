@@ -15,10 +15,11 @@ namespace PS.Mothership.Core.Common.Dto
         public MembershipCreateStatus Status { get; set; }
         public string Message { get; set; }
 
-        private readonly Guid _sessionId = Guid.NewGuid();
+        private Guid _sessionId = Guid.NewGuid();
         public Guid SessionId
         {
-            get { return _sessionId; }            
+            get { return _sessionId; }  
+            set { _sessionId = value; }
         }
     }
 }

@@ -17,6 +17,9 @@ namespace PS.Mothership.Core.Common.Contracts.Security
         AccountDto GetUserAccount(long userId);
 
         [OperationContract]
+        AccountDto GetImpersonatedAccount(UserProfileDto profileImpersonating, long userId);
+
+        [OperationContract]
         IEnumerable<UserProfileDto> GetUserProfile(long departmentId, UserProfileDto accessUserProfile, DataRequestDto dataRequestDto);
 
         [OperationContract]
