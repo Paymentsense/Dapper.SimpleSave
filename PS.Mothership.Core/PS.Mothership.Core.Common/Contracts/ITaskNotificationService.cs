@@ -8,7 +8,7 @@ using Quartz;
 namespace PS.Mothership.Core.Common.Contracts
 {
     [ServiceContract(CallbackContract = typeof(ITaskNotificationCallback))]
-    public interface ITaskNotificationService : IJob
+    public interface ITaskNotificationService : IQuartzJobBase
     {
         [OperationContract(IsOneWay = false)]
         void Subscribe(string applicationName);
