@@ -114,6 +114,7 @@
     <Compile Include="Dto\IDto.cs" />
     <Compile Include="Dto\NotificationDetail.cs" />
     <Compile Include="Dto\NotificationResultDto.cs" />
+    <Compile Include="Dto\PendingTaskNotification.cs" />
     <Compile Include="Dto\RegisterDto.cs" />
     <Compile Include="Dto\TaskDto.cs" />
     <Compile Include="Dto\UserRoleDto.cs" />

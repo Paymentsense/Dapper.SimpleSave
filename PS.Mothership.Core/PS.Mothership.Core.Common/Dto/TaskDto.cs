@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
 
 namespace PS.Mothership.Core.Common.Dto
@@ -11,5 +12,6 @@ namespace PS.Mothership.Core.Common.Dto
         [DataMember]public string Description { get; set; }
         [DataMember]public bool IsRecurring { get; set; }
         [DataMember]public int Priority { get; set; }
+        [DataMember]public List<PendingTaskNotification> PendingTaskNotifications { get; set; }
     }
 }

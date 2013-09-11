@@ -7,6 +7,6 @@ namespace PS.Mothership.Core.Common.Contracts
     public interface ITaskNotificationCallback
     {
         [OperationContract(IsOneWay = true)]
-        void ReceiveNotification(NotificationResultDto notificationResult);
+        void ReceiveNotification(TaskDto taskDto);
     }
 }
