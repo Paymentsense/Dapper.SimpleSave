@@ -8,5 +8,8 @@ namespace PS.Mothership.Core.Common.Dto
     {
         [DataMember]public DateTime TaskStartDateTime { get; set; }
         [DataMember]public string UserName { get; set; }
+        [DataMember]public string Description { get; set; }
+        [DataMember]public bool IsRecurring { get; set; }
+        [DataMember]public int Priority { get; set; }
     }
 }

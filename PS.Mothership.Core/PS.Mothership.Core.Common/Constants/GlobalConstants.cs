@@ -9,5 +9,7 @@ namespace PS.Mothership.Core.Common.Constants
     public class GlobalConstants
     {
         public const string ApplicationName = "PS.WEB.UI";
+        public const string TaskNotificationID = "TaskNotificationID";
+        public const string UserName = "UserName";
     }
 }

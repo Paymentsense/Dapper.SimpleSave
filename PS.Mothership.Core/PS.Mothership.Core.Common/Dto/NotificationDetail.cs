@@ -10,4 +10,19 @@ namespace PS.Mothership.Core.Common.Dto
         [DataMember]
         public string Message { get; set; }
     }
+
+    [DataContract]
+    public class PendingTaskNotification
+    {
+        [DataMember]
+        public string TriggeredDate { get; set; }
+        [DataMember]
+        public bool IsAcknowledged { get; set; }
+        [DataMember]
+        public bool IsRescheduled { get; set; }
+        [DataMember]
+        public string TaskDescription { get; set; }
+        [DataMember]
+        public string NewTriggerStartDate { get; set; }
+    }
 }

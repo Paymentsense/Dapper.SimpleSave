@@ -8,6 +8,10 @@ namespace PS.Mothership.Core.Common.Dto
     public class NotificationResultDto
     {
         [DataMember]
-        public List<NotificationDetail> NotificationDetails  { get; set; }
+        public string UserName { get; set; }
+        [DataMember]
+        public string Message { get; set; }
+        [DataMember]
+        public List<PendingTaskNotification> PendingTaskNotifications { get; set; }
     }
 }
