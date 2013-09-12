@@ -14,6 +14,7 @@ namespace PS.Mothership.Core.Common.Dto
         public bool IsImpersonate { get; set; }
         public MembershipCreateStatus Status { get; set; }
         public string Message { get; set; }
+        public int TotalCount { get; set; } // gives the total count based on selection criteria
 
         private Guid _sessionId = Guid.NewGuid();
         public Guid SessionId
