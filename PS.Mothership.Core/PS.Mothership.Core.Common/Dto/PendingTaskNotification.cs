@@ -6,6 +6,8 @@ namespace PS.Mothership.Core.Common.Dto
     public class PendingTaskNotification
     {
         [DataMember]
+        public long PendingTaskID { get; set; }
+        [DataMember]
         public string TriggeredDate { get; set; }
         [DataMember]
         public bool IsAcknowledged { get; set; }

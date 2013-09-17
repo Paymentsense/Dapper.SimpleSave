@@ -18,5 +18,7 @@ namespace PS.Mothership.Core.Common.Contracts
         void AddNewTask(TaskDto taskDto);
         [OperationContract]
         void UpdateTask(TaskDto taskDto);
+        [OperationContract]
+        void CompleteTask(long pendingNotificationID);
     }
 }
