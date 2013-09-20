@@ -16,10 +16,10 @@ namespace PS.Mothership.Core.UnitTest.Helper
         {
             // Arrange 
             var p = new Person { Id = 1, Name = "Name" };
-            const string actual = @"{""Id"":1";
+            const string actual = @"""Id"":1";
 
             // Act
-            string jsonString = Util.ConvertToJson(p);
+            string jsonString = Util.ConvertToJson(p,true);
 
 
             //Console.WriteLine(jsonString);
