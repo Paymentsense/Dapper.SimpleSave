@@ -12,14 +12,21 @@ namespace PS.Mothership.Core.Common.Helper
         /// <summary>
         /// Method to convert dynamic object to json string
         /// </summary>
-        /// <param name="objData"></param>
-        /// <returns></returns>
-        public static string ConvertToJson(dynamic objData)
+        /// <remarks>
+        ///     If the JsonSerializerSetting gets bigger, then expose them in the signature
+        ///     "public static string ConvertToJson(dynamic objData,JsonSerializerSettings jsonSerializerSettings=null)"
+        ///     if we do this, any prjects using this utilility need to reference Newtonsoft.Json;
+        /// </remarks>
+        /// <param name="objData"></param>        
+        /// <param name="typeNameHandling"></param>
+        /// <returns></returns>        
+        public static string ConvertToJson(dynamic objData, bool typeNameHandling=false)
         {
             try
-            {                
-                string json = JsonConvert.SerializeObject(objData, Formatting.None);
-                return json;
+            {
+                return typeNameHandling ? 
+                    JsonConvert.SerializeObject(objData, Formatting.None,new JsonSerializerSettings() {TypeNameHandling = TypeNameHandling.All}) :
+                    JsonConvert.SerializeObject(objData, Formatting.None);                
             }
             catch (Exception ex)
             {
@@ -32,14 +39,21 @@ namespace PS.Mothership.Core.Common.Helper
         /// <summary>
         /// Convert to dymanic
         /// </summary>
+        /// <remarks>
+        ///     If the JsonSerializerSetting gets bigger, then expose them in the signature
+        ///     "public static string ConvertToObject(string jsonString,JsonSerializerSettings jsonSerializerSettings=null)"
+        ///     if we do this, any prjects using this utilility need to reference Newtonsoft.Json;
+        /// </remarks>
         /// <param name="jsonString"></param>
+        /// <param name="typeNameHandling"></param>
         /// <returns></returns>
-        public static dynamic ConvertToObject(string jsonString)
+        public static dynamic ConvertToObject(string jsonString, bool typeNameHandling = false)
         {
             try
             {
-                var obj = JsonConvert.DeserializeObject<dynamic>(jsonString);
-                return obj;
+                return typeNameHandling ? 
+                    JsonConvert.DeserializeObject<dynamic>(jsonString, new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.Auto }) : 
+                    JsonConvert.DeserializeObject<dynamic>(jsonString);                
 
             }
             catch (Exception ex)
