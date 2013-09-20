@@ -51,6 +51,8 @@ namespace PS.Mothership.Core.Common.Helper
         {
             try
             {
+                // for security TypeNameHandling is required when deserializing, if the jsonString used TypeNameHandling during serilization
+                // link : http://james.newtonking.com/projects/json/help/index.html?topic=html/SerializeTypeNameHandling.htm
                 return typeNameHandling ? 
                     JsonConvert.DeserializeObject<dynamic>(jsonString, new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.Auto }) : 
                     JsonConvert.DeserializeObject<dynamic>(jsonString);                
