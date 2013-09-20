@@ -26,7 +26,7 @@ namespace PS.Mothership.Core.Common.Dto
         public int TotalCount { get; set; } // gives the total count based on selection criteria
 
         private Guid _sessionId = Guid.NewGuid();
-        [JsonIgnore]
+        [JsonIgnore] 
         public Guid SessionId
         {
             get { return _sessionId; }  
