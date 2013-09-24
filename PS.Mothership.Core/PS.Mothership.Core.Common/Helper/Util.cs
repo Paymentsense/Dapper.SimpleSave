@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Globalization;
+using System.IO;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Bson;
 
 namespace PS.Mothership.Core.Common.Helper
 {
@@ -27,6 +29,31 @@ namespace PS.Mothership.Core.Common.Helper
                 return typeNameHandling ? 
                     JsonConvert.SerializeObject(objData, Formatting.None,new JsonSerializerSettings() {TypeNameHandling = TypeNameHandling.All}) :
                     JsonConvert.SerializeObject(objData, Formatting.None);                
+            }
+            catch (Exception ex)
+            {
+                // error logging later
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Method to convert dynamic object to Bson
+        /// </summary>        
+        /// <param name="objData"></param>
+        /// <returns></returns>        
+        public static byte[] ConvertToBson(dynamic objData)
+        {
+            try
+            {
+                var ms = new MemoryStream();
+                var serializer = new JsonSerializer();
+
+                // serialize product to BSON
+                var writer = new BsonWriter(ms);                
+                serializer.Serialize(writer, objData);
+                return ms.ToArray();
             }
             catch (Exception ex)
             {
@@ -78,6 +105,32 @@ namespace PS.Mothership.Core.Common.Helper
             try
             {
                 var outObject = JsonConvert.DeserializeObject<T>(jsonString);
+                return (T)Convert.ChangeType(outObject, typeof(T), CultureInfo.CurrentCulture);
+            }
+            catch (Exception ex)
+            {
+                // error logging later
+            }
+
+            // return default
+            return default(T);
+        }
+
+        /// <summary>
+        /// Convert json string to strong typed object
+        /// </summary>
+        /// <typeparam name="T"></typeparam>        
+        /// <param name="bsonBytes"></param>        
+        /// <returns></returns>
+        public static T ConvertFromBson<T>(byte[] bsonBytes) where T : class
+        {
+            try
+            {
+                // deserialize product from BSON
+                var msread = new MemoryStream(bsonBytes);
+                var reader = new BsonReader(msread);
+                var serializer = new JsonSerializer();
+                var outObject = serializer.Deserialize<T>(reader);
                 return (T)Convert.ChangeType(outObject, typeof(T), CultureInfo.CurrentCulture);
             }
             catch (Exception ex)
