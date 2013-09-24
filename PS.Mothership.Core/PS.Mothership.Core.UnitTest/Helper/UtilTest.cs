@@ -49,6 +49,52 @@ namespace PS.Mothership.Core.UnitTest.Helper
             // Asssert
             Assert.AreEqual(ps.Id, p.Id, "Id not the same");
         }
+
+        [Test]
+        public void ConvertToBson_AnObjectGiven_GiveBackABson()
+        {
+            // Arrange 
+            var p = new Person { Id = 1, Name = "Name", FirstName = "FirstName" };
+            var c = new Customer { Id = 100, Name = "Customer Name" };
+            p.Customer = c;
+
+            // coverted byte for equality testing
+            const string expected = "ZAAAABBJZAABAAAAAk5hbWUABQAAAE5hbWUAAkZpcnN0TmFtZQAKAAAARmlyc3ROYW1lAANDdXN0b21lcgAlAAAAEElkAGQAAAACTmFtZQAOAAAAQ3VzdG9tZXIgTmFtZQAAAA==";
+
+            // Act            
+            var bsonBytes = Util.ConvertToBson(p);
+            var actual = Convert.ToBase64String(bsonBytes);
+
+            //// Act
+            //var ps = Util.ConvertFromBson<Person>(bsonBytes);
+
+            //Console.WriteLine(string.Format("Id:{0}\n Name:{1}\n CustomerId:{2}\n CustomerName:{3}",
+            //  ps.Id, ps.Name, ps.Customer.Id, ps.Customer.Name));            
+          
+            // Asssert
+            Assert.AreEqual(expected, actual, "data not the same");
+        }
+
+        [Test]
+        public void ConvertFromBson_ByteArray_GiveBackAStronglyTypeOBject()
+        {
+            // Arrange 
+            // coverted byte for equality testing
+            const string base64PersonData = "ZAAAABBJZAABAAAAAk5hbWUABQAAAE5hbWUAAkZpcnN0TmFtZQAKAAAARmlyc3ROYW1lAANDdXN0b21lcgAlAAAAEElkAGQAAAACTmFtZQAOAAAAQ3VzdG9tZXIgTmFtZQAAAA==";
+
+            var p = new Person { Id = 1, Name = "Name", FirstName = "FirstName" };
+            var c = new Customer { Id = 100, Name = "Customer Name" };
+            p.Customer = c;            
+
+            // Act
+            var ps = Util.ConvertFromBson<Person>(Convert.FromBase64String(base64PersonData));
+
+            //Console.WriteLine(string.Format("Id:{0}\n Name:{1}\n CustomerId:{2}\n CustomerName:{3}",
+            //  ps.Id, ps.Name, ps.Customer.Id, ps.Customer.Name));
+
+            // Asssert
+            Assert.AreEqual(ps.Id, p.Id, "Id not the same");
+        }
     }
 
 
