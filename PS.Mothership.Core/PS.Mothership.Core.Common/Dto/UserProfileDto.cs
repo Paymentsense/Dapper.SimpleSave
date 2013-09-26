@@ -36,10 +36,10 @@ namespace PS.Mothership.Core.Common.Dto
         public string Message { get; set; }
         [DataMember]
         public int TotalCount { get; set; } // gives the total count based on selection criteria
-
-        [NonSerialized]
+        
         private Guid _sessionId = Guid.NewGuid();        
-        [JsonIgnore]        
+        [JsonIgnore]     
+        [DataMember]
         public Guid SessionId
         {
             get { return _sessionId; }  

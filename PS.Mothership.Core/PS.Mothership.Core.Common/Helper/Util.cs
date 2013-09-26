@@ -27,8 +27,8 @@ namespace PS.Mothership.Core.Common.Helper
             try
             {
                 return typeNameHandling ? 
-                    JsonConvert.SerializeObject(objData, Formatting.None,new JsonSerializerSettings() {TypeNameHandling = TypeNameHandling.All}) :
-                    JsonConvert.SerializeObject(objData, Formatting.None);                
+                    JsonConvert.SerializeObject(objData, Formatting.None,new JsonSerializerSettings() {TypeNameHandling = TypeNameHandling.All, ContractResolver = new DynamicContractResolver()}) :
+                    JsonConvert.SerializeObject(objData, Formatting.None, new JsonSerializerSettings() { ContractResolver = new DynamicContractResolver()});
             }
             catch (Exception ex)
             {
@@ -80,9 +80,9 @@ namespace PS.Mothership.Core.Common.Helper
             {
                 // for security TypeNameHandling is required when deserializing, if the jsonString used TypeNameHandling during serilization
                 // link : http://james.newtonking.com/projects/json/help/index.html?topic=html/SerializeTypeNameHandling.htm
-                return typeNameHandling ? 
-                    JsonConvert.DeserializeObject<dynamic>(jsonString, new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.Auto }) : 
-                    JsonConvert.DeserializeObject<dynamic>(jsonString);                
+                return typeNameHandling ?
+                    JsonConvert.DeserializeObject<dynamic>(jsonString, new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.Auto, ContractResolver = new DynamicContractResolver() }) :
+                    JsonConvert.DeserializeObject<dynamic>(jsonString, new JsonSerializerSettings() { ContractResolver = new DynamicContractResolver() });                
 
             }
             catch (Exception ex)
@@ -141,5 +141,5 @@ namespace PS.Mothership.Core.Common.Helper
             // return default
             return default(T);
         }
-    }
+    }    
 }

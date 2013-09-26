@@ -128,6 +128,7 @@
     <Compile Include="Extension\EnumerableExtension.cs" />
     <Compile Include="Enums\UserRoleType.cs" />
     <Compile Include="Contracts\ICacheService.cs" />
+    <Compile Include="Helper\DynamicContractResolver.cs" />
     <Compile Include="Helper\Util.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Template\PsMsContextLoginUserResultStatusLutEnum.cs">
