@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 using NUnit.Framework;
 using PS.Mothership.Core.Common.Helper;
+using System.Runtime.Serialization;
 
 namespace PS.Mothership.Core.UnitTest.Helper
 {
@@ -95,26 +97,60 @@ namespace PS.Mothership.Core.UnitTest.Helper
             // Asssert
             Assert.AreEqual(ps.Id, p.Id, "Id not the same");
         }
+
+        [Test]
+        public void ConvertToJson_AnObjectGiven_JasonString_IgnoringAproperty()
+        {
+            // Arrange 
+            var p = new Person { Id = 1, Name = "Name" };
+            var c = new Customer { Id = 100, Name = "Customer Name" };
+            p.Customer = c;
+            const string actual = @"""SessionId"":";
+
+            // convert to json
+            var jsonString = Util.ConvertToJson(p);
+
+            //Console.WriteLine(jsonString);
+
+            // Assert
+            Assert.AreEqual(false, jsonString.Contains(actual),  "should not contain property decorated with JsonIgnore");
+        }
     }
 
 
     /// <summary>
     /// Test Stubs
     /// </summary>
+    [DataContract]
     public class Person
     {
+        [DataMember]
         public int Id { get; set; }
+        [DataMember]
         public string Name { get; set; }
+        [DataMember]
         public string FirstName { get; set; }
+        [DataMember]
         public Customer Customer { get; set; }
+        private Guid _sessionId = Guid.NewGuid();
+        [JsonIgnore]
+        [DataMember]
+        public Guid SessionId
+        {
+            get { return _sessionId; }
+            set { _sessionId = value; }
+        }
     }
 
     /// <summary>
     /// Test Stubs
     /// </summary>
+    [DataContract]
     public class Customer
     {
+        [DataMember]
         public int Id { get; set; }
+        [DataMember]
         public string Name { get; set; }
     }
 }
