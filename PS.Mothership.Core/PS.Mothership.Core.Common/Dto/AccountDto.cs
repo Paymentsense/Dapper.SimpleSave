@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
-using System.Web.Security;
 
 namespace PS.Mothership.Core.Common.Dto
 {

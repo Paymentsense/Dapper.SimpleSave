@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Runtime.Serialization;
-using System.Web.Security;
 using Newtonsoft.Json;
 
 namespace PS.Mothership.Core.Common.Dto
