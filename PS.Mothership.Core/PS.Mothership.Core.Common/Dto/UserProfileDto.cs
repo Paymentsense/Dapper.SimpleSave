@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.Serialization;
+using System.Web.Security;
 using Newtonsoft.Json;
 
 namespace PS.Mothership.Core.Common.Dto
@@ -30,7 +31,7 @@ namespace PS.Mothership.Core.Common.Dto
         [DataMember]
         public bool IsImpersonate { get; set; }
         [DataMember]
-        public MembershipStatus Status { get; set; }
+        public MembershipCreateStatus Status { get; set; }
         [DataMember]
         public string Message { get; set; }
         [DataMember]

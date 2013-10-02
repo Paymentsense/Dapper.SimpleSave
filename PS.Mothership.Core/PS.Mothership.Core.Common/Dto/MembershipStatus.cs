@@ -6,20 +6,20 @@ using System.Threading.Tasks;
 
 namespace PS.Mothership.Core.Common.Dto
 {
-    public enum MembershipStatus
-    {
-        Success,
-        InvalidUserName,
-        InvalidPassword,
-        InvalidQuestion,
-        InvalidAnswer,
-        InvalidEmail,
-        DuplicateUserName,
-        DuplicateEmail,
-        UserRejected,
-        InvalidProviderUserKey,
-        DuplicateProviderUserKey,
-        ProviderError,
-        AccountLockOut
-    }
+    //public enum MembershipCreateStatus
+    //{
+    //    Success,
+    //    InvalidUserName,
+    //    InvalidPassword,
+    //    InvalidQuestion,
+    //    InvalidAnswer,
+    //    InvalidEmail,
+    //    DuplicateUserName,
+    //    DuplicateEmail,
+    //    UserRejected,
+    //    InvalidProviderUserKey,
+    //    DuplicateProviderUserKey,
+    //    ProviderError,
+    //    AccountLockOut
+    //}
 }

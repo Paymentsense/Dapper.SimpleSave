@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
+using System.Web.Security;
 
 namespace PS.Mothership.Core.Common.Dto
 {
@@ -7,7 +8,7 @@ namespace PS.Mothership.Core.Common.Dto
     public class AccountDto
     {       
         [DataMember]
-        public MembershipStatus Status { get; set; }
+        public MembershipCreateStatus Status { get; set; }
 
         [DataMember]
         public string Message { get; set; }
