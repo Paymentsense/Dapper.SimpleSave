@@ -7,7 +7,7 @@ namespace PS.Mothership.Core.Common.Dto
     public class AccountDto
     {       
         [DataMember]
-        public MembershipCreateStatus Status { get; set; }
+        public MembershipStatus Status { get; set; }
 
         [DataMember]
         public string Message { get; set; }

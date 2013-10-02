@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PS.Mothership.Core.Common.Dto
 {
-    public enum MembershipCreateStatus
+    public enum MembershipStatus
     {
         Success,
         InvalidUserName,
