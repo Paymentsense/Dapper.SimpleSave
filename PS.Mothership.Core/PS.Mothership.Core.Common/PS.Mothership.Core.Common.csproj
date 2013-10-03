@@ -115,7 +115,6 @@
     <Compile Include="Dto\DataRequestDto.cs" />
     <Compile Include="Dto\LoginCredentialsDto.cs" />
     <Compile Include="Dto\IDto.cs" />
-    <Compile Include="Dto\MembershipStatus.cs" />
     <Compile Include="Dto\NotificationDetail.cs" />
     <Compile Include="Dto\NotificationResultDto.cs" />
     <Compile Include="Dto\PendingTaskNotification.cs" />

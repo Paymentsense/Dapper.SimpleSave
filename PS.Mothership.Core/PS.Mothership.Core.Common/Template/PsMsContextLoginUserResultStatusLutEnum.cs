@@ -10,6 +10,12 @@ namespace PS.Mothership.Core.Common.Template.PsMsContext
        [EnumMember]ValidLogin = 1,
        [EnumMember]InValidLogin = 2,
        [EnumMember]Impersonated = 3,
+       [EnumMember]Active = 4,
+       [EnumMember]PasswordLocked = 5,
+       [EnumMember]AdministrativeLocked = 6,
+       [EnumMember]Suspended = 7,
+       [EnumMember]Terminated = 8,
+       [EnumMember]Deleted = 9,
         
     }
 }
