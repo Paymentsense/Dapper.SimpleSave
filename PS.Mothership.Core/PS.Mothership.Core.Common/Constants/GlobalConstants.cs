@@ -11,5 +11,7 @@ namespace PS.Mothership.Core.Common.Constants
         public const string ApplicationName = "PS.WEB.UI";
         public const string TaskNotificationID = "TaskNotificationID";
         public const string UserName = "UserName";
+        public const char Dot = '.';
+        public const char Star = '*';        
     }
 }
