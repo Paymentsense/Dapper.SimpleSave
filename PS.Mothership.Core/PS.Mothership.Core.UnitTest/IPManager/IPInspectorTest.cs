@@ -121,7 +121,24 @@ namespace PS.Mothership.Core.UnitTest.IPManager
             var result = IPInspector.WildCardCompare(ipString, ipStringList, GlobalConstants.Star);
 
             // Assert
-            Assert.AreEqual(true, result, "Data should be same");
+            Assert.AreEqual(true, result, "Data should be true");
+        }
+
+        [Test]
+        public void WildCardCompare_Compare_ReturnFalse()
+        {
+            // Arrange            
+            const string ipString = "172.26.152.1";
+            var ipStringList = new List<string>()
+            {                
+                "172.27.*"
+            };
+
+            // Act
+            var result = IPInspector.WildCardCompare(ipString, ipStringList, GlobalConstants.Star);
+
+            // Assert
+            Assert.AreEqual(false, result, "Data should be false");
         }
 
 
