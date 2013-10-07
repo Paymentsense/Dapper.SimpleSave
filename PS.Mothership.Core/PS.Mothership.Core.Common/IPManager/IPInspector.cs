@@ -142,10 +142,10 @@ namespace PS.Mothership.Core.Common.IPManager
         {
             var sb = new StringBuilder();
             string[] ipStringList = ipString.Split(GlobalConstants.Dot);
-            int strLength = ipStringList.Length;
-            var returnVal = new List<string> {replaceCard.ToString(CultureInfo.InvariantCulture)};
+            int strLength = ipStringList.Length;            
 
             // Add a single star
+            var returnVal = new List<string> { replaceCard.ToString(CultureInfo.InvariantCulture) };
 
             // Add common star
             for (int i = 0; i < strLength; i++)
