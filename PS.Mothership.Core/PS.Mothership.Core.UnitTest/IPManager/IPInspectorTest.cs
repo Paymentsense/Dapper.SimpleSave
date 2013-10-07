@@ -173,6 +173,22 @@ namespace PS.Mothership.Core.UnitTest.IPManager
             Assert.AreEqual(true, result, "Data should be true");
         }
 
+        [Test]
+        public void WildCardCompare_CompareEmpty_ReturnFalse()
+        {
+            // Arrange            
+            const string ipString = "";
+            var ipStringList = new List<string>()
+            {                
+                "172.27.*"
+            };
+
+            // Act
+            var result = IPInspector.WildCardCompare(ipString, ipStringList, GlobalConstants.Star);
+
+            // Assert
+            Assert.AreEqual(false, result, "Data should be false, as input is empty");
+        }
 
         [Test]
         [Ignore("Just to write to console")]
