@@ -87,7 +87,7 @@ namespace PS.Mothership.Core.Common.IPManager
         /// <returns></returns>
         public static string RemoveLeadingZero(string ipString)
         {
-            return Regex.Replace(ipString, "0*([0-9]+)", "${1}");
+            return string.IsNullOrWhiteSpace(ipString) ? ipString : Regex.Replace(ipString, "0*([0-9]+)", "${1}");
         }
 
         /// <summary>

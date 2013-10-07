@@ -16,6 +16,9 @@ namespace PS.Mothership.Core.Common.Template.PsMsContext
        [EnumMember]Suspended = 7,
        [EnumMember]Terminated = 8,
        [EnumMember]Deleted = 9,
+       [EnumMember]InvalidUserName = 12,
+       [EnumMember]InvalidIP = 13,
+       [EnumMember]InvalidPassword = 14,
         
     }
 }
