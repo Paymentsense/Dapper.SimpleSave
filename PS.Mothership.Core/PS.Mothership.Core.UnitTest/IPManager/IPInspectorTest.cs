@@ -13,6 +13,20 @@ namespace PS.Mothership.Core.UnitTest.IPManager
     public class IPInspectorTest
     {
         [Test]
+        public void IsValid_CheckingLocalHost_ReturnTrue()
+        {
+            // Arrange
+            const string ipString = "::5";
+
+            // Act
+            var result = IPInspector.IsValid(ipString);
+
+            // Assert
+            Assert.AreEqual(true, result, "Should be true, the given ip address in a valid one");            
+
+        }
+
+        [Test]
         public void IsValid_IsIPValid_ReturnTrue()
         {
             // Arrange
@@ -111,7 +125,7 @@ namespace PS.Mothership.Core.UnitTest.IPManager
         public void WildCardCompare_Compare_ReturnTrue()
         {
             // Arrange            
-            const string ipString = "172.27.152.1";            
+            const string ipString = "172.27.152.1";                        
             var ipStringList = new List<string>()
             {                
                 "172.27.*"
@@ -139,6 +153,24 @@ namespace PS.Mothership.Core.UnitTest.IPManager
 
             // Assert
             Assert.AreEqual(false, result, "Data should be false");
+        }
+
+        [Test]
+        public void WildCardCompare_CompareLocal_ReturnTrue()
+        {
+            // Arrange            
+            const string ipString = "::1";
+            var ipStringList = new List<string>()
+            {                
+                "172.27.*",
+                "::1"
+            };
+
+            // Act
+            var result = IPInspector.WildCardCompare(ipString, ipStringList, GlobalConstants.Star);
+
+            // Assert
+            Assert.AreEqual(true, result, "Data should be true");
         }
 
 

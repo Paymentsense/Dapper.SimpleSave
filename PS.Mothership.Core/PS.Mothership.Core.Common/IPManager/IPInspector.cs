@@ -169,8 +169,8 @@ namespace PS.Mothership.Core.Common.IPManager
 
             // Add two level
             sb.Append(ipStringList[0] + GlobalConstants.Dot.ToString(CultureInfo.InvariantCulture) +
-                      ipStringList[1] + GlobalConstants.Dot.ToString(CultureInfo.InvariantCulture) +
-                      replaceCard.ToString(CultureInfo.InvariantCulture));
+                      (strLength > 1 ? ipStringList[1] + GlobalConstants.Dot.ToString(CultureInfo.InvariantCulture) +
+                      replaceCard.ToString(CultureInfo.InvariantCulture):string.Empty));
 
             // add and clear
             returnVal.Add(sb.ToString());
