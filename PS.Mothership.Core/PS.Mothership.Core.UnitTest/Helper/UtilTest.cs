@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using NUnit.Framework;
 using PS.Mothership.Core.Common.Helper;
+using PS.Mothership.Core.Common.Template.PsMsContext;
 using System.Runtime.Serialization;
 
 namespace PS.Mothership.Core.UnitTest.Helper
@@ -114,6 +115,20 @@ namespace PS.Mothership.Core.UnitTest.Helper
 
             // Assert
             Assert.AreEqual(false, jsonString.Contains(actual),  "should not contain property decorated with JsonIgnore");
+        }
+
+        [Test]
+        public void GetDescription_Enumeration_ReturnDescription()
+        {
+            // Arrange
+            const LoginUserResultStatusLutEnum enumDec = LoginUserResultStatusLutEnum.DuplicateUserName;
+            const string expected = "Username already exists. Please enter a different user name.";
+            // Act
+            var desc = enumDec.GetDescription();
+
+            // Assert
+            Assert.AreEqual(expected,desc,"Message should be same");
+
         }
     }
 

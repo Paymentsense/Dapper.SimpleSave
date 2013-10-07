@@ -1,5 +1,6 @@
 using System;
 using System.Runtime.Serialization;
+using System.ComponentModel;
 
 namespace PS.Mothership.Core.Common.Template.PsMsContext
 {
@@ -7,9 +8,9 @@ namespace PS.Mothership.Core.Common.Template.PsMsContext
     [DataContract]
     public enum PermissionFlagLutEnum : long
     {
-       [EnumMember]Add = 1,
-       [EnumMember]Read = 2,
-       [EnumMember]Delete = 4,
+       [Description("Add Resources")][EnumMember]Add = 1,
+       [Description("Read Resources")][EnumMember]Read = 2,
+       [Description("Delete Resources")][EnumMember]Delete = 4,
         
-    }
+    }    
 }

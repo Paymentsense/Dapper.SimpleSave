@@ -35,11 +35,13 @@
     }    
 
     //Enum value, column name, Enum namespace
-    var enumDescriptionColumnName =  appSettings["enumDescriptionColumnName"] != null ? appSettings["enumDescriptionColumnName"].Value : "Name";
+    var enumDescriptionColumnName =  appSettings["enumDescriptionColumnName"] != null ? appSettings["enumDescriptionColumnName"].Value : "Name";   
+    var enumDescriptionValueColumnName =  appSettings["enumDescriptionValueColumnName"] != null ? appSettings["enumDescriptionValueColumnName"].Value : "Description";   
     var tableEndingName= appSettings["tableEndingName"] !=null ?  appSettings["tableEndingName"].Value : "Lut";
     var flagName= appSettings["flagName"] !=null ? appSettings["flagName"].Value  : "Flag";
     var enumNameSpace = appSettings["enumNameSpace"] !=null ? appSettings["enumNameSpace"].Value  : "PS.Mothership.Core.Common.Template";
     var dataBaseName= string.Empty;
+    var dataDelimiter= "~";
 
     // structure to hold data    
     var classList = new List<DataHolder>();
@@ -87,7 +89,8 @@
                 }
 
                  // run the query to do the enum
-                 GetEnumData(queryString, connectionString,enumDescriptionColumnName,ref cl);                  
+                 GetEnumData(queryString, connectionString,enumDescriptionColumnName,enumDescriptionValueColumnName,
+                    dataDelimiter, ref cl);                  
                  classList.Add(cl);
             }
         }    
@@ -106,6 +109,7 @@
 #>
 using System;
 using System.Runtime.Serialization;
+using System.ComponentModel;
 
 namespace <#=enumNameSpace+"."+contextName #>
 {
@@ -114,10 +118,11 @@ namespace <#=enumNameSpace+"."+contextName #>
     public enum <#=enumName #>Enum : <#=cls.Type #>
     {
        <#
-        foreach(var data in cls.KeyValue)
-        {#>[EnumMember]<#=data.Key #> = <#=data.Value #>,
+        foreach(var data in cls.KeyValue)            
+        {var splitData= SplitData(data.Value,dataDelimiter);
+        #>[Description("<#=splitData[1]#>")][EnumMember]<#=data.Key #> = <#=splitData[0] #>,
        <#}#> 
-    }
+    }    
 }
 <#
     }

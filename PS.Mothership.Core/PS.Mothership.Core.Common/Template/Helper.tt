@@ -156,11 +156,14 @@
     }
               
     public void GetEnumData(string dynamicQueryString, string connectionString, 
-                                string enumDescriptionColumnName, ref DataHolder dataHolder)
+                                string enumDescriptionColumnName, string enumDescriptionValueColumnName,
+                                string dataDelimiter,
+                                ref DataHolder dataHolder)
     {           
            var columnName = string.Empty;           
            var columnType=string.Empty;
            var queryColumnName =string.Empty;
+           var queryDescriptionColumnName= string.Empty;
            var dataCount=0;    
 
            using (var connection = new SqlConnection(connectionString))
@@ -184,15 +187,23 @@
                         columnName =reader.GetName(col).ToString();                
                         if(columnName.EndsWith(enumDescriptionColumnName))
                         {   
-                            queryColumnName = columnName;                                                        
-                        }                
+                            queryColumnName = columnName;
+                            continue;
+                        }
+                        if(columnName.EndsWith(enumDescriptionValueColumnName))
+                        {   
+                            queryDescriptionColumnName = columnName;
+                            continue;
+                        }
                     }   
  
                     while (reader.Read())
                     {
                         if(!string.IsNullOrEmpty(reader[queryColumnName].ToString().Trim()))
                         {                            
-                            dataHolder.KeyValue.Add(reader[queryColumnName].ToString(), reader[0].ToString());
+                            dataHolder.KeyValue.Add(reader[queryColumnName].ToString(), 
+                                            reader[0].ToString() + dataDelimiter + 
+                                            reader[queryDescriptionColumnName].ToString());
                             dataCount++;
                         }
                     }  
@@ -253,7 +264,18 @@
                 return d[originalType];
 
             return "int";
-        }          
+        } 
+        
+        /// <summary>
+        ///     Splits data
+        /// </summary>
+        /// <param name="strValue"></param>
+        /// <param name="dataDelimiter">The cases.</param>
+        /// <returns>string</returns>
+        public static string[] SplitData(string strValue, string dataDelimiter)
+        {
+            return strValue.Split(dataDelimiter.ToCharArray());            
+        }
 
  #>
 
