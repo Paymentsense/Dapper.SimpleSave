@@ -2,6 +2,7 @@
 using System.Runtime.Serialization;
 using System.Web.Security;
 using Newtonsoft.Json;
+using PS.Mothership.Core.Common.Template.PsMsContext;
 
 namespace PS.Mothership.Core.Common.Dto
 {
@@ -45,5 +46,13 @@ namespace PS.Mothership.Core.Common.Dto
             get { return _sessionId; }  
             set { _sessionId = value; }
         }
+
+        /// <summary>
+        ///     This is just to manage the internal status
+        ///     of the user state and not to be transfered
+        ///     or serilized for transport
+        /// </summary>
+        [JsonIgnore]
+        public LoginUserResultStatusLutEnum StatusInternal { get; set; }
     }
 }
