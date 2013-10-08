@@ -32,7 +32,7 @@ namespace PS.Mothership.Core.Common.Dto
         [DataMember]
         public bool IsImpersonate { get; set; }
         [DataMember]
-        public MembershipCreateStatus Status { get; set; }
+        public LoginUserResultStatusLutEnum Status { get; set; }
         [DataMember]
         public string Message { get; set; }
         [DataMember]
@@ -45,14 +45,6 @@ namespace PS.Mothership.Core.Common.Dto
         {
             get { return _sessionId; }  
             set { _sessionId = value; }
-        }
-
-        /// <summary>
-        ///     This is just to manage the internal status
-        ///     of the user state and not to be transfered
-        ///     or serilized for transport
-        /// </summary>
-        [JsonIgnore]
-        public LoginUserResultStatusLutEnum StatusInternal { get; set; }
+        }             
     }
 }

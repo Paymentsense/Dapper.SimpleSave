@@ -37,16 +37,16 @@ namespace PS.Mothership.Core.Common.Contracts.Security
         [OperationContract(Name = "GetPermissionsByName")]
         IEnumerable<UserPermissionDto> GetPermissions(long userId, string resourcesName, bool ignoreUser=true);
 
-        [OperationContract]        
-        bool IsAccountLockedOut(string userName, int allowedPasswordAttempts);
+        [OperationContract]
+        bool IsAccountLockedOut(long userId, int allowedPasswordAttempts);
 
         /// <summary>
         ///     For now have a interface to unlock any
         ///     account, but need to give access only to administrators
         /// </summary>
-        /// <param name="userName"></param>
+        /// <param name="userId"></param>
         /// <returns></returns>
         [OperationContract]
-        bool UnLockAccount(string userName);
+        bool UnLockAccount(long userId);
     }
 }
