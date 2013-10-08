@@ -23,6 +23,8 @@ namespace PS.Mothership.Core.Common.Template.PsMsContext
        [Description("Success")][EnumMember]Success = 15,
        [Description("Username already exists. Please enter a different user name.")][EnumMember]DuplicateUserName = 16,
        [Description("A username for that e-mail address already exists. Please enter a different e-mail address.")][EnumMember]DuplicateEmail = 17,
+       [Description("The username or password in empty")][EnumMember]InvalidData = 18,
+       [Description("The account unlocked")][EnumMember]AccountUnLocked = 19,
         
     }    
 }
