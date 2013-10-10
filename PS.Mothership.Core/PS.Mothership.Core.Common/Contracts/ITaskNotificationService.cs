@@ -22,6 +22,6 @@ namespace PS.Mothership.Core.Common.Contracts
         [OperationContract]
         void CompleteTask(long pendingNotificationID);
         [OperationContract]
-        List<PendingTaskNotification> GetPendingTaskNotifications(string userName);
+        void PushPendingTaskNotifications(string userName);
     }
 }
