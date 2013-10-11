@@ -19,5 +19,9 @@ namespace PS.Mothership.Core.Common.Constants
         public const int InitalMatch = 2;
         public const int ExactMatchScore = 5;
         public const int WildCardMatchScore = 1;
+        //postcodeanywhere constants
+        public const string PostCodeAnywhereRetrieveUrl = "PostCodeAnywhereRetrieveUrl";
+        public const string PostCodeAnywhereAccountCode = "PostCodeAnywhereAccountCode";
+        public const string PostCodeAnywhereLicenseKey = "PostCodeAnywhereLicenseKey";
     }
 }

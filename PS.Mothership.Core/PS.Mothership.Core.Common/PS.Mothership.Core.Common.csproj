@@ -97,6 +97,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants\GlobalConstants.cs" />
+    <Compile Include="Contracts\IAddressService.cs" />
     <Compile Include="Contracts\IApplicationService.cs" />
     <Compile Include="Contracts\ICompanyService.cs" />
     <Compile Include="Contracts\ILoggingService.cs" />
@@ -113,6 +114,7 @@
     <Compile Include="Dto\CaseSummaryDto.cs" />
     <Compile Include="Dto\CompanyDto.cs" />
     <Compile Include="Dto\DataRequestDto.cs" />
+    <Compile Include="Dto\FullAddressDto.cs" />
     <Compile Include="Dto\LoginCredentialsDto.cs" />
     <Compile Include="Dto\IDto.cs" />
     <Compile Include="Dto\NotificationDetail.cs" />
