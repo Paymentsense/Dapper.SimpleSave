@@ -98,16 +98,17 @@ namespace PS.Mothership.Core.UnitTest.IPManager
             };
 
             var result = new Dictionary<string, bool>();
+            var ipStringList = IPInspectorTest.IPData();
 
             Stopwatch stopwatch = null;
             DebugStopwatch.Start(ref stopwatch);
 
-            foreach (var ip in ipString)
-            {                
+            for (int i = 0; i < ipString.Count; i++)
+            {
                 bool isMatch;
-                IPInspector.Find(ip, IPInspectorTest.IPData(),out isMatch);      
-                result.Add(ip,isMatch);
-            }
+                IPInspector.Find(ipString[i], ipStringList, out isMatch);
+                result.Add(ipString[i], isMatch);
+            }                
 
             DebugStopwatch.Stop(ref stopwatch);
             DebugStopwatch.DurationInMilliseconds("Total Find: ", ref stopwatch);
@@ -156,17 +157,18 @@ namespace PS.Mothership.Core.UnitTest.IPManager
             };
 
             var result = new Dictionary<string, bool>();
+            var ipStringList = IPInspectorTest.IPData();
 
             Stopwatch stopwatch = null;
             DebugStopwatch.Start(ref stopwatch);
 
 
-            foreach (var ip in ipString)
+            for (int i = 0; i < ipString.Count; i++)
             {
                 bool isMatch;
-                IPInspector.FindFaster(ip, IPInspectorTest.IPData(), out isMatch);
-                result.Add(ip, isMatch);
-            }
+                IPInspector.FindFaster(ipString[i], ipStringList, out isMatch);
+                result.Add(ipString[i], isMatch);
+            }            
 
             DebugStopwatch.Stop(ref stopwatch);
             DebugStopwatch.DurationInMilliseconds("Total FindFaster: ", ref stopwatch);

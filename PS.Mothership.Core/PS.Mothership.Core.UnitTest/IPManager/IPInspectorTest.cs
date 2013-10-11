@@ -237,8 +237,7 @@ namespace PS.Mothership.Core.UnitTest.IPManager
             // Arrange
             var ipStringList = IPData();
             const string ipString = "172.27.152.162";
-            bool isMatch;
-         
+            bool isMatch;            
 
             // Act
             IPInspector.Find(ipString, ipStringList, out isMatch);
@@ -291,7 +290,7 @@ namespace PS.Mothership.Core.UnitTest.IPManager
             // Arrange
             var ipStringList = IPData();
             const string ipString = "::1";
-            bool isMatch;
+            bool isMatch;                    
 
             // Act
             IPInspector.Find(ipString, ipStringList, out isMatch);
@@ -317,6 +316,98 @@ namespace PS.Mothership.Core.UnitTest.IPManager
 
         }
 
+        [Test]
+        public void FindFaster_CompareInputAndSourceIp_ReturnsIsMatch()
+        {
+            // Arrange
+            //var ipStringList = IPData();
+            const string ipString = "172.27.152.162";
+            bool isMatch;
+
+            // Arrange  
+            var ipStringList = new List<string>()
+            {
+                 "*.27.152.162"             
+            };
+
+
+            // Act
+            IPInspector.FindFaster(ipString, ipStringList, out isMatch);
+
+            // Assert
+            Assert.AreEqual(true, isMatch, "The ip address should be a match");
+        }
+
+        [Test]
+        public void FindFaster_CompareInputAndSourceIp_ReturnsNoMatch()
+        {
+            // Arrange
+            var ipStringList = IPData();
+            const string ipString = "190.71.154.162";
+            bool isMatch;
+
+            // Act
+            IPInspector.FindFaster(ipString, ipStringList, out isMatch);
+
+
+            // Assert
+            Assert.AreEqual(false, isMatch, "The ip address should not be a match");
+        }
+
+        [Test]
+        public void FindFaster_CompareInputAndSourceIp_ReturnsDictionary()
+        {
+            // Arrange
+            var ipStringList = IPData();
+            
+            const string ipString = "172.27.152.162";
+            bool isMatch;
+
+            // Act
+            var result = IPInspector.FindFaster(ipString, ipStringList, out isMatch, false);
+
+            // Assert
+            Assert.Greater(result.Count, 0, "The ip address match dictionary should be more than zero");
+
+            foreach (var i in result)
+            {
+                Console.WriteLine("Ip:{0} Score:{1}", i.Key, i.Value);
+            }
+
+        }
+
+        [Test]
+        public void FindFaster_CheckingLocalHost_ReturnTrue()
+        {
+            // Arrange
+            var ipStringList = IPData();
+            const string ipString = "::1";
+            bool isMatch;
+
+            // Act
+            IPInspector.FindFaster(ipString, ipStringList, out isMatch);
+
+            // Assert
+            Assert.AreEqual(true, isMatch, "The ip address should be a match");
+
+        }
+
+        [Test]
+        public void FindFaster_127_0_0_1_ReturnTrue()
+        {
+            // Arrange
+            var ipStringList = IPData();
+            const string ipString = "127.0.0.1";
+            bool isMatch;
+
+            // Act
+            IPInspector.FindFaster(ipString, ipStringList, out isMatch);
+
+            // Assert
+            Assert.AreEqual(true, isMatch, "The ip address should be a match");
+
+        }
+
         #region Data
 
         public static List<string> IPData()
@@ -333,6 +424,7 @@ namespace PS.Mothership.Core.UnitTest.IPManager
                 "172.*.152.*",
                 "172.27.153.*",
                 "172.27.152.162",
+                "*.27.152.162",
                 "61.95.130.*",
                 "61.95.131.*",
                 "80.87.25.2",

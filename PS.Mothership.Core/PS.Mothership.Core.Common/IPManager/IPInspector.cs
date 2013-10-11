@@ -234,7 +234,6 @@ namespace PS.Mothership.Core.Common.IPManager
             // valid ipList string
             if (ipList == null || ipList.Count == 0) return matchStore;
             
-
             #region sorting commented
             // order by length, to find the strongest match
             // first, also filter the ip based on the first
@@ -251,22 +250,22 @@ namespace PS.Mothership.Core.Common.IPManager
             //var sortedlistIpString = (from s in ipList.ToList()                                      
             //                          orderby s.Length descending
             //                          select s).ToList();
+
+            //var sortedlistIpString = ipList;
+
+            //// if we don't have sortedlist ipstring return
+            //if (sortedlistIpString.Count == 0) return matchStore;         
             #endregion
-
-            var sortedlistIpString = ipList;
-
-
-            // if we don't have sortedlist ipstring return
-            if (sortedlistIpString.Count == 0) return matchStore;         
-
+            
             #endregion                                              
 
             // do the padding for the in coming ip string
-            ipString = PadIpString(ipString);            
+            ipString = PadIpString(ipString);
+            var octalCheck = GlobalConstants.ExactMatchScore * (GlobalConstants.InitalMatch + 1);
 
             #region compare and do the scoring
 
-            foreach (var dipData in sortedlistIpString)
+            foreach (var dipData in ipList)
             {
                 var dip = PadIpString(dipData);
                 int matchScore = 0;
@@ -310,7 +309,7 @@ namespace PS.Mothership.Core.Common.IPManager
                     // and the matchScore should be 15, as the first 3 character
                     // should be exact match
                     if (GlobalConstants.InitalMatch == i &&
-                        matchScore != (GlobalConstants.ExactMatchScore * (GlobalConstants.InitalMatch + 1)))
+                        matchScore != octalCheck)
                     {
                         matchScore = 0;
                         break;
@@ -344,31 +343,23 @@ namespace PS.Mothership.Core.Common.IPManager
             // if we are here to true
             isMatch = true;
 
+            return matchStore;
+
+            #region score order
+            // if we want to sort by order then use it
+            // for now there is no use
             // top score at first, if the firsMatch is set then don't need to
             // order it
-            var ordered = matchStore.OrderByDescending(x => x.Value).ToDictionary(x => x.Key, x => x.Value);
-            return ordered;            
+            //var ordered = matchStore.OrderByDescending(x => x.Value).ToDictionary(x => x.Key, x => x.Value);
+            //return ordered;  
+            #endregion
         }
 
-        /// <summary>
-        ///     Pad IP address
-        /// </summary>
-        /// <param name="ipString"></param>
-        /// <returns></returns>
-        public static string PadIpString(string ipString)
-        {            
-            var dList = ipString.Split(GlobalConstants.Dot);
-            var data = dList.Select(s => s.PadLeft(GlobalConstants.IPAddressPadding, GlobalConstants.Star)).ToList();
-            return string.Join(GlobalConstants.Dot.ToString(CultureInfo.InvariantCulture), data);            
-        }
-
-        /// <summary>
-        ///     NOT TESTED DON'T USE IT
+        /// <summary>       
         ///     Find whether a matching IP address exists        
         /// </summary>
         /// <remarks>
-        ///     Compares character by character against the data source
-        ///     Inital Match Logic - match the first 3 character, its mandatory, number starts at 0;
+        ///     Compares character by character against the data source        
         /// </remarks>
         /// <param name="ipString">in coming ip address</param>
         /// <param name="ipList">list of ip address to check</param>
@@ -436,32 +427,16 @@ namespace PS.Mothership.Core.Common.IPManager
                         matchScore = 0;
                         break;
                     }
-
-                    // we know at this point the first 3 octal is not a match
-                    // 'InitalMatch' which is '2' should be equal to 'i' value of '2'
-                    // and the matchScore should be 15, as the first 3 character
-                    // should be exact match
-                    if (GlobalConstants.InitalMatch == i &&
-                        matchScore != (GlobalConstants.ExactMatchScore * (GlobalConstants.InitalMatch + 1)))
-                    {
-                        matchScore = 0;
-                        break;
-                    }
-
-                    // reset scoreGiven
-                    scoreGiven = false;
-
+                   
                     // also move the ipString pointer to 
                     // the next number, if we encounter a '*'
-                    if (dip[i] == GlobalConstants.Star)
-                    {                        
-                        j = ipString.IndexOf(GlobalConstants.Dot, j) + 1;
-                    }
+                    if (dip[i] == GlobalConstants.Star)                    
+                        j = ipString.IndexOf(GlobalConstants.Dot, j);                    
                     else
-                    {
-                        j++;    
-                    }
-                    
+                        j++;                        
+
+                    // reset scoreGiven
+                    scoreGiven = false;                    
                 }
 
                 #endregion
@@ -488,11 +463,31 @@ namespace PS.Mothership.Core.Common.IPManager
             // if we are here to true
             isMatch = true;
 
+            return matchStore;
+
+            #region score order
+            // if we want to sort by order then use it
+            // for now there is no use
             // top score at first, if the firsMatch is set then don't need to
             // order it
-            var ordered = matchStore.OrderByDescending(x => x.Value).ToDictionary(x => x.Key, x => x.Value);
-            return ordered;
+            //var ordered = matchStore.OrderByDescending(x => x.Value).ToDictionary(x => x.Key, x => x.Value);
+            //return ordered;
+            #endregion
         }
+
+
+        /// <summary>
+        ///     Pad IP address
+        /// </summary>
+        /// <param name="ipString"></param>
+        /// <returns></returns>
+        public static string PadIpString(string ipString)
+        {
+            var dList = ipString.Split(GlobalConstants.Dot);
+            var data = dList.Select(s => s.PadLeft(GlobalConstants.IPAddressPadding, GlobalConstants.Star)).ToList();
+            return string.Join(GlobalConstants.Dot.ToString(CultureInfo.InvariantCulture), data);
+        }
+        
 
         /// <summary>
         ///     Pad IP address
