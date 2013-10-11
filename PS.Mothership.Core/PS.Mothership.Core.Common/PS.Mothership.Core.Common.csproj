@@ -128,6 +128,8 @@
     <Compile Include="Extension\EnumerableExtension.cs" />
     <Compile Include="Enums\UserRoleType.cs" />
     <Compile Include="Contracts\ICacheService.cs" />
+    <Compile Include="Helper\CTime.cs" />
+    <Compile Include="Helper\DebugStopwatch.cs" />
     <Compile Include="Helper\DynamicContractResolver.cs" />
     <Compile Include="Helper\Util.cs" />
     <Compile Include="IPManager\IPInspector.cs" />

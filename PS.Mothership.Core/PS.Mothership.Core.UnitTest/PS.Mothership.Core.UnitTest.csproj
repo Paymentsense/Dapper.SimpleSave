@@ -54,11 +54,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helper\CTimeTest.cs" />
     <Compile Include="Helper\UtilTest.cs" />
+    <Compile Include="IPManager\IPInspectorPerformanceTest.cs" />
     <Compile Include="IPManager\IPInspectorTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>

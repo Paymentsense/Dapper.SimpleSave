@@ -11,7 +11,13 @@ namespace PS.Mothership.Core.Common.Constants
         public const string ApplicationName = "PS.WEB.UI";
         public const string TaskNotificationID = "TaskNotificationID";
         public const string UserName = "UserName";
+
+        // Ip Matching constants
         public const char Dot = '.';
-        public const char Star = '*';        
+        public const char Star = '*';
+        public const int IPAddressPadding = 3;
+        public const int InitalMatch = 2;
+        public const int ExactMatchScore = 5;
+        public const int WildCardMatchScore = 1;
     }
 }
