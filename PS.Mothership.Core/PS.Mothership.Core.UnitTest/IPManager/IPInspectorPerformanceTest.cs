@@ -95,15 +95,29 @@ namespace PS.Mothership.Core.UnitTest.IPManager
                 "89.167.239.131",
                 "192.168.43.12",
                 "192.168.80.14",
-            };           
+            };
+
+            var result = new Dictionary<string, bool>();
+
+            Stopwatch stopwatch = null;
+            DebugStopwatch.Start(ref stopwatch);
 
             foreach (var ip in ipString)
             {                
                 bool isMatch;
-                IPInspector.Find(ip, IPInspectorTest.IPData(),out isMatch);
-                Debug.WriteLine("Ip Address : " + ip + " Found : " + isMatch);                
-                Debug.WriteLine("................ ");
+                IPInspector.Find(ip, IPInspectorTest.IPData(),out isMatch);      
+                result.Add(ip,isMatch);
             }
+
+            DebugStopwatch.Stop(ref stopwatch);
+            DebugStopwatch.DurationInMilliseconds("Total Find: ", ref stopwatch);
+
+            foreach (var b in result)
+            {
+                Debug.WriteLine("Ip Address : " + b.Key + " Found : " + b.Value);
+                Debug.WriteLine("................ ");    
+            }
+            
         }
 
 
@@ -123,6 +137,45 @@ namespace PS.Mothership.Core.UnitTest.IPManager
             DebugStopwatch.Stop(ref stopwatch);
             DebugStopwatch.DurationInMilliseconds("Total PadIpString: ", ref stopwatch);
             
+        }
+
+        [Test]
+        public void FindFaster_ReturnValue()
+        {                                             
+            // Arrange  
+            var ipString = new List<string>()
+            {
+                "80.87.25.2",
+                "127.0.0.1",
+                "::1",
+                "220.227.102.249",
+                "74.92.38.137",
+                "89.167.239.131",
+                "192.168.43.12",
+                "192.168.80.14",
+            };
+
+            var result = new Dictionary<string, bool>();
+
+            Stopwatch stopwatch = null;
+            DebugStopwatch.Start(ref stopwatch);
+
+
+            foreach (var ip in ipString)
+            {
+                bool isMatch;
+                IPInspector.FindFaster(ip, IPInspectorTest.IPData(), out isMatch);
+                result.Add(ip, isMatch);
+            }
+
+            DebugStopwatch.Stop(ref stopwatch);
+            DebugStopwatch.DurationInMilliseconds("Total FindFaster: ", ref stopwatch);
+
+            foreach (var b in result)
+            {
+                Debug.WriteLine("Ip Address : " + b.Key + " Found : " + b.Value);
+                Debug.WriteLine("................ ");
+            }
         }
 
         [Test]        

@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using NUnit.Framework;
 using PS.Mothership.Core.Common.Helper;
 using PS.Mothership.Core.Common.Template.PsMsContext;
+using System;
 using System.Runtime.Serialization;
+
 
 namespace PS.Mothership.Core.UnitTest.Helper
 {
@@ -121,13 +118,43 @@ namespace PS.Mothership.Core.UnitTest.Helper
         public void GetDescription_Enumeration_ReturnDescription()
         {
             // Arrange
-            const LoginUserResultStatusLutEnum enumDec = LoginUserResultStatusLutEnum.DuplicateUserName;
-            const string expected = "Username already exists. Please enter a different user name.";
+            const MyEnum enumDec = MyEnum.Dog;
+            const string expected = "I'm a dog";
+
             // Act
             var desc = enumDec.GetDescription();
 
             // Assert
-            Assert.AreEqual(expected,desc,"Message should be same");
+            Assert.AreEqual(expected, desc, "Message should be same");
+        }
+
+
+        [Test]
+        public void GetDescription_Enumeration_ReturnEmpty()
+        {            
+            // Arrange
+            const MyEnum enumDec = MyEnum.Lion;
+            const string expected = "";
+
+            // Act
+            var desc = enumDec.GetDescription();
+
+            // Assert
+            Assert.AreEqual(expected, desc, "An empty string should come back");
+        }
+
+        [Test]
+        public void GetDescription_Enum_Without_Description_ReturnEmpty()
+        {
+            // Arrange
+            const MyEnum enumDec = MyEnum.Tiger;
+            const string expected = "";
+
+            // Act
+            var desc = enumDec.GetDescription();
+
+            // Assert
+            Assert.AreEqual(expected, desc, "An empty string should come back");
 
         }
     }
@@ -167,5 +194,14 @@ namespace PS.Mothership.Core.UnitTest.Helper
         public int Id { get; set; }
         [DataMember]
         public string Name { get; set; }
+    }
+
+    [DataContract]
+    enum MyEnum
+    {
+        [System.ComponentModel.Description("I'm a dog")][EnumMember]Dog, 
+        [System.ComponentModel.Description("I'm a cat")][EnumMember]Cat, 
+        [System.ComponentModel.Description("")][EnumMember]Lion, 
+        [EnumMember]Tiger, 
     }
 }

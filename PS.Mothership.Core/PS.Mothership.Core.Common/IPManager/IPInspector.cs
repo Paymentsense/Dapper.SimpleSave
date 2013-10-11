@@ -362,6 +362,137 @@ namespace PS.Mothership.Core.Common.IPManager
             return string.Join(GlobalConstants.Dot.ToString(CultureInfo.InvariantCulture), data);            
         }
 
+        /// <summary>
+        ///     NOT TESTED DON'T USE IT
+        ///     Find whether a matching IP address exists        
+        /// </summary>
+        /// <remarks>
+        ///     Compares character by character against the data source
+        ///     Inital Match Logic - match the first 3 character, its mandatory, number starts at 0;
+        /// </remarks>
+        /// <param name="ipString">in coming ip address</param>
+        /// <param name="ipList">list of ip address to check</param>
+        /// <param name="isMatch">whether a match is found</param>
+        /// <param name="firstMatch">give all the matching or the first one</param>
+        /// <returns></returns>
+        public static Dictionary<string, int> FindFaster(string ipString,
+            List<string> ipList, out bool isMatch, bool firstMatch = true)
+        {
+            var matchStore = new Dictionary<string, int>();
+            isMatch = false;
+
+            #region validation & filtering
+
+            // valid the incoming ip address first
+            IPAddress ipAddress;
+            if (!IsValid(ipString, out ipAddress)) return matchStore;
+
+            // valid ipList string
+            if (ipList == null || ipList.Count == 0) return matchStore;                                    
+
+            #endregion            
+
+            #region compare and do the scoring
+            
+            foreach (var dip in ipList)
+            {                
+                int matchScore = 0;
+                int dipLength = dip.Length;
+                bool scoreGiven = false;
+
+                #region built score
+
+                int j = 0;                
+                for (int i = 0; i < dipLength; i++)
+                {                    
+                    // if a dot continue to the next match
+                    if (dip[i] == GlobalConstants.Dot)
+                    {
+                        j++;
+                        continue;
+                    }
+                                                            
+                    // if an exact match
+                    if (dip[i] == ipString[j])
+                    {
+                        matchScore += GlobalConstants.ExactMatchScore;
+                        scoreGiven = true;                        
+                    }
+
+                    // if a star encountered
+                    // "some time the first/second character
+                    //  might be a star so the scoring 
+                    //  would be done at the exact match"
+                    if (dip[i] == GlobalConstants.Star &&
+                        scoreGiven == false)
+                    {
+                        matchScore += GlobalConstants.WildCardMatchScore;
+                        scoreGiven = true;                       
+                    }
+
+                    // if a score is not give then we should break
+                    if (scoreGiven == false)
+                    {
+                        matchScore = 0;
+                        break;
+                    }
+
+                    // we know at this point the first 3 octal is not a match
+                    // 'InitalMatch' which is '2' should be equal to 'i' value of '2'
+                    // and the matchScore should be 15, as the first 3 character
+                    // should be exact match
+                    if (GlobalConstants.InitalMatch == i &&
+                        matchScore != (GlobalConstants.ExactMatchScore * (GlobalConstants.InitalMatch + 1)))
+                    {
+                        matchScore = 0;
+                        break;
+                    }
+
+                    // reset scoreGiven
+                    scoreGiven = false;
+
+                    // also move the ipString pointer to 
+                    // the next number, if we encounter a '*'
+                    if (dip[i] == GlobalConstants.Star)
+                    {                        
+                        j = ipString.IndexOf(GlobalConstants.Dot, j) + 1;
+                    }
+                    else
+                    {
+                        j++;    
+                    }
+                    
+                }
+
+                #endregion
+
+                // if already in dictonary or no match score continue
+                if (matchStore.ContainsKey(dip) || matchScore <= 0) continue;
+
+                // load into dictionary
+                matchStore.Add(dip, matchScore);
+
+                if (!firstMatch || matchStore.Count <= 0) continue;
+
+                // if we just have the first match break here
+                isMatch = true;
+                return matchStore;
+            }
+
+            #endregion
+
+            // if no data retrun
+            if (matchStore.Count <= 0) return matchStore;
+
+            // set up isMatch
+            // if we are here to true
+            isMatch = true;
+
+            // top score at first, if the firsMatch is set then don't need to
+            // order it
+            var ordered = matchStore.OrderByDescending(x => x.Value).ToDictionary(x => x.Key, x => x.Value);
+            return ordered;
+        }
 
         /// <summary>
         ///     Pad IP address

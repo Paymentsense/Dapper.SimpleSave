@@ -168,8 +168,9 @@ namespace PS.Mothership.Core.Common.Helper
                 }
             }
 
-            // return
-            return null;
+            // return an empty string
+            // don't break the calling code
+            return string.Empty;
         }  
     }    
 }
