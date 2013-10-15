@@ -9,7 +9,7 @@ namespace PS.Mothership.Core.Common.Dto
     public class AccountDto
     {       
         [DataMember]
-        public LoginUserResultStatusLutEnum Status { get; set; }
+        public LoginUserResultLutEnum Status { get; set; }
 
         [DataMember]
         public string Message { get; set; }

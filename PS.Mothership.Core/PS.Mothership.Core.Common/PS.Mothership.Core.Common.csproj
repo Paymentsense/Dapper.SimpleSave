@@ -136,10 +136,19 @@
     <Compile Include="Helper\Util.cs" />
     <Compile Include="IPManager\IPInspector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Template\PsMsContextLoginUserResultStatusLutEnum.cs">
+    <Compile Include="Template\PsMsContextLoginUserResultLutEnum.cs">
       <DependentUpon>DbEnumBuilder.tt</DependentUpon>
     </Compile>
     <Compile Include="Template\PsMsContextPermissionFlagLutEnum.cs">
+      <DependentUpon>DbEnumBuilder.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Template\PsMsContextStatusLutEnum.cs">
+      <DependentUpon>DbEnumBuilder.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Template\PsMsContextUserStatusLutEnum.cs">
+      <DependentUpon>DbEnumBuilder.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Template\PsMsContextUserStatusOptionsFlagLutEnum.cs">
       <DependentUpon>DbEnumBuilder.tt</DependentUpon>
     </Compile>
   </ItemGroup>

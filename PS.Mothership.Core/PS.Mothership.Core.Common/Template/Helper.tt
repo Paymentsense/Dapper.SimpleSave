@@ -201,9 +201,9 @@
                     {
                         if(!string.IsNullOrEmpty(reader[queryColumnName].ToString().Trim()))
                         {                            
-                            dataHolder.KeyValue.Add(reader[queryColumnName].ToString(), 
-                                            reader[0].ToString() + dataDelimiter + 
-                                            reader[queryDescriptionColumnName].ToString());
+                            dataHolder.KeyValue.Add(reader[queryColumnName].ToString().Trim(), 
+                                            reader[0].ToString().Trim() + dataDelimiter + 
+                                            reader[queryDescriptionColumnName].ToString().Trim());
                             dataCount++;
                         }
                     }  

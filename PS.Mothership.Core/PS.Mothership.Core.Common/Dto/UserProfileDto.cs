@@ -20,7 +20,7 @@ namespace PS.Mothership.Core.Common.Dto
         [DataMember]
         public bool IsLoggedIn { get; set; }
         [DataMember]
-        public long UserId { get; set; }
+        public long? UserId { get; set; }
         [DataMember]
         public string UserName { get; set; }
         [DataMember]
@@ -30,9 +30,11 @@ namespace PS.Mothership.Core.Common.Dto
         [DataMember]
         public bool CanImpersonate { get; set; }
         [DataMember]
+        public UserStatusOptionsFlagLutEnum Options { get; set; }
+        [DataMember]
         public bool IsImpersonate { get; set; }
         [DataMember]
-        public LoginUserResultStatusLutEnum Status { get; set; }
+        public LoginUserResultLutEnum Status { get; set; }
         [DataMember]
         public string Message { get; set; }
         [DataMember]
