@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using AutoMapper;
 
 namespace PS.Mothership.Core.Common.Config
 {
@@ -10,15 +11,23 @@ namespace PS.Mothership.Core.Common.Config
         public string WcfBaseAddress { get; set; }
         public Dictionary<Type, object> ApplicationServices { get; set; }
         public Dictionary<Type, object> Repositories { get; set; }
+        public List<Profile> Profiles { get; set; } 
 
         public IocBuildSettings()
         {
             WcfMode = WcfMode.InProcess;
+            Profiles = new List<Profile>();
         }
 
         public static IocBuildSettings New()
         {
             return new IocBuildSettings();
+        }
+
+        public IocBuildSettings WithAutoMapperProfile(Profile profile)
+        {
+            Profiles.Add(profile);
+            return this;
         }
 
         public IocBuildSettings WithRepository<T>(object instanceType)

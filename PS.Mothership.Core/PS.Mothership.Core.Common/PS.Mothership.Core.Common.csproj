@@ -51,6 +51,9 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\..\..\..\..\PS.Mothership.Services\packages\AutoMapper.2.2.1\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="Castle.Core">
       <HintPath>..\packages\Castle.Core.3.2.0\lib\net45\Castle.Core.dll</HintPath>
     </Reference>
@@ -142,6 +145,9 @@
     <Compile Include="Template\PsMsContextPermissionFlagLutEnum.cs">
       <DependentUpon>DbEnumBuilder.tt</DependentUpon>
     </Compile>
+    <Compile Include="WcfErrorHandling\PassThroughExceptionExtension.cs" />
+    <Compile Include="WcfErrorHandling\PassThroughExceptionHandlingBehaviour.cs" />
+    <Compile Include="WcfErrorHandling\WcfException.cs" />
     <Compile Include="Template\PsMsContextStatusLutEnum.cs">
       <DependentUpon>DbEnumBuilder.tt</DependentUpon>
     </Compile>
