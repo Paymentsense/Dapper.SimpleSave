@@ -146,6 +146,9 @@
     <Compile Include="Template\PsMsContextPermissionFlagLutEnum.cs">
       <DependentUpon>DbEnumBuilder.tt</DependentUpon>
     </Compile>
+    <Compile Include="ValidationCode\CodeMaker.cs" />
+    <Compile Include="Helper\CryptoRandom.cs" />
+    <Compile Include="Helper\RandomProvider.cs" />
     <Compile Include="WcfErrorHandling\PassThroughExceptionExtension.cs" />
     <Compile Include="WcfErrorHandling\PassThroughExceptionHandlingBehaviour.cs" />
     <Compile Include="WcfErrorHandling\WcfException.cs" />
