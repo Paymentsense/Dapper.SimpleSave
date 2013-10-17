@@ -217,9 +217,6 @@ namespace PS.Mothership.Core.Common.WcfErrorHandling
         #endregion
     }
 
-    #region PassthroughExceptionHandlingElement class
-
-    #endregion
 
     public class UniqueKeyGenerator
     {
