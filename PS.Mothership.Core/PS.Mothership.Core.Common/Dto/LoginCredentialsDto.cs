@@ -12,6 +12,8 @@ namespace PS.Mothership.Core.Common.Dto
         [DataMember]
         public string IpAddress { get; set; }
         [DataMember]
-        public bool IsPersistent { get; set; }        
+        public bool IsPersistent { get; set; }
+        [DataMember]
+        public bool ValidationCode { get; set; }
     }
 }

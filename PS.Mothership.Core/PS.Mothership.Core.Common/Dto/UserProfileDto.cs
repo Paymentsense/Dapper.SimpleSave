@@ -30,8 +30,6 @@ namespace PS.Mothership.Core.Common.Dto
         [DataMember]
         public bool CanImpersonate { get; set; }
         [DataMember]
-        public UserStatusOptionsFlagLutEnum Options { get; set; }
-        [DataMember]
         public bool IsImpersonate { get; set; }
         [DataMember]
         public LoginUserResultLutEnum Status { get; set; }
@@ -47,6 +45,13 @@ namespace PS.Mothership.Core.Common.Dto
         {
             get { return _sessionId; }  
             set { _sessionId = value; }
-        }             
+        }
+
+        [JsonIgnore]
+        [DataMember]
+        public UserStatusOptionsFlagLutEnum Options { get; set; }
+        [JsonIgnore]
+        [DataMember]
+        public string ValidationCode { get; set; }
     }
 }
