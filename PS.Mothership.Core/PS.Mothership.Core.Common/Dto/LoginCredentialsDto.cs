@@ -14,6 +14,6 @@ namespace PS.Mothership.Core.Common.Dto
         [DataMember]
         public bool IsPersistent { get; set; }
         [DataMember]
-        public bool ValidationCode { get; set; }
+        public string ValidationCode { get; set; }
     }
 }
