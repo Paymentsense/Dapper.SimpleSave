@@ -15,7 +15,7 @@ namespace PS.Mothership.Core.Common.WcfErrorHandling
     public class PassThroughExceptionHandlingBehaviour : Attribute, IClientMessageInspector, IErrorHandler,
     IEndpointBehavior, IServiceBehavior, IContractBehavior
     {
-        private readonly ILog _log;
+        public ILog Logger { get; set; }
       
 
         #region IClientMessageInspector Members
@@ -106,7 +106,7 @@ namespace PS.Mothership.Core.Common.WcfErrorHandling
             var wcfException = new CustomServerException("Unknown Error has occured. Please contact your administrator!", uniqueKey);
 
             //log the exception
-            //_log.Error(uniqueKey, error);
+            Logger.Error(uniqueKey, error);
 
             var user = ServiceSecurityContext.Current;
             MessageFault messageFault = MessageFault.CreateFault(
