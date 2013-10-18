@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 namespace PS.Mothership.Core.Common.WcfErrorHandling
 {
     [Serializable]
-    public class WcfException : Exception
+    public class CustomServerException : Exception
     {
         //
         // For guidelines regarding the creation of new exception types, see
@@ -13,21 +13,21 @@ namespace PS.Mothership.Core.Common.WcfErrorHandling
         //    http://msdn.microsoft.com/library/default.asp?url=/library/en-us/dncscol/html/csharp07192001.asp
         //
 
-        public WcfException()
+        public CustomServerException()
         {
         }
 
-        public WcfException(string message, string uniqueKey) : base(message)
-        {
-            UniqueKey = uniqueKey;
-        }
-
-        public WcfException(string message, string uniqueKey, Exception inner) : base(message, inner)
+        public CustomServerException(string message, string uniqueKey) : base(message)
         {
             UniqueKey = uniqueKey;
         }
 
-        protected WcfException(
+        public CustomServerException(string message, string uniqueKey, Exception inner) : base(message, inner)
+        {
+            UniqueKey = uniqueKey;
+        }
+
+        protected CustomServerException(
             SerializationInfo info,
             StreamingContext context) : base(info, context)
         {

@@ -151,7 +151,7 @@
     <Compile Include="Helper\RandomProvider.cs" />
     <Compile Include="WcfErrorHandling\PassThroughExceptionExtension.cs" />
     <Compile Include="WcfErrorHandling\PassThroughExceptionHandlingBehaviour.cs" />
-    <Compile Include="WcfErrorHandling\WcfException.cs" />
+    <Compile Include="WcfErrorHandling\CustomServerException.cs" />
     <Compile Include="Template\PsMsContextStatusLutEnum.cs">
       <DependentUpon>DbEnumBuilder.tt</DependentUpon>
     </Compile>
@@ -161,6 +161,7 @@
     <Compile Include="Template\PsMsContextUserStatusOptionsFlagLutEnum.cs">
       <DependentUpon>DbEnumBuilder.tt</DependentUpon>
     </Compile>
+    <Compile Include="WcfErrorHandling\UniqueKeyGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

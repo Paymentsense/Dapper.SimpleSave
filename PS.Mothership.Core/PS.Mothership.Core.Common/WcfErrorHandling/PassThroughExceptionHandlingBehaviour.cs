@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
@@ -30,7 +29,7 @@ namespace PS.Mothership.Core.Common.WcfErrorHandling
                 Message copy = buffer.CreateMessage();  // Create a copy to work with
                 reply = buffer.CreateMessage();         // Restore the original message
 
-                var exception = ReadExceptionFromFaultDetail(copy) as WcfException;
+                var exception = ReadExceptionFromFaultDetail(copy) as CustomServerException;
                 if (exception != null)
                 {
                     throw exception;
@@ -104,7 +103,7 @@ namespace PS.Mothership.Core.Common.WcfErrorHandling
             var uniqueKey = UniqueKeyGenerator.Generate();
 
             //create the custom wcfexception before passing that to client
-            var wcfException = new WcfException("Unknown Error has occured. Please contact your administrator!", uniqueKey);
+            var wcfException = new CustomServerException("Unknown Error has occured. Please contact your administrator!", uniqueKey);
 
             //log the exception
             //_log.Error(uniqueKey, error);
@@ -215,22 +214,5 @@ namespace PS.Mothership.Core.Common.WcfErrorHandling
         }
 
         #endregion
-    }
-
-
-    public class UniqueKeyGenerator
-    {
-        public static string Generate()
-        {
-
-            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-            var random = new Random();
-            return new string(
-                Enumerable.Repeat(chars, 5)
-                    .Select(s => s[random.Next(s.Length)])
-                    .Concat("_")
-                    .Concat(DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss"))
-                    .ToArray());
-        }
     }
 }
