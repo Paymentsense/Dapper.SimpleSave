@@ -48,5 +48,14 @@ namespace PS.Mothership.Core.Common.Contracts.Security
         /// <returns></returns>
         [OperationContract]
         bool UnLockAccount(long userId);
+        
+        [OperationContract]
+        string GenerateCode(long userId);
+        
+        [OperationContract]
+        bool CodeExists(long userId, string verificationCode);
+
+        [OperationContract]
+        bool HasCodeExpired(long userId, string verificationCode);        
     }
 }
