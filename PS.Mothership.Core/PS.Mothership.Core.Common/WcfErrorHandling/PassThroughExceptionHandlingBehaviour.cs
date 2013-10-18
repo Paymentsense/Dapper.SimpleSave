@@ -15,7 +15,7 @@ namespace PS.Mothership.Core.Common.WcfErrorHandling
     public class PassThroughExceptionHandlingBehaviour : Attribute, IClientMessageInspector, IErrorHandler,
     IEndpointBehavior, IServiceBehavior, IContractBehavior
     {
-        public ILog Logger { get; set; }
+        private readonly ILog _logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
       
 
         #region IClientMessageInspector Members
@@ -88,11 +88,8 @@ namespace PS.Mothership.Core.Common.WcfErrorHandling
 
         public bool HandleError(Exception error)
         {
-            //do the logging here
-
-
             if (error is FaultException)
-                return true; // Let WCF do normal processing
+                return false; // Let WCF do normal processing
             
             return true; // Fault message is already generated
         }
@@ -106,7 +103,7 @@ namespace PS.Mothership.Core.Common.WcfErrorHandling
             var wcfException = new CustomServerException("Unknown Error has occured. Please contact your administrator!", uniqueKey);
 
             //log the exception
-            Logger.Error(uniqueKey, error);
+            _logger.Error(uniqueKey, error);
 
             var user = ServiceSecurityContext.Current;
             MessageFault messageFault = MessageFault.CreateFault(
