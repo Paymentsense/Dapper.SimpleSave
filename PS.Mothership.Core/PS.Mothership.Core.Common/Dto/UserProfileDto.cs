@@ -49,7 +49,7 @@ namespace PS.Mothership.Core.Common.Dto
 
         [JsonIgnore]
         [DataMember]
-        public UserStatusOptionsFlagLutEnum Options { get; set; }
+        public UserOptionsFlagLutEnum Options { get; set; }
         [JsonIgnore]
         [DataMember]
         public string ValidationCode { get; set; }

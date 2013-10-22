@@ -6,7 +6,7 @@ namespace PS.Mothership.Core.Common.Template.PsMsContext
 {
     [Flags]
     [DataContract]
-    public enum UserStatusOptionsFlagLutEnum : long
+    public enum UserOptionsFlagLutEnum : long
     {
        [Description("Manage email")][EnumMember]ManageEmail = 1,
        [Description("Allow remote access")][EnumMember]AllowRemoteAccess = 2,
