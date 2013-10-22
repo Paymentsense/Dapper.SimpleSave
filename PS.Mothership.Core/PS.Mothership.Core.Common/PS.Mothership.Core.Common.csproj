@@ -100,7 +100,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants\ConfigConstants.cs" />
+    <Compile Include="Constants\ExceptionConstants.cs" />
     <Compile Include="Constants\GlobalConstants.cs" />
+    <Compile Include="Constants\NamingConstants.cs" />
     <Compile Include="Contracts\IAddressService.cs" />
     <Compile Include="Contracts\IApplicationService.cs" />
     <Compile Include="Contracts\ICompanyService.cs" />

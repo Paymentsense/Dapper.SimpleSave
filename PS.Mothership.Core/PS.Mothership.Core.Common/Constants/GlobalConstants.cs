@@ -8,10 +8,6 @@ namespace PS.Mothership.Core.Common.Constants
 {
     public class GlobalConstants
     {
-        public const string ApplicationName = "PS.WEB.UI";
-        public const string TaskNotificationID = "TaskNotificationID";
-        public const string UserName = "UserName";
-
         // Ip Matching constants
         public const char Dot = '.';
         public const char Star = '*';
@@ -19,16 +15,6 @@ namespace PS.Mothership.Core.Common.Constants
         public const int InitalMatch = 2;
         public const int ExactMatchScore = 5;
         public const int WildCardMatchScore = 1;
-        //postcodeanywhere constants
-        public const string PostCodeAnywhereFindUrl = "PostCodeAnywhereFindUrl";
-        public const string PostCodeAnywhereRetrieveUrl = "PostCodeAnywhereRetrieveUrl";
-        public const string PostCodeAnywhereAccountCode = "PostCodeAnywhereAccountCode";
-        public const string PostCodeAnywhereLicenseKey = "PostCodeAnywhereLicenseKey";
-        public const string PostCodeAnywhereBindingName = "PostcodeAnywhere_Soap";
-
-
-        public const string EndpointNotFoundErrorMessage =
-            "This exception occurs when Wcf Service server is either not started or the endpoints defined in the web.config " +
-            "file are not pointing to the correct address.";
+        
     }
 }

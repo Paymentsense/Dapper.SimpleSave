@@ -10,12 +10,11 @@ namespace PS.Mothership.Core.Common.WcfErrorHandling
 
             const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
             var random = new Random();
-            return new string(
+            var generatedKey = new string(
                 Enumerable.Repeat(chars, 5)
                     .Select(s => s[random.Next(s.Length)])
-                    .Concat("_")
-                    .Concat(DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss"))
                     .ToArray());
+            return string.Concat(DateTime.Now.ToString("ddMM"), generatedKey);
         }
     }
 }
