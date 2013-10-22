@@ -56,6 +56,6 @@ namespace PS.Mothership.Core.Common.Contracts.Security
         bool CodeExists(long userId, string verificationCode);
 
         [OperationContract]
-        bool HasCodeExpired(long userId, string verificationCode);        
+        bool VerfiyRemoteAccess(long userId, string verificationCode);         
     }
 }
