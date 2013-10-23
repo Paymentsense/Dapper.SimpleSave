@@ -210,7 +210,12 @@
       <InProject>False</InProject>
     </DirectiveProcessor>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\PS.Mothership.Core.Common.Log4NetJsonFormatter\PS.Mothership.Core.Common.Log4NetJsonFormatter.csproj">
+      <Project>{f4c86b09-f339-4a37-b2c1-e2ab6d7c2662}</Project>
+      <Name>PS.Mothership.Core.Common.Log4NetJsonFormatter</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <BeforeTransform>CustomPreTransform</BeforeTransform>
     <AfterTransform>CustomPostTransform;$(AfterTransform)</AfterTransform>
