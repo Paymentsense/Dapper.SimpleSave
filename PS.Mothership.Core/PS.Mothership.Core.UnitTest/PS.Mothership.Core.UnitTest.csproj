@@ -54,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extension\EnumExtensionTest.cs" />
     <Compile Include="Helper\CTimeTest.cs" />
     <Compile Include="Helper\JsonHelperTest.cs" />
     <Compile Include="Helper\UtilTest.cs" />

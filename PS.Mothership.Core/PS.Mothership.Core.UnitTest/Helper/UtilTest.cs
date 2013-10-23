@@ -158,43 +158,7 @@ namespace PS.Mothership.Core.UnitTest.Helper
 
         }
     }
-
-
-    /// <summary>
-    /// Test Stubs
-    /// </summary>
-    [DataContract]
-    public class Person
-    {
-        [DataMember]
-        public int Id { get; set; }
-        [DataMember]
-        public string Name { get; set; }
-        [DataMember]
-        public string FirstName { get; set; }
-        [DataMember]
-        public Customer Customer { get; set; }
-        private Guid _sessionId = Guid.NewGuid();
-        [JsonIgnore]
-        [DataMember]
-        public Guid SessionId
-        {
-            get { return _sessionId; }
-            set { _sessionId = value; }
-        }
-    }
-
-    /// <summary>
-    /// Test Stubs
-    /// </summary>
-    [DataContract]
-    public class Customer
-    {
-        [DataMember]
-        public int Id { get; set; }
-        [DataMember]
-        public string Name { get; set; }
-    }
+    
 
     [DataContract]
     enum MyEnum
