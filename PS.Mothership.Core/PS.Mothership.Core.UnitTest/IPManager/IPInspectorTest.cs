@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
 using NUnit.Framework;
 using PS.Mothership.Core.Common.Constants;
 using PS.Mothership.Core.Common.IPManager;
@@ -34,6 +35,26 @@ namespace PS.Mothership.Core.UnitTest.IPManager
             // Assert
             Assert.AreEqual(true,result, "Should be true, the given ip address in a valid one");
         }
+
+        [Test]
+        public void IsValid_IsIPV6Valid_ReturnTrue()
+        {
+            // Arrange
+            const string ipString = "fe80::9915:c83c:70dd:7a0d%11";            
+
+            // Act
+            IPAddress ipAddress;
+            var result = IPInspector.IsValid(ipString, out ipAddress);
+
+            if (result)
+            {
+                Console.WriteLine("is ipv6 ? " + ipAddress.IsIPv6LinkLocal);
+                Console.WriteLine("map ipv6 to ipv4 " + ipAddress.MapToIPv4());
+            }
+
+            // Assert
+            Assert.AreEqual(true,result, "Should be true, the given ip address in a valid one");
+        }        
 
         [Test]
         public void IsValid_IsIPValid_ReturnFalse()
