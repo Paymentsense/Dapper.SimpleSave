@@ -1,5 +1,5 @@
 ﻿using NUnit.Framework;
-using PS.Mothership.Core.Common.Helper;
+using PS.Mothership.Core.Common.Extension;
 using System.Runtime.Serialization;
 
 namespace PS.Mothership.Core.UnitTest.Extension
