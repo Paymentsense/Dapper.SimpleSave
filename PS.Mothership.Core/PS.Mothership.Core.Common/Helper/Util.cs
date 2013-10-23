@@ -144,33 +144,34 @@ namespace PS.Mothership.Core.Common.Helper
             return default(T);
         }
         
-        /// <summary>
-        ///     Extension Method 
-        /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        public static string GetDescription(this Enum value)
-        {
-            Type type = value.GetType();
-            string name = Enum.GetName(type, value);
-            if (name != null)
-            {
-                FieldInfo field = type.GetField(name);
-                if (field != null)
-                {
-                    var attr =
-                           Attribute.GetCustomAttribute(field,
-                             typeof(DescriptionAttribute)) as DescriptionAttribute;
-                    if (attr != null)
-                    {
-                        return attr.Description;
-                    }
-                }
-            }
+        // moved to its own folder
+        ///// <summary>
+        /////     Extension Method 
+        ///// </summary>
+        ///// <param name="value"></param>
+        ///// <returns></returns>
+        //public static string GetDescription(this Enum value)
+        //{
+        //    Type type = value.GetType();
+        //    string name = Enum.GetName(type, value);
+        //    if (name != null)
+        //    {
+        //        FieldInfo field = type.GetField(name);
+        //        if (field != null)
+        //        {
+        //            var attr =
+        //                   Attribute.GetCustomAttribute(field,
+        //                     typeof(DescriptionAttribute)) as DescriptionAttribute;
+        //            if (attr != null)
+        //            {
+        //                return attr.Description;
+        //            }
+        //        }
+        //    }
 
-            // return an empty string
-            // don't break the calling code
-            return string.Empty;
-        }  
+        //    // return an empty string
+        //    // don't break the calling code
+        //    return string.Empty;
+        //}  
     }    
 }
