@@ -108,6 +108,7 @@
     <Compile Include="Contracts\IApplicationService.cs" />
     <Compile Include="Contracts\ICompanyService.cs" />
     <Compile Include="Contracts\ILoggingService.cs" />
+    <Compile Include="Contracts\IMSLogger.cs" />
     <Compile Include="Contracts\ITaskNotificationCallback.cs" />
     <Compile Include="Contracts\ITaskNotificationService.cs" />
     <Compile Include="Contracts\IQuartzJobBase.cs" />
@@ -141,6 +142,8 @@
     <Compile Include="Helper\CTime.cs" />
     <Compile Include="Helper\DebugStopwatch.cs" />
     <Compile Include="Helper\DynamicContractResolver.cs" />
+    <Compile Include="Helper\MSLogger.cs" />
+    <Compile Include="Helper\UniqueKeyGenerator.cs" />
     <Compile Include="Helper\JsonHelper.cs" />
     <Compile Include="IPManager\IPInspector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -165,7 +168,6 @@
     <Compile Include="Template\PsMsContextUserStatusLutEnum.cs">
       <DependentUpon>DbEnumBuilder.tt</DependentUpon>
     </Compile>
-    <Compile Include="WcfErrorHandling\UniqueKeyGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

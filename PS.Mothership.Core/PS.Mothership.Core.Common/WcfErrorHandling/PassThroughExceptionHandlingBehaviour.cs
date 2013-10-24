@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 using log4net;
+using PS.Mothership.Core.Common.Helper;
 
 namespace PS.Mothership.Core.Common.WcfErrorHandling
 {
