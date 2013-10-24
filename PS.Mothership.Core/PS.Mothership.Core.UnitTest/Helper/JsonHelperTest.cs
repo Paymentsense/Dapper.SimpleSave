@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
 using NUnit.Framework;
 using PS.Mothership.Core.Common.Helper;
-using PS.Mothership.Core.Common.Template.PsMsContext;
 using System;
 using System.Runtime.Serialization;
 
@@ -19,7 +18,7 @@ namespace PS.Mothership.Core.UnitTest.Helper
             const string actual = @"""Id"":1";
 
             // Act
-            string jsonString = Util.ConvertToJson(p, true);
+            string jsonString = JsonHelper.ConvertToJson(p, true);
 
 
             //Console.WriteLine(jsonString);
@@ -38,10 +37,10 @@ namespace PS.Mothership.Core.UnitTest.Helper
             p.Customer = c;
 
             // convert to json
-            var jsonString = Util.ConvertToJson(p);
+            var jsonString = JsonHelper.ConvertToJson(p);
 
             // Act
-            var ps = Util.ConvertToObject(jsonString, new Person());
+            var ps = JsonHelper.ConvertToObject(jsonString, new Person());
 
             //Console.WriteLine(string.Format("Id:{0}\n Name:{1}\n CustomerId:{2}\n CustomerName:{3}",
             //  ps.Id, ps.Name, ps.Customer.Id, ps.Customer.Name));
@@ -62,7 +61,7 @@ namespace PS.Mothership.Core.UnitTest.Helper
             const string expected = "ZAAAABBJZAABAAAAAk5hbWUABQAAAE5hbWUAAkZpcnN0TmFtZQAKAAAARmlyc3ROYW1lAANDdXN0b21lcgAlAAAAEElkAGQAAAACTmFtZQAOAAAAQ3VzdG9tZXIgTmFtZQAAAA==";
 
             // Act            
-            var bsonBytes = Util.ConvertToBson(p);
+            var bsonBytes = JsonHelper.ConvertToBson(p);
             var actual = Convert.ToBase64String(bsonBytes);
 
             //// Act
@@ -87,7 +86,7 @@ namespace PS.Mothership.Core.UnitTest.Helper
             p.Customer = c;
 
             // Act
-            var ps = Util.ConvertFromBson<Person>(Convert.FromBase64String(base64PersonData));
+            var ps = JsonHelper.ConvertFromBson<Person>(Convert.FromBase64String(base64PersonData));
 
             //Console.WriteLine(string.Format("Id:{0}\n Name:{1}\n CustomerId:{2}\n CustomerName:{3}",
             //  ps.Id, ps.Name, ps.Customer.Id, ps.Customer.Name));
@@ -106,12 +105,48 @@ namespace PS.Mothership.Core.UnitTest.Helper
             const string actual = @"""SessionId"":";
 
             // convert to json
-            var jsonString = Util.ConvertToJson(p);
+            var jsonString = JsonHelper.ConvertToJson(p);
 
             //Console.WriteLine(jsonString);
 
             // Assert
             Assert.AreEqual(false, jsonString.Contains(actual), "should not contain property decorated with JsonIgnore");
         }
+    }
+
+    /// <summary>
+    /// Test Stubs
+    /// </summary>
+    [DataContract]
+    public class Person
+    {
+        [DataMember]
+        public int Id { get; set; }
+        [DataMember]
+        public string Name { get; set; }
+        [DataMember]
+        public string FirstName { get; set; }
+        [DataMember]
+        public Customer Customer { get; set; }
+        private Guid _sessionId = Guid.NewGuid();
+        [JsonIgnore]
+        [DataMember]
+        public Guid SessionId
+        {
+            get { return _sessionId; }
+            set { _sessionId = value; }
+        }
+    }
+
+    /// <summary>
+    /// Test Stubs
+    /// </summary>
+    [DataContract]
+    public class Customer
+    {
+        [DataMember]
+        public int Id { get; set; }
+        [DataMember]
+        public string Name { get; set; }
     }
 }

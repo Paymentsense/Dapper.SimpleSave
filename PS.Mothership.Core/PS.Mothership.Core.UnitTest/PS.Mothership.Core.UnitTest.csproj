@@ -57,7 +57,6 @@
     <Compile Include="Extension\EnumExtensionTest.cs" />
     <Compile Include="Helper\CTimeTest.cs" />
     <Compile Include="Helper\JsonHelperTest.cs" />
-    <Compile Include="Helper\UtilTest.cs" />
     <Compile Include="IPManager\IPInspectorPerformanceTest.cs" />
     <Compile Include="IPManager\IPInspectorTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
