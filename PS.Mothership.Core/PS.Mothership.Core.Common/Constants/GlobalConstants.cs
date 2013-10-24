@@ -11,6 +11,7 @@ namespace PS.Mothership.Core.Common.Constants
         // Ip Matching constants
         public const char Dot = '.';
         public const char Star = '*';
+        public const char At = '@';
         public const int IPAddressPadding = 3;
         public const int InitalMatch = 2;
         public const int ExactMatchScore = 5;
