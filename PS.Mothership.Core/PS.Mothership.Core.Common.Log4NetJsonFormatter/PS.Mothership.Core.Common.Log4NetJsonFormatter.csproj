@@ -47,7 +47,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ErrorEntity.cs" />
+    <Compile Include="Entities\LoggingEntity.cs" />
+    <Compile Include="Entities\ErrorLoggingEntity.cs" />
     <Compile Include="JsonPatternLayoutConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
