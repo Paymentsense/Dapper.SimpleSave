@@ -14,6 +14,8 @@ namespace PS.Mothership.Core.Common.Constants
         public const string PostCodeAnywhereAccountCode = "PostCodeAnywhereAccountCode";
         public const string PostCodeAnywhereLicenseKey = "PostCodeAnywhereLicenseKey";
         public const string PostCodeAnywhereBindingName = "PostcodeAnywhere_Soap";
+        public const string PostCodeAnywhereDataType = "PostCodeAnywhereDataType";
+
 
         public const string ForceDisplayExceptionDetailsKey = "ForceDisplayExceptionDetails";
     }
