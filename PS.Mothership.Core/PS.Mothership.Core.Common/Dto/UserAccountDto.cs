@@ -1,9 +1,12 @@
+using System.Collections.Generic;
 using System.Runtime.Serialization;
+using Castle.Components.DictionaryAdapter;
 using PS.Mothership.Core.Common.Enums;
 using PS.Mothership.Core.Common.Template.PsMsContext;
 
 namespace PS.Mothership.Core.Common.Dto
 {
+    
     [DataContract]
     public class UserAccountDto
     {
@@ -22,6 +25,27 @@ namespace PS.Mothership.Core.Common.Dto
         [DataMember]
         public string ConfirmPassword { get; set; }
         [DataMember]
-        public UserOptionsFlagLutEnum UserOptionsId { get; set; }        
+        public string Inital { get; set; }
+        [DataMember]
+        public UserOptionsFlagLutEnum UserOptionsId { get; set; }     
+        [DataMember]
+        public ICollection<string> AlternateLoginNames { get; set; } 
+        [DataMember]
+        public string ChosenLoginName { get; set; }
+
+        // set default
+        private Action _action = Action.Add;
+        [DataMember]
+        public Action Action
+        {
+            get
+            {
+                return _action;
+            }
+            set
+            {
+                _action = value;
+            }
+        }
     }
 }

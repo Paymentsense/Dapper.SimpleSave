@@ -131,10 +131,12 @@
     <Compile Include="Dto\PendingTaskNotification.cs" />
     <Compile Include="Dto\RegisterDto.cs" />
     <Compile Include="Dto\TaskDto.cs" />
+    <Compile Include="Dto\UserDto.cs" />
     <Compile Include="Dto\UserRoleDto.cs" />
     <Compile Include="Dto\TblCaseDTO.cs" />
     <Compile Include="Dto\UserAccountDto.cs" />
     <Compile Include="Dto\UserProfileDto.cs" />
+    <Compile Include="Enums\Action.cs" />
     <Compile Include="Enums\State.cs" />
     <Compile Include="Extension\EnumerableExtension.cs" />
     <Compile Include="Enums\UserRoleType.cs" />

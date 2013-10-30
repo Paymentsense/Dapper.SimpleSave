@@ -18,6 +18,6 @@ namespace PS.Mothership.Core.Common.Contracts
         /// <param name="userAccountDto"></param>
         /// <returns></returns>
         [OperationContract]
-        AccountDto Manage(UserAccountDto userAccountDto);        
+        UserDto Manage(UserAccountDto userAccountDto);        
     }
 }

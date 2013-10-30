@@ -18,5 +18,8 @@ namespace PS.Mothership.Core.Common.Constants
 
 
         public const string ForceDisplayExceptionDetailsKey = "ForceDisplayExceptionDetails";
+
+        // Standard Password 
+        public const string StandardPassword = "Payment1";
     }
 }

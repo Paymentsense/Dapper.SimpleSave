@@ -18,6 +18,7 @@ namespace PS.Mothership.Core.Common.Template.PsMsContext
        [Description("Account un locked")][EnumMember]AccountUnLocked = 8,
        [Description("User can impersonate")][EnumMember]UserImpersonated = 9,
        [Description("User password changed")][EnumMember]PasswordChanged = 10,
+       [Description("User name already exists")][EnumMember]DuplicateUserName = 11,
         
     }    
 }
