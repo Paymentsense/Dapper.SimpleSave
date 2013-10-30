@@ -12,10 +12,10 @@ namespace PS.Mothership.Core.Common.Helper
     {
         public ILog Logger { get; set; }
         
-        public MSLogger()
+        public MSLogger(string assemblyName)
         {
             var a = new Log4NetJsonFormatter.JsonPatternLayoutConverter();
-            Log4NetJsonFormatter.JsonPatternLayoutConverter.AssemblyName = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
+            Log4NetJsonFormatter.JsonPatternLayoutConverter.AssemblyName = assemblyName;
         }
 
         #region IMSlogger Members
