@@ -112,6 +112,7 @@
     <Compile Include="Contracts\ITaskNotificationCallback.cs" />
     <Compile Include="Contracts\ITaskNotificationService.cs" />
     <Compile Include="Contracts\IQuartzJobBase.cs" />
+    <Compile Include="Contracts\IUserManagementService.cs" />
     <Compile Include="Contracts\Security\IAuthenticationService.cs" />
     <Compile Include="Config\ILayerIocBuilder.cs" />
     <Compile Include="Config\IocBuildSettings.cs" />
@@ -132,7 +133,7 @@
     <Compile Include="Dto\TaskDto.cs" />
     <Compile Include="Dto\UserRoleDto.cs" />
     <Compile Include="Dto\TblCaseDTO.cs" />
-    <Compile Include="Dto\UserDto.cs" />
+    <Compile Include="Dto\UserAccountDto.cs" />
     <Compile Include="Dto\UserProfileDto.cs" />
     <Compile Include="Enums\State.cs" />
     <Compile Include="Extension\EnumerableExtension.cs" />
