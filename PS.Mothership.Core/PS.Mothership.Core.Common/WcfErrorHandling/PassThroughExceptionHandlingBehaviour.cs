@@ -8,7 +8,9 @@ using System.ServiceModel.Dispatcher;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using Castle.Windsor;
 using log4net;
+using PS.Mothership.Core.Common.Contracts;
 using PS.Mothership.Core.Common.Helper;
 
 namespace PS.Mothership.Core.Common.WcfErrorHandling
@@ -16,8 +18,17 @@ namespace PS.Mothership.Core.Common.WcfErrorHandling
     public class PassThroughExceptionHandlingBehaviour : Attribute, IClientMessageInspector, IErrorHandler,
     IEndpointBehavior, IServiceBehavior, IContractBehavior
     {
-        private readonly ILog _logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-      
+        public IMSLogger Logger
+        {
+            get;
+            set;
+        }
+
+        public IWindsorContainer WindsorContainer
+        {
+            get;
+            set;
+        }
 
         #region IClientMessageInspector Members
 
@@ -104,7 +115,7 @@ namespace PS.Mothership.Core.Common.WcfErrorHandling
             var wcfException = new CustomServerException("Unknown Error has occured. Please contact your administrator!", uniqueKey);
 
             //log the exception
-            _logger.Error(uniqueKey, error);
+            Logger.Error(uniqueKey, error);
 
             var user = ServiceSecurityContext.Current;
             MessageFault messageFault = MessageFault.CreateFault(
@@ -184,7 +195,7 @@ namespace PS.Mothership.Core.Common.WcfErrorHandling
 
         #region Behavior helpers
 
-        private static void ApplyClientBehavior(System.ServiceModel.Dispatcher.ClientRuntime clientRuntime)
+        private void ApplyClientBehavior(System.ServiceModel.Dispatcher.ClientRuntime clientRuntime)
         {
             foreach (IClientMessageInspector messageInspector in clientRuntime.MessageInspectors)
             {
@@ -194,10 +205,10 @@ namespace PS.Mothership.Core.Common.WcfErrorHandling
                 }
             }
 
-            clientRuntime.MessageInspectors.Add(new PassThroughExceptionHandlingBehaviour());
+            clientRuntime.MessageInspectors.Add(WindsorContainer.Resolve<IClientMessageInspector>());
         }
 
-        private static void ApplyDispatchBehavior(System.ServiceModel.Dispatcher.ChannelDispatcher dispatcher)
+        private void ApplyDispatchBehavior(System.ServiceModel.Dispatcher.ChannelDispatcher dispatcher)
         {
             // Don't add an error handler if it already exists
             foreach (IErrorHandler errorHandler in dispatcher.ErrorHandlers)
@@ -208,7 +219,7 @@ namespace PS.Mothership.Core.Common.WcfErrorHandling
                 }
             }
 
-            dispatcher.ErrorHandlers.Add(new PassThroughExceptionHandlingBehaviour());
+            dispatcher.ErrorHandlers.Add(WindsorContainer.Resolve<IErrorHandler>());
         }
 
         #endregion
