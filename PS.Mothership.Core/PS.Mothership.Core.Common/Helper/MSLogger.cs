@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using log4net;
 using PS.Mothership.Core.Common.Contracts;
+using PS.Mothership.Core.Common.Log4NetJsonFormatter;
 
 namespace PS.Mothership.Core.Common.Helper
 {
@@ -12,10 +9,11 @@ namespace PS.Mothership.Core.Common.Helper
     {
         public ILog Logger { get; set; }
         
-        public MSLogger(string assemblyName)
+        public MSLogger(string assemblyName, string applicationName)
         {
-            var a = new Log4NetJsonFormatter.JsonPatternLayoutConverter();
-            Log4NetJsonFormatter.JsonPatternLayoutConverter.AssemblyName = assemblyName;
+            var a = new JsonPatternLayoutConverter();
+            JsonPatternLayoutConverter.AssemblyName = assemblyName;
+            JsonPatternLayoutConverter.ApplicationName = applicationName;
         }
 
         #region IMSlogger Members
