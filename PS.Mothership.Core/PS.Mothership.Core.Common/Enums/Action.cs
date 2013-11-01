@@ -8,7 +8,7 @@ namespace PS.Mothership.Core.Common.Enums
 {
     public enum Action
     {
-        Add,
+        Add=0,
         Delete,
         Update
     }

@@ -11,9 +11,7 @@ namespace PS.Mothership.Core.Common.Dto
     public class UserAccountDto
     {
         [DataMember]
-        public long Id { get; set; }
-        [DataMember]
-        public UserStatusLutEnum UserStatusId { get; set; }
+        public long Id { get; set; }                
         [DataMember]
         public string FirstName { get; set; }
         [DataMember]
@@ -34,6 +32,15 @@ namespace PS.Mothership.Core.Common.Dto
         public string ChosenLoginName { get; set; }
 
         // set default
+        private UserStatusLutEnum _userStatusId = UserStatusLutEnum.NewUser;
+        [DataMember]
+        public UserStatusLutEnum UserStatusId
+        {
+            get { return _userStatusId; }
+            set { _userStatusId = value; }
+
+        }
+
         private Action _action = Action.Add;
         [DataMember]
         public Action Action
