@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
-using System.Web.Security;
 using Newtonsoft.Json;
-using PS.Mothership.Core.Common.Template.PsMsContext;
+using PS.Mothership.Core.Common.Template.Usr;
 
 namespace PS.Mothership.Core.Common.Dto
 {
@@ -22,6 +21,8 @@ namespace PS.Mothership.Core.Common.Dto
         [DataMember]
         public long UserId { get; set; }
         [DataMember]
+        public Guid UserGuid { get; set; }
+        [DataMember]
         public string UserName { get; set; }
         [DataMember]
         public bool IsPersistent { get; set; }
@@ -32,7 +33,7 @@ namespace PS.Mothership.Core.Common.Dto
         [DataMember]
         public bool IsImpersonate { get; set; }
         [DataMember]
-        public LoginUserResultLutEnum Status { get; set; }
+        public LoginResultEnum Status { get; set; }
         [DataMember]
         public string Message { get; set; }
         [DataMember]
@@ -49,7 +50,7 @@ namespace PS.Mothership.Core.Common.Dto
 
         [JsonIgnore]
         [DataMember]
-        public UserOptionsFlagLutEnum Options { get; set; }
+        public StatusOptionFlagEnum? Options { get; set; }
         [JsonIgnore]
         [DataMember]
         public string ValidationCode { get; set; }

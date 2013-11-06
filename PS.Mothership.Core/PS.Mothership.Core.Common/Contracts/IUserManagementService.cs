@@ -20,30 +20,30 @@ namespace PS.Mothership.Core.Common.Contracts
         [OperationContract]
         UserDto Manage(UserAccountDto userAccountDto);
         [OperationContract]
-        Core.Common.Dto.User GetRolesForUser(int userId);
+        User GetRolesForUser(Guid userGuid);
         [OperationContract]
         Core.Common.Dto.UserRoles GetRolesForUsers();
         [OperationContract]
-        void RemoveRoleFromUser(Core.Common.Dto.UserRole userRole);
+        void RemoveRoleFromUser(UserRole userRole);
         [OperationContract]
-        void AddRoleToUser(Core.Common.Dto.UserRole userRole);
+        void AddRoleToUser(UserRole userRole);
         [OperationContract]
-        void RemoveRole(Core.Common.Dto.Role role);
+        void RemoveRole(Role role);
         [OperationContract]
-        void AddRole(Core.Common.Dto.Role role);
+        void AddRole(Role role);
         [OperationContract]
-        IEnumerable<Core.Common.Dto.Role> GetRoles();
+        IEnumerable<Role> GetRoles();
         [OperationContract]
-        Core.Common.Dto.GroupRoles GetAllRolesAndGroups();
+        GroupRoles GetAllRolesAndGroups();
         [OperationContract]
-        Core.Common.Dto.Group GetRolesForGroup(long groupId);
+        Group GetRolesForGroup(long groupId);
         [OperationContract]
-        void RemoveGroup(Core.Common.Dto.GroupDesc groupDesc);
+        void RemoveGroup(GroupDesc groupDesc);
         [OperationContract]
-        void AddOrUpdateGroup(Core.Common.Dto.GroupDesc groupDesc);
+        void AddOrUpdateGroup(GroupDesc groupDesc);
         [OperationContract]
-        void RemoveRoleFromGroup(Core.Common.Dto.GroupRole groupRole);
+        void RemoveRoleFromGroup(GroupRole groupRole);
         [OperationContract]
-        void AddRoleToGroup(Core.Common.Dto.GroupRole groupRole);
+        void AddRoleToGroup(GroupRole groupRole);
     }
 }

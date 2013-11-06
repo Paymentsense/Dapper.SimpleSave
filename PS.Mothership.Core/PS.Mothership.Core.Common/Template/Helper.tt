@@ -11,7 +11,9 @@
 <#@ import namespace="System.Text" #>
 
 <#
-    const string SYS_TABLES_SQL = @"SELECT DISTINCT t.NAME FROM SYS.tables as t
+    const string SYS_TABLES_SQL = @"SELECT DISTINCT SCHEMA_NAME(t.schema_id) + '.' + t.NAME as Name,
+        SCHEMA_NAME(t.schema_id) as SchemaName
+        FROM SYS.tables as t
         INNER JOIN SYS.columns AS c ON t.object_id = c.object_id
         AND c.name like '%{0}' and t.name like '%{1}'";
 
@@ -117,9 +119,9 @@
         /// </summary>
         /// <param name="dynamicQueryString"></param>
         /// <returns></returns>
-        public List<string> GetTableNames(string dynamicQueryString, string connectionString)
+        public Dictionary<string,string> GetTableNames(string dynamicQueryString, string connectionString)
         {
-            var tableNames= new List<string>();
+            var tableNames= new Dictionary<string,string>();
 
             using (var connection = new SqlConnection(connectionString))
             {
@@ -134,9 +136,11 @@
 
                     // Call Read before accessing data. 
                     var idxName = reader.GetOrdinal("Name");
+                    var idxSchemaName= reader.GetOrdinal("SchemaName");    
                     while (reader.Read())
                     {
-                        tableNames.Add(reader.GetString(idxName));                                                
+                        if(tableNames.ContainsKey(reader.GetString(idxName))) continue;
+                        tableNames.Add(reader.GetString(idxName),reader.GetString(idxSchemaName));                                                
                     }
                 }
                 catch(Exception)
@@ -200,11 +204,20 @@
                     while (reader.Read())
                     {
                         if(!string.IsNullOrEmpty(reader[queryColumnName].ToString().Trim()))
-                        {                            
-                            dataHolder.KeyValue.Add(reader[queryColumnName].ToString().Trim(), 
-                                            reader[0].ToString().Trim() + dataDelimiter + 
-                                            reader[queryDescriptionColumnName].ToString().Trim());
-                            dataCount++;
+                        {           
+                            if(!string.IsNullOrWhiteSpace(queryDescriptionColumnName))
+                            {
+                                dataHolder.KeyValue.Add(reader[queryColumnName].ToString().Trim(), 
+                                    reader[0].ToString().Trim() + dataDelimiter + 
+                                    reader[queryDescriptionColumnName].ToString().Trim());
+                            }
+                            else
+                            {
+                                    dataHolder.KeyValue.Add(reader[queryColumnName].ToString().Trim(), 
+                                    reader[0].ToString().Trim() + dataDelimiter + string.Empty);
+                            }
+                            
+                        dataCount++;                        
                         }
                     }  
 
@@ -292,6 +305,7 @@
         public string ContextName{ get; set;}
         public string DataBaseName { get; set;}
         public string TableName{ get; set;}
+        public string SchemaName{ get; set;}    
         public Dictionary<string,string> KeyValue { get; set;}        
         public string Type { get; set;}
         public bool isFlag { get; set;}

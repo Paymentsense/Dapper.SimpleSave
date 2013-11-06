@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
-using PS.Mothership.Core.Common.Template.PsMsContext;
+﻿using System.Runtime.Serialization;
+using PS.Mothership.Core.Common.Template.Usr;
 
 namespace PS.Mothership.Core.Common.Dto
 {
     public class UserDto
     {
         [DataMember]
-        public LoginUserResultLutEnum Status { get; set; }
+        public LoginResultEnum Status { get; set; }
 
         [DataMember]
         public string Message { get; set; }

@@ -2,13 +2,14 @@ using System;
 using System.Runtime.Serialization;
 using System.ComponentModel;
 
-namespace PS.Mothership.Core.Common.Template.PsMsContext
+namespace PS.Mothership.Core.Common.Template.Usr
 {
     
     [DataContract]
-    public enum LoginUserResultLutEnum : int
+    public enum LoginResultEnum : long
     {
-       [Description("Success")][EnumMember]Success = 1,
+       [Description("None")][EnumMember]None = 0,
+       [Description("Sucess")][EnumMember]Success = 1,
        [Description("Failed")][EnumMember]Failed = 2,
        [Description("Password failed")][EnumMember]FailedPassword = 3,
        [Description("Password locked")][EnumMember]FailedPasswordRetryLock = 4,

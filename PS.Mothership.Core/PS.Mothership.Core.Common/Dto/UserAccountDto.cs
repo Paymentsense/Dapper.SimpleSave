@@ -1,8 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
-using Castle.Components.DictionaryAdapter;
-using PS.Mothership.Core.Common.Enums;
-using PS.Mothership.Core.Common.Template.PsMsContext;
+using Newtonsoft.Json;
+using PS.Mothership.Core.Common.Template.Usr;
+using Action = PS.Mothership.Core.Common.Enums.Action;
 
 namespace PS.Mothership.Core.Common.Dto
 {
@@ -11,13 +12,13 @@ namespace PS.Mothership.Core.Common.Dto
     public class UserAccountDto
     {
         [DataMember]
-        public long Id { get; set; }                
+        public long UserId { get; set; }                
         [DataMember]
         public string FirstName { get; set; }
         [DataMember]
         public string LastName { get; set; }
         [DataMember]
-        public string Login { get; set; }
+        public string LoginName { get; set; }
         [DataMember]
         public string Password { get; set; }
         [DataMember]
@@ -25,16 +26,16 @@ namespace PS.Mothership.Core.Common.Dto
         [DataMember]
         public string Inital { get; set; }
         [DataMember]
-        public UserOptionsFlagLutEnum UserOptionsId { get; set; }     
+        public StatusOptionFlagEnum UserOptionsId { get; set; }     
         [DataMember]
         public ICollection<string> AlternateLoginNames { get; set; } 
         [DataMember]
         public string ChosenLoginName { get; set; }
 
         // set default
-        private UserStatusLutEnum _userStatusId = UserStatusLutEnum.NewUser;
+        private UserStatusEnum _userStatusId = UserStatusEnum.NewHire;
         [DataMember]
-        public UserStatusLutEnum UserStatusId
+        public UserStatusEnum UserStatusId
         {
             get { return _userStatusId; }
             set { _userStatusId = value; }
@@ -53,6 +54,15 @@ namespace PS.Mothership.Core.Common.Dto
             {
                 _action = value;
             }
+        }
+
+        private Guid _sessionId = Guid.NewGuid();
+        [JsonIgnore]
+        [DataMember]
+        public Guid SessionId
+        {
+            get { return _sessionId; }
+            set { _sessionId = value; }
         }
     }
 }
