@@ -1,11 +1,21 @@
-﻿using System.Runtime.Serialization;
+﻿using System.Net;
+using System.Runtime.Serialization;
+using Newtonsoft.Json;
 using PS.Mothership.Core.Common.Template.Usr;
 
 namespace PS.Mothership.Core.Common.Dto
 {
     public class UserDto
     {
-        [DataMember]
+        // To manage on client side
+        private HttpStatusCode _statusCode = HttpStatusCode.OK;
+        public HttpStatusCode StatusCode
+        {
+            get { return _statusCode; }
+            set { _statusCode = value; }
+        }
+
+        [DataMember]        
         public LoginResultEnum Status { get; set; }
 
         [DataMember]
