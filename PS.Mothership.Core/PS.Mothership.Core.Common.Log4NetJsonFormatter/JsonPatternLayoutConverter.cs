@@ -26,6 +26,7 @@ namespace PS.Mothership.Core.Common.Log4NetJsonFormatter
         }
 
         public static string AssemblyName { get; set; }
+        public static string ApplicationName { get; set; }
         // the aim of overriding the convert within the log4net layout is so that stack-traces and multi-line messages
         // don't break our json format.
         protected override void Convert(TextWriter writer, LoggingEvent loggingEvent)
@@ -54,7 +55,7 @@ namespace PS.Mothership.Core.Common.Log4NetJsonFormatter
             }
 
             loggingEntity.Date = loggingEvent.TimeStamp.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ss");
-            loggingEntity.ApplicationName = loggingEvent.Domain;
+            loggingEntity.ApplicationName = ApplicationName;
             loggingEntity.AssemblyName = AssemblyName;
             loggingEntity.ErrorLevel = loggingEvent.Level.ToString();
             loggingEntity.Thread = loggingEvent.ThreadName;
