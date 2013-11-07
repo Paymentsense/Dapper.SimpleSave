@@ -16,5 +16,13 @@ namespace PS.Mothership.Core.Common.Constants
         public const string PostCodeAnywhereDataType = "PostCodeAnywhereDataType";
         public const string ForceDisplayExceptionDetailsKey = "ForceDisplayExceptionDetails";
         public const string PostCodeAnywhereBindingName = "PostcodeAnywhere_Soap";
+
+        //Common Experian Constants
+        public const string ExperianRequestCertFileName = "ExperianRequestCertFileName";
+        public const string ExperianRequestCertPassWord = "ExperianRequestCertPassWord";
+        public const string ExperianRequestWaspTokenUrl = "ExperianRequestWaspTokenUrl";
+        public const string ExperianEIHEndpointRequestUrl = "ExperianEIHEndpointRequestUrl";
+
+
     }
 }
