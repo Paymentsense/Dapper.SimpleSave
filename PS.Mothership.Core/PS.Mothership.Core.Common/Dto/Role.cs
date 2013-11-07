@@ -11,5 +11,6 @@ namespace PS.Mothership.Core.Common.Dto
         public long Id { get; set; }
         public string RoleName { get; set; }
         public string RoleDescription { get; set; }
+        public bool IsDefiningRole { get; set; }
     }
 }

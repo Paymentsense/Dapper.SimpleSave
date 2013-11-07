@@ -45,5 +45,8 @@ namespace PS.Mothership.Core.Common.Contracts
         void RemoveRoleFromGroup(GroupRole groupRole);
         [OperationContract]
         void AddRoleToGroup(GroupRole groupRole);
+        [OperationContract]
+        void InheritRole(RoleInheritance roleInheritance);
+
     }
 }

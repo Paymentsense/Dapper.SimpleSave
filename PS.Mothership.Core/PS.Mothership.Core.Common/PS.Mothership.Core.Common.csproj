@@ -135,6 +135,7 @@
     <Compile Include="Dto\PendingTaskNotification.cs" />
     <Compile Include="Dto\RegisterDto.cs" />
     <Compile Include="Dto\Role.cs" />
+    <Compile Include="Dto\RoleInheritance.cs" />
     <Compile Include="Dto\TaskDto.cs" />
     <Compile Include="Dto\UserDto.cs" />
     <Compile Include="Dto\User.cs" />
