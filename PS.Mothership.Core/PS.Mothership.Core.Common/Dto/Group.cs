@@ -9,6 +9,7 @@ namespace PS.Mothership.Core.Common.Dto
     public class Group
     {
         public string GroupName { get; set; }
+        public long Id { get; set; }
         public List<Role> Roles { get; set; }
     }
 }
