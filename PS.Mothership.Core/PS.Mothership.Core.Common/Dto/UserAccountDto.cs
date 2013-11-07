@@ -24,7 +24,7 @@ namespace PS.Mothership.Core.Common.Dto
         [DataMember]
         public string ConfirmPassword { get; set; }
         [DataMember]
-        public string Inital { get; set; }
+        public string Initial { get; set; }
         [DataMember]
         public StatusOptionFlagEnum UserOptionsId { get; set; }     
         [DataMember]
