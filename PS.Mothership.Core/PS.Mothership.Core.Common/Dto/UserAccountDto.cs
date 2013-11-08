@@ -12,7 +12,7 @@ namespace PS.Mothership.Core.Common.Dto
     public class UserAccountDto
     {           
         [DataMember]
-        public Guid UserId { get; set; }                
+        public Guid UserGuid { get; set; }                
         [DataMember]
         public string FirstName { get; set; }
         [DataMember]
