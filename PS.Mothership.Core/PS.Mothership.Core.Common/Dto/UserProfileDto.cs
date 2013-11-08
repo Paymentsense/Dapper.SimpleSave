@@ -18,8 +18,8 @@ namespace PS.Mothership.Core.Common.Dto
     {
         [DataMember]
         public bool IsLoggedIn { get; set; }
-        [DataMember]
-        public long UserId { get; set; }
+        //[DataMember]
+        //public long UserId { get; set; }
         [DataMember]
         public Guid UserGuid { get; set; }
         [DataMember]

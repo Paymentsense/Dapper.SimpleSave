@@ -10,9 +10,9 @@ namespace PS.Mothership.Core.Common.Dto
     
     [DataContract]
     public class UserAccountDto
-    {
+    {           
         [DataMember]
-        public long UserId { get; set; }                
+        public Guid UserId { get; set; }                
         [DataMember]
         public string FirstName { get; set; }
         [DataMember]
