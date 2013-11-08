@@ -49,6 +49,12 @@ namespace PS.Mothership.Core.Common.Contracts
         void AddInheritRole(RoleInheritance roleInheritance);
         [OperationContract]
         void RemoveInheritRole(RoleInheritance roleInheritance);
+        [OperationContract]
+        void AddGroupToUser(UserGroup userGroup);
+        [OperationContract]
+        void RemoveGroupFromUser(UserGroup userGroup);
+        [OperationContract]
+        Group GetGroupForUser(Guid userId);
 
     }
 }
