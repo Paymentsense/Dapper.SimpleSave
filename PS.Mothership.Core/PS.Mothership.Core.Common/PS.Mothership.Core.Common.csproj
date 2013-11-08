@@ -138,6 +138,7 @@
     <Compile Include="Dto\TaskDto.cs" />
     <Compile Include="Dto\UserDto.cs" />
     <Compile Include="Dto\User.cs" />
+    <Compile Include="Dto\UserGroup.cs" />
     <Compile Include="Dto\UserRole.cs" />
     <Compile Include="Dto\UserRoleDto.cs" />
     <Compile Include="Dto\TblCaseDTO.cs" />
