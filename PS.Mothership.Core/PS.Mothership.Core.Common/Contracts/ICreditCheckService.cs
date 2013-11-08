@@ -12,7 +12,7 @@ namespace PS.Mothership.Core.Common.Contracts
     public interface ICreditCheckService
     {
         [OperationContract]
-        CreditCheckResponseDto GetCreditScore(CreditCheckRequestDto creditCheckRequest);
+        IdentityCheckResponseDto GetCreditScore(IdentityCheckRequestDto creditCheckRequest);
 
     }
 }

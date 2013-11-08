@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace PS.Mothership.Core.Common.Dto
 {
     [DataContract]
-    public class CreditCheckRequestDto
+    public class IdentityCheckRequestDto
     {
         [DataMember]
         public PrivateInformationType PersonalInformation { get; set; }
@@ -22,7 +22,7 @@ namespace PS.Mothership.Core.Common.Dto
     }
 
     [DataContract]
-    public class CreditCheckResponseDto
+    public class IdentityCheckResponseDto
     {
         [DataMember]
         public string AuthenticationIndex { get; set; }
