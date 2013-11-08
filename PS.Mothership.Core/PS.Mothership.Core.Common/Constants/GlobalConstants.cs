@@ -17,5 +17,7 @@ namespace PS.Mothership.Core.Common.Constants
         public const int ExactMatchScore = 5;
         public const int WildCardMatchScore = 1;
         public const double ExpiryDays = 30;
+        public const int FirstNameScore = 2;
+        public const int LastNameScore = 2;
     }
 }
