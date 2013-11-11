@@ -56,6 +56,6 @@ namespace PS.Mothership.Core.Common.Contracts
         [OperationContract]
         Group GetGroupForUser(Guid userId);
         [OperationContract]
-        InheritedRoles GetInheritedRoles(long roleId);
+        InheritedRoles GetInheritedRoles(Role role);
     }
 }
