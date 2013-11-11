@@ -55,6 +55,7 @@ namespace PS.Mothership.Core.Common.Contracts
         void RemoveGroupFromUser(UserGroup userGroup);
         [OperationContract]
         Group GetGroupForUser(Guid userId);
-
+        [OperationContract]
+        InheritedRoles GetInheritedRoles(long roleId);
     }
 }

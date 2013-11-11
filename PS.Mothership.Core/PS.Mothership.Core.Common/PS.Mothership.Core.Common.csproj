@@ -127,6 +127,7 @@
     <Compile Include="Dto\GroupDesc.cs" />
     <Compile Include="Dto\GroupRole.cs" />
     <Compile Include="Dto\GroupRoles.cs" />
+    <Compile Include="Dto\InheritedRoles.cs" />
     <Compile Include="Dto\LoginCredentialsDto.cs" />
     <Compile Include="Dto\IDto.cs" />
     <Compile Include="Dto\NotificationDetail.cs" />
