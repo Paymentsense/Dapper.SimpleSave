@@ -8,8 +8,10 @@ namespace PS.Mothership.Core.Common.Dto
 {
     public class User
     {
+        public Guid UserGuid { get; set; }
         public long Id { get; set; }
         public string Name { get; set; }
         public List<Role> Roles { get; set; }
+
     }
 }

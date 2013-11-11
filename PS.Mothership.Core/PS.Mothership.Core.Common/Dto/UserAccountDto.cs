@@ -28,9 +28,11 @@ namespace PS.Mothership.Core.Common.Dto
         [DataMember]
         public StatusOptionFlagEnum UserOptionsId { get; set; }     
         [DataMember]
-        public ICollection<string> AlternateLoginNames { get; set; } 
+        public ICollection<string> AlternateLoginNames { get; set; }         
         [DataMember]
         public string ChosenLoginName { get; set; }
+        [DataMember]        
+        public ICollection<User> SimilarNames { get; set; }
 
         // set default
         private UserStatusEnum _userStatusId = UserStatusEnum.NewHire;
