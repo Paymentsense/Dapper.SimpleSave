@@ -15,19 +15,21 @@ namespace PS.Mothership.Core.Common.Dto
     /// </remarks>
     [DataContract]
     public class UserProfileDto
-    {
-        [DataMember]
-        public bool IsLoggedIn { get; set; }
-        //[DataMember]
-        //public long UserId { get; set; }
+    {        
         [DataMember]
         public Guid UserGuid { get; set; }
         [DataMember]
-        public string UserName { get; set; }
+        public string LoginName { get; set; }
+        [DataMember]
+        public string UserName { get; set; }        
+        [DataMember]
+        public bool IsLoggedIn { get; set; }
         [DataMember]
         public bool IsPersistent { get; set; }
         [DataMember]
         public bool IsValid { get; set; }
+        [DataMember]
+        public bool IsDefining { get; set; }
         [DataMember]
         public bool CanImpersonate { get; set; }
         [DataMember]

@@ -13,6 +13,9 @@ namespace PS.Mothership.Core.Common.Dto
 
         [DataMember]
         public string RoleName { get; set; }
+
+        [DataMember]
+        public bool IsDefining { get; set; }
     }
 
     [DataContract]
