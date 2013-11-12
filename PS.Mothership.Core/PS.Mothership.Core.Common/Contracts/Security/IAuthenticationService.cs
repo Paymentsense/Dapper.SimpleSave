@@ -55,6 +55,6 @@ namespace PS.Mothership.Core.Common.Contracts.Security
         bool VerifyRemoteAccess(Guid userGuid, string verificationCode);
 
         [OperationContract]
-        bool PasswordReset(Guid userGuid);
+        bool PasswordReset(string userName);
     }
 }
