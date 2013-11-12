@@ -106,7 +106,7 @@
     <Compile Include="Contracts\IAddressService.cs" />
     <Compile Include="Contracts\IApplicationService.cs" />
     <Compile Include="Contracts\ICompanyService.cs" />
-    <Compile Include="Contracts\ICreditCheckService.cs" />
+    <Compile Include="Contracts\IIdentityCheckService.cs" />
     <Compile Include="Contracts\ILoggingService.cs" />
     <Compile Include="Contracts\IMSLogger.cs" />
     <Compile Include="Contracts\ITaskNotificationCallback.cs" />
