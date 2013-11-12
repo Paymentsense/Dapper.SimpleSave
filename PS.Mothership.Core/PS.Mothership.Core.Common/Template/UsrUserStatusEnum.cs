@@ -15,6 +15,7 @@ namespace PS.Mothership.Core.Common.Template.Usr
        [Description("System Locked")][EnumMember]SystemLock = 4,
        [Description("Suspended")][EnumMember]Suspended = 5,
        [Description("Terminated")][EnumMember]Terminated = 6,
+       [Description("Password Reset")][EnumMember]PasswordReset = 7,
         
     }    
 }

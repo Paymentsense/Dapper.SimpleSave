@@ -52,6 +52,9 @@ namespace PS.Mothership.Core.Common.Contracts.Security
         bool CodeExists(Guid userGuid, string verificationCode);
 
         [OperationContract]
-        bool VerifyRemoteAccess(Guid userGuid, string verificationCode);         
+        bool VerifyRemoteAccess(Guid userGuid, string verificationCode);
+
+        [OperationContract]
+        bool PasswordReset(Guid userGuid);
     }
 }
