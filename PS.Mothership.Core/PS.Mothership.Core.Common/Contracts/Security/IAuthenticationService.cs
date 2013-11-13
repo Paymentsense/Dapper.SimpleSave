@@ -56,5 +56,8 @@ namespace PS.Mothership.Core.Common.Contracts.Security
 
         [OperationContract]
         bool PasswordReset(string userName);
+
+        [OperationContract]
+        ChangePasswordResult ChangePassword(ChangePasswordDto changePasswordDto);
     }
 }
