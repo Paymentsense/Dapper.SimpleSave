@@ -40,7 +40,9 @@ namespace PS.Mothership.Core.Common.Dto
         public string Message { get; set; }
         [DataMember]
         public int TotalCount { get; set; } // gives the total count based on selection criteria
-        
+        [DataMember]
+        public string ValidationCode { get; set; }
+
         private Guid _sessionId = Guid.NewGuid();        
         [JsonIgnore]     
         [DataMember]
@@ -52,9 +54,6 @@ namespace PS.Mothership.Core.Common.Dto
 
         [JsonIgnore]
         [DataMember]
-        public StatusOptionFlagEnum? Options { get; set; }
-        [JsonIgnore]
-        [DataMember]
-        public string ValidationCode { get; set; }
+        public StatusOptionFlagEnum? Options { get; set; }               
     }
 }
