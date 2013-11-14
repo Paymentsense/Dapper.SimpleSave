@@ -20,9 +20,13 @@ namespace PS.Mothership.Core.Common.Contracts
         [OperationContract]
         UserDto Manage(UserAccountDto userAccountDto);
         [OperationContract]
+        UserDto AddUser(UserProfileDto userProfileDto);
+        [OperationContract]
+        UserDto UpDateUser(UserProfileDto userProfileDto);
+        [OperationContract]
         IEnumerable<UserProfileDto> GetUsers(DataRequestDto dataRequestDto);
         [OperationContract]
-        UserProfileDto GetUser(Guid userGuid);
+        UserProfileDto GetUser(Guid userGuid);        
         [OperationContract]
         User GetRolesForUser(Guid userGuid);
         [OperationContract]

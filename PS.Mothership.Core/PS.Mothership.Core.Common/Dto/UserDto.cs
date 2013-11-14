@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using PS.Mothership.Core.Common.Template.Usr;
@@ -22,6 +23,10 @@ namespace PS.Mothership.Core.Common.Dto
         public string Message { get; set; }
 
         [DataMember]
-        public UserAccountDto UserAccountDto { get; set; }        
+        [Obsolete("Merged into User Profile Dto")]
+        public UserAccountDto UserAccountDto { get; set; }
+
+        [DataMember]
+        public UserProfileDto UserProfileDto { get; set; }        
     }
 }
