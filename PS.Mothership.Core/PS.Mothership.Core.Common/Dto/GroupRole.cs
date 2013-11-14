@@ -8,7 +8,7 @@ namespace PS.Mothership.Core.Common.Dto
 {
     public class GroupRole
     {
-        public int GroupId { get; set; }
-        public int RoleId { get; set; }
+        public long GroupId { get; set; }
+        public long RoleId { get; set; }
     }
 }

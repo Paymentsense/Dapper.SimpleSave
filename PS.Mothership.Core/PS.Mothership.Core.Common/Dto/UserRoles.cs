@@ -22,7 +22,7 @@ namespace PS.Mothership.Core.Common.Dto
             }
         }
 
-        public void AddGroup(User userVm)
+        public void AddUser(User userVm)
         {
             _users.Add(userVm);
         }
