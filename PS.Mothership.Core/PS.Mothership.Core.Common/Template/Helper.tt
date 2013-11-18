@@ -19,7 +19,7 @@
 
     const string USER_TABLES_SQL=@"SELECT * FROM {0}";
 
-    const string FLAG_VALUES= "[Flags]";
+    const string FLAG_VALUES= "[Flags]";    
 
  #>
 
@@ -160,19 +160,21 @@
     }
               
     public void GetEnumData(string dynamicQueryString, string connectionString, 
-                                string enumDescriptionColumnName, string enumDescriptionValueColumnName,
-                                string dataDelimiter,
-                                ref DataHolder dataHolder)
+                               string enumDescriptionColumnName, string enumDescriptionValueColumnName,
+                               ref DataHolder dataHolder)
     {           
            var columnName = string.Empty;           
            var columnType=string.Empty;
            var queryColumnName =string.Empty;
            var queryDescriptionColumnName= string.Empty;
+           var additionalColumnNames = new List<string>();
            var dataCount=0;    
+           var ignoredColumnNames= new List<string>{"name","rowguid","description","recstatuskey"};
 
            using (var connection = new SqlConnection(connectionString))
            {
                 SqlDataReader reader = null;
+                var rand = new Random();
 
                 try
                 {
@@ -199,22 +201,47 @@
                             queryDescriptionColumnName = columnName;
                             continue;
                         }
+                        if(!ignoredColumnNames.Any(str=>str.Contains(columnName.ToLower())))
+                        {
+                            additionalColumnNames.Add(columnName);
+                        }
                     }   
  
                     while (reader.Read())
                     {
                         if(!string.IsNullOrEmpty(reader[queryColumnName].ToString().Trim()))
                         {           
+                            EnumDetails enumDetails;
                             if(!string.IsNullOrWhiteSpace(queryDescriptionColumnName))
                             {
-                                dataHolder.KeyValue.Add(reader[queryColumnName].ToString().Trim(), 
-                                    reader[0].ToString().Trim() + dataDelimiter + 
-                                    reader[queryDescriptionColumnName].ToString().Trim());
+                                enumDetails =  new EnumDetails
+                                    {
+                                       EnumValue=reader[0].ToString().Trim(),
+                                       EnumDescription=reader[queryDescriptionColumnName].ToString().Trim()
+                                    };
+                                dataHolder.KeyValue.Add(reader[queryColumnName].ToString().Trim(), enumDetails);
                             }
                             else
                             {
-                                    dataHolder.KeyValue.Add(reader[queryColumnName].ToString().Trim(), 
-                                    reader[0].ToString().Trim() + dataDelimiter + string.Empty);
+                                    enumDetails =  new EnumDetails
+                                    {
+                                       EnumValue=reader[0].ToString().Trim(),
+                                       EnumDescription=string.Empty
+                                    };
+
+                                    dataHolder.KeyValue.Add(reader[queryColumnName].ToString().Trim(),enumDetails);                                    
+                            }
+
+                             //add the additional columns found
+                            foreach(var name in additionalColumnNames)
+                            {                           
+                        
+                                enumDetails.AdditionalFields.Add(rand.Next().ToString(), new AdditionalFieldDetails
+                                                                        {                                   
+                                                                            FieldType = GetType(reader.GetFieldType(reader.GetOrdinal(name)).ToString()), 
+                                                                            Name = name,
+                                                                            Value = reader[name].ToString()
+                                                                        });
                             }
                             
                         dataCount++;                        
@@ -267,10 +294,11 @@
 
         public static string GetType(string originalType)
         {
-            var d = new Dictionary<string, string>()
+        var d = new Dictionary<string, string>()
             {
                 {"System.Int32", "int"},
                 {"System.Int64", "long"},
+                {"System.Boolean", "bool"}
             };
 
             if (d.ContainsKey(originalType))
@@ -290,6 +318,64 @@
             return strValue.Split(dataDelimiter.ToCharArray());            
         }
 
+        /// <summary>
+        ///     Creates a property string
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="dataType"></param>
+        /// <returns>string</returns>
+        public static string CreatePropertyString(string name, string dataType)
+        {
+            var s= string.Format("public {0} {1} {{get;set;}}",dataType,name);                    
+            return s;
+        }
+
+        //Creates a new Class list with default values
+        public static string CreateNewClassString(string className, Dictionary<string, EnumDetails> enums, string enumValueProperty, 
+            string enumNameProperty, string enumDescriptionProperty)
+        {
+            var sb = new StringBuilder();
+            
+            //populate enum properties
+            foreach(var kvp in enums)
+            {
+                sb.Append(AddTabForIndentation(7));
+                sb.AppendFormat("new {0}",className).AppendLine();
+                sb.Append(AddTabForIndentation(7)).AppendLine("{");
+                sb.Append(AddTabForIndentation(8));
+                sb.AppendFormat("{0} = {1}",enumValueProperty,kvp.Value.EnumValue).AppendLine(",");                 
+                sb.Append(AddTabForIndentation(8));
+                sb.AppendFormat(@"{0} = ""{1}""",enumNameProperty,kvp.Key).AppendLine(",");
+                sb.Append(AddTabForIndentation(8));
+                sb.AppendFormat(@"{0} = ""{1}""",enumDescriptionProperty,kvp.Value.EnumDescription);
+                //populate additional properties
+                foreach(KeyValuePair<string,AdditionalFieldDetails> kvp2 in kvp.Value.AdditionalFields)
+                {
+                    sb.Append(",").AppendLine(); 
+                    sb.Append(AddTabForIndentation(8));
+                    sb.AppendFormat("{0}={1}",kvp2.Value.Name, (kvp2.Value.FieldType == "bool" ? kvp2.Value.Value.ToLower(): kvp2.Value.Value));
+                }       
+                sb.AppendLine().Append(AddTabForIndentation(7)).AppendLine("},");
+            }
+
+            //remove the last comma
+            sb.Remove(sb.Length-1,1);
+
+            return sb.ToString();
+            
+        }
+
+        //Returns tab in a string based on the requested count
+        public static string AddTabForIndentation(int tabCount)
+        {
+            var result = new StringBuilder();
+            for(var i = 0;i<=tabCount-1;i++)
+            {
+                result.Append("\t");
+            }
+            return result.ToString();
+        }
+        
  #>
 
 
@@ -299,17 +385,36 @@
     {
         public DataHolder()
         {
-            KeyValue = new Dictionary<string,string>();
+            KeyValue = new Dictionary<string,EnumDetails>();
+            
         }
 
         public string ContextName{ get; set;}
         public string DataBaseName { get; set;}
         public string TableName{ get; set;}
         public string SchemaName{ get; set;}    
-        public Dictionary<string,string> KeyValue { get; set;}        
-        public string Type { get; set;}
+        public Dictionary<string,EnumDetails> KeyValue { get; set;}            
+        public string Type { get; set;}        
         public bool isFlag { get; set;}
         public string FlagValue { get; set;}     
         public int DataCount { get;set;}
+    }
+
+    public class EnumDetails
+    {
+        public EnumDetails()
+        {
+            AdditionalFields = new Dictionary<string, AdditionalFieldDetails>();
+        }
+        public string EnumValue {get; set;}
+        public string EnumDescription {get; set;}
+        public Dictionary<string, AdditionalFieldDetails> AdditionalFields { get; set;}    
+    }
+
+    public class AdditionalFieldDetails
+    {
+        public string FieldType {get; set;}
+        public string Name {get; set;}
+        public string Value {get; set;}
     }
  #>

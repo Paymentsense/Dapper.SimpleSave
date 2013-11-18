@@ -154,6 +154,7 @@
     <Compile Include="Enums\UserRoleType.cs" />
     <Compile Include="Contracts\ICacheService.cs" />
     <Compile Include="Extension\EnumExtension.cs" />
+    <Compile Include="Extension\SomeTempClass.cs" />
     <Compile Include="Helper\CTime.cs" />
     <Compile Include="Helper\DebugStopwatch.cs" />
     <Compile Include="Helper\DynamicContractResolver.cs" />
@@ -207,13 +208,6 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="Template\DbEnumBuilder.txt">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DbEnumBuilder.tt</DependentUpon>
-    </Content>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <Import Project="$(VSToolsPath)\TextTemplating\Microsoft.TextTemplating.targets" Condition="'$(VSToolsPath)' != ''" />
@@ -241,6 +235,13 @@
       <Project>{f4c86b09-f339-4a37-b2c1-e2ab6d7c2662}</Project>
       <Name>PS.Mothership.Core.Common.Log4NetJsonFormatter</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Template\DbEnumBuilder.txt">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DbEnumBuilder.tt</DependentUpon>
+    </Content>
   </ItemGroup>
   <PropertyGroup>
     <BeforeTransform>CustomPreTransform</BeforeTransform>
