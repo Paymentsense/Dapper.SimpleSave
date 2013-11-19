@@ -9,7 +9,7 @@ using PS.Mothership.Core.Common.Dto;
 namespace PS.Mothership.Core.Common.Contracts
 {
     [ServiceContract(Name = "UserManagementService")]
-    public interface IUserManagementService
+    public interface IUserManagementService 
     {        
         [OperationContract]
         UserDto AddUser(UserProfileDto userProfileDto);
@@ -18,7 +18,9 @@ namespace PS.Mothership.Core.Common.Contracts
         [OperationContract]
         IEnumerable<UserProfileDto> GetUsers(DataRequestDto dataRequestDto);
         [OperationContract]
-        UserProfileDto GetUser(Guid userGuid);        
+        UserProfileDto GetUser(Guid userGuid);
+        [OperationContract]
+        IEnumerable<UserProfileDto> QuickSearch(SearchDto searchInput);
         [OperationContract]
         User GetRolesForUser(Guid userGuid);
         [OperationContract]
