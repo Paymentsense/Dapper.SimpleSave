@@ -10,6 +10,6 @@ namespace PS.Mothership.Core.Common.Dto
     {
         public Guid UserId { get; set; }
         
-        public int RoleId { get; set; }
+        public long RoleId { get; set; }
     }
 }
