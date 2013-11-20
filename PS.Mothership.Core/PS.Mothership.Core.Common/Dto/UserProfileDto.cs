@@ -56,7 +56,7 @@ namespace PS.Mothership.Core.Common.Dto
         [DataMember]
         public string ChosenLoginName { get; set; }
         [DataMember]
-        public ICollection<User> SimilarNames { get; set; }
+        public ICollection<UserProfileDto> SimilarNames { get; set; }
 
         // set defaults
         private Guid _sessionId = Guid.NewGuid();        
