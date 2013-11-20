@@ -20,6 +20,8 @@ namespace PS.Mothership.Core.Common.Contracts
         [OperationContract]
         UserProfileDto GetUser(Guid userGuid);
         [OperationContract]
+        ICollection<UserProfileDto> GetSimilarNames(UserProfileDto userProfileDto); 
+        [OperationContract]
         IEnumerable<UserProfileDto> QuickSearch(SearchDto searchInput);
         [OperationContract]
         User GetRolesForUser(Guid userGuid);
