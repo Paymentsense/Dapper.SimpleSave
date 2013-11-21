@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ServiceModel;
 using PS.Mothership.Core.Common.Dto;
 using PS.Mothership.Core.Common.Enums;
@@ -42,23 +41,23 @@ namespace PS.Mothership.Core.Common.Contracts
         [OperationContract]
         void LogFinalisedCall(DiallerCallDto diallerCall);
 
-        [OperationContract]
+        [OperationContract(IsOneWay = true)]
         void GetNextCallQueue(Guid agentUserGuid);
 
         [OperationContract]
         // TODO: replace CallRecordResolution for templated enum! -> DialInboundQueueCallResolutionEnum
         void SetInboundQueueCallRecordResolution(long inboundQueueCallTrnId, CallRecordResolution resolution);
 
-        [OperationContract]
+        [OperationContract(IsOneWay = true)]
         void GetInboundQueueDetails();
 
-        [OperationContract]
+        [OperationContract(IsOneWay = true)]
         void GetUserSalesUsers(Guid userGuid);
 
         [OperationContract]
         bool IsCallResolved(long pcMerchantTranId);
 
-        [OperationContract]
+        [OperationContract(IsOneWay = true)]
         void GetMissingCallRecordings(DateTime dateStart, DateTime dateEnd);
 
         [OperationContract]
