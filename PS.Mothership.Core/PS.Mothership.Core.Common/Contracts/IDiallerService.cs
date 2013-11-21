@@ -40,26 +40,26 @@ namespace PS.Mothership.Core.Common.Contracts
         string TryToFindMerchantByGuid(Guid merchantGuid);
 
         [OperationContract]
-        Guid LogFinalisedCall(DiallerCallDto diallerCall);
+        void LogFinalisedCall(DiallerCallDto diallerCall);
 
         [OperationContract]
-        GetNextCallDto GetNextCallQueue(Guid agentUserGuid);
+        void GetNextCallQueue(Guid agentUserGuid);
 
         [OperationContract]
-        // TODO: replace CallRecordResolution for templated enum!
+        // TODO: replace CallRecordResolution for templated enum! -> DialInboundQueueCallResolutionEnum
         void SetInboundQueueCallRecordResolution(long inboundQueueCallTrnId, CallRecordResolution resolution);
 
         [OperationContract]
-        List<InboundQueueDetailsDto> GetInboundQueueDetails();
+        void GetInboundQueueDetails();
 
         [OperationContract]
-        List<SalesUserDto> GetUserSalesUsers(Guid userGuid);
+        void GetUserSalesUsers(Guid userGuid);
 
         [OperationContract]
         bool IsCallResolved(long pcMerchantTranId);
 
         [OperationContract]
-        List<MissingCallRecordingsDto> GetMissingCallRecordings(DateTime dateStart, DateTime dateEnd);
+        void GetMissingCallRecordings(DateTime dateStart, DateTime dateEnd);
 
         [OperationContract]
         void UpdateRecorderCallIdForCallGuid(Guid callGuid, int recorderCallId, Guid userGuid);
