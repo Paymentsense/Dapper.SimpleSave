@@ -14,6 +14,12 @@ namespace PS.Mothership.Core.Common.Dto
         public int PageSize { get; set; }
 
         [DataMember]
+        public int Start { get; set; }
+
+        [DataMember]
+        public int End { get; set; }
+
+        [DataMember]
         public IList<SortDescriptor> Sorts { get; set; }
     }
     

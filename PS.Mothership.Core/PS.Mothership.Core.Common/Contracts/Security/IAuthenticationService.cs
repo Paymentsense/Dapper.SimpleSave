@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ServiceModel;
 using PS.Mothership.Core.Common.Dto;
+using PS.Mothership.Core.Common.Template.Usr;
 
 namespace PS.Mothership.Core.Common.Contracts.Security
 {
@@ -9,53 +11,53 @@ namespace PS.Mothership.Core.Common.Contracts.Security
     {
         [OperationContract]
         AccountDto Login(LoginCredentialsDto loginCredentialsDto);
+        
+        [OperationContract]
+        AccountDto GetUserAccount(Guid userGuid);
 
         [OperationContract]
-        AccountDto Register(RegisterDto registerDto);
-
-        [OperationContract]
-        AccountDto GetUserAccount(long userId);
-
-        [OperationContract]
-        AccountDto GetImpersonatedAccount(UserProfileDto profileImpersonating, long userId);
+        AccountDto GetImpersonatedAccount(UserProfileDto profileImpersonating, Guid userGuid);
 
         [OperationContract]
         IEnumerable<UserProfileDto> GetUserProfile(long departmentId, UserProfileDto accessUserProfile, DataRequestDto dataRequestDto);
 
         [OperationContract]
-        IEnumerable<UserGroupDto> GetGroups(long userId);
+        IEnumerable<UserGroupDto> GetGroups(Guid userGuid);
 
         [OperationContract]
-        IEnumerable<UserRoleDto> GetRoles(long userId);
+        IEnumerable<UserRoleDto> GetRoles(Guid userGuid);
 
         [OperationContract]
-        IEnumerable<UserRoleDto> GetRolesFromRelationShip(long userId);
-
-        [OperationContract(Name = "GetPermissionsById")]
-        IEnumerable<UserPermissionDto> GetPermissions(long userId, long resourcesId, bool ignoreUser=true);
-
-        [OperationContract(Name = "GetPermissionsByName")]
-        IEnumerable<UserPermissionDto> GetPermissions(long userId, string resourcesName, bool ignoreUser=true);
+        IEnumerable<UserRoleDto> GetRolesFromRelationShip(Guid userGuid);
 
         [OperationContract]
-        bool IsAccountLockedOut(long userId, int allowedPasswordAttempts);
+        IEnumerable<ResourceRolePermissionsDto> GetPermissionsByResource(Guid userGuid, ResourceEnum resourcesId);
+
+        [OperationContract]
+        bool IsAccountLockedOut(Guid userGuid, int allowedPasswordAttempts);
 
         /// <summary>
         ///     For now have a interface to unlock any
         ///     account, but need to give access only to administrators
-        /// </summary>
-        /// <param name="userId"></param>
+        /// </summary>        
+        /// <param name="userGuid"></param>
         /// <returns></returns>
         [OperationContract]
-        bool UnLockAccount(long userId);
+        bool UnLockAccount(Guid userGuid);
         
         [OperationContract]
-        string GenerateCode(long userId);
+        string GenerateCode(Guid userGuid);
         
         [OperationContract]
-        bool CodeExists(long userId, string verificationCode);
+        bool CodeExists(Guid userGuid, string verificationCode);
 
         [OperationContract]
-        bool VerifyRemoteAccess(long userId, string verificationCode);         
+        bool VerifyRemoteAccess(Guid userGuid, string verificationCode);
+
+        [OperationContract]
+        bool PasswordReset(string userName);
+
+        [OperationContract]
+        ChangePasswordResult ChangePassword(ChangePasswordDto changePasswordDto);
     }
 }

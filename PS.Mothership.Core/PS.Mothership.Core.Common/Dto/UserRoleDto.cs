@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
-using PS.Mothership.Core.Common.Template.PsMsContext;
+using PS.Mothership.Core.Common.Template.Usr;
 
 namespace PS.Mothership.Core.Common.Dto
 {
@@ -12,6 +13,9 @@ namespace PS.Mothership.Core.Common.Dto
 
         [DataMember]
         public string RoleName { get; set; }
+
+        [DataMember]
+        public bool IsDefining { get; set; }
     }
 
     [DataContract]
@@ -28,10 +32,11 @@ namespace PS.Mothership.Core.Common.Dto
     }
 
     [DataContract]
+    [Obsolete]
     public class UserPermissionDto
     {
         [DataMember]
-        public PermissionFlagLutEnum PermissionEnums { get; set; }        
+        public UserPermissionFlagEnum PermissionEnums { get; set; }        
 
         [DataMember]
         public string PermissionName { get; set; }
@@ -39,4 +44,17 @@ namespace PS.Mothership.Core.Common.Dto
         [DataMember]
         public UserRoleDto Role { get; set; }        
     }
+
+    [DataContract]
+    public class ResourceRolePermissionsDto
+    {
+        [DataMember]
+        public ResourceEnum ResourceEnum { get; set; }        
+
+        [DataMember]
+        public UserRoleDto Role { get; set; }
+        
+        [DataMember]
+        public UserPermissionFlagEnum PermissionEnums { get; set; }        
+    }    
 }

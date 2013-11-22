@@ -15,6 +15,9 @@ namespace PS.Mothership.Core.Common.Constants
         public const string PostCodeAnywhereRetrieveUrl = "PostCodeAnywhereRetrieveUrl";
         public const string PostCodeAnywhereDataType = "PostCodeAnywhereDataType";
         public const string ForceDisplayExceptionDetailsKey = "ForceDisplayExceptionDetails";
+
+        // Standard Password 
+        public const string StandardPassword = "Payment1";
         public const string PostCodeAnywhereBindingName = "PostcodeAnywhere_Soap";
     }
 }
