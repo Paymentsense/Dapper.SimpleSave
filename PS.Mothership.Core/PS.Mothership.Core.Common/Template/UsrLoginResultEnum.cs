@@ -22,6 +22,7 @@ namespace PS.Mothership.Core.Common.Template.Usr
        [Description("User password changed")][EnumMember]PasswordChanged = 10,
        [Description("User name already exists")][EnumMember]DuplicateUserName = 11,
        [Description("Password has been reset")][EnumMember]PasswordReset = 12,
+       [Description("Administrative change")][EnumMember]AdministrativeChange = 13,
         
     }
 
@@ -137,6 +138,13 @@ namespace PS.Mothership.Core.Common.Template.Usr
 								EnumName = "PasswordReset",
 								EnumDescription = "Password has been reset",
 								LoginResultKey=12
+							},
+							new LoginResult
+							{
+								EnumValue = 13,
+								EnumName = "AdministrativeChange",
+								EnumDescription = "Administrative change",
+								LoginResultKey=13
 							},
                         };
                     
