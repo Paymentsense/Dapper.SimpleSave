@@ -11,8 +11,6 @@ namespace PS.Mothership.Core.Common.Dto
         [DataMember]
         public DateTime StartDateTime { get; set; }
         [DataMember]
-        public string ClientVersion { get; set; }
-        [DataMember]
         public string ClientIp { get; set; }
     }
 }
