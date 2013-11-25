@@ -113,6 +113,7 @@
     <Compile Include="Contracts\ITaskNotificationCallback.cs" />
     <Compile Include="Contracts\ITaskNotificationService.cs" />
     <Compile Include="Contracts\IQuartzJobBase.cs" />
+    <Compile Include="Contracts\IUserManagementService.cs" />
     <Compile Include="Contracts\Security\IAuthenticationService.cs" />
     <Compile Include="Config\ILayerIocBuilder.cs" />
     <Compile Include="Config\IocBuildSettings.cs" />
@@ -125,6 +126,8 @@
     <Compile Include="Dto\CampaignDetailsDto.cs" />
     <Compile Include="Dto\CaseDto.cs" />
     <Compile Include="Dto\CaseSummaryDto.cs" />
+    <Compile Include="Dto\ChangePasswordDto.cs" />
+    <Compile Include="Dto\ChangePasswordResult.cs" />
     <Compile Include="Dto\ClientModeChangeDto.cs" />
     <Compile Include="Dto\CompanyDto.cs" />
     <Compile Include="Dto\DataRequestDto.cs" />
@@ -132,6 +135,11 @@
     <Compile Include="Dto\DiallerSessionSubscribeDto.cs" />
     <Compile Include="Dto\DiallerSessionUnsubscribeDto.cs" />
     <Compile Include="Dto\FullAddressDto.cs" />
+    <Compile Include="Dto\Group.cs" />
+    <Compile Include="Dto\GroupDesc.cs" />
+    <Compile Include="Dto\GroupRole.cs" />
+    <Compile Include="Dto\GroupRoles.cs" />
+    <Compile Include="Dto\InheritedRoles.cs" />
     <Compile Include="Dto\GetNextCallDto.cs" />
     <Compile Include="Dto\InboundQueueCallRecordDto.cs" />
     <Compile Include="Dto\InboundQueueDetailsDto.cs" />
@@ -149,11 +157,20 @@
     <Compile Include="Dto\SalesUserDto.cs" />
     <Compile Include="Dto\SelectedSalesUserAndCampaignDto.cs" />
     <Compile Include="Dto\SipAccountDetailsDto.cs" />
+    <Compile Include="Dto\Role.cs" />
+    <Compile Include="Dto\RoleInheritance.cs" />
+    <Compile Include="Dto\SearchDto.cs" />
     <Compile Include="Dto\TaskDto.cs" />
+    <Compile Include="Dto\UserDto.cs" />
+    <Compile Include="Dto\User.cs" />
+    <Compile Include="Dto\UserGroup.cs" />
+    <Compile Include="Dto\UserRole.cs" />
     <Compile Include="Dto\UserRoleDto.cs" />
     <Compile Include="Dto\TblCaseDTO.cs" />
-    <Compile Include="Dto\UserDto.cs" />
+    <Compile Include="Dto\UserAccountDto.cs" />
     <Compile Include="Dto\UserProfileDto.cs" />
+    <Compile Include="Enums\Action.cs" />
+    <Compile Include="Dto\UserRoles.cs" />
     <Compile Include="Dto\ValidUserInfoDto.cs" />
     <Compile Include="Enums\CallRecordResolution.cs" />
     <Compile Include="Enums\LogCallType.cs" />
@@ -162,22 +179,37 @@
     <Compile Include="Enums\UserRoleType.cs" />
     <Compile Include="Contracts\ICacheService.cs" />
     <Compile Include="Extension\EnumExtension.cs" />
+    <Compile Include="Extension\SomeTempClass.cs" />
     <Compile Include="Helper\CTime.cs" />
     <Compile Include="Helper\DebugStopwatch.cs" />
     <Compile Include="Helper\DynamicContractResolver.cs" />
     <Compile Include="Helper\MSLogger.cs" />
+    <Compile Include="Helper\RandomStringGenerator.cs" />
     <Compile Include="Helper\UniqueKeyGenerator.cs" />
     <Compile Include="Helper\JsonHelper.cs" />
     <Compile Include="Helper\Obfuscator.cs" />
     <Compile Include="IPManager\IPInspector.cs" />
+    <Compile Include="Contracts\ISearchService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Template\PsMsContextLoginUserResultLutEnum.cs">
+    <Compile Include="Template\GenRecStatusEnum.cs">
       <DependentUpon>DbEnumBuilder.tt</DependentUpon>
     </Compile>
-    <Compile Include="Template\PsMsContextPermissionFlagLutEnum.cs">
+    <Compile Include="Template\UsrIpStatusEnum.cs">
       <DependentUpon>DbEnumBuilder.tt</DependentUpon>
     </Compile>
-    <Compile Include="Template\PsMsContextUserOptionsFlagLutEnum.cs">
+    <Compile Include="Template\UsrLoginResultEnum.cs">
+      <DependentUpon>DbEnumBuilder.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Template\UsrResourceEnum.cs">
+      <DependentUpon>DbEnumBuilder.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Template\UsrStatusOptionFlagEnum.cs">
+      <DependentUpon>DbEnumBuilder.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Template\UsrUserPermissionFlagEnum.cs">
+      <DependentUpon>DbEnumBuilder.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Template\UsrUserStatusEnum.cs">
       <DependentUpon>DbEnumBuilder.tt</DependentUpon>
     </Compile>
     <Compile Include="ValidationCode\CodeMaker.cs" />
@@ -186,12 +218,6 @@
     <Compile Include="WcfErrorHandling\PassThroughExceptionExtension.cs" />
     <Compile Include="WcfErrorHandling\PassThroughExceptionHandlingBehaviour.cs" />
     <Compile Include="WcfErrorHandling\CustomServerException.cs" />
-    <Compile Include="Template\PsMsContextStatusLutEnum.cs">
-      <DependentUpon>DbEnumBuilder.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Template\PsMsContextUserStatusLutEnum.cs">
-      <DependentUpon>DbEnumBuilder.tt</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -207,13 +233,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Template\DbEnumBuilder.txt">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DbEnumBuilder.tt</DependentUpon>
-    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
@@ -242,6 +261,13 @@
       <Project>{f4c86b09-f339-4a37-b2c1-e2ab6d7c2662}</Project>
       <Name>PS.Mothership.Core.Common.Log4NetJsonFormatter</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Template\DbEnumBuilder.txt">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DbEnumBuilder.tt</DependentUpon>
+    </Content>
   </ItemGroup>
   <PropertyGroup>
     <BeforeTransform>CustomPreTransform</BeforeTransform>

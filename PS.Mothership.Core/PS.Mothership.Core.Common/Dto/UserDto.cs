@@ -1,13 +1,32 @@
-using PS.Mothership.Core.Common.Enums;
+﻿using System;
+using System.Net;
+using System.Runtime.Serialization;
+using Newtonsoft.Json;
+using PS.Mothership.Core.Common.Template.Usr;
 
 namespace PS.Mothership.Core.Common.Dto
 {
     public class UserDto
     {
-        public int Id { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Email { get; set; }
-        public UserRoleType RoleType { get; set; }
+        // To manage on client side
+        private HttpStatusCode _statusCode = HttpStatusCode.OK;
+        public HttpStatusCode StatusCode
+        {
+            get { return _statusCode; }
+            set { _statusCode = value; }
+        }
+
+        [DataMember]        
+        public LoginResultEnum Status { get; set; }
+
+        [DataMember]
+        public string Message { get; set; }
+
+        [DataMember]
+        [Obsolete("Merged into User Profile Dto")]
+        public UserAccountDto UserAccountDto { get; set; }
+
+        [DataMember]
+        public UserProfileDto UserProfileDto { get; set; }        
     }
 }
