@@ -99,6 +99,10 @@ namespace PS.Mothership.Core.Common.Dto
         /// <summary>
         /// Gets or sets the filtering value. Set to <c>null</c> if the <c>Filters</c> property is set.
         /// </summary>
+        /// <remarks>
+        ///     Need to look into this as return type object not a valid type in SOAP, WCF client tool will
+        ///     give error
+        /// </remarks>
         [DataMember(Name = "value")]
         public object Value { get; set; }
 
