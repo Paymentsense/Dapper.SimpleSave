@@ -20,11 +20,7 @@ namespace PS.Mothership.Core.Common.Dto
         public LoginResultEnum Status { get; set; }
 
         [DataMember]
-        public string Message { get; set; }
-
-        [DataMember]
-        [Obsolete("Merged into User Profile Dto")]
-        public UserAccountDto UserAccountDto { get; set; }
+        public string Message { get; set; }        
 
         [DataMember]
         public UserProfileDto UserProfileDto { get; set; }        

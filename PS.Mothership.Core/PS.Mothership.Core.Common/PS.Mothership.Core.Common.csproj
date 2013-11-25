@@ -156,7 +156,6 @@
     <Compile Include="Dto\UserRole.cs" />
     <Compile Include="Dto\UserRoleDto.cs" />
     <Compile Include="Dto\TblCaseDTO.cs" />
-    <Compile Include="Dto\UserAccountDto.cs" />
     <Compile Include="Dto\UserProfileDto.cs" />
     <Compile Include="Enums\Action.cs" />
     <Compile Include="Dto\UserRoles.cs" />
