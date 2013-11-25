@@ -172,7 +172,6 @@
     <Compile Include="Enums\Action.cs" />
     <Compile Include="Dto\UserRoles.cs" />
     <Compile Include="Dto\ValidUserInfoDto.cs" />
-    <Compile Include="Enums\CallRecordResolution.cs" />
     <Compile Include="Enums\LogCallType.cs" />
     <Compile Include="Enums\State.cs" />
     <Compile Include="Extension\EnumerableExtension.cs" />
@@ -191,6 +190,9 @@
     <Compile Include="IPManager\IPInspector.cs" />
     <Compile Include="Contracts\ISearchService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Template\DialInboundQueueCallResolutionEnum.cs">
+      <DependentUpon>DbEnumBuilder.tt</DependentUpon>
+    </Compile>
     <Compile Include="Template\GenRecStatusEnum.cs">
       <DependentUpon>DbEnumBuilder.tt</DependentUpon>
     </Compile>

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ServiceModel;
 using PS.Mothership.Core.Common.Dto;
-using PS.Mothership.Core.Common.Enums;
+using PS.Mothership.Core.Common.Template.Dial;
 
 namespace PS.Mothership.Core.Common.Contracts
 {
@@ -45,8 +45,7 @@ namespace PS.Mothership.Core.Common.Contracts
         void GetNextCallQueue(Guid agentUserGuid);
 
         [OperationContract]
-        // TODO: replace CallRecordResolution for templated enum! -> DialInboundQueueCallResolutionEnum
-        void SetInboundQueueCallRecordResolution(long inboundQueueCallTrnId, CallRecordResolution resolution);
+        void SetInboundQueueCallRecordResolution(long inboundQueueCallTrnId, InboundQueueCallResolutionEnum resolution);
 
         [OperationContract(IsOneWay = true)]
         void GetInboundQueueDetails();
