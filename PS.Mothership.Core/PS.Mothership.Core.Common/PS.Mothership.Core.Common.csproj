@@ -200,6 +200,9 @@
     <Compile Include="Template\UsrUserStatusEnum.cs">
       <DependentUpon>DbEnumBuilder.tt</DependentUpon>
     </Compile>
+    <Compile Include="Template\UsrUserTypeEnum.cs">
+      <DependentUpon>DbEnumBuilder.tt</DependentUpon>
+    </Compile>
     <Compile Include="ValidationCode\CodeMaker.cs" />
     <Compile Include="Helper\CryptoRandom.cs" />
     <Compile Include="Helper\RandomProvider.cs" />
