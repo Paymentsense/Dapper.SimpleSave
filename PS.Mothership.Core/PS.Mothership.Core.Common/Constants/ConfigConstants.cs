@@ -22,7 +22,7 @@ namespace PS.Mothership.Core.Common.Constants
         public const string ExperianRequestCertPassWord = "ExperianRequestCertPassWord";
         public const string ExperianRequestWaspTokenUrl = "ExperianRequestWaspTokenUrl";
         public const string ExperianEIHEndpointRequestUrl = "ExperianEIHEndpointRequestUrl";
-
+        public const string ExperianRequestOutPutTemplate = "ExperianRequestOutPutTemplate";
 
     }
 }
