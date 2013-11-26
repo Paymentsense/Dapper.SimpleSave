@@ -11,11 +11,11 @@ namespace PS.Mothership.Core.Common.Dto
     public class IdentityCheckRequestDto
     {
         [DataMember]
-        public PrivateInformationType PersonalInformation { get; set; }
+        public PrivateInformationTypeDto PersonalInformation { get; set; }
         [DataMember]
-        public CurrentAddressType CurrentAddress { get; set; }
+        public CurrentAddressTypeDto CurrentAddress { get; set; }
         [DataMember]
-        public PreviousAddressType PreviousAddress { get; set; }
+        public PreviousAddressTypeDto PreviousAddress { get; set; }
         [DataMember]
         public bool CreateDocument { get; set; }
 
@@ -37,11 +37,12 @@ namespace PS.Mothership.Core.Common.Dto
         [DataMember]
         public byte[] FileBytes { get; set; }
         [DataMember]
-        public IdentityResultBlock ResultsBlock { get; set; }
+        public IdentityResultBlockDto ResultsBlock { get; set; }
     }
 
+
     [DataContract]
-    public class PrivateInformationType
+    public class PrivateInformationTypeDto
     {
         [DataMember]
         public string Title { get; set; }
@@ -62,7 +63,7 @@ namespace PS.Mothership.Core.Common.Dto
     }
 
     [DataContract]
-    public class CurrentAddressType
+    public class CurrentAddressTypeDto
     {
         [DataMember]
         public string HouseNumber { get; set; }
@@ -104,7 +105,7 @@ namespace PS.Mothership.Core.Common.Dto
     }
 
     [DataContract]
-    public class PreviousAddressType
+        public class PreviousAddressTypeDto
     {
         [DataMember]
         public string HouseNumber { get; set; }
@@ -145,7 +146,7 @@ namespace PS.Mothership.Core.Common.Dto
     }
 
     [DataContract]
-    public class IdentityResultBlock
+    public class IdentityResultBlockDto
     {
         [DataMember]
         public string AuthenticationIndex { get; set; }
