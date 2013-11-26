@@ -30,6 +30,10 @@ namespace PS.Mothership.Core.Common.Dto
         public string LastName { get; set; }
         [DataMember]
         public string Initial { get; set; }
+        [DataMember]
+        public string Email { get; set; }
+        [DataMember]
+        public string OfficeDdi { get; set; }
 
         [DataMember]
         public bool IsLoggedIn { get; set; }
