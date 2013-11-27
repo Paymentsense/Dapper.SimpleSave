@@ -40,6 +40,16 @@ namespace PS.Mothership.Core.Common.Dto
         public IdentityResultBlockDto ResultsBlock { get; set; }
     }
 
+    [DataContract]
+    public class IdentityCheckTokenDto
+    {
+        [DataMember]
+        public string Token { get; set; }
+
+        [DataMember]
+        public TimeSpan TokenTimeOut { get; set; }
+    }
+
 
     [DataContract]
     public class PrivateInformationTypeDto
