@@ -11,11 +11,11 @@ namespace PS.Mothership.Core.Common.Template.Usr
     {
        [Description("None")][EnumMember]None = 0,
        [Description("Manage Email")][EnumMember]ManageEmail = 1,
-       [Description("Allow remote access")][EnumMember]AllowRemoteAccess = 2,
-       [Description("Provisionign watch list")][EnumMember]ProvisioningWatchList = 4,
-       [Description("")][EnumMember]RevolutionUser = 8,
-       [Description("")][EnumMember]IsSelfTA = 16,
-       [Description("")][EnumMember]CanImpersonate = 32,
+       [Description("Allow Remote Access")][EnumMember]AllowRemoteAccess = 2,
+       [Description("Provisionign Watch List")][EnumMember]ProvisioningWatchList = 4,
+       [Description("Revolution User")][EnumMember]RevolutionUser = 8,
+       [Description("Is Self TA")][EnumMember]IsSelfTA = 16,
+       [Description("Can Impersonate")][EnumMember]CanImpersonate = 32,
         
     }
 
@@ -59,35 +59,35 @@ namespace PS.Mothership.Core.Common.Template.Usr
 							{
 								EnumValue = 2,
 								EnumName = "AllowRemoteAccess",
-								EnumDescription = "Allow remote access",
+								EnumDescription = "Allow Remote Access",
 								OptionKey=2
 							},
 							new StatusOptionFlag
 							{
 								EnumValue = 4,
 								EnumName = "ProvisioningWatchList",
-								EnumDescription = "Provisionign watch list",
+								EnumDescription = "Provisionign Watch List",
 								OptionKey=4
 							},
 							new StatusOptionFlag
 							{
 								EnumValue = 8,
 								EnumName = "RevolutionUser",
-								EnumDescription = "",
+								EnumDescription = "Revolution User",
 								OptionKey=8
 							},
 							new StatusOptionFlag
 							{
 								EnumValue = 16,
 								EnumName = "IsSelfTA",
-								EnumDescription = "",
+								EnumDescription = "Is Self TA",
 								OptionKey=16
 							},
 							new StatusOptionFlag
 							{
 								EnumValue = 32,
 								EnumName = "CanImpersonate",
-								EnumDescription = "",
+								EnumDescription = "Can Impersonate",
 								OptionKey=32
 							},
                         };

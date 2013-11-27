@@ -91,5 +91,9 @@ namespace PS.Mothership.Core.Common.Dto
             set { _userStatus = value; }
 
         }
+
+        public bool UnlockAccount { get; set; }
+        public bool ResetPassword { get; set; }
+
     }
 }
