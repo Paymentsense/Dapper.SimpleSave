@@ -106,6 +106,7 @@
     <Compile Include="Contracts\IAddressService.cs" />
     <Compile Include="Contracts\IApplicationService.cs" />
     <Compile Include="Contracts\ICompanyService.cs" />
+    <Compile Include="Contracts\IIdentityCheckService.cs" />
     <Compile Include="Contracts\ILoggingService.cs" />
     <Compile Include="Contracts\IMSLogger.cs" />
     <Compile Include="Contracts\ITaskNotificationCallback.cs" />
@@ -123,6 +124,7 @@
     <Compile Include="Dto\ChangePasswordDto.cs" />
     <Compile Include="Dto\ChangePasswordResult.cs" />
     <Compile Include="Dto\CompanyDto.cs" />
+    <Compile Include="Dto\IdentityCheckDto.cs" />
     <Compile Include="Dto\DataRequestDto.cs" />
     <Compile Include="Dto\FullAddressDto.cs" />
     <Compile Include="Dto\Group.cs" />
