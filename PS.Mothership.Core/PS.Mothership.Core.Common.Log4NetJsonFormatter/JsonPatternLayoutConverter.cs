@@ -41,17 +41,36 @@ namespace PS.Mothership.Core.Common.Log4NetJsonFormatter
             //for Error type create ErrorLoggingEntity and fetch uniquekey, exception object if it exists
             if (loggingEvent.Level == Level.Error)
             {
-                loggingEntity = new ErrorLoggingEntity
+                if (IsUniqueKey(loggingEvent.RenderedMessage))
                 {
-                    UniqueKey = loggingEvent.RenderedMessage,
-                    Message = loggingEvent.ExceptionObject != null ? loggingEvent.ExceptionObject.ToString() : string.Empty
-                };
+                    //if unique key is present then add into the ErrorLoggingEntity
+                    loggingEntity = new ErrorLoggingEntity
+                    {
+                        UniqueKey = loggingEvent.RenderedMessage,
+                        Message =
+                            loggingEvent.ExceptionObject != null
+                                ? loggingEvent.ExceptionObject.ToString()
+                                : string.Empty
+                    };
+                }
+                else
+                {
+                    loggingEntity = new LoggingEntity
+                    {
+                        Message =
+                            loggingEvent.ExceptionObject != null
+                                ? string.Format("{0} - {1}", loggingEvent.RenderedMessage, loggingEvent.ExceptionObject.ToString())
+                                : loggingEvent.RenderedMessage
+                    };
+                }
             }
             else
             {
                 //for all other types use base type loggingEntity
-                loggingEntity = new LoggingEntity();
-                loggingEntity.Message = loggingEvent.RenderedMessage;
+                loggingEntity = new LoggingEntity
+                {
+                    Message = loggingEvent.RenderedMessage
+                };
             }
 
             loggingEntity.Date = loggingEvent.TimeStamp.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ss");
@@ -62,6 +81,31 @@ namespace PS.Mothership.Core.Common.Log4NetJsonFormatter
 
             var errorJson = Newtonsoft.Json.JsonConvert.SerializeObject(loggingEntity, settings);
             writer.Write(errorJson);
+        }
+
+        private static bool IsUniqueKey(string value)
+        {
+            if (value.Length == 9)
+            {
+                for (int i = 0; i < 9; i++)
+                {
+                    if (i < 4)
+                    {
+                        if (!Char.IsDigit(value[i]))
+                        {
+                            return false;
+                        }
+                    }
+                    else if (!Char.IsLetterOrDigit(value[i]))
+                    {
+                        return false;
+                    }
+                }
+
+                return true;
+            }
+
+            return false;
         }
     }
 }
