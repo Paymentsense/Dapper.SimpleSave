@@ -9,7 +9,7 @@ namespace PS.Mothership.Core.Common.Contracts
     public interface IDiallerService
     {
         [OperationContract]
-        ValidUserInfoDto ValidateUser(Guid userGuid, Guid mothershipSessionGuid);
+        ValidUserInfoDto ValidateUser(Guid mothershipSessionGuid);
 
         [OperationContract]
         Guid LogDiallerSessionSubscribe(DiallerSessionSubscribeDto diallerSessionSubscribe);
