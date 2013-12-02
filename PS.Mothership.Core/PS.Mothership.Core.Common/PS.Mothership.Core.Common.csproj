@@ -122,6 +122,8 @@
     <Compile Include="Dto\AccountDto.cs" />
     <Compile Include="Dto\AddressDto.cs" />
     <Compile Include="Dto\CallLogItemDto.cs" />
+    <Compile Include="Dto\CallRecordingEventDto.cs" />
+    <Compile Include="Dto\CallStatsDto.cs" />
     <Compile Include="Dto\CaseDto.cs" />
     <Compile Include="Dto\CaseSummaryDto.cs" />
     <Compile Include="Dto\ChangePasswordDto.cs" />

@@ -20,13 +20,22 @@ namespace PS.Mothership.Core.Common.Contracts
         [OperationContract]
         SipAccountDetailsDto GetSipAccountDetails(Guid userGuid);
 
-        [OperationContract(IsOneWay = true)]
+        [OperationContract]
         List<InboundQueueDetailsDto> GetInboundQueueDetails();
 
-        [OperationContract(IsOneWay = true)]
+        [OperationContract]
         List<MissingCallRecordingsDto> GetMissingCallRecordings(DateTime dateStart, DateTime dateEnd);
 
         [OperationContract]
         void UpdateRecorderCallIdForCallGuid(Guid callGuid, int recorderCallId, Guid userGuid);
+
+        [OperationContract]
+        Dictionary<long, long> TryToFindDiallerDepartmentsByUserGuid(Guid userGuid);
+
+        [OperationContract]
+        List<CallStatsDto> GetCallTotalsForToday();
+
+        [OperationContract]
+        void InsertCallrecordingEvent(CallRecordingEventDto callRecordingEvent);
     }
 }
