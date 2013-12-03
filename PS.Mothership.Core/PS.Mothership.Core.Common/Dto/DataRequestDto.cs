@@ -18,10 +18,10 @@ namespace PS.Mothership.Core.Common.Dto
     [DataContract]
     public class DataRequestDto
     {
-        [DataMember(Name = "page")]
+        [DataMember]
         public int Page { get; set; }
 
-        [DataMember(Name = "pageSize")]
+        [DataMember]
         public int PageSize { get; set; }
 
         [DataMember]
