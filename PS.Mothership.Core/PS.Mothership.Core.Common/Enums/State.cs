@@ -1,7 +1,15 @@
+using System.Runtime.Serialization;
+
 namespace PS.Mothership.Core.Common.Enums
 {
+    [DataContract]
     public enum State
     {
-        New, Open, Closed
+        [EnumMember]
+        New,
+        [EnumMember]
+        Open,
+        [EnumMember]
+        Closed
     }
 }

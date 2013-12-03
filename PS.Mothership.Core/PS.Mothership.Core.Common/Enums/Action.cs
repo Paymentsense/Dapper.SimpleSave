@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Runtime.Serialization;
 
 namespace PS.Mothership.Core.Common.Enums
 {
+    [DataContract]
     public enum Action
     {
+        [EnumMember]
         Add=0,
+        [EnumMember]
         Delete,
+        [EnumMember]
         Update
     }
 }
