@@ -130,6 +130,7 @@
     <Compile Include="Dto\ChangePasswordResult.cs" />
     <Compile Include="Dto\CompanyDto.cs" />
     <Compile Include="Dto\DataRequestDto.cs" />
+    <Compile Include="Dto\DiallerCallDto.cs" />
     <Compile Include="Dto\DiallerSessionSubscribeDto.cs" />
     <Compile Include="Dto\DiallerSessionUnsubscribeDto.cs" />
     <Compile Include="Dto\FullAddressDto.cs" />

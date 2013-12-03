@@ -37,5 +37,8 @@ namespace PS.Mothership.Core.Common.Contracts
 
         [OperationContract]
         void InsertCallRecordingEvent(CallRecordingEventDto callRecordingEvent);
+
+        [OperationContract]
+        void LogFinalisedCall(DiallerCallDto diallerCall);
     }
 }
