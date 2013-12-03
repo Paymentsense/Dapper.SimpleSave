@@ -36,6 +36,6 @@ namespace PS.Mothership.Core.Common.Contracts
         List<CallStatsDto> GetCallTotalsForToday();
 
         [OperationContract]
-        void InsertCallrecordingEvent(CallRecordingEventDto callRecordingEvent);
+        void InsertCallRecordingEvent(CallRecordingEventDto callRecordingEvent);
     }
 }
