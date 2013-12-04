@@ -18,9 +18,6 @@ namespace PS.Mothership.Core.Common.Contracts
         Guid LogDiallerSessionUnsubscribe(DiallerSessionUnsubscribeDto diallerSessionUnsubscribe);
 
         [OperationContract]
-        SipAccountDetailsDto GetSipAccountDetails(Guid userGuid);
-
-        [OperationContract]
         List<InboundQueueDetailsDto> GetInboundQueueDetails();
 
         [OperationContract]

@@ -16,20 +16,18 @@ namespace PS.Mothership.Core.Common.Rellaid.Dto
         [DataMember]
         public string MonitorPhoneNumber { get; set; }
         [DataMember]
-        public string CrmLandingPage { get; set; }
-        [DataMember]
         public string Extension { get; set; }
         [DataMember]
-        public string DisplayName { get; set; }
-        [DataMember]
-        public bool IsTeleAppointer { get; set; }
-        [DataMember]
-        public bool IsLeadGenerator { get; set; }
-        [DataMember]
-        public bool IsCot { get; set; }
-        [DataMember]
-        public bool IsOffshoreTa { get; set; }
-        [DataMember]
         public List<CallLogItemDto> CallLog { get; set; }
+        [DataMember]
+        public string SipUserId { get; set; }
+        [DataMember]
+        public string SipPassword { get; set; }
+        [DataMember]
+        public string SipProxyUserId { get; set; }
+        [DataMember]
+        public string SipProxyPassword { get; set; }
+        [DataMember]
+        public List<InboundQueueSubscriptionDto> InboundQueueSubscriptions { get; set; }
     }
 }
