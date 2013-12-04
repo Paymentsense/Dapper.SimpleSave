@@ -1,18 +1,16 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace PS.Mothership.Core.Common.Dto
+namespace PS.Mothership.Core.Common.Rellaid.Dto
 {
     [DataContract]
-    public class CallStatsDto
+    public class DiallerSessionSubscribeDto
     {
         [DataMember]
         public Guid UserGuid { get; set; }
-
         [DataMember]
-        public TimeSpan TotalTalkTime { get; set; }
-
+        public DateTime StartDateTime { get; set; }
         [DataMember]
-        public TimeSpan TotalWrapTime { get; set; }
+        public string ClientIp { get; set; }
     }
 }

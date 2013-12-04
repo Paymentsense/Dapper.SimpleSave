@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace PS.Mothership.Core.Common.Enums
+namespace PS.Mothership.Core.Common.Rellaid.Enums
 {
     [DataContract]
     public enum LogCallType

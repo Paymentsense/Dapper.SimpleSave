@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Runtime.Serialization;
-using PS.Mothership.Core.Common.Enums;
+using PS.Mothership.Core.Common.Rellaid.Enums;
 
-namespace PS.Mothership.Core.Common.Dto
+namespace PS.Mothership.Core.Common.Rellaid.Dto
 {
     [DataContract]
     public class CallLogItemDto

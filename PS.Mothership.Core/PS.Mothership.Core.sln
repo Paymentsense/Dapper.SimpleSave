@@ -16,6 +16,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PS.Mothership.Core.UnitTest
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PS.Mothership.Core.Common.Log4NetJsonFormatter", "PS.Mothership.Core.Common.Log4NetJsonFormatter\PS.Mothership.Core.Common.Log4NetJsonFormatter.csproj", "{F4C86B09-F339-4A37-B2C1-E2AB6D7C2662}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PS.Mothership.Core.Common.Rellaid", "PS.Mothership.Core.Common.Rellaid\PS.Mothership.Core.Common.Rellaid.csproj", "{808EF40D-2774-40CD-8B42-91785835795F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -34,6 +36,10 @@ Global
 		{F4C86B09-F339-4A37-B2C1-E2AB6D7C2662}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F4C86B09-F339-4A37-B2C1-E2AB6D7C2662}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F4C86B09-F339-4A37-B2C1-E2AB6D7C2662}.Release|Any CPU.Build.0 = Release|Any CPU
+		{808EF40D-2774-40CD-8B42-91785835795F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{808EF40D-2774-40CD-8B42-91785835795F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{808EF40D-2774-40CD-8B42-91785835795F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{808EF40D-2774-40CD-8B42-91785835795F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

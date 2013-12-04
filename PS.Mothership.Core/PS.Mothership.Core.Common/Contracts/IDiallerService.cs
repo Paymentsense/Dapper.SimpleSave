@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ServiceModel;
-using PS.Mothership.Core.Common.Dto;
+using PS.Mothership.Core.Common.Rellaid.Dto;
 
 namespace PS.Mothership.Core.Common.Contracts
 {
