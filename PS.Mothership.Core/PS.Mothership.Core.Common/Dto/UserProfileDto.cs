@@ -30,6 +30,10 @@ namespace PS.Mothership.Core.Common.Dto
         public string LastName { get; set; }
         [DataMember]
         public string Initial { get; set; }
+        [DataMember]
+        public string Email { get; set; }
+        [DataMember]
+        public string OfficeDdi { get; set; }
 
         [DataMember]
         public bool IsLoggedIn { get; set; }
@@ -42,9 +46,7 @@ namespace PS.Mothership.Core.Common.Dto
         [DataMember]
         public bool CanImpersonate { get; set; }
         [DataMember]
-        public bool IsImpersonate { get; set; }
-        [DataMember]
-        public LoginResultEnum Status { get; set; }
+        public bool IsImpersonate { get; set; }        
         [DataMember]
         public string Message { get; set; }
         [DataMember]
@@ -57,8 +59,7 @@ namespace PS.Mothership.Core.Common.Dto
         public string ChosenLoginName { get; set; }
         [DataMember]
         public ICollection<UserProfileDto> SimilarNames { get; set; }
-
-        // set defaults
+                
         private Guid _sessionId = Guid.NewGuid();        
         [JsonIgnore]     
         [DataMember]
@@ -67,6 +68,12 @@ namespace PS.Mothership.Core.Common.Dto
             get { return _sessionId; }  
             set { _sessionId = value; }
         }
+
+
+        [DataMember]
+        public LoginResultEnum Status { get; set; }
+        [DataMember]
+        public UserTypeEnum UserType { get; set; }
 
         private StatusOptionFlagEnum _statusOptions = StatusOptionFlagEnum.None;
         [DataMember]
@@ -84,5 +91,10 @@ namespace PS.Mothership.Core.Common.Dto
             set { _userStatus = value; }
 
         }
+        [DataMember]
+        public bool UnlockAccount { get; set; }
+        [DataMember]
+        public bool ResetPassword { get; set; }
+
     }
 }

@@ -50,6 +50,15 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Production|AnyCPU'">
+    <OutputPath>bin\Production\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="AutoMapper, Version=2.2.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -100,6 +109,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Config\WcfClientCertificateValidator.cs" />
     <Compile Include="Constants\ConfigConstants.cs" />
     <Compile Include="Constants\GlobalConstants.cs" />
     <Compile Include="Constants\NamingConstants.cs" />
@@ -148,7 +158,6 @@
     <Compile Include="Dto\UserRole.cs" />
     <Compile Include="Dto\UserRoleDto.cs" />
     <Compile Include="Dto\TblCaseDTO.cs" />
-    <Compile Include="Dto\UserAccountDto.cs" />
     <Compile Include="Dto\UserProfileDto.cs" />
     <Compile Include="Enums\Action.cs" />
     <Compile Include="Dto\UserRoles.cs" />
@@ -169,6 +178,9 @@
     <Compile Include="IPManager\IPInspector.cs" />
     <Compile Include="Contracts\ISearchService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Template\DialInboundQueueCallResolutionEnum.cs">
+      <DependentUpon>DbEnumBuilder.tt</DependentUpon>
+    </Compile>
     <Compile Include="Template\GenRecStatusEnum.cs">
       <DependentUpon>DbEnumBuilder.tt</DependentUpon>
     </Compile>
@@ -188,6 +200,9 @@
       <DependentUpon>DbEnumBuilder.tt</DependentUpon>
     </Compile>
     <Compile Include="Template\UsrUserStatusEnum.cs">
+      <DependentUpon>DbEnumBuilder.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Template\UsrUserTypeEnum.cs">
       <DependentUpon>DbEnumBuilder.tt</DependentUpon>
     </Compile>
     <Compile Include="ValidationCode\CodeMaker.cs" />
