@@ -12,7 +12,7 @@ namespace PS.Mothership.Core.Common.Template.Usr
        [Description("None")][EnumMember]None = 0,
        [Description("Manage Email")][EnumMember]ManageEmail = 1,
        [Description("Allow Remote Access")][EnumMember]AllowRemoteAccess = 2,
-       [Description("Provisionign Watch List")][EnumMember]ProvisioningWatchList = 4,
+       [Description("Provisioning Watch List")][EnumMember]ProvisioningWatchList = 4,
        [Description("Revolution User")][EnumMember]RevolutionUser = 8,
        [Description("Is Self TA")][EnumMember]IsSelfTA = 16,
        [Description("Can Impersonate")][EnumMember]CanImpersonate = 32,
@@ -66,7 +66,7 @@ namespace PS.Mothership.Core.Common.Template.Usr
 							{
 								EnumValue = 4,
 								EnumName = "ProvisioningWatchList",
-								EnumDescription = "Provisionign Watch List",
+								EnumDescription = "Provisioning Watch List",
 								OptionKey=4
 							},
 							new StatusOptionFlag
