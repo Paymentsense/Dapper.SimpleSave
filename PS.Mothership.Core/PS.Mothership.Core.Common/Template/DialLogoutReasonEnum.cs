@@ -15,6 +15,7 @@ namespace PS.Mothership.Core.Common.Template.Dial
        [Description("Remote Logout")][EnumMember]RemoteLogout = 3,
        [Description("Phone Synchronisation Lost")][EnumMember]PhoneSyncLost = 4,
        [Description("User Not Configured")][EnumMember]UserNotConfigured = 5,
+       [Description("Failed Login")][EnumMember]FailedLogin = 6,
         
     }
 
@@ -81,6 +82,13 @@ namespace PS.Mothership.Core.Common.Template.Dial
 								EnumName = "UserNotConfigured",
 								EnumDescription = "User Not Configured",
 								LogoutReasonKey=5
+							},
+							new LogoutReason
+							{
+								EnumValue = 6,
+								EnumName = "FailedLogin",
+								EnumDescription = "Failed Login",
+								LogoutReasonKey=6
 							},
                         };
                     
