@@ -21,6 +21,7 @@ namespace PS.Mothership.Core.Common.Template.Dial
        [Description("Conference or Transfer Consult Call")][EnumMember]ConferenceOrTransferConsultCall = 9,
        [Description("Unresolved Outbound Queue Call")][EnumMember]UnresolvedOutboundQueueCall = 10,
        [Description("Service Agent Call")][EnumMember]ServiceAgentCall = 11,
+       [Description("Unresolved Inbound Queue Call")][EnumMember]UnresolvedInboundQueueCall = 12,
         
     }
 
@@ -129,6 +130,13 @@ namespace PS.Mothership.Core.Common.Template.Dial
 								EnumName = "ServiceAgentCall",
 								EnumDescription = "Service Agent Call",
 								CallTypeKey=11
+							},
+							new CallType
+							{
+								EnumValue = 12,
+								EnumName = "UnresolvedInboundQueueCall",
+								EnumDescription = "Unresolved Inbound Queue Call",
+								CallTypeKey=12
 							},
                         };
                     
