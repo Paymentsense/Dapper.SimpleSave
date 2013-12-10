@@ -25,6 +25,12 @@ namespace PS.Mothership.Core.Common.Dto
         public int PageSize { get; set; }
 
         [DataMember]
+        public int Take { get; set; }
+
+        [DataMember]
+        public int Skip { get; set; }
+
+        [DataMember]
         public int Start { get; set; }
 
         [DataMember]
