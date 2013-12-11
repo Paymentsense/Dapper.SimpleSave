@@ -62,6 +62,6 @@ namespace PS.Mothership.Core.Common.Contracts
         [OperationContract]
         InheritedRoles GetInheritedRoles(Role role);
         [OperationContract]
-        List<Role> RolesForUserAvailableAndAssigned(Guid userGuid);
+        User RolesForUserAvailableAndAssigned(Guid userGuid);
     }
 }
