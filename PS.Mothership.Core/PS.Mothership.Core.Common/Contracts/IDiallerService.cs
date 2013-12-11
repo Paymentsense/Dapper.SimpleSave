@@ -38,5 +38,8 @@ namespace PS.Mothership.Core.Common.Contracts
 
         [OperationContract]
         void LogFinalisedCall(DiallerCallDto diallerCall);
+
+        [OperationContract]
+        Guid LogDiallerModeChange(Guid loginResultGuid, DateTime diallerStartTime, DiallerModeEnum diallerMode);
     }
 }
