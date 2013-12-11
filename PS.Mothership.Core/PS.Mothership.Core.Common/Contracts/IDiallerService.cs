@@ -34,7 +34,7 @@ namespace PS.Mothership.Core.Common.Contracts
         List<CallStatsDto> GetCallTotalsForToday();
 
         [OperationContract]
-        void InsertCallRecordingEvent(DateTime? createdDate, Guid? diallerQueueGuid, string fileName, Guid? merchantGuid, Guid userGuid);
+        void InsertCallRecordingEvent(DateTime? createdDate, Guid? prospectionCallGuid, string fileName, Guid? merchantGuid, Guid userGuid);
 
         [OperationContract]
         void LogFinalisedCall(DiallerCallDto diallerCall);

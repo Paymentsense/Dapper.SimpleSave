@@ -41,7 +41,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Dto\CallLogItemDto.cs" />
-    <Compile Include="Dto\CallRecordingEventDto.cs" />
     <Compile Include="Dto\CallStatsDto.cs" />
     <Compile Include="Dto\DiallerCallDto.cs" />
     <Compile Include="Dto\InboundQueueDetailsDto.cs" />
