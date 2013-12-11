@@ -152,6 +152,7 @@
     <Compile Include="Dto\RoleInheritance.cs" />
     <Compile Include="Dto\SearchDto.cs" />
     <Compile Include="Dto\TaskDto.cs" />
+    <Compile Include="Dto\UserAssignedAndAvailableRole.cs" />
     <Compile Include="Dto\UserDto.cs" />
     <Compile Include="Dto\User.cs" />
     <Compile Include="Dto\UserGroup.cs" />

@@ -11,7 +11,6 @@ namespace PS.Mothership.Core.Common.Dto
         public Guid UserGuid { get; set; }
         public long Id { get; set; }
         public string Name { get; set; }
-        public List<Role> AssignedRoles { get; set; }
-        public List<Role> AvailableRoles { get; set; }
+        public List<UserAssignedAndAvailableRole> Roles { get; set; }
     }
 }
