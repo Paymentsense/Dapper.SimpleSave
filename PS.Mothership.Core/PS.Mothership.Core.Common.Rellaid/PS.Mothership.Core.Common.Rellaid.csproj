@@ -44,8 +44,6 @@
     <Compile Include="Dto\CallRecordingEventDto.cs" />
     <Compile Include="Dto\CallStatsDto.cs" />
     <Compile Include="Dto\DiallerCallDto.cs" />
-    <Compile Include="Dto\DiallerSessionSubscribeDto.cs" />
-    <Compile Include="Dto\DiallerSessionUnsubscribeDto.cs" />
     <Compile Include="Dto\InboundQueueDetailsDto.cs" />
     <Compile Include="Dto\InboundQueueDistributorDto.cs" />
     <Compile Include="Dto\InboundQueueSubscriptionDto.cs" />
@@ -53,6 +51,12 @@
     <Compile Include="Dto\ValidUserInfoDto.cs" />
     <Compile Include="Enums\LogCallType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PS.Mothership.Core.Common.Template\PS.Mothership.Core.Common.Template.csproj">
+      <Project>{0f7a5532-b7d9-44df-b7b2-b30546f1922a}</Project>
+      <Name>PS.Mothership.Core.Common.Template</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

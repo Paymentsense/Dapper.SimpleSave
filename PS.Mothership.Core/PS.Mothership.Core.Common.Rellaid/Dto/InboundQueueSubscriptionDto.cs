@@ -7,13 +7,13 @@ namespace PS.Mothership.Core.Common.Rellaid.Dto
     public class InboundQueueSubscriptionDto
     {
         [DataMember]
-        public long QueueId { get; set; }
+        public long InboundQueueKey { get; set; }
         [DataMember]
-        public string QueueName { get; set; }
+        public string Name { get; set; }
         [DataMember]
-        public string QueuePhoneNumber { get; set; }
+        public string PhoneNumber { get; set; }
         [DataMember]
-        public string QueueServiceAgent { get; set; }
+        public string ServiceAgent { get; set; }
         [DataMember]
         public List<InboundQueueDistributorDto> QueueDistributors { get; set; }
     }

@@ -1,7 +1,8 @@
-﻿using System;
+﻿using PS.Mothership.Core.Common.Rellaid.Dto;
+using PS.Mothership.Core.Common.Template.Dial;
+using System;
 using System.Collections.Generic;
 using System.ServiceModel;
-using PS.Mothership.Core.Common.Rellaid.Dto;
 
 namespace PS.Mothership.Core.Common.Contracts
 {
@@ -12,10 +13,10 @@ namespace PS.Mothership.Core.Common.Contracts
         ValidUserInfoDto ValidateUser(Guid mothershipSessionGuid);
 
         [OperationContract]
-        Guid LogDiallerSessionSubscribe(DiallerSessionSubscribeDto diallerSessionSubscribe);
+        void LogDiallerSessionSubscribe(Guid loginResultGuid, DateTime startDateTime, string clientIp);
 
         [OperationContract]
-        Guid LogDiallerSessionUnsubscribe(DiallerSessionUnsubscribeDto diallerSessionUnsubscribe);
+        void LogDiallerSessionUnsubscribe(Guid loginResultGuid, DateTime endDateTime, bool wasForcedLogout, LogoutReasonEnum logoutReason);
 
         [OperationContract]
         List<InboundQueueDetailsDto> GetInboundQueueDetails();
@@ -33,7 +34,7 @@ namespace PS.Mothership.Core.Common.Contracts
         List<CallStatsDto> GetCallTotalsForToday();
 
         [OperationContract]
-        void InsertCallRecordingEvent(CallRecordingEventDto callRecordingEvent);
+        void InsertCallRecordingEvent(DateTime? createdDate, Guid? diallerQueueGuid, string fileName, Guid? merchantGuid, Guid userGuid);
 
         [OperationContract]
         void LogFinalisedCall(DiallerCallDto diallerCall);

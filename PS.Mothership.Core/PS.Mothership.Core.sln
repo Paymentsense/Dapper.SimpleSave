@@ -18,6 +18,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PS.Mothership.Core.Common.L
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PS.Mothership.Core.Common.Rellaid", "PS.Mothership.Core.Common.Rellaid\PS.Mothership.Core.Common.Rellaid.csproj", "{808EF40D-2774-40CD-8B42-91785835795F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PS.Mothership.Core.Common.Template", "PS.Mothership.Core.Common.Template\PS.Mothership.Core.Common.Template.csproj", "{0F7A5532-B7D9-44DF-B7B2-B30546F1922A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,6 +42,10 @@ Global
 		{808EF40D-2774-40CD-8B42-91785835795F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{808EF40D-2774-40CD-8B42-91785835795F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{808EF40D-2774-40CD-8B42-91785835795F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F7A5532-B7D9-44DF-B7B2-B30546F1922A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F7A5532-B7D9-44DF-B7B2-B30546F1922A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F7A5532-B7D9-44DF-B7B2-B30546F1922A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F7A5532-B7D9-44DF-B7B2-B30546F1922A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

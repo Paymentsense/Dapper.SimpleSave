@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.Serialization;
+using PS.Mothership.Core.Common.Template.Dial;
 
 namespace PS.Mothership.Core.Common.Rellaid.Dto
 {
@@ -15,7 +16,7 @@ namespace PS.Mothership.Core.Common.Rellaid.Dto
         [DataMember]
         public string Extension { get; set; }
         [DataMember]
-        public short? CallTypeId { get; set; }
+        public CallTypeEnum? CallType { get; set; }
         [DataMember]
         public int? TotalTime { get; set; }
         [DataMember]
@@ -23,7 +24,7 @@ namespace PS.Mothership.Core.Common.Rellaid.Dto
         [DataMember]
         public Guid? UserGuid { get; set; }
         [DataMember]
-        public long? PcCallTrandId { get; set; }
+        public Guid? ProspectionCallGuid { get; set; }
         [DataMember]
         public Guid? MerchantGuid { get; set; }
         [DataMember]

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PS.Mothership.Core.Common.Template.Dial;
+using System;
 using System.Runtime.Serialization;
 
 namespace PS.Mothership.Core.Common.Rellaid.Dto
@@ -7,11 +8,11 @@ namespace PS.Mothership.Core.Common.Rellaid.Dto
     public class DiallerCallDto
     {
         [DataMember]
-        public int? SessionModeId { get; set; }
+        public Guid? SessionDiallerModeGuid { get; set; }
         [DataMember]
         public Guid? UserGuid { get; set; }
         [DataMember]
-        public int CallTypeId { get; set; }
+        public CallTypeEnum CallType { get; set; }
         [DataMember]
         public DateTime StartDateTime { get; set; }
         [DataMember]
@@ -23,25 +24,23 @@ namespace PS.Mothership.Core.Common.Rellaid.Dto
         [DataMember]
         public string TransferredNumber { get; set; }
         [DataMember]
-        public Guid? GcCallId { get; set; }
+        public Guid? CallGuid { get; set; }
         [DataMember]
-        public Guid? SipCallId { get; set; }
-        [DataMember]
-        public Guid? ConsultOriginSipCallId { get; set; }
+        public Guid? ConsultOriginCallGuid { get; set; }
         [DataMember]
         public int? RecorderCallId { get; set; }
         [DataMember]
-        public long? AdinsightCallTrnId { get; set; }
+        public Guid? AdinsightCallGuid { get; set; }
         [DataMember]
-        public string CIdNumber { get; set; }
+        public string CIDNumber { get; set; }
         [DataMember]
-        public int CallDispositionId { get; set; }
+        public CallDispositionEnum CallDisposition { get; set; }
         [DataMember]
         public Guid? MerchantGuid { get; set; }
         [DataMember]
-        public long? PcMerchantTrnId { get; set; }
+        public Guid? ProspectionMerchantGuid { get; set; }
         [DataMember]
-        public long? CampaignId { get; set; }
+        public long? CampaignKey { get; set; }
         [DataMember]
         public int PreviewTime { get; set; }
         [DataMember]
@@ -53,6 +52,6 @@ namespace PS.Mothership.Core.Common.Rellaid.Dto
         [DataMember]
         public int WrapTime { get; set; }
         [DataMember]
-        public long? CampaignCallTrnId { get; set; }
+        public Guid? CampaignCallGuid { get; set; }
     }
 }

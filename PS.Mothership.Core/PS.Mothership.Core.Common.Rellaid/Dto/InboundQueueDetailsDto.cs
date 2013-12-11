@@ -7,9 +7,9 @@ namespace PS.Mothership.Core.Common.Rellaid.Dto
     public class InboundQueueDetailsDto
     {
         [DataMember]
-        public long QueueId { get; set; }
+        public long InboundQueueKey { get; set; }
         [DataMember]
-        public string QueueName { get; set; }
+        public string Name { get; set; }
         [DataMember]
         public string Extension { get; set; }
         [DataMember]
@@ -27,6 +27,6 @@ namespace PS.Mothership.Core.Common.Rellaid.Dto
         [DataMember]
         public string VoicemailPhoneNumber { get; set; }
         [DataMember]
-        public List<long> DepartmentIdList { get; set; }
+        public List<long> DepartmentKeyList { get; set; }
     }
 }
