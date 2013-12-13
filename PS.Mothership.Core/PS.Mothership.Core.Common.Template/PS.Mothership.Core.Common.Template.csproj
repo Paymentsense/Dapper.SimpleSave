@@ -63,13 +63,13 @@
     <Compile Include="Template\DialCallTypeEnum.cs">
       <DependentUpon>DbEnumBuilder.tt</DependentUpon>
     </Compile>
-    <Compile Include="Template\DialDiallerModeEnum.cs">
-      <DependentUpon>DbEnumBuilder.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Template\DialInboundQueueCallResolutionEnum.cs">
+    <Compile Include="Template\DialInboundCampaignCallResolutionEnum.cs">
       <DependentUpon>DbEnumBuilder.tt</DependentUpon>
     </Compile>
     <Compile Include="Template\DialLogoutReasonEnum.cs">
+      <DependentUpon>DbEnumBuilder.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Template\DialModeEnum.cs">
       <DependentUpon>DbEnumBuilder.tt</DependentUpon>
     </Compile>
     <Compile Include="Template\EventNotificationMethodEnum.cs">

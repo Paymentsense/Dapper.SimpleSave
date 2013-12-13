@@ -13,10 +13,10 @@ namespace PS.Mothership.Core.Common.Contracts
         ValidUserInfoDto ValidateUser(Guid mothershipSessionGuid);
 
         [OperationContract]
-        void LogDiallerSessionSubscribe(Guid loginResultGuid, DateTime startDateTime, string clientIp);
+        void LogDiallerSessionSubscribe(Guid mothershipSessionGuid, DateTime startDateTime, string clientIp);
 
         [OperationContract]
-        void LogDiallerSessionUnsubscribe(Guid loginResultGuid, DateTime endDateTime, bool wasForcedLogout, LogoutReasonEnum logoutReason);
+        void LogDiallerSessionUnsubscribe(Guid mothershipSessionGuid, DateTime endDateTime, bool wasForcedLogout, LogoutReasonEnum logoutReason);
 
         [OperationContract]
         List<InboundQueueDetailsDto> GetInboundQueueDetails();
@@ -40,6 +40,6 @@ namespace PS.Mothership.Core.Common.Contracts
         void LogFinalisedCall(DiallerCallDto diallerCall);
 
         [OperationContract]
-        Guid LogDiallerModeChange(Guid loginResultGuid, DateTime diallerStartTime, DiallerModeEnum diallerMode);
+        Guid LogDiallerModeChange(Guid mothershipSessionGuid, DateTime diallerStartTime, ModeEnum diallerMode);
     }
 }

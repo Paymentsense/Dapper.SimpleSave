@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
 
 namespace PS.Mothership.Core.Common.Rellaid.Dto
@@ -7,7 +8,7 @@ namespace PS.Mothership.Core.Common.Rellaid.Dto
     public class InboundQueueDetailsDto
     {
         [DataMember]
-        public long InboundQueueKey { get; set; }
+        public Guid InboundQueueGuid { get; set; }
         [DataMember]
         public string Name { get; set; }
         [DataMember]

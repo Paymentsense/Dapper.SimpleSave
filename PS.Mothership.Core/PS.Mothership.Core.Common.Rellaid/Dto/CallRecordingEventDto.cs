@@ -9,7 +9,7 @@ namespace PS.Mothership.Core.Common.Rellaid.Dto
         [DataMember]
         public DateTime? CreatedDate { get; set; }
         [DataMember]
-        public Guid? ProspectionCallGuid { get; set; }
+        public Guid? ProspectingCampaignCallGuid { get; set; }
         [DataMember]
         public string FileName { get; set; }
         [DataMember]

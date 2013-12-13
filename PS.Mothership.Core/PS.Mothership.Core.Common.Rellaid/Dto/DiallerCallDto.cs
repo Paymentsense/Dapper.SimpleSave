@@ -8,11 +8,11 @@ namespace PS.Mothership.Core.Common.Rellaid.Dto
     public class DiallerCallDto
     {
         [DataMember]
-        public Guid? SessionDiallerModeGuid { get; set; }
-        [DataMember]
-        public Guid? UserGuid { get; set; }
+        public Guid? MothershipSessionGuid { get; set; }
         [DataMember]
         public CallTypeEnum CallType { get; set; }
+        [DataMember]
+        public Guid? SessionModeGuid { get; set; }
         [DataMember]
         public DateTime StartDateTime { get; set; }
         [DataMember]
@@ -22,23 +22,15 @@ namespace PS.Mothership.Core.Common.Rellaid.Dto
         [DataMember]
         public string ExtensionNumber { get; set; }
         [DataMember]
-        public string TransferredNumber { get; set; }
-        [DataMember]
-        public Guid? CallGuid { get; set; }
-        [DataMember]
-        public Guid? ConsultOriginCallGuid { get; set; }
-        [DataMember]
-        public int? RecorderCallId { get; set; }
-        [DataMember]
-        public Guid? AdinsightCallGuid { get; set; }
-        [DataMember]
         public string CIDNumber { get; set; }
+        [DataMember]
+        public string TransferredNumber { get; set; }
         [DataMember]
         public CallDispositionEnum CallDisposition { get; set; }
         [DataMember]
         public Guid? MerchantGuid { get; set; }
         [DataMember]
-        public Guid? ProspectionMerchantGuid { get; set; }
+        public Guid? ProspectingCampaignCallGuid { get; set; }
         [DataMember]
         public long? CampaignKey { get; set; }
         [DataMember]
@@ -52,6 +44,14 @@ namespace PS.Mothership.Core.Common.Rellaid.Dto
         [DataMember]
         public int WrapTime { get; set; }
         [DataMember]
-        public Guid? CampaignCallGuid { get; set; }
+        public Guid? SipCallGuid { get; set; }
+        [DataMember]
+        public Guid? ConsultOriginSipCallGuid { get; set; }
+        [DataMember]
+        public int? RecorderCallId { get; set; }
+        [DataMember]
+        public Guid? ProspectingCampaignResponseTapCallGuid { get; set; }
+        [DataMember]
+        public Guid? InboundCampaignCallGuid { get; set; }
     }
 }
