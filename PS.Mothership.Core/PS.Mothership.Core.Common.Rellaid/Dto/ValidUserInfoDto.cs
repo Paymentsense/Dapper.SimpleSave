@@ -29,5 +29,9 @@ namespace PS.Mothership.Core.Common.Rellaid.Dto
         public string SipProxyPassword { get; set; }
         [DataMember]
         public List<InboundQueueSubscriptionDto> InboundQueueSubscriptions { get; set; }
+        [DataMember]
+        public long DepartmentKey { get; set; }
+        [DataMember]
+        public long DepartmentCategoryKey { get; set; }
     }
 }
