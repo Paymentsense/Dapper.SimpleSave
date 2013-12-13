@@ -48,7 +48,7 @@ namespace PS.Mothership.Core.Common.Rellaid.Dto
         [DataMember]
         public Guid? ConsultOriginSipCallGuid { get; set; }
         [DataMember]
-        public int? RecorderCallId { get; set; }
+        public long? RecorderCallId { get; set; }
         [DataMember]
         public Guid? ProspectingCampaignResponseTapCallGuid { get; set; }
         [DataMember]
