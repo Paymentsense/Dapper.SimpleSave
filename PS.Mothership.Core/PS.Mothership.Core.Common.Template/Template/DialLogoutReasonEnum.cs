@@ -9,13 +9,14 @@ namespace PS.Mothership.Core.Common.Template.Dial
     [DataContract]
     public enum LogoutReasonEnum : long
     {
-       [Description("Standard Logout")][EnumMember]StandardLogout = 0,
-       [Description("Connection Faulted")][EnumMember]ConnectionFaulted = 1,
-       [Description("Logged In Elsewhere")][EnumMember]LoggedInElsewhere = 2,
-       [Description("Remote Logout")][EnumMember]RemoteLogout = 3,
-       [Description("Phone Synchronisation Lost")][EnumMember]PhoneSyncLost = 4,
-       [Description("User Not Configured")][EnumMember]UserNotConfigured = 5,
-       [Description("Failed Login")][EnumMember]FailedLogin = 6,
+       [Description("None")][EnumMember]None = 0,
+       [Description("Standard Logout")][EnumMember]StandardLogout = 1,
+       [Description("Connection Faulted")][EnumMember]ConnectionFaulted = 2,
+       [Description("Logged In Elsewhere")][EnumMember]LoggedInElsewhere = 3,
+       [Description("Remote Logout")][EnumMember]RemoteLogout = 4,
+       [Description("Phone Synchronisation Lost")][EnumMember]PhoneSyncLost = 5,
+       [Description("User Not Configured")][EnumMember]UserNotConfigured = 6,
+       [Description("Failed Login")][EnumMember]FailedLogin = 7,
         
     }
 
@@ -44,51 +45,58 @@ namespace PS.Mothership.Core.Common.Template.Dial
                             							new LogoutReason
 							{
 								EnumValue = 0,
-								EnumName = "StandardLogout",
-								EnumDescription = "Standard Logout",
+								EnumName = "None",
+								EnumDescription = "None",
 								LogoutReasonKey=0
 							},
 							new LogoutReason
 							{
 								EnumValue = 1,
-								EnumName = "ConnectionFaulted",
-								EnumDescription = "Connection Faulted",
+								EnumName = "StandardLogout",
+								EnumDescription = "Standard Logout",
 								LogoutReasonKey=1
 							},
 							new LogoutReason
 							{
 								EnumValue = 2,
-								EnumName = "LoggedInElsewhere",
-								EnumDescription = "Logged In Elsewhere",
+								EnumName = "ConnectionFaulted",
+								EnumDescription = "Connection Faulted",
 								LogoutReasonKey=2
 							},
 							new LogoutReason
 							{
 								EnumValue = 3,
-								EnumName = "RemoteLogout",
-								EnumDescription = "Remote Logout",
+								EnumName = "LoggedInElsewhere",
+								EnumDescription = "Logged In Elsewhere",
 								LogoutReasonKey=3
 							},
 							new LogoutReason
 							{
 								EnumValue = 4,
-								EnumName = "PhoneSyncLost",
-								EnumDescription = "Phone Synchronisation Lost",
+								EnumName = "RemoteLogout",
+								EnumDescription = "Remote Logout",
 								LogoutReasonKey=4
 							},
 							new LogoutReason
 							{
 								EnumValue = 5,
-								EnumName = "UserNotConfigured",
-								EnumDescription = "User Not Configured",
+								EnumName = "PhoneSyncLost",
+								EnumDescription = "Phone Synchronisation Lost",
 								LogoutReasonKey=5
 							},
 							new LogoutReason
 							{
 								EnumValue = 6,
+								EnumName = "UserNotConfigured",
+								EnumDescription = "User Not Configured",
+								LogoutReasonKey=6
+							},
+							new LogoutReason
+							{
+								EnumValue = 7,
 								EnumName = "FailedLogin",
 								EnumDescription = "Failed Login",
-								LogoutReasonKey=6
+								LogoutReasonKey=7
 							},
                         };
                     
