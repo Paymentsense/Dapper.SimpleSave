@@ -8,7 +8,7 @@ using PS.Mothership.Core.Common.Enums;
 namespace PS.Mothership.Core.Common.Dto
 {
     /// <summary>
-    ///     This is the mapping of kendo data source options
+    ///     This is the mapping of data source options
     ///     send from the js grid
     /// </summary>
     /// <remarks>
@@ -45,7 +45,7 @@ namespace PS.Mothership.Core.Common.Dto
     }
         
     /// <summary>
-    /// Represents a sort expression of Kendo DataSource.
+    ///     Represents a sort expression 
     /// </summary>
     [DataContract]
     public class Sort
@@ -86,7 +86,7 @@ namespace PS.Mothership.Core.Common.Dto
     }
 
     /// <summary>
-    /// Represents a filter expression of Kendo DataSource.
+    ///     Represents a filter expression 
     /// </summary>
     [DataContract]
     public class Filter
@@ -126,7 +126,7 @@ namespace PS.Mothership.Core.Common.Dto
         public IEnumerable<Filter> Filters { get; set; }
 
         /// <summary>
-        /// Mapping of Kendo DataSource filtering operators to Dynamic Linq
+        ///     Mapping of filtering operators to Dynamic Linq
         /// </summary>
         private static readonly IDictionary<string, string> Operators = new Dictionary<string, string>
         {
@@ -172,7 +172,7 @@ namespace PS.Mothership.Core.Common.Dto
 
         /// <summary>
         /// Converts the filter expression to a predicate suitable for Dynamic Linq e.g. "Field1 = @1 and Field2.Contains(@2)"
-        /// if of object type then Field2.ToLower().Contains(@2)
+        /// if of object is of string type then Field2.ToLower().Contains(@2)
         /// </summary>
         /// <param name="filters">A list of flattened filters.</param>
         /// <param name="linqType">Type of incoming query</param>
