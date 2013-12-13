@@ -162,6 +162,7 @@
     <Compile Include="Dto\UserProfileDto.cs" />
     <Compile Include="Enums\Action.cs" />
     <Compile Include="Dto\UserRoles.cs" />
+    <Compile Include="Enums\LinqType.cs" />
     <Compile Include="Enums\State.cs" />
     <Compile Include="Extension\EnumerableExtension.cs" />
     <Compile Include="Enums\UserRoleType.cs" />
@@ -176,6 +177,7 @@
     <Compile Include="Helper\UniqueKeyGenerator.cs" />
     <Compile Include="Helper\JsonHelper.cs" />
     <Compile Include="Helper\Obfuscator.cs" />
+    <Compile Include="Helper\Util.cs" />
     <Compile Include="IPManager\IPInspector.cs" />
     <Compile Include="Contracts\ISearchService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

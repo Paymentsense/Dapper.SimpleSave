@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.Serialization;
+using PS.Mothership.Core.Common.Enums;
 
 namespace PS.Mothership.Core.Common.Dto
 {
@@ -171,13 +172,15 @@ namespace PS.Mothership.Core.Common.Dto
 
         /// <summary>
         /// Converts the filter expression to a predicate suitable for Dynamic Linq e.g. "Field1 = @1 and Field2.Contains(@2)"
+        /// if of object type then Field2.ToLower().Contains(@2)
         /// </summary>
         /// <param name="filters">A list of flattened filters.</param>
-        public string ToExpression(IList<Filter> filters)
+        /// <param name="linqType">Type of incoming query</param>
+        public string ToExpression(IList<Filter> filters, LinqType linqType=LinqType.Entity)
         {
             if (Filters != null && Filters.Any())
             {
-                return "(" + String.Join(" " + Logic + " ", Filters.Select(filter => filter.ToExpression(filters)).ToArray()) + ")";
+                return "(" + String.Join(" " + Logic + " ", Filters.Select(filter => filter.ToExpression(filters, linqType)).ToArray()) + ")";
             }
 
             int index = filters.IndexOf(this);
@@ -186,7 +189,8 @@ namespace PS.Mothership.Core.Common.Dto
 
             if (comparison == "StartsWith" || comparison == "EndsWith" || comparison == "Contains")
             {
-                return String.Format("{0}.{1}(@{2})", Field, comparison, index);
+                return linqType== LinqType.Object ? String.Format("{0}.{1}.{2}(@{3})", Field, "ToLower()", comparison, index) : 
+                    String.Format("{0}.{1}(@{2})", Field, comparison, index);
             }
 
             return String.Format("{0} {1} @{2}", Field, comparison, index);
