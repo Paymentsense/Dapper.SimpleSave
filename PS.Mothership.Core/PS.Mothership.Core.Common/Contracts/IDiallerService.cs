@@ -40,7 +40,7 @@ namespace PS.Mothership.Core.Common.Contracts
         Guid LogDiallerModeChange(Guid mothershipSessionGuid, DateTime diallerStartTime, ModeEnum diallerMode);
 
         [OperationContract]
-        Guid LogNewDiallerCall(NewDiallerCallDto diallerCall);
+        void LogNewDiallerCall(NewDiallerCallDto diallerCall);
 
         [OperationContract]
         void LogFinalisedCall(FinalisedDiallerCallDto diallerCall);
