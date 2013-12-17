@@ -43,7 +43,8 @@
     <Compile Include="Dto\CallLogItemDto.cs" />
     <Compile Include="Dto\CallRecordingEventDto.cs" />
     <Compile Include="Dto\CallStatsDto.cs" />
-    <Compile Include="Dto\DiallerCallDto.cs" />
+    <Compile Include="Dto\FinalisedDiallerCallDto.cs" />
+    <Compile Include="Dto\NewDiallerCallDto.cs" />
     <Compile Include="Dto\InboundQueueDetailsDto.cs" />
     <Compile Include="Dto\InboundQueueDistributorDto.cs" />
     <Compile Include="Dto\InboundQueueSubscriptionDto.cs" />

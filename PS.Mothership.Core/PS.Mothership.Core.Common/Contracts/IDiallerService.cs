@@ -37,9 +37,12 @@ namespace PS.Mothership.Core.Common.Contracts
         void InsertCallRecordingEvent(CallRecordingEventDto callRecordingEvent);
 
         [OperationContract]
-        void LogFinalisedCall(DiallerCallDto diallerCall);
+        Guid LogDiallerModeChange(Guid mothershipSessionGuid, DateTime diallerStartTime, ModeEnum diallerMode);
 
         [OperationContract]
-        Guid LogDiallerModeChange(Guid mothershipSessionGuid, DateTime diallerStartTime, ModeEnum diallerMode);
+        Guid LogNewDiallerCall(NewDiallerCallDto diallerCall);
+
+        [OperationContract]
+        void LogFinalisedCall(FinalisedDiallerCallDto diallerCall);
     }
 }
