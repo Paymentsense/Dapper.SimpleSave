@@ -123,23 +123,7 @@ namespace PS.Mothership.Core.Common.Dto
         /// Gets or sets the child filter expressions. Set to <c>null</c> if there are no child expressions.
         /// </summary>
         [DataMember(Name = "filters")]
-        public IEnumerable<Filter> Filters { get; set; }
-
-        /// <summary>
-        ///     Mapping of filtering operators to Dynamic Linq
-        /// </summary>
-        private static readonly IDictionary<string, string> Operators = new Dictionary<string, string>
-        {
-            {"eq", "="},
-            {"neq", "!="},
-            {"lt", "<"},
-            {"lte", "<="},
-            {"gt", ">"},
-            {"gte", ">="},
-            {"startswith", "StartsWith"},
-            {"endswith", "EndsWith"},
-            {"contains", "Contains"}
-        };
+        public IEnumerable<Filter> Filters { get; set; }       
 
         /// <summary>
         /// Get a flattened list of all child filter expressions.
@@ -160,8 +144,8 @@ namespace PS.Mothership.Core.Common.Dto
                 foreach (Filter filter in Filters)
                 {
                     filters.Add(filter);
-
-                    filter.Collect(filters);
+                    if (filter != null && filter.Filters != null)                    
+                        filter.Collect(filter.Filters.ToList());                     
                 }
             }
             else
@@ -170,30 +154,52 @@ namespace PS.Mothership.Core.Common.Dto
             }
         }
 
-        /// <summary>
-        /// Converts the filter expression to a predicate suitable for Dynamic Linq e.g. "Field1 = @1 and Field2.Contains(@2)"
-        /// if of object is of string type then Field2.ToLower().Contains(@2)
-        /// </summary>
-        /// <param name="filters">A list of flattened filters.</param>
-        /// <param name="linqType">Type of incoming query</param>
-        public string ToExpression(IList<Filter> filters, LinqType linqType=LinqType.Entity)
-        {
-            if (Filters != null && Filters.Any())
-            {
-                return "(" + String.Join(" " + Logic + " ", Filters.Select(filter => filter.ToExpression(filters, linqType)).ToArray()) + ")";
-            }
+        #region commented, kept for reference
+        ///// <summary>
+        ///// Converts the filter expression to a predicate suitable for Dynamic Linq e.g. "Field1 = @1 and Field2.Contains(@2)"
+        ///// if of object is of string type then Field2.ToLower().Contains(@2)
+        ///// </summary>
+        ///// <param name="filters">A list of flattened filters.</param>
+        ///// <param name="linqType">Type of incoming query</param>
+        //public string ToExpression(IList<Filter> filters, LinqType linqType=LinqType.Entity)
+        //{
+        //    if (Filters != null && Filters.Any())
+        //    {
+        //        return "(" + String.Join(" " + Logic + " ", Filters.Select(filter => filter.ToExpression(filters, linqType)).ToArray()) + ")";
+        //    }
 
-            int index = filters.IndexOf(this);
+        //    int index = filters.IndexOf(this);
 
-            string comparison = Operators[Operator];
+        //    string comparison = Operators[Operator];
 
-            if (comparison == "StartsWith" || comparison == "EndsWith" || comparison == "Contains")
-            {
-                return linqType== LinqType.Object ? String.Format("{0}.{1}.{2}(@{3})", Field, "ToLower()", comparison, index) : 
-                    String.Format("{0}.{1}(@{2})", Field, comparison, index);
-            }
+        //    if (comparison == "StartsWith" || comparison == "EndsWith" || comparison == "Contains")
+        //    {
+        //        return linqType== LinqType.Object ? String.Format("{0}.{1}.{2}(@{3})", Field, "ToLower()", comparison, index) : 
+        //            String.Format("{0}.{1}(@{2})", Field, comparison, index);
+        //    }
 
-            return String.Format("{0} {1} @{2}", Field, comparison, index);
-        }
+        //    return String.Format("{0} {1} @{2}", Field, comparison, index);
+        //}
+
+        //#region private method
+
+        ///// <summary>
+        /////     Mapping of filtering operators to Dynamic Linq
+        ///// </summary>
+        //private static readonly IDictionary<string, string> Operators = new Dictionary<string, string>
+        //{
+        //    {"eq", "="},
+        //    {"neq", "!="},
+        //    {"lt", "<"},
+        //    {"lte", "<="},
+        //    {"gt", ">"},
+        //    {"gte", ">="},
+        //    {"startswith", "StartsWith"},
+        //    {"endswith", "EndsWith"},
+        //    {"contains", "Contains"}
+        //};
+
+        //#endregion
+        #endregion
     }
 }
