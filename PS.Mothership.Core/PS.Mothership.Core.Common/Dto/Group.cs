@@ -13,6 +13,8 @@ namespace PS.Mothership.Core.Common.Dto
         [DataMember]
         public string GroupName { get; set; }
         [DataMember]
+        public string GroupDescription { get; set; }
+        [DataMember]
         public long Id { get; set; }
         [DataMember]
         public List<Role> Roles { get; set; }
