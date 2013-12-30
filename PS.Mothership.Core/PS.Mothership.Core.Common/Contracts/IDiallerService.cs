@@ -13,7 +13,7 @@ namespace PS.Mothership.Core.Common.Contracts
         ValidUserInfoDto ValidateUser(Guid mothershipSessionGuid);
 
         [OperationContract]
-        void LogDiallerSessionSubscribe(Guid mothershipSessionGuid, DateTime startDateTime);
+        Guid LogDiallerSessionSubscribe(Guid mothershipSessionGuid, DateTime startDateTime);
 
         [OperationContract]
         void LogDiallerSessionUnsubscribe(Guid mothershipSessionGuid, DateTime endDateTime, bool wasForcedLogout, LogoutReasonEnum logoutReason);
