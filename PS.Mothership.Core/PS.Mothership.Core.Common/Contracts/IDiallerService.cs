@@ -16,7 +16,7 @@ namespace PS.Mothership.Core.Common.Contracts
         Guid LogDiallerSessionSubscribe(Guid mothershipSessionGuid, DateTime startDateTime);
 
         [OperationContract]
-        void LogDiallerSessionUnsubscribe(Guid mothershipSessionGuid, DateTime endDateTime, bool wasForcedLogout, LogoutReasonEnum logoutReason);
+        void LogDiallerSessionUnsubscribe(Guid sessionGuid, DateTime endDateTime, bool wasForcedLogout, LogoutReasonEnum logoutReason);
 
         [OperationContract]
         List<InboundQueueDetailsDto> GetInboundQueueDetails();
