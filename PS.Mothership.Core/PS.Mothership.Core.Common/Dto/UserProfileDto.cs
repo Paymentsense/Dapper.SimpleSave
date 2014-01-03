@@ -95,6 +95,12 @@ namespace PS.Mothership.Core.Common.Dto
         public bool UnlockAccount { get; set; }
         [DataMember]
         public bool ResetPassword { get; set; }
+        [DataMember]
+        public Role DefiningRole { get; set; }
+        [DataMember]
+        public Group Group { get; set; }
 
+        public List<Group> Groups { get; set; }
+        public List<Role> AllDefiningRoles { get; set; }
     }
 }
