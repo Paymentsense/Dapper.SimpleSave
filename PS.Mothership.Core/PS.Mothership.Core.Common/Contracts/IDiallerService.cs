@@ -45,5 +45,8 @@ namespace PS.Mothership.Core.Common.Contracts
 
         [OperationContract]
         void LogFinalisedCall(FinalisedDiallerCallDto diallerCall);
+
+        [OperationContract]
+        bool IsCallResolved(Guid prospectingCampaignCallGuid);
     }
 }
