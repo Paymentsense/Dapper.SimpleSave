@@ -1,8 +1,6 @@
-﻿using System;
+﻿using PS.Mothership.Core.Common.Template.Usr;
 using System.Net;
 using System.Runtime.Serialization;
-using Newtonsoft.Json;
-using PS.Mothership.Core.Common.Template.Usr;
 
 namespace PS.Mothership.Core.Common.Dto
 {
@@ -10,23 +8,20 @@ namespace PS.Mothership.Core.Common.Dto
     {
         // To manage on client side
         private HttpStatusCode _statusCode = HttpStatusCode.OK;
+
         public HttpStatusCode StatusCode
         {
             get { return _statusCode; }
             set { _statusCode = value; }
         }
 
-        [DataMember]        
+        [DataMember]
         public LoginResultEnum Status { get; set; }
 
         [DataMember]
         public string Message { get; set; }
 
         [DataMember]
-        [Obsolete("Merged into User Profile Dto")]
-        public UserAccountDto UserAccountDto { get; set; }
-
-        [DataMember]
-        public UserProfileDto UserProfileDto { get; set; }        
+        public UserProfileDto UserProfileDto { get; set; }
     }
 }

@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PS.Mothership.Core.Common.Dto
 {
@@ -11,7 +8,6 @@ namespace PS.Mothership.Core.Common.Dto
         public Guid UserGuid { get; set; }
         public long Id { get; set; }
         public string Name { get; set; }
-        public List<Role> Roles { get; set; }
-
+        public List<UserAssignedAndAvailableRole> Roles { get; set; }
     }
 }

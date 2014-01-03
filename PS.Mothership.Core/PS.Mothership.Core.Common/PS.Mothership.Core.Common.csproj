@@ -50,6 +50,15 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Production|AnyCPU'">
+    <OutputPath>bin\Production\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="AutoMapper, Version=2.2.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -100,12 +109,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Config\WcfClientCertificateValidator.cs" />
     <Compile Include="Constants\ConfigConstants.cs" />
     <Compile Include="Constants\GlobalConstants.cs" />
     <Compile Include="Constants\NamingConstants.cs" />
     <Compile Include="Contracts\IAddressService.cs" />
     <Compile Include="Contracts\IApplicationService.cs" />
     <Compile Include="Contracts\ICompanyService.cs" />
+    <Compile Include="Contracts\IIdentityCheckService.cs" />
     <Compile Include="Contracts\IDiallerService.cs" />
     <Compile Include="Contracts\IDiallerTaskNotificationCallback.cs" />
     <Compile Include="Contracts\IDiallerTaskNotificationService.cs" />
@@ -126,6 +137,7 @@
     <Compile Include="Dto\ChangePasswordDto.cs" />
     <Compile Include="Dto\ChangePasswordResult.cs" />
     <Compile Include="Dto\CompanyDto.cs" />
+    <Compile Include="Dto\IdentityCheckDto.cs" />
     <Compile Include="Dto\DataRequestDto.cs" />
     <Compile Include="Dto\FullAddressDto.cs" />
     <Compile Include="Dto\Group.cs" />
@@ -143,13 +155,13 @@
     <Compile Include="Dto\RoleInheritance.cs" />
     <Compile Include="Dto\SearchDto.cs" />
     <Compile Include="Dto\TaskDto.cs" />
+    <Compile Include="Dto\UserAssignedAndAvailableRole.cs" />
     <Compile Include="Dto\UserDto.cs" />
     <Compile Include="Dto\User.cs" />
     <Compile Include="Dto\UserGroup.cs" />
     <Compile Include="Dto\UserRole.cs" />
     <Compile Include="Dto\UserRoleDto.cs" />
     <Compile Include="Dto\TblCaseDTO.cs" />
-    <Compile Include="Dto\UserAccountDto.cs" />
     <Compile Include="Dto\UserProfileDto.cs" />
     <Compile Include="Enums\Action.cs" />
     <Compile Include="Dto\UserRoles.cs" />
@@ -167,6 +179,7 @@
     <Compile Include="Helper\UniqueKeyGenerator.cs" />
     <Compile Include="Helper\JsonHelper.cs" />
     <Compile Include="Helper\Obfuscator.cs" />
+    <Compile Include="Helper\Util.cs" />
     <Compile Include="IPManager\IPInspector.cs" />
     <Compile Include="Contracts\ISearchService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
