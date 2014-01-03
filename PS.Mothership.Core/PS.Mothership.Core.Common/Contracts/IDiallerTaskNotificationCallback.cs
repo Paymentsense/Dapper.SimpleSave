@@ -1,5 +1,5 @@
-﻿using System.ServiceModel;
-using PS.Mothership.Core.Common.Dto;
+﻿using PS.Mothership.Core.Common.Dto;
+using System.ServiceModel;
 
 namespace PS.Mothership.Core.Common.Contracts
 {

@@ -8,8 +8,10 @@ namespace PS.Mothership.Core.Common.Rellaid.Dto
     {
         [DataMember]
         public Guid UserGuid { get; set; }
+
         [DataMember]
         public TimeSpan TotalTalkTime { get; set; }
+
         [DataMember]
         public TimeSpan TotalWrapTime { get; set; }
     }

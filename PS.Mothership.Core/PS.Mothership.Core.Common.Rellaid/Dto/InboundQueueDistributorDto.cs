@@ -7,6 +7,7 @@ namespace PS.Mothership.Core.Common.Rellaid.Dto
     {
         [DataMember]
         public string FilterNumber { get; set; }
+
         [DataMember]
         public int RungCount { get; set; }
     }

@@ -9,24 +9,34 @@ namespace PS.Mothership.Core.Common.Rellaid.Dto
     {
         [DataMember]
         public Guid InboundQueueGuid { get; set; }
+
         [DataMember]
         public string Name { get; set; }
+
         [DataMember]
         public string Extension { get; set; }
+
         [DataMember]
         public string SipUserId { get; set; }
+
         [DataMember]
         public string SipPassword { get; set; }
+
         [DataMember]
         public string SipProxyUserId { get; set; }
+
         [DataMember]
         public string SipProxyPassword { get; set; }
+
         [DataMember]
         public int RingTimeout { get; set; }
+
         [DataMember]
         public int ConsultTimeout { get; set; }
+
         [DataMember]
         public string VoicemailPhoneNumber { get; set; }
+
         [DataMember]
         public List<long> DepartmentKeyList { get; set; }
     }
