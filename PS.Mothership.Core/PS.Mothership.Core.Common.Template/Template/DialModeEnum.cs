@@ -40,47 +40,47 @@ namespace PS.Mothership.Core.Common.Template.Dial
                 {   
                         _list = new List<Mode>
                         {
-                            							new Mode
+                            new Mode
 							{
 								EnumValue = 0,
 								EnumName = "None",
 								EnumDescription = "None",
-								ModeKey=0
+								ModeKey = 0
 							},
 							new Mode
 							{
 								EnumValue = 1,
 								EnumName = "Admin",
 								EnumDescription = "Admin Mode",
-								ModeKey=1
+								ModeKey = 1
 							},
 							new Mode
 							{
 								EnumValue = 2,
 								EnumName = "Dialler",
 								EnumDescription = "Dialler Mode",
-								ModeKey=2
+								ModeKey = 2
 							},
 							new Mode
 							{
 								EnumValue = 3,
 								EnumName = "DiallerInbound",
 								EnumDescription = "Dialler Inbound Mode",
-								ModeKey=3
+								ModeKey = 3
 							},
 							new Mode
 							{
 								EnumValue = 4,
 								EnumName = "DiallerOutbound",
 								EnumDescription = "Dialler Outbound Mode",
-								ModeKey=4
+								ModeKey = 4
 							},
 							new Mode
 							{
 								EnumValue = 5,
 								EnumName = "DiallerCombined",
 								EnumDescription = "Dialler Inbound and Outbound Mode",
-								ModeKey=5
+								ModeKey = 5
 							},
                         };
                     

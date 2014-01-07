@@ -41,54 +41,54 @@ namespace PS.Mothership.Core.Common.Template.Dial
                 {   
                         _list = new List<CallDisposition>
                         {
-                            							new CallDisposition
+                            new CallDisposition
 							{
 								EnumValue = 0,
 								EnumName = "NotDisposed",
 								EnumDescription = "Not Disposed",
-								CallDispositionKey=0
+								CallDispositionKey = 0
 							},
 							new CallDisposition
 							{
 								EnumValue = 1,
 								EnumName = "BadNumber",
 								EnumDescription = "Bad Number",
-								CallDispositionKey=1
+								CallDispositionKey = 1
 							},
 							new CallDisposition
 							{
 								EnumValue = 2,
 								EnumName = "Skipped",
 								EnumDescription = "Skipped",
-								CallDispositionKey=2
+								CallDispositionKey = 2
 							},
 							new CallDisposition
 							{
 								EnumValue = 3,
 								EnumName = "Unanswered",
 								EnumDescription = "Unanswered",
-								CallDispositionKey=3
+								CallDispositionKey = 3
 							},
 							new CallDisposition
 							{
 								EnumValue = 4,
 								EnumName = "Answered",
 								EnumDescription = "Answered",
-								CallDispositionKey=4
+								CallDispositionKey = 4
 							},
 							new CallDisposition
 							{
 								EnumValue = 5,
 								EnumName = "Transferred",
 								EnumDescription = "Transferred",
-								CallDispositionKey=5
+								CallDispositionKey = 5
 							},
 							new CallDisposition
 							{
 								EnumValue = 6,
 								EnumName = "Conferenced",
 								EnumDescription = "Conferenced",
-								CallDispositionKey=6
+								CallDispositionKey = 6
 							},
                         };
                     

@@ -48,103 +48,103 @@ namespace PS.Mothership.Core.Common.Template.Usr
                 {   
                         _list = new List<LoginResult>
                         {
-                            							new LoginResult
+                            new LoginResult
 							{
 								EnumValue = 0,
 								EnumName = "None",
 								EnumDescription = "None",
-								LoginResultKey=0
+								LoginResultKey = 0
 							},
 							new LoginResult
 							{
 								EnumValue = 1,
 								EnumName = "Success",
 								EnumDescription = "Sucess",
-								LoginResultKey=1
+								LoginResultKey = 1
 							},
 							new LoginResult
 							{
 								EnumValue = 2,
 								EnumName = "Failed",
 								EnumDescription = "Failed",
-								LoginResultKey=2
+								LoginResultKey = 2
 							},
 							new LoginResult
 							{
 								EnumValue = 3,
 								EnumName = "FailedPassword",
 								EnumDescription = "Password failed",
-								LoginResultKey=3
+								LoginResultKey = 3
 							},
 							new LoginResult
 							{
 								EnumValue = 4,
 								EnumName = "FailedPasswordRetryLock",
 								EnumDescription = "Password locked",
-								LoginResultKey=4
+								LoginResultKey = 4
 							},
 							new LoginResult
 							{
 								EnumValue = 5,
 								EnumName = "FailedAdministrativeLock",
 								EnumDescription = "Administrative lock",
-								LoginResultKey=5
+								LoginResultKey = 5
 							},
 							new LoginResult
 							{
 								EnumValue = 6,
 								EnumName = "FailedRemoteAccessDenied",
 								EnumDescription = "Remote access denied",
-								LoginResultKey=6
+								LoginResultKey = 6
 							},
 							new LoginResult
 							{
 								EnumValue = 7,
 								EnumName = "RemoteAccessValidationPrompt",
 								EnumDescription = "Remote access validation prompt",
-								LoginResultKey=7
+								LoginResultKey = 7
 							},
 							new LoginResult
 							{
 								EnumValue = 8,
 								EnumName = "AccountUnLocked",
 								EnumDescription = "Account un locked",
-								LoginResultKey=8
+								LoginResultKey = 8
 							},
 							new LoginResult
 							{
 								EnumValue = 9,
 								EnumName = "UserImpersonated",
 								EnumDescription = "User can impersonate",
-								LoginResultKey=9
+								LoginResultKey = 9
 							},
 							new LoginResult
 							{
 								EnumValue = 10,
 								EnumName = "PasswordChanged",
 								EnumDescription = "User password changed",
-								LoginResultKey=10
+								LoginResultKey = 10
 							},
 							new LoginResult
 							{
 								EnumValue = 11,
 								EnumName = "DuplicateUserName",
 								EnumDescription = "User name already exists",
-								LoginResultKey=11
+								LoginResultKey = 11
 							},
 							new LoginResult
 							{
 								EnumValue = 12,
 								EnumName = "PasswordReset",
 								EnumDescription = "Password has been reset",
-								LoginResultKey=12
+								LoginResultKey = 12
 							},
 							new LoginResult
 							{
 								EnumValue = 13,
 								EnumName = "AdministrativeChange",
 								EnumDescription = "Administrative change",
-								LoginResultKey=13
+								LoginResultKey = 13
 							},
                         };
                     

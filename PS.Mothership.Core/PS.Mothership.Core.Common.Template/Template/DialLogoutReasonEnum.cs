@@ -42,61 +42,61 @@ namespace PS.Mothership.Core.Common.Template.Dial
                 {   
                         _list = new List<LogoutReason>
                         {
-                            							new LogoutReason
+                            new LogoutReason
 							{
 								EnumValue = 0,
 								EnumName = "None",
 								EnumDescription = "None",
-								LogoutReasonKey=0
+								LogoutReasonKey = 0
 							},
 							new LogoutReason
 							{
 								EnumValue = 1,
 								EnumName = "StandardLogout",
 								EnumDescription = "Standard Logout",
-								LogoutReasonKey=1
+								LogoutReasonKey = 1
 							},
 							new LogoutReason
 							{
 								EnumValue = 2,
 								EnumName = "ConnectionFaulted",
 								EnumDescription = "Connection Faulted",
-								LogoutReasonKey=2
+								LogoutReasonKey = 2
 							},
 							new LogoutReason
 							{
 								EnumValue = 3,
 								EnumName = "LoggedInElsewhere",
 								EnumDescription = "Logged In Elsewhere",
-								LogoutReasonKey=3
+								LogoutReasonKey = 3
 							},
 							new LogoutReason
 							{
 								EnumValue = 4,
 								EnumName = "RemoteLogout",
 								EnumDescription = "Remote Logout",
-								LogoutReasonKey=4
+								LogoutReasonKey = 4
 							},
 							new LogoutReason
 							{
 								EnumValue = 5,
 								EnumName = "PhoneSyncLost",
 								EnumDescription = "Phone Synchronisation Lost",
-								LogoutReasonKey=5
+								LogoutReasonKey = 5
 							},
 							new LogoutReason
 							{
 								EnumValue = 6,
 								EnumName = "UserNotConfigured",
 								EnumDescription = "User Not Configured",
-								LogoutReasonKey=6
+								LogoutReasonKey = 6
 							},
 							new LogoutReason
 							{
 								EnumValue = 7,
 								EnumName = "FailedLogin",
 								EnumDescription = "Failed Login",
-								LogoutReasonKey=7
+								LogoutReasonKey = 7
 							},
                         };
                     

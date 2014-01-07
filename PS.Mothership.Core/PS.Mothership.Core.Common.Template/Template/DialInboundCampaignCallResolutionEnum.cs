@@ -39,40 +39,40 @@ namespace PS.Mothership.Core.Common.Template.Dial
                 {   
                         _list = new List<InboundCampaignCallResolution>
                         {
-                            							new InboundCampaignCallResolution
+                            new InboundCampaignCallResolution
 							{
 								EnumValue = 0,
 								EnumName = "None",
 								EnumDescription = "None",
-								InboundCampaignCallResolutionKey=0
+								InboundCampaignCallResolutionKey = 0
 							},
 							new InboundCampaignCallResolution
 							{
 								EnumValue = 1,
 								EnumName = "Lead",
 								EnumDescription = "Lead",
-								InboundCampaignCallResolutionKey=1
+								InboundCampaignCallResolutionKey = 1
 							},
 							new InboundCampaignCallResolution
 							{
 								EnumValue = 2,
 								EnumName = "TransferredCall",
 								EnumDescription = "Transferred Call",
-								InboundCampaignCallResolutionKey=2
+								InboundCampaignCallResolutionKey = 2
 							},
 							new InboundCampaignCallResolution
 							{
 								EnumValue = 3,
 								EnumName = "NonSalesCall",
 								EnumDescription = "Non Sales Call",
-								InboundCampaignCallResolutionKey=3
+								InboundCampaignCallResolutionKey = 3
 							},
 							new InboundCampaignCallResolution
 							{
 								EnumValue = 4,
 								EnumName = "HighRiskCall",
 								EnumDescription = "High Risk Call",
-								InboundCampaignCallResolutionKey=4
+								InboundCampaignCallResolutionKey = 4
 							},
                         };
                     

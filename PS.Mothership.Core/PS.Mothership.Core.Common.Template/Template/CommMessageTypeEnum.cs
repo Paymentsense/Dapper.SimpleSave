@@ -37,26 +37,26 @@ namespace PS.Mothership.Core.Common.Template.Comm
                 {   
                         _list = new List<MessageType>
                         {
-                            							new MessageType
+                            new MessageType
 							{
 								EnumValue = 0,
 								EnumName = "None",
 								EnumDescription = "",
-								MessageTypeKey=0
+								MessageTypeKey = 0
 							},
 							new MessageType
 							{
 								EnumValue = 1,
 								EnumName = "SMS",
 								EnumDescription = "",
-								MessageTypeKey=1
+								MessageTypeKey = 1
 							},
 							new MessageType
 							{
 								EnumValue = 2,
 								EnumName = "Email",
 								EnumDescription = "",
-								MessageTypeKey=2
+								MessageTypeKey = 2
 							},
                         };
                     

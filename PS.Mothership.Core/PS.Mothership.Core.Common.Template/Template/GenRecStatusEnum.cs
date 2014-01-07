@@ -37,7 +37,7 @@ namespace PS.Mothership.Core.Common.Template.Gen
                 {   
                         _list = new List<RecStatus>
                         {
-                            							new RecStatus
+                            new RecStatus
 							{
 								EnumValue = 0,
 								EnumName = "None",

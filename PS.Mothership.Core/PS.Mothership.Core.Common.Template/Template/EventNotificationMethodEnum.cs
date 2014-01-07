@@ -35,12 +35,12 @@ namespace PS.Mothership.Core.Common.Template.Event
                 {   
                         _list = new List<NotificationMethod>
                         {
-                            							new NotificationMethod
+                            new NotificationMethod
 							{
 								EnumValue = 1,
 								EnumName = "Blank",
 								EnumDescription = "",
-								EventNotificationKey=1
+								EventNotificationKey = 1
 							},
                         };
                     

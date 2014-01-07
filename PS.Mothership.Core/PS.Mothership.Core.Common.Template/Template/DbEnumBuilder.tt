@@ -164,8 +164,7 @@ namespace <#=enumNameSpace+"."+schemaName #>
         {               
             this.Write(AddTabForIndentation(2));
             this.WriteLine(CreatePropertyString(field.Value.Name,field.Value.FieldType));
-        }            
-
+        }
         
         #>
     }

@@ -7,40 +7,42 @@ namespace PS.Mothership.Core.Common.Template.Comm
 {
     
     [DataContract]
-    public enum MessageCategoryEnum : long
+    public enum MessageStatusEnum : long
     {
-       [Description("")][EnumMember]Blank = 0,
+       [Description("")][EnumMember]Unpublished = 1,
         
     }
 
-    public class MessageCategory
+    public class MessageStatus
     {
         public long EnumValue {get;set;}
 		public string EnumName {get;set;}
 		public string EnumDescription {get;set;}
-		public long MessageCategoryKey {get;set;}
+		public long MessageStatusKey {get;set;}
+		public bool IsUseable {get;set;}
     }
 
     /// <summary>
     /// This class is mainly for using the extended properties of Enum
     /// </summary>
-    public static class MessageCategoryCollection
+    public static class MessageStatusCollection
     {
-        private static List<MessageCategory> _list; 
-        public static List<MessageCategory> MessageCategoryList
+        private static List<MessageStatus> _list; 
+        public static List<MessageStatus> MessageStatusList
         {
             get
             {
                 if (_list == null)
                 {   
-                        _list = new List<MessageCategory>
+                        _list = new List<MessageStatus>
                         {
-                            new MessageCategory
+                            new MessageStatus
 							{
-								EnumValue = 0,
-								EnumName = "Blank",
+								EnumValue = 1,
+								EnumName = "Unpublished",
 								EnumDescription = "",
-								MessageCategoryKey = 0
+								MessageStatusKey = 1,
+								IsUseable = false
 							},
                         };
                     

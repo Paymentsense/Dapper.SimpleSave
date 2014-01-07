@@ -38,33 +38,33 @@ namespace PS.Mothership.Core.Common.Template.Usr
                 {   
                         _list = new List<UserPermissionFlag>
                         {
-                            							new UserPermissionFlag
+                            new UserPermissionFlag
 							{
 								EnumValue = 0,
 								EnumName = "None",
 								EnumDescription = "None",
-								PermissionKey=0
+								PermissionKey = 0
 							},
 							new UserPermissionFlag
 							{
 								EnumValue = 1,
 								EnumName = "Add",
 								EnumDescription = "Add Resources",
-								PermissionKey=1
+								PermissionKey = 1
 							},
 							new UserPermissionFlag
 							{
 								EnumValue = 2,
 								EnumName = "Read",
 								EnumDescription = "Read Resources",
-								PermissionKey=2
+								PermissionKey = 2
 							},
 							new UserPermissionFlag
 							{
 								EnumValue = 4,
 								EnumName = "Delete",
 								EnumDescription = "Delete Resources",
-								PermissionKey=4
+								PermissionKey = 4
 							},
                         };
                     

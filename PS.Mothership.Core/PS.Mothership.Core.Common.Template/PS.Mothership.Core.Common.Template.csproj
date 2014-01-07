@@ -54,6 +54,9 @@
     <Compile Include="Template\CommMessageCategoryEnum.cs">
       <DependentUpon>DbEnumBuilder.tt</DependentUpon>
     </Compile>
+    <Compile Include="Template\CommMessageStatusEnum.cs">
+      <DependentUpon>DbEnumBuilder.tt</DependentUpon>
+    </Compile>
     <Compile Include="Template\CommMessageTypeEnum.cs">
       <DependentUpon>DbEnumBuilder.tt</DependentUpon>
     </Compile>
@@ -75,6 +78,9 @@
     <Compile Include="Template\EventNotificationMethodEnum.cs">
       <DependentUpon>DbEnumBuilder.tt</DependentUpon>
     </Compile>
+    <Compile Include="Template\GenGuidLinkTypeEnum.cs">
+      <DependentUpon>DbEnumBuilder.tt</DependentUpon>
+    </Compile>
     <Compile Include="Template\GenRecStatusEnum.cs">
       <DependentUpon>DbEnumBuilder.tt</DependentUpon>
     </Compile>
@@ -85,6 +91,9 @@
       <DependentUpon>DbEnumBuilder.tt</DependentUpon>
     </Compile>
     <Compile Include="Template\UsrResourceEnum.cs">
+      <DependentUpon>DbEnumBuilder.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Template\UsrResourceTypeEnum.cs">
       <DependentUpon>DbEnumBuilder.tt</DependentUpon>
     </Compile>
     <Compile Include="Template\UsrStatusOptionFlagEnum.cs">

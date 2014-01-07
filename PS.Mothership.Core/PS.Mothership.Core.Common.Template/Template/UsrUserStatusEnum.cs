@@ -44,77 +44,77 @@ namespace PS.Mothership.Core.Common.Template.Usr
                 {   
                         _list = new List<UserStatus>
                         {
-                            							new UserStatus
+                            new UserStatus
 							{
 								EnumValue = 0,
 								EnumName = "None",
 								EnumDescription = "None",
-								UserStatusKey=0,
-								IsLoginEnabled=false,
-								IsVisibleInUI=true
+								UserStatusKey = 0,
+								IsLoginEnabled = false,
+								IsVisibleInUI = true
 							},
 							new UserStatus
 							{
 								EnumValue = 1,
 								EnumName = "NewHire",
 								EnumDescription = "New Hire",
-								UserStatusKey=1,
-								IsLoginEnabled=false,
-								IsVisibleInUI=true
+								UserStatusKey = 1,
+								IsLoginEnabled = false,
+								IsVisibleInUI = true
 							},
 							new UserStatus
 							{
 								EnumValue = 2,
 								EnumName = "Active",
 								EnumDescription = "Active User",
-								UserStatusKey=2,
-								IsLoginEnabled=true,
-								IsVisibleInUI=true
+								UserStatusKey = 2,
+								IsLoginEnabled = true,
+								IsVisibleInUI = true
 							},
 							new UserStatus
 							{
 								EnumValue = 3,
 								EnumName = "PasswordLock",
 								EnumDescription = "Password Locked",
-								UserStatusKey=3,
-								IsLoginEnabled=false,
-								IsVisibleInUI=false
+								UserStatusKey = 3,
+								IsLoginEnabled = false,
+								IsVisibleInUI = false
 							},
 							new UserStatus
 							{
 								EnumValue = 4,
 								EnumName = "SystemLock",
 								EnumDescription = "System Locked",
-								UserStatusKey=4,
-								IsLoginEnabled=false,
-								IsVisibleInUI=true
+								UserStatusKey = 4,
+								IsLoginEnabled = false,
+								IsVisibleInUI = true
 							},
 							new UserStatus
 							{
 								EnumValue = 5,
 								EnumName = "Suspended",
 								EnumDescription = "Suspended",
-								UserStatusKey=5,
-								IsLoginEnabled=false,
-								IsVisibleInUI=true
+								UserStatusKey = 5,
+								IsLoginEnabled = false,
+								IsVisibleInUI = true
 							},
 							new UserStatus
 							{
 								EnumValue = 6,
 								EnumName = "Terminated",
 								EnumDescription = "Terminated",
-								UserStatusKey=6,
-								IsLoginEnabled=false,
-								IsVisibleInUI=true
+								UserStatusKey = 6,
+								IsLoginEnabled = false,
+								IsVisibleInUI = true
 							},
 							new UserStatus
 							{
 								EnumValue = 7,
 								EnumName = "PasswordReset",
 								EnumDescription = "Password Reset",
-								UserStatusKey=7,
-								IsLoginEnabled=false,
-								IsVisibleInUI=false
+								UserStatusKey = 7,
+								IsLoginEnabled = false,
+								IsVisibleInUI = false
 							},
                         };
                     
