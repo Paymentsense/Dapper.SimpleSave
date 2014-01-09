@@ -38,33 +38,33 @@ namespace PS.Mothership.Core.Common.Template.Usr
                 {   
                         _list = new List<IpStatus>
                         {
-                            							new IpStatus
+                            new IpStatus
 							{
 								EnumValue = 0,
 								EnumName = "None",
 								EnumDescription = "None",
-								IPStatusKey=0
+								IPStatusKey = 0
 							},
 							new IpStatus
 							{
 								EnumValue = 1,
 								EnumName = "Active",
 								EnumDescription = "Active",
-								IPStatusKey=1
+								IPStatusKey = 1
 							},
 							new IpStatus
 							{
 								EnumValue = 2,
 								EnumName = "InActive",
 								EnumDescription = "In Active",
-								IPStatusKey=2
+								IPStatusKey = 2
 							},
 							new IpStatus
 							{
 								EnumValue = 3,
 								EnumName = "Deleted",
 								EnumDescription = "Deleted",
-								IPStatusKey=3
+								IPStatusKey = 3
 							},
                         };
                     

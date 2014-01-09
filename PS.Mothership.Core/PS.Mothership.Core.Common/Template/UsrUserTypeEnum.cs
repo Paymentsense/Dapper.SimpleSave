@@ -38,33 +38,33 @@ namespace PS.Mothership.Core.Common.Template.Usr
                 {   
                         _list = new List<UserType>
                         {
-                            							new UserType
+                            new UserType
 							{
 								EnumValue = 0,
 								EnumName = "None",
 								EnumDescription = "None",
-								UserTypeKey=0
+								UserTypeKey = 0
 							},
 							new UserType
 							{
 								EnumValue = 1,
 								EnumName = "Employee",
 								EnumDescription = "Employee",
-								UserTypeKey=1
+								UserTypeKey = 1
 							},
 							new UserType
 							{
 								EnumValue = 2,
 								EnumName = "Contractor",
 								EnumDescription = "Contractor",
-								UserTypeKey=2
+								UserTypeKey = 2
 							},
 							new UserType
 							{
 								EnumValue = 3,
 								EnumName = "ThirdParty",
 								EnumDescription = "Third Party",
-								UserTypeKey=3
+								UserTypeKey = 3
 							},
                         };
                     
