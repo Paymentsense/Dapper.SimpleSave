@@ -31,7 +31,10 @@ namespace PS.Mothership.Core.Common.Contracts.Security
         IEnumerable<UserRoleDto> GetRolesFromRelationShip(Guid userGuid);
 
         [OperationContract]
-        IEnumerable<ResourceRolePermissionsDto> GetPermissionsByResource(Guid userGuid, ResourceEnum resourcesId);
+        IEnumerable<ResourceRolePermissionsDto> GetPermissionsByResource(Guid userGuid, ResourceEnum resource);
+
+        [OperationContract]
+        IEnumerable<ResourceRolePermissionsDto> GetPermissionsByResourceType(Guid userGuid, ResourceTypeEnum resourceType);
 
         [OperationContract]
         bool IsAccountLockedOut(Guid userGuid, int allowedPasswordAttempts);
