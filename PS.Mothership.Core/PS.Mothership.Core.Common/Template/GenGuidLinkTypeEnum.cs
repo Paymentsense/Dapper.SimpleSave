@@ -15,6 +15,7 @@ namespace PS.Mothership.Core.Common.Template.Gen
        [Description("")][EnumMember]ServiceCall = 3,
        [Description("")][EnumMember]Application = 4,
        [Description("")][EnumMember]RellaidCall = 5,
+       [Description("")][EnumMember]Role = 6,
         
     }
 
@@ -95,6 +96,15 @@ namespace PS.Mothership.Core.Common.Template.Gen
 								GUIDLinkTypeKey = 5,
 								LinkTable = "dial.CALL_TRN",
 								LinkColumn = "CallTrnGUID"
+							},
+							new GuidLinkType
+							{
+								EnumValue = 6,
+								EnumName = "Role",
+								EnumDescription = "",
+								GUIDLinkTypeKey = 6,
+								LinkTable = "usr.ROLE_LUT",
+								LinkColumn = "[RowGUID]"
 							},
                         };
                     
