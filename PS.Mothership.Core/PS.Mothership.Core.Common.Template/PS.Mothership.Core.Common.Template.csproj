@@ -54,6 +54,9 @@
     <Compile Include="Template\CommMessageCategoryEnum.cs">
       <DependentUpon>DbEnumBuilder.tt</DependentUpon>
     </Compile>
+    <Compile Include="Template\CommMessageServiceStatusEnum.cs">
+      <DependentUpon>DbEnumBuilder.tt</DependentUpon>
+    </Compile>
     <Compile Include="Template\CommMessageStatusEnum.cs">
       <DependentUpon>DbEnumBuilder.tt</DependentUpon>
     </Compile>
