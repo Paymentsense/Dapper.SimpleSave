@@ -104,7 +104,7 @@ namespace PS.Mothership.Core.Common.Template.Gen
 								EnumDescription = "",
 								GUIDLinkTypeKey = 6,
 								LinkTable = "usr.ROLE_LUT",
-								LinkColumn = "[RowGUID]"
+								LinkColumn = "RowGUID"
 							},
                         };
                     
