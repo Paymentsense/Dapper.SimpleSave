@@ -48,5 +48,11 @@ namespace PS.Mothership.Core.Common.Contracts
 
         [OperationContract]
         bool IsCallResolved(Guid prospectingCampaignCallGuid);
+
+        [OperationContract]
+        Guid AddOrUpdateSpeedDialNumber(Guid userGuid, SpeedDialNumberDto speedDialNumber);
+
+        [OperationContract]
+        void DeleteSpeedDialNumber(Guid userGuid, Guid speedDialNumberGuid);
     }
 }
