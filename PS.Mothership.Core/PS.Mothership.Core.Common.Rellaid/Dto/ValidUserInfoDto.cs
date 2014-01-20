@@ -45,5 +45,8 @@ namespace PS.Mothership.Core.Common.Rellaid.Dto
 
         [DataMember]
         public long DepartmentCategoryKey { get; set; }
+
+        [DataMember]
+        public List<SpeedDialNumberDto> SpeedDialNumbers { get; set; }
     }
 }
