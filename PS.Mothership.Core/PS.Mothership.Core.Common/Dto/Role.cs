@@ -26,5 +26,7 @@ namespace PS.Mothership.Core.Common.Dto
         public string RoleDescription { get; set; }
         [DataMember]
         public bool IsDefining { get; set; }
+
+        public int RoleStatus { get; set; }
     }
 }
