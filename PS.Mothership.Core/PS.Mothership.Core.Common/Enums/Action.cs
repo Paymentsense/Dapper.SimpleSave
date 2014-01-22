@@ -12,4 +12,15 @@ namespace PS.Mothership.Core.Common.Enums
         Delete,
         Update
     }
+
+    /// <summary>
+    ///     Manage Region
+    /// </summary>
+    public enum RegionAction
+    {
+        None,
+        Create,
+        Clear,
+        Remove
+    }
 }
