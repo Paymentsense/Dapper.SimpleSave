@@ -17,6 +17,8 @@ namespace PS.Mothership.Core.Common.Dto
             RoleName = role.RoleName;
             RoleDescription = role.RoleDescription;
             IsDefining = role.IsDefining;
+            RoleStatus = role.RoleStatus;
+            RoleStatusName = role.RoleStatusName;
         }
         [DataMember]
         public long Id { get; set; }
@@ -26,7 +28,9 @@ namespace PS.Mothership.Core.Common.Dto
         public string RoleDescription { get; set; }
         [DataMember]
         public bool IsDefining { get; set; }
-
+        [DataMember]
         public int RoleStatus { get; set; }
+        [DataMember]
+        public string RoleStatusName { get; set; }
     }
 }
