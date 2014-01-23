@@ -34,6 +34,9 @@ namespace PS.Mothership.Core.Common.Contracts.Security
         IEnumerable<ResourceRolePermissionsDto> GetPermissionsByResource(Guid userGuid, ResourceEnum resource);
 
         [OperationContract]
+        IEnumerable<ResourceRolePermissionsDto> GetResourcePermissionsByCollection();
+
+        [OperationContract]
         IEnumerable<ResourceRolePermissionsDto> GetPermissionsByResourceType(Guid userGuid, ResourceTypeEnum resourceType);
 
         [OperationContract]
