@@ -19,8 +19,8 @@ namespace PS.Mothership.Core.Common.Enums
     public enum RegionAction
     {
         None,
-        Create,
+        DoCreateIfNotExists,
         Clear,
-        Remove
+        //Remove // for now lets disable this function, as the developer would be bit confused between clear and remove
     }
 }
