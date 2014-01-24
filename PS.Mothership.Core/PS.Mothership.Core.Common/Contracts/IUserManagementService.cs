@@ -5,6 +5,9 @@ using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using PS.Mothership.Core.Common.Dto;
+using PS.Mothership.Core.Common.Dto.Groups;
+using PS.Mothership.Core.Common.Dto.Login;
+using PS.Mothership.Core.Common.Dto.Roles;
 
 namespace PS.Mothership.Core.Common.Contracts
 {
@@ -12,9 +15,9 @@ namespace PS.Mothership.Core.Common.Contracts
     public interface IUserManagementService 
     {        
         [OperationContract]
-        UserDto AddUser(UserProfileDto userProfileDto);
+        PS.Mothership.Core.Common.Dto.Login.UserDto AddUser(UserProfileDto userProfileDto);
         [OperationContract]
-        UserDto UpDateUser(UserProfileDto userProfileDto);
+        PS.Mothership.Core.Common.Dto.Login.UserDto UpDateUser(UserProfileDto userProfileDto);
         [OperationContract]
         IEnumerable<UserProfileDto> GetUsers(DataRequestDto dataRequestDto);
         [OperationContract]
@@ -24,46 +27,46 @@ namespace PS.Mothership.Core.Common.Contracts
         [OperationContract]
         IEnumerable<UserProfileDto> QuickSearch(SearchDto searchInput);
         [OperationContract]
-        User GetRolesForUser(Guid userGuid);
+        PS.Mothership.Core.Common.Dto.Roles.UserDto GetRolesForUser(Guid userGuid);
         [OperationContract]
-        UserRoles GetRolesForUsers();
+        UserRolesDto GetRolesForUsers();
         [OperationContract]
-        void RemoveRoleFromUser(UserRole userRole);
+        void RemoveRoleFromUser(BasicUserRoleDto userRole);
         [OperationContract]
-        void AddRoleToUser(UserRole userRole);
+        void AddRoleToUser(BasicUserRoleDto userRole);
         [OperationContract]
-        void RemoveRole(Role role);
+        void RemoveRole(RoleDto role);
         [OperationContract]
-        void AddRole(Role role);
+        void AddRole(RoleDto role);
         [OperationContract]
-        IEnumerable<Role> GetRoles();
+        IEnumerable<RoleDto> GetRoles();
         [OperationContract]
-        GroupRoles GetAllRolesAndGroups();
+        GroupRolesDto GetAllRolesAndGroups();
         [OperationContract]
-        Group GetRolesForGroup(long groupId);
+        GroupDto GetRolesForGroup(long groupId);
         [OperationContract]
-        void RemoveGroup(GroupDesc groupDesc);
+        void RemoveGroup(GroupDescDto groupDesc);
         [OperationContract]
-        void AddOrUpdateGroup(GroupDesc groupDesc);
+        void AddOrUpdateGroup(GroupDescDto groupDesc);
         [OperationContract]
-        void RemoveRoleFromGroup(GroupRole groupRole);
+        void RemoveRoleFromGroup(GroupRoleDto groupRole);
         [OperationContract]
-        void AddRoleToGroup(GroupRole groupRole);
+        void AddRoleToGroup(GroupRoleDto groupRole);
         [OperationContract]
-        void AddInheritRole(RoleInheritance roleInheritance);
+        void AddInheritRole(RoleInheritanceDto roleInheritance);
         [OperationContract]
-        void RemoveInheritRole(RoleInheritance roleInheritance);
+        void RemoveInheritRole(RoleInheritanceDto roleInheritance);
         [OperationContract]
-        void AddGroupToUser(UserGroup userGroup);
+        void AddGroupToUser(PS.Mothership.Core.Common.Dto.Groups.UserGroupDto userGroup);
         [OperationContract]
-        void RemoveGroupFromUser(UserGroup userGroup);
+        void RemoveGroupFromUser(PS.Mothership.Core.Common.Dto.Groups.UserGroupDto userGroup);
         [OperationContract]
-        Group GetGroupForUser(Guid userId);
+        GroupDto GetGroupForUser(Guid userId);
         [OperationContract]
-        InheritedRoles GetInheritedRoles(Role role);
+        InheritedRolesDto GetInheritedRoles(RoleDto role);
         [OperationContract]
-        User RolesForUserAvailableAndAssigned(Guid userGuid);
+        PS.Mothership.Core.Common.Dto.Roles.UserDto RolesForUserAvailableAndAssigned(Guid userGuid);
         [OperationContract]
-        IEnumerable<RecStatus> GetAllStatuses();
+        IEnumerable<RecStatusDto> GetAllStatuses();
     }
 }

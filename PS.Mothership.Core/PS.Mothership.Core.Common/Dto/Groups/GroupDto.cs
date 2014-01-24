@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
+using PS.Mothership.Core.Common.Dto.Roles;
 
-namespace PS.Mothership.Core.Common.Dto
+namespace PS.Mothership.Core.Common.Dto.Groups
 {
     [DataContract]
-    public class Group
+    public class GroupDto
     {
         [DataMember]
         public string GroupName { get; set; }
@@ -17,6 +14,6 @@ namespace PS.Mothership.Core.Common.Dto
         [DataMember]
         public long Id { get; set; }
         [DataMember]
-        public List<Role> Roles { get; set; }
+        public List<RoleDto> Roles { get; set; }
     }
 }

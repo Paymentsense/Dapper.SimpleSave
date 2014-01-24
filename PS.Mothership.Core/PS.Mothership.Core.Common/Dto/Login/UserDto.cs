@@ -1,10 +1,8 @@
-﻿using System;
-using System.Net;
+﻿using System.Net;
 using System.Runtime.Serialization;
-using Newtonsoft.Json;
 using PS.Mothership.Core.Common.Template.Usr;
 
-namespace PS.Mothership.Core.Common.Dto
+namespace PS.Mothership.Core.Common.Dto.Login
 {
     public class UserDto
     {

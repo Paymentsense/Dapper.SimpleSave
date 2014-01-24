@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using PS.Mothership.Core.Common.Template.Usr;
 
-namespace PS.Mothership.Core.Common.Dto
+namespace PS.Mothership.Core.Common.Dto.Roles
 {
+    // TODO: Refactor
+
     [DataContract]
     public class UserRoleDto
     {

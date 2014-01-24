@@ -1,0 +1,15 @@
+﻿using System.Runtime.Serialization;
+
+namespace PS.Mothership.Core.Common.Dto.Groups
+{
+    [DataContract]
+    public class GroupDescDto
+    {
+        [DataMember]
+        public long Id { get; set; }
+        [DataMember]
+        public string GroupName { get; set; }
+        [DataMember]
+        public string GroupDescription { get; set; }
+    }
+}

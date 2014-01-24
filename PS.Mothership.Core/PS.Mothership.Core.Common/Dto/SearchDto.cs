@@ -11,8 +11,7 @@ namespace PS.Mothership.Core.Common.Dto
     public class SearchDto
     {
         [DataMember]
-        public string SearchPhrase { get; set; }        
-
+        public string SearchPhrase { get; set; }
         [DataMember]
         public DataRequestDto DataRequest { get; set; }
     }

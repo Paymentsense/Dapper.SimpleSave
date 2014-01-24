@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 
 namespace PS.Mothership.Core.Common.Dto
 {
+    // TODO: Refactor
+
     [DataContract]
     public class IdentityCheckRequestDto
     {

@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
+using PS.Mothership.Core.Common.Dto.Groups;
+using PS.Mothership.Core.Common.Dto.Roles;
 using PS.Mothership.Core.Common.Template.Usr;
 
-namespace PS.Mothership.Core.Common.Dto
+namespace PS.Mothership.Core.Common.Dto.Login
 {
     /// <summary>
     /// User Proile Dto
@@ -96,11 +98,11 @@ namespace PS.Mothership.Core.Common.Dto
         [DataMember]
         public bool ResetPassword { get; set; }
         [DataMember]
-        public Role DefiningRole { get; set; }
+        public RoleDto DefiningRole { get; set; }
         [DataMember]
-        public Group Group { get; set; }
+        public GroupDto Group { get; set; }
 
-        public List<Group> Groups { get; set; }
-        public List<Role> AllDefiningRoles { get; set; }
+        public List<GroupDto> Groups { get; set; }
+        public List<RoleDto> AllDefiningRoles { get; set; }
     }
 }

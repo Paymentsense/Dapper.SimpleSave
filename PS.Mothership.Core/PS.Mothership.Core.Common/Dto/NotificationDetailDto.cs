@@ -3,7 +3,7 @@
 namespace PS.Mothership.Core.Common.Dto
 {
     [DataContract]
-    public class NotificationDetail
+    public class NotificationDetailDto
     {
         [DataMember]
         public string UserName { get; set; }

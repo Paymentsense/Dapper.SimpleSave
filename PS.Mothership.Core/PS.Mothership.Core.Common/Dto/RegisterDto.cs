@@ -7,13 +7,10 @@ namespace PS.Mothership.Core.Common.Dto
     {
         [DataMember]
         public string UserName { get; set; }
-
         [DataMember]
         public string Password { get; set; }
-
         [DataMember]
         public string ConfirmPassword { get; set; }
-
         [DataMember]
         public bool UseNewEncryption { get; set; }
     }

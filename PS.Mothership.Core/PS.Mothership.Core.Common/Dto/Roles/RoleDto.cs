@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 namespace PS.Mothership.Core.Common.Dto
 {
     [DataContract]
-    public class Role
+    public class RoleDto
     {
-        public Role() { }
-        public Role(Role role)
+        public RoleDto() { }
+        public RoleDto(RoleDto role)
         {
             Id = role.Id;
             RoleName = role.RoleName;
