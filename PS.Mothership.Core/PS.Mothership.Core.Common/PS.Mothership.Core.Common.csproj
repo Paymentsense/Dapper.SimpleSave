@@ -146,9 +146,12 @@
     <Compile Include="Dto\NotificationResultDto.cs" />
     <Compile Include="Dto\PendingTaskNotificationDto.cs" />
     <Compile Include="Dto\RegisterDto.cs" />
+    <Compile Include="Dto\Roles\ResourceRolePermissionsDto.cs" />
     <Compile Include="Dto\Roles\RoleDto.cs" />
     <Compile Include="Dto\Roles\RoleInheritanceDto.cs" />
     <Compile Include="Dto\RecStatusDto.cs" />
+    <Compile Include="Dto\Roles\UserGroupDto.cs" />
+    <Compile Include="Dto\Roles\UserPermissionDto.cs" />
     <Compile Include="Dto\SearchDto.cs" />
     <Compile Include="Dto\TaskDto.cs" />
     <Compile Include="Dto\Roles\UserAssignedAndAvailableRoleDto.cs" />
