@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
+using PS.Mothership.Core.Common.Dto.DynamicRequest;
 using System.Text;
 using System.Threading.Tasks;
 
