@@ -127,6 +127,9 @@
     <Compile Include="Config\ILayerIocBuilder.cs" />
     <Compile Include="Config\IocBuildSettings.cs" />
     <Compile Include="Config\WcfMode.cs" />
+    <Compile Include="Dto\DynamicRequest\DataRequestDto.cs" />
+    <Compile Include="Dto\DynamicRequest\FilterDto.cs" />
+    <Compile Include="Dto\DynamicRequest\SortDto.cs" />
     <Compile Include="Dto\Login\AccountDto.cs" />
     <Compile Include="Dto\Login\ChangePasswordDto.cs" />
     <Compile Include="Dto\Login\ChangePasswordResultDto.cs" />
