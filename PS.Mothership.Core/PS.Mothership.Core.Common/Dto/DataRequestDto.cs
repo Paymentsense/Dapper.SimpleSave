@@ -124,38 +124,40 @@ namespace PS.Mothership.Core.Common.Dto
         /// Gets or sets the child filter expressions. Set to <c>null</c> if there are no child expressions.
         /// </summary>
         [DataMember(Name = "filters")]
-        public IEnumerable<Filter> Filters { get; set; }       
+        public IEnumerable<Filter> Filters { get; set; }
 
-        /// <summary>
-        /// Get a flattened list of all child filter expressions.
-        /// </summary>
-        public IList<Filter> All()
-        {
-            var filters = new List<Filter>();
 
-            Collect(filters);
+        #region commented, kept for reference, all function moved out, as this is a DTO object
+        ///// <summary>
+        ///// Get a flattened list of all child filter expressions.
+        ///// </summary>
+        //public IList<Filter> All()
+        //{
+        //    var filters = new List<Filter>();
 
-            return filters;
-        }
+        //    Collect(filters);
 
-        private void Collect(IList<Filter> filters)
-        {
-            if (Filters != null && Filters.Any())
-            {
-                foreach (Filter filter in Filters)
-                {
-                    filters.Add(filter);
-                    if (filter != null && filter.Filters != null)                    
-                        filter.Collect(filter.Filters.ToList());                     
-                }
-            }
-            else
-            {
-                filters.Add(this);
-            }
-        }
+        //    return filters;
+        //}
 
-        #region commented, kept for reference
+        //private void Collect(IList<Filter> filters)
+        //{
+        //    if (Filters != null && Filters.Any())
+        //    {
+        //        foreach (Filter filter in Filters)
+        //        {
+        //            filters.Add(filter);
+        //            if (filter != null && filter.Filters != null)                    
+        //                filter.Collect(filter.Filters.ToList());                     
+        //        }
+        //    }
+        //    else
+        //    {
+        //        filters.Add(this);
+        //    }
+        //}
+
+        
         ///// <summary>
         ///// Converts the filter expression to a predicate suitable for Dynamic Linq e.g. "Field1 = @1 and Field2.Contains(@2)"
         ///// if of object is of string type then Field2.ToLower().Contains(@2)
