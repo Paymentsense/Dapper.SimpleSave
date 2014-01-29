@@ -132,6 +132,7 @@
     <Compile Include="Dto\DynamicRequest\SortDto.cs" />
     <Compile Include="Dto\Experian\CurrentAddressTypeDto.cs" />
     <Compile Include="Dto\Experian\Gender.cs" />
+    <Compile Include="Dto\Experian\IdentityCheckDto.cs" />
     <Compile Include="Dto\Experian\IdentityCheckRequestDto.cs" />
     <Compile Include="Dto\Experian\IdentityCheckResponseDto.cs" />
     <Compile Include="Dto\Experian\IdentityCheckTokenDto.cs" />
