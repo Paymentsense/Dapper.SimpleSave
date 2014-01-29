@@ -4,7 +4,7 @@ namespace PS.Mothership.Core.Common.Dto.Roles
 {
     public class UserRolesDto
     {
-        //TODO: Refactor
+        //TODO: Refactor wg
 
         private List<UserDto> _users = new List<UserDto>();
         public List<UserDto> Users 
