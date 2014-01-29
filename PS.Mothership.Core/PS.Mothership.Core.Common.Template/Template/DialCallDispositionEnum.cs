@@ -16,6 +16,7 @@ namespace PS.Mothership.Core.Common.Template.Dial
        [Description("Answered")][EnumMember]Answered = 4,
        [Description("Transferred")][EnumMember]Transferred = 5,
        [Description("Conferenced")][EnumMember]Conferenced = 6,
+       [Description("Rejected")][EnumMember]Rejected = 7,
         
     }
 
@@ -89,6 +90,13 @@ namespace PS.Mothership.Core.Common.Template.Dial
 								EnumName = "Conferenced",
 								EnumDescription = "Conferenced",
 								CallDispositionKey = 6
+							},
+							new CallDisposition
+							{
+								EnumValue = 7,
+								EnumName = "Rejected",
+								EnumDescription = "Rejected",
+								CallDispositionKey = 7
 							},
                         };
                     
