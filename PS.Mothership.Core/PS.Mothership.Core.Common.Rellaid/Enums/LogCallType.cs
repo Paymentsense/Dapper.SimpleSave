@@ -8,6 +8,7 @@ namespace PS.Mothership.Core.Common.Rellaid.Enums
         [EnumMember] Unknown = 0,
         [EnumMember] Outbound = 1,
         [EnumMember] InboundMissed = 2,
-        [EnumMember] InboundAnswered = 3
+        [EnumMember] InboundAnswered = 3,
+        [EnumMember] InboundRejected = 4
     }
 }
