@@ -10,9 +10,10 @@ namespace PS.Mothership.Core.Common.Template.Usr
     public enum UserPermissionFlagEnum : long
     {
        [Description("None")][EnumMember]None = 0,
-       [Description("Add Resources")][EnumMember]Add = 1,
-       [Description("Read Resources")][EnumMember]Read = 2,
-       [Description("Delete Resources")][EnumMember]Delete = 4,
+       [Description("View Permission")][EnumMember]View = 1,
+       [Description("Add Permission")][EnumMember]Add = 2,
+       [Description("Edit Permission")][EnumMember]Edit = 4,
+       [Description("Delete Permission")][EnumMember]Delete = 8,
         
     }
 
@@ -48,23 +49,30 @@ namespace PS.Mothership.Core.Common.Template.Usr
 							new UserPermissionFlag
 							{
 								EnumValue = 1,
-								EnumName = "Add",
-								EnumDescription = "Add Resources",
+								EnumName = "View",
+								EnumDescription = "View Permission",
 								PermissionKey = 1
 							},
 							new UserPermissionFlag
 							{
 								EnumValue = 2,
-								EnumName = "Read",
-								EnumDescription = "Read Resources",
+								EnumName = "Add",
+								EnumDescription = "Add Permission",
 								PermissionKey = 2
 							},
 							new UserPermissionFlag
 							{
 								EnumValue = 4,
-								EnumName = "Delete",
-								EnumDescription = "Delete Resources",
+								EnumName = "Edit",
+								EnumDescription = "Edit Permission",
 								PermissionKey = 4
+							},
+							new UserPermissionFlag
+							{
+								EnumValue = 8,
+								EnumName = "Delete",
+								EnumDescription = "Delete Permission",
+								PermissionKey = 8
 							},
                         };
                     

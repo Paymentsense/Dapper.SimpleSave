@@ -12,4 +12,15 @@ namespace PS.Mothership.Core.Common.Enums
         Delete,
         Update
     }
+
+    /// <summary>
+    ///     Manage Region
+    /// </summary>
+    public enum RegionAction
+    {
+        None,
+        DoCreateIfNotExists,
+        Clear,
+        //Remove // for now lets disable this function, as the developer would be bit confused between clear and remove
+    }
 }

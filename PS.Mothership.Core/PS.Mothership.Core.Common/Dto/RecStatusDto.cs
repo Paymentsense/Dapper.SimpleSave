@@ -2,18 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
-using PS.Mothership.Core.Common.Dto.DynamicRequest;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace PS.Mothership.Core.Common.Dto
 {
     [DataContract]
-    public class SearchDto
+    public class RecStatusDto
     {
         [DataMember]
-        public string SearchPhrase { get; set; }
+        public int Id { get; set; }
         [DataMember]
-        public DataRequestDto DataRequest { get; set; }
+        public string Name { get; set; }
     }
 }

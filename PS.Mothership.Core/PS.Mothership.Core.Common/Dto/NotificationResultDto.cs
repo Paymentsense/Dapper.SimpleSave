@@ -12,6 +12,6 @@ namespace PS.Mothership.Core.Common.Dto
         [DataMember]
         public string Message { get; set; }
         [DataMember]
-        public List<PendingTaskNotification> PendingTaskNotifications { get; set; }
+        public List<PendingTaskNotificationDto> PendingTaskNotifications { get; set; }
     }
 }
