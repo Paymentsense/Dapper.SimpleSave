@@ -8,16 +8,21 @@ using System.Threading.Tasks;
 namespace PS.Mothership.Core.Common.Dto.Experian
 {
     [DataContract]
-    public class IdentityCheckRequestDto
+    public class IdentityCheckResponseDto
     {
         [DataMember]
-        public PrivateInformationTypeDto PersonalInformation { get; set; }
+        public string AuthenticationIndex { get; set; }
         [DataMember]
-        public CurrentAddressTypeDto CurrentAddress { get; set; }
+        public string ExperianReferenceNumber { get; set; }
         [DataMember]
-        public PreviousAddressTypeDto PreviousAddress { get; set; }
+        public bool DidVerificationErrorOccur { get; set; }
         [DataMember]
-        public bool CreateDocument { get; set; }
-
+        public string CustomerNo { get; set; }
+        [DataMember]
+        public string ErrorMessage { get; set; }
+        [DataMember]
+        public byte[] FileBytes { get; set; }
+        [DataMember]
+        public IdentityResultBlockDto ResultsBlock { get; set; }
     }
 }
