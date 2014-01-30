@@ -30,7 +30,7 @@ namespace PS.Mothership.Core.Common.Contracts
         [OperationContract]
         PS.Mothership.Core.Common.Dto.Roles.UserDto GetRolesForUser(Guid userGuid);
         [OperationContract]
-        UserRolesDto GetRolesForUsers();
+        IEnumerable<PS.Mothership.Core.Common.Dto.Roles.UserDto> GetRolesForUsers();
         [OperationContract]
         void RemoveRoleFromUser(BasicUserRoleDto userRole);
         [OperationContract]

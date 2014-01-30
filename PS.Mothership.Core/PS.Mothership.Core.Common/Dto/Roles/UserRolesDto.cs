@@ -20,9 +20,9 @@ namespace PS.Mothership.Core.Common.Dto.Roles
             }
         }
 
-        public void AddUser(UserDto userVm)
-        {
-            _users.Add(userVm);
-        }
+        //public void AddUser(UserDto userVm)
+        //{
+        //    _users.Add(userVm);
+        //}
     }
 }
