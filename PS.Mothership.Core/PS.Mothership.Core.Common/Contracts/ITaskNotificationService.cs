@@ -20,7 +20,7 @@ namespace PS.Mothership.Core.Common.Contracts
         [OperationContract]
         void UpdateTask(TaskDto taskDto);
         [OperationContract]
-        void CompleteTask(long pendingNotificationID);
+        void CompleteTask(long pendingNotificationId);
         [OperationContract]
         void PushPendingTaskNotifications(string userName);
     }

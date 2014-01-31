@@ -3,10 +3,10 @@
 namespace PS.Mothership.Core.Common.Dto
 {
     [DataContract]
-    public class PendingTaskNotification
+    public class PendingTaskNotificationDto
     {
         [DataMember]
-        public long PendingTaskID { get; set; }
+        public long PendingTaskId { get; set; }
         [DataMember]
         public string TriggeredDate { get; set; }
         [DataMember]

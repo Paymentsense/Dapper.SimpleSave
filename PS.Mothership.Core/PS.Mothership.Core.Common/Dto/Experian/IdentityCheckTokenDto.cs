@@ -2,18 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
-using PS.Mothership.Core.Common.Dto.DynamicRequest;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PS.Mothership.Core.Common.Dto
+namespace PS.Mothership.Core.Common.Dto.Experian
 {
     [DataContract]
-    public class SearchDto
+    public class IdentityCheckTokenDto
     {
         [DataMember]
-        public string SearchPhrase { get; set; }
+        public string Token { get; set; }
+
         [DataMember]
-        public DataRequestDto DataRequest { get; set; }
+        public TimeSpan TokenTimeOut { get; set; }
     }
 }

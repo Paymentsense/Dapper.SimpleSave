@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PS.Mothership.Core.Common.Dto
+namespace PS.Mothership.Core.Common.Dto.Experian
 {
-    public class InheritedRoles : Role
+    class IdentityCheckDto
     {
-        public List<Role> ChildRoles { get; set; }
     }
 }
