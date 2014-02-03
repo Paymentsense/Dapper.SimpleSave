@@ -16,6 +16,7 @@ namespace PS.Mothership.Core.Common.Template.Usr
        [Description("User Management")][EnumMember]UserManagement = 4,
        [Description("Role Management")][EnumMember]RoleManagement = 5,
        [Description("Group Management")][EnumMember]GroupManagement = 6,
+       [Description("Dialler Client")][EnumMember]DiallerClient = 7,
         
     }
 
@@ -129,6 +130,18 @@ namespace PS.Mothership.Core.Common.Template.Usr
 								Area = "Admin",
 								ContainerName = "User Administration",
 								ResourceTypeKey = 2
+							},
+							new Resource
+							{
+								EnumValue = 7,
+								EnumName = "DiallerClient",
+								EnumDescription = "Dialler Client",
+								ResourceKey = 7,
+								ActionName = "_AdminRightSubMenu",
+								ControllerName = "Dialler",
+								Area = "",
+								ContainerName = "",
+								ResourceTypeKey = 1
 							},
                         };
                     
