@@ -141,7 +141,7 @@ namespace PS.Mothership.Core.Common.Template.Usr
 								ControllerName = "Dialler",
 								Area = "",
 								ContainerName = "",
-								ResourceTypeKey = 1
+								ResourceTypeKey = 3
 							},
                         };
                     
