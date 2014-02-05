@@ -117,6 +117,9 @@
     <Compile Include="Contracts\IAddressService.cs" />
     <Compile Include="Contracts\IApplicationService.cs" />
     <Compile Include="Contracts\IIdentityCheckService.cs" />
+    <Compile Include="Contracts\IDiallerService.cs" />
+    <Compile Include="Contracts\IDiallerTaskNotificationCallback.cs" />
+    <Compile Include="Contracts\IDiallerTaskNotificationService.cs" />
     <Compile Include="Contracts\ILoggingService.cs" />
     <Compile Include="Contracts\IMSLogger.cs" />
     <Compile Include="Contracts\ITaskNotificationCallback.cs" />
@@ -187,69 +190,6 @@
     <Compile Include="IPManager\IPInspector.cs" />
     <Compile Include="Contracts\ISearchService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Template\CommMessageDirectionEnum.cs">
-      <DependentUpon>DbEnumBuilder.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Template\CommMessageEmailAddresstypeEnum.cs">
-      <DependentUpon>DbEnumBuilder.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Template\CommMessageResultEnum.cs">
-      <DependentUpon>DbEnumBuilder.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Template\CommMessageServiceStatusEnum.cs">
-      <DependentUpon>DbEnumBuilder.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Template\CommMessageTypeEnum.cs">
-      <DependentUpon>DbEnumBuilder.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Template\DialCallDispositionEnum.cs">
-      <DependentUpon>DbEnumBuilder.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Template\DialCallTypeEnum.cs">
-      <DependentUpon>DbEnumBuilder.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Template\DialInboundCampaignCallResolutionEnum.cs">
-      <DependentUpon>DbEnumBuilder.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Template\DialLogoutReasonEnum.cs">
-      <DependentUpon>DbEnumBuilder.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Template\DialModeEnum.cs">
-      <DependentUpon>DbEnumBuilder.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Template\EventNotificationMethodEnum.cs">
-      <DependentUpon>DbEnumBuilder.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Template\GenGuidLinkTypeEnum.cs">
-      <DependentUpon>DbEnumBuilder.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Template\GenRecStatusEnum.cs">
-      <DependentUpon>DbEnumBuilder.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Template\UsrIpStatusEnum.cs">
-      <DependentUpon>DbEnumBuilder.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Template\UsrLoginResultEnum.cs">
-      <DependentUpon>DbEnumBuilder.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Template\UsrResourceEnum.cs">
-      <DependentUpon>DbEnumBuilder.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Template\UsrResourceTypeEnum.cs">
-      <DependentUpon>DbEnumBuilder.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Template\UsrStatusOptionFlagEnum.cs">
-      <DependentUpon>DbEnumBuilder.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Template\UsrUserPermissionFlagEnum.cs">
-      <DependentUpon>DbEnumBuilder.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Template\UsrUserStatusEnum.cs">
-      <DependentUpon>DbEnumBuilder.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Template\UsrUserTypeEnum.cs">
-      <DependentUpon>DbEnumBuilder.tt</DependentUpon>
-    </Compile>
     <Compile Include="ValidationCode\CodeMaker.cs" />
     <Compile Include="Helper\CryptoRandom.cs" />
     <Compile Include="Helper\RandomProvider.cs" />
@@ -258,16 +198,9 @@
     <Compile Include="WcfErrorHandling\CustomServerException.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Template\ConfigurationAccessor.tt" />
-    <None Include="Template\DbEnumBuilder.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>DbEnumBuilder.txt</LastGenOutput>
-    </None>
-    <None Include="Template\Helper.tt" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -299,13 +232,14 @@
       <Project>{f4c86b09-f339-4a37-b2c1-e2ab6d7c2662}</Project>
       <Name>PS.Mothership.Core.Common.Log4NetJsonFormatter</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Template\DbEnumBuilder.txt">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DbEnumBuilder.tt</DependentUpon>
-    </Content>
+    <ProjectReference Include="..\PS.Mothership.Core.Common.Rellaid\PS.Mothership.Core.Common.Rellaid.csproj">
+      <Project>{808ef40d-2774-40cd-8b42-91785835795f}</Project>
+      <Name>PS.Mothership.Core.Common.Rellaid</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PS.Mothership.Core.Common.Template\PS.Mothership.Core.Common.Template.csproj">
+      <Project>{0f7a5532-b7d9-44df-b7b2-b30546f1922a}</Project>
+      <Name>PS.Mothership.Core.Common.Template</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <BeforeTransform>CustomPreTransform</BeforeTransform>

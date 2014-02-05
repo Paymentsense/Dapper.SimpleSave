@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using PS.Mothership.Core.Common.Enums;
 
 namespace PS.Mothership.Core.Common.Helper
 {
@@ -23,7 +18,7 @@ namespace PS.Mothership.Core.Common.Helper
         {
             try
             {
-                return (TO)Convert.ChangeType(fromObj, typeof(TO), CultureInfo.CurrentCulture);
+                return (TO) Convert.ChangeType(fromObj, typeof (TO), CultureInfo.CurrentCulture);
             }
             catch
             {
@@ -32,6 +27,6 @@ namespace PS.Mothership.Core.Common.Helper
 
             // return default
             return default(TO);
-        }       
+        }
     }
 }
