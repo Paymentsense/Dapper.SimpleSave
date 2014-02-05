@@ -32,5 +32,7 @@ namespace PS.Mothership.Core.Common.Dto
         public int RoleStatus { get; set; }
         [DataMember]
         public string RoleStatusName { get; set; }
+        [DataMember]
+        public int TotalCount { get; set; } 
     }
 }
