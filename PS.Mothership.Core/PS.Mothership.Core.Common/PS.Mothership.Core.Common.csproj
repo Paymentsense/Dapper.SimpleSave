@@ -172,7 +172,6 @@
     <Compile Include="Dto\Roles\UserRoleDto.cs" />
     <Compile Include="Dto\Login\UserProfileDto.cs" />
     <Compile Include="Enums\Action.cs" />
-    <Compile Include="Dto\Roles\UserRolesDto.cs" />
     <Compile Include="Enums\State.cs" />
     <Compile Include="Extension\EnumerableExtension.cs" />
     <Compile Include="Enums\UserRoleType.cs" />
