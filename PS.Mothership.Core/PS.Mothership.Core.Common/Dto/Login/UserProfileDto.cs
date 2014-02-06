@@ -62,14 +62,9 @@ namespace PS.Mothership.Core.Common.Dto.Login
         [DataMember]
         public ICollection<UserProfileDto> SimilarNames { get; set; }
                 
-        private Guid _sessionId = Guid.NewGuid();        
         [JsonIgnore]     
         [DataMember]
-        public Guid SessionId
-        {
-            get { return _sessionId; }  
-            set { _sessionId = value; }
-        }
+        public Guid SessionId { get; set; }
 
 
         [DataMember]
