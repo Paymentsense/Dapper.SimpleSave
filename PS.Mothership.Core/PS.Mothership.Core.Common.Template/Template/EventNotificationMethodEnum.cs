@@ -10,6 +10,7 @@ namespace PS.Mothership.Core.Common.Template.Event
     public enum NotificationMethodEnum : long
     {
        [Description("")][EnumMember]Blank = 1,
+       [Description("")][EnumMember]Nothing = 2,
         
     }
 
@@ -41,6 +42,13 @@ namespace PS.Mothership.Core.Common.Template.Event
 								EnumName = "Blank",
 								EnumDescription = "",
 								EventNotificationKey = 1
+							},
+							new NotificationMethod
+							{
+								EnumValue = 2,
+								EnumName = "Nothing",
+								EnumDescription = "",
+								EventNotificationKey = 2
 							},
                         };
                     
