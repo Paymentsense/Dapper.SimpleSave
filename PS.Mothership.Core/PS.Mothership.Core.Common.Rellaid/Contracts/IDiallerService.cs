@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ServiceModel;
 
-namespace PS.Mothership.Core.Common.Contracts
+namespace PS.Mothership.Core.Common.Rellaid.Contracts
 {
     [ServiceContract(Name = "DiallerService")]
     public interface IDiallerService
@@ -20,10 +20,10 @@ namespace PS.Mothership.Core.Common.Contracts
             LogoutReasonEnum logoutReason);
 
         [OperationContract]
-        List<InboundQueueDetailsDto> GetInboundQueueDetails();
+        IEnumerable<InboundQueueDetailsDto> GetInboundQueueDetails();
 
         [OperationContract]
-        List<MissingCallRecordingsDto> GetMissingCallRecordings(DateTime dateStart, DateTime dateEnd);
+        IEnumerable<MissingCallRecordingsDto> GetMissingCallRecordings(DateTime dateStart, DateTime dateEnd);
 
         [OperationContract]
         void UpdateRecorderCallIdForCallGuid(Guid callGuid, long recorderCallId, Guid mothershipSessionGuid);
@@ -32,7 +32,7 @@ namespace PS.Mothership.Core.Common.Contracts
         Dictionary<long, long> TryToFindDiallerDepartmentsByUserGuid(Guid userGuid);
 
         [OperationContract]
-        List<CallStatsDto> GetCallTotalsForToday();
+        IEnumerable<CallStatsDto> GetCallTotalsForToday();
 
         [OperationContract]
         void InsertCallRecordingEvent(CallRecordingEventDto callRecordingEvent);
