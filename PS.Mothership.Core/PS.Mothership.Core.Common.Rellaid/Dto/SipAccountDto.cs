@@ -11,5 +11,8 @@ namespace PS.Mothership.Core.Common.Rellaid.Dto
 
         [DataMember]
         public string Extension { get; set; }
+
+        [DataMember]
+        public bool Selected { get; set; }
     }
 }
