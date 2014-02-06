@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ServiceModel;
 
-namespace PS.Mothership.Core.Common.Rellaid.Contracts
+namespace PS.Mothership.Core.Common.Contracts
 {
     [ServiceContract(Name = "DiallerService")]
     public interface IDiallerService

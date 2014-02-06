@@ -41,7 +41,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contracts\IDiallerService.cs" />
     <Compile Include="Dto\CallLogItemDto.cs" />
     <Compile Include="Dto\CallRecordingEventDto.cs" />
     <Compile Include="Dto\CallStatsDto.cs" />
