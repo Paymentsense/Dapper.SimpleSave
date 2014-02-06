@@ -10,7 +10,7 @@ namespace PS.Mothership.Core.Common.Rellaid.Dto
         public Guid SipAccountGuid { get; set; }
 
         [DataMember]
-        public string Extension { get; set; }
+        public string PhoneNumber { get; set; }
 
         [DataMember]
         public bool Selected { get; set; }

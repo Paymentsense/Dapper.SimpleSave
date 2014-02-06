@@ -96,6 +96,8 @@ namespace PS.Mothership.Core.Common.Dto.Login
         public RoleDto DefiningRole { get; set; }
         [DataMember]
         public GroupDto Group { get; set; }
+        [DataMember]
+        public Guid SipAccountGuid { get; set; }
 
         public List<GroupDto> Groups { get; set; }
         public List<RoleDto> AllDefiningRoles { get; set; }
