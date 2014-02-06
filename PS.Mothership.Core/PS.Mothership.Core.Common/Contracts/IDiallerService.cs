@@ -56,6 +56,6 @@ namespace PS.Mothership.Core.Common.Contracts
         void DeleteSpeedDialNumber(Guid userGuid, Guid speedDialNumberGuid);
 
         [OperationContract]
-        IEnumerable<SipAccountDto> GetSipAccountList(Guid callingUserGuid);
+        IEnumerable<SipAccountDto> GetSipAccountList(Guid userSipAccountGuid);
     }
 }
