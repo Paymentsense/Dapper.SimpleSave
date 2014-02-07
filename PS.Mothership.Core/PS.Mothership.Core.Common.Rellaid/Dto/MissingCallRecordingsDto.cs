@@ -17,7 +17,7 @@ namespace PS.Mothership.Core.Common.Rellaid.Dto
         public string SipUserId { get; set; }
 
         [DataMember]
-        public string Extension { get; set; }
+        public string UserPhoneNumber { get; set; }
 
         [DataMember]
         public CallTypeEnum? CallType { get; set; }

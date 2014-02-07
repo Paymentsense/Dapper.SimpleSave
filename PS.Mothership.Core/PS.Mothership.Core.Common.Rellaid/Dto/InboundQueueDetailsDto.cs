@@ -14,7 +14,7 @@ namespace PS.Mothership.Core.Common.Rellaid.Dto
         public string Name { get; set; }
 
         [DataMember]
-        public string Extension { get; set; }
+        public string UserPhoneNumber { get; set; }
 
         [DataMember]
         public string SipUserId { get; set; }

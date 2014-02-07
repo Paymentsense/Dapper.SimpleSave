@@ -26,7 +26,7 @@ namespace PS.Mothership.Core.Common.Rellaid.Dto
         public string DialledNumber { get; set; }
 
         [DataMember]
-        public string ExtensionNumber { get; set; }
+        public string UserPhoneNumber { get; set; }
 
         [DataMember]
         public string CIDNumber { get; set; }

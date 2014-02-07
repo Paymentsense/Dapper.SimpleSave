@@ -20,7 +20,7 @@ namespace PS.Mothership.Core.Common.Rellaid.Dto
         public string MonitorPhoneNumber { get; set; }
 
         [DataMember]
-        public string Extension { get; set; }
+        public string UserPhoneNumber { get; set; }
 
         [DataMember]
         public List<CallLogItemDto> CallLog { get; set; }
