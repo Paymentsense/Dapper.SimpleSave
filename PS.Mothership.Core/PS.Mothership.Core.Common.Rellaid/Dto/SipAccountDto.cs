@@ -11,8 +11,5 @@ namespace PS.Mothership.Core.Common.Rellaid.Dto
 
         [DataMember]
         public string PhoneNumber { get; set; }
-
-        [DataMember]
-        public bool Selected { get; set; }
     }
 }
