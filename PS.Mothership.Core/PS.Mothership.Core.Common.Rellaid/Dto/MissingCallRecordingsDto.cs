@@ -14,7 +14,7 @@ namespace PS.Mothership.Core.Common.Rellaid.Dto
         public DateTime? StartDateTime { get; set; }
 
         [DataMember]
-        public string SipUserId { get; set; }
+        public string SipUserPhoneNumber { get; set; }
 
         [DataMember]
         public string UserPhoneNumber { get; set; }
