@@ -42,7 +42,7 @@ namespace PS.Mothership.Core.Common.Contracts
         [OperationContract]
         IEnumerable<RoleDto> GetRoles(SearchDto searchInput);
         [OperationContract]
-        List<GroupDto> GetAllRolesAndGroups();
+        List<GroupDto> GetAllRolesAndGroups(SearchDto searchInput);
         [OperationContract]
         GroupDto GetRolesForGroup(long groupId);
         [OperationContract]
