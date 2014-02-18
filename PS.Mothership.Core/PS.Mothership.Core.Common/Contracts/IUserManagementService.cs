@@ -67,7 +67,5 @@ namespace PS.Mothership.Core.Common.Contracts
         InheritedRolesDto GetInheritedRoles(RoleDto role);
         [OperationContract]
         PS.Mothership.Core.Common.Dto.Roles.UserDto RolesForUserAvailableAndAssigned(Guid userGuid);
-        [OperationContract]
-        IEnumerable<RecStatusDto> GetAllStatuses();
     }
 }
