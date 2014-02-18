@@ -240,6 +240,17 @@
       <Name>PS.Mothership.Core.Common.Template</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="ThirdParty\MiniProfiler.dll" />
+    <Content Include="ThirdParty\MiniProfiler.EntityFramework6.dll" />
+    <Content Include="ThirdParty\MiniProfiler.EntityFramework6.pdb" />
+    <Content Include="ThirdParty\MiniProfiler.Mvc.dll" />
+    <Content Include="ThirdParty\MiniProfiler.Mvc.pdb" />
+    <Content Include="ThirdParty\MiniProfiler.pdb" />
+    <Content Include="ThirdParty\MiniProfiler.Wcf.dll" />
+    <Content Include="ThirdParty\MiniProfiler.Wcf.pdb" />
+    <Content Include="ThirdParty\MiniProfiler.xml" />
+  </ItemGroup>
   <PropertyGroup>
     <BeforeTransform>CustomPreTransform</BeforeTransform>
     <AfterTransform>CustomPostTransform;$(AfterTransform)</AfterTransform>
