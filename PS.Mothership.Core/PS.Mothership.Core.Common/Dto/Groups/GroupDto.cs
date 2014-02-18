@@ -15,5 +15,7 @@ namespace PS.Mothership.Core.Common.Dto.Groups
         public long Id { get; set; }
         [DataMember]
         public List<RoleDto> Roles { get; set; }
+        [DataMember]
+        public int TotalCount { get; set; } 
     }
 }
