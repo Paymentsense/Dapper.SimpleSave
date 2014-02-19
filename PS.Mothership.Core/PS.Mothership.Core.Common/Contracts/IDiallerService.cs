@@ -13,10 +13,10 @@ namespace PS.Mothership.Core.Common.Contracts
         ValidUserInfoDto ValidateUser(Guid mothershipSessionGuid);
 
         [OperationContract]
-        Guid LogDiallerSessionSubscribe(Guid mothershipSessionGuid, DateTime startDateTime);
+        Guid LogDiallerSessionSubscribe(Guid userGuid, Guid mothershipSessionGuid);
 
         [OperationContract]
-        void LogDiallerSessionUnsubscribe(Guid sessionGuid, DateTime endDateTime, bool wasForcedLogout,
+        void LogDiallerSessionUnsubscribe(Guid userGuid, Guid sessionGuid, bool wasForcedLogout,
             LogoutReasonEnum logoutReason);
 
         [OperationContract]
@@ -38,7 +38,7 @@ namespace PS.Mothership.Core.Common.Contracts
         void InsertCallRecordingEvent(CallRecordingEventDto callRecordingEvent);
 
         [OperationContract]
-        Guid LogDiallerModeChange(Guid mothershipSessionGuid, DateTime diallerStartTime, ModeEnum diallerMode);
+        Guid LogDiallerModeChange(Guid userGuid, Guid mothershipSessionGuid, ModeEnum diallerMode);
 
         [OperationContract]
         void LogNewDiallerCall(NewDiallerCallDto diallerCall);
