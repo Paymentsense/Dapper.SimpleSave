@@ -16,8 +16,8 @@ namespace PS.Mothership.Core.Common.Contracts
         Guid LogDiallerSessionSubscribe(Guid userGuid, Guid mothershipSessionGuid);
 
         [OperationContract]
-        void LogDiallerSessionUnsubscribe(Guid userGuid, Guid sessionGuid, bool wasForcedLogout,
-            LogoutReasonEnum logoutReason);
+        void LogDiallerSessionUnsubscribe(Guid userGuid, Guid mothershipSessionGuid, Guid diallerSessionGuid,
+            bool wasForcedLogout, LogoutReasonEnum logoutReason);
 
         [OperationContract]
         IEnumerable<InboundQueueDetailsDto> GetInboundQueueDetails();
