@@ -70,6 +70,6 @@ namespace PS.Mothership.Core.Common.Contracts.Security
         ChangePasswordResultDto ChangePassword(ChangePasswordDto changePasswordDto);
 
         [OperationContract]
-        void LogOff(Guid mothershipSessionGuid);
+        void LogOff(Guid userGuid, Guid mothershipSessionGuid);
     }
 }
