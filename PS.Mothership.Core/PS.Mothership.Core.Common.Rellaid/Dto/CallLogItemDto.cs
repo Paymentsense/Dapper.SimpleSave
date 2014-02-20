@@ -15,5 +15,8 @@ namespace PS.Mothership.Core.Common.Rellaid.Dto
 
         [DataMember]
         public LogCallType CallType { get; set; }
+
+        [DataMember]
+        public string Description { get; set; }
     }
 }
