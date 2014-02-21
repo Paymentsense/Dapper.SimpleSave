@@ -21,5 +21,8 @@
         public const string ExperianEIHEndpointRequestUrl = "ExperianEIHEndpointRequestUrl";
         public const string ExperianRequestOutPutTemplate = "ExperianRequestOutPutTemplate";
 
+		// Companies House Constants
+	    public const string CompaniesHouseUserId = "CompaniesHouseUserId";
+	    public const string CompaniesHousePassword = "CompaniesHousePassword";
     }
 }
