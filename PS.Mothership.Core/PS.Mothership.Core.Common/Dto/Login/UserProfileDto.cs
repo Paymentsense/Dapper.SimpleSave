@@ -47,8 +47,12 @@ namespace PS.Mothership.Core.Common.Dto.Login
         public bool IsDefining { get; set; }
         [DataMember]
         public bool CanImpersonate { get; set; }
+
         [DataMember]
-        public bool IsImpersonate { get; set; }        
+        public bool IsImpersonate { get; set; }
+        [DataMember]
+        public Guid ImpersonateGuid { get; set; }
+
         [DataMember]
         public string Message { get; set; }
         [DataMember]
