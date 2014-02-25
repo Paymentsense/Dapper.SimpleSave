@@ -16,9 +16,9 @@ namespace PS.Mothership.Core.Common.Contracts
     public interface IUserManagementService 
     {        
         [OperationContract]
-        PS.Mothership.Core.Common.Dto.Login.UserDto AddUser(UserProfileDto userProfileDto);
+        PS.Mothership.Core.Common.Dto.Login.UserDto AddUser(UserProfileDto userProfileDto, Guid updateSessionGuid);
         [OperationContract]
-        PS.Mothership.Core.Common.Dto.Login.UserDto UpDateUser(UserProfileDto userProfileDto);
+        PS.Mothership.Core.Common.Dto.Login.UserDto UpdateUser(UserProfileDto userProfileDto, Guid updateSessionGuid);
         [OperationContract]
         IEnumerable<UserProfileDto> GetUsers(DataRequestDto dataRequestDto);
         [OperationContract]
