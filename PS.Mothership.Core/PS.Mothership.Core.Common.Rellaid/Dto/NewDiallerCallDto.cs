@@ -20,7 +20,7 @@ namespace PS.Mothership.Core.Common.Rellaid.Dto
         public Guid SessionModeGuid { get; set; }
 
         [DataMember]
-        public DateTime StartDateTime { get; set; }
+        public DateTimeOffset StartDateTime { get; set; }
 
         [DataMember]
         public string DialledNumber { get; set; }

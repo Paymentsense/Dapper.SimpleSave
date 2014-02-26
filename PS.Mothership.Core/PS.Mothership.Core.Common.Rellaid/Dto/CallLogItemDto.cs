@@ -11,7 +11,7 @@ namespace PS.Mothership.Core.Common.Rellaid.Dto
         public string PhoneNumber { get; set; }
 
         [DataMember]
-        public DateTime CallStartTime { get; set; }
+        public DateTimeOffset CallStartTime { get; set; }
 
         [DataMember]
         public LogCallType CallType { get; set; }

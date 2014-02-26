@@ -8,10 +8,10 @@ namespace PS.Mothership.Core.Common.Rellaid.Dto
     public class MissingCallRecordingsDto
     {
         [DataMember]
-        public DateTime? AdjustedStartDateTime { get; set; }
+        public DateTimeOffset? AdjustedStartDateTime { get; set; }
 
         [DataMember]
-        public DateTime? StartDateTime { get; set; }
+        public DateTimeOffset? StartDateTime { get; set; }
 
         [DataMember]
         public string SipUserPhoneNumber { get; set; }
