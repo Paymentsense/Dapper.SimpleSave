@@ -15,10 +15,16 @@ namespace PS.Mothership.Core.Common.Contracts
     public interface ISendMessageService : IQuartzJobBase
     {
         [OperationContract]
-        void QueueMessage(SendMessageRequestDto insertSmsMessageDto);
-        
+        void QueueSMSMessage(SendSmsRequestDto insertSmsMessageDto);
+
         [OperationContract]
-        void SMSMessageNotifications(string xmlString);
+        void QueueEmailMessage(SendEmailRequestDto insertSmsMessageDto);
+
+        [OperationContract]
+        void SMSMessageDeliveryFailed(string xmlString);
+
+        [OperationContract]
+        void SMSMessageDeliverySuccess(string xmlString);
 
         [OperationContract]
         void SMSMessageRecieved(string xmlString);
@@ -44,8 +50,7 @@ namespace PS.Mothership.Core.Common.Contracts
         [OperationContract(IsOneWay = true)]
         void SendEmailServiceEndSubscribe(string applicationName);
 
-
-	    [OperationContract]
-	    void StartMessageListener();
+        [OperationContract]
+        void StartMessageListener();
     }
 }

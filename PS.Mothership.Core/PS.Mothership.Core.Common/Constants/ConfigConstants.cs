@@ -24,6 +24,7 @@
         //Send Message Constants
         public const string SendMessageMaxErrorDelay = "SendMessageMaxErrorDelay";
         public const string SendMessageMaxAttempts = "SendMessageMaxAttempts";
+        public const string SystemEmailGuid = "SystemEmailGuid";
         
         
         //Common Sms Constants 
