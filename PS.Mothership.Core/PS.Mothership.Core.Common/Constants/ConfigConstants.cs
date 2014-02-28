@@ -21,5 +21,38 @@
         public const string ExperianEIHEndpointRequestUrl = "ExperianEIHEndpointRequestUrl";
         public const string ExperianRequestOutPutTemplate = "ExperianRequestOutPutTemplate";
 
+        //Send Message Constants
+        public const string SendMessageMaxErrorDelay = "SendMessageMaxErrorDelay";
+        public const string SendMessageMaxAttempts = "SendMessageMaxAttempts";
+        
+        
+        //Common Sms Constants 
+        public const string SendSmsUserName = "SendSmsUserName";
+        public const string SendSmsPassword = "SendSmsPassword";
+        public const string SendSmsAccountReference = "SendSmsAccountReference";
+        public const string SendSmsMaxMessageLength = "SendSmsMaxMessageLength";
+        public const string SendSMSType = "SendSMSType";
+        public const string SendSMSMessageSent = "SendSMSMessageSent";
+        public const string SendSMSMessageDelivered = "SendSMSMessageDelivered";
+        public const string SendSMSMessageBounced = "SendSMSMessageBounced";
+        public const string SendSMSMessageDefault = "SendSMSMessageDefault";
+        public const string SendSMSTestNumber = "SendSMSTestNumber";
+        public const string SendSmsTestAccountReference = "SendSmsTestAccountReference";
+        public const string SendSMSTestNumberGuid = "SendSMSTestNumberGuid";
+        public const string SendSMSMessageDefaultNumber = "SendSMSMessageDefaultNumber";
+
+        // Common SMTP Constants
+        public const string SMTPServer = "SMTPServer";
+        public const string SMTPEnableSsl = "SMTPEnableSsl";
+        public const string SMTPPortNumber = "SMTPPortNumber";
+        public const string NetworkName = "NetworkName";
+        public const string NetworkPassword = "NetworkPassword";
+
+        // Common IMAP Constants
+        public const string IMAPServer = "IMAPServer";
+        public const string IMAPPortNumber = "IMAPPortNumber";
+        public const string IMAPUsername = "IMAPUsername";
+        public const string IMAPPassword = "IMAPPassword";
+        public const string IDLEConnectionTime = "IDLEConnectionTime";
     }
 }

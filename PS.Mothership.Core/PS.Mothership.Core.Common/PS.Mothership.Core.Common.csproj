@@ -123,6 +123,8 @@
     <Compile Include="Contracts\IIdentityCheckService.cs" />
     <Compile Include="Contracts\ILoggingService.cs" />
     <Compile Include="Contracts\IMSLogger.cs" />
+    <Compile Include="Contracts\ISendMessageService.cs" />
+    <Compile Include="Contracts\ISendMessageStatusServiceCallback.cs" />
     <Compile Include="Contracts\ITaskNotificationCallback.cs" />
     <Compile Include="Contracts\ITaskNotificationService.cs" />
     <Compile Include="Contracts\IQuartzJobBase.cs" />
@@ -163,6 +165,13 @@
     <Compile Include="Dto\Roles\UserGroupDto.cs" />
     <Compile Include="Dto\Roles\UserPermissionDto.cs" />
     <Compile Include="Dto\SearchDto.cs" />
+    <Compile Include="Dto\SendMessage\MessageNotificationDto.cs" />
+    <Compile Include="Dto\SendMessage\MessageReceivedDto.cs" />
+    <Compile Include="Dto\SendMessage\SendEmailRequestDto.cs" />
+    <Compile Include="Dto\SendMessage\SendMessageRequestDto.cs" />
+    <Compile Include="Dto\SendMessage\SendMessageServiceStatusDto.cs" />
+    <Compile Include="Dto\SendMessage\SendMessageSmsDto.cs" />
+    <Compile Include="Dto\SendMessage\SendSmsRequestDto.cs" />
     <Compile Include="Dto\TaskDto.cs" />
     <Compile Include="Dto\Roles\UserAssignedAndAvailableRoleDto.cs" />
     <Compile Include="Dto\Login\UserDto.cs" />
