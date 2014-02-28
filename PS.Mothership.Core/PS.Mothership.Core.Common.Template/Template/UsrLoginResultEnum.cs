@@ -10,19 +10,17 @@ namespace PS.Mothership.Core.Common.Template.Usr
     public enum LoginResultEnum : long
     {
        [Description("None")][EnumMember]None = 0,
-       [Description("Sucess")][EnumMember]Success = 1,
+       [Description("Success")][EnumMember]Success = 1,
        [Description("Failed")][EnumMember]Failed = 2,
        [Description("Password failed")][EnumMember]FailedPassword = 3,
        [Description("Password locked")][EnumMember]FailedPasswordRetryLock = 4,
        [Description("Administrative lock")][EnumMember]FailedAdministrativeLock = 5,
        [Description("Remote access denied")][EnumMember]FailedRemoteAccessDenied = 6,
        [Description("Remote access validation prompt")][EnumMember]RemoteAccessValidationPrompt = 7,
-       [Description("Account un locked")][EnumMember]AccountUnLocked = 8,
-       [Description("User can impersonate")][EnumMember]UserImpersonated = 9,
+       [Description("Account unlocked")][EnumMember]AccountUnLocked = 8,
+       [Description("User is impersonated")][EnumMember]UserImpersonated = 9,
        [Description("User password changed")][EnumMember]PasswordChanged = 10,
-       [Description("User name already exists")][EnumMember]DuplicateUserName = 11,
-       [Description("Password has been reset")][EnumMember]PasswordReset = 12,
-       [Description("Administrative change")][EnumMember]AdministrativeChange = 13,
+       [Description("Password has been reset")][EnumMember]PasswordReset = 11,
         
     }
 
@@ -59,7 +57,7 @@ namespace PS.Mothership.Core.Common.Template.Usr
 							{
 								EnumValue = 1,
 								EnumName = "Success",
-								EnumDescription = "Sucess",
+								EnumDescription = "Success",
 								LoginResultKey = 1
 							},
 							new LoginResult
@@ -108,14 +106,14 @@ namespace PS.Mothership.Core.Common.Template.Usr
 							{
 								EnumValue = 8,
 								EnumName = "AccountUnLocked",
-								EnumDescription = "Account un locked",
+								EnumDescription = "Account unlocked",
 								LoginResultKey = 8
 							},
 							new LoginResult
 							{
 								EnumValue = 9,
 								EnumName = "UserImpersonated",
-								EnumDescription = "User can impersonate",
+								EnumDescription = "User is impersonated",
 								LoginResultKey = 9
 							},
 							new LoginResult
@@ -128,23 +126,9 @@ namespace PS.Mothership.Core.Common.Template.Usr
 							new LoginResult
 							{
 								EnumValue = 11,
-								EnumName = "DuplicateUserName",
-								EnumDescription = "User name already exists",
-								LoginResultKey = 11
-							},
-							new LoginResult
-							{
-								EnumValue = 12,
 								EnumName = "PasswordReset",
 								EnumDescription = "Password has been reset",
-								LoginResultKey = 12
-							},
-							new LoginResult
-							{
-								EnumValue = 13,
-								EnumName = "AdministrativeChange",
-								EnumDescription = "Administrative change",
-								LoginResultKey = 13
+								LoginResultKey = 11
 							},
                         };
                     

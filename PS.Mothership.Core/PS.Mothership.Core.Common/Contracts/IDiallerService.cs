@@ -13,17 +13,17 @@ namespace PS.Mothership.Core.Common.Contracts
         ValidUserInfoDto ValidateUser(Guid mothershipSessionGuid);
 
         [OperationContract]
-        Guid LogDiallerSessionSubscribe(Guid mothershipSessionGuid, DateTime startDateTime);
+        Guid LogDiallerSessionSubscribe(Guid userGuid, Guid mothershipSessionGuid);
 
         [OperationContract]
-        void LogDiallerSessionUnsubscribe(Guid sessionGuid, DateTime endDateTime, bool wasForcedLogout,
-            LogoutReasonEnum logoutReason);
+        void LogDiallerSessionUnsubscribe(Guid userGuid, Guid mothershipSessionGuid, Guid diallerSessionGuid,
+            bool wasForcedLogout, LogoutReasonEnum logoutReason);
 
         [OperationContract]
-        List<InboundQueueDetailsDto> GetInboundQueueDetails();
+        IEnumerable<InboundQueueDetailsDto> GetInboundQueueDetails();
 
         [OperationContract]
-        List<MissingCallRecordingsDto> GetMissingCallRecordings(DateTime dateStart, DateTime dateEnd);
+        IEnumerable<MissingCallRecordingsDto> GetMissingCallRecordings(DateTime dateStart, DateTime dateEnd);
 
         [OperationContract]
         void UpdateRecorderCallIdForCallGuid(Guid callGuid, long recorderCallId, Guid mothershipSessionGuid);
@@ -32,13 +32,13 @@ namespace PS.Mothership.Core.Common.Contracts
         Dictionary<long, long> TryToFindDiallerDepartmentsByUserGuid(Guid userGuid);
 
         [OperationContract]
-        List<CallStatsDto> GetCallTotalsForToday();
+        IEnumerable<CallStatsDto> GetCallTotalsForToday();
 
         [OperationContract]
         void InsertCallRecordingEvent(CallRecordingEventDto callRecordingEvent);
 
         [OperationContract]
-        Guid LogDiallerModeChange(Guid mothershipSessionGuid, DateTime diallerStartTime, ModeEnum diallerMode);
+        Guid LogDiallerModeChange(Guid userGuid, Guid mothershipSessionGuid, ModeEnum diallerMode);
 
         [OperationContract]
         void LogNewDiallerCall(NewDiallerCallDto diallerCall);
@@ -54,5 +54,8 @@ namespace PS.Mothership.Core.Common.Contracts
 
         [OperationContract]
         void DeleteSpeedDialNumber(Guid userGuid, Guid speedDialNumberGuid);
+
+        [OperationContract]
+        IEnumerable<SipAccountDto> GetSipAccountList(Guid userSipAccountGuid);
     }
 }
