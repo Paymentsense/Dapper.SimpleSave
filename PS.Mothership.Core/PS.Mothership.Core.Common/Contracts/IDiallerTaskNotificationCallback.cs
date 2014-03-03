@@ -3,7 +3,7 @@ using System.ServiceModel;
 
 namespace PS.Mothership.Core.Common.Contracts
 {
-    [ServiceContract]
+    [ServiceContract(Name="DiallerTaskNotificationCallback")]
     public interface IDiallerTaskNotificationCallback
     {
         [OperationContract(IsOneWay = true)]

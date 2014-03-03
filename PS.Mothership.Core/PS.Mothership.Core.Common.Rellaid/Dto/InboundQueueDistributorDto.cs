@@ -6,7 +6,7 @@ namespace PS.Mothership.Core.Common.Rellaid.Dto
     public class InboundQueueDistributorDto
     {
         [DataMember]
-        public string FilterNumber { get; set; }
+        public string PhoneNumber { get; set; }
 
         [DataMember]
         public int RungCount { get; set; }

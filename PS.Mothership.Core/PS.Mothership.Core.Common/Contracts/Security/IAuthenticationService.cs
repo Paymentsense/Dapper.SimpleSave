@@ -58,15 +58,18 @@ namespace PS.Mothership.Core.Common.Contracts.Security
         string GenerateCode(Guid userGuid);
         
         [OperationContract]
-        bool CodeExists(Guid userGuid, string verificationCode);
+        bool CodeExists(Guid userGuid, string validationCode);
 
         [OperationContract]
-        bool VerifyRemoteAccess(Guid userGuid, string verificationCode);
+        bool VerifyRemoteAccess(Guid userGuid, string validationCode);
 
         [OperationContract]
         bool PasswordReset(string userName);
 
         [OperationContract]
         ChangePasswordResultDto ChangePassword(ChangePasswordDto changePasswordDto);
+
+        [OperationContract]
+        void LogOff(Guid userGuid, Guid mothershipSessionGuid);
     }
 }

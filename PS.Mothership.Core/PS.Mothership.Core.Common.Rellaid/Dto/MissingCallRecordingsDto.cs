@@ -8,16 +8,16 @@ namespace PS.Mothership.Core.Common.Rellaid.Dto
     public class MissingCallRecordingsDto
     {
         [DataMember]
-        public DateTime? AdjustedStartDateTime { get; set; }
+        public DateTimeOffset? AdjustedStartDateTime { get; set; }
 
         [DataMember]
-        public DateTime? StartDateTime { get; set; }
+        public DateTimeOffset? StartDateTime { get; set; }
 
         [DataMember]
-        public string SipUserId { get; set; }
+        public string SipUserPhoneNumber { get; set; }
 
         [DataMember]
-        public string Extension { get; set; }
+        public string UserPhoneNumber { get; set; }
 
         [DataMember]
         public CallTypeEnum? CallType { get; set; }
