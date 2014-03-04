@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Linq;
-using System.Security.Cryptography;
 
 namespace PS.Mothership.Core.Common.Helper
 {
-    public class SignalRConnectionManager
+    public class SignalRConnectionManager : ISignalRConnectionManager
     {
 
         #region Constants
@@ -15,6 +14,7 @@ namespace PS.Mothership.Core.Common.Helper
         #endregion
 
         #region Private  Variables
+
         /// <summary>
         /// storage to keep count of the current connections, using a ConcurrentDictionary since there is no ConcurrentSet 
         /// the value field will be used to hold the page visibility status for each connection
@@ -80,7 +80,7 @@ namespace PS.Mothership.Core.Common.Helper
         /// <param name="visible"></param>
         public bool AddConnection(Guid connectionGuid, bool visible = true)
         {
-            
+
             bool ret = false;
             if (CanAddConnection())
             {
@@ -96,7 +96,7 @@ namespace PS.Mothership.Core.Common.Helper
         /// <returns></returns>
         public bool RemoveConnection(Guid connectionGuid)
         {
-            
+
             bool dontCare;
             return _connections.TryRemove(connectionGuid, out dontCare);
         }
@@ -107,7 +107,7 @@ namespace PS.Mothership.Core.Common.Helper
         /// <returns></returns>
         public int Count()
         {
-            
+
             return _connections.Count;
         }
 
@@ -118,7 +118,7 @@ namespace PS.Mothership.Core.Common.Helper
         /// <param name="visible"></param>
         public void SetVisibility(Guid connectionGuid, bool visible)
         {
-            
+
             if (_connections.ContainsKey(connectionGuid))
             {
                 _connections[connectionGuid] = visible;
@@ -131,7 +131,7 @@ namespace PS.Mothership.Core.Common.Helper
         /// <returns></returns>
         public int CountVisible()
         {
-            
+
             return _connections.Values.Count(r => r);
         }
 
