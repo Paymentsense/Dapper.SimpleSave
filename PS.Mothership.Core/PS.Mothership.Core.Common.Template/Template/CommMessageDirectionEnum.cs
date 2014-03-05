@@ -9,9 +9,9 @@ namespace PS.Mothership.Core.Common.Template.Comm
     [DataContract]
     public enum MessageDirectionEnum : long
     {
-       [Description("")][EnumMember]Blank = 1,
-       [Description("")][EnumMember]Sent = 2,
-       [Description("")][EnumMember]Received = 3,
+       [Description("None")][EnumMember]None = 0,
+       [Description("Sent")][EnumMember]Sent = 1,
+       [Description("Received")][EnumMember]Received = 2,
         
     }
 
@@ -39,24 +39,24 @@ namespace PS.Mothership.Core.Common.Template.Comm
                         {
                             new MessageDirection
 							{
+								EnumValue = 0,
+								EnumName = "None",
+								EnumDescription = "None",
+								MessageDirectionKey = 0
+							},
+							new MessageDirection
+							{
 								EnumValue = 1,
-								EnumName = "Blank",
-								EnumDescription = "",
+								EnumName = "Sent",
+								EnumDescription = "Sent",
 								MessageDirectionKey = 1
 							},
 							new MessageDirection
 							{
 								EnumValue = 2,
-								EnumName = "Sent",
-								EnumDescription = "",
-								MessageDirectionKey = 2
-							},
-							new MessageDirection
-							{
-								EnumValue = 3,
 								EnumName = "Received",
-								EnumDescription = "",
-								MessageDirectionKey = 3
+								EnumDescription = "Received",
+								MessageDirectionKey = 2
 							},
                         };
                     

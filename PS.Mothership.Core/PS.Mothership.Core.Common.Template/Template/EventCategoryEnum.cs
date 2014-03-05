@@ -3,11 +3,11 @@ using System.Runtime.Serialization;
 using System.ComponentModel;
 using System.Collections.Generic;
 
-namespace PS.Mothership.Core.Common.Template.Comm
+namespace PS.Mothership.Core.Common.Template.Event
 {
     
     [DataContract]
-    public enum MessageTypeEnum : long
+    public enum CategoryEnum : long
     {
        [Description("None")][EnumMember]None = 0,
        [Description("SMS")][EnumMember]SMS = 1,
@@ -15,48 +15,48 @@ namespace PS.Mothership.Core.Common.Template.Comm
         
     }
 
-    public class MessageType
+    public class Category
     {
         public long EnumValue {get;set;}
 		public string EnumName {get;set;}
 		public string EnumDescription {get;set;}
-		public long MessageTypeKey {get;set;}
+		public long EventCategoryKey {get;set;}
     }
 
     /// <summary>
     /// This class is mainly for using the extended properties of Enum
     /// </summary>
-    public static class MessageTypeCollection
+    public static class CategoryCollection
     {
-        private static List<MessageType> _list; 
-        public static List<MessageType> MessageTypeList
+        private static List<Category> _list; 
+        public static List<Category> CategoryList
         {
             get
             {
                 if (_list == null)
                 {   
-                        _list = new List<MessageType>
+                        _list = new List<Category>
                         {
-                            new MessageType
+                            new Category
 							{
 								EnumValue = 0,
 								EnumName = "None",
 								EnumDescription = "None",
-								MessageTypeKey = 0
+								EventCategoryKey = 0
 							},
-							new MessageType
+							new Category
 							{
 								EnumValue = 1,
 								EnumName = "SMS",
 								EnumDescription = "SMS",
-								MessageTypeKey = 1
+								EventCategoryKey = 1
 							},
-							new MessageType
+							new Category
 							{
 								EnumValue = 2,
 								EnumName = "Email",
 								EnumDescription = "Email",
-								MessageTypeKey = 2
+								EventCategoryKey = 2
 							},
                         };
                     
