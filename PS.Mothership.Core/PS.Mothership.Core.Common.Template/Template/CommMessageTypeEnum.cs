@@ -2,6 +2,7 @@ using System;
 using System.Runtime.Serialization;
 using System.ComponentModel;
 using System.Collections.Generic;
+using PS.Mothership.Core.Common.Template.Gen;
 
 namespace PS.Mothership.Core.Common.Template.Comm
 {
@@ -21,6 +22,7 @@ namespace PS.Mothership.Core.Common.Template.Comm
 		public string EnumName {get;set;}
 		public string EnumDescription {get;set;}
 		public long MessageTypeKey {get;set;}
+		public RecStatusEnum RecStatusKey {get;set;}
     }
 
     /// <summary>
@@ -42,21 +44,24 @@ namespace PS.Mothership.Core.Common.Template.Comm
 								EnumValue = 0,
 								EnumName = "None",
 								EnumDescription = "None",
-								MessageTypeKey = 0
+								MessageTypeKey = 0,
+								RecStatusKey = (RecStatusEnum)0
 							},
 							new MessageType
 							{
 								EnumValue = 1,
 								EnumName = "SMS",
 								EnumDescription = "SMS",
-								MessageTypeKey = 1
+								MessageTypeKey = 1,
+								RecStatusKey = (RecStatusEnum)1
 							},
 							new MessageType
 							{
 								EnumValue = 2,
 								EnumName = "Email",
 								EnumDescription = "Email",
-								MessageTypeKey = 2
+								MessageTypeKey = 2,
+								RecStatusKey = (RecStatusEnum)1
 							},
                         };
                     

@@ -2,6 +2,7 @@ using System;
 using System.Runtime.Serialization;
 using System.ComponentModel;
 using System.Collections.Generic;
+using PS.Mothership.Core.Common.Template.Gen;
 
 namespace PS.Mothership.Core.Common.Template.Usr
 {
@@ -31,6 +32,7 @@ namespace PS.Mothership.Core.Common.Template.Usr
 		public string Area {get;set;}
 		public string ContainerName {get;set;}
 		public long ResourceTypeKey {get;set;}
+		public RecStatusEnum RecStatusKey {get;set;}
     }
 
     /// <summary>
@@ -57,7 +59,8 @@ namespace PS.Mothership.Core.Common.Template.Usr
 								ControllerName = "",
 								Area = "",
 								ContainerName = "",
-								ResourceTypeKey = 0
+								ResourceTypeKey = 0,
+								RecStatusKey = (RecStatusEnum)1
 							},
 							new Resource
 							{
@@ -69,7 +72,8 @@ namespace PS.Mothership.Core.Common.Template.Usr
 								ControllerName = "Home",
 								Area = "",
 								ContainerName = "",
-								ResourceTypeKey = 1
+								ResourceTypeKey = 1,
+								RecStatusKey = (RecStatusEnum)1
 							},
 							new Resource
 							{
@@ -81,7 +85,8 @@ namespace PS.Mothership.Core.Common.Template.Usr
 								ControllerName = "Admin",
 								Area = "Admin",
 								ContainerName = "",
-								ResourceTypeKey = 1
+								ResourceTypeKey = 1,
+								RecStatusKey = (RecStatusEnum)1
 							},
 							new Resource
 							{
@@ -93,7 +98,8 @@ namespace PS.Mothership.Core.Common.Template.Usr
 								ControllerName = "Task",
 								Area = "",
 								ContainerName = "",
-								ResourceTypeKey = 1
+								ResourceTypeKey = 1,
+								RecStatusKey = (RecStatusEnum)1
 							},
 							new Resource
 							{
@@ -105,7 +111,8 @@ namespace PS.Mothership.Core.Common.Template.Usr
 								ControllerName = "UserManagement",
 								Area = "Admin",
 								ContainerName = "User Administration",
-								ResourceTypeKey = 2
+								ResourceTypeKey = 2,
+								RecStatusKey = (RecStatusEnum)1
 							},
 							new Resource
 							{
@@ -117,7 +124,8 @@ namespace PS.Mothership.Core.Common.Template.Usr
 								ControllerName = "RoleManagement",
 								Area = "Admin",
 								ContainerName = "User Administration",
-								ResourceTypeKey = 2
+								ResourceTypeKey = 2,
+								RecStatusKey = (RecStatusEnum)1
 							},
 							new Resource
 							{
@@ -129,7 +137,8 @@ namespace PS.Mothership.Core.Common.Template.Usr
 								ControllerName = "GroupManagement",
 								Area = "Admin",
 								ContainerName = "User Administration",
-								ResourceTypeKey = 2
+								ResourceTypeKey = 2,
+								RecStatusKey = (RecStatusEnum)1
 							},
 							new Resource
 							{
@@ -141,7 +150,8 @@ namespace PS.Mothership.Core.Common.Template.Usr
 								ControllerName = "Dialler",
 								Area = "",
 								ContainerName = "",
-								ResourceTypeKey = 3
+								ResourceTypeKey = 3,
+								RecStatusKey = (RecStatusEnum)1
 							},
                         };
                     

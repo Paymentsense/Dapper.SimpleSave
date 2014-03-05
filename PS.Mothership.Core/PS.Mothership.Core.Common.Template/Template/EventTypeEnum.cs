@@ -2,6 +2,7 @@ using System;
 using System.Runtime.Serialization;
 using System.ComponentModel;
 using System.Collections.Generic;
+using PS.Mothership.Core.Common.Template.Gen;
 
 namespace PS.Mothership.Core.Common.Template.Event
 {
@@ -23,6 +24,7 @@ namespace PS.Mothership.Core.Common.Template.Event
 		public long EventTypeKey {get;set;}
 		public long EventCategoryKey {get;set;}
 		public bool ReferenceGUIDRequired {get;set;}
+		public RecStatusEnum RecStatusKey {get;set;}
     }
 
     /// <summary>
@@ -46,7 +48,8 @@ namespace PS.Mothership.Core.Common.Template.Event
 								EnumDescription = "None",
 								EventTypeKey = 0,
 								EventCategoryKey = 0,
-								ReferenceGUIDRequired = false
+								ReferenceGUIDRequired = false,
+								RecStatusKey = (RecStatusEnum)0
 							},
 							new Type
 							{
@@ -55,7 +58,8 @@ namespace PS.Mothership.Core.Common.Template.Event
 								EnumDescription = "SMS",
 								EventTypeKey = 1,
 								EventCategoryKey = 1,
-								ReferenceGUIDRequired = false
+								ReferenceGUIDRequired = false,
+								RecStatusKey = (RecStatusEnum)1
 							},
 							new Type
 							{
@@ -64,7 +68,8 @@ namespace PS.Mothership.Core.Common.Template.Event
 								EnumDescription = "Email",
 								EventTypeKey = 2,
 								EventCategoryKey = 2,
-								ReferenceGUIDRequired = false
+								ReferenceGUIDRequired = false,
+								RecStatusKey = (RecStatusEnum)1
 							},
                         };
                     

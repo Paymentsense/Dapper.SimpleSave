@@ -2,6 +2,7 @@ using System;
 using System.Runtime.Serialization;
 using System.ComponentModel;
 using System.Collections.Generic;
+using PS.Mothership.Core.Common.Template.Gen;
 
 namespace PS.Mothership.Core.Common.Template.Event
 {
@@ -21,6 +22,7 @@ namespace PS.Mothership.Core.Common.Template.Event
 		public string EnumName {get;set;}
 		public string EnumDescription {get;set;}
 		public long EventCategoryKey {get;set;}
+		public RecStatusEnum RecStatusKey {get;set;}
     }
 
     /// <summary>
@@ -42,21 +44,24 @@ namespace PS.Mothership.Core.Common.Template.Event
 								EnumValue = 0,
 								EnumName = "None",
 								EnumDescription = "None",
-								EventCategoryKey = 0
+								EventCategoryKey = 0,
+								RecStatusKey = (RecStatusEnum)0
 							},
 							new Category
 							{
 								EnumValue = 1,
 								EnumName = "SMS",
 								EnumDescription = "SMS",
-								EventCategoryKey = 1
+								EventCategoryKey = 1,
+								RecStatusKey = (RecStatusEnum)1
 							},
 							new Category
 							{
 								EnumValue = 2,
 								EnumName = "Email",
 								EnumDescription = "Email",
-								EventCategoryKey = 2
+								EventCategoryKey = 2,
+								RecStatusKey = (RecStatusEnum)1
 							},
                         };
                     

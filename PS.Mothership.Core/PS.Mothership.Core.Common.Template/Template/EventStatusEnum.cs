@@ -2,6 +2,7 @@ using System;
 using System.Runtime.Serialization;
 using System.ComponentModel;
 using System.Collections.Generic;
+using PS.Mothership.Core.Common.Template.Gen;
 
 namespace PS.Mothership.Core.Common.Template.Event
 {
@@ -25,6 +26,7 @@ namespace PS.Mothership.Core.Common.Template.Event
 		public string EnumDescription {get;set;}
 		public long EventStatusKey {get;set;}
 		public bool IsClosed {get;set;}
+		public RecStatusEnum RecStatusKey {get;set;}
     }
 
     /// <summary>
@@ -47,7 +49,8 @@ namespace PS.Mothership.Core.Common.Template.Event
 								EnumName = "Blank",
 								EnumDescription = "",
 								EventStatusKey = 0,
-								IsClosed = false
+								IsClosed = false,
+								RecStatusKey = (RecStatusEnum)1
 							},
 							new Status
 							{
@@ -55,7 +58,8 @@ namespace PS.Mothership.Core.Common.Template.Event
 								EnumName = "Sent",
 								EnumDescription = "",
 								EventStatusKey = 1,
-								IsClosed = false
+								IsClosed = false,
+								RecStatusKey = (RecStatusEnum)2
 							},
 							new Status
 							{
@@ -63,7 +67,8 @@ namespace PS.Mothership.Core.Common.Template.Event
 								EnumName = "Delivered",
 								EnumDescription = "",
 								EventStatusKey = 2,
-								IsClosed = false
+								IsClosed = false,
+								RecStatusKey = (RecStatusEnum)2
 							},
 							new Status
 							{
@@ -71,7 +76,8 @@ namespace PS.Mothership.Core.Common.Template.Event
 								EnumName = "Bounced",
 								EnumDescription = "",
 								EventStatusKey = 3,
-								IsClosed = false
+								IsClosed = false,
+								RecStatusKey = (RecStatusEnum)2
 							},
 							new Status
 							{
@@ -79,7 +85,8 @@ namespace PS.Mothership.Core.Common.Template.Event
 								EnumName = "Recieved",
 								EnumDescription = "",
 								EventStatusKey = 4,
-								IsClosed = false
+								IsClosed = false,
+								RecStatusKey = (RecStatusEnum)2
 							},
 							new Status
 							{
@@ -87,7 +94,8 @@ namespace PS.Mothership.Core.Common.Template.Event
 								EnumName = "Failed",
 								EnumDescription = "",
 								EventStatusKey = 5,
-								IsClosed = false
+								IsClosed = false,
+								RecStatusKey = (RecStatusEnum)2
 							},
                         };
                     

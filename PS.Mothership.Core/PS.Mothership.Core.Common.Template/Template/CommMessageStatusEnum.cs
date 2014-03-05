@@ -2,6 +2,7 @@ using System;
 using System.Runtime.Serialization;
 using System.ComponentModel;
 using System.Collections.Generic;
+using PS.Mothership.Core.Common.Template.Gen;
 
 namespace PS.Mothership.Core.Common.Template.Comm
 {
@@ -22,6 +23,7 @@ namespace PS.Mothership.Core.Common.Template.Comm
 		public string EnumName {get;set;}
 		public string EnumDescription {get;set;}
 		public long MessageStatusKey {get;set;}
+		public RecStatusEnum RecStatusKey {get;set;}
     }
 
     /// <summary>
@@ -43,28 +45,32 @@ namespace PS.Mothership.Core.Common.Template.Comm
 								EnumValue = 0,
 								EnumName = "None",
 								EnumDescription = "None",
-								MessageStatusKey = 0
+								MessageStatusKey = 0,
+								RecStatusKey = (RecStatusEnum)0
 							},
 							new MessageStatus
 							{
 								EnumValue = 1,
 								EnumName = "Scheduled",
 								EnumDescription = "Scheduled",
-								MessageStatusKey = 1
+								MessageStatusKey = 1,
+								RecStatusKey = (RecStatusEnum)1
 							},
 							new MessageStatus
 							{
 								EnumValue = 2,
 								EnumName = "Successful",
 								EnumDescription = "Successful",
-								MessageStatusKey = 2
+								MessageStatusKey = 2,
+								RecStatusKey = (RecStatusEnum)1
 							},
 							new MessageStatus
 							{
 								EnumValue = 3,
 								EnumName = "Failed",
 								EnumDescription = "Failed",
-								MessageStatusKey = 3
+								MessageStatusKey = 3,
+								RecStatusKey = (RecStatusEnum)1
 							},
                         };
                     

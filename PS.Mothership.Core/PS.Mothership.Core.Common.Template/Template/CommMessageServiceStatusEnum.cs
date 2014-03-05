@@ -2,6 +2,7 @@ using System;
 using System.Runtime.Serialization;
 using System.ComponentModel;
 using System.Collections.Generic;
+using PS.Mothership.Core.Common.Template.Gen;
 
 namespace PS.Mothership.Core.Common.Template.Comm
 {
@@ -23,6 +24,7 @@ namespace PS.Mothership.Core.Common.Template.Comm
 		public string EnumDescription {get;set;}
 		public long ServiceStatusKey {get;set;}
 		public bool IsUseable {get;set;}
+		public RecStatusEnum RecStatusKey {get;set;}
     }
 
     /// <summary>
@@ -45,7 +47,8 @@ namespace PS.Mothership.Core.Common.Template.Comm
 								EnumName = "None",
 								EnumDescription = "None",
 								ServiceStatusKey = 0,
-								IsUseable = false
+								IsUseable = false,
+								RecStatusKey = (RecStatusEnum)0
 							},
 							new MessageServiceStatus
 							{
@@ -53,7 +56,8 @@ namespace PS.Mothership.Core.Common.Template.Comm
 								EnumName = "Normal",
 								EnumDescription = "Normal",
 								ServiceStatusKey = 1,
-								IsUseable = true
+								IsUseable = true,
+								RecStatusKey = (RecStatusEnum)1
 							},
 							new MessageServiceStatus
 							{
@@ -61,7 +65,8 @@ namespace PS.Mothership.Core.Common.Template.Comm
 								EnumName = "Unstable",
 								EnumDescription = "Unstable",
 								ServiceStatusKey = 2,
-								IsUseable = true
+								IsUseable = true,
+								RecStatusKey = (RecStatusEnum)1
 							},
 							new MessageServiceStatus
 							{
@@ -69,7 +74,8 @@ namespace PS.Mothership.Core.Common.Template.Comm
 								EnumName = "Errored",
 								EnumDescription = "Errored",
 								ServiceStatusKey = 3,
-								IsUseable = true
+								IsUseable = true,
+								RecStatusKey = (RecStatusEnum)1
 							},
                         };
                     
