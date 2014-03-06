@@ -55,5 +55,9 @@
         public const string IMAPUsername = "IMAPUsername";
         public const string IMAPPassword = "IMAPPassword";
         public const string IDLEConnectionTime = "IDLEConnectionTime";
+
+		// Companies House Constants
+		public const string CompaniesHouseGatewayUserId = "CompaniesHouseGatewayUserId";
+		public const string CompaniesHouseGatewayPassword = "CompaniesHouseGatewayPassword";
     }
 }
