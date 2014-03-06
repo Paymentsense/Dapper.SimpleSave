@@ -50,6 +50,6 @@ namespace PS.Mothership.Core.Common.Rellaid.Dto
         public List<SpeedDialNumberDto> SpeedDialNumbers { get; set; }
 
         [DataMember]
-        public Guid UserSipAccountGuid { get; set; }
+        public Guid UserSipPhoneGuid { get; set; }
     }
 }
