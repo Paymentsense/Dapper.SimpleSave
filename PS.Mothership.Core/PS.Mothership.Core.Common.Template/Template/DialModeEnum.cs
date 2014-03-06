@@ -2,6 +2,7 @@ using System;
 using System.Runtime.Serialization;
 using System.ComponentModel;
 using System.Collections.Generic;
+using PS.Mothership.Core.Common.Template.Gen;
 
 namespace PS.Mothership.Core.Common.Template.Dial
 {
@@ -24,6 +25,7 @@ namespace PS.Mothership.Core.Common.Template.Dial
 		public string EnumName {get;set;}
 		public string EnumDescription {get;set;}
 		public long ModeKey {get;set;}
+		public RecStatusEnum RecStatusKey {get;set;}
     }
 
     /// <summary>
@@ -45,42 +47,48 @@ namespace PS.Mothership.Core.Common.Template.Dial
 								EnumValue = 0,
 								EnumName = "None",
 								EnumDescription = "None",
-								ModeKey = 0
+								ModeKey = 0,
+								RecStatusKey = (RecStatusEnum)1
 							},
 							new Mode
 							{
 								EnumValue = 1,
 								EnumName = "Admin",
 								EnumDescription = "Admin Mode",
-								ModeKey = 1
+								ModeKey = 1,
+								RecStatusKey = (RecStatusEnum)1
 							},
 							new Mode
 							{
 								EnumValue = 2,
 								EnumName = "Dialler",
 								EnumDescription = "Dialler Mode",
-								ModeKey = 2
+								ModeKey = 2,
+								RecStatusKey = (RecStatusEnum)1
 							},
 							new Mode
 							{
 								EnumValue = 3,
 								EnumName = "DiallerInbound",
 								EnumDescription = "Dialler Inbound Mode",
-								ModeKey = 3
+								ModeKey = 3,
+								RecStatusKey = (RecStatusEnum)1
 							},
 							new Mode
 							{
 								EnumValue = 4,
 								EnumName = "DiallerOutbound",
 								EnumDescription = "Dialler Outbound Mode",
-								ModeKey = 4
+								ModeKey = 4,
+								RecStatusKey = (RecStatusEnum)1
 							},
 							new Mode
 							{
 								EnumValue = 5,
 								EnumName = "DiallerCombined",
 								EnumDescription = "Dialler Inbound and Outbound Mode",
-								ModeKey = 5
+								ModeKey = 5,
+								RecStatusKey = (RecStatusEnum)1
 							},
                         };
                     

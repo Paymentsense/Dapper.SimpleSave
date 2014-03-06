@@ -26,7 +26,7 @@ namespace PS.Mothership.Core.Common.Rellaid.Dto
         public string DialledNumber { get; set; }
 
         [DataMember]
-        public string UserPhoneNumber { get; set; }
+        public Guid UserSipPhoneGuid { get; set; }
 
         [DataMember]
         public string CIDNumber { get; set; }
@@ -47,7 +47,7 @@ namespace PS.Mothership.Core.Common.Rellaid.Dto
         public Guid? ProspectingCampaignResponseTapCallGuid { get; set; }
 
         [DataMember]
-        public Guid? InboundCampaignCallGuid { get; set; }
+        public Guid InboundCampaignCallGuid { get; set; }
 
         [DataMember]
         public CallDispositionEnum CallDisposition { get; set; }

@@ -32,9 +32,6 @@ namespace PS.Mothership.Core.Common.Contracts
         Dictionary<long, long> TryToFindDiallerDepartmentsByUserGuid(Guid userGuid);
 
         [OperationContract]
-        IEnumerable<CallStatsDto> GetCallTotalsForToday();
-
-        [OperationContract]
         void InsertCallRecordingEvent(CallRecordingEventDto callRecordingEvent);
 
         [OperationContract]

@@ -2,6 +2,7 @@ using System;
 using System.Runtime.Serialization;
 using System.ComponentModel;
 using System.Collections.Generic;
+using PS.Mothership.Core.Common.Template.Gen;
 
 namespace PS.Mothership.Core.Common.Template.Gen
 {
@@ -27,6 +28,7 @@ namespace PS.Mothership.Core.Common.Template.Gen
 		public long GUIDLinkTypeKey {get;set;}
 		public string LinkTable {get;set;}
 		public string LinkColumn {get;set;}
+		public RecStatusEnum RecStatusKey {get;set;}
     }
 
     /// <summary>
@@ -50,7 +52,8 @@ namespace PS.Mothership.Core.Common.Template.Gen
 								EnumDescription = "",
 								GUIDLinkTypeKey = 0,
 								LinkTable = "",
-								LinkColumn = ""
+								LinkColumn = "",
+								RecStatusKey = (RecStatusEnum)1
 							},
 							new GuidLinkType
 							{
@@ -59,7 +62,8 @@ namespace PS.Mothership.Core.Common.Template.Gen
 								EnumDescription = "",
 								GUIDLinkTypeKey = 1,
 								LinkTable = "cust.PROSPECT_MST",
-								LinkColumn = "ProspectGUID"
+								LinkColumn = "ProspectGUID",
+								RecStatusKey = (RecStatusEnum)1
 							},
 							new GuidLinkType
 							{
@@ -68,7 +72,8 @@ namespace PS.Mothership.Core.Common.Template.Gen
 								EnumDescription = "",
 								GUIDLinkTypeKey = 2,
 								LinkTable = "cust.CUSTOMER_MST",
-								LinkColumn = "CustomerGUID"
+								LinkColumn = "CustomerGUID",
+								RecStatusKey = (RecStatusEnum)1
 							},
 							new GuidLinkType
 							{
@@ -77,7 +82,8 @@ namespace PS.Mothership.Core.Common.Template.Gen
 								EnumDescription = "",
 								GUIDLinkTypeKey = 3,
 								LinkTable = "svc.SERVICECALL_MST",
-								LinkColumn = "ServiceCallGUID"
+								LinkColumn = "ServiceCallGUID",
+								RecStatusKey = (RecStatusEnum)1
 							},
 							new GuidLinkType
 							{
@@ -86,7 +92,8 @@ namespace PS.Mothership.Core.Common.Template.Gen
 								EnumDescription = "",
 								GUIDLinkTypeKey = 4,
 								LinkTable = "app.APPLICATION_MST",
-								LinkColumn = "ApplicationGUID"
+								LinkColumn = "ApplicationGUID",
+								RecStatusKey = (RecStatusEnum)1
 							},
 							new GuidLinkType
 							{
@@ -95,7 +102,8 @@ namespace PS.Mothership.Core.Common.Template.Gen
 								EnumDescription = "",
 								GUIDLinkTypeKey = 5,
 								LinkTable = "dial.CALL_TRN",
-								LinkColumn = "CallTrnGUID"
+								LinkColumn = "CallTrnGUID",
+								RecStatusKey = (RecStatusEnum)1
 							},
 							new GuidLinkType
 							{
@@ -104,7 +112,8 @@ namespace PS.Mothership.Core.Common.Template.Gen
 								EnumDescription = "",
 								GUIDLinkTypeKey = 6,
 								LinkTable = "usr.ROLE_LUT",
-								LinkColumn = "RowGUID"
+								LinkColumn = "RowGUID",
+								RecStatusKey = (RecStatusEnum)1
 							},
                         };
                     

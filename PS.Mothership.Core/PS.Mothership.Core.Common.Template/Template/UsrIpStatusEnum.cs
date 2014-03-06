@@ -2,6 +2,7 @@ using System;
 using System.Runtime.Serialization;
 using System.ComponentModel;
 using System.Collections.Generic;
+using PS.Mothership.Core.Common.Template.Gen;
 
 namespace PS.Mothership.Core.Common.Template.Usr
 {
@@ -22,6 +23,7 @@ namespace PS.Mothership.Core.Common.Template.Usr
 		public string EnumName {get;set;}
 		public string EnumDescription {get;set;}
 		public long IPStatusKey {get;set;}
+		public RecStatusEnum RecStatusKey {get;set;}
     }
 
     /// <summary>
@@ -43,28 +45,32 @@ namespace PS.Mothership.Core.Common.Template.Usr
 								EnumValue = 0,
 								EnumName = "None",
 								EnumDescription = "None",
-								IPStatusKey = 0
+								IPStatusKey = 0,
+								RecStatusKey = (RecStatusEnum)1
 							},
 							new IpStatus
 							{
 								EnumValue = 1,
 								EnumName = "Active",
 								EnumDescription = "Active",
-								IPStatusKey = 1
+								IPStatusKey = 1,
+								RecStatusKey = (RecStatusEnum)1
 							},
 							new IpStatus
 							{
 								EnumValue = 2,
 								EnumName = "InActive",
 								EnumDescription = "In Active",
-								IPStatusKey = 2
+								IPStatusKey = 2,
+								RecStatusKey = (RecStatusEnum)1
 							},
 							new IpStatus
 							{
 								EnumValue = 3,
 								EnumName = "Deleted",
 								EnumDescription = "Deleted",
-								IPStatusKey = 3
+								IPStatusKey = 3,
+								RecStatusKey = (RecStatusEnum)1
 							},
                         };
                     

@@ -59,10 +59,10 @@
     <Compile Include="Template\CommMessageEmailAddresstypeEnum.cs">
       <DependentUpon>DbEnumBuilder.tt</DependentUpon>
     </Compile>
-    <Compile Include="Template\CommMessageResultEnum.cs">
+    <Compile Include="Template\CommMessageServiceStatusEnum.cs">
       <DependentUpon>DbEnumBuilder.tt</DependentUpon>
     </Compile>
-    <Compile Include="Template\CommMessageServiceStatusEnum.cs">
+    <Compile Include="Template\CommMessageStatusEnum.cs">
       <DependentUpon>DbEnumBuilder.tt</DependentUpon>
     </Compile>
     <Compile Include="Template\CommMessageTypeEnum.cs">
@@ -81,6 +81,9 @@
       <DependentUpon>DbEnumBuilder.tt</DependentUpon>
     </Compile>
     <Compile Include="Template\DialModeEnum.cs">
+      <DependentUpon>DbEnumBuilder.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Template\DialSipAccountTypeEnum.cs">
       <DependentUpon>DbEnumBuilder.tt</DependentUpon>
     </Compile>
     <Compile Include="Template\EventCategoryEnum.cs">

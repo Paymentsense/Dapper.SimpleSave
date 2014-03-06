@@ -2,6 +2,7 @@ using System;
 using System.Runtime.Serialization;
 using System.ComponentModel;
 using System.Collections.Generic;
+using PS.Mothership.Core.Common.Template.Gen;
 
 namespace PS.Mothership.Core.Common.Template.Dial
 {
@@ -31,6 +32,7 @@ namespace PS.Mothership.Core.Common.Template.Dial
 		public string EnumName {get;set;}
 		public string EnumDescription {get;set;}
 		public long CallTypeKey {get;set;}
+		public RecStatusEnum RecStatusKey {get;set;}
     }
 
     /// <summary>
@@ -52,91 +54,104 @@ namespace PS.Mothership.Core.Common.Template.Dial
 								EnumValue = 0,
 								EnumName = "Unknown",
 								EnumDescription = "Unknown",
-								CallTypeKey = 0
+								CallTypeKey = 0,
+								RecStatusKey = (RecStatusEnum)1
 							},
 							new CallType
 							{
 								EnumValue = 1,
 								EnumName = "InboundDDICall",
 								EnumDescription = "Inbound DDI Call",
-								CallTypeKey = 1
+								CallTypeKey = 1,
+								RecStatusKey = (RecStatusEnum)1
 							},
 							new CallType
 							{
 								EnumValue = 2,
 								EnumName = "InboundNonCampaignCall",
 								EnumDescription = "Inbound Non Campaign Call",
-								CallTypeKey = 2
+								CallTypeKey = 2,
+								RecStatusKey = (RecStatusEnum)1
 							},
 							new CallType
 							{
 								EnumValue = 3,
 								EnumName = "InboundCampaignCall",
 								EnumDescription = "Inbound Campaign Call",
-								CallTypeKey = 3
+								CallTypeKey = 3,
+								RecStatusKey = (RecStatusEnum)1
 							},
 							new CallType
 							{
 								EnumValue = 4,
 								EnumName = "InboundInternalCall",
 								EnumDescription = "Inbound Internal Call",
-								CallTypeKey = 4
+								CallTypeKey = 4,
+								RecStatusKey = (RecStatusEnum)1
 							},
 							new CallType
 							{
 								EnumValue = 5,
 								EnumName = "OutboundManualCall",
 								EnumDescription = "Outbound Manual Call",
-								CallTypeKey = 5
+								CallTypeKey = 5,
+								RecStatusKey = (RecStatusEnum)1
 							},
 							new CallType
 							{
 								EnumValue = 6,
 								EnumName = "OutboundInternalCall",
 								EnumDescription = "Outbound Internal Call",
-								CallTypeKey = 6
+								CallTypeKey = 6,
+								RecStatusKey = (RecStatusEnum)1
 							},
 							new CallType
 							{
 								EnumValue = 7,
 								EnumName = "OutboundCampaignCall",
 								EnumDescription = "Outbound Campaign Call",
-								CallTypeKey = 7
+								CallTypeKey = 7,
+								RecStatusKey = (RecStatusEnum)1
 							},
 							new CallType
 							{
 								EnumValue = 8,
 								EnumName = "MonitorCall",
 								EnumDescription = "Monitor Call",
-								CallTypeKey = 8
+								CallTypeKey = 8,
+								RecStatusKey = (RecStatusEnum)1
 							},
 							new CallType
 							{
 								EnumValue = 9,
 								EnumName = "ConferenceOrTransferConsultCall",
 								EnumDescription = "Conference or Transfer Consult Call",
-								CallTypeKey = 9
+								CallTypeKey = 9,
+								RecStatusKey = (RecStatusEnum)1
 							},
 							new CallType
 							{
 								EnumValue = 10,
 								EnumName = "UnresolvedOutboundCampaignCall",
 								EnumDescription = "Unresolved Outbound Campaign Call",
-								CallTypeKey = 10
+								CallTypeKey = 10,
+								RecStatusKey = (RecStatusEnum)1
 							},
 							new CallType
 							{
 								EnumValue = 11,
 								EnumName = "ServiceAgentCall",
 								EnumDescription = "Service Agent Call",
-								CallTypeKey = 11
+								CallTypeKey = 11,
+								RecStatusKey = (RecStatusEnum)1
 							},
 							new CallType
 							{
 								EnumValue = 12,
 								EnumName = "UnresolvedInboundCampaignCall",
 								EnumDescription = "Unresolved Inbound Campaign Call",
-								CallTypeKey = 12
+								CallTypeKey = 12,
+								RecStatusKey = (RecStatusEnum)1
 							},
                         };
                     

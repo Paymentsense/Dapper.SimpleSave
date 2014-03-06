@@ -2,6 +2,7 @@ using System;
 using System.Runtime.Serialization;
 using System.ComponentModel;
 using System.Collections.Generic;
+using PS.Mothership.Core.Common.Template.Gen;
 
 namespace PS.Mothership.Core.Common.Template.Usr
 {
@@ -22,6 +23,7 @@ namespace PS.Mothership.Core.Common.Template.Usr
 		public string EnumName {get;set;}
 		public string EnumDescription {get;set;}
 		public long UserTypeKey {get;set;}
+		public RecStatusEnum RecStatusKey {get;set;}
     }
 
     /// <summary>
@@ -43,28 +45,32 @@ namespace PS.Mothership.Core.Common.Template.Usr
 								EnumValue = 0,
 								EnumName = "None",
 								EnumDescription = "None",
-								UserTypeKey = 0
+								UserTypeKey = 0,
+								RecStatusKey = (RecStatusEnum)1
 							},
 							new UserType
 							{
 								EnumValue = 1,
 								EnumName = "Employee",
 								EnumDescription = "Employee",
-								UserTypeKey = 1
+								UserTypeKey = 1,
+								RecStatusKey = (RecStatusEnum)1
 							},
 							new UserType
 							{
 								EnumValue = 2,
 								EnumName = "Contractor",
 								EnumDescription = "Contractor",
-								UserTypeKey = 2
+								UserTypeKey = 2,
+								RecStatusKey = (RecStatusEnum)1
 							},
 							new UserType
 							{
 								EnumValue = 3,
 								EnumName = "ThirdParty",
 								EnumDescription = "Third Party",
-								UserTypeKey = 3
+								UserTypeKey = 3,
+								RecStatusKey = (RecStatusEnum)1
 							},
                         };
                     

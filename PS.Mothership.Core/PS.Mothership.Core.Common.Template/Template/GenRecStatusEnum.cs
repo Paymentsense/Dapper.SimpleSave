@@ -2,6 +2,7 @@ using System;
 using System.Runtime.Serialization;
 using System.ComponentModel;
 using System.Collections.Generic;
+using PS.Mothership.Core.Common.Template.Gen;
 
 namespace PS.Mothership.Core.Common.Template.Gen
 {
@@ -9,10 +10,10 @@ namespace PS.Mothership.Core.Common.Template.Gen
     [DataContract]
     public enum RecStatusEnum : int
     {
-       [Description("None")][EnumMember]None = 0,
-       [Description("Active")][EnumMember]Active = 1,
-       [Description("")][EnumMember]InActive = 2,
-       [Description("")][EnumMember]Deleted = 3,
+       [Description("Unknown")][EnumMember]Unknown = 0,
+       [Description("Active - Show In Lists")][EnumMember]ActiveShowInLists = 1,
+       [Description("Active - Do Not Show In Lists")][EnumMember]ActiveDoNotShowInLists = 2,
+       [Description("In-Active")][EnumMember]InActive = 3,
         
     }
 
@@ -21,6 +22,7 @@ namespace PS.Mothership.Core.Common.Template.Gen
         public long EnumValue {get;set;}
 		public string EnumName {get;set;}
 		public string EnumDescription {get;set;}
+		public RecStatusEnum RecStatusKey {get;set;}
     }
 
     /// <summary>
@@ -40,26 +42,30 @@ namespace PS.Mothership.Core.Common.Template.Gen
                             new RecStatus
 							{
 								EnumValue = 0,
-								EnumName = "None",
-								EnumDescription = "None"
+								EnumName = "Unknown",
+								EnumDescription = "Unknown",
+								RecStatusKey = (RecStatusEnum)0
 							},
 							new RecStatus
 							{
 								EnumValue = 1,
-								EnumName = "Active",
-								EnumDescription = "Active"
+								EnumName = "ActiveShowInLists",
+								EnumDescription = "Active - Show In Lists",
+								RecStatusKey = (RecStatusEnum)1
 							},
 							new RecStatus
 							{
 								EnumValue = 2,
-								EnumName = "InActive",
-								EnumDescription = ""
+								EnumName = "ActiveDoNotShowInLists",
+								EnumDescription = "Active - Do Not Show In Lists",
+								RecStatusKey = (RecStatusEnum)2
 							},
 							new RecStatus
 							{
 								EnumValue = 3,
-								EnumName = "Deleted",
-								EnumDescription = ""
+								EnumName = "InActive",
+								EnumDescription = "In-Active",
+								RecStatusKey = (RecStatusEnum)3
 							},
                         };
                     

@@ -44,7 +44,7 @@ namespace PS.Mothership.Core.Common.Contracts
         [OperationContract]
         List<GroupDto> GetAllRolesAndGroups(SearchDto searchInput);
         [OperationContract]
-        GroupDto GetRolesForGroup(long groupId);
+        GroupDto GetRolesForGroup(Guid groupGuid);
         [OperationContract]
         void RemoveGroup(GroupDescDto groupDesc);
         [OperationContract]
