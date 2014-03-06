@@ -13,7 +13,7 @@ namespace PS.Mothership.Core.Common.Dto
         public RoleDto() { }
         public RoleDto(RoleDto role)
         {
-            Id = role.Id;
+            RoleGuid = role.RoleGuid;
             RoleName = role.RoleName;
             RoleDescription = role.RoleDescription;
             IsDefining = role.IsDefining;
@@ -21,7 +21,7 @@ namespace PS.Mothership.Core.Common.Dto
             RoleStatusName = role.RoleStatusName;
         }
         [DataMember]
-        public long Id { get; set; }
+        public Guid RoleGuid { get; set; }
         [DataMember]
         public string RoleName { get; set; }
         [DataMember]

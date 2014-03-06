@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
 
 namespace PS.Mothership.Core.Common.Dto.Roles
@@ -7,7 +8,7 @@ namespace PS.Mothership.Core.Common.Dto.Roles
     public class UserGroupDto
     {
         [DataMember]
-        public long GroupId { get; set; }
+        public Guid GroupGuid { get; set; }
 
         [DataMember]
         public string GroupName { get; set; }
