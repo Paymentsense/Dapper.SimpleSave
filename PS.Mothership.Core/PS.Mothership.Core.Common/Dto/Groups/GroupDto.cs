@@ -13,7 +13,7 @@ namespace PS.Mothership.Core.Common.Dto.Groups
         [DataMember]
         public string GroupDescription { get; set; }
         [DataMember]
-        public Guid Id { get; set; }
+        public Guid GroupGuid { get; set; }
         [DataMember]
         public List<RoleDto> Roles { get; set; }
         [DataMember]
