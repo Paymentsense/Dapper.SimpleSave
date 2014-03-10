@@ -10,7 +10,7 @@ namespace PS.Mothership.Core.Common.Template.Usr
     [DataContract]
     public enum UserStatusEnum : long
     {
-       [Description("Undefined")][EnumMember]Undefined = 0,
+       [Description("None")][EnumMember]None = 0,
        [Description("New Hire")][EnumMember]NewHire = 1,
        [Description("Active User")][EnumMember]Active = 2,
        [Description("Password Locked")][EnumMember]PasswordLock = 3,
@@ -48,8 +48,8 @@ namespace PS.Mothership.Core.Common.Template.Usr
                             new UserStatus
 							{
 								EnumValue = 0,
-								EnumName = "Undefined",
-								EnumDescription = "Undefined",
+								EnumName = "None",
+								EnumDescription = "None",
 								UserStatusKey = 0,
 								IsLoginEnabled = false,
 								RecStatusKey = (RecStatusEnum)1
@@ -79,7 +79,7 @@ namespace PS.Mothership.Core.Common.Template.Usr
 								EnumDescription = "Password Locked",
 								UserStatusKey = 3,
 								IsLoginEnabled = false,
-								RecStatusKey = (RecStatusEnum)1
+								RecStatusKey = (RecStatusEnum)2
 							},
 							new UserStatus
 							{
@@ -115,7 +115,7 @@ namespace PS.Mothership.Core.Common.Template.Usr
 								EnumDescription = "Password Reset",
 								UserStatusKey = 7,
 								IsLoginEnabled = false,
-								RecStatusKey = (RecStatusEnum)1
+								RecStatusKey = (RecStatusEnum)2
 							},
                         };
                     

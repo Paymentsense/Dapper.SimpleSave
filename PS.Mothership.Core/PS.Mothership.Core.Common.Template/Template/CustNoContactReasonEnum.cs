@@ -47,7 +47,7 @@ namespace PS.Mothership.Core.Common.Template.Cust
 								ReasonKey = 0,
 								IsForEmail = false,
 								IsForPhone = false,
-								RecStatusKey = (RecStatusEnum)3
+								RecStatusKey = (RecStatusEnum)0
 							},
                         };
                     

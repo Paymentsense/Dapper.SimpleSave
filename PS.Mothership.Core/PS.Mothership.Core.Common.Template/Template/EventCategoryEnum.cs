@@ -12,7 +12,6 @@ namespace PS.Mothership.Core.Common.Template.Event
     {
        [Description("None")][EnumMember]None = 0,
        [Description("General")][EnumMember]General = 1,
-       [Description("Email")][EnumMember]Email = 2,
         
     }
 
@@ -53,14 +52,6 @@ namespace PS.Mothership.Core.Common.Template.Event
 								EnumName = "General",
 								EnumDescription = "General",
 								EventCategoryKey = 1,
-								RecStatusKey = (RecStatusEnum)1
-							},
-							new Category
-							{
-								EnumValue = 2,
-								EnumName = "Email",
-								EnumDescription = "Email",
-								EventCategoryKey = 2,
 								RecStatusKey = (RecStatusEnum)1
 							},
                         };

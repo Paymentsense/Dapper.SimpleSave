@@ -14,12 +14,12 @@ namespace PS.Mothership.Core.Common.Template.Event
        [Description("SMS Scheduled")][EnumMember]SMSScheduled = 1,
        [Description("SMS Sent")][EnumMember]SMSSent = 2,
        [Description("SMS Received")][EnumMember]SMSReceived = 3,
+       [Description("SMS Send Failed")][EnumMember]SMSSendFailed = 4,
+       [Description("SMS Delivered")][EnumMember]SMSDelivered = 5,
        [Description("Email Scheduled")][EnumMember]EmailScheduled = 6,
        [Description("Email Sent")][EnumMember]EmailSent = 7,
        [Description("Email Received")][EnumMember]EmailReceived = 8,
-       [Description("SMS Send Failed")][EnumMember]SMSSendFailed = 4,
        [Description("EmailSendFailed")][EnumMember]EmailSendFailed = 9,
-       [Description("SMS Delivered")][EnumMember]SMSDelivered = 5,
         
     }
 
@@ -85,6 +85,24 @@ namespace PS.Mothership.Core.Common.Template.Event
 							},
 							new Type
 							{
+								EnumValue = 4,
+								EnumName = "SMSSendFailed",
+								EnumDescription = "SMS Send Failed",
+								EventTypeKey = 4,
+								EventCategoryKey = 1,
+								RecStatusKey = (RecStatusEnum)1
+							},
+							new Type
+							{
+								EnumValue = 5,
+								EnumName = "SMSDelivered",
+								EnumDescription = "SMS Delivered",
+								EventTypeKey = 5,
+								EventCategoryKey = 1,
+								RecStatusKey = (RecStatusEnum)1
+							},
+							new Type
+							{
 								EnumValue = 6,
 								EnumName = "EmailScheduled",
 								EnumDescription = "Email Scheduled",
@@ -112,28 +130,10 @@ namespace PS.Mothership.Core.Common.Template.Event
 							},
 							new Type
 							{
-								EnumValue = 4,
-								EnumName = "SMSSendFailed",
-								EnumDescription = "SMS Send Failed",
-								EventTypeKey = 4,
-								EventCategoryKey = 1,
-								RecStatusKey = (RecStatusEnum)1
-							},
-							new Type
-							{
 								EnumValue = 9,
 								EnumName = "EmailSendFailed",
 								EnumDescription = "EmailSendFailed",
 								EventTypeKey = 9,
-								EventCategoryKey = 1,
-								RecStatusKey = (RecStatusEnum)1
-							},
-							new Type
-							{
-								EnumValue = 5,
-								EnumName = "SMSDelivered",
-								EnumDescription = "SMS Delivered",
-								EventTypeKey = 5,
 								EventCategoryKey = 1,
 								RecStatusKey = (RecStatusEnum)1
 							},
