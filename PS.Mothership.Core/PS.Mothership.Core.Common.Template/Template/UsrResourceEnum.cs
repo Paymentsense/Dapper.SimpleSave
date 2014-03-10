@@ -60,7 +60,7 @@ namespace PS.Mothership.Core.Common.Template.Usr
 								Area = "",
 								ContainerName = "",
 								ResourceTypeKey = 0,
-								RecStatusKey = (RecStatusEnum)0
+								RecStatusKey = (RecStatusEnum)1
 							},
 							new Resource
 							{
