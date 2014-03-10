@@ -48,7 +48,7 @@ namespace PS.Mothership.Core.Common.Template.Dial
 								EnumName = "None",
 								EnumDescription = "None",
 								ModeKey = 0,
-								RecStatusKey = (RecStatusEnum)1
+								RecStatusKey = (RecStatusEnum)3
 							},
 							new Mode
 							{
