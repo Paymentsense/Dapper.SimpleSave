@@ -8,44 +8,44 @@ namespace PS.Mothership.Core.Common.Template.Cust
 {
     
     [DataContract]
-    public enum StatusGroupEnum : long
+    public enum CustStatusGroupEnum : long
     {
        [Description("None")][EnumMember]None = 0,
         
-    }
-
-    public class StatusGroup
+    }    
+    
+    public class CustStatusGroup
     {
         public long EnumValue {get;set;}
 		public string EnumName {get;set;}
 		public string EnumDescription {get;set;}
 		public long CustStatusGroupKey {get;set;}
 		public int SortOrder {get;set;}
-		public RecStatusEnum RecStatusKey {get;set;}
+		public GenRecStatusEnum RecStatusKey {get;set;}
     }
 
     /// <summary>
     /// This class is mainly for using the extended properties of Enum
     /// </summary>
-    public static class StatusGroupCollection
+    public static class CustStatusGroupCollection
     {
-        private static List<StatusGroup> _list; 
-        public static List<StatusGroup> StatusGroupList
+        private static List<CustStatusGroup> _list; 
+        public static List<CustStatusGroup> CustStatusGroupList
         {
             get
             {
                 if (_list == null)
                 {   
-                        _list = new List<StatusGroup>
+                        _list = new List<CustStatusGroup>
                         {
-                            new StatusGroup
+                            new CustStatusGroup
 							{
 								EnumValue = 0,
 								EnumName = "None",
 								EnumDescription = "None",
 								CustStatusGroupKey = 0,
 								SortOrder = 0,
-								RecStatusKey = (RecStatusEnum)1
+								RecStatusKey = (GenRecStatusEnum)0
 							},
                         };
                     

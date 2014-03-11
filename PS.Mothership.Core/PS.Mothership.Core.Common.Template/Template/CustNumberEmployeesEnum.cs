@@ -8,13 +8,13 @@ namespace PS.Mothership.Core.Common.Template.Cust
 {
     
     [DataContract]
-    public enum NumberEmployeesEnum : long
+    public enum CustNumberEmployeesEnum : long
     {
        [Description("None")][EnumMember]None = 0,
         
-    }
-
-    public class NumberEmployees
+    }    
+    
+    public class CustNumberEmployees
     {
         public long EnumValue {get;set;}
 		public string EnumName {get;set;}
@@ -22,24 +22,24 @@ namespace PS.Mothership.Core.Common.Template.Cust
 		public long NumberEmployeesKey {get;set;}
 		public int RangeLow {get;set;}
 		public int RangeHigh {get;set;}
-		public RecStatusEnum RecStatusKey {get;set;}
+		public GenRecStatusEnum RecStatusKey {get;set;}
     }
 
     /// <summary>
     /// This class is mainly for using the extended properties of Enum
     /// </summary>
-    public static class NumberEmployeesCollection
+    public static class CustNumberEmployeesCollection
     {
-        private static List<NumberEmployees> _list; 
-        public static List<NumberEmployees> NumberEmployeesList
+        private static List<CustNumberEmployees> _list; 
+        public static List<CustNumberEmployees> CustNumberEmployeesList
         {
             get
             {
                 if (_list == null)
                 {   
-                        _list = new List<NumberEmployees>
+                        _list = new List<CustNumberEmployees>
                         {
-                            new NumberEmployees
+                            new CustNumberEmployees
 							{
 								EnumValue = 0,
 								EnumName = "None",
@@ -47,7 +47,7 @@ namespace PS.Mothership.Core.Common.Template.Cust
 								NumberEmployeesKey = 0,
 								RangeLow = 0,
 								RangeHigh = 0,
-								RecStatusKey = (RecStatusEnum)1
+								RecStatusKey = (GenRecStatusEnum)0
 							},
                         };
                     

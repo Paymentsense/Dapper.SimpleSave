@@ -18,15 +18,15 @@ namespace PS.Mothership.Core.Common.Dto.Customer
         public string TradingName { get; set; }
 
         [DataMember]
-        public BusinessLegalTypeEnum BusinessLegalTypeKey { get; set; }
+        public CustBusinessLegalTypeEnum BusinessLegalTypeKey { get; set; }
 
         [DataMember]
-        public AnnualTurnoverEnum AnnualTurnoverKey { get; set; }
+        public CustAnnualTurnoverEnum AnnualTurnoverKey { get; set; }
 
         [DataMember]
-        public NumberEmployeesEnum NumberEmployeesKey { get; set; }
+        public CustNumberEmployeesEnum NumberEmployeesKey { get; set; }
 
         [DataMember]
-        public NoContactReasonEnum CallRestrictedReasonKey { get; set; }
+        public CustNoContactReasonEnum CallRestrictedReasonKey { get; set; }
     }
 }

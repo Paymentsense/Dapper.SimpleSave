@@ -14,10 +14,10 @@ namespace PS.Mothership.Core.Common.Contracts
     {
 
         [OperationContract(IsOneWay = true)]
-        void PushSMSServiceStatus(MessageServiceStatusEnum serviceStatus);
+        void PushSMSServiceStatus(CommMessageServiceStatusEnum serviceStatus);
 
         [OperationContract(IsOneWay = true)]
-        void PushEmailServiceStatus(MessageServiceStatusEnum serviceStatus);
+        void PushEmailServiceStatus(CommMessageServiceStatusEnum serviceStatus);
         
     }
 }

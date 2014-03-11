@@ -8,13 +8,13 @@ namespace PS.Mothership.Core.Common.Template.Cust
 {
     
     [DataContract]
-    public enum AnnualTurnoverEnum : long
+    public enum CustAnnualTurnoverEnum : long
     {
        [Description("None")][EnumMember]None = 0,
         
-    }
-
-    public class AnnualTurnover
+    }    
+    
+    public class CustAnnualTurnover
     {
         public long EnumValue {get;set;}
 		public string EnumName {get;set;}
@@ -22,24 +22,24 @@ namespace PS.Mothership.Core.Common.Template.Cust
 		public long AnnualTurnoverKey {get;set;}
 		public int TurnoverLow {get;set;}
 		public int TurnoverHigh {get;set;}
-		public RecStatusEnum RecStatusKey {get;set;}
+		public GenRecStatusEnum RecStatusKey {get;set;}
     }
 
     /// <summary>
     /// This class is mainly for using the extended properties of Enum
     /// </summary>
-    public static class AnnualTurnoverCollection
+    public static class CustAnnualTurnoverCollection
     {
-        private static List<AnnualTurnover> _list; 
-        public static List<AnnualTurnover> AnnualTurnoverList
+        private static List<CustAnnualTurnover> _list; 
+        public static List<CustAnnualTurnover> CustAnnualTurnoverList
         {
             get
             {
                 if (_list == null)
                 {   
-                        _list = new List<AnnualTurnover>
+                        _list = new List<CustAnnualTurnover>
                         {
-                            new AnnualTurnover
+                            new CustAnnualTurnover
 							{
 								EnumValue = 0,
 								EnumName = "None",
@@ -47,7 +47,7 @@ namespace PS.Mothership.Core.Common.Template.Cust
 								AnnualTurnoverKey = 0,
 								TurnoverLow = 0,
 								TurnoverHigh = 0,
-								RecStatusKey = (RecStatusEnum)1
+								RecStatusKey = (GenRecStatusEnum)0
 							},
                         };
                     

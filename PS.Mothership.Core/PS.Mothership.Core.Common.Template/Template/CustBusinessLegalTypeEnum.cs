@@ -8,44 +8,44 @@ namespace PS.Mothership.Core.Common.Template.Cust
 {
     
     [DataContract]
-    public enum BusinessLegalTypeEnum : long
+    public enum CustBusinessLegalTypeEnum : long
     {
        [Description("None")][EnumMember]None = 0,
         
-    }
-
-    public class BusinessLegalType
+    }    
+    
+    public class CustBusinessLegalType
     {
         public long EnumValue {get;set;}
 		public string EnumName {get;set;}
 		public string EnumDescription {get;set;}
 		public long BusinessLegalTypeKey {get;set;}
 		public bool IsLimitedCompany {get;set;}
-		public RecStatusEnum RecStatusKey {get;set;}
+		public GenRecStatusEnum RecStatusKey {get;set;}
     }
 
     /// <summary>
     /// This class is mainly for using the extended properties of Enum
     /// </summary>
-    public static class BusinessLegalTypeCollection
+    public static class CustBusinessLegalTypeCollection
     {
-        private static List<BusinessLegalType> _list; 
-        public static List<BusinessLegalType> BusinessLegalTypeList
+        private static List<CustBusinessLegalType> _list; 
+        public static List<CustBusinessLegalType> CustBusinessLegalTypeList
         {
             get
             {
                 if (_list == null)
                 {   
-                        _list = new List<BusinessLegalType>
+                        _list = new List<CustBusinessLegalType>
                         {
-                            new BusinessLegalType
+                            new CustBusinessLegalType
 							{
 								EnumValue = 0,
 								EnumName = "None",
 								EnumDescription = "None",
 								BusinessLegalTypeKey = 0,
 								IsLimitedCompany = false,
-								RecStatusKey = (RecStatusEnum)1
+								RecStatusKey = (GenRecStatusEnum)0
 							},
                         };
                     

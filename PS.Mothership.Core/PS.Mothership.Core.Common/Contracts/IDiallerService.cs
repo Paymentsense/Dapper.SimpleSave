@@ -17,7 +17,7 @@ namespace PS.Mothership.Core.Common.Contracts
 
         [OperationContract]
         void LogDiallerSessionUnsubscribe(Guid userGuid, Guid mothershipSessionGuid, Guid diallerSessionGuid,
-            bool wasForcedLogout, LogoutReasonEnum logoutReason);
+            bool wasForcedLogout, DialLogoutReasonEnum logoutReason);
 
         [OperationContract]
         IEnumerable<InboundQueueDetailsDto> GetInboundQueueDetails();
@@ -35,7 +35,7 @@ namespace PS.Mothership.Core.Common.Contracts
         void InsertCallRecordingEvent(CallRecordingEventDto callRecordingEvent);
 
         [OperationContract]
-        Guid LogDiallerModeChange(Guid userGuid, Guid mothershipSessionGuid, ModeEnum diallerMode);
+        Guid LogDiallerModeChange(Guid userGuid, Guid mothershipSessionGuid, DialModeEnum diallerMode);
 
         [OperationContract]
         void LogNewDiallerCall(NewDiallerCallDto diallerCall);

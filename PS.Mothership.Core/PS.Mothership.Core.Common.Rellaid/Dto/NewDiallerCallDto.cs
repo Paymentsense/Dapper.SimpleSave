@@ -14,7 +14,7 @@ namespace PS.Mothership.Core.Common.Rellaid.Dto
         public Guid SipCallGuid { get; set; }
 
         [DataMember]
-        public CallTypeEnum CallType { get; set; }
+        public DialCallTypeEnum CallType { get; set; }
 
         [DataMember]
         public Guid SessionModeGuid { get; set; }
@@ -50,6 +50,6 @@ namespace PS.Mothership.Core.Common.Rellaid.Dto
         public Guid InboundCampaignCallGuid { get; set; }
 
         [DataMember]
-        public CallDispositionEnum CallDisposition { get; set; }
+        public DialCallDispositionEnum CallDisposition { get; set; }
     }
 }
