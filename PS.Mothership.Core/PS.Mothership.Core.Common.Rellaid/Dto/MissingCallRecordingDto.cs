@@ -29,16 +29,13 @@ namespace PS.Mothership.Core.Common.Rellaid.Dto
         public string DialledNumber { get; set; }
 
         [DataMember]
-        public Guid? UserGuid { get; set; }
-
-        [DataMember]
         public Guid? ProspectingCampaignCallGuid { get; set; }
 
         [DataMember]
         public Guid? MerchantGuid { get; set; }
 
         [DataMember]
-        public Guid CallGuid { get; set; }
+        public Guid SipCallGuid { get; set; }
 
         [DataMember]
         public Guid UpdateSessionGuid { get; set; }
