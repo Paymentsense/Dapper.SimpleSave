@@ -20,13 +20,13 @@ namespace PS.Mothership.Core.Common.Rellaid.Dto
         public Guid SessionModeGuid { get; set; }
 
         [DataMember]
-        public DateTime StartDateTime { get; set; }
+        public DateTimeOffset StartDateTime { get; set; }
 
         [DataMember]
         public string DialledNumber { get; set; }
 
         [DataMember]
-        public string ExtensionNumber { get; set; }
+        public Guid UserSipPhoneGuid { get; set; }
 
         [DataMember]
         public string CIDNumber { get; set; }
@@ -47,7 +47,7 @@ namespace PS.Mothership.Core.Common.Rellaid.Dto
         public Guid? ProspectingCampaignResponseTapCallGuid { get; set; }
 
         [DataMember]
-        public Guid? InboundCampaignCallGuid { get; set; }
+        public Guid InboundCampaignCallGuid { get; set; }
 
         [DataMember]
         public CallDispositionEnum CallDisposition { get; set; }

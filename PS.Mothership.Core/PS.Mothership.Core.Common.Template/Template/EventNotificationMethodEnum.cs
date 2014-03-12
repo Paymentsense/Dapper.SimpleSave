@@ -2,6 +2,7 @@ using System;
 using System.Runtime.Serialization;
 using System.ComponentModel;
 using System.Collections.Generic;
+using PS.Mothership.Core.Common.Template.Gen;
 
 namespace PS.Mothership.Core.Common.Template.Event
 {
@@ -9,7 +10,7 @@ namespace PS.Mothership.Core.Common.Template.Event
     [DataContract]
     public enum NotificationMethodEnum : long
     {
-       [Description("")][EnumMember]Blank = 1,
+       [Description("None")][EnumMember]None = 0,
         
     }
 
@@ -18,7 +19,8 @@ namespace PS.Mothership.Core.Common.Template.Event
         public long EnumValue {get;set;}
 		public string EnumName {get;set;}
 		public string EnumDescription {get;set;}
-		public long EventNotificationKey {get;set;}
+		public long NotificationMethodKey {get;set;}
+		public RecStatusEnum RecStatusKey {get;set;}
     }
 
     /// <summary>
@@ -37,10 +39,11 @@ namespace PS.Mothership.Core.Common.Template.Event
                         {
                             new NotificationMethod
 							{
-								EnumValue = 1,
-								EnumName = "Blank",
-								EnumDescription = "",
-								EventNotificationKey = 1
+								EnumValue = 0,
+								EnumName = "None",
+								EnumDescription = "None",
+								NotificationMethodKey = 0,
+								RecStatusKey = (RecStatusEnum)0
 							},
                         };
                     

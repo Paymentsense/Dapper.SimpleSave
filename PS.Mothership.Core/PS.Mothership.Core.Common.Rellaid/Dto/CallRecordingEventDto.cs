@@ -7,7 +7,7 @@ namespace PS.Mothership.Core.Common.Rellaid.Dto
     public class CallRecordingEventDto
     {
         [DataMember]
-        public DateTime? CreatedDate { get; set; }
+        public DateTimeOffset? CreatedDate { get; set; }
 
         [DataMember]
         public Guid? ProspectingCampaignCallGuid { get; set; }

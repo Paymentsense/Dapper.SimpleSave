@@ -2,6 +2,7 @@ using System;
 using System.Runtime.Serialization;
 using System.ComponentModel;
 using System.Collections.Generic;
+using PS.Mothership.Core.Common.Template.Gen;
 
 namespace PS.Mothership.Core.Common.Template.Usr
 {
@@ -25,6 +26,7 @@ namespace PS.Mothership.Core.Common.Template.Usr
 		public string EnumName {get;set;}
 		public string EnumDescription {get;set;}
 		public long OptionKey {get;set;}
+		public RecStatusEnum RecStatusKey {get;set;}
     }
 
     /// <summary>
@@ -46,49 +48,56 @@ namespace PS.Mothership.Core.Common.Template.Usr
 								EnumValue = 0,
 								EnumName = "None",
 								EnumDescription = "None",
-								OptionKey = 0
+								OptionKey = 0,
+								RecStatusKey = (RecStatusEnum)1
 							},
 							new StatusOptionFlag
 							{
 								EnumValue = 1,
 								EnumName = "ManageEmail",
 								EnumDescription = "Manage Email",
-								OptionKey = 1
+								OptionKey = 1,
+								RecStatusKey = (RecStatusEnum)1
 							},
 							new StatusOptionFlag
 							{
 								EnumValue = 2,
 								EnumName = "AllowRemoteAccess",
 								EnumDescription = "Allow Remote Access",
-								OptionKey = 2
+								OptionKey = 2,
+								RecStatusKey = (RecStatusEnum)1
 							},
 							new StatusOptionFlag
 							{
 								EnumValue = 4,
 								EnumName = "ProvisioningWatchList",
 								EnumDescription = "Provisioning Watch List",
-								OptionKey = 4
+								OptionKey = 4,
+								RecStatusKey = (RecStatusEnum)1
 							},
 							new StatusOptionFlag
 							{
 								EnumValue = 8,
 								EnumName = "RevolutionUser",
 								EnumDescription = "Revolution User",
-								OptionKey = 8
+								OptionKey = 8,
+								RecStatusKey = (RecStatusEnum)1
 							},
 							new StatusOptionFlag
 							{
 								EnumValue = 16,
 								EnumName = "IsSelfTA",
 								EnumDescription = "Is Self TA",
-								OptionKey = 16
+								OptionKey = 16,
+								RecStatusKey = (RecStatusEnum)1
 							},
 							new StatusOptionFlag
 							{
 								EnumValue = 32,
 								EnumName = "CanImpersonate",
 								EnumDescription = "Can Impersonate",
-								OptionKey = 32
+								OptionKey = 32,
+								RecStatusKey = (RecStatusEnum)1
 							},
                         };
                     

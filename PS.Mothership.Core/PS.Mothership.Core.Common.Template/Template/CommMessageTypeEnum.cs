@@ -2,6 +2,7 @@ using System;
 using System.Runtime.Serialization;
 using System.ComponentModel;
 using System.Collections.Generic;
+using PS.Mothership.Core.Common.Template.Gen;
 
 namespace PS.Mothership.Core.Common.Template.Comm
 {
@@ -9,9 +10,9 @@ namespace PS.Mothership.Core.Common.Template.Comm
     [DataContract]
     public enum MessageTypeEnum : long
     {
-       [Description("")][EnumMember]None = 0,
-       [Description("")][EnumMember]SMS = 1,
-       [Description("")][EnumMember]Email = 2,
+       [Description("None")][EnumMember]None = 0,
+       [Description("SMS")][EnumMember]SMS = 1,
+       [Description("Email")][EnumMember]Email = 2,
         
     }
 
@@ -21,6 +22,7 @@ namespace PS.Mothership.Core.Common.Template.Comm
 		public string EnumName {get;set;}
 		public string EnumDescription {get;set;}
 		public long MessageTypeKey {get;set;}
+		public RecStatusEnum RecStatusKey {get;set;}
     }
 
     /// <summary>
@@ -41,22 +43,25 @@ namespace PS.Mothership.Core.Common.Template.Comm
 							{
 								EnumValue = 0,
 								EnumName = "None",
-								EnumDescription = "",
-								MessageTypeKey = 0
+								EnumDescription = "None",
+								MessageTypeKey = 0,
+								RecStatusKey = (RecStatusEnum)0
 							},
 							new MessageType
 							{
 								EnumValue = 1,
 								EnumName = "SMS",
-								EnumDescription = "",
-								MessageTypeKey = 1
+								EnumDescription = "SMS",
+								MessageTypeKey = 1,
+								RecStatusKey = (RecStatusEnum)1
 							},
 							new MessageType
 							{
 								EnumValue = 2,
 								EnumName = "Email",
-								EnumDescription = "",
-								MessageTypeKey = 2
+								EnumDescription = "Email",
+								MessageTypeKey = 2,
+								RecStatusKey = (RecStatusEnum)1
 							},
                         };
                     

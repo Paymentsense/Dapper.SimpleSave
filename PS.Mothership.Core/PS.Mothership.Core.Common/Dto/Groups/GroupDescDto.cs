@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
 
 namespace PS.Mothership.Core.Common.Dto.Groups
 {
@@ -6,7 +7,7 @@ namespace PS.Mothership.Core.Common.Dto.Groups
     public class GroupDescDto
     {
         [DataMember]
-        public long Id { get; set; }
+        public Guid GroupGuid { get; set; }
         [DataMember]
         public string GroupName { get; set; }
         [DataMember]

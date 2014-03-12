@@ -11,7 +11,7 @@ namespace PS.Mothership.Core.Common.Rellaid.Dto
         public Guid SipCallGuid { get; set; }
 
         [DataMember]
-        public DateTime EndDateTime { get; set; }
+        public DateTimeOffset EndDateTime { get; set; }
 
         [DataMember]
         public string TransferredNumber { get; set; }

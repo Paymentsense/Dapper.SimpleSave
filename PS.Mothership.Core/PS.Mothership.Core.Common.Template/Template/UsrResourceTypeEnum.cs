@@ -2,6 +2,7 @@ using System;
 using System.Runtime.Serialization;
 using System.ComponentModel;
 using System.Collections.Generic;
+using PS.Mothership.Core.Common.Template.Gen;
 
 namespace PS.Mothership.Core.Common.Template.Usr
 {
@@ -22,6 +23,7 @@ namespace PS.Mothership.Core.Common.Template.Usr
 		public string EnumName {get;set;}
 		public string EnumDescription {get;set;}
 		public long ResourceTypeKey {get;set;}
+		public RecStatusEnum RecStatusKey {get;set;}
     }
 
     /// <summary>
@@ -43,28 +45,32 @@ namespace PS.Mothership.Core.Common.Template.Usr
 								EnumValue = 0,
 								EnumName = "None",
 								EnumDescription = "None",
-								ResourceTypeKey = 0
+								ResourceTypeKey = 0,
+								RecStatusKey = (RecStatusEnum)1
 							},
 							new ResourceType
 							{
 								EnumValue = 1,
 								EnumName = "MainMenuAreaView",
 								EnumDescription = "Main Menu Area View",
-								ResourceTypeKey = 1
+								ResourceTypeKey = 1,
+								RecStatusKey = (RecStatusEnum)1
 							},
 							new ResourceType
 							{
 								EnumValue = 2,
 								EnumName = "AdminView",
 								EnumDescription = "Admin View",
-								ResourceTypeKey = 2
+								ResourceTypeKey = 2,
+								RecStatusKey = (RecStatusEnum)1
 							},
 							new ResourceType
 							{
 								EnumValue = 3,
 								EnumName = "PartialView",
 								EnumDescription = "Partial View",
-								ResourceTypeKey = 3
+								ResourceTypeKey = 3,
+								RecStatusKey = (RecStatusEnum)1
 							},
                         };
                     

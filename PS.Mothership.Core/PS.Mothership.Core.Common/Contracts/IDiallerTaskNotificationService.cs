@@ -3,7 +3,7 @@ using System.ServiceModel;
 
 namespace PS.Mothership.Core.Common.Contracts
 {
-    [ServiceContract(CallbackContract = typeof (IDiallerTaskNotificationCallback))]
+    [ServiceContract(Name="DiallerTaskNotificationService", CallbackContract = typeof (IDiallerTaskNotificationCallback))]
     public interface IDiallerTaskNotificationService : IQuartzJobBase
     {
         [OperationContract(IsOneWay = false)]

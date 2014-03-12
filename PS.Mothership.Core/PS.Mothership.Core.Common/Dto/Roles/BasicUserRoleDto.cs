@@ -7,8 +7,8 @@ namespace PS.Mothership.Core.Common.Dto.Roles
     public class BasicUserRoleDto
     {
         [DataMember]
-        public Guid UserId { get; set; }
+        public Guid UserGuid { get; set; }
         [DataMember]
-        public long RoleId { get; set; }
+        public Guid RoleGuid { get; set; }
     }
 }

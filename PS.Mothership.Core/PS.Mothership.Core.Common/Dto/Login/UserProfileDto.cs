@@ -34,8 +34,6 @@ namespace PS.Mothership.Core.Common.Dto.Login
         public string Initial { get; set; }
         [DataMember]
         public string Email { get; set; }
-        [DataMember]
-        public string OfficeDdi { get; set; }
 
         [DataMember]
         public bool IsLoggedIn { get; set; }
@@ -47,8 +45,12 @@ namespace PS.Mothership.Core.Common.Dto.Login
         public bool IsDefining { get; set; }
         [DataMember]
         public bool CanImpersonate { get; set; }
+
         [DataMember]
-        public bool IsImpersonate { get; set; }        
+        public bool IsImpersonate { get; set; }
+        [DataMember]
+        public Guid ImpersonateGuid { get; set; }
+
         [DataMember]
         public string Message { get; set; }
         [DataMember]
@@ -62,14 +64,9 @@ namespace PS.Mothership.Core.Common.Dto.Login
         [DataMember]
         public ICollection<UserProfileDto> SimilarNames { get; set; }
                 
-        private Guid _sessionId = Guid.NewGuid();        
         [JsonIgnore]     
         [DataMember]
-        public Guid SessionId
-        {
-            get { return _sessionId; }  
-            set { _sessionId = value; }
-        }
+        public Guid SessionId { get; set; }
 
 
         [DataMember]
@@ -101,6 +98,8 @@ namespace PS.Mothership.Core.Common.Dto.Login
         public RoleDto DefiningRole { get; set; }
         [DataMember]
         public GroupDto Group { get; set; }
+        [DataMember]
+        public Guid SipAccountGuid { get; set; }
 
         public List<GroupDto> Groups { get; set; }
         public List<RoleDto> AllDefiningRoles { get; set; }

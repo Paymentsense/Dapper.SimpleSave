@@ -2,6 +2,7 @@ using System;
 using System.Runtime.Serialization;
 using System.ComponentModel;
 using System.Collections.Generic;
+using PS.Mothership.Core.Common.Template.Gen;
 
 namespace PS.Mothership.Core.Common.Template.Usr
 {
@@ -27,7 +28,7 @@ namespace PS.Mothership.Core.Common.Template.Usr
 		public string EnumDescription {get;set;}
 		public long UserStatusKey {get;set;}
 		public bool IsLoginEnabled {get;set;}
-		public bool IsVisibleInUI {get;set;}
+		public RecStatusEnum RecStatusKey {get;set;}
     }
 
     /// <summary>
@@ -51,7 +52,7 @@ namespace PS.Mothership.Core.Common.Template.Usr
 								EnumDescription = "None",
 								UserStatusKey = 0,
 								IsLoginEnabled = false,
-								IsVisibleInUI = true
+								RecStatusKey = (RecStatusEnum)1
 							},
 							new UserStatus
 							{
@@ -60,7 +61,7 @@ namespace PS.Mothership.Core.Common.Template.Usr
 								EnumDescription = "New Hire",
 								UserStatusKey = 1,
 								IsLoginEnabled = false,
-								IsVisibleInUI = true
+								RecStatusKey = (RecStatusEnum)1
 							},
 							new UserStatus
 							{
@@ -69,7 +70,7 @@ namespace PS.Mothership.Core.Common.Template.Usr
 								EnumDescription = "Active User",
 								UserStatusKey = 2,
 								IsLoginEnabled = true,
-								IsVisibleInUI = true
+								RecStatusKey = (RecStatusEnum)1
 							},
 							new UserStatus
 							{
@@ -78,7 +79,7 @@ namespace PS.Mothership.Core.Common.Template.Usr
 								EnumDescription = "Password Locked",
 								UserStatusKey = 3,
 								IsLoginEnabled = false,
-								IsVisibleInUI = false
+								RecStatusKey = (RecStatusEnum)2
 							},
 							new UserStatus
 							{
@@ -87,7 +88,7 @@ namespace PS.Mothership.Core.Common.Template.Usr
 								EnumDescription = "System Locked",
 								UserStatusKey = 4,
 								IsLoginEnabled = false,
-								IsVisibleInUI = true
+								RecStatusKey = (RecStatusEnum)1
 							},
 							new UserStatus
 							{
@@ -96,7 +97,7 @@ namespace PS.Mothership.Core.Common.Template.Usr
 								EnumDescription = "Suspended",
 								UserStatusKey = 5,
 								IsLoginEnabled = false,
-								IsVisibleInUI = true
+								RecStatusKey = (RecStatusEnum)1
 							},
 							new UserStatus
 							{
@@ -105,7 +106,7 @@ namespace PS.Mothership.Core.Common.Template.Usr
 								EnumDescription = "Terminated",
 								UserStatusKey = 6,
 								IsLoginEnabled = false,
-								IsVisibleInUI = true
+								RecStatusKey = (RecStatusEnum)1
 							},
 							new UserStatus
 							{
@@ -114,7 +115,7 @@ namespace PS.Mothership.Core.Common.Template.Usr
 								EnumDescription = "Password Reset",
 								UserStatusKey = 7,
 								IsLoginEnabled = false,
-								IsVisibleInUI = false
+								RecStatusKey = (RecStatusEnum)2
 							},
                         };
                     
