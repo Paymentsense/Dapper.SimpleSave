@@ -9,8 +9,7 @@ namespace PS.Mothership.Core.Common.Template.Event
     [DataContract]
     public enum NotificationMethodEnum : long
     {
-       [Description("")][EnumMember]Blank = 1,
-       [Description("")][EnumMember]Nothing = 2,
+       [Description("None")][EnumMember]None = 0,
         
     }
 
@@ -19,7 +18,7 @@ namespace PS.Mothership.Core.Common.Template.Event
         public long EnumValue {get;set;}
 		public string EnumName {get;set;}
 		public string EnumDescription {get;set;}
-		public long EventNotificationKey {get;set;}
+		public long NotificationMethodKey {get;set;}
     }
 
     /// <summary>
@@ -38,17 +37,10 @@ namespace PS.Mothership.Core.Common.Template.Event
                         {
                             new NotificationMethod
 							{
-								EnumValue = 1,
-								EnumName = "Blank",
-								EnumDescription = "",
-								EventNotificationKey = 1
-							},
-							new NotificationMethod
-							{
-								EnumValue = 2,
-								EnumName = "Nothing",
-								EnumDescription = "",
-								EventNotificationKey = 2
+								EnumValue = 0,
+								EnumName = "None",
+								EnumDescription = "None",
+								NotificationMethodKey = 0
 							},
                         };
                     

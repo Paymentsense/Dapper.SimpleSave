@@ -9,9 +9,9 @@ namespace PS.Mothership.Core.Common.Template.Comm
     [DataContract]
     public enum MessageTypeEnum : long
     {
-       [Description("")][EnumMember]None = 0,
-       [Description("")][EnumMember]SMS = 1,
-       [Description("")][EnumMember]Email = 2,
+       [Description("None")][EnumMember]None = 0,
+       [Description("SMS")][EnumMember]SMS = 1,
+       [Description("Email")][EnumMember]Email = 2,
         
     }
 
@@ -41,21 +41,21 @@ namespace PS.Mothership.Core.Common.Template.Comm
 							{
 								EnumValue = 0,
 								EnumName = "None",
-								EnumDescription = "",
+								EnumDescription = "None",
 								MessageTypeKey = 0
 							},
 							new MessageType
 							{
 								EnumValue = 1,
 								EnumName = "SMS",
-								EnumDescription = "",
+								EnumDescription = "SMS",
 								MessageTypeKey = 1
 							},
 							new MessageType
 							{
 								EnumValue = 2,
 								EnumName = "Email",
-								EnumDescription = "",
+								EnumDescription = "Email",
 								MessageTypeKey = 2
 							},
                         };

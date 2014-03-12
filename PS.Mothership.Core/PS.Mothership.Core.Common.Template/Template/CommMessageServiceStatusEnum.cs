@@ -9,9 +9,10 @@ namespace PS.Mothership.Core.Common.Template.Comm
     [DataContract]
     public enum MessageServiceStatusEnum : long
     {
-       [Description("")][EnumMember]Normal = 1,
-       [Description("")][EnumMember]Unstable = 2,
-       [Description("")][EnumMember]Errored = 3,
+       [Description("None")][EnumMember]None = 0,
+       [Description("Normal")][EnumMember]Normal = 1,
+       [Description("Unstable")][EnumMember]Unstable = 2,
+       [Description("Errored")][EnumMember]Errored = 3,
         
     }
 
@@ -40,9 +41,17 @@ namespace PS.Mothership.Core.Common.Template.Comm
                         {
                             new MessageServiceStatus
 							{
+								EnumValue = 0,
+								EnumName = "None",
+								EnumDescription = "None",
+								ServiceStatusKey = 0,
+								IsUseable = false
+							},
+							new MessageServiceStatus
+							{
 								EnumValue = 1,
 								EnumName = "Normal",
-								EnumDescription = "",
+								EnumDescription = "Normal",
 								ServiceStatusKey = 1,
 								IsUseable = true
 							},
@@ -50,7 +59,7 @@ namespace PS.Mothership.Core.Common.Template.Comm
 							{
 								EnumValue = 2,
 								EnumName = "Unstable",
-								EnumDescription = "",
+								EnumDescription = "Unstable",
 								ServiceStatusKey = 2,
 								IsUseable = true
 							},
@@ -58,7 +67,7 @@ namespace PS.Mothership.Core.Common.Template.Comm
 							{
 								EnumValue = 3,
 								EnumName = "Errored",
-								EnumDescription = "",
+								EnumDescription = "Errored",
 								ServiceStatusKey = 3,
 								IsUseable = true
 							},
