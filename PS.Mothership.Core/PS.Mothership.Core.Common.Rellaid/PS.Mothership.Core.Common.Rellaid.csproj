@@ -49,7 +49,7 @@
     <Compile Include="Dto\InboundQueueDetailsDto.cs" />
     <Compile Include="Dto\InboundQueueDistributorDto.cs" />
     <Compile Include="Dto\InboundQueueSubscriptionDto.cs" />
-    <Compile Include="Dto\MissingCallRecordingsDto.cs" />
+    <Compile Include="Dto\MissingCallRecordingDto.cs" />
     <Compile Include="Dto\SipAccountDto.cs" />
     <Compile Include="Dto\SpeedDialNumberDto.cs" />
     <Compile Include="Dto\ValidUserInfoDto.cs" />

@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 namespace PS.Mothership.Core.Common.Rellaid.Dto
 {
     [DataContract]
-    public class MissingCallRecordingsDto
+    public class MissingCallRecordingDto
     {
         [DataMember]
         public DateTimeOffset? AdjustedStartDateTime { get; set; }
@@ -39,5 +39,8 @@ namespace PS.Mothership.Core.Common.Rellaid.Dto
 
         [DataMember]
         public Guid CallGuid { get; set; }
+
+        [DataMember]
+        public Guid UpdateSessionGuid { get; set; }
     }
 }

@@ -23,7 +23,7 @@ namespace PS.Mothership.Core.Common.Contracts
         IEnumerable<InboundQueueDetailsDto> GetInboundQueueDetails();
 
         [OperationContract]
-        IEnumerable<MissingCallRecordingsDto> GetMissingCallRecordings(DateTime dateStart, DateTime dateEnd);
+        IEnumerable<MissingCallRecordingDto> GetMissingCallRecordings(DateTime dateStart, DateTime dateEnd);
 
         [OperationContract]
         void UpdateRecorderCallIdForCallGuid(Guid callGuid, long recorderCallId, Guid updateSessionGuid);
