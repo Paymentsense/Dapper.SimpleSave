@@ -19,9 +19,6 @@ namespace PS.Mothership.Core.Common.Rellaid.Dto
         public Guid? MerchantGuid { get; set; }
 
         [DataMember]
-        public Guid UserGuid { get; set; }
-
-        [DataMember]
         public Guid UpdateSessionGuid { get; set; }
     }
 }
