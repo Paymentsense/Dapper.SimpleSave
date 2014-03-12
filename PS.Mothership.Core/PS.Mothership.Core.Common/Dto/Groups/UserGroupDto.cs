@@ -7,8 +7,8 @@ namespace PS.Mothership.Core.Common.Dto.Groups
     public class UserGroupDto
     {
         [DataMember]
-        public Guid UserId { get; set; }
+        public Guid UserGuid { get; set; }
         [DataMember]
-        public long GroupId { get; set; }
+        public Guid GroupGuid { get; set; }
     }
 }

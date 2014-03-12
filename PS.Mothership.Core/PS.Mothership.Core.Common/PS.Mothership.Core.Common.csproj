@@ -193,8 +193,10 @@
     <Compile Include="Helper\CTime.cs" />
     <Compile Include="Helper\DebugStopwatch.cs" />
     <Compile Include="Helper\DynamicContractResolver.cs" />
+    <Compile Include="Helper\ISignalRConnectionManager.cs" />
     <Compile Include="Helper\MSLogger.cs" />
     <Compile Include="Helper\RandomStringGenerator.cs" />
+    <Compile Include="Helper\SignalRConnectionManager.cs" />
     <Compile Include="Helper\UniqueKeyGenerator.cs" />
     <Compile Include="Helper\JsonHelper.cs" />
     <Compile Include="Helper\Obfuscator.cs" />

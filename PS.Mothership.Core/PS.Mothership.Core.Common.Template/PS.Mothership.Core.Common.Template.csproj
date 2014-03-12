@@ -59,13 +59,16 @@
     <Compile Include="Template\CommMessageEmailAddresstypeEnum.cs">
       <DependentUpon>DbEnumBuilder.tt</DependentUpon>
     </Compile>
-    <Compile Include="Template\CommMessageResultEnum.cs">
-      <DependentUpon>DbEnumBuilder.tt</DependentUpon>
-    </Compile>
     <Compile Include="Template\CommMessageServiceStatusEnum.cs">
       <DependentUpon>DbEnumBuilder.tt</DependentUpon>
     </Compile>
+    <Compile Include="Template\CommMessageStatusEnum.cs">
+      <DependentUpon>DbEnumBuilder.tt</DependentUpon>
+    </Compile>
     <Compile Include="Template\CommMessageTypeEnum.cs">
+      <DependentUpon>DbEnumBuilder.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Template\CustNoContactReasonEnum.cs">
       <DependentUpon>DbEnumBuilder.tt</DependentUpon>
     </Compile>
     <Compile Include="Template\DialCallDispositionEnum.cs">
@@ -83,7 +86,13 @@
     <Compile Include="Template\DialModeEnum.cs">
       <DependentUpon>DbEnumBuilder.tt</DependentUpon>
     </Compile>
+    <Compile Include="Template\DialSipAccountTypeEnum.cs">
+      <DependentUpon>DbEnumBuilder.tt</DependentUpon>
+    </Compile>
     <Compile Include="Template\EventCategoryEnum.cs">
+      <DependentUpon>DbEnumBuilder.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Template\EventNotesTypeEnum.cs">
       <DependentUpon>DbEnumBuilder.tt</DependentUpon>
     </Compile>
     <Compile Include="Template\EventNotificationMethodEnum.cs">
@@ -93,9 +102,6 @@
       <DependentUpon>DbEnumBuilder.tt</DependentUpon>
     </Compile>
     <Compile Include="Template\EventTypeEnum.cs">
-      <DependentUpon>DbEnumBuilder.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Template\GenGuidLinkTypeEnum.cs">
       <DependentUpon>DbEnumBuilder.tt</DependentUpon>
     </Compile>
     <Compile Include="Template\GenRecStatusEnum.cs">

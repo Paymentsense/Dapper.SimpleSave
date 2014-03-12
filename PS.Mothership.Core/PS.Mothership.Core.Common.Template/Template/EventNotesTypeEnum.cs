@@ -4,72 +4,63 @@ using System.ComponentModel;
 using System.Collections.Generic;
 using PS.Mothership.Core.Common.Template.Gen;
 
-namespace PS.Mothership.Core.Common.Template.Usr
+namespace PS.Mothership.Core.Common.Template.Event
 {
     
     [DataContract]
-    public enum UserTypeEnum : long
+    public enum NotesTypeEnum : long
     {
        [Description("None")][EnumMember]None = 0,
-       [Description("Employee")][EnumMember]Employee = 1,
-       [Description("Contractor")][EnumMember]Contractor = 2,
-       [Description("Third Party")][EnumMember]ThirdParty = 3,
+       [Description("System Generated")][EnumMember]SystemGenerated = 1,
+       [Description("General")][EnumMember]General = 2,
         
     }
 
-    public class UserType
+    public class NotesType
     {
         public long EnumValue {get;set;}
 		public string EnumName {get;set;}
 		public string EnumDescription {get;set;}
-		public long UserTypeKey {get;set;}
+		public long NotesTypeKey {get;set;}
 		public RecStatusEnum RecStatusKey {get;set;}
     }
 
     /// <summary>
     /// This class is mainly for using the extended properties of Enum
     /// </summary>
-    public static class UserTypeCollection
+    public static class NotesTypeCollection
     {
-        private static List<UserType> _list; 
-        public static List<UserType> UserTypeList
+        private static List<NotesType> _list; 
+        public static List<NotesType> NotesTypeList
         {
             get
             {
                 if (_list == null)
                 {   
-                        _list = new List<UserType>
+                        _list = new List<NotesType>
                         {
-                            new UserType
+                            new NotesType
 							{
 								EnumValue = 0,
 								EnumName = "None",
 								EnumDescription = "None",
-								UserTypeKey = 0,
-								RecStatusKey = (RecStatusEnum)1
+								NotesTypeKey = 0,
+								RecStatusKey = (RecStatusEnum)0
 							},
-							new UserType
+							new NotesType
 							{
 								EnumValue = 1,
-								EnumName = "Employee",
-								EnumDescription = "Employee",
-								UserTypeKey = 1,
+								EnumName = "SystemGenerated",
+								EnumDescription = "System Generated",
+								NotesTypeKey = 1,
 								RecStatusKey = (RecStatusEnum)1
 							},
-							new UserType
+							new NotesType
 							{
 								EnumValue = 2,
-								EnumName = "Contractor",
-								EnumDescription = "Contractor",
-								UserTypeKey = 2,
-								RecStatusKey = (RecStatusEnum)1
-							},
-							new UserType
-							{
-								EnumValue = 3,
-								EnumName = "ThirdParty",
-								EnumDescription = "Third Party",
-								UserTypeKey = 3,
+								EnumName = "General",
+								EnumDescription = "General",
+								NotesTypeKey = 2,
 								RecStatusKey = (RecStatusEnum)1
 							},
                         };

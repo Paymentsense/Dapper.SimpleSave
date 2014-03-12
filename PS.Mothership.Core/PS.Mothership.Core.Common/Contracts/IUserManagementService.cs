@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.ServiceModel;
-using System.Text;
-using System.Threading.Tasks;
-using PS.Mothership.Core.Common.Dto;
+﻿using PS.Mothership.Core.Common.Dto;
 using PS.Mothership.Core.Common.Dto.DynamicRequest;
 using PS.Mothership.Core.Common.Dto.Groups;
 using PS.Mothership.Core.Common.Dto.Login;
 using PS.Mothership.Core.Common.Dto.Roles;
+using System;
+using System.Collections.Generic;
+using System.ServiceModel;
 
 namespace PS.Mothership.Core.Common.Contracts
 {
@@ -44,7 +41,7 @@ namespace PS.Mothership.Core.Common.Contracts
         [OperationContract]
         List<GroupDto> GetAllRolesAndGroups(SearchDto searchInput);
         [OperationContract]
-        GroupDto GetRolesForGroup(long groupId);
+        GroupDto GetRolesForGroup(Guid groupGuid);
         [OperationContract]
         void RemoveGroup(GroupDescDto groupDesc);
         [OperationContract]
@@ -62,7 +59,7 @@ namespace PS.Mothership.Core.Common.Contracts
         [OperationContract]
         void RemoveGroupFromUser(PS.Mothership.Core.Common.Dto.Groups.UserGroupDto userGroup);
         [OperationContract]
-        GroupDto GetGroupForUser(Guid userId);
+        GroupDto GetGroupForUser(Guid userGuid);
         [OperationContract]
         InheritedRolesDto GetInheritedRoles(RoleDto role);
         [OperationContract]

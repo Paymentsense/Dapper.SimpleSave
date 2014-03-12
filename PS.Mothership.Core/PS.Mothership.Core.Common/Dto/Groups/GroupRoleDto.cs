@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
 
 namespace PS.Mothership.Core.Common.Dto.Groups
 {
@@ -6,8 +7,8 @@ namespace PS.Mothership.Core.Common.Dto.Groups
     public class GroupRoleDto
     {
         [DataMember]
-        public long GroupId { get; set; }
+        public Guid GroupGuid { get; set; }
         [DataMember]
-        public long RoleId { get; set; }
+        public Guid RoleGuid { get; set; }
     }
 }

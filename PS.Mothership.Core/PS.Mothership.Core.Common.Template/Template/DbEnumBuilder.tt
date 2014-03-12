@@ -134,6 +134,7 @@ using System;
 using System.Runtime.Serialization;
 using System.ComponentModel;
 using System.Collections.Generic;
+using PS.Mothership.Core.Common.Template.Gen;
 
 namespace <#=enumNameSpace+"."+schemaName #>
 {

@@ -4,72 +4,72 @@ using System.ComponentModel;
 using System.Collections.Generic;
 using PS.Mothership.Core.Common.Template.Gen;
 
-namespace PS.Mothership.Core.Common.Template.Usr
+namespace PS.Mothership.Core.Common.Template.Comm
 {
     
     [DataContract]
-    public enum ResourceTypeEnum : long
+    public enum MessageStatusEnum : long
     {
        [Description("None")][EnumMember]None = 0,
-       [Description("Main Menu Area View")][EnumMember]MainMenuAreaView = 1,
-       [Description("Admin View")][EnumMember]AdminView = 2,
-       [Description("Partial View")][EnumMember]PartialView = 3,
+       [Description("Scheduled")][EnumMember]Scheduled = 1,
+       [Description("Successful")][EnumMember]Successful = 2,
+       [Description("Failed")][EnumMember]Failed = 3,
         
     }
 
-    public class ResourceType
+    public class MessageStatus
     {
         public long EnumValue {get;set;}
 		public string EnumName {get;set;}
 		public string EnumDescription {get;set;}
-		public long ResourceTypeKey {get;set;}
+		public long MessageStatusKey {get;set;}
 		public RecStatusEnum RecStatusKey {get;set;}
     }
 
     /// <summary>
     /// This class is mainly for using the extended properties of Enum
     /// </summary>
-    public static class ResourceTypeCollection
+    public static class MessageStatusCollection
     {
-        private static List<ResourceType> _list; 
-        public static List<ResourceType> ResourceTypeList
+        private static List<MessageStatus> _list; 
+        public static List<MessageStatus> MessageStatusList
         {
             get
             {
                 if (_list == null)
                 {   
-                        _list = new List<ResourceType>
+                        _list = new List<MessageStatus>
                         {
-                            new ResourceType
+                            new MessageStatus
 							{
 								EnumValue = 0,
 								EnumName = "None",
 								EnumDescription = "None",
-								ResourceTypeKey = 0,
-								RecStatusKey = (RecStatusEnum)1
+								MessageStatusKey = 0,
+								RecStatusKey = (RecStatusEnum)0
 							},
-							new ResourceType
+							new MessageStatus
 							{
 								EnumValue = 1,
-								EnumName = "MainMenuAreaView",
-								EnumDescription = "Main Menu Area View",
-								ResourceTypeKey = 1,
+								EnumName = "Scheduled",
+								EnumDescription = "Scheduled",
+								MessageStatusKey = 1,
 								RecStatusKey = (RecStatusEnum)1
 							},
-							new ResourceType
+							new MessageStatus
 							{
 								EnumValue = 2,
-								EnumName = "AdminView",
-								EnumDescription = "Admin View",
-								ResourceTypeKey = 2,
+								EnumName = "Successful",
+								EnumDescription = "Successful",
+								MessageStatusKey = 2,
 								RecStatusKey = (RecStatusEnum)1
 							},
-							new ResourceType
+							new MessageStatus
 							{
 								EnumValue = 3,
-								EnumName = "PartialView",
-								EnumDescription = "Partial View",
-								ResourceTypeKey = 3,
+								EnumName = "Failed",
+								EnumDescription = "Failed",
+								MessageStatusKey = 3,
 								RecStatusKey = (RecStatusEnum)1
 							},
                         };

@@ -35,7 +35,7 @@ namespace PS.Mothership.Core.Common.Extension
             var data = new Collection<dynamic>();
             var result = (Enum.GetValues(typeof(StatusOptionFlagEnum)).Cast<long>().Select(d => new
             {
-                Id = d,
+                RoleGuid = d,
                 Name = Enum.GetName(typeof(StatusOptionFlagEnum), d)
             })).ToList();
 
@@ -49,7 +49,7 @@ namespace PS.Mothership.Core.Common.Extension
   /*  public class SomeClass
     {
         private List<SomeClass> _list; 
-        public int Id { get; set; }
+        public int RoleGuid { get; set; }
         public string Name { get; set; }
         public bool IsLoginEnabled { get; set; }
         public List<SomeClass> list
@@ -62,7 +62,7 @@ namespace PS.Mothership.Core.Common.Extension
                     {
                         new SomeClass
                         {
-                        Id = 0,
+                        RoleGuid = 0,
                         IsLoginEnabled = true,
                         Name = "test"
                         },

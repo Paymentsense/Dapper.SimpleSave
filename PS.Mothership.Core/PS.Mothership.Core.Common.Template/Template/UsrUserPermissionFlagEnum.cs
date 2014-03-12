@@ -2,6 +2,7 @@ using System;
 using System.Runtime.Serialization;
 using System.ComponentModel;
 using System.Collections.Generic;
+using PS.Mothership.Core.Common.Template.Gen;
 
 namespace PS.Mothership.Core.Common.Template.Usr
 {
@@ -23,6 +24,7 @@ namespace PS.Mothership.Core.Common.Template.Usr
 		public string EnumName {get;set;}
 		public string EnumDescription {get;set;}
 		public long PermissionKey {get;set;}
+		public RecStatusEnum RecStatusKey {get;set;}
     }
 
     /// <summary>
@@ -44,35 +46,40 @@ namespace PS.Mothership.Core.Common.Template.Usr
 								EnumValue = 0,
 								EnumName = "None",
 								EnumDescription = "None",
-								PermissionKey = 0
+								PermissionKey = 0,
+								RecStatusKey = (RecStatusEnum)1
 							},
 							new UserPermissionFlag
 							{
 								EnumValue = 1,
 								EnumName = "View",
 								EnumDescription = "View Permission",
-								PermissionKey = 1
+								PermissionKey = 1,
+								RecStatusKey = (RecStatusEnum)1
 							},
 							new UserPermissionFlag
 							{
 								EnumValue = 2,
 								EnumName = "Add",
 								EnumDescription = "Add Permission",
-								PermissionKey = 2
+								PermissionKey = 2,
+								RecStatusKey = (RecStatusEnum)1
 							},
 							new UserPermissionFlag
 							{
 								EnumValue = 4,
 								EnumName = "Edit",
 								EnumDescription = "Edit Permission",
-								PermissionKey = 4
+								PermissionKey = 4,
+								RecStatusKey = (RecStatusEnum)1
 							},
 							new UserPermissionFlag
 							{
 								EnumValue = 8,
 								EnumName = "Delete",
 								EnumDescription = "Delete Permission",
-								PermissionKey = 8
+								PermissionKey = 8,
+								RecStatusKey = (RecStatusEnum)1
 							},
                         };
                     
