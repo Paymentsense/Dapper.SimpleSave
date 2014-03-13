@@ -182,9 +182,6 @@
     <Compile Include="Dto\Login\UserProfileDto.cs" />
     <Compile Include="Enums\Action.cs" />
     <Compile Include="Enums\State.cs" />
-    <Compile Include="Exceptions\BusinessException.cs" />
-    <Compile Include="Exceptions\CriticalException.cs" />
-    <Compile Include="Exceptions\PsBaseException.cs" />
     <Compile Include="Extension\EnumerableExtension.cs" />
     <Compile Include="Enums\UserRoleType.cs" />
     <Compile Include="Contracts\ICacheService.cs" />
