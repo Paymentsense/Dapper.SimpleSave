@@ -15,7 +15,10 @@ namespace PS.Mothership.Core.Common.Dto.Customer
         public Guid ProspectGuid { get; set; }
 
         [DataMember]
-        public string TradingName { get; set; }
+        public FullAddressDto Address { get; set; }
+
+        [DataMember]
+        public ContactDto Contact { get; set; }
 
         [DataMember]
         public CustBusinessLegalTypeEnum BusinessLegalTypeKey { get; set; }
@@ -27,6 +30,6 @@ namespace PS.Mothership.Core.Common.Dto.Customer
         public CustNumberEmployeesEnum NumberEmployeesKey { get; set; }
 
         [DataMember]
-        public CustNoContactReasonEnum CallRestrictedReasonKey { get; set; }
+        public CustNoContactReasonEnum CallRestrictedReasonKey { get; set; }        
     }
 }
