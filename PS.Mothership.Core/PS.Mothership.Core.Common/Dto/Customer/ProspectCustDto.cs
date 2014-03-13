@@ -21,6 +21,12 @@ namespace PS.Mothership.Core.Common.Dto.Customer
         public ContactDto Contact { get; set; }
 
         [DataMember]
+        public ICollection<ProspectCustDto> SimilarNames { get; set; }
+
+        [DataMember]
+        public int TotalCount { get; set; } // gives the total count based on selection criteria
+
+        [DataMember]
         public CustBusinessLegalTypeEnum BusinessLegalTypeKey { get; set; }
 
         [DataMember]

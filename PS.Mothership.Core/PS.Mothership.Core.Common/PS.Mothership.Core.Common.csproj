@@ -136,6 +136,7 @@
     <Compile Include="Config\WcfMode.cs" />
     <Compile Include="Dto\Customer\ContactDto.cs" />
     <Compile Include="Dto\Customer\ProspectCustDto.cs" />
+    <Compile Include="Dto\Customer\ProspectCustResponseDto.cs" />
     <Compile Include="Dto\DynamicRequest\DataRequestDto.cs" />
     <Compile Include="Dto\DynamicRequest\FilterDto.cs" />
     <Compile Include="Dto\DynamicRequest\SortDto.cs" />

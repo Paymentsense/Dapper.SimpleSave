@@ -18,7 +18,7 @@ namespace PS.Mothership.Core.Common.Contracts
         /// <param name="updateSessionGuid"></param>
         /// <returns></returns>
         [OperationContract]
-        ProspectCustDto AddCustomer(ProspectCustDto prospectCustDto, Guid updateSessionGuid);
+        ProspectCustResponseDto AddCustomer(ProspectCustDto prospectCustDto, Guid updateSessionGuid);
 
         /// <summary>
         ///     Get similiar customers
