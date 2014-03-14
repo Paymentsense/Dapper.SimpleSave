@@ -8,13 +8,13 @@ namespace PS.Mothership.Core.Common.Template.Cust
 {
     
     [DataContract]
-    public enum NoContactReasonEnum : long
+    public enum CustNoContactReasonEnum : long
     {
        [Description("None")][EnumMember]None = 0,
         
-    }
-
-    public class NoContactReason
+    }    
+    
+    public class CustNoContactReason
     {
         public long EnumValue {get;set;}
 		public string EnumName {get;set;}
@@ -22,24 +22,24 @@ namespace PS.Mothership.Core.Common.Template.Cust
 		public long ReasonKey {get;set;}
 		public bool IsForEmail {get;set;}
 		public bool IsForPhone {get;set;}
-		public RecStatusEnum RecStatusKey {get;set;}
+		public GenRecStatusEnum RecStatusKey {get;set;}
     }
 
     /// <summary>
     /// This class is mainly for using the extended properties of Enum
     /// </summary>
-    public static class NoContactReasonCollection
+    public static class CustNoContactReasonCollection
     {
-        private static List<NoContactReason> _list; 
-        public static List<NoContactReason> NoContactReasonList
+        private static List<CustNoContactReason> _list; 
+        public static List<CustNoContactReason> CustNoContactReasonList
         {
             get
             {
                 if (_list == null)
                 {   
-                        _list = new List<NoContactReason>
+                        _list = new List<CustNoContactReason>
                         {
-                            new NoContactReason
+                            new CustNoContactReason
 							{
 								EnumValue = 0,
 								EnumName = "None",
@@ -47,7 +47,7 @@ namespace PS.Mothership.Core.Common.Template.Cust
 								ReasonKey = 0,
 								IsForEmail = false,
 								IsForPhone = false,
-								RecStatusKey = (RecStatusEnum)0
+								RecStatusKey = (GenRecStatusEnum)0
 							},
                         };
                     

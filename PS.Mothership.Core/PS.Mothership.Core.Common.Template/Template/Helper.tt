@@ -311,7 +311,7 @@
         {
 			if (columnName == "RecStatusKey")
 			{
-				return "RecStatusEnum";
+				return "GenRecStatusEnum";
 			}
 
 			var d = new Dictionary<string, string>()
@@ -346,8 +346,8 @@
         /// <param name="dataType"></param>
         /// <returns>string</returns>
         public static string CreatePropertyString(string name, string dataType)
-        {
-            var s= string.Format("public {0} {1} {{get;set;}}",dataType,name);                    
+        {            
+            var s= string.Format("public {0} {1} {{get;set;}}",dataType,name);             
             return s;
         }
 
@@ -382,7 +382,7 @@
                     sb.AppendFormat("{0} = {1}",kvp2.Value.Name, kvp2.Value.Value == null ? "null" :
 																(kvp2.Value.FieldType == "bool" ? kvp2.Value.Value.ToLower() : 
 																	kvp2.Value.FieldType == "string" ? string.Concat("\"",kvp2.Value.Value,"\"") :
-																		kvp2.Value.FieldType == "RecStatusEnum" ? string.Concat("(RecStatusEnum)",kvp2.Value.Value) :
+																		kvp2.Value.FieldType == "GenRecStatusEnum" ? string.Concat("(GenRecStatusEnum)",kvp2.Value.Value) :
 																			kvp2.Value.Value));
                 }       
                 sb.AppendLine().Append(AddTabForIndentation(7)).AppendLine("},");

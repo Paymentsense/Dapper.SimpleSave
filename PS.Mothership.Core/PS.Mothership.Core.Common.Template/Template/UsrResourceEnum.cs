@@ -8,7 +8,7 @@ namespace PS.Mothership.Core.Common.Template.Usr
 {
     
     [DataContract]
-    public enum ResourceEnum : long
+    public enum UsrResourceEnum : long
     {
        [Description("None")][EnumMember]None = 0,
        [Description("Home")][EnumMember]Home = 1,
@@ -19,9 +19,9 @@ namespace PS.Mothership.Core.Common.Template.Usr
        [Description("Group Management")][EnumMember]GroupManagement = 6,
        [Description("Dialler Client")][EnumMember]Dialler = 7,
         
-    }
-
-    public class Resource
+    }    
+    
+    public class UsrResource
     {
         public long EnumValue {get;set;}
 		public string EnumName {get;set;}
@@ -32,24 +32,24 @@ namespace PS.Mothership.Core.Common.Template.Usr
 		public string Area {get;set;}
 		public string ContainerName {get;set;}
 		public long ResourceTypeKey {get;set;}
-		public RecStatusEnum RecStatusKey {get;set;}
+		public GenRecStatusEnum RecStatusKey {get;set;}
     }
 
     /// <summary>
     /// This class is mainly for using the extended properties of Enum
     /// </summary>
-    public static class ResourceCollection
+    public static class UsrResourceCollection
     {
-        private static List<Resource> _list; 
-        public static List<Resource> ResourceList
+        private static List<UsrResource> _list; 
+        public static List<UsrResource> UsrResourceList
         {
             get
             {
                 if (_list == null)
                 {   
-                        _list = new List<Resource>
+                        _list = new List<UsrResource>
                         {
-                            new Resource
+                            new UsrResource
 							{
 								EnumValue = 0,
 								EnumName = "None",
@@ -60,9 +60,9 @@ namespace PS.Mothership.Core.Common.Template.Usr
 								Area = "",
 								ContainerName = "",
 								ResourceTypeKey = 0,
-								RecStatusKey = (RecStatusEnum)0
+								RecStatusKey = (GenRecStatusEnum)0
 							},
-							new Resource
+							new UsrResource
 							{
 								EnumValue = 1,
 								EnumName = "Home",
@@ -73,9 +73,9 @@ namespace PS.Mothership.Core.Common.Template.Usr
 								Area = "",
 								ContainerName = "",
 								ResourceTypeKey = 1,
-								RecStatusKey = (RecStatusEnum)1
+								RecStatusKey = (GenRecStatusEnum)1
 							},
-							new Resource
+							new UsrResource
 							{
 								EnumValue = 2,
 								EnumName = "Admin",
@@ -86,9 +86,9 @@ namespace PS.Mothership.Core.Common.Template.Usr
 								Area = "Admin",
 								ContainerName = "",
 								ResourceTypeKey = 1,
-								RecStatusKey = (RecStatusEnum)1
+								RecStatusKey = (GenRecStatusEnum)1
 							},
-							new Resource
+							new UsrResource
 							{
 								EnumValue = 3,
 								EnumName = "Task",
@@ -99,9 +99,9 @@ namespace PS.Mothership.Core.Common.Template.Usr
 								Area = "",
 								ContainerName = "",
 								ResourceTypeKey = 1,
-								RecStatusKey = (RecStatusEnum)1
+								RecStatusKey = (GenRecStatusEnum)1
 							},
-							new Resource
+							new UsrResource
 							{
 								EnumValue = 4,
 								EnumName = "UserManagement",
@@ -112,9 +112,9 @@ namespace PS.Mothership.Core.Common.Template.Usr
 								Area = "Admin",
 								ContainerName = "User Administration",
 								ResourceTypeKey = 2,
-								RecStatusKey = (RecStatusEnum)1
+								RecStatusKey = (GenRecStatusEnum)1
 							},
-							new Resource
+							new UsrResource
 							{
 								EnumValue = 5,
 								EnumName = "RoleManagement",
@@ -125,9 +125,9 @@ namespace PS.Mothership.Core.Common.Template.Usr
 								Area = "Admin",
 								ContainerName = "User Administration",
 								ResourceTypeKey = 2,
-								RecStatusKey = (RecStatusEnum)1
+								RecStatusKey = (GenRecStatusEnum)1
 							},
-							new Resource
+							new UsrResource
 							{
 								EnumValue = 6,
 								EnumName = "GroupManagement",
@@ -138,9 +138,9 @@ namespace PS.Mothership.Core.Common.Template.Usr
 								Area = "Admin",
 								ContainerName = "User Administration",
 								ResourceTypeKey = 2,
-								RecStatusKey = (RecStatusEnum)1
+								RecStatusKey = (GenRecStatusEnum)1
 							},
-							new Resource
+							new UsrResource
 							{
 								EnumValue = 7,
 								EnumName = "Dialler",
@@ -151,7 +151,7 @@ namespace PS.Mothership.Core.Common.Template.Usr
 								Area = "",
 								ContainerName = "",
 								ResourceTypeKey = 3,
-								RecStatusKey = (RecStatusEnum)1
+								RecStatusKey = (GenRecStatusEnum)1
 							},
                         };
                     

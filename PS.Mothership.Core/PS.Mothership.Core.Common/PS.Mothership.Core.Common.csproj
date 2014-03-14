@@ -117,6 +117,7 @@
     <Compile Include="Constants\NamingConstants.cs" />
     <Compile Include="Contracts\IAddressService.cs" />
     <Compile Include="Contracts\IApplicationService.cs" />
+    <Compile Include="Contracts\IProspectCustomerService.cs" />
     <Compile Include="Contracts\IDiallerService.cs" />
     <Compile Include="Contracts\IDiallerTaskNotificationCallback.cs" />
     <Compile Include="Contracts\IDiallerTaskNotificationService.cs" />
@@ -133,6 +134,9 @@
     <Compile Include="Config\ILayerIocBuilder.cs" />
     <Compile Include="Config\IocBuildSettings.cs" />
     <Compile Include="Config\WcfMode.cs" />
+    <Compile Include="Dto\Customer\ContactDto.cs" />
+    <Compile Include="Dto\Customer\ProspectCustDto.cs" />
+    <Compile Include="Dto\Customer\ProspectCustResponseDto.cs" />
     <Compile Include="Dto\DynamicRequest\DataRequestDto.cs" />
     <Compile Include="Dto\DynamicRequest\FilterDto.cs" />
     <Compile Include="Dto\DynamicRequest\SortDto.cs" />

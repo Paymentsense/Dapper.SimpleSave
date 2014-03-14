@@ -8,7 +8,7 @@ namespace PS.Mothership.Core.Common.Template.Event
 {
     
     [DataContract]
-    public enum TypeEnum : long
+    public enum EventTypeEnum : long
     {
        [Description("None")][EnumMember]None = 0,
        [Description("SMS Scheduled")][EnumMember]SMSScheduled = 1,
@@ -21,121 +21,121 @@ namespace PS.Mothership.Core.Common.Template.Event
        [Description("Email Received")][EnumMember]EmailReceived = 8,
        [Description("EmailSendFailed")][EnumMember]EmailSendFailed = 9,
         
-    }
-
-    public class Type
+    }    
+    
+    public class EventType
     {
         public long EnumValue {get;set;}
 		public string EnumName {get;set;}
 		public string EnumDescription {get;set;}
 		public long EventTypeKey {get;set;}
 		public long EventCategoryKey {get;set;}
-		public RecStatusEnum RecStatusKey {get;set;}
+		public GenRecStatusEnum RecStatusKey {get;set;}
     }
 
     /// <summary>
     /// This class is mainly for using the extended properties of Enum
     /// </summary>
-    public static class TypeCollection
+    public static class EventTypeCollection
     {
-        private static List<Type> _list; 
-        public static List<Type> TypeList
+        private static List<EventType> _list; 
+        public static List<EventType> EventTypeList
         {
             get
             {
                 if (_list == null)
                 {   
-                        _list = new List<Type>
+                        _list = new List<EventType>
                         {
-                            new Type
+                            new EventType
 							{
 								EnumValue = 0,
 								EnumName = "None",
 								EnumDescription = "None",
 								EventTypeKey = 0,
 								EventCategoryKey = 0,
-								RecStatusKey = (RecStatusEnum)0
+								RecStatusKey = (GenRecStatusEnum)0
 							},
-							new Type
+							new EventType
 							{
 								EnumValue = 1,
 								EnumName = "SMSScheduled",
 								EnumDescription = "SMS Scheduled",
 								EventTypeKey = 1,
 								EventCategoryKey = 1,
-								RecStatusKey = (RecStatusEnum)1
+								RecStatusKey = (GenRecStatusEnum)1
 							},
-							new Type
+							new EventType
 							{
 								EnumValue = 2,
 								EnumName = "SMSSent",
 								EnumDescription = "SMS Sent",
 								EventTypeKey = 2,
 								EventCategoryKey = 1,
-								RecStatusKey = (RecStatusEnum)1
+								RecStatusKey = (GenRecStatusEnum)1
 							},
-							new Type
+							new EventType
 							{
 								EnumValue = 3,
 								EnumName = "SMSReceived",
 								EnumDescription = "SMS Received",
 								EventTypeKey = 3,
 								EventCategoryKey = 1,
-								RecStatusKey = (RecStatusEnum)1
+								RecStatusKey = (GenRecStatusEnum)1
 							},
-							new Type
+							new EventType
 							{
 								EnumValue = 4,
 								EnumName = "SMSSendFailed",
 								EnumDescription = "SMS Send Failed",
 								EventTypeKey = 4,
 								EventCategoryKey = 1,
-								RecStatusKey = (RecStatusEnum)1
+								RecStatusKey = (GenRecStatusEnum)1
 							},
-							new Type
+							new EventType
 							{
 								EnumValue = 5,
 								EnumName = "SMSDelivered",
 								EnumDescription = "SMS Delivered",
 								EventTypeKey = 5,
 								EventCategoryKey = 1,
-								RecStatusKey = (RecStatusEnum)1
+								RecStatusKey = (GenRecStatusEnum)1
 							},
-							new Type
+							new EventType
 							{
 								EnumValue = 6,
 								EnumName = "EmailScheduled",
 								EnumDescription = "Email Scheduled",
 								EventTypeKey = 6,
 								EventCategoryKey = 1,
-								RecStatusKey = (RecStatusEnum)1
+								RecStatusKey = (GenRecStatusEnum)1
 							},
-							new Type
+							new EventType
 							{
 								EnumValue = 7,
 								EnumName = "EmailSent",
 								EnumDescription = "Email Sent",
 								EventTypeKey = 7,
 								EventCategoryKey = 1,
-								RecStatusKey = (RecStatusEnum)1
+								RecStatusKey = (GenRecStatusEnum)1
 							},
-							new Type
+							new EventType
 							{
 								EnumValue = 8,
 								EnumName = "EmailReceived",
 								EnumDescription = "Email Received",
 								EventTypeKey = 8,
 								EventCategoryKey = 1,
-								RecStatusKey = (RecStatusEnum)1
+								RecStatusKey = (GenRecStatusEnum)1
 							},
-							new Type
+							new EventType
 							{
 								EnumValue = 9,
 								EnumName = "EmailSendFailed",
 								EnumDescription = "EmailSendFailed",
 								EventTypeKey = 9,
 								EventCategoryKey = 1,
-								RecStatusKey = (RecStatusEnum)1
+								RecStatusKey = (GenRecStatusEnum)1
 							},
                         };
                     

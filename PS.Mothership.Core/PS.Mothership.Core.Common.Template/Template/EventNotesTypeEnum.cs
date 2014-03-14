@@ -8,60 +8,60 @@ namespace PS.Mothership.Core.Common.Template.Event
 {
     
     [DataContract]
-    public enum NotesTypeEnum : long
+    public enum EventNotesTypeEnum : long
     {
        [Description("None")][EnumMember]None = 0,
        [Description("System Generated")][EnumMember]SystemGenerated = 1,
        [Description("General")][EnumMember]General = 2,
         
-    }
-
-    public class NotesType
+    }    
+    
+    public class EventNotesType
     {
         public long EnumValue {get;set;}
 		public string EnumName {get;set;}
 		public string EnumDescription {get;set;}
 		public long NotesTypeKey {get;set;}
-		public RecStatusEnum RecStatusKey {get;set;}
+		public GenRecStatusEnum RecStatusKey {get;set;}
     }
 
     /// <summary>
     /// This class is mainly for using the extended properties of Enum
     /// </summary>
-    public static class NotesTypeCollection
+    public static class EventNotesTypeCollection
     {
-        private static List<NotesType> _list; 
-        public static List<NotesType> NotesTypeList
+        private static List<EventNotesType> _list; 
+        public static List<EventNotesType> EventNotesTypeList
         {
             get
             {
                 if (_list == null)
                 {   
-                        _list = new List<NotesType>
+                        _list = new List<EventNotesType>
                         {
-                            new NotesType
+                            new EventNotesType
 							{
 								EnumValue = 0,
 								EnumName = "None",
 								EnumDescription = "None",
 								NotesTypeKey = 0,
-								RecStatusKey = (RecStatusEnum)0
+								RecStatusKey = (GenRecStatusEnum)0
 							},
-							new NotesType
+							new EventNotesType
 							{
 								EnumValue = 1,
 								EnumName = "SystemGenerated",
 								EnumDescription = "System Generated",
 								NotesTypeKey = 1,
-								RecStatusKey = (RecStatusEnum)1
+								RecStatusKey = (GenRecStatusEnum)1
 							},
-							new NotesType
+							new EventNotesType
 							{
 								EnumValue = 2,
 								EnumName = "General",
 								EnumDescription = "General",
 								NotesTypeKey = 2,
-								RecStatusKey = (RecStatusEnum)1
+								RecStatusKey = (GenRecStatusEnum)1
 							},
                         };
                     

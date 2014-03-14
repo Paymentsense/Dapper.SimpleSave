@@ -17,7 +17,7 @@ namespace PS.Mothership.Core.Common.Rellaid.Dto
         public string TransferredNumber { get; set; }
 
         [DataMember]
-        public CallDispositionEnum CallDisposition { get; set; }
+        public DialCallDispositionEnum CallDisposition { get; set; }
 
         [DataMember]
         public int PreviewTime { get; set; }
