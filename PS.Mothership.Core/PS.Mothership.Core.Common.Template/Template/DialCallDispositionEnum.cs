@@ -8,7 +8,7 @@ namespace PS.Mothership.Core.Common.Template.Dial
 {
     
     [DataContract]
-    public enum CallDispositionEnum : long
+    public enum DialCallDispositionEnum : long
     {
        [Description("Not Disposed")][EnumMember]NotDisposed = 0,
        [Description("Bad Number")][EnumMember]BadNumber = 1,
@@ -19,94 +19,94 @@ namespace PS.Mothership.Core.Common.Template.Dial
        [Description("Conferenced")][EnumMember]Conferenced = 6,
        [Description("Rejected")][EnumMember]Rejected = 7,
         
-    }
-
-    public class CallDisposition
+    }    
+    
+    public class DialCallDisposition
     {
         public long EnumValue {get;set;}
 		public string EnumName {get;set;}
 		public string EnumDescription {get;set;}
 		public long CallDispositionKey {get;set;}
-		public RecStatusEnum RecStatusKey {get;set;}
+		public GenRecStatusEnum RecStatusKey {get;set;}
     }
 
     /// <summary>
     /// This class is mainly for using the extended properties of Enum
     /// </summary>
-    public static class CallDispositionCollection
+    public static class DialCallDispositionCollection
     {
-        private static List<CallDisposition> _list; 
-        public static List<CallDisposition> CallDispositionList
+        private static List<DialCallDisposition> _list; 
+        public static List<DialCallDisposition> DialCallDispositionList
         {
             get
             {
                 if (_list == null)
                 {   
-                        _list = new List<CallDisposition>
+                        _list = new List<DialCallDisposition>
                         {
-                            new CallDisposition
+                            new DialCallDisposition
 							{
 								EnumValue = 0,
 								EnumName = "NotDisposed",
 								EnumDescription = "Not Disposed",
 								CallDispositionKey = 0,
-								RecStatusKey = (RecStatusEnum)1
+								RecStatusKey = (GenRecStatusEnum)1
 							},
-							new CallDisposition
+							new DialCallDisposition
 							{
 								EnumValue = 1,
 								EnumName = "BadNumber",
 								EnumDescription = "Bad Number",
 								CallDispositionKey = 1,
-								RecStatusKey = (RecStatusEnum)1
+								RecStatusKey = (GenRecStatusEnum)1
 							},
-							new CallDisposition
+							new DialCallDisposition
 							{
 								EnumValue = 2,
 								EnumName = "Skipped",
 								EnumDescription = "Skipped",
 								CallDispositionKey = 2,
-								RecStatusKey = (RecStatusEnum)1
+								RecStatusKey = (GenRecStatusEnum)1
 							},
-							new CallDisposition
+							new DialCallDisposition
 							{
 								EnumValue = 3,
 								EnumName = "Unanswered",
 								EnumDescription = "Unanswered",
 								CallDispositionKey = 3,
-								RecStatusKey = (RecStatusEnum)1
+								RecStatusKey = (GenRecStatusEnum)1
 							},
-							new CallDisposition
+							new DialCallDisposition
 							{
 								EnumValue = 4,
 								EnumName = "Answered",
 								EnumDescription = "Answered",
 								CallDispositionKey = 4,
-								RecStatusKey = (RecStatusEnum)1
+								RecStatusKey = (GenRecStatusEnum)1
 							},
-							new CallDisposition
+							new DialCallDisposition
 							{
 								EnumValue = 5,
 								EnumName = "Transferred",
 								EnumDescription = "Transferred",
 								CallDispositionKey = 5,
-								RecStatusKey = (RecStatusEnum)1
+								RecStatusKey = (GenRecStatusEnum)1
 							},
-							new CallDisposition
+							new DialCallDisposition
 							{
 								EnumValue = 6,
 								EnumName = "Conferenced",
 								EnumDescription = "Conferenced",
 								CallDispositionKey = 6,
-								RecStatusKey = (RecStatusEnum)1
+								RecStatusKey = (GenRecStatusEnum)1
 							},
-							new CallDisposition
+							new DialCallDisposition
 							{
 								EnumValue = 7,
 								EnumName = "Rejected",
 								EnumDescription = "Rejected",
 								CallDispositionKey = 7,
-								RecStatusKey = (RecStatusEnum)1
+								RecStatusKey = (GenRecStatusEnum)1
 							},
                         };
                     

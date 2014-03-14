@@ -8,9 +8,9 @@ namespace PS.Mothership.Core.Common.Dto.SendMessage
 	public class SendMessageServiceStatusDto
 	{
 		[DataMember]
-		public MessageServiceStatusEnum MessageStatus { get; set; }
+		public CommMessageServiceStatusEnum MessageStatus { get; set; }
 		[DataMember]
-		public MessageTypeEnum MessageType { get; set; }
+		public CommMessageTypeEnum MessageType { get; set; }
 		[DataMember]
 		public DateTimeOffset LastUpdateTime { get; set; }
 	}

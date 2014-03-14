@@ -20,7 +20,7 @@ namespace PS.Mothership.Core.Common.Rellaid.Dto
         public string UserPhoneNumber { get; set; }
 
         [DataMember]
-        public CallTypeEnum? CallType { get; set; }
+        public DialCallTypeEnum? CallType { get; set; }
 
         [DataMember]
         public int? TotalTime { get; set; }
