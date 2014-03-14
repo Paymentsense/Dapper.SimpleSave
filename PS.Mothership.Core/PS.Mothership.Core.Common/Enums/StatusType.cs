@@ -10,13 +10,13 @@ namespace PS.Mothership.Core.Common.Enums
     [DataContract]
     public enum StatusType
     {
-        [DataMember]
+        [EnumMember]
         Success,
-        [DataMember]
+        [EnumMember]
         Info,
-        [DataMember]
+        [EnumMember]
         Warning,
-        [DataMember]
+        [EnumMember]
         Error
     }
 }
