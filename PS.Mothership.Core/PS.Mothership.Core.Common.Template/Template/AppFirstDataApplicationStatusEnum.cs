@@ -15,9 +15,9 @@ namespace PS.Mothership.Core.Common.Template.App
        [Description("")][EnumMember]WebServiceSubmissionError = 2,
        [Description("")][EnumMember]SubmittedToWebService = 3,
        [Description("")][EnumMember]OtherStatusReturnedByWebService = 4,
-       [Description("")][EnumMember]FD_FailedValidationHandler = 30,
-       [Description("")][EnumMember]FD_PendingInternalValidation = 31,
-       [Description("")][EnumMember]FD_BoardingInProgress = 32,
+       [Description("")][EnumMember]FDFailedValidationHandler = 30,
+       [Description("")][EnumMember]FDPendingInternalValidation = 31,
+       [Description("")][EnumMember]FDBoardingInProgress = 32,
         
     }    
     
@@ -87,7 +87,7 @@ namespace PS.Mothership.Core.Common.Template.App
 							new AppFirstDataApplicationStatus
 							{
 								EnumValue = 30,
-								EnumName = "FD_FailedValidationHandler",
+								EnumName = "FDFailedValidationHandler",
 								EnumDescription = "",
 								ApplicationSubmissionStatusID = 30,
 								RecStatusKey = (GenRecStatusEnum)1
@@ -95,7 +95,7 @@ namespace PS.Mothership.Core.Common.Template.App
 							new AppFirstDataApplicationStatus
 							{
 								EnumValue = 31,
-								EnumName = "FD_PendingInternalValidation",
+								EnumName = "FDPendingInternalValidation",
 								EnumDescription = "",
 								ApplicationSubmissionStatusID = 31,
 								RecStatusKey = (GenRecStatusEnum)1
@@ -103,7 +103,7 @@ namespace PS.Mothership.Core.Common.Template.App
 							new AppFirstDataApplicationStatus
 							{
 								EnumValue = 32,
-								EnumName = "FD_BoardingInProgress",
+								EnumName = "FDBoardingInProgress",
 								EnumDescription = "",
 								ApplicationSubmissionStatusID = 32,
 								RecStatusKey = (GenRecStatusEnum)1

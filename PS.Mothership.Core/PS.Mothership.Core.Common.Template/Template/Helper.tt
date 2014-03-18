@@ -219,7 +219,7 @@
                                        EnumValue=reader[0].ToString().Trim(),
                                        EnumDescription=reader[queryDescriptionColumnName].ToString().Trim()
                                     };
-                                dataHolder.KeyValue.Add(reader[queryColumnName].ToString().Trim(), enumDetails);
+                                dataHolder.KeyValue.Add(CleanEnum(reader[queryColumnName].ToString().Trim()), enumDetails);
                             }
                             else
                             {
@@ -229,7 +229,7 @@
                                        EnumDescription=string.Empty
                                     };
 
-                                    dataHolder.KeyValue.Add(reader[queryColumnName].ToString().Trim(),enumDetails);                                    
+                                    dataHolder.KeyValue.Add(CleanEnum(reader[queryColumnName].ToString().Trim()),enumDetails);                                    
                             }
 
                              //add the additional columns found
@@ -274,6 +274,26 @@
         public static string ConvertCaseString(string phrase)
         {
             phrase = phrase.ToLower().Replace("_", " ");
+            string[] splittedPhrase = phrase.Split(' ', '-', '.');
+            var sb = new StringBuilder();
+
+            sb = new StringBuilder();
+
+            foreach (String s in splittedPhrase)
+            {
+                char[] splittedPhraseChars = s.ToCharArray();
+                if (splittedPhraseChars.Length > 0)
+                {
+                    splittedPhraseChars[0] = ((new String(splittedPhraseChars[0], 1)).ToUpper().ToCharArray())[0];
+                }
+                sb.Append(new String(splittedPhraseChars));
+            }
+            return sb.ToString();
+        }
+
+        public static string CleanEnum(string phrase)
+        {
+            phrase = phrase.Replace("_", " ");
             string[] splittedPhrase = phrase.Split(' ', '-', '.');
             var sb = new StringBuilder();
 
