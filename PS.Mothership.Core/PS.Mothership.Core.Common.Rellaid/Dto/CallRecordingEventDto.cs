@@ -20,5 +20,8 @@ namespace PS.Mothership.Core.Common.Rellaid.Dto
 
         [DataMember]
         public Guid UpdateSessionGuid { get; set; }
+
+        [DataMember]
+        public Guid CallGuid { get; set; }
     }
 }
