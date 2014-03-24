@@ -8,7 +8,7 @@ namespace PS.Mothership.Core.Common.Template.Usr
 {
     [Flags]
     [DataContract]
-    public enum UserPermissionFlagEnum : long
+    public enum UsrUserPermissionFlagEnum : long
     {
        [Description("None")][EnumMember]None = 0,
        [Description("View Permission")][EnumMember]View = 1,
@@ -16,70 +16,70 @@ namespace PS.Mothership.Core.Common.Template.Usr
        [Description("Edit Permission")][EnumMember]Edit = 4,
        [Description("Delete Permission")][EnumMember]Delete = 8,
         
-    }
-
-    public class UserPermissionFlag
+    }    
+    
+    public class UsrUserPermissionFlag
     {
         public long EnumValue {get;set;}
 		public string EnumName {get;set;}
 		public string EnumDescription {get;set;}
 		public long PermissionKey {get;set;}
-		public RecStatusEnum RecStatusKey {get;set;}
+		public GenRecStatusEnum RecStatusKey {get;set;}
     }
 
     /// <summary>
     /// This class is mainly for using the extended properties of Enum
     /// </summary>
-    public static class UserPermissionFlagCollection
+    public static class UsrUserPermissionFlagCollection
     {
-        private static List<UserPermissionFlag> _list; 
-        public static List<UserPermissionFlag> UserPermissionFlagList
+        private static List<UsrUserPermissionFlag> _list; 
+        public static List<UsrUserPermissionFlag> UsrUserPermissionFlagList
         {
             get
             {
                 if (_list == null)
                 {   
-                        _list = new List<UserPermissionFlag>
+                        _list = new List<UsrUserPermissionFlag>
                         {
-                            new UserPermissionFlag
+                            new UsrUserPermissionFlag
 							{
 								EnumValue = 0,
 								EnumName = "None",
 								EnumDescription = "None",
 								PermissionKey = 0,
-								RecStatusKey = (RecStatusEnum)1
+								RecStatusKey = (GenRecStatusEnum)1
 							},
-							new UserPermissionFlag
+							new UsrUserPermissionFlag
 							{
 								EnumValue = 1,
 								EnumName = "View",
 								EnumDescription = "View Permission",
 								PermissionKey = 1,
-								RecStatusKey = (RecStatusEnum)1
+								RecStatusKey = (GenRecStatusEnum)1
 							},
-							new UserPermissionFlag
+							new UsrUserPermissionFlag
 							{
 								EnumValue = 2,
 								EnumName = "Add",
 								EnumDescription = "Add Permission",
 								PermissionKey = 2,
-								RecStatusKey = (RecStatusEnum)1
+								RecStatusKey = (GenRecStatusEnum)1
 							},
-							new UserPermissionFlag
+							new UsrUserPermissionFlag
 							{
 								EnumValue = 4,
 								EnumName = "Edit",
 								EnumDescription = "Edit Permission",
 								PermissionKey = 4,
-								RecStatusKey = (RecStatusEnum)1
+								RecStatusKey = (GenRecStatusEnum)1
 							},
-							new UserPermissionFlag
+							new UsrUserPermissionFlag
 							{
 								EnumValue = 8,
 								EnumName = "Delete",
 								EnumDescription = "Delete Permission",
 								PermissionKey = 8,
-								RecStatusKey = (RecStatusEnum)1
+								RecStatusKey = (GenRecStatusEnum)1
 							},
                         };
                     
