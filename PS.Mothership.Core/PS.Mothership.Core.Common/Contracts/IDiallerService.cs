@@ -57,5 +57,9 @@ namespace PS.Mothership.Core.Common.Contracts
 
         [OperationContract]
         Guid AddInboundCampaignCallRecord(Guid sipCallGuid, long campaignKey, string keyword, string referrerUrl, Guid updateSessionGuid);
+
+        [OperationContract]
+        void SetInboundCampaignCallRecordResolution(Guid inboundCampaignCallRecordGuid,
+            DialInboundCampaignCallResolutionEnum resolution);
     }
 }
