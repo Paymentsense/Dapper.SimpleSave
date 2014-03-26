@@ -54,5 +54,8 @@ namespace PS.Mothership.Core.Common.Contracts
 
         [OperationContract]
         IEnumerable<SipAccountDto> GetSipAccountList(Guid userSipAccountGuid);
+
+        [OperationContract]
+        Guid AddInboundCampaignCallRecord(long campaignKey, string keyword, string referrerUrl, Guid updateSessionGuid);
     }
 }
