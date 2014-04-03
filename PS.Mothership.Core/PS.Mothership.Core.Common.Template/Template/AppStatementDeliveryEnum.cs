@@ -4,48 +4,48 @@ using System.ComponentModel;
 using System.Collections.Generic;
 using PS.Mothership.Core.Common.Template.Gen;
 
-namespace PS.Mothership.Core.Common.Template.Cust
+namespace PS.Mothership.Core.Common.Template.App
 {
     
     [DataContract]
-    public enum CustStatusGroupEnum : long
+    public enum AppStatementDeliveryEnum : long
     {
-       [Description("None")][EnumMember]None = 0,
+       [Description("Blank")][EnumMember]Blank = 0,
         
     }    
     
-    public class CustStatusGroup
+    public class AppStatementDelivery
     {
         public long EnumValue {get;set;}
 		public string EnumName {get;set;}
 		public string EnumDescription {get;set;}
-		public long CustStatusGroupKey {get;set;}
-		public int SortOrder {get;set;}
+		public long StatementDeliveryKey {get;set;}
+		public int DefaultCharge {get;set;}
 		public GenRecStatusEnum RecStatusKey {get;set;}
     }
 
     /// <summary>
     /// This class is mainly for using the extended properties of Enum
     /// </summary>
-    public static class CustStatusGroupCollection
+    public static class AppStatementDeliveryCollection
     {
-        private static List<CustStatusGroup> _list; 
-        public static List<CustStatusGroup> CustStatusGroupList
+        private static List<AppStatementDelivery> _list; 
+        public static List<AppStatementDelivery> AppStatementDeliveryList
         {
             get
             {
                 if (_list == null)
                 {   
-                        _list = new List<CustStatusGroup>
+                        _list = new List<AppStatementDelivery>
                         {
-                            new CustStatusGroup
+                            new AppStatementDelivery
 							{
 								EnumValue = 0,
-								EnumName = "None",
-								EnumDescription = "None",
-								CustStatusGroupKey = 0,
-								SortOrder = 0,
-								RecStatusKey = (GenRecStatusEnum)0
+								EnumName = "Blank",
+								EnumDescription = "Blank",
+								StatementDeliveryKey = 0,
+								DefaultCharge = 0,
+								RecStatusKey = (GenRecStatusEnum)1
 							},
                         };
                     

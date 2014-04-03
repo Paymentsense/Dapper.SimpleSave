@@ -4,50 +4,46 @@ using System.ComponentModel;
 using System.Collections.Generic;
 using PS.Mothership.Core.Common.Template.Gen;
 
-namespace PS.Mothership.Core.Common.Template.Cust
+namespace PS.Mothership.Core.Common.Template.Ptnr
 {
     
     [DataContract]
-    public enum CustAnnualTurnoverEnum : long
+    public enum PtnrPartnerTypeEnum : long
     {
-       [Description("None")][EnumMember]None = 0,
+       [Description("")][EnumMember]None = 0,
         
     }    
     
-    public class CustAnnualTurnover
+    public class PtnrPartnerType
     {
         public long EnumValue {get;set;}
 		public string EnumName {get;set;}
 		public string EnumDescription {get;set;}
-		public long AnnualTurnoverKey {get;set;}
-		public int TurnoverLow {get;set;}
-		public int TurnoverHigh {get;set;}
+		public long PartnerTypeKey {get;set;}
 		public GenRecStatusEnum RecStatusKey {get;set;}
     }
 
     /// <summary>
     /// This class is mainly for using the extended properties of Enum
     /// </summary>
-    public static class CustAnnualTurnoverCollection
+    public static class PtnrPartnerTypeCollection
     {
-        private static List<CustAnnualTurnover> _list; 
-        public static List<CustAnnualTurnover> CustAnnualTurnoverList
+        private static List<PtnrPartnerType> _list; 
+        public static List<PtnrPartnerType> PtnrPartnerTypeList
         {
             get
             {
                 if (_list == null)
                 {   
-                        _list = new List<CustAnnualTurnover>
+                        _list = new List<PtnrPartnerType>
                         {
-                            new CustAnnualTurnover
+                            new PtnrPartnerType
 							{
 								EnumValue = 0,
 								EnumName = "None",
-								EnumDescription = "None",
-								AnnualTurnoverKey = 0,
-								TurnoverLow = 0,
-								TurnoverHigh = 0,
-								RecStatusKey = (GenRecStatusEnum)0
+								EnumDescription = "",
+								PartnerTypeKey = 0,
+								RecStatusKey = (GenRecStatusEnum)1
 							},
                         };
                     

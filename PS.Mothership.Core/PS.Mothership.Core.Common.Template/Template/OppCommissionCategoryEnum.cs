@@ -4,50 +4,46 @@ using System.ComponentModel;
 using System.Collections.Generic;
 using PS.Mothership.Core.Common.Template.Gen;
 
-namespace PS.Mothership.Core.Common.Template.Cust
+namespace PS.Mothership.Core.Common.Template.Opp
 {
     
     [DataContract]
-    public enum CustNoContactReasonEnum : long
+    public enum OppCommissionCategoryEnum : long
     {
        [Description("None")][EnumMember]None = 0,
         
     }    
     
-    public class CustNoContactReason
+    public class OppCommissionCategory
     {
         public long EnumValue {get;set;}
 		public string EnumName {get;set;}
 		public string EnumDescription {get;set;}
-		public long ReasonKey {get;set;}
-		public bool IsForEmail {get;set;}
-		public bool IsForPhone {get;set;}
+		public long CommissionCategoryKey {get;set;}
 		public GenRecStatusEnum RecStatusKey {get;set;}
     }
 
     /// <summary>
     /// This class is mainly for using the extended properties of Enum
     /// </summary>
-    public static class CustNoContactReasonCollection
+    public static class OppCommissionCategoryCollection
     {
-        private static List<CustNoContactReason> _list; 
-        public static List<CustNoContactReason> CustNoContactReasonList
+        private static List<OppCommissionCategory> _list; 
+        public static List<OppCommissionCategory> OppCommissionCategoryList
         {
             get
             {
                 if (_list == null)
                 {   
-                        _list = new List<CustNoContactReason>
+                        _list = new List<OppCommissionCategory>
                         {
-                            new CustNoContactReason
+                            new OppCommissionCategory
 							{
 								EnumValue = 0,
 								EnumName = "None",
 								EnumDescription = "None",
-								ReasonKey = 0,
-								IsForEmail = false,
-								IsForPhone = false,
-								RecStatusKey = (GenRecStatusEnum)0
+								CommissionCategoryKey = 0,
+								RecStatusKey = (GenRecStatusEnum)2
 							},
                         };
                     
