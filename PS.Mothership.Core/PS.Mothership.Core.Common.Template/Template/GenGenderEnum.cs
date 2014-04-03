@@ -11,6 +11,8 @@ namespace PS.Mothership.Core.Common.Template.Gen
     public enum GenGenderEnum : long
     {
        [Description("None")][EnumMember]None = 0,
+       [Description("Male")][EnumMember]Male = 1,
+       [Description("Female")][EnumMember]Female = 2,
         
     }    
     
@@ -44,6 +46,22 @@ namespace PS.Mothership.Core.Common.Template.Gen
 								EnumDescription = "None",
 								GenderKey = 0,
 								RecStatusKey = (GenRecStatusEnum)0
+							},
+							new GenGender
+							{
+								EnumValue = 1,
+								EnumName = "Male",
+								EnumDescription = "Male",
+								GenderKey = 1,
+								RecStatusKey = (GenRecStatusEnum)2
+							},
+							new GenGender
+							{
+								EnumValue = 2,
+								EnumName = "Female",
+								EnumDescription = "Female",
+								GenderKey = 2,
+								RecStatusKey = (GenRecStatusEnum)2
 							},
                         };
                     

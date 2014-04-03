@@ -20,6 +20,8 @@ namespace PS.Mothership.Core.Common.Template.Event
        [Description("Email Sent")][EnumMember]EmailSent = 7,
        [Description("Email Received")][EnumMember]EmailReceived = 8,
        [Description("EmailSendFailed")][EnumMember]EmailSendFailed = 9,
+       [Description("Dialler Call Made")][EnumMember]DiallerCallMade = 10,
+       [Description("Dialler Call Recording")][EnumMember]DiallerCallRecording = 11,
         
     }    
     
@@ -134,6 +136,24 @@ namespace PS.Mothership.Core.Common.Template.Event
 								EnumName = "EmailSendFailed",
 								EnumDescription = "EmailSendFailed",
 								EventTypeKey = 9,
+								EventCategoryKey = 1,
+								RecStatusKey = (GenRecStatusEnum)1
+							},
+							new EventType
+							{
+								EnumValue = 10,
+								EnumName = "DiallerCallMade",
+								EnumDescription = "Dialler Call Made",
+								EventTypeKey = 10,
+								EventCategoryKey = 1,
+								RecStatusKey = (GenRecStatusEnum)1
+							},
+							new EventType
+							{
+								EnumValue = 11,
+								EnumName = "DiallerCallRecording",
+								EnumDescription = "Dialler Call Recording",
+								EventTypeKey = 11,
 								EventCategoryKey = 1,
 								RecStatusKey = (GenRecStatusEnum)1
 							},
