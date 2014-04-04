@@ -186,11 +186,13 @@
     <Compile Include="Dto\Login\UserProfileDto.cs" />
     <Compile Include="Enums\Action.cs" />
     <Compile Include="Enums\State.cs" />
+    <Compile Include="Enums\StatusType.cs" />
     <Compile Include="Extension\EnumerableExtension.cs" />
     <Compile Include="Enums\UserRoleType.cs" />
     <Compile Include="Contracts\ICacheService.cs" />
     <Compile Include="Extension\EnumExtension.cs" />
     <Compile Include="Extension\SomeTempClass.cs" />
+    <Compile Include="Helper\AddressSplitter.cs" />
     <Compile Include="Helper\CTime.cs" />
     <Compile Include="Helper\DebugStopwatch.cs" />
     <Compile Include="Helper\DynamicContractResolver.cs" />
