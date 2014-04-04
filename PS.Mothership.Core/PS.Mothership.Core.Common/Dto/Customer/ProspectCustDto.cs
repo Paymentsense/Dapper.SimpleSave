@@ -21,6 +21,9 @@ namespace PS.Mothership.Core.Common.Dto.Customer
         public ContactDto Contact { get; set; }
 
         [DataMember]
+        public virtual string MainPhoneNumber { get; set; }
+
+        [DataMember]
         public ICollection<ProspectCustDto> SimilarNames { get; set; }
 
         [DataMember]
