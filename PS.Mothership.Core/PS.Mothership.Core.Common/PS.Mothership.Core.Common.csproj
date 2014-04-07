@@ -139,6 +139,7 @@
     <Compile Include="Config\WcfMode.cs" />
     <Compile Include="DtoEvents\Contracts\IHandles.cs" />
     <Compile Include="DtoEvents\Contracts\IDtoEvent.cs" />
+    <Compile Include="DtoEvents\MessageSendInsertEvent.cs" />
     <Compile Include="DtoEvents\DtoEvents.cs" />
     <Compile Include="Dto\Customer\ContactDto.cs" />
     <Compile Include="Dto\Customer\ProspectCustDto.cs" />
