@@ -85,6 +85,9 @@
     <Reference Include="log4net">
       <HintPath>..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\packages\CommonServiceLocator.1.2\lib\portable-windows8+net40+sl5+windowsphone8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.6.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -134,6 +137,9 @@
     <Compile Include="Config\ILayerIocBuilder.cs" />
     <Compile Include="Config\IocBuildSettings.cs" />
     <Compile Include="Config\WcfMode.cs" />
+    <Compile Include="DtoEvents\Contracts\IHandles.cs" />
+    <Compile Include="DtoEvents\Contracts\IDtoEvent.cs" />
+    <Compile Include="DtoEvents\DtoEvents.cs" />
     <Compile Include="Dto\Customer\ContactDto.cs" />
     <Compile Include="Dto\Customer\ProspectCustDto.cs" />
     <Compile Include="Dto\Customer\ProspectCustResponseDto.cs" />
@@ -269,6 +275,7 @@
     <Content Include="ThirdParty\MiniProfiler.Wcf.pdb" />
     <Content Include="ThirdParty\MiniProfiler.xml" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <BeforeTransform>CustomPreTransform</BeforeTransform>
     <AfterTransform>CustomPostTransform;$(AfterTransform)</AfterTransform>

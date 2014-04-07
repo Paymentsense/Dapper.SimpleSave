@@ -15,16 +15,16 @@ namespace PS.Mothership.Core.Common.Dto.SendMessage
         public List<SendMessageSmsToDTO> To { get; set; }
         [DataMember]
         public string From { get; set; }
-        [DataMember]
-        public string MessageBody { get; set; }
-        [DataMember]
-        public Guid SessionGuid { get; set; }
-        [DataMember]
-        public DateTimeOffset TimeToSend { get; set; }
-        [DataMember]
-        public Guid CustomerGUID { get; set; }
-        [DataMember]
-        public CommMessageTypeEnum MessageType { get; set; }
+        //[DataMember]
+        //public string MessageBody { get; set; }
+        //[DataMember]
+        //public Guid SessionGuid { get; set; }
+        //[DataMember]
+        //public DateTimeOffset TimeToSend { get; set; }
+        //[DataMember]
+        //public Guid CustomerGUID { get; set; }
+        //[DataMember]
+        //public CommMessageTypeEnum MessageType { get; set; }
         //[DataMember]
         //public MessageDirectionEnum MessageDirection { get; set; }
     }
