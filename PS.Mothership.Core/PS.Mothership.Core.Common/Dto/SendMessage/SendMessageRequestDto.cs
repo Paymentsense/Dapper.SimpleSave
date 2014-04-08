@@ -6,6 +6,8 @@ using PS.Mothership.Core.Common.Template.Comm;
 namespace PS.Mothership.Core.Common.Dto.SendMessage
 {
     [DataContract]
+    [KnownType(typeof(SendMessageRequestSmsDto))]
+    [KnownType(typeof(SendEmailRequestDto))]
     public abstract class SendMessageRequestDto
     {
 		[DataMember]

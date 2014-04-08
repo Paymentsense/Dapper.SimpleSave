@@ -141,7 +141,6 @@
     <Compile Include="Dto\DynamicRequest\FilterDto.cs" />
     <Compile Include="Dto\DynamicRequest\SortDto.cs" />
     <Compile Include="Dto\Experian\CurrentAddressTypeDto.cs" />
-    <Compile Include="Dto\Experian\Gender.cs" />
     <Compile Include="Dto\Experian\IdentityCheckDto.cs" />
     <Compile Include="Dto\Experian\IdentityCheckRequestDto.cs" />
     <Compile Include="Dto\Experian\IdentityCheckResponseDto.cs" />
@@ -175,7 +174,10 @@
     <Compile Include="Dto\SendMessage\SendMessageRequestDto.cs" />
     <Compile Include="Dto\SendMessage\SendMessageServiceStatusDto.cs" />
     <Compile Include="Dto\SendMessage\SendMessageSmsDto.cs" />
+    <Compile Include="Dto\SendMessage\SendMessageSmsToDto.cs" />
     <Compile Include="Dto\SendMessage\SendSmsRequestDto.cs" />
+    <Compile Include="Dto\SendMessage\SmsMessageReceivedDto.cs" />
+    <Compile Include="Dto\SendMessage\SmsNotificationDto.cs" />
     <Compile Include="Dto\TaskDto.cs" />
     <Compile Include="Dto\Roles\UserAssignedAndAvailableRoleDto.cs" />
     <Compile Include="Dto\Login\UserDto.cs" />

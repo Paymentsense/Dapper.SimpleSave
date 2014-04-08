@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using PS.Mothership.Core.Common.Dto.Roles;
+using System;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PS.Mothership.Core.Common.Dto
 {
     [DataContract]
+    [KnownType(typeof(InheritedRolesDto))]
+    [KnownType(typeof(UserAssignedAndAvailableRoleDto))]
     public class RoleDto
     {
         public RoleDto() { }
