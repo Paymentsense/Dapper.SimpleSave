@@ -27,5 +27,13 @@ namespace PS.Mothership.Core.Common.Contracts
         /// <returns></returns>
         [OperationContract]
         ICollection<ProspectCustDto> SimilarCustomers(ProspectCustDto prospectCustDto);
+
+        ///<summary>
+        ///     Get list of customers
+        ///     Added by Alpesh
+        /// </summary>
+        /// <returns></returns>
+        [OperationContract]
+        ICollection<ProspectCustDto> GetCustomers();
     }
 }
