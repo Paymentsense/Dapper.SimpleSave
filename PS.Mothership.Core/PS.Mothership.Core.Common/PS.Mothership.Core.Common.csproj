@@ -140,6 +140,9 @@
     <Compile Include="Dto\DynamicRequest\DataRequestDto.cs" />
     <Compile Include="Dto\DynamicRequest\FilterDto.cs" />
     <Compile Include="Dto\DynamicRequest\SortDto.cs" />
+    <Compile Include="Dto\Event\EventRoleLnkDto.cs" />
+    <Compile Include="Dto\Event\StatusOwnerTransactionDto.cs" />
+    <Compile Include="Dto\Event\EventTransactionDto.cs" />
     <Compile Include="Dto\Experian\CurrentAddressTypeDto.cs" />
     <Compile Include="Dto\Experian\Gender.cs" />
     <Compile Include="Dto\Experian\IdentityCheckDto.cs" />
