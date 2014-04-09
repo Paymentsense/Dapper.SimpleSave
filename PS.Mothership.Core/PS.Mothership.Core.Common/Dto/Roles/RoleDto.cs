@@ -1,8 +1,7 @@
-﻿using PS.Mothership.Core.Common.Dto.Roles;
-using System;
+﻿using System;
 using System.Runtime.Serialization;
 
-namespace PS.Mothership.Core.Common.Dto
+namespace PS.Mothership.Core.Common.Dto.Roles
 {
     [DataContract]
     [KnownType(typeof(InheritedRolesDto))]

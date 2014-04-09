@@ -162,7 +162,7 @@ namespace PS.Mothership.Core.Common.Template.Usr
 								ResourceKey = 8,
 								ActionName = "Index",
 								ControllerName = "Merchant",
-								Area = "",
+								Area = "Merchant",
 								ContainerName = "",
 								ResourceTypeKey = 1,
 								RecStatusKey = (GenRecStatusEnum)1
