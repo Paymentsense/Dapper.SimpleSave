@@ -181,7 +181,7 @@
     <Compile Include="Dto\SendMessage\SendSmsRequestDto.cs" />
     <Compile Include="Dto\TaskDto.cs" />
     <Compile Include="Dto\Roles\UserAssignedAndAvailableRoleDto.cs" />
-    <Compile Include="Dto\Login\UserDto.cs" />
+    <Compile Include="Dto\Login\UserLoginResultDto.cs" />
     <Compile Include="Dto\Roles\UserDto.cs" />
     <Compile Include="Dto\Groups\UserGroupDto.cs" />
     <Compile Include="Dto\Roles\BasicUserRoleDto.cs" />

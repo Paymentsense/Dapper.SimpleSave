@@ -4,7 +4,7 @@ using PS.Mothership.Core.Common.Template.Usr;
 
 namespace PS.Mothership.Core.Common.Dto.Login
 {
-    public class UserDto
+    public class UserLoginResultDto
     {
         // To manage on client side
         private HttpStatusCode _statusCode = HttpStatusCode.OK;
