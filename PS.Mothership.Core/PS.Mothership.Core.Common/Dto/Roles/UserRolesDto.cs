@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 namespace PS.Mothership.Core.Common.Dto.Roles
 {
     [DataContract]
-    public class UserDto
+    public class UserRolesDto
     {
         [DataMember]
         public Guid UserGuid { get; set; }

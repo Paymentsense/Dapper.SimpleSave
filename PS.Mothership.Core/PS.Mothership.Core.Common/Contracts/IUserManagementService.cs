@@ -25,9 +25,9 @@ namespace PS.Mothership.Core.Common.Contracts
         [OperationContract]
         IEnumerable<UserProfileDto> QuickSearch(SearchDto searchInput);
         [OperationContract]
-        PS.Mothership.Core.Common.Dto.Roles.UserDto GetRolesForUser(Guid userGuid);
+        PS.Mothership.Core.Common.Dto.Roles.UserRolesDto GetRolesForUser(Guid userGuid);
         [OperationContract]
-        IEnumerable<PS.Mothership.Core.Common.Dto.Roles.UserDto> GetRolesForUsers();
+        IEnumerable<PS.Mothership.Core.Common.Dto.Roles.UserRolesDto> GetRolesForUsers();
         [OperationContract]
         void RemoveRoleFromUser(BasicUserRoleDto userRole);
         [OperationContract]
@@ -63,6 +63,6 @@ namespace PS.Mothership.Core.Common.Contracts
         [OperationContract]
         InheritedRolesDto GetInheritedRoles(RoleDto role);
         [OperationContract]
-        PS.Mothership.Core.Common.Dto.Roles.UserDto RolesForUserAvailableAndAssigned(Guid userGuid);
+        PS.Mothership.Core.Common.Dto.Roles.UserRolesDto RolesForUserAvailableAndAssigned(Guid userGuid);
     }
 }
