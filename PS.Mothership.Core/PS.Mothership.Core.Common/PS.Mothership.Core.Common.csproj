@@ -210,6 +210,9 @@
     <Compile Include="IPManager\IPInspector.cs" />
     <Compile Include="Contracts\ISearchService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SessionHandling\SessionInspectorBehaviorExtension.cs" />
+    <Compile Include="SessionHandling\SessionInspectorBehavior.cs" />
+    <Compile Include="SessionHandling\SessionHeader.cs" />
     <Compile Include="ValidationCode\CodeMaker.cs" />
     <Compile Include="Helper\CryptoRandom.cs" />
     <Compile Include="Helper\RandomProvider.cs" />
