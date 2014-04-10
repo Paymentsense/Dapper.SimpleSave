@@ -14,9 +14,9 @@ namespace PS.Mothership.Core.Common.Contracts
     public interface IUserManagementService 
     {        
         [OperationContract]
-        PS.Mothership.Core.Common.Dto.Login.UserLoginResultDto AddUser(UserProfileDto userProfileDto, Guid updateSessionGuid);
+        UserLoginResultDto AddUser(UserProfileDto userProfileDto, Guid updateSessionGuid);
         [OperationContract]
-        PS.Mothership.Core.Common.Dto.Login.UserLoginResultDto UpdateUser(UserProfileDto userProfileDto, Guid updateSessionGuid);
+        UserLoginResultDto UpdateUser(UserProfileDto userProfileDto, Guid updateSessionGuid);
         [OperationContract]
         IEnumerable<UserProfileDto> GetUsers(DataRequestDto dataRequestDto);
         [OperationContract]
@@ -56,7 +56,7 @@ namespace PS.Mothership.Core.Common.Contracts
         [OperationContract]
         void RemoveInheritRole(RoleInheritanceDto roleInheritance);
         [OperationContract]
-        void AddGroupToUser(PS.Mothership.Core.Common.Dto.Groups.UserGroupDto userGroup);
+        void AddGroupToUser(Dto.Groups.UserGroupDto userGroup);
         [OperationContract]
         void RemoveGroupFromUser(PS.Mothership.Core.Common.Dto.Groups.UserGroupDto userGroup);
         [OperationContract]
