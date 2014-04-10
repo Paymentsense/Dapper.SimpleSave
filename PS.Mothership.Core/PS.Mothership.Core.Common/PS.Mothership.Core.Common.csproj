@@ -169,8 +169,8 @@
     <Compile Include="Dto\Roles\ResourceRolePermissionsDto.cs" />
     <Compile Include="Dto\Roles\RoleDto.cs" />
     <Compile Include="Dto\Roles\RoleInheritanceDto.cs" />
-    <Compile Include="Dto\Roles\UserGroupDto.cs" />
-    <Compile Include="Dto\Roles\UserPermissionDto.cs" />
+    <Compile Include="Dto\User\UserGroupDto.cs" />
+    <Compile Include="Dto\User\UserPermissionDto.cs" />
     <Compile Include="Dto\SearchDto.cs" />
     <Compile Include="Dto\SendMessage\MessageNotificationDto.cs" />
     <Compile Include="Dto\SendMessage\MessageReceivedDto.cs" />
@@ -180,12 +180,12 @@
     <Compile Include="Dto\SendMessage\SendMessageSmsDto.cs" />
     <Compile Include="Dto\SendMessage\SendSmsRequestDto.cs" />
     <Compile Include="Dto\TaskDto.cs" />
-    <Compile Include="Dto\Roles\UserAssignedAndAvailableRoleDto.cs" />
+    <Compile Include="Dto\User\UserAssignedAndAvailableRoleDto.cs" />
     <Compile Include="Dto\Login\UserLoginResultDto.cs" />
-    <Compile Include="Dto\Roles\UserRolesDto.cs" />
+    <Compile Include="Dto\User\UserRolesDto.cs" />
     <Compile Include="Dto\Groups\UserGroupDto.cs" />
     <Compile Include="Dto\Roles\BasicUserRoleDto.cs" />
-    <Compile Include="Dto\Roles\UserRoleDto.cs" />
+    <Compile Include="Dto\User\UserRoleDto.cs" />
     <Compile Include="Dto\Login\UserProfileDto.cs" />
     <Compile Include="Enums\Action.cs" />
     <Compile Include="Enums\State.cs" />

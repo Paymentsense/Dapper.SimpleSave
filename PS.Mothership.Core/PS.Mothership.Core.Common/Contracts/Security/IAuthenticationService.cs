@@ -5,6 +5,7 @@ using PS.Mothership.Core.Common.Dto;
 using PS.Mothership.Core.Common.Dto.Login;
 using PS.Mothership.Core.Common.Dto.Roles;
 using PS.Mothership.Core.Common.Dto.DynamicRequest;
+using PS.Mothership.Core.Common.Dto.User;
 using PS.Mothership.Core.Common.Template.Usr;
 
 namespace PS.Mothership.Core.Common.Contracts.Security

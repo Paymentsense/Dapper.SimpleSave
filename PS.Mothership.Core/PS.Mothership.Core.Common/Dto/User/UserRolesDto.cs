@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 
-namespace PS.Mothership.Core.Common.Dto.Roles
+namespace PS.Mothership.Core.Common.Dto.User
 {
     [DataContract]
     public class UserRolesDto
