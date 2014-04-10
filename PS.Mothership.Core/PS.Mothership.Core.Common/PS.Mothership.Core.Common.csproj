@@ -181,12 +181,12 @@
     <Compile Include="Dto\SendMessage\SendSmsRequestDto.cs" />
     <Compile Include="Dto\TaskDto.cs" />
     <Compile Include="Dto\User\UserAssignedAndAvailableRoleDto.cs" />
-    <Compile Include="Dto\Login\UserLoginResultDto.cs" />
+    <Compile Include="Dto\User\UserLoginResultDto.cs" />
     <Compile Include="Dto\User\UserRolesDto.cs" />
     <Compile Include="Dto\Groups\UserGroupDto.cs" />
     <Compile Include="Dto\Roles\BasicUserRoleDto.cs" />
     <Compile Include="Dto\User\UserRoleDto.cs" />
-    <Compile Include="Dto\Login\UserProfileDto.cs" />
+    <Compile Include="Dto\User\UserProfileDto.cs" />
     <Compile Include="Enums\Action.cs" />
     <Compile Include="Enums\State.cs" />
     <Compile Include="Enums\StatusType.cs" />
