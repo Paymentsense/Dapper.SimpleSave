@@ -34,8 +34,6 @@ namespace PS.Mothership.Core.Common.Dto.Login
         public string Initial { get; set; }
         [DataMember]
         public string Email { get; set; }
-        [DataMember]
-        public string OfficeDdi { get; set; }
 
         [DataMember]
         public bool IsLoggedIn { get; set; }
@@ -72,21 +70,21 @@ namespace PS.Mothership.Core.Common.Dto.Login
 
 
         [DataMember]
-        public LoginResultEnum Status { get; set; }
+        public UsrLoginResultEnum Status { get; set; }
         [DataMember]
-        public UserTypeEnum UserType { get; set; }
+        public UsrUserTypeEnum UserType { get; set; }
 
-        private StatusOptionFlagEnum _statusOptions = StatusOptionFlagEnum.None;
+        private UsrStatusOptionFlagEnum _statusOptions = UsrStatusOptionFlagEnum.None;
         [DataMember]
-        public StatusOptionFlagEnum StatusOptions
+        public UsrStatusOptionFlagEnum StatusOptions
         {
             get { return _statusOptions; }
             set { _statusOptions = value; }
         }
         
-        private UserStatusEnum _userStatus = UserStatusEnum.NewHire;        
+        private UsrUserStatusEnum _userStatus = UsrUserStatusEnum.NewHire;        
         [DataMember]
-        public UserStatusEnum UserStatus
+        public UsrUserStatusEnum UserStatus
         {
             get { return _userStatus; }
             set { _userStatus = value; }

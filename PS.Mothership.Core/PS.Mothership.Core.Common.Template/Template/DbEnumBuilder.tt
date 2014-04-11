@@ -118,9 +118,14 @@
         var enumName = cls.TableName;
         
         // remove the schema name from the enum name
-        enumName = enumName.Replace(cls.SchemaName + ".", "");        
+        //enumName = enumName.Replace(cls.SchemaName + ".", "");        
         enumName = ConvertCaseString(enumName);	  
-         
+
+        // backward compatibility
+        //var enumNameBwc = cls.TableName;
+        //enumNameBwc = enumNameBwc.Replace(cls.SchemaName + ".", "");        
+        //enumNameBwc = ConvertCaseString(enumNameBwc);	  
+
         var schemaName= ConvertCaseString(cls.SchemaName);	        
         //var contextName= ConvertCaseString(cls.ContextName);	
 
@@ -128,12 +133,14 @@
         var collectionClassName= className  + "Collection";
         var listName= className + "List";
 
-        fileManager.StartNewFile(schemaName + enumName + ".cs");
+        //fileManager.StartNewFile(schemaName + enumName + ".cs");
+        fileManager.StartNewFile(enumName + ".cs");
 #>
 using System;
 using System.Runtime.Serialization;
 using System.ComponentModel;
 using System.Collections.Generic;
+using PS.Mothership.Core.Common.Template.Gen;
 
 namespace <#=enumNameSpace+"."+schemaName #>
 {
@@ -147,8 +154,8 @@ namespace <#=enumNameSpace+"."+schemaName #>
         
         #>[Description("<#=data.Value.EnumDescription#>")][EnumMember]<#=data.Key #> = <#=data.Value.EnumValue #>,
        <#}#> 
-    }
-
+    }    
+    
     public class <#=className #>
     {
         <#        

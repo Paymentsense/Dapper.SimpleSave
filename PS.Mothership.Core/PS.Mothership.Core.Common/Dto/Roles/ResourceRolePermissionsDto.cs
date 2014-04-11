@@ -7,12 +7,12 @@ namespace PS.Mothership.Core.Common.Dto.Roles
     public class ResourceRolePermissionsDto
     {
         [DataMember]
-        public ResourceEnum ResourceEnum { get; set; }        
+        public UsrResourceEnum ResourceEnum { get; set; }        
 
         [DataMember]
         public UserRoleDto Role { get; set; }
         
         [DataMember]
-        public UserPermissionFlagEnum PermissionEnums { get; set; }        
+        public UsrUserPermissionFlagEnum PermissionEnums { get; set; }        
     }
 }

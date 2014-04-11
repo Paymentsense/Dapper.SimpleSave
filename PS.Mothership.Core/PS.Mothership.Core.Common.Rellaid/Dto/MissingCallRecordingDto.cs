@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 namespace PS.Mothership.Core.Common.Rellaid.Dto
 {
     [DataContract]
-    public class MissingCallRecordingsDto
+    public class MissingCallRecordingDto
     {
         [DataMember]
         public DateTimeOffset? AdjustedStartDateTime { get; set; }
@@ -20,7 +20,7 @@ namespace PS.Mothership.Core.Common.Rellaid.Dto
         public string UserPhoneNumber { get; set; }
 
         [DataMember]
-        public CallTypeEnum? CallType { get; set; }
+        public DialCallTypeEnum? CallType { get; set; }
 
         [DataMember]
         public int? TotalTime { get; set; }
@@ -38,6 +38,9 @@ namespace PS.Mothership.Core.Common.Rellaid.Dto
         public Guid? MerchantGuid { get; set; }
 
         [DataMember]
-        public Guid CallGuid { get; set; }
+        public Guid SipCallGuid { get; set; }
+
+        [DataMember]
+        public Guid UpdateSessionGuid { get; set; }
     }
 }

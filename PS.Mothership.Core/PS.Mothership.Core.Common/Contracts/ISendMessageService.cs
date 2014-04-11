@@ -27,16 +27,16 @@ namespace PS.Mothership.Core.Common.Contracts
         void SMSMessageDeliverySuccess(string xmlString);
 
         [OperationContract]
-        void SMSMessageRecieved(string xmlString);
+        void SMSMessageReceived(string xmlString);
 
         [OperationContract]
         string SendSMSMessageFrom(Guid userGuid);
 
         [OperationContract]
-        void PushSMSServiceStatus(MessageServiceStatusEnum serviceStatus);
+        void PushSMSServiceStatus(CommMessageServiceStatusEnum serviceStatus);
 
         [OperationContract]
-        void PushEmailServiceStatus(MessageServiceStatusEnum serviceStatus);
+        void PushEmailServiceStatus(CommMessageServiceStatusEnum serviceStatus);
 
         [OperationContract(IsOneWay = false)]
         void SendSMSServiceSubscribe(string applicationName);

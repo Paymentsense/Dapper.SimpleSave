@@ -23,5 +23,9 @@ namespace PS.Mothership.Core.Common.Dto
         public string Line1 { get; set; }
         [DataMember]
         public string Line2 { get; set; }
+        [DataMember]
+        public string County { get; set; }
+        [DataMember]
+        public string SubBuilding { get; set; }
     }
 }
