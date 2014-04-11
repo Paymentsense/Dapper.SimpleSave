@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PS.Mothership.Core.Common.Helper
+namespace PS.Mothership.Core.Common.Contracts
 {
     public interface ISignalRConnectionManager
     {
