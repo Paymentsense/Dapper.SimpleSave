@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using PS.Mothership.Core.Common.Dto.Groups;
+using PS.Mothership.Core.Common.Dto.Roles;
 using PS.Mothership.Core.Common.Template.Usr;
 
 namespace PS.Mothership.Core.Common.Dto.User
