@@ -54,5 +54,12 @@
         public const string IMAPUsername = "IMAPUsername";
         public const string IMAPPassword = "IMAPPassword";
         public const string IDLEConnectionTime = "IDLEConnectionTime";
+
+        // Common EchoSign Constants
+        public const string EchoSignUserEmail = "EchoSignUserEmail";
+        public const string EchoSignUserPassword = "EchoSignUserPassword";
+        public const string EchoSignUserApiKey = "EchoSignUserApiKey";
+        public const string EchoSignAppId = "EchoSignAppId";
+        public const string EchoSignAppSecret = "EchoSignAppSecret";
     }
 }
