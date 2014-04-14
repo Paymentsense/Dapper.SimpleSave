@@ -8,60 +8,60 @@ namespace PS.Mothership.Core.Common.Template.Comm
 {
     
     [DataContract]
-    public enum MessageTypeEnum : long
+    public enum CommMessageTypeEnum : long
     {
        [Description("None")][EnumMember]None = 0,
        [Description("SMS")][EnumMember]SMS = 1,
        [Description("Email")][EnumMember]Email = 2,
         
-    }
-
-    public class MessageType
+    }    
+    
+    public class CommMessageType
     {
         public long EnumValue {get;set;}
 		public string EnumName {get;set;}
 		public string EnumDescription {get;set;}
 		public long MessageTypeKey {get;set;}
-		public RecStatusEnum RecStatusKey {get;set;}
+		public GenRecStatusEnum RecStatusKey {get;set;}
     }
 
     /// <summary>
     /// This class is mainly for using the extended properties of Enum
     /// </summary>
-    public static class MessageTypeCollection
+    public static class CommMessageTypeCollection
     {
-        private static List<MessageType> _list; 
-        public static List<MessageType> MessageTypeList
+        private static List<CommMessageType> _list; 
+        public static List<CommMessageType> CommMessageTypeList
         {
             get
             {
                 if (_list == null)
                 {   
-                        _list = new List<MessageType>
+                        _list = new List<CommMessageType>
                         {
-                            new MessageType
+                            new CommMessageType
 							{
 								EnumValue = 0,
 								EnumName = "None",
 								EnumDescription = "None",
 								MessageTypeKey = 0,
-								RecStatusKey = (RecStatusEnum)0
+								RecStatusKey = (GenRecStatusEnum)0
 							},
-							new MessageType
+							new CommMessageType
 							{
 								EnumValue = 1,
 								EnumName = "SMS",
 								EnumDescription = "SMS",
 								MessageTypeKey = 1,
-								RecStatusKey = (RecStatusEnum)1
+								RecStatusKey = (GenRecStatusEnum)1
 							},
-							new MessageType
+							new CommMessageType
 							{
 								EnumValue = 2,
 								EnumName = "Email",
 								EnumDescription = "Email",
 								MessageTypeKey = 2,
-								RecStatusKey = (RecStatusEnum)1
+								RecStatusKey = (GenRecStatusEnum)1
 							},
                         };
                     

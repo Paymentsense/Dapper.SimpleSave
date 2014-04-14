@@ -34,13 +34,13 @@ namespace PS.Mothership.Core.Common.Contracts.Security
         IEnumerable<UserRoleDto> GetRolesFromRelationShip(Guid userGuid);
 
         [OperationContract]
-        IEnumerable<ResourceRolePermissionsDto> GetPermissionsByResource(Guid userGuid, ResourceEnum resource);
+        IEnumerable<ResourceRolePermissionsDto> GetPermissionsByResource(Guid userGuid, UsrResourceEnum resource);
 
         [OperationContract]
-        IEnumerable<ResourceRolePermissionsDto> GetResourcePermissionsByCollection(IList<ResourceEnum> resource);
+        IEnumerable<ResourceRolePermissionsDto> GetResourcePermissionsByCollection(IList<UsrResourceEnum> resource);
 
         [OperationContract]
-        IEnumerable<ResourceRolePermissionsDto> GetPermissionsByResourceType(Guid userGuid, ResourceTypeEnum resourceType);
+        IEnumerable<ResourceRolePermissionsDto> GetPermissionsByResourceType(Guid userGuid, UsrResourceTypeEnum resourceType);
 
         [OperationContract]
         bool IsAccountLockedOut(Guid userGuid, int allowedPasswordAttempts);

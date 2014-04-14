@@ -219,7 +219,7 @@
                                        EnumValue=reader[0].ToString().Trim(),
                                        EnumDescription=reader[queryDescriptionColumnName].ToString().Trim()
                                     };
-                                dataHolder.KeyValue.Add(reader[queryColumnName].ToString().Trim(), enumDetails);
+                                dataHolder.KeyValue.Add(CleanEnum(reader[queryColumnName].ToString().Trim()), enumDetails);
                             }
                             else
                             {
@@ -229,7 +229,7 @@
                                        EnumDescription=string.Empty
                                     };
 
-                                    dataHolder.KeyValue.Add(reader[queryColumnName].ToString().Trim(),enumDetails);                                    
+                                    dataHolder.KeyValue.Add(CleanEnum(reader[queryColumnName].ToString().Trim()),enumDetails);                                    
                             }
 
                              //add the additional columns found
@@ -291,6 +291,26 @@
             return sb.ToString();
         }
 
+        public static string CleanEnum(string phrase)
+        {
+            phrase = phrase.Replace("_", " ");
+            string[] splittedPhrase = phrase.Split(' ', '-', '.');
+            var sb = new StringBuilder();
+
+            sb = new StringBuilder();
+
+            foreach (String s in splittedPhrase)
+            {
+                char[] splittedPhraseChars = s.ToCharArray();
+                if (splittedPhraseChars.Length > 0)
+                {
+                    splittedPhraseChars[0] = ((new String(splittedPhraseChars[0], 1)).ToUpper().ToCharArray())[0];
+                }
+                sb.Append(new String(splittedPhraseChars));
+            }
+            return sb.ToString();
+        }
+
 		public static string GetType(string originalType)
         {
 			var d = new Dictionary<string, string>()
@@ -311,7 +331,7 @@
         {
 			if (columnName == "RecStatusKey")
 			{
-				return "RecStatusEnum";
+				return "GenRecStatusEnum";
 			}
 
 			var d = new Dictionary<string, string>()
@@ -346,8 +366,8 @@
         /// <param name="dataType"></param>
         /// <returns>string</returns>
         public static string CreatePropertyString(string name, string dataType)
-        {
-            var s= string.Format("public {0} {1} {{get;set;}}",dataType,name);                    
+        {            
+            var s= string.Format("public {0} {1} {{get;set;}}",dataType,name);             
             return s;
         }
 
@@ -382,7 +402,7 @@
                     sb.AppendFormat("{0} = {1}",kvp2.Value.Name, kvp2.Value.Value == null ? "null" :
 																(kvp2.Value.FieldType == "bool" ? kvp2.Value.Value.ToLower() : 
 																	kvp2.Value.FieldType == "string" ? string.Concat("\"",kvp2.Value.Value,"\"") :
-																		kvp2.Value.FieldType == "RecStatusEnum" ? string.Concat("(RecStatusEnum)",kvp2.Value.Value) :
+																		kvp2.Value.FieldType == "GenRecStatusEnum" ? string.Concat("(GenRecStatusEnum)",kvp2.Value.Value) :
 																			kvp2.Value.Value));
                 }       
                 sb.AppendLine().Append(AddTabForIndentation(7)).AppendLine("},");

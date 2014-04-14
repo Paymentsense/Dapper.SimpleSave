@@ -6,6 +6,9 @@ using PS.Mothership.Core.Common.Template.Comm;
 namespace PS.Mothership.Core.Common.Dto.SendMessage
 {
     [DataContract]
+    [KnownType(typeof(SendMessageRequestSmsDto))]
+    [KnownType(typeof(SendEmailRequestDto))]
+    [KnownType(typeof(SendSmsRequestDto))]
     public abstract class SendMessageRequestDto
     {
 		[DataMember]
@@ -23,10 +26,8 @@ namespace PS.Mothership.Core.Common.Dto.SendMessage
         [DataMember]
         public Guid CustomerGuid { get; set; }
         [DataMember]
-		public MessageTypeEnum MessageType { get; set; }
+		public CommMessageTypeEnum MessageType { get; set; }
         [DataMember]
 		public Guid SessionGuid { get; set; }
-
-
     }
 }

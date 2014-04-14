@@ -4,64 +4,64 @@ using System.ComponentModel;
 using System.Collections.Generic;
 using PS.Mothership.Core.Common.Template.Gen;
 
-namespace PS.Mothership.Core.Common.Template.Event
+namespace PS.Mothership.Core.Common.Template.Gen
 {
     
     [DataContract]
-    public enum NotesTypeEnum : long
+    public enum GenGenderEnum : long
     {
        [Description("None")][EnumMember]None = 0,
-       [Description("System Generated")][EnumMember]SystemGenerated = 1,
-       [Description("General")][EnumMember]General = 2,
+       [Description("Male")][EnumMember]Male = 1,
+       [Description("Female")][EnumMember]Female = 2,
         
-    }
-
-    public class NotesType
+    }    
+    
+    public class GenGender
     {
         public long EnumValue {get;set;}
 		public string EnumName {get;set;}
 		public string EnumDescription {get;set;}
-		public long NotesTypeKey {get;set;}
-		public RecStatusEnum RecStatusKey {get;set;}
+		public long GenderKey {get;set;}
+		public GenRecStatusEnum RecStatusKey {get;set;}
     }
 
     /// <summary>
     /// This class is mainly for using the extended properties of Enum
     /// </summary>
-    public static class NotesTypeCollection
+    public static class GenGenderCollection
     {
-        private static List<NotesType> _list; 
-        public static List<NotesType> NotesTypeList
+        private static List<GenGender> _list; 
+        public static List<GenGender> GenGenderList
         {
             get
             {
                 if (_list == null)
                 {   
-                        _list = new List<NotesType>
+                        _list = new List<GenGender>
                         {
-                            new NotesType
+                            new GenGender
 							{
 								EnumValue = 0,
 								EnumName = "None",
 								EnumDescription = "None",
-								NotesTypeKey = 0,
-								RecStatusKey = (RecStatusEnum)0
+								GenderKey = 0,
+								RecStatusKey = (GenRecStatusEnum)0
 							},
-							new NotesType
+							new GenGender
 							{
 								EnumValue = 1,
-								EnumName = "SystemGenerated",
-								EnumDescription = "System Generated",
-								NotesTypeKey = 1,
-								RecStatusKey = (RecStatusEnum)1
+								EnumName = "Male",
+								EnumDescription = "Male",
+								GenderKey = 1,
+								RecStatusKey = (GenRecStatusEnum)2
 							},
-							new NotesType
+							new GenGender
 							{
 								EnumValue = 2,
-								EnumName = "General",
-								EnumDescription = "General",
-								NotesTypeKey = 2,
-								RecStatusKey = (RecStatusEnum)1
+								EnumName = "Female",
+								EnumDescription = "Female",
+								GenderKey = 2,
+								RecStatusKey = (GenRecStatusEnum)2
 							},
                         };
                     

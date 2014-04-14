@@ -9,7 +9,7 @@ namespace PS.Mothership.Core.Common.Dto.Roles
     public class UserPermissionDto
     {
         [DataMember]
-        public UserPermissionFlagEnum PermissionEnums { get; set; }        
+        public UsrUserPermissionFlagEnum PermissionEnums { get; set; }        
 
         [DataMember]
         public string PermissionName { get; set; }
