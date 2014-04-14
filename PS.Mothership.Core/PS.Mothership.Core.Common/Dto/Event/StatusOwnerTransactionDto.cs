@@ -9,7 +9,7 @@ namespace PS.Mothership.Core.Common.Dto.Event
         [DataMember]
         public Guid StatusOwnerGuid { get; set; }
         [DataMember]
-        public int EventStatusKey { get; set; }
+        public long EventStatusKey { get; set; }
         [DataMember]
         public Guid UserGuid { get; set; }
         [DataMember]

@@ -11,7 +11,7 @@ namespace PS.Mothership.Core.Common.Dto.Event
         [DataMember]
         public Guid ParentEventGuid { get; set; }
         [DataMember]
-        public int EventTypeKey { get; set; }
+        public long EventTypeKey { get; set; }
         [DataMember]
         public Guid StatusOwnerGuid { get; set; }
         [DataMember]

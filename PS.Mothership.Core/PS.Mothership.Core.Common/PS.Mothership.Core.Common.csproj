@@ -169,6 +169,7 @@
     <Compile Include="Dto\Roles\ResourceRolePermissionsDto.cs" />
     <Compile Include="Dto\Roles\RoleDto.cs" />
     <Compile Include="Dto\Roles\RoleInheritanceDto.cs" />
+    <Compile Include="Dto\User\UserDto.cs" />
     <Compile Include="Dto\User\UserGroupDto.cs" />
     <Compile Include="Dto\User\UserPermissionDto.cs" />
     <Compile Include="Dto\SearchDto.cs" />
@@ -190,6 +191,7 @@
     <Compile Include="Enums\Action.cs" />
     <Compile Include="Enums\State.cs" />
     <Compile Include="Enums\StatusType.cs" />
+    <Compile Include="Extension\AutoMapperExtension.cs" />
     <Compile Include="Extension\EnumerableExtension.cs" />
     <Compile Include="Enums\UserRoleType.cs" />
     <Compile Include="Contracts\ICacheService.cs" />
