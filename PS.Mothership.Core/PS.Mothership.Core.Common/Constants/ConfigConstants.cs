@@ -61,5 +61,11 @@
         public const string EchoSignUserApiKey = "EchoSignUserApiKey";
         public const string EchoSignAppId = "EchoSignAppId";
         public const string EchoSignAppSecret = "EchoSignAppSecret";
+        public const string EchoSignAuthTokenUrl = "EchoSignAuthTokenUrl";
+        public const string EchoSignAgreementsUrl = "EchoSignAgreementsUrl";
+        public const string EchoSignRemindersUrl = "EchoSignRemindersUrl";
+        public const string EchoSignLibraryDocumentsUrl = "EchoSignLibraryDocumentsUrl";
+        public const string EchoSignTransientDocumentsUrl = "EchoSignTransientDocumentsUrl";
+
     }
 }
