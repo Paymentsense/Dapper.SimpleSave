@@ -160,6 +160,8 @@
     <Compile Include="Dto\Groups\GroupDto.cs" />
     <Compile Include="Dto\Groups\GroupDescDto.cs" />
     <Compile Include="Dto\Groups\GroupRoleDto.cs" />
+    <Compile Include="Dto\Login\LoginTrnDto.cs" />
+    <Compile Include="Dto\Message\EmailAddressDto.cs" />
     <Compile Include="Dto\Roles\InheritedRolesDto.cs" />
     <Compile Include="Dto\LoginCredentialsDto.cs" />
     <Compile Include="Dto\NotificationDetailDto.cs" />
@@ -169,6 +171,7 @@
     <Compile Include="Dto\Roles\ResourceRolePermissionsDto.cs" />
     <Compile Include="Dto\Roles\RoleDto.cs" />
     <Compile Include="Dto\Roles\RoleInheritanceDto.cs" />
+    <Compile Include="Dto\User\UserStatusTrnDto.cs" />
     <Compile Include="Dto\User\UserDto.cs" />
     <Compile Include="Dto\User\UserGroupDto.cs" />
     <Compile Include="Dto\User\UserPermissionDto.cs" />
