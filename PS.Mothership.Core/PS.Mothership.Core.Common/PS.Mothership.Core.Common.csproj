@@ -140,6 +140,9 @@
     <Compile Include="Dto\DynamicRequest\DataRequestDto.cs" />
     <Compile Include="Dto\DynamicRequest\FilterDto.cs" />
     <Compile Include="Dto\DynamicRequest\SortDto.cs" />
+    <Compile Include="Dto\EchoSign\AgreementCreationDto.cs" />
+    <Compile Include="Dto\EchoSign\MergeFieldInfoDto.cs" />
+    <Compile Include="Dto\EchoSign\NewAgreementDto.cs" />
     <Compile Include="Dto\Experian\CurrentAddressTypeDto.cs" />
     <Compile Include="Dto\Experian\IdentityCheckDto.cs" />
     <Compile Include="Dto\Experian\IdentityCheckRequestDto.cs" />
