@@ -11,7 +11,7 @@ namespace PS.Mothership.Core.Common.Dto.User
         [DataMember]
         public Guid UserGuid { get; set; }
         [DataMember]
-        public long UserStatusOptionFlags { get; set; }
+        public UsrStatusOptionFlagEnum UserStatusOptionFlags { get; set; }
         [DataMember]
         public string LoginName { get; set; }
         [DataMember]
@@ -23,7 +23,7 @@ namespace PS.Mothership.Core.Common.Dto.User
         [DataMember]
         public Guid EmailAddressGuid { get; set; }
         [DataMember]
-        public long UserTypeKey { get; set; }
+        public UsrUserTypeEnum UserTypeKey { get; set; }
         [DataMember]
         public Guid LoginGuid { get; set; }
         [DataMember]
