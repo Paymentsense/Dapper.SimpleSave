@@ -162,6 +162,11 @@
     <Compile Include="Dto\Groups\GroupRoleDto.cs" />
     <Compile Include="Dto\Login\SessionDto.cs" />
     <Compile Include="Dto\Login\LoginTrnDto.cs" />
+    <Compile Include="Dto\Message\MessageSendTrnDto.cs" />
+    <Compile Include="Dto\Message\MessageEmailRecipientsDto.cs" />
+    <Compile Include="Dto\Message\MessageDto.cs" />
+    <Compile Include="Dto\Message\MessageEmailAttachmentsDto.cs" />
+    <Compile Include="Dto\Message\MessageEmailDto.cs" />
     <Compile Include="Dto\Message\EmailAddressDto.cs" />
     <Compile Include="Dto\Roles\InheritedRolesDto.cs" />
     <Compile Include="Dto\LoginCredentialsDto.cs" />
