@@ -9,7 +9,7 @@ using PS.Mothership.Core.Common.Template.Cust;
 namespace PS.Mothership.Core.Common.Dto.Customer
 {
     [DataContract]
-    public class ProspectCustDto
+    public class MerchantDto
     {
         [DataMember]
         public Guid ProspectGuid { get; set; }
@@ -24,7 +24,7 @@ namespace PS.Mothership.Core.Common.Dto.Customer
         public virtual string MainPhoneNumber { get; set; }
 
         [DataMember]
-        public ICollection<ProspectCustDto> SimilarNames { get; set; }
+        public ICollection<ProspectDto> SimilarNames { get; set; }
 
         [DataMember]
         public int TotalCount { get; set; } // gives the total count based on selection criteria
