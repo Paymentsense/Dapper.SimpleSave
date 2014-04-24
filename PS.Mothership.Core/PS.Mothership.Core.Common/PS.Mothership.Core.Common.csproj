@@ -144,7 +144,6 @@
     <Compile Include="Dto\EchoSign\AgreementCreationDto.cs" />
     <Compile Include="Dto\EchoSign\AgreementDocumentIdDto.cs" />
     <Compile Include="Dto\EchoSign\AgreementInfoDto.cs" />
-    <Compile Include="Dto\EchoSign\AppCredentialsDto.cs" />
     <Compile Include="Dto\EchoSign\DeviceLocationDto.cs" />
     <Compile Include="Dto\EchoSign\DocumentHistoryEventDto.cs" />
     <Compile Include="Dto\EchoSign\DocumentLibraryItemDto.cs" />
