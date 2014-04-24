@@ -59,6 +59,8 @@
         public const string EchoSignUserEmail = "EchoSignUserEmail";
         public const string EchoSignUserPassword = "EchoSignUserPassword";
         public const string EchoSignUserApiKey = "EchoSignUserApiKey";
+        public const string EchoSignApplicationId = "EchoSignApplicationId";
+        public const string EchoSignApplicationSecret = "EchoSignApplicationSecret";
         public const string EchoSignAuthTokenUrl = "EchoSignAuthTokenUrl";
         public const string EchoSignAgreementsUrl = "EchoSignAgreementsUrl";
         public const string EchoSignRemindersUrl = "EchoSignRemindersUrl";
