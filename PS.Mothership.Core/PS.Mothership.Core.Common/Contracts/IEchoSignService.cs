@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace PS.Mothership.Core.Common.Contracts
 {
     [ServiceContract]
-    public interface IEchoSignService
+    public interface IEchoSignCallbackService
     {
         [OperationContract]
         void DocumentNotification(string documentKey);
