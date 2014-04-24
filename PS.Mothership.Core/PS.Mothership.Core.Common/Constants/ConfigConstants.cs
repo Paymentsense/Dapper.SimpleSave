@@ -65,6 +65,7 @@
         public const string EchoSignLibraryDocumentsUrl = "EchoSignLibraryDocumentsUrl";
         public const string EchoSignTransientDocumentsUrl = "EchoSignTransientDocumentsUrl";
         public const string EchoSignUploadTransientDocumentBoundry = "EchoSignUploadTransientDocumentBoundry";
+        public const string EchosignCallbackUri = "EchosignCallbackUri";
 
     }
 }
