@@ -117,6 +117,7 @@
     <Compile Include="Constants\NamingConstants.cs" />
     <Compile Include="Contracts\IAddressService.cs" />
     <Compile Include="Contracts\IApplicationService.cs" />
+    <Compile Include="Contracts\IEchoSignService.cs" />
     <Compile Include="Contracts\IProspectCustomerService.cs" />
     <Compile Include="Contracts\IDiallerService.cs" />
     <Compile Include="Contracts\IDiallerTaskNotificationCallback.cs" />
