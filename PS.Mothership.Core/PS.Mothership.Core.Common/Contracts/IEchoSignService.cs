@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PS.Mothership.Core.Common.Contracts
 {
-    [ServiceContract]
+    [ServiceContract(Name = "EchoSignService")]
     public interface IEchoSignCallbackService
     {
         [OperationContract]
