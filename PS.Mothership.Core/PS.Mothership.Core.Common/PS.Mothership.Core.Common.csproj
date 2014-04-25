@@ -225,6 +225,7 @@
     <Compile Include="IPManager\IPInspector.cs" />
     <Compile Include="Contracts\ISearchService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SessionHandling\ClientSessionHeaderContext.cs" />
     <Compile Include="SessionHandling\SessionOperationContextExtension.cs" />
     <Compile Include="SessionHandling\SessionInspectorBehaviorExtensionElement.cs" />
     <Compile Include="SessionHandling\SessionInspectorBehavior.cs" />
