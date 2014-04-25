@@ -7,12 +7,7 @@ namespace PS.Mothership.Core.Common.WcfErrorHandling
 {
     public class PassThroughExceptionExtension : BehaviorExtensionElement
     {
-        public ILog _logger { get; set; }
-
-        public PassThroughExceptionExtension()
-        {
-           
-        }
+        public ILog Logger { get; set; }
 
         public override Type BehaviorType
         {

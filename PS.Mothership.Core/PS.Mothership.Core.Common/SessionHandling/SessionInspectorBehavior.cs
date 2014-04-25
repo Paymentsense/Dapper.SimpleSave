@@ -7,7 +7,7 @@ using System.ServiceModel.Dispatcher;
 
 namespace PS.Mothership.Core.Common.SessionHandling
 {
-    [AttributeUsage(AttributeTargets.Class)]
+    [AttributeUsage(AttributeTargets.Class)]    
     public class SessionInspectorBehavior : Attribute, IDispatchMessageInspector, IClientMessageInspector
     {
         #region IDispatchMessageInspector
@@ -19,6 +19,8 @@ namespace PS.Mothership.Core.Common.SessionHandling
             {
                 SessionOperationContextExtension.Current.Session.WebSessionGuid = header.WebSessionGuid;
             }
+            
+            
 
             return null;
         }
@@ -35,7 +37,7 @@ namespace PS.Mothership.Core.Common.SessionHandling
             var dataToSend = new SessionHeader();
             var typedHeader = new MessageHeader<SessionHeader>(dataToSend);
             var untypedHeader = typedHeader.GetUntypedHeader("session-header", "s");
-
+            
 
             request.Headers.Add(untypedHeader);
             return null;
