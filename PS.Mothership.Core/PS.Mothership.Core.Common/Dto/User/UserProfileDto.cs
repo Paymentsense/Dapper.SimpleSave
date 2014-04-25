@@ -53,8 +53,7 @@ namespace PS.Mothership.Core.Common.Dto.User
 
         [DataMember]
         public string Message { get; set; }
-        [DataMember]
-        public int TotalCount { get; set; } // gives the total count based on selection criteria
+       
         [DataMember]
         public string ValidationCode { get; set; }
         [DataMember]

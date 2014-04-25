@@ -26,7 +26,5 @@ namespace PS.Mothership.Core.Common.Dto.Roles
         public bool IsDefining { get; set; }
         [DataMember]
         public GenRecStatusEnum RoleStatus { get; set; }
-        [DataMember]
-        public int TotalCount { get; set; } 
     }
 }

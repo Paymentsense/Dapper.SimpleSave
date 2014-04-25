@@ -12,25 +12,16 @@ namespace PS.Mothership.Core.Common.Dto.Customer
     public class MerchantDto
     {
         [DataMember]
-        public Guid ProspectGuid { get; set; }
+        public Guid MerchantGuid { get; set; }
 
         [DataMember]
-        public FullAddressDto Address { get; set; }
+        public long V1MerchantId { get; set; }
 
         [DataMember]
-        public ContactDto Contact { get; set; }
+        public string LocatorId { get; set; }
 
         [DataMember]
-        public virtual string MainPhoneNumber { get; set; }
-
-        [DataMember]
-        public ICollection<ProspectDto> SimilarNames { get; set; }
-
-        [DataMember]
-        public int TotalCount { get; set; } // gives the total count based on selection criteria
-
-        [DataMember]
-        public CustBusinessLegalTypeEnum BusinessLegalTypeKey { get; set; }
+        public long ThompsonCodeKey { get; set; }
 
         [DataMember]
         public CustAnnualTurnoverEnum AnnualTurnoverKey { get; set; }
@@ -39,6 +30,49 @@ namespace PS.Mothership.Core.Common.Dto.Customer
         public CustNumberEmployeesEnum NumberEmployeesKey { get; set; }
 
         [DataMember]
-        public CustNoContactReasonEnum CallRestrictedReasonKey { get; set; }        
+        public CustBusinessLegalTypeEnum BusinessLegalTypeKey { get; set; }
+
+        [DataMember]
+        public long CurrentAcquirerBankKey { get; set; }
+
+        [DataMember]
+        public long CurrentTradingBankKey { get; set; }
+
+        [DataMember]
+        public long CallRestrictedReasonKey { get; set; }
+
+        [DataMember]
+        public long EmailRestrictedReasonKey { get; set; }
+
+        [DataMember]
+        public Guid AddressGuid { get; set; }
+
+        [DataMember]
+        public Guid PhoneGuid { get; set; }
+
+        [DataMember]
+        public Guid EmailAddressGuid { get; set; }
+
+        [DataMember]
+        public string WebsiteURL { get; set; }
+
+        [DataMember]
+        public string CreditPreScreenFlag { get; set; }
+
+        [DataMember]
+        public string ExperianBusinessURN { get; set; }
+
+        [DataMember]
+        public string ExperianLocationURN { get; set; }
+
+        [DataMember]
+        public DateTime? ExperianLastUpdate { get; set; }
+
+        [DataMember]
+        public Guid UpdateSessionGuid { get; set; }
+
+        [DataMember]
+        public DateTimeOffset UpdateDate { get; set; }
+       
     }
 }

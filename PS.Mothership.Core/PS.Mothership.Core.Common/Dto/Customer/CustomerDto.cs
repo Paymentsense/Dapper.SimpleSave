@@ -3,7 +3,7 @@
 namespace PS.Mothership.Core.Common.Dto.Customer
 {
     [DataContract]
-    public class ProspectDto : MerchantDto
+    public class CustomerDto : MerchantDto
     {
         [DataMember]
         public string BusinessName { get; set; }
@@ -12,9 +12,7 @@ namespace PS.Mothership.Core.Common.Dto.Customer
         public string DeDupeBusinessName { get; set; }
 
         [DataMember]
-        public bool DoesEcommerce { get; set; }
-
-        [DataMember]
-        public int DelphiScore { get; set; }
+        public bool IsVatExempt { get; set; }
+      
     }
 }

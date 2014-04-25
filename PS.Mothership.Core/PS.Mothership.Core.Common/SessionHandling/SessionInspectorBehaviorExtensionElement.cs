@@ -4,7 +4,7 @@ using System.ServiceModel.Configuration;
 namespace PS.Mothership.Core.Common.SessionHandling
 {
 
-    public class SessionInspectorBehaviorExtension : BehaviorExtensionElement
+    public class SessionInspectorBehaviorExtensionElement : BehaviorExtensionElement
     {
         protected override object CreateBehavior()
         {
