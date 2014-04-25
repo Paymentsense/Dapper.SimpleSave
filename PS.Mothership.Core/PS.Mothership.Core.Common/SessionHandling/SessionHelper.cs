@@ -5,16 +5,16 @@ using PS.Mothership.Core.Common.Dto;
 
 namespace PS.Mothership.Core.Common.SessionHandling
 {
-    public interface IClientSessionHeaderContext
+    public interface ISessionManager
     {
         SessionHeader SessionInformation { get; set; }
     }
 
-    public class ClientSessionHeaderContext : IClientSessionHeaderContext
+    public class SessionHelper : ISessionManager
     {
         public SessionHeader SessionInformation { get; set; }
 
-        public ClientSessionHeaderContext()
+        public SessionHelper()
         {
             SessionInformation = new SessionHeader();
         }
