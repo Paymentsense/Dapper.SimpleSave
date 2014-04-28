@@ -4,6 +4,7 @@ using System.Linq;
 using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
+using PS.Mothership.Core.Common.Enums.EchoSign;
 
 namespace PS.Mothership.Core.Common.Contracts
 {
@@ -11,6 +12,6 @@ namespace PS.Mothership.Core.Common.Contracts
     public interface IEchoSignCallbackService
     {
         [OperationContract]
-        void DocumentNotification(string documentKey);
+        void DocumentNotification(string documentKey, AgreementStatusEnum status, EventTypeEnum eventType);
     }
 }
