@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ServiceModel;
+using PS.Mothership.Core.Common.Constructs;
 using PS.Mothership.Core.Common.Dto;
 using PS.Mothership.Core.Common.Dto.Login;
 using PS.Mothership.Core.Common.Dto.Roles;
@@ -23,25 +24,25 @@ namespace PS.Mothership.Core.Common.Contracts.Security
         AccountDto GetImpersonatedAccount(UserProfileDto profileImpersonating, Guid userGuid);
 
         [OperationContract]
-        IEnumerable<UserProfileDto> GetUserProfile(long departmentId, UserProfileDto accessUserProfile, DataRequestDto dataRequestDto);
+        PagedList<UserProfileDto> GetUserProfile(long departmentId, UserProfileDto accessUserProfile, DataRequestDto dataRequestDto);
 
         [OperationContract]
-        IEnumerable<UserGroupDto> GetGroups(Guid userGuid);
+        PagedList<UserGroupDto> GetGroups(Guid userGuid);
 
         [OperationContract]
-        IEnumerable<UserRoleDto> GetRoles(Guid userGuid);
+        PagedList<UserRoleDto> GetRoles(Guid userGuid);
 
         [OperationContract]
-        IEnumerable<UserRoleDto> GetRolesFromRelationShip(Guid userGuid);
+        PagedList<UserRoleDto> GetRolesFromRelationShip(Guid userGuid);
 
         [OperationContract]
-        IEnumerable<ResourceRolePermissionsDto> GetPermissionsByResource(Guid userGuid, UsrResourceEnum resource);
+        PagedList<ResourceRolePermissionsDto> GetPermissionsByResource(Guid userGuid, UsrResourceEnum resource);
 
         [OperationContract]
-        IEnumerable<ResourceRolePermissionsDto> GetResourcePermissionsByCollection(IList<UsrResourceEnum> resource);
+        PagedList<ResourceRolePermissionsDto> GetResourcePermissionsByCollection(IList<UsrResourceEnum> resource);
 
         [OperationContract]
-        IEnumerable<ResourceRolePermissionsDto> GetPermissionsByResourceType(Guid userGuid, UsrResourceTypeEnum resourceType);
+        PagedList<ResourceRolePermissionsDto> GetPermissionsByResourceType(Guid userGuid, UsrResourceTypeEnum resourceType);
 
         [OperationContract]
         bool IsAccountLockedOut(Guid userGuid, int allowedPasswordAttempts);
