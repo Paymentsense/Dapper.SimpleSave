@@ -135,6 +135,7 @@
     <Compile Include="Config\ILayerIocBuilder.cs" />
     <Compile Include="Config\IocBuildSettings.cs" />
     <Compile Include="Config\WcfMode.cs" />
+    <Compile Include="Dto\Contact\AddressDto.cs" />
     <Compile Include="Dto\Contact\PhoneNumberDto.cs" />
     <Compile Include="Dto\Customer\ContactDto.cs" />
     <Compile Include="Dto\Customer\CustomerDto.cs" />

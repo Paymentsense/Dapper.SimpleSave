@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using PS.Mothership.Core.Common.Dto.Contact;
 using PS.Mothership.Core.Common.Template.Cust;
 
 namespace PS.Mothership.Core.Common.Dto.Customer
@@ -45,7 +46,7 @@ namespace PS.Mothership.Core.Common.Dto.Customer
         public long EmailRestrictedReasonKey { get; set; }
 
         [DataMember]
-        public Guid AddressGuid { get; set; }
+        public FullAddressDto Address { get; set; }
 
         [DataMember]
         public Guid PhoneGuid { get; set; }
