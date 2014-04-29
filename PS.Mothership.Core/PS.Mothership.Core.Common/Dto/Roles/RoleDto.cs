@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.Serialization;
+using PS.Mothership.Core.Common.Dto.User;
 using PS.Mothership.Core.Common.Template.Gen;
 
 namespace PS.Mothership.Core.Common.Dto.Roles
