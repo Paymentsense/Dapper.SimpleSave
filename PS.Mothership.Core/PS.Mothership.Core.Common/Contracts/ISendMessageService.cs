@@ -27,7 +27,7 @@ namespace PS.Mothership.Core.Common.Contracts
         void SMSMessageDeliverySuccess(string xmlString);
 
         [OperationContract]
-        void SMSMessageRecieved(string xmlString);
+        void SMSMessageReceived(string xmlString);
 
         [OperationContract]
         string SendSMSMessageFrom(Guid userGuid);

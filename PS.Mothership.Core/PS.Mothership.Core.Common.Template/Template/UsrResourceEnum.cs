@@ -18,6 +18,7 @@ namespace PS.Mothership.Core.Common.Template.Usr
        [Description("Role Management")][EnumMember]RoleManagement = 5,
        [Description("Group Management")][EnumMember]GroupManagement = 6,
        [Description("Dialler Client")][EnumMember]Dialler = 7,
+       [Description("Merchant")][EnumMember]Merchant = 8,
         
     }    
     
@@ -151,6 +152,19 @@ namespace PS.Mothership.Core.Common.Template.Usr
 								Area = "",
 								ContainerName = "",
 								ResourceTypeKey = 3,
+								RecStatusKey = (GenRecStatusEnum)1
+							},
+							new UsrResource
+							{
+								EnumValue = 8,
+								EnumName = "Merchant",
+								EnumDescription = "Merchant",
+								ResourceKey = 8,
+								ActionName = "Index",
+								ControllerName = "Merchant",
+								Area = "Merchant",
+								ContainerName = "",
+								ResourceTypeKey = 1,
 								RecStatusKey = (GenRecStatusEnum)1
 							},
                         };
