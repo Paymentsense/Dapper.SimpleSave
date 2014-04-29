@@ -49,7 +49,7 @@ namespace PS.Mothership.Core.Common.WcfErrorHandling
             }
         }
 
-        public object BeforeSendRequest(ref System.ServiceModel.Channels.Message request, System.ServiceModel.IClientChannel channel)
+        public object BeforeSendRequest(ref Message request, IClientChannel channel)
         {
             return null;
         }

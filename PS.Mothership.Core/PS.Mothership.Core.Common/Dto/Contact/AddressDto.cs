@@ -1,36 +1,43 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace PS.Mothership.Core.Common.Dto
+namespace PS.Mothership.Core.Common.Dto.Contact
 {
     [DataContract]
-    public class FullAddressDto
+    public class AddressDto
     {
-        [DataMember]
+        [DataMember] 
         public Guid AddressGuid { get; set; }
 
-        [DataMember] 
+        [DataMember]
         public string HouseNumber { get; set; }
+
         [DataMember]
         public string StreetName { get; set; }
+
         [DataMember]
         public string HouseName { get; set; }
+
         [DataMember]
         public string FlatAptSuite { get; set; }
+
         [DataMember]
-        public string City { get; set; }
+        public string TownName { get; set; }
+
         [DataMember]
-        public string Country { get; set; }
-        
+        public long PostCodeKey { get; set; }
+
         [DataMember]
-        public string PostCode { get; set; }
-        
+        public long CountyKey { get; set; }
+
         [DataMember]
-        public string Line1 { get; set; }
+        public long AddressTypeKey { get; set; }
+
         [DataMember]
-        public string Line2 { get; set; }
+        public DateTime? AddressConfirmedDate { get; set; }
+
         [DataMember]
-        public string County { get; set; }
+        public long CountryKey { get; set; }
         
     }
 }

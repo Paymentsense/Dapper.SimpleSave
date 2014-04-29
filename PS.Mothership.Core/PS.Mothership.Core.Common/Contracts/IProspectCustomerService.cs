@@ -14,18 +14,18 @@ namespace PS.Mothership.Core.Common.Contracts
         /// <summary>
         ///     Add customer
         /// </summary>
-        /// <param name="prospectCustDto"></param>
+        /// <param name="prospectDto"></param>
         /// <param name="updateSessionGuid"></param>
         /// <returns></returns>
         [OperationContract]
-        ProspectCustResponseDto AddCustomer(ProspectCustDto prospectCustDto, Guid updateSessionGuid);
+        ProspectResponseDto AddCustomer(ProspectDto prospectDto, Guid updateSessionGuid);
 
         /// <summary>
         ///     Get similiar customers
         /// </summary>
-        /// <param name="prospectCustDto"></param>
+        /// <param name="prospectDto"></param>
         /// <returns></returns>
         [OperationContract]
-        ICollection<ProspectCustDto> SimilarCustomers(ProspectCustDto prospectCustDto);
+        ICollection<ProspectDto> SimilarCustomers(ProspectDto prospectDto);
     }
 }

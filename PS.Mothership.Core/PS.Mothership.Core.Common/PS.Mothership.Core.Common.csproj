@@ -115,6 +115,7 @@
     <Compile Include="Constants\ConfigConstants.cs" />
     <Compile Include="Constants\GlobalConstants.cs" />
     <Compile Include="Constants\NamingConstants.cs" />
+    <Compile Include="Constructs\PagedList.cs" />
     <Compile Include="Contracts\IAddressService.cs" />
     <Compile Include="Contracts\IApplicationService.cs" />
     <Compile Include="Contracts\IProspectCustomerService.cs" />
@@ -134,12 +135,19 @@
     <Compile Include="Config\ILayerIocBuilder.cs" />
     <Compile Include="Config\IocBuildSettings.cs" />
     <Compile Include="Config\WcfMode.cs" />
+    <Compile Include="Dto\Contact\AddressDto.cs" />
+    <Compile Include="Dto\Contact\PhoneNumberDto.cs" />
     <Compile Include="Dto\Customer\ContactDto.cs" />
-    <Compile Include="Dto\Customer\ProspectCustDto.cs" />
-    <Compile Include="Dto\Customer\ProspectCustResponseDto.cs" />
+    <Compile Include="Dto\Customer\CustomerDto.cs" />
+    <Compile Include="Dto\Customer\MerchantDto.cs" />
+    <Compile Include="Dto\Customer\ProspectDto.cs" />
+    <Compile Include="Dto\Customer\ProspectResponseDto.cs" />
     <Compile Include="Dto\DynamicRequest\DataRequestDto.cs" />
     <Compile Include="Dto\DynamicRequest\FilterDto.cs" />
     <Compile Include="Dto\DynamicRequest\SortDto.cs" />
+    <Compile Include="Dto\Event\EventRoleLnkDto.cs" />
+    <Compile Include="Dto\Event\StatusOwnerTransactionDto.cs" />
+    <Compile Include="Dto\Event\EventTransactionDto.cs" />
     <Compile Include="Dto\Experian\CurrentAddressTypeDto.cs" />
     <Compile Include="Dto\Experian\IdentityCheckDto.cs" />
     <Compile Include="Dto\Experian\IdentityCheckRequestDto.cs" />
@@ -155,6 +163,14 @@
     <Compile Include="Dto\Groups\GroupDto.cs" />
     <Compile Include="Dto\Groups\GroupDescDto.cs" />
     <Compile Include="Dto\Groups\GroupRoleDto.cs" />
+    <Compile Include="Dto\Login\SessionDto.cs" />
+    <Compile Include="Dto\Login\LoginTrnDto.cs" />
+    <Compile Include="Dto\Message\MessageSendTrnDto.cs" />
+    <Compile Include="Dto\Message\MessageEmailRecipientsDto.cs" />
+    <Compile Include="Dto\Message\MessageDto.cs" />
+    <Compile Include="Dto\Message\MessageEmailAttachmentsDto.cs" />
+    <Compile Include="Dto\Message\MessageEmailDto.cs" />
+    <Compile Include="Dto\Message\EmailAddressDto.cs" />
     <Compile Include="Dto\Roles\InheritedRolesDto.cs" />
     <Compile Include="Dto\LoginCredentialsDto.cs" />
     <Compile Include="Dto\NotificationDetailDto.cs" />
@@ -164,8 +180,10 @@
     <Compile Include="Dto\Roles\ResourceRolePermissionsDto.cs" />
     <Compile Include="Dto\Roles\RoleDto.cs" />
     <Compile Include="Dto\Roles\RoleInheritanceDto.cs" />
-    <Compile Include="Dto\Roles\UserGroupDto.cs" />
-    <Compile Include="Dto\Roles\UserPermissionDto.cs" />
+    <Compile Include="Dto\User\UserStatusTrnDto.cs" />
+    <Compile Include="Dto\User\UserDto.cs" />
+    <Compile Include="Dto\User\UserGroupDto.cs" />
+    <Compile Include="Dto\User\UserPermissionDto.cs" />
     <Compile Include="Dto\SearchDto.cs" />
     <Compile Include="Dto\SendMessage\MessageNotificationDto.cs" />
     <Compile Include="Dto\SendMessage\MessageReceivedDto.cs" />
@@ -178,16 +196,17 @@
     <Compile Include="Dto\SendMessage\SmsMessageReceivedDto.cs" />
     <Compile Include="Dto\SendMessage\SmsNotificationDto.cs" />
     <Compile Include="Dto\TaskDto.cs" />
-    <Compile Include="Dto\Roles\UserAssignedAndAvailableRoleDto.cs" />
-    <Compile Include="Dto\Login\UserDto.cs" />
-    <Compile Include="Dto\Roles\UserDto.cs" />
+    <Compile Include="Dto\User\UserAssignedAndAvailableRoleDto.cs" />
+    <Compile Include="Dto\User\UserLoginResultDto.cs" />
+    <Compile Include="Dto\User\UserRolesDto.cs" />
     <Compile Include="Dto\Groups\UserGroupDto.cs" />
     <Compile Include="Dto\Roles\BasicUserRoleDto.cs" />
-    <Compile Include="Dto\Roles\UserRoleDto.cs" />
-    <Compile Include="Dto\Login\UserProfileDto.cs" />
+    <Compile Include="Dto\User\UserRoleDto.cs" />
+    <Compile Include="Dto\User\UserProfileDto.cs" />
     <Compile Include="Enums\Action.cs" />
     <Compile Include="Enums\State.cs" />
     <Compile Include="Enums\StatusType.cs" />
+    <Compile Include="Extension\AutoMapperExtension.cs" />
     <Compile Include="Extension\EnumerableExtension.cs" />
     <Compile Include="Enums\UserRoleType.cs" />
     <Compile Include="Contracts\ICacheService.cs" />
@@ -208,6 +227,11 @@
     <Compile Include="IPManager\IPInspector.cs" />
     <Compile Include="Contracts\ISearchService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SessionHandling\SessionHelper.cs" />
+    <Compile Include="SessionHandling\SessionOperationContextExtension.cs" />
+    <Compile Include="SessionHandling\SessionInspectorBehaviorExtensionElement.cs" />
+    <Compile Include="SessionHandling\SessionInspectorBehavior.cs" />
+    <Compile Include="SessionHandling\SessionHeader.cs" />
     <Compile Include="ValidationCode\CodeMaker.cs" />
     <Compile Include="Helper\CryptoRandom.cs" />
     <Compile Include="Helper\RandomProvider.cs" />
@@ -270,6 +294,7 @@
     <Content Include="ThirdParty\MiniProfiler.Wcf.pdb" />
     <Content Include="ThirdParty\MiniProfiler.xml" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <BeforeTransform>CustomPreTransform</BeforeTransform>
     <AfterTransform>CustomPostTransform;$(AfterTransform)</AfterTransform>
