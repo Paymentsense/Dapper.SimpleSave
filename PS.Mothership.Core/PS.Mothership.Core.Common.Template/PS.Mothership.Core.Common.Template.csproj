@@ -143,10 +143,10 @@
     <Compile Include="Template\GenContactRoleEnum.cs">
       <DependentUpon>DbEnumBuilder.tt</DependentUpon>
     </Compile>
-    <Compile Include="Template\GenCreditCardTypeEnum.cs">
+    <Compile Include="Template\GenCurrencyCodeEnum.cs">
       <DependentUpon>DbEnumBuilder.tt</DependentUpon>
     </Compile>
-    <Compile Include="Template\GenCurrencyCodeEnum.cs">
+    <Compile Include="Template\GenGatewayEnum.cs">
       <DependentUpon>DbEnumBuilder.tt</DependentUpon>
     </Compile>
     <Compile Include="Template\GenGenderEnum.cs">
@@ -168,6 +168,9 @@
       <DependentUpon>DbEnumBuilder.tt</DependentUpon>
     </Compile>
     <Compile Include="Template\OppTypeOfTransactionsEnum.cs">
+      <DependentUpon>DbEnumBuilder.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Template\ProdAcquirerEnum.cs">
       <DependentUpon>DbEnumBuilder.tt</DependentUpon>
     </Compile>
     <Compile Include="Template\PtnrPartnerStatusEnum.cs">

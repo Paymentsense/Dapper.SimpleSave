@@ -55,6 +55,12 @@
         public const string IMAPPassword = "IMAPPassword";
         public const string IDLEConnectionTime = "IDLEConnectionTime";
 
+        //Onboarding Constants
+        public const string OnboardingUserName = "OnboardingUserName";
+        public const string OnboardingPassword = "OnboardingPassword";
+        public const string OnBoardingUrl = "OnBoardingUrl";
+        public const string CreditCheckUrl = "CreditCheckUrl";
+
         // Common EchoSign Constants
         public const string EchoSignUserEmail = "EchoSignUserEmail";
         public const string EchoSignUserPassword = "EchoSignUserPassword";
