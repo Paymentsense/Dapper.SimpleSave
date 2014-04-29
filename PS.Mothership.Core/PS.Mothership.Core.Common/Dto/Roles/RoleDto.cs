@@ -5,6 +5,8 @@ using PS.Mothership.Core.Common.Template.Gen;
 namespace PS.Mothership.Core.Common.Dto.Roles
 {
     [DataContract]
+    [KnownType(typeof(InheritedRolesDto))]
+    [KnownType(typeof(UserAssignedAndAvailableRoleDto))]
     public class RoleDto
     {
         public RoleDto() { }

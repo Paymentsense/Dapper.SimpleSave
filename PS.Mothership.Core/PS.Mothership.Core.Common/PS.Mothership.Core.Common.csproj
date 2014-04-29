@@ -149,7 +149,6 @@
     <Compile Include="Dto\Event\StatusOwnerTransactionDto.cs" />
     <Compile Include="Dto\Event\EventTransactionDto.cs" />
     <Compile Include="Dto\Experian\CurrentAddressTypeDto.cs" />
-    <Compile Include="Dto\Experian\Gender.cs" />
     <Compile Include="Dto\Experian\IdentityCheckDto.cs" />
     <Compile Include="Dto\Experian\IdentityCheckRequestDto.cs" />
     <Compile Include="Dto\Experian\IdentityCheckResponseDto.cs" />
@@ -160,7 +159,6 @@
     <Compile Include="Dto\Login\AccountDto.cs" />
     <Compile Include="Dto\Login\ChangePasswordDto.cs" />
     <Compile Include="Dto\Login\ChangePasswordResultDto.cs" />
-    <Compile Include="Dto\DynamicRequest\DataRequestDto_Obsolete.cs" />
     <Compile Include="Dto\FullAddressDto.cs" />
     <Compile Include="Dto\Groups\GroupDto.cs" />
     <Compile Include="Dto\Groups\GroupDescDto.cs" />
@@ -193,7 +191,10 @@
     <Compile Include="Dto\SendMessage\SendMessageRequestDto.cs" />
     <Compile Include="Dto\SendMessage\SendMessageServiceStatusDto.cs" />
     <Compile Include="Dto\SendMessage\SendMessageSmsDto.cs" />
+    <Compile Include="Dto\SendMessage\SendMessageSmsToDto.cs" />
     <Compile Include="Dto\SendMessage\SendSmsRequestDto.cs" />
+    <Compile Include="Dto\SendMessage\SmsMessageReceivedDto.cs" />
+    <Compile Include="Dto\SendMessage\SmsNotificationDto.cs" />
     <Compile Include="Dto\TaskDto.cs" />
     <Compile Include="Dto\User\UserAssignedAndAvailableRoleDto.cs" />
     <Compile Include="Dto\User\UserLoginResultDto.cs" />
@@ -210,12 +211,12 @@
     <Compile Include="Enums\UserRoleType.cs" />
     <Compile Include="Contracts\ICacheService.cs" />
     <Compile Include="Extension\EnumExtension.cs" />
-    <Compile Include="Extension\SomeTempClass.cs" />
+    <Compile Include="Helper\KeyValuePair.cs" />
     <Compile Include="Helper\AddressSplitter.cs" />
     <Compile Include="Helper\CTime.cs" />
     <Compile Include="Helper\DebugStopwatch.cs" />
     <Compile Include="Helper\DynamicContractResolver.cs" />
-    <Compile Include="Helper\ISignalRConnectionManager.cs" />
+    <Compile Include="Contracts\ISignalRConnectionManager.cs" />
     <Compile Include="Helper\MSLogger.cs" />
     <Compile Include="Helper\RandomStringGenerator.cs" />
     <Compile Include="Helper\SignalRConnectionManager.cs" />

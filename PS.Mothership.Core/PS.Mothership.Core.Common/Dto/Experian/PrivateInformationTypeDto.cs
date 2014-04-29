@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using PS.Mothership.Core.Common.Template.Gen;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PS.Mothership.Core.Common.Dto.Experian
 {
@@ -25,6 +21,6 @@ namespace PS.Mothership.Core.Common.Dto.Experian
         [DataMember]
         public int DateOfBirthYear { get; set; }
         [DataMember]
-        public Gender Gender { get; set; }
+        public GenGenderEnum Gender { get; set; }
     }
 }
