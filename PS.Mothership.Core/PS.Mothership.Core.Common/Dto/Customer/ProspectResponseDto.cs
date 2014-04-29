@@ -13,10 +13,10 @@ namespace PS.Mothership.Core.Common.Dto.Customer
     ///     Prospsect customer response dto
     /// </summary>
     [DataContract]
-    public class ProspectCustResponseDto 
+    public class ProspectResponseDto 
     {        
         [DataMember]
-        public ProspectCustDto ProspectCust { get; set; }
+        public ProspectDto Prospect { get; set; }
 
         [DataMember]
         public StatusType StatusType { get; set; }        

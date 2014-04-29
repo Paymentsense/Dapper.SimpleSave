@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using PS.Mothership.Core.Common.Constructs;
 
 namespace PS.Mothership.Core.Common.Extension
 {
@@ -28,6 +29,19 @@ namespace PS.Mothership.Core.Common.Extension
             }
             return list;
         }
+        /// <summary>
+        /// Convert to a new instance of the <see cref="PagedList&lt;T&gt;"/> class
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source">The source list of elements containing the elements for the current page.</param>
+        /// <param name="totalItems">Total Item Count</param>
+        /// <param name="currentPage">The current page number (1 based).</param>
+        /// <param name="itemsPerPage">Size of a page (number of items per page).</param>
+        /// <returns></returns>
+        public static PagedList<T> ToPagedList<T>(this IEnumerable<T> source, int totalItems, int currentPage=1, int itemsPerPage=10)
+        {
+            return new PagedList<T>(source, currentPage, itemsPerPage, totalItems);
+        }
 
         public static SortedList<T, int> GetClusters<T>(this IEnumerable<T> list) where T : IComparable
         {
@@ -45,7 +59,7 @@ namespace PS.Mothership.Core.Common.Extension
         public static List<PropertyInfo> ToPropertyInfoList(this IEnumerable<string> propertyNames, Type type, out List<string> notParsed, bool includeSubProperties = false)
         {
             var notParsedProperties = new List<string>();
-            if (propertyNames == null || propertyNames.Count() == 0)
+            if (propertyNames == null || !propertyNames.Any())
             {
                 notParsed = notParsedProperties;
                 return new List<PropertyInfo>();
@@ -78,7 +92,7 @@ namespace PS.Mothership.Core.Common.Extension
                      firstLevelPropertyNames.SelectMany(
                           f =>
                           {
-                              var prop = firstLevelProp.Where(p => p.Name == f.PropertyName).FirstOrDefault();
+                              var prop = firstLevelProp.FirstOrDefault(p => p.Name == f.PropertyName);
                               List<PropertyInfo> result;
                               if (prop == null)
                                   result = new List<PropertyInfo>();

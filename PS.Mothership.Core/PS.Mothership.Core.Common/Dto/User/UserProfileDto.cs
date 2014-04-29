@@ -6,7 +6,7 @@ using PS.Mothership.Core.Common.Dto.Groups;
 using PS.Mothership.Core.Common.Dto.Roles;
 using PS.Mothership.Core.Common.Template.Usr;
 
-namespace PS.Mothership.Core.Common.Dto.Login
+namespace PS.Mothership.Core.Common.Dto.User
 {
     /// <summary>
     /// User Proile Dto
@@ -53,8 +53,7 @@ namespace PS.Mothership.Core.Common.Dto.Login
 
         [DataMember]
         public string Message { get; set; }
-        [DataMember]
-        public int TotalCount { get; set; } // gives the total count based on selection criteria
+       
         [DataMember]
         public string ValidationCode { get; set; }
         [DataMember]
