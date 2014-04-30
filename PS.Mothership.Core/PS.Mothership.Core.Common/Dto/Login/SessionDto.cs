@@ -15,7 +15,7 @@ namespace PS.Mothership.Core.Common.Dto.Login
         [DataMember]
         public DateTimeOffset StartDateTime { get; set; }
         [DataMember]
-        public DateTimeOffset? DateTimeOffset { get; set; }
+        public DateTimeOffset? EndDateTime { get; set; }
        
     }
 }
