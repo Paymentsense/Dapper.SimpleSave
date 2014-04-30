@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ServiceModel;
 using PS.Mothership.Core.Common.Constructs;
 using PS.Mothership.Core.Common.Dto;
+using PS.Mothership.Core.Common.Dto.Groups;
 using PS.Mothership.Core.Common.Dto.Login;
 using PS.Mothership.Core.Common.Dto.Roles;
 using PS.Mothership.Core.Common.Dto.DynamicRequest;
@@ -27,7 +28,7 @@ namespace PS.Mothership.Core.Common.Contracts.Security
         PagedList<UserProfileDto> GetUserProfile(long departmentId, UserProfileDto accessUserProfile, DataRequestDto dataRequestDto);
 
         [OperationContract]
-        PagedList<UserGroupDto> GetGroups(Guid userGuid);
+        PagedList<GroupDto> GetGroups(Guid userGuid);
 
         [OperationContract]
         PagedList<UserRoleDto> GetRoles(Guid userGuid);
