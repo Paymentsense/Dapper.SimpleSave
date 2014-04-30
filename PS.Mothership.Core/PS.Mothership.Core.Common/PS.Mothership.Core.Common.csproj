@@ -138,6 +138,8 @@
     <Compile Include="Dto\Contact\AddressDto.cs" />
     <Compile Include="Dto\Contact\PhoneNumberDto.cs" />
     <Compile Include="Dto\Customer\ContactDto.cs" />
+    <Compile Include="Dto\Customer\CustomerDetailsDto.cs" />
+    <Compile Include="Dto\Customer\ProspectDetailsDto.cs" />
     <Compile Include="Dto\Customer\CustomerDto.cs" />
     <Compile Include="Dto\Customer\MerchantDto.cs" />
     <Compile Include="Dto\Customer\ProspectDto.cs" />
