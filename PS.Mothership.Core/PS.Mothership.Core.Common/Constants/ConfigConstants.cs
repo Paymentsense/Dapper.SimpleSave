@@ -73,8 +73,12 @@
         public const string EchoSignLibraryDocumentsUrl = "EchoSignLibraryDocumentsUrl";
         public const string EchoSignTransientDocumentsUrl = "EchoSignTransientDocumentsUrl";
         public const string EchoSignUploadTransientDocumentBoundry = "EchoSignUploadTransientDocumentBoundry";
-        public const string EchosignCallbackUri = "EchosignCallbackUri";
+        public const string EchoSignCallbackUri = "EchoSignCallbackUri";
         public const string EchoSignDocumentSavePath = "EchoSignDocumentSavePath";
+        public const string EchoSignSignatureType = "EchoSignSignatureType";
+        public const string EchoSignSignatureFlow = "EchoSignSignatureFlow";
+        public const string EchoSignDaysUntilSigningDeadline = "EchoSignDaysUntilSigningDeadline";
+        public const string EchoSignReminderFrequency = "EchoSignReminderFrequency";
 
     }
 }
