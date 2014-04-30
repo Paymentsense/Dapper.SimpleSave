@@ -61,5 +61,9 @@
         public const string OnBoardingUrl = "OnBoardingUrl";
         public const string CreditCheckUrl = "CreditCheckUrl";
 
+		
+		// Companies House Constants
+		public const string CompaniesHouseGatewayUserId = "CompaniesHouseGatewayUserId";
+		public const string CompaniesHouseGatewayPassword = "CompaniesHouseGatewayPassword";
     }
 }
