@@ -6,16 +6,12 @@ namespace PS.Mothership.Core.Common.SessionHandling
 
     public class SessionInspectorBehaviorExtensionElement : BehaviorExtensionElement
     {
-        private readonly ISessionManager _sessionManager;
+        public ISessionManager SessionManager { get; set; }
 
-        public SessionInspectorBehaviorExtensionElement(ISessionManager sessionManager)
-        {
-            _sessionManager = sessionManager;
-        }
-
+       
         protected override object CreateBehavior()
         {
-            return new SessionInspectorBehavior(_sessionManager);
+            return new SessionInspectorBehavior(SessionManager);
         }
 
         public override Type BehaviorType
