@@ -229,10 +229,10 @@
     <Compile Include="IPManager\IPInspector.cs" />
     <Compile Include="Contracts\ISearchService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SessionHandling\SessionDispatchInspector.cs" />
     <Compile Include="SessionHandling\SessionHelper.cs" />
     <Compile Include="SessionHandling\SessionOperationContextExtension.cs" />
-    <Compile Include="SessionHandling\SessionInspectorBehaviorExtensionElement.cs" />
-    <Compile Include="SessionHandling\SessionInspectorBehavior.cs" />
+    <Compile Include="SessionHandling\SessionDispatchBehavior.cs" />
     <Compile Include="SessionHandling\SessionHeader.cs" />
     <Compile Include="ValidationCode\CodeMaker.cs" />
     <Compile Include="Helper\CryptoRandom.cs" />
