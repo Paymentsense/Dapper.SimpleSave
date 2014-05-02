@@ -78,7 +78,6 @@
         public const string EchoSignSignatureType = "EchoSignSignatureType";
         public const string EchoSignSignatureFlow = "EchoSignSignatureFlow";
         public const string EchoSignDaysUntilSigningDeadline = "EchoSignDaysUntilSigningDeadline";
-        public const string EchoSignReminderFrequency = "EchoSignReminderFrequency";
 
     }
 }
