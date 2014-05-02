@@ -21,7 +21,8 @@ namespace PS.Mothership.Core.Common.SessionHandling
 
         public object AfterReceiveRequest(ref Message request, IClientChannel channel, InstanceContext instanceContext)
         {
-            var header = request.Headers.GetHeader<SessionHeader>("session-header", "s");
+            var findHeader = request.Headers.FindHeader("session-header", "s");
+            var header = findHeader != -1 ? request.Headers.GetHeader<SessionHeader>("session-header", "s") : null;
             //SessionOperationContextExtension.Current.Session.WebSessionGuid = header != null ?  header.WebSessionGuid : Guid.Empty;
             _sessionManager.SessionInformation.WebSessionGuid = header != null ?  header.WebSessionGuid : Guid.Empty;
             return null;
@@ -29,7 +30,6 @@ namespace PS.Mothership.Core.Common.SessionHandling
 
         public void BeforeSendReply(ref Message reply, object correlationState)
         {
-            throw new NotImplementedException();
         }
 
         #endregion
