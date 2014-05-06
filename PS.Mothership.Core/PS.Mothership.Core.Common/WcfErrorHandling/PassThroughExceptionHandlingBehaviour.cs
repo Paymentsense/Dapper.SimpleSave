@@ -15,86 +15,86 @@ using PS.Mothership.Core.Common.Helper;
 
 namespace PS.Mothership.Core.Common.WcfErrorHandling
 {
-    public class PassThroughExceptionHandlingBehaviour : Attribute, IClientMessageInspector, IErrorHandler,
-    IEndpointBehavior, IServiceBehavior, IContractBehavior
+    public class PassThroughExceptionHandlingBehaviour : Attribute, IErrorHandler,
+    IEndpointBehavior, IServiceBehavior, IContractBehavior //, IClientMessageInspector
     {
         public IMSLogger Logger
         {
             get;
             set;
         }
-
+        
         public IWindsorContainer WindsorContainer
         {
             get;
             set;
         }
 
-        #region IClientMessageInspector Members
+        //#region IClientMessageInspector Members
 
-        public void AfterReceiveReply(ref Message reply, object correlationState)
-        {
-            if (reply.IsFault)
-            {
-                // Create a copy of the original reply to allow default processing of the message
-                MessageBuffer buffer = reply.CreateBufferedCopy(Int32.MaxValue);
-                Message copy = buffer.CreateMessage();  // Create a copy to work with
-                reply = buffer.CreateMessage();         // Restore the original message
+        //public void AfterReceiveReply(ref Message reply, object correlationState)
+        //{
+        //    if (reply.IsFault)
+        //    {
+        //        // Create a copy of the original reply to allow default processing of the message
+        //        MessageBuffer buffer = reply.CreateBufferedCopy(Int32.MaxValue);
+        //        Message copy = buffer.CreateMessage();  // Create a copy to work with
+        //        reply = buffer.CreateMessage();         // Restore the original message
 
-                var exception = ReadExceptionFromFaultDetail(copy) as CustomServerException;
-                if (exception != null)
-                {
-                    throw exception;
-                }
-            }
-        }
+        //        var exception = ReadExceptionFromFaultDetail(copy) as CustomServerException;
+        //        if (exception != null)
+        //        {
+        //            throw exception;
+        //        }
+        //    }
+        //}
 
-        public object BeforeSendRequest(ref Message request, IClientChannel channel)
-        {
-            return null;
-        }
+        //public object BeforeSendRequest(ref Message request, IClientChannel channel)
+        //{
+        //    return null;
+        //}
 
-        private static object ReadExceptionFromFaultDetail(Message reply)
-        {
-            const string detailElementName = "detail";
+        //private static object ReadExceptionFromFaultDetail(Message reply)
+        //{
+        //    const string detailElementName = "detail";
 
-            using (XmlDictionaryReader reader = reply.GetReaderAtBodyContents())
-            {
-                // Find <soap:Detail>
-                while (reader.Read())
-                {
-                    if (reader.NodeType == XmlNodeType.Element &&
-                        detailElementName.Equals(reader.LocalName, StringComparison.InvariantCultureIgnoreCase))
-                    {
-                        return ReadExceptionFromDetailNode(reader);
-                    }
-                }
-                // Couldn't find it!
-                return null;
-            }
-        }
+        //    using (XmlDictionaryReader reader = reply.GetReaderAtBodyContents())
+        //    {
+        //        // Find <soap:Detail>
+        //        while (reader.Read())
+        //        {
+        //            if (reader.NodeType == XmlNodeType.Element &&
+        //                detailElementName.Equals(reader.LocalName, StringComparison.InvariantCultureIgnoreCase))
+        //            {
+        //                return ReadExceptionFromDetailNode(reader);
+        //            }
+        //        }
+        //        // Couldn't find it!
+        //        return null;
+        //    }
+        //}
 
-        private static object ReadExceptionFromDetailNode(XmlDictionaryReader reader)
-        {
-            // Move to the contents of <soap:Detail>
-            if (!reader.Read())
-            {
-                return null;
-            }
+        //private static object ReadExceptionFromDetailNode(XmlDictionaryReader reader)
+        //{
+        //    // Move to the contents of <soap:Detail>
+        //    if (!reader.Read())
+        //    {
+        //        return null;
+        //    }
 
-            // Return the deserialized fault
-            try
-            {
-                var serializer = new NetDataContractSerializer();
-                return serializer.ReadObject(reader);
-            }
-            catch (SerializationException)
-            {
-                return null;
-            }
-        }
+        //    // Return the deserialized fault
+        //    try
+        //    {
+        //        var serializer = new NetDataContractSerializer();
+        //        return serializer.ReadObject(reader);
+        //    }
+        //    catch (SerializationException)
+        //    {
+        //        return null;
+        //    }
+        //}
 
-        #endregion
+        //#endregion
 
         #region IErrorHandler Members
 
