@@ -19,7 +19,7 @@ namespace PS.Mothership.Core.Common.Template.Usr
        [Description("Group Management")][EnumMember]GroupManagement = 6,
        [Description("Dialler Client")][EnumMember]Dialler = 7,
        [Description("Merchant")][EnumMember]Merchant = 8,
-       [Description("Schedule Manager")][EnumMember]QuartzScheduleManager = 9,
+       [Description("Schedule Management")][EnumMember]ScheduleManagement = 9,
         
     }    
     
@@ -171,17 +171,16 @@ namespace PS.Mothership.Core.Common.Template.Usr
 							new UsrResource
 							{
 								EnumValue = 9,
-								EnumName = "QuartzScheduleManager",
-								EnumDescription = "Schedule Manager",
+								EnumName = "ScheduleManagement",
+								EnumDescription = "Schedule Management",
 								ResourceKey = 9,
 								ActionName = "Index",
-								ControllerName = "QuartzScheduleManager",
+								ControllerName = "ScheduleManagement",
 								Area = "Admin",
-								ContainerName = "Schedule Manager",
+								ContainerName = "Schedule Management",
 								ResourceTypeKey = 2,
 								RecStatusKey = (GenRecStatusEnum)1
-							},
-
+							},
                         };
                     
                 }
