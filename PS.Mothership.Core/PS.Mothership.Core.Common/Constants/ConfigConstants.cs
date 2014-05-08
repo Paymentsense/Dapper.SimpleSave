@@ -61,5 +61,9 @@
         public const string OnBoardingUrl = "OnBoardingUrl";
         public const string CreditCheckUrl = "CreditCheckUrl";
 
+        //SessionHeader Constants
+        public const string SessionHeaderName = "session-header";
+        public const string SessionHeaderNamespace = "s";
+
     }
 }

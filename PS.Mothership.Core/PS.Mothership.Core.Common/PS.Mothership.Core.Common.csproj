@@ -182,6 +182,7 @@
     <Compile Include="Dto\Roles\ResourceRolePermissionsDto.cs" />
     <Compile Include="Dto\Roles\RoleDto.cs" />
     <Compile Include="Dto\Roles\RoleInheritanceDto.cs" />
+    <Compile Include="Dto\Session\SessionHeaderDto.cs" />
     <Compile Include="Dto\User\UserStatusTrnDto.cs" />
     <Compile Include="Dto\User\UserDto.cs" />
     <Compile Include="Dto\User\UserGroupDto.cs" />
@@ -229,11 +230,6 @@
     <Compile Include="IPManager\IPInspector.cs" />
     <Compile Include="Contracts\ISearchService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SessionHandling\SessionDispatchInspector.cs" />
-    <Compile Include="SessionHandling\SessionHelper.cs" />
-    <Compile Include="SessionHandling\SessionOperationContextExtension.cs" />
-    <Compile Include="SessionHandling\SessionDispatchBehavior.cs" />
-    <Compile Include="SessionHandling\SessionHeader.cs" />
     <Compile Include="ValidationCode\CodeMaker.cs" />
     <Compile Include="Helper\CryptoRandom.cs" />
     <Compile Include="Helper\RandomProvider.cs" />
