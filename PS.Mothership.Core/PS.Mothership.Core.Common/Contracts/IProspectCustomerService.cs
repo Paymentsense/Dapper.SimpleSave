@@ -29,20 +29,27 @@ namespace PS.Mothership.Core.Common.Contracts
         [OperationContract]
         ICollection<ProspectCustDto> SimilarCustomers(ProspectCustDto prospectCustDto);
 
+        ///<summary>
+        ///     Get list of filtered customers
+        ///     Added by Alpesh
+        /// </summary>  
+        [OperationContract]
+        IEnumerable<ProspectCustDto> QuickSearch(SearchDto searchInput);
 
         ///<summary>
-        ///     Get list of customers
+        ///     Get list of companies
         ///     Added by Alpesh
         /// </summary>
         /// <returns></returns>
         [OperationContract]
         ICollection<ProspectCustDto> GetCustomers();
+              
         ///<summary>
-        ///     Get list of customers
+        ///     Get list of companies with addresses
         ///     Added by Alpesh
         /// </summary>
         /// <returns></returns>
         [OperationContract]
-        ICollection<FullAddressDto> GetCustomersAddress();
+        IEnumerable<FullAddressDto> GetCustomersAddress();
     }
 }
