@@ -167,6 +167,8 @@
     <Compile Include="Dto\Groups\GroupRoleDto.cs" />
     <Compile Include="Dto\Login\SessionDto.cs" />
     <Compile Include="Dto\Login\LoginTrnDto.cs" />
+    <Compile Include="Dto\Message\MessageSMSRecipientsDto.cs" />
+    <Compile Include="Dto\Message\MessageSMSDto.cs" />
     <Compile Include="Dto\Message\MessageSendTrnDto.cs" />
     <Compile Include="Dto\Message\MessageEmailRecipientsDto.cs" />
     <Compile Include="Dto\Message\MessageDto.cs" />
