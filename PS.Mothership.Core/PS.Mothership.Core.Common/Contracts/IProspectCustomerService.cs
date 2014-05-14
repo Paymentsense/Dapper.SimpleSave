@@ -54,5 +54,11 @@ namespace PS.Mothership.Core.Common.Contracts
         /// <returns></returns>
         [OperationContract]
         IEnumerable<FullAddressDto> GetCustomersAddress();
+
+        [OperationContract]
+        FullAddressDto UpdateCustomerAddress(Guid id, FullAddressDto dto);
+
+        [OperationContract]
+        void UpdateCustomerContact(Guid id, ContactDto dto);
     }
 }

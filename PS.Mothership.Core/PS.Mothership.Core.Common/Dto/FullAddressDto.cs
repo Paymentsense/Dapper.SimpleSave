@@ -16,13 +16,13 @@ namespace PS.Mothership.Core.Common.Dto
         [DataMember]
         public string CompanyName { get; set; }
         [DataMember]
-        public string PostCode { get; set; }
-        [DataMember]
-        public string BuildingName { get; set; }
-        [DataMember]
         public string Line1 { get; set; }
         [DataMember]
         public string Line2 { get; set; }
+        [DataMember]
+        public string PostCode { get; set; }
+        [DataMember]
+        public string BuildingName { get; set; }       
         [DataMember]
         public string County { get; set; }
         [DataMember]
