@@ -13,6 +13,9 @@ namespace PS.Mothership.Core.Common.Contracts
     [ServiceContract(Name = "ProspectCustomerService")]
     public interface IProspectCustomerService
     {
+        [OperationContract]
+        ProspectCustDto GetCustomer(Guid prospectGuid);
+
         /// <summary>
         ///     Add customer
         /// </summary>
