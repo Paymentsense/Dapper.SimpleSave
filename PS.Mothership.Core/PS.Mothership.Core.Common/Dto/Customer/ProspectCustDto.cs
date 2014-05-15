@@ -1,10 +1,8 @@
-﻿using System;
+﻿using PS.Mothership.Core.Common.Template.Cust;
+using PS.Mothership.Core.Common.Template.Gen;
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
-using PS.Mothership.Core.Common.Template.Cust;
 
 namespace PS.Mothership.Core.Common.Dto.Customer
 {
@@ -30,7 +28,7 @@ namespace PS.Mothership.Core.Common.Dto.Customer
         public int TotalCount { get; set; } // gives the total count based on selection criteria
 
         [DataMember]
-        public CustBusinessLegalTypeEnum BusinessLegalTypeKey { get; set; }
+        public GenBusinessLegalTypeEnum BusinessLegalTypeKey { get; set; }
 
         [DataMember]
         public CustAnnualTurnoverEnum AnnualTurnoverKey { get; set; }
@@ -39,6 +37,6 @@ namespace PS.Mothership.Core.Common.Dto.Customer
         public CustNumberEmployeesEnum NumberEmployeesKey { get; set; }
 
         [DataMember]
-        public CustNoContactReasonEnum CallRestrictedReasonKey { get; set; }        
+        public GenNoContactReasonEnum CallRestrictedReasonKey { get; set; }        
     }
 }
