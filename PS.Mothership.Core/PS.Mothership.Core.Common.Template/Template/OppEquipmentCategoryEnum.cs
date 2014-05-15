@@ -4,49 +4,45 @@ using System.ComponentModel;
 using System.Collections.Generic;
 using PS.Mothership.Core.Common.Template.Gen;
 
-namespace PS.Mothership.Core.Common.Template.Cust
+namespace PS.Mothership.Core.Common.Template.Opp
 {
     
     [DataContract]
-    public enum CustNoContactReasonEnum : long
+    public enum OppEquipmentCategoryEnum : long
     {
-       [Description("None")][EnumMember]None = 0,
+       [Description("")][EnumMember]None = 0,
         
     }    
     
-    public class CustNoContactReason
+    public class OppEquipmentCategory
     {
         public long EnumValue {get;set;}
 		public string EnumName {get;set;}
 		public string EnumDescription {get;set;}
-		public long ReasonKey {get;set;}
-		public bool IsForEmail {get;set;}
-		public bool IsForPhone {get;set;}
+		public long EquipmentCategoryKey {get;set;}
 		public GenRecStatusEnum RecStatusKey {get;set;}
     }
 
     /// <summary>
     /// This class is mainly for using the extended properties of Enum
     /// </summary>
-    public static class CustNoContactReasonCollection
+    public static class OppEquipmentCategoryCollection
     {
-        private static List<CustNoContactReason> _list; 
-        public static List<CustNoContactReason> CustNoContactReasonList
+        private static List<OppEquipmentCategory> _list; 
+        public static List<OppEquipmentCategory> OppEquipmentCategoryList
         {
             get
             {
                 if (_list == null)
                 {   
-                        _list = new List<CustNoContactReason>
+                        _list = new List<OppEquipmentCategory>
                         {
-                            new CustNoContactReason
+                            new OppEquipmentCategory
 							{
 								EnumValue = 0,
 								EnumName = "None",
-								EnumDescription = "None",
-								ReasonKey = 0,
-								IsForEmail = false,
-								IsForPhone = false,
+								EnumDescription = "",
+								EquipmentCategoryKey = 0,
 								RecStatusKey = (GenRecStatusEnum)0
 							},
                         };

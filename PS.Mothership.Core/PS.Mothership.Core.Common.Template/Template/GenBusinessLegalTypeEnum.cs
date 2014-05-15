@@ -4,11 +4,11 @@ using System.ComponentModel;
 using System.Collections.Generic;
 using PS.Mothership.Core.Common.Template.Gen;
 
-namespace PS.Mothership.Core.Common.Template.Cust
+namespace PS.Mothership.Core.Common.Template.Gen
 {
     
     [DataContract]
-    public enum CustBusinessLegalTypeEnum : long
+    public enum GenBusinessLegalTypeEnum : long
     {
        [Description("None")][EnumMember]None = 0,
        [Description("Private Limited Company")][EnumMember]PrivateLimitedCompany = 1,
@@ -20,7 +20,7 @@ namespace PS.Mothership.Core.Common.Template.Cust
         
     }    
     
-    public class CustBusinessLegalType
+    public class GenBusinessLegalType
     {
         public long EnumValue {get;set;}
 		public string EnumName {get;set;}
@@ -33,18 +33,18 @@ namespace PS.Mothership.Core.Common.Template.Cust
     /// <summary>
     /// This class is mainly for using the extended properties of Enum
     /// </summary>
-    public static class CustBusinessLegalTypeCollection
+    public static class GenBusinessLegalTypeCollection
     {
-        private static List<CustBusinessLegalType> _list; 
-        public static List<CustBusinessLegalType> CustBusinessLegalTypeList
+        private static List<GenBusinessLegalType> _list; 
+        public static List<GenBusinessLegalType> GenBusinessLegalTypeList
         {
             get
             {
                 if (_list == null)
                 {   
-                        _list = new List<CustBusinessLegalType>
+                        _list = new List<GenBusinessLegalType>
                         {
-                            new CustBusinessLegalType
+                            new GenBusinessLegalType
 							{
 								EnumValue = 0,
 								EnumName = "None",
@@ -53,7 +53,7 @@ namespace PS.Mothership.Core.Common.Template.Cust
 								IsLimitedCompany = false,
 								RecStatusKey = (GenRecStatusEnum)0
 							},
-							new CustBusinessLegalType
+							new GenBusinessLegalType
 							{
 								EnumValue = 1,
 								EnumName = "PrivateLimitedCompany",
@@ -62,7 +62,7 @@ namespace PS.Mothership.Core.Common.Template.Cust
 								IsLimitedCompany = true,
 								RecStatusKey = (GenRecStatusEnum)2
 							},
-							new CustBusinessLegalType
+							new GenBusinessLegalType
 							{
 								EnumValue = 2,
 								EnumName = "PublicLimitedCompany",
@@ -71,7 +71,7 @@ namespace PS.Mothership.Core.Common.Template.Cust
 								IsLimitedCompany = true,
 								RecStatusKey = (GenRecStatusEnum)2
 							},
-							new CustBusinessLegalType
+							new GenBusinessLegalType
 							{
 								EnumValue = 3,
 								EnumName = "Partnership",
@@ -80,7 +80,7 @@ namespace PS.Mothership.Core.Common.Template.Cust
 								IsLimitedCompany = false,
 								RecStatusKey = (GenRecStatusEnum)2
 							},
-							new CustBusinessLegalType
+							new GenBusinessLegalType
 							{
 								EnumValue = 4,
 								EnumName = "Trust",
@@ -89,7 +89,7 @@ namespace PS.Mothership.Core.Common.Template.Cust
 								IsLimitedCompany = false,
 								RecStatusKey = (GenRecStatusEnum)2
 							},
-							new CustBusinessLegalType
+							new GenBusinessLegalType
 							{
 								EnumValue = 5,
 								EnumName = "LimitedLiabilityPartnership",
@@ -98,7 +98,7 @@ namespace PS.Mothership.Core.Common.Template.Cust
 								IsLimitedCompany = true,
 								RecStatusKey = (GenRecStatusEnum)2
 							},
-							new CustBusinessLegalType
+							new GenBusinessLegalType
 							{
 								EnumValue = 6,
 								EnumName = "SoleTrader",

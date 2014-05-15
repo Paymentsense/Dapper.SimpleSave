@@ -4,11 +4,11 @@ using System.ComponentModel;
 using System.Collections.Generic;
 using PS.Mothership.Core.Common.Template.Gen;
 
-namespace PS.Mothership.Core.Common.Template.Cust
+namespace PS.Mothership.Core.Common.Template.Gen
 {
     
     [DataContract]
-    public enum CustSalutationEnum : long
+    public enum GenSalutationEnum : long
     {
        [Description("None")][EnumMember]None = 0,
        [Description("Mr")][EnumMember]Mr = 1,
@@ -18,7 +18,7 @@ namespace PS.Mothership.Core.Common.Template.Cust
         
     }    
     
-    public class CustSalutation
+    public class GenSalutation
     {
         public long EnumValue {get;set;}
 		public string EnumName {get;set;}
@@ -31,18 +31,18 @@ namespace PS.Mothership.Core.Common.Template.Cust
     /// <summary>
     /// This class is mainly for using the extended properties of Enum
     /// </summary>
-    public static class CustSalutationCollection
+    public static class GenSalutationCollection
     {
-        private static List<CustSalutation> _list; 
-        public static List<CustSalutation> CustSalutationList
+        private static List<GenSalutation> _list; 
+        public static List<GenSalutation> GenSalutationList
         {
             get
             {
                 if (_list == null)
                 {   
-                        _list = new List<CustSalutation>
+                        _list = new List<GenSalutation>
                         {
-                            new CustSalutation
+                            new GenSalutation
 							{
 								EnumValue = 0,
 								EnumName = "None",
@@ -51,7 +51,7 @@ namespace PS.Mothership.Core.Common.Template.Cust
 								GenderKey = 0,
 								RecStatusKey = (GenRecStatusEnum)0
 							},
-							new CustSalutation
+							new GenSalutation
 							{
 								EnumValue = 1,
 								EnumName = "Mr",
@@ -60,7 +60,7 @@ namespace PS.Mothership.Core.Common.Template.Cust
 								GenderKey = 1,
 								RecStatusKey = (GenRecStatusEnum)2
 							},
-							new CustSalutation
+							new GenSalutation
 							{
 								EnumValue = 2,
 								EnumName = "MRS",
@@ -69,7 +69,7 @@ namespace PS.Mothership.Core.Common.Template.Cust
 								GenderKey = 2,
 								RecStatusKey = (GenRecStatusEnum)2
 							},
-							new CustSalutation
+							new GenSalutation
 							{
 								EnumValue = 3,
 								EnumName = "MISS",
@@ -78,7 +78,7 @@ namespace PS.Mothership.Core.Common.Template.Cust
 								GenderKey = 2,
 								RecStatusKey = (GenRecStatusEnum)2
 							},
-							new CustSalutation
+							new GenSalutation
 							{
 								EnumValue = 4,
 								EnumName = "MS",
