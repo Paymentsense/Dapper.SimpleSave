@@ -21,7 +21,6 @@ namespace PS.Mothership.Core.UnitTest.Extension
             Assert.AreEqual(expected, desc, "Message should be same");
         }
 
-
         [Test]
         public void GetDescription_Enumeration_ReturnEmpty()
         {
