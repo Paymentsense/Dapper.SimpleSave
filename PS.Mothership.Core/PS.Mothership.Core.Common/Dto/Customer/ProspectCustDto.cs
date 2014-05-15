@@ -1,4 +1,5 @@
-﻿using PS.Mothership.Core.Common.Template.Cust;
+﻿using System.Security.Cryptography.X509Certificates;
+using PS.Mothership.Core.Common.Template.Cust;
 using PS.Mothership.Core.Common.Template.Gen;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,9 @@ namespace PS.Mothership.Core.Common.Dto.Customer
     {
         [DataMember]
         public Guid ProspectGuid { get; set; }
+
+        [DataMember]
+        public string BusinessName { get; set; }
 
         [DataMember]
         public FullAddressDto Address { get; set; }
