@@ -18,7 +18,7 @@ namespace PS.Mothership.Core.Common.Dto.Customer
         public FullAddressDto Address { get; set; }
 
         [DataMember]
-        public ContactDto Contact { get; set; }
+        public ICollection<ContactDto> Contacts { get; set; }
 
         [DataMember]
         public virtual string MainPhoneNumber { get; set; }

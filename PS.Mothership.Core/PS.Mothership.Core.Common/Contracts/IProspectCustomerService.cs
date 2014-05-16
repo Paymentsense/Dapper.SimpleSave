@@ -59,6 +59,6 @@ namespace PS.Mothership.Core.Common.Contracts
         FullAddressDto UpdateCustomerAddress(Guid id, FullAddressDto dto);
 
         [OperationContract]
-        void UpdateCustomerContact(Guid id, ContactDto dto);
+        ContactDto UpdateCustomerContact(Guid id, ContactDto dto);
     }
 }

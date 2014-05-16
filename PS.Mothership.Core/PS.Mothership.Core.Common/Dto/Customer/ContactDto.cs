@@ -11,6 +11,9 @@ namespace PS.Mothership.Core.Common.Dto.Customer
     public class ContactDto
     {
         [DataMember]
+        public Guid ContactGuid { get; set; }
+
+        [DataMember]
         public virtual string Email { get; set; }        
 
         [DataMember]
