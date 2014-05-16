@@ -7,7 +7,7 @@ namespace PS.Mothership.Core.Common.Dto.Contact
     public class PhoneNumberDto
     {
         [DataMember]
-        public Guid PhoneNumberGuid { get; set; }
+        public Guid PhoneGuid { get; set; }
 
         [DataMember]
         public long CountryKey { get; set; }

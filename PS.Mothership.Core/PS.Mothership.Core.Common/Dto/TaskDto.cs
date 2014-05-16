@@ -7,6 +7,7 @@ namespace PS.Mothership.Core.Common.Dto
     [DataContract]
     public class TaskDto
     {
+       
         [DataMember]
         public DateTime TaskStartDateTime { get; set; }
         [DataMember]

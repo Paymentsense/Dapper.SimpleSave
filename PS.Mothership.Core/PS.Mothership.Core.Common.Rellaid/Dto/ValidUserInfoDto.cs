@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 
@@ -47,7 +48,7 @@ namespace PS.Mothership.Core.Common.Rellaid.Dto
         public long DepartmentCategoryKey { get; set; }
 
         [DataMember]
-        public List<SpeedDialNumberDto> SpeedDialNumbers { get; set; }
+        public IList SpeedDialNumbers { get; set; }
 
         [DataMember]
         public Guid UserSipPhoneGuid { get; set; }
