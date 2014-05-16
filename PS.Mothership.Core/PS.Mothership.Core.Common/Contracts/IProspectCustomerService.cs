@@ -5,6 +5,7 @@ using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using PS.Mothership.Core.Common.Dto.Customer;
+using PS.Mothership.Core.Common.Dto;
 
 namespace PS.Mothership.Core.Common.Contracts
 {
@@ -27,5 +28,21 @@ namespace PS.Mothership.Core.Common.Contracts
         /// <returns></returns>
         [OperationContract]
         ICollection<ProspectCustDto> SimilarCustomers(ProspectCustDto prospectCustDto);
+
+
+        ///<summary>
+        ///     Get list of customers
+        ///     Added by Alpesh
+        /// </summary>
+        /// <returns></returns>
+        [OperationContract]
+        ICollection<ProspectCustDto> GetCustomers();
+        ///<summary>
+        ///     Get list of customers
+        ///     Added by Alpesh
+        /// </summary>
+        /// <returns></returns>
+        [OperationContract]
+        ICollection<FullAddressDto> GetCustomersAddress();
     }
 }
