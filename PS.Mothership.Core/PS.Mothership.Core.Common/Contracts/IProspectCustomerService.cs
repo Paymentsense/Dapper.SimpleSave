@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using PS.Mothership.Core.Common.Dto.Customer;
 using PS.Mothership.Core.Common.Dto;
+using PS.Mothership.Core.Common.Dto.DynamicRequest;
 
 namespace PS.Mothership.Core.Common.Contracts
 {
@@ -46,14 +47,15 @@ namespace PS.Mothership.Core.Common.Contracts
         /// <returns></returns>
         [OperationContract]
         ICollection<ProspectCustDto> GetCustomers();
-              
+
         ///<summary>
         ///     Get list of companies with addresses
         ///     Added by Alpesh
         /// </summary>
         /// <returns></returns>
         [OperationContract]
-        IEnumerable<FullAddressDto> GetCustomersAddress();
+
+        IEnumerable<ProspectCustDto> GetCustomersAddress(DataRequestDto dataRequestDto);
 
         [OperationContract]
         FullAddressDto UpdateCustomerAddress(Guid id, FullAddressDto dto);
