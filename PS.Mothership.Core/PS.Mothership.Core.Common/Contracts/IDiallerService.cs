@@ -1,11 +1,10 @@
 ﻿using PS.Mothership.Core.Common.Dto.Dialler;
-using PS.Mothership.Core.Common.Rellaid.Dto;
 using PS.Mothership.Core.Common.Template.Dial;
 using System;
 using System.Collections.Generic;
 using System.ServiceModel;
 using MissingCallRecordingDto = PS.Mothership.Core.Common.Dto.Dialler.MissingCallRecordingDto;
-using SpeedDialNumberDto = PS.Mothership.Core.Common.Rellaid.Dto.SpeedDialNumberDto;
+
 
 namespace PS.Mothership.Core.Common.Contracts
 {
