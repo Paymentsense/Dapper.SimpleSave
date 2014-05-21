@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using PS.Mothership.Core.Common.Dto.Contact;
 using PS.Mothership.Core.Common.Template.Cust;
+using PS.Mothership.Core.Common.Template.Gen;
 
 namespace PS.Mothership.Core.Common.Dto.Customer
 {
@@ -31,7 +32,7 @@ namespace PS.Mothership.Core.Common.Dto.Customer
         public CustNumberEmployeesEnum NumberEmployeesKey { get; set; }
 
         [DataMember]
-        public CustBusinessLegalTypeEnum BusinessLegalTypeKey { get; set; }
+        public GenBusinessLegalTypeEnum BusinessLegalTypeKey { get; set; }
 
         [DataMember]
         public long CurrentAcquirerBankKey { get; set; }
