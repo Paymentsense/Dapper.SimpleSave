@@ -10,6 +10,7 @@ namespace PS.Mothership.Core.Common.Template.App
     [DataContract]
     public enum AppStatusEnum : long
     {
+       [Description("None")][EnumMember]None = 0,
        [Description("Not Submitted")][EnumMember]NotSubmitted = 1,
        [Description("Submitted")][EnumMember]Submitted = 2,
        [Description("Abandoned")][EnumMember]Abandoned = 3,
@@ -50,6 +51,15 @@ namespace PS.Mothership.Core.Common.Template.App
                         _list = new List<AppStatus>
                         {
                             new AppStatus
+							{
+								EnumValue = 0,
+								EnumName = "None",
+								EnumDescription = "None",
+								ApplicationStatusKey = 0,
+								WobblyHours = 0,
+								RecStatusKey = (GenRecStatusEnum)1
+							},
+							new AppStatus
 							{
 								EnumValue = 1,
 								EnumName = "NotSubmitted",
