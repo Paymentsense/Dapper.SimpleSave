@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace PS.Mothership.Core.Common.Contracts
 {
@@ -9,8 +10,9 @@ namespace PS.Mothership.Core.Common.Contracts
         void RemoveAllConnectionsExcept(Guid connectionGuid);
         bool AddConnection(Guid connectionGuid, bool visible = true);
         bool RemoveConnection(Guid connectionGuid);
-        int Count();
+        int GetConnectionCount();
         void SetVisibility(Guid connectionGuid, bool visible);
-        int CountVisible();
+        int GetVisibleCount();
+        ICollection<Guid> GetConnectionGuids();
     }
 }
