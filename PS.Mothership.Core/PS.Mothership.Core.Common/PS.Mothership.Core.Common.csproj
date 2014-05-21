@@ -144,9 +144,27 @@
     <Compile Include="Dto\Customer\MerchantDto.cs" />
     <Compile Include="Dto\Customer\ProspectDto.cs" />
     <Compile Include="Dto\Customer\ProspectResponseDto.cs" />
+    <Compile Include="Dto\Dialler\CallDto.cs" />
+    <Compile Include="Dto\Dialler\CallLogItemDto.cs" />
+    <Compile Include="Dto\Dialler\CallRecordingEventDto.cs" />
+    <Compile Include="Dto\Dialler\CallStatsDto.cs" />
+    <Compile Include="Dto\Dialler\FinalisedDiallerCallDto.cs" />
+    <Compile Include="Dto\Dialler\InboundCampaignCallDto.cs" />
+    <Compile Include="Dto\Dialler\InboundQueueDetailsDto.cs" />
+    <Compile Include="Dto\Dialler\InboundQueueDistributorDto.cs" />
+    <Compile Include="Dto\Dialler\InboundQueueQueuePhoneDto.cs" />
+    <Compile Include="Dto\Dialler\InboundQueueSubscriptionDto.cs" />
+    <Compile Include="Dto\Dialler\MissingCallRecordingDto.cs" />
+    <Compile Include="Dto\Dialler\NewDiallerCallDto.cs" />
+    <Compile Include="Dto\Dialler\SipAccountDto.cs" />
+    <Compile Include="Dto\Dialler\SipAccountNumberDto.cs" />
+    <Compile Include="Dto\Dialler\SpeedDialNumberDto.cs" />
+    <Compile Include="Dto\Dialler\DiallerSessionDto.cs" />
+    <Compile Include="Dto\Dialler\ValidUserInfoDto.cs" />
     <Compile Include="Dto\DynamicRequest\DataRequestDto.cs" />
     <Compile Include="Dto\DynamicRequest\FilterDto.cs" />
     <Compile Include="Dto\DynamicRequest\SortDto.cs" />
+    <Compile Include="Dto\Event\NotesTransactionDto.cs" />
     <Compile Include="Dto\Event\EventRoleLnkDto.cs" />
     <Compile Include="Dto\Event\StatusOwnerTransactionDto.cs" />
     <Compile Include="Dto\Event\EventTransactionDto.cs" />
@@ -185,6 +203,9 @@
     <Compile Include="Dto\Roles\RoleDto.cs" />
     <Compile Include="Dto\Roles\RoleInheritanceDto.cs" />
     <Compile Include="Dto\Session\SessionHeaderDto.cs" />
+    <Compile Include="Dto\Task\TaskNotificationLogDto.cs" />
+    <Compile Include="Dto\Task\TaskNotificationDto.cs" />
+    <Compile Include="Dto\User\UserRemoteAccessTrnDto.cs" />
     <Compile Include="Dto\User\UserStatusTrnDto.cs" />
     <Compile Include="Dto\User\UserDto.cs" />
     <Compile Include="Dto\User\UserGroupDto.cs" />
@@ -209,6 +230,7 @@
     <Compile Include="Dto\User\UserRoleDto.cs" />
     <Compile Include="Dto\User\UserProfileDto.cs" />
     <Compile Include="Enums\Action.cs" />
+    <Compile Include="Enums\Dialler\LogCallType.cs" />
     <Compile Include="Enums\State.cs" />
     <Compile Include="Enums\StatusType.cs" />
     <Compile Include="Extension\AutoMapperExtension.cs" />
@@ -273,10 +295,6 @@
     <ProjectReference Include="..\PS.Mothership.Core.Common.Log4NetJsonFormatter\PS.Mothership.Core.Common.Log4NetJsonFormatter.csproj">
       <Project>{f4c86b09-f339-4a37-b2c1-e2ab6d7c2662}</Project>
       <Name>PS.Mothership.Core.Common.Log4NetJsonFormatter</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\PS.Mothership.Core.Common.Rellaid\PS.Mothership.Core.Common.Rellaid.csproj">
-      <Project>{808ef40d-2774-40cd-8b42-91785835795f}</Project>
-      <Name>PS.Mothership.Core.Common.Rellaid</Name>
     </ProjectReference>
     <ProjectReference Include="..\PS.Mothership.Core.Common.Template\PS.Mothership.Core.Common.Template.csproj">
       <Project>{0f7a5532-b7d9-44df-b7b2-b30546f1922a}</Project>
