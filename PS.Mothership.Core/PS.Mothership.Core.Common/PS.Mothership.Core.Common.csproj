@@ -118,6 +118,7 @@
     <Compile Include="Contracts\IAddressService.cs" />
     <Compile Include="Contracts\IApplicationService.cs" />
     <Compile Include="Contracts\IEchoSignCallbackService.cs" />
+    <Compile Include="Contracts\IIridiumService.cs" />
     <Compile Include="Contracts\IProspectCustomerService.cs" />
     <Compile Include="Contracts\IDiallerService.cs" />
     <Compile Include="Contracts\IDiallerTaskNotificationCallback.cs" />
@@ -162,6 +163,9 @@
     <Compile Include="Dto\Experian\IdentityResultBlockDto.cs" />
     <Compile Include="Dto\Experian\PreviousAddressTypeDto.cs" />
     <Compile Include="Dto\Experian\PrivateInformationTypeDto.cs" />
+    <Compile Include="Dto\Iridium\IridiumRequestDto.cs" />
+    <Compile Include="Dto\Iridium\IridiumResultsDto.cs" />
+    <Compile Include="Dto\Iridium\IridiumConfirmResultsDto.cs" />
     <Compile Include="Dto\Login\AccountDto.cs" />
     <Compile Include="Dto\Login\ChangePasswordDto.cs" />
     <Compile Include="Dto\Login\ChangePasswordResultDto.cs" />
@@ -291,6 +295,7 @@
     <Content Include="ThirdParty\MiniProfiler.Wcf.pdb" />
     <Content Include="ThirdParty\MiniProfiler.xml" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <BeforeTransform>CustomPreTransform</BeforeTransform>
     <AfterTransform>CustomPostTransform;$(AfterTransform)</AfterTransform>

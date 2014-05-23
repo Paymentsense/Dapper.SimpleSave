@@ -79,5 +79,11 @@
         public const string EchoSignSignatureFlow = "EchoSignSignatureFlow";
         public const string EchoSignDaysUntilSigningDeadline = "EchoSignDaysUntilSigningDeadline";
 
+        //Iridium Constants
+        public const string IridiumDomain = "IridiumDomain";
+        public const string IridiumUserName = "IridiumUserName";
+        public const string IridiumPassword = "IridiumPassword";
+        public const string IridiumEmailSendFrom = "IridiumEmailSendFrom";
     }
 }
+
