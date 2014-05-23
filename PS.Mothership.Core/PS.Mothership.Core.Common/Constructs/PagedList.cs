@@ -71,7 +71,7 @@ namespace PS.Mothership.Core.Common.Constructs
 
         public static PagedList<T> Empty()
         {
-            return new PagedList<T>(new List<T>(), 1, 1, 0);
+            return new PagedList<T>(new List<T>(), 0);
         }
 
         public static explicit operator PagedList<T>(Collection<T> target)

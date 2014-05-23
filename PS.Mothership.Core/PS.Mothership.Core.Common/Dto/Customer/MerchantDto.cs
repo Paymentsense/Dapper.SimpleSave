@@ -22,22 +22,19 @@ namespace PS.Mothership.Core.Common.Dto.Customer
         public long ThompsonCodeKey { get; set; }
 
         [DataMember]
-        public CustAnnualTurnoverEnum AnnualTurnoverKey { get; set; }
+        public CustAnnualTurnoverEnum AnnualTurnover { get; set; }
 
         [DataMember]
         public CustNumberEmployeesEnum NumberEmployeesKey { get; set; }
 
         [DataMember]
         public GenBusinessLegalTypeEnum BusinessLegalTypeKey { get; set; }
-
-        [DataMember]
-        public long CurrentAcquirerBankKey { get; set; }
-
+       
         [DataMember]
         public long CurrentTradingBankKey { get; set; }
 
         [DataMember]
-        public long CallRestrictedReasonKey { get; set; }
+        public GenNoContactReasonEnum CallRestrictedReasonKey { get; set; }
 
         [DataMember]
         public long EmailRestrictedReasonKey { get; set; }
