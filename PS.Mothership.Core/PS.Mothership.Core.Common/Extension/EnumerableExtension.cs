@@ -40,7 +40,7 @@ namespace PS.Mothership.Core.Common.Extension
         /// <returns></returns>
         public static PagedList<T> ToPagedList<T>(this IEnumerable<T> source, int totalItems, int currentPage=1, int itemsPerPage=10)
         {
-            return new PagedList<T>(source, currentPage, itemsPerPage, totalItems);
+            return new PagedList<T>(source, totalItems, currentPage, itemsPerPage);
         }
 
         public static SortedList<T, int> GetClusters<T>(this IEnumerable<T> list) where T : IComparable
