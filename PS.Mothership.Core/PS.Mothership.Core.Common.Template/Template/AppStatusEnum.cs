@@ -11,18 +11,21 @@ namespace PS.Mothership.Core.Common.Template.App
     public enum AppStatusEnum : long
     {
        [Description("None")][EnumMember]None = 0,
-       [Description("Not Submitted")][EnumMember]NotSubmitted = 1,
-       [Description("Submitted")][EnumMember]Submitted = 2,
-       [Description("Abandoned")][EnumMember]Abandoned = 3,
-       [Description("Processing")][EnumMember]Processing = 4,
-       [Description("Error")][EnumMember]Error = 5,
-       [Description("Success")][EnumMember]Success = 6,
-       [Description("Bank Recd")][EnumMember]BankRecd = 7,
-       [Description("New")][EnumMember]New = 8,
-       [Description("In-process")][EnumMember]InProcess = 9,
-       [Description("Validated")][EnumMember]Validated = 10,
-       [Description("Generated")][EnumMember]Generated = 11,
-       [Description("Sent")][EnumMember]Sent = 12,
+       [Description("Data Entry")][EnumMember]DataEntry = 10,
+       [Description("Docs Out")][EnumMember]DocsOut = 20,
+       [Description("Docs In")][EnumMember]DocsIn = 30,
+       [Description("In Review")][EnumMember]InReview = 40,
+       [Description("Return To Seller")][EnumMember]ReturnToSeller = 50,
+       [Description("To Acquirer")][EnumMember]ToAcquirer = 60,
+       [Description("Credit Sent To Acquirer")][EnumMember]CreditSentToAcquirer = 70,
+       [Description("Boarding Sent To Acquirer")][EnumMember]BoardingSentToAcquirer = 80,
+       [Description("Acquirer Rejected")][EnumMember]AcquirerRejected = 90,
+       [Description("Failed To Send")][EnumMember]FailedToSend = 100,
+       [Description("Acquirer Abandoned")][EnumMember]AcquirerAbandoned = 110,
+       [Description("In Credit Review")][EnumMember]InCreditReview = 120,
+       [Description("Referred")][EnumMember]Referred = 130,
+       [Description("Abandoned")][EnumMember]Abandoned = 140,
+       [Description("Approved")][EnumMember]Approved = 150,
         
     }    
     
@@ -61,109 +64,136 @@ namespace PS.Mothership.Core.Common.Template.App
 							},
 							new AppStatus
 							{
-								EnumValue = 1,
-								EnumName = "NotSubmitted",
-								EnumDescription = "Not Submitted",
-								ApplicationStatusKey = 1,
-								WobblyHours = 0,
-								RecStatusKey = (GenRecStatusEnum)1
-							},
-							new AppStatus
-							{
-								EnumValue = 2,
-								EnumName = "Submitted",
-								EnumDescription = "Submitted",
-								ApplicationStatusKey = 2,
-								WobblyHours = 0,
-								RecStatusKey = (GenRecStatusEnum)1
-							},
-							new AppStatus
-							{
-								EnumValue = 3,
-								EnumName = "Abandoned",
-								EnumDescription = "Abandoned",
-								ApplicationStatusKey = 3,
-								WobblyHours = 0,
-								RecStatusKey = (GenRecStatusEnum)1
-							},
-							new AppStatus
-							{
-								EnumValue = 4,
-								EnumName = "Processing",
-								EnumDescription = "Processing",
-								ApplicationStatusKey = 4,
-								WobblyHours = 0,
-								RecStatusKey = (GenRecStatusEnum)1
-							},
-							new AppStatus
-							{
-								EnumValue = 5,
-								EnumName = "Error",
-								EnumDescription = "Error",
-								ApplicationStatusKey = 5,
-								WobblyHours = 0,
-								RecStatusKey = (GenRecStatusEnum)1
-							},
-							new AppStatus
-							{
-								EnumValue = 6,
-								EnumName = "Success",
-								EnumDescription = "Success",
-								ApplicationStatusKey = 6,
-								WobblyHours = 0,
-								RecStatusKey = (GenRecStatusEnum)1
-							},
-							new AppStatus
-							{
-								EnumValue = 7,
-								EnumName = "BankRecd",
-								EnumDescription = "Bank Recd",
-								ApplicationStatusKey = 7,
-								WobblyHours = 0,
-								RecStatusKey = (GenRecStatusEnum)1
-							},
-							new AppStatus
-							{
-								EnumValue = 8,
-								EnumName = "New",
-								EnumDescription = "New",
-								ApplicationStatusKey = 8,
-								WobblyHours = 0,
-								RecStatusKey = (GenRecStatusEnum)1
-							},
-							new AppStatus
-							{
-								EnumValue = 9,
-								EnumName = "InProcess",
-								EnumDescription = "In-process",
-								ApplicationStatusKey = 9,
-								WobblyHours = 0,
-								RecStatusKey = (GenRecStatusEnum)1
-							},
-							new AppStatus
-							{
 								EnumValue = 10,
-								EnumName = "Validated",
-								EnumDescription = "Validated",
+								EnumName = "DataEntry",
+								EnumDescription = "Data Entry",
 								ApplicationStatusKey = 10,
 								WobblyHours = 0,
 								RecStatusKey = (GenRecStatusEnum)1
 							},
 							new AppStatus
 							{
-								EnumValue = 11,
-								EnumName = "Generated",
-								EnumDescription = "Generated",
-								ApplicationStatusKey = 11,
+								EnumValue = 20,
+								EnumName = "DocsOut",
+								EnumDescription = "Docs Out",
+								ApplicationStatusKey = 20,
 								WobblyHours = 0,
 								RecStatusKey = (GenRecStatusEnum)1
 							},
 							new AppStatus
 							{
-								EnumValue = 12,
-								EnumName = "Sent",
-								EnumDescription = "Sent",
-								ApplicationStatusKey = 12,
+								EnumValue = 30,
+								EnumName = "DocsIn",
+								EnumDescription = "Docs In",
+								ApplicationStatusKey = 30,
+								WobblyHours = 0,
+								RecStatusKey = (GenRecStatusEnum)1
+							},
+							new AppStatus
+							{
+								EnumValue = 40,
+								EnumName = "InReview",
+								EnumDescription = "In Review",
+								ApplicationStatusKey = 40,
+								WobblyHours = 0,
+								RecStatusKey = (GenRecStatusEnum)1
+							},
+							new AppStatus
+							{
+								EnumValue = 50,
+								EnumName = "ReturnToSeller",
+								EnumDescription = "Return To Seller",
+								ApplicationStatusKey = 50,
+								WobblyHours = 0,
+								RecStatusKey = (GenRecStatusEnum)1
+							},
+							new AppStatus
+							{
+								EnumValue = 60,
+								EnumName = "ToAcquirer",
+								EnumDescription = "To Acquirer",
+								ApplicationStatusKey = 60,
+								WobblyHours = 0,
+								RecStatusKey = (GenRecStatusEnum)1
+							},
+							new AppStatus
+							{
+								EnumValue = 70,
+								EnumName = "CreditSentToAcquirer",
+								EnumDescription = "Credit Sent To Acquirer",
+								ApplicationStatusKey = 70,
+								WobblyHours = 0,
+								RecStatusKey = (GenRecStatusEnum)1
+							},
+							new AppStatus
+							{
+								EnumValue = 80,
+								EnumName = "BoardingSentToAcquirer",
+								EnumDescription = "Boarding Sent To Acquirer",
+								ApplicationStatusKey = 80,
+								WobblyHours = 0,
+								RecStatusKey = (GenRecStatusEnum)1
+							},
+							new AppStatus
+							{
+								EnumValue = 90,
+								EnumName = "AcquirerRejected",
+								EnumDescription = "Acquirer Rejected",
+								ApplicationStatusKey = 90,
+								WobblyHours = 0,
+								RecStatusKey = (GenRecStatusEnum)1
+							},
+							new AppStatus
+							{
+								EnumValue = 100,
+								EnumName = "FailedToSend",
+								EnumDescription = "Failed To Send",
+								ApplicationStatusKey = 100,
+								WobblyHours = 0,
+								RecStatusKey = (GenRecStatusEnum)1
+							},
+							new AppStatus
+							{
+								EnumValue = 110,
+								EnumName = "AcquirerAbandoned",
+								EnumDescription = "Acquirer Abandoned",
+								ApplicationStatusKey = 110,
+								WobblyHours = 0,
+								RecStatusKey = (GenRecStatusEnum)1
+							},
+							new AppStatus
+							{
+								EnumValue = 120,
+								EnumName = "InCreditReview",
+								EnumDescription = "In Credit Review",
+								ApplicationStatusKey = 120,
+								WobblyHours = 0,
+								RecStatusKey = (GenRecStatusEnum)1
+							},
+							new AppStatus
+							{
+								EnumValue = 130,
+								EnumName = "Referred",
+								EnumDescription = "Referred",
+								ApplicationStatusKey = 130,
+								WobblyHours = 0,
+								RecStatusKey = (GenRecStatusEnum)1
+							},
+							new AppStatus
+							{
+								EnumValue = 140,
+								EnumName = "Abandoned",
+								EnumDescription = "Abandoned",
+								ApplicationStatusKey = 140,
+								WobblyHours = 0,
+								RecStatusKey = (GenRecStatusEnum)1
+							},
+							new AppStatus
+							{
+								EnumValue = 150,
+								EnumName = "Approved",
+								EnumDescription = "Approved",
+								ApplicationStatusKey = 150,
 								WobblyHours = 0,
 								RecStatusKey = (GenRecStatusEnum)1
 							},
