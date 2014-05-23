@@ -35,9 +35,6 @@ namespace PS.Mothership.Core.Common.Dto.Contact
 
         [DataMember]
         public DateTime? AddressConfirmedDate { get; set; }
-
-        [DataMember]
-        public long CountryKey { get; set; }
         
     }
 }
