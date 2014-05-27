@@ -15,15 +15,15 @@ using PS.Mothership.Core.Common.Helper;
 
 namespace PS.Mothership.Core.Common.WcfErrorHandling
 {
-    public class PassThroughExceptionHandlingBehaviour : Attribute, IClientMessageInspector, IErrorHandler,
-    IEndpointBehavior, IServiceBehavior, IContractBehavior
+    public class PassThroughExceptionHandlingBehaviour : Attribute, IErrorHandler,
+    IEndpointBehavior, IServiceBehavior, IContractBehavior, IClientMessageInspector
     {
         public IMSLogger Logger
         {
             get;
             set;
         }
-
+        
         public IWindsorContainer WindsorContainer
         {
             get;
@@ -49,7 +49,7 @@ namespace PS.Mothership.Core.Common.WcfErrorHandling
             }
         }
 
-        public object BeforeSendRequest(ref System.ServiceModel.Channels.Message request, System.ServiceModel.IClientChannel channel)
+        public object BeforeSendRequest(ref Message request, IClientChannel channel)
         {
             return null;
         }

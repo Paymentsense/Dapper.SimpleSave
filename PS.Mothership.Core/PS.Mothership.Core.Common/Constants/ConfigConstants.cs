@@ -79,5 +79,9 @@
         public const string EchoSignSignatureFlow = "EchoSignSignatureFlow";
         public const string EchoSignDaysUntilSigningDeadline = "EchoSignDaysUntilSigningDeadline";
 
+        //SessionHeader Constants
+        public const string SessionHeaderName = "session-header";
+        public const string SessionHeaderNamespace = "s";
+
     }
 }
