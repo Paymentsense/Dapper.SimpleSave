@@ -79,6 +79,9 @@
         public const string EchoSignSignatureFlow = "EchoSignSignatureFlow";
         public const string EchoSignDaysUntilSigningDeadline = "EchoSignDaysUntilSigningDeadline";
 
+        public const string CompaniesHouseGatewayUserId = "CompaniesHouseGatewayUserId";
+        public const string CompaniesHouseGatewayPassword = "CompaniesHouseGatewayPassword";
+
         //SessionHeader Constants
         public const string SessionHeaderName = "session-header";
         public const string SessionHeaderNamespace = "s";
