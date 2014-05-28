@@ -2,7 +2,7 @@
 using PS.Mothership.Core.Common.Dto.Contact;
 using PS.Mothership.Core.Common.Dto.Message;
 
-namespace PS.Mothership.Core.Common.Dto.Customer
+namespace PS.Mothership.Core.Common.Dto.Merchant
 {
     [DataContract]
     public class CustomerDetailsDto 
