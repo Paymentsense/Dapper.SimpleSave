@@ -15,6 +15,8 @@ namespace PS.Mothership.Core.Common.Dto.Iridium
         [DataMember]
         public Guid OpportunityGUID { get; set; }
         [DataMember]
+        public Guid GatewayAccountGUID { get; set; }
+        [DataMember]
         public string BusinessName { get; set; }
         [DataMember]
         public string LocatorID { get; set; }
