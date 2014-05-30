@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
+using PS.Mothership.Core.Common.Dto.Message;
+using PS.Mothership.Core.Common.Dto.Contact;
 
 namespace PS.Mothership.Core.Common.Dto.Merchant
 {
@@ -35,6 +37,13 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         [DataMember]
         public Guid MobilePhoneGuid { get; set; }
 
-        
+        [DataMember]
+        public EmailAddressDto EmailAddress { get; set; }
+
+        [DataMember]
+        public PhoneNumberDto MainPhone { get; set; }
+
+        [DataMember]
+        public PhoneNumberDto MobilePhone { get; set; }
     }
 }

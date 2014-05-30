@@ -119,6 +119,7 @@
     <Compile Include="Constructs\PagedList.cs" />
     <Compile Include="Contracts\IAddressService.cs" />
     <Compile Include="Contracts\IApplicationService.cs" />
+    <Compile Include="Contracts\IContactService.cs" />
     <Compile Include="Contracts\IEchoSignCallbackService.cs" />
     <Compile Include="Contracts\IProspectCustomerService.cs" />
     <Compile Include="Contracts\IDiallerService.cs" />
@@ -138,10 +139,13 @@
     <Compile Include="Config\IocBuildSettings.cs" />
     <Compile Include="Config\WcfMode.cs" />
     <Compile Include="Dto\Contact\AddressDto.cs" />
+    <Compile Include="Dto\Contact\CountryDto.cs" />
+    <Compile Include="Dto\Contact\CountyDto.cs" />
     <Compile Include="Dto\Contact\PhoneNumberDto.cs" />
     <Compile Include="Dto\Merchant\ContactDto.cs" />
     <Compile Include="Dto\Merchant\CustomerDetailsDto.cs" />
     <Compile Include="Dto\Merchant\CustomerDto.cs" />
+    <Compile Include="Dto\Merchant\MerchantContactDto.cs" />
     <Compile Include="Dto\Merchant\MerchantDto.cs" />
     <Compile Include="Dto\Merchant\ProspectDto.cs" />
     <Compile Include="Dto\Merchant\ProspectResponseDto.cs" />
