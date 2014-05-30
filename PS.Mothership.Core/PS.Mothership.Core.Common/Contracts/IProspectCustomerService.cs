@@ -14,7 +14,7 @@ namespace PS.Mothership.Core.Common.Contracts
     public interface IProspectCustomerService
     {
         [OperationContract]
-        ProspectDto GetProspect(Guid id);
+        ProspectDto GetProspect(Guid merchantGuid);
 
         /// <summary>
         ///     Add Prospect
@@ -24,6 +24,12 @@ namespace PS.Mothership.Core.Common.Contracts
         [OperationContract]
         ProspectResponseDto AddProspect(ProspectDto prospectDto);
 
+        [OperationContract]
+        void AddProspectContact(MerchantContactDto dto);
+
+        [OperationContract]
+        void RemoveProspectContact(MerchantContactDto dto);
+
         /// <summary>
         ///     Get similiar customers
         /// </summary>
@@ -31,13 +37,18 @@ namespace PS.Mothership.Core.Common.Contracts
         /// <returns></returns>
         [OperationContract]
         ICollection<ProspectDto> SimilarCustomers(ProspectDto prospectDto);
+        
+        [OperationContract]
+        ContactDto GetContact(Guid contactGuid);
+
+        [OperationContract]
+        ContactDto SaveContact(ContactDto contactDto);
+
 
         [OperationContract]
         PagedList<ProspectDto> GetProspectsByBusinessName(string businessName);
 
         [OperationContract]
         PagedList<ProspectDto> GetProspectsByFilter(DataRequestDto dataRequestDto);
-
-
     }
 }

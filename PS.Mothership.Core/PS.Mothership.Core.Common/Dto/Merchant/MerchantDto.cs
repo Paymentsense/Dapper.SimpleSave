@@ -2,8 +2,8 @@
 using PS.Mothership.Core.Common.Template.Gen;
 using System;
 using System.Runtime.Serialization;
-using PS.Mothership.Core.Common.Template.Gen;
 using System.Collections.Generic;
+using PS.Mothership.Core.Common.Dto.Contact;
 
 namespace PS.Mothership.Core.Common.Dto.Merchant
 {
@@ -76,7 +76,6 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public MerchantDto()
         {
             this.Contacts = new List<ContactDto>();
-        }
-       
+        }       
     }
 }

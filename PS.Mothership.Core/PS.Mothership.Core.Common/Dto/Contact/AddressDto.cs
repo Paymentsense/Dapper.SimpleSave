@@ -26,7 +26,7 @@ namespace PS.Mothership.Core.Common.Dto.Contact
 
         [DataMember]
         public long PostCodeKey { get; set; }
-
+        
         [DataMember]
         public long CountyKey { get; set; }
 
