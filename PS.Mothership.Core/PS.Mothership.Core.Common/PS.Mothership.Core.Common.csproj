@@ -119,7 +119,6 @@
     <Compile Include="Constructs\PagedList.cs" />
     <Compile Include="Contracts\IAddressService.cs" />
     <Compile Include="Contracts\IApplicationService.cs" />
-    <Compile Include="Contracts\IContactService.cs" />
     <Compile Include="Contracts\IEchoSignCallbackService.cs" />
     <Compile Include="Contracts\IProspectCustomerService.cs" />
     <Compile Include="Contracts\IDiallerService.cs" />

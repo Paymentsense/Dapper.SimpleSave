@@ -58,9 +58,9 @@ namespace PS.Mothership.Core.Common.Contracts
         FullAddressDto SaveAddress(FullAddressDto addressDto);
 
         [OperationContract]
-        ICollection<ProspectDto> GetProspectsByBusinessName(string businessName);
+        PagedList<ProspectDto> GetProspectsByBusinessName(string businessName);
 
         [OperationContract]
-        ICollection<ProspectDto> GetProspectsByFilter(DataRequestDto dataRequestDto);
+        PagedList<ProspectDto> GetProspectsByFilter(DataRequestDto dataRequestDto);
     }
 }
