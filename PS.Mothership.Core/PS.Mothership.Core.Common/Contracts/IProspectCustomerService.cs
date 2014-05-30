@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using PS.Mothership.Core.Common.Constructs;
 using PS.Mothership.Core.Common.Dto.DynamicRequest;
 using PS.Mothership.Core.Common.Dto.Merchant;
+using PS.Mothership.Core.Common.Dto;
 
 namespace PS.Mothership.Core.Common.Contracts
 {
@@ -30,6 +31,12 @@ namespace PS.Mothership.Core.Common.Contracts
         [OperationContract]
         void RemoveProspectContact(MerchantContactDto dto);
 
+        [OperationContract]
+        void AddProspectAddress(MerchantAddressDto dto);
+
+        [OperationContract]
+        void RemoveProspectAddress(MerchantAddressDto dto);
+
         /// <summary>
         ///     Get similiar customers
         /// </summary>
@@ -44,11 +51,16 @@ namespace PS.Mothership.Core.Common.Contracts
         [OperationContract]
         ContactDto SaveContact(ContactDto contactDto);
 
+        [OperationContract]
+        FullAddressDto GetAddress(Guid addressGuid);
 
         [OperationContract]
-        PagedList<ProspectDto> GetProspectsByBusinessName(string businessName);
+        FullAddressDto SaveAddress(FullAddressDto addressDto);
 
         [OperationContract]
-        PagedList<ProspectDto> GetProspectsByFilter(DataRequestDto dataRequestDto);
+        ICollection<ProspectDto> GetProspectsByBusinessName(string businessName);
+
+        [OperationContract]
+        ICollection<ProspectDto> GetProspectsByFilter(DataRequestDto dataRequestDto);
     }
 }
