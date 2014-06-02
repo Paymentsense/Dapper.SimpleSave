@@ -14,6 +14,7 @@ namespace PS.Mothership.Core.Common.Template.Usr
        [Description("Main Menu Area View")][EnumMember]MainMenuAreaView = 1,
        [Description("Admin View")][EnumMember]AdminView = 2,
        [Description("Partial View")][EnumMember]PartialView = 3,
+       [Description("Merchant View")][EnumMember]MerchantView = 8,
         
     }    
     
@@ -70,6 +71,14 @@ namespace PS.Mothership.Core.Common.Template.Usr
 								EnumName = "PartialView",
 								EnumDescription = "Partial View",
 								ResourceTypeKey = 3,
+								RecStatusKey = (GenRecStatusEnum)1
+							},
+							new UsrResourceType
+							{
+								EnumValue = 8,
+								EnumName = "MerchantView",
+								EnumDescription = "Merchant View",
+								ResourceTypeKey = 8,
 								RecStatusKey = (GenRecStatusEnum)1
 							},
                         };
