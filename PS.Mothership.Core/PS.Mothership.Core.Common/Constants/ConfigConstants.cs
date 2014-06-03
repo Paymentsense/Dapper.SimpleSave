@@ -84,13 +84,13 @@
         public const string SessionHeaderNamespace = "s";
 
         //Root Folder Constant
-        private const string RootFolderKey = "RootFolder";
+        public const string RootFolderKey = "RootFolder";
 
         //Common PdfEngine Constants
-        private const string PdfEngineLicense = "PdfEngineLicense";
-        private const string PdfEngineTemplatePdfs = "PdfEngineTemplatePdfs";
-        private const string PdfEngineTemplateHtml = "PdfEngineTemplateHtml";
-        private const string PdfEngineMerchantPdfs = "PdfEngineMerchantPdfs";
+        public const string PdfEngineLicense = "PdfEngineLicense";
+        public const string PdfEngineTemplatePdfs = "PdfEngineTemplatePdfs";
+        public const string PdfEngineTemplateHtml = "PdfEngineTemplateHtml";
+        public const string PdfEngineMerchantPdfs = "PdfEngineMerchantPdfs";
 
     }
 }
