@@ -20,6 +20,7 @@ namespace PS.Mothership.Core.Common.Template.Usr
        [Description("Dialler Client")][EnumMember]Dialler = 7,
        [Description("Merchant")][EnumMember]Merchant = 8,
        [Description("Schedule Management")][EnumMember]ScheduleManagement = 9,
+       [Description("Search")][EnumMember]ProspectManagement = 10,
         
     }    
     
@@ -179,6 +180,19 @@ namespace PS.Mothership.Core.Common.Template.Usr
 								Area = "Admin",
 								ContainerName = "Schedule Management",
 								ResourceTypeKey = 2,
+								RecStatusKey = (GenRecStatusEnum)1
+							},
+							new UsrResource
+							{
+								EnumValue = 10,
+								EnumName = "ProspectManagement",
+								EnumDescription = "Search",
+								ResourceKey = 10,
+								ActionName = "Index",
+								ControllerName = "ProspectManagement",
+								Area = "Merchant",
+								ContainerName = "Prospect Management",
+								ResourceTypeKey = 8,
 								RecStatusKey = (GenRecStatusEnum)1
 							},
                         };
