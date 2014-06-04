@@ -67,3 +67,8 @@ packages/
 #Test files
 *.testsettings
 .cs.rej
+
+*.BACKUP.*
+*.BASE.*
+*.LOCAL.*
+*.REMOTE.*
