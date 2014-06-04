@@ -79,17 +79,18 @@
     <Reference Include="Castle.Windsor">
       <HintPath>..\packages\Castle.Windsor.3.2.1\lib\net45\Castle.Windsor.dll</HintPath>
     </Reference>
-    <Reference Include="Common.Logging, Version=2.1.2.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Common.Logging">
       <HintPath>..\packages\Common.Logging.2.1.2\lib\net40\Common.Logging.dll</HintPath>
     </Reference>
     <Reference Include="log4net">
       <HintPath>..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\PS.Mothership.Services\packages\Newtonsoft.Json.6.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Quartz">
+    <Reference Include="Quartz, Version=2.2.3.400, Culture=neutral, PublicKeyToken=f6b8c98a402cc8a4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\PS.Mothership.Services\packages\Quartz.2.2.3\lib\net40\Quartz.dll</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -117,10 +118,8 @@
     <Compile Include="Constants\GlobalConstants.cs" />
     <Compile Include="Constants\NamingConstants.cs" />
     <Compile Include="Constructs\PagedList.cs" />
-    <Compile Include="Contracts\IAddressManagementService.cs" />
     <Compile Include="Contracts\IAddressService.cs" />
     <Compile Include="Contracts\IApplicationService.cs" />
-    <Compile Include="Contracts\IContactManagementService.cs" />
     <Compile Include="Contracts\IEchoSignCallbackService.cs" />
     <Compile Include="Contracts\IProspectCustomerService.cs" />
     <Compile Include="Contracts\IDiallerService.cs" />
@@ -140,17 +139,14 @@
     <Compile Include="Config\IocBuildSettings.cs" />
     <Compile Include="Config\WcfMode.cs" />
     <Compile Include="Dto\Contact\AddressDto.cs" />
-    <Compile Include="Dto\Contact\CountryDto.cs" />
-    <Compile Include="Dto\Contact\CountyDto.cs" />
     <Compile Include="Dto\Contact\PhoneNumberDto.cs" />
-    <Compile Include="Dto\Merchant\ContactDto.cs" />
-    <Compile Include="Dto\Merchant\CustomerDetailsDto.cs" />
-    <Compile Include="Dto\Merchant\CustomerDto.cs" />
-    <Compile Include="Dto\Merchant\MerchantContactDto.cs" />
-    <Compile Include="Dto\Merchant\MerchantDto.cs" />
-    <Compile Include="Dto\Merchant\MerchantAddressDto.cs" />
-    <Compile Include="Dto\Merchant\ProspectDto.cs" />
-    <Compile Include="Dto\Merchant\ProspectResponseDto.cs" />
+    <Compile Include="Dto\Customer\ContactDto.cs" />
+    <Compile Include="Dto\Customer\CustomerDetailsDto.cs" />
+    <Compile Include="Dto\Customer\ProspectDetailsDto.cs" />
+    <Compile Include="Dto\Customer\CustomerDto.cs" />
+    <Compile Include="Dto\Customer\MerchantDto.cs" />
+    <Compile Include="Dto\Customer\ProspectDto.cs" />
+    <Compile Include="Dto\Customer\ProspectResponseDto.cs" />
     <Compile Include="Dto\Dialler\CallDto.cs" />
     <Compile Include="Dto\Dialler\CallLogItemDto.cs" />
     <Compile Include="Dto\Dialler\CallRecordingEventDto.cs" />
