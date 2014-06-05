@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
+using PS.Mothership.Core.Common.Dto.User;
+using PS.Mothership.Core.Common.Template.Gen;
 
 namespace PS.Mothership.Core.Common.Dto.Roles
 {
@@ -12,25 +14,20 @@ namespace PS.Mothership.Core.Common.Dto.Roles
         public RoleDto(RoleDto role)
         {
             RoleGuid = role.RoleGuid;
-            RoleName = role.RoleName;
-            RoleDescription = role.RoleDescription;
+            Name = role.Name;
+            Description = role.Description;
             IsDefining = role.IsDefining;
             RoleStatus = role.RoleStatus;
-            RoleStatusName = role.RoleStatusName;
         }
         [DataMember]
         public Guid RoleGuid { get; set; }
         [DataMember]
-        public string RoleName { get; set; }
+        public string Name { get; set; }
         [DataMember]
-        public string RoleDescription { get; set; }
+        public string Description { get; set; }
         [DataMember]
         public bool IsDefining { get; set; }
         [DataMember]
-        public int RoleStatus { get; set; }
-        [DataMember]
-        public string RoleStatusName { get; set; }
-        [DataMember]
-        public int TotalCount { get; set; } 
+        public GenRecStatusEnum RoleStatus { get; set; }
     }
 }

@@ -113,10 +113,13 @@
     <Compile Include="Config\WcfClientCertificateValidator.cs" />
     <Compile Include="Constants\CacheRegionConstants.cs" />
     <Compile Include="Constants\ConfigConstants.cs" />
+    <Compile Include="Constants\EntityConstants.cs" />
     <Compile Include="Constants\GlobalConstants.cs" />
     <Compile Include="Constants\NamingConstants.cs" />
+    <Compile Include="Constructs\PagedList.cs" />
     <Compile Include="Contracts\IAddressService.cs" />
     <Compile Include="Contracts\IApplicationService.cs" />
+    <Compile Include="Contracts\IEchoSignCallbackService.cs" />
     <Compile Include="Contracts\IProspectCustomerService.cs" />
     <Compile Include="Contracts\IDiallerService.cs" />
     <Compile Include="Contracts\IDiallerTaskNotificationCallback.cs" />
@@ -134,12 +137,52 @@
     <Compile Include="Config\ILayerIocBuilder.cs" />
     <Compile Include="Config\IocBuildSettings.cs" />
     <Compile Include="Config\WcfMode.cs" />
+    <Compile Include="Dto\Contact\AddressDto.cs" />
+    <Compile Include="Dto\Contact\PhoneNumberDto.cs" />
     <Compile Include="Dto\Customer\ContactDto.cs" />
-    <Compile Include="Dto\Customer\ProspectCustDto.cs" />
-    <Compile Include="Dto\Customer\ProspectCustResponseDto.cs" />
+    <Compile Include="Dto\Customer\CustomerDetailsDto.cs" />
+    <Compile Include="Dto\Customer\ProspectDetailsDto.cs" />
+    <Compile Include="Dto\Customer\CustomerDto.cs" />
+    <Compile Include="Dto\Customer\MerchantDto.cs" />
+    <Compile Include="Dto\Customer\ProspectDto.cs" />
+    <Compile Include="Dto\Customer\ProspectResponseDto.cs" />
+    <Compile Include="Dto\Dialler\CallDto.cs" />
+    <Compile Include="Dto\Dialler\CallLogItemDto.cs" />
+    <Compile Include="Dto\Dialler\CallRecordingEventDto.cs" />
+    <Compile Include="Dto\Dialler\CallStatsDto.cs" />
+    <Compile Include="Dto\Dialler\FinalisedDiallerCallDto.cs" />
+    <Compile Include="Dto\Dialler\InboundCampaignCallDto.cs" />
+    <Compile Include="Dto\Dialler\InboundQueueDetailsDto.cs" />
+    <Compile Include="Dto\Dialler\InboundQueueDistributorDto.cs" />
+    <Compile Include="Dto\Dialler\InboundQueueQueuePhoneDto.cs" />
+    <Compile Include="Dto\Dialler\InboundQueueSubscriptionDto.cs" />
+    <Compile Include="Dto\Dialler\MissingCallRecordingDto.cs" />
+    <Compile Include="Dto\Dialler\NewDiallerCallDto.cs" />
+    <Compile Include="Dto\Dialler\SipAccountDto.cs" />
+    <Compile Include="Dto\Dialler\SipAccountNumberDto.cs" />
+    <Compile Include="Dto\Dialler\SpeedDialNumberDto.cs" />
+    <Compile Include="Dto\Dialler\DiallerSessionDto.cs" />
+    <Compile Include="Dto\Dialler\ValidUserInfoDto.cs" />
     <Compile Include="Dto\DynamicRequest\DataRequestDto.cs" />
     <Compile Include="Dto\DynamicRequest\FilterDto.cs" />
     <Compile Include="Dto\DynamicRequest\SortDto.cs" />
+    <Compile Include="Dto\EchoSign\AgreementCreationDto.cs" />
+    <Compile Include="Dto\EchoSign\AgreementDocumentIdDto.cs" />
+    <Compile Include="Dto\EchoSign\AgreementInfoDto.cs" />
+    <Compile Include="Dto\EchoSign\DeviceLocationDto.cs" />
+    <Compile Include="Dto\EchoSign\DocumentHistoryEventDto.cs" />
+    <Compile Include="Dto\EchoSign\DocumentLibraryItemDto.cs" />
+    <Compile Include="Dto\EchoSign\DocumentsInfoDto.cs" />
+    <Compile Include="Dto\EchoSign\LibraryDocumentIdDto.cs" />
+    <Compile Include="Dto\EchoSign\MergeFieldInfoDto.cs" />
+    <Compile Include="Dto\EchoSign\NewAgreementDto.cs" />
+    <Compile Include="Dto\EchoSign\NextParticipantInfosDto.cs" />
+    <Compile Include="Dto\EchoSign\ParticipantInfoDto.cs" />
+    <Compile Include="Dto\EchoSign\ReminderCreationResultDto.cs" />
+    <Compile Include="Dto\Event\NotesTransactionDto.cs" />
+    <Compile Include="Dto\Event\EventRoleLnkDto.cs" />
+    <Compile Include="Dto\Event\StatusOwnerTransactionDto.cs" />
+    <Compile Include="Dto\Event\EventTransactionDto.cs" />
     <Compile Include="Dto\Experian\CurrentAddressTypeDto.cs" />
     <Compile Include="Dto\Experian\IdentityCheckDto.cs" />
     <Compile Include="Dto\Experian\IdentityCheckRequestDto.cs" />
@@ -155,6 +198,16 @@
     <Compile Include="Dto\Groups\GroupDto.cs" />
     <Compile Include="Dto\Groups\GroupDescDto.cs" />
     <Compile Include="Dto\Groups\GroupRoleDto.cs" />
+    <Compile Include="Dto\Login\SessionDto.cs" />
+    <Compile Include="Dto\Login\LoginTrnDto.cs" />
+    <Compile Include="Dto\Message\MessageSMSRecipientsDto.cs" />
+    <Compile Include="Dto\Message\MessageSMSDto.cs" />
+    <Compile Include="Dto\Message\MessageSendTrnDto.cs" />
+    <Compile Include="Dto\Message\MessageEmailRecipientsDto.cs" />
+    <Compile Include="Dto\Message\MessageDto.cs" />
+    <Compile Include="Dto\Message\MessageEmailAttachmentsDto.cs" />
+    <Compile Include="Dto\Message\MessageEmailDto.cs" />
+    <Compile Include="Dto\Message\EmailAddressDto.cs" />
     <Compile Include="Dto\Roles\InheritedRolesDto.cs" />
     <Compile Include="Dto\LoginCredentialsDto.cs" />
     <Compile Include="Dto\NotificationDetailDto.cs" />
@@ -164,8 +217,14 @@
     <Compile Include="Dto\Roles\ResourceRolePermissionsDto.cs" />
     <Compile Include="Dto\Roles\RoleDto.cs" />
     <Compile Include="Dto\Roles\RoleInheritanceDto.cs" />
-    <Compile Include="Dto\Roles\UserGroupDto.cs" />
-    <Compile Include="Dto\Roles\UserPermissionDto.cs" />
+    <Compile Include="Dto\Session\SessionHeaderDto.cs" />
+    <Compile Include="Dto\Task\TaskNotificationLogDto.cs" />
+    <Compile Include="Dto\Task\TaskNotificationDto.cs" />
+    <Compile Include="Dto\User\UserRemoteAccessTrnDto.cs" />
+    <Compile Include="Dto\User\UserStatusTrnDto.cs" />
+    <Compile Include="Dto\User\UserDto.cs" />
+    <Compile Include="Dto\User\UserGroupDto.cs" />
+    <Compile Include="Dto\User\UserPermissionDto.cs" />
     <Compile Include="Dto\SearchDto.cs" />
     <Compile Include="Dto\SendMessage\MessageNotificationDto.cs" />
     <Compile Include="Dto\SendMessage\MessageReceivedDto.cs" />
@@ -178,16 +237,25 @@
     <Compile Include="Dto\SendMessage\SmsMessageReceivedDto.cs" />
     <Compile Include="Dto\SendMessage\SmsNotificationDto.cs" />
     <Compile Include="Dto\TaskDto.cs" />
-    <Compile Include="Dto\Roles\UserAssignedAndAvailableRoleDto.cs" />
-    <Compile Include="Dto\Login\UserDto.cs" />
-    <Compile Include="Dto\Roles\UserDto.cs" />
+    <Compile Include="Dto\User\UserAssignedAndAvailableRoleDto.cs" />
+    <Compile Include="Dto\User\UserLoginResultDto.cs" />
+    <Compile Include="Dto\User\UserRolesDto.cs" />
     <Compile Include="Dto\Groups\UserGroupDto.cs" />
     <Compile Include="Dto\Roles\BasicUserRoleDto.cs" />
-    <Compile Include="Dto\Roles\UserRoleDto.cs" />
-    <Compile Include="Dto\Login\UserProfileDto.cs" />
+    <Compile Include="Dto\User\UserRoleDto.cs" />
+    <Compile Include="Dto\User\UserProfileDto.cs" />
     <Compile Include="Enums\Action.cs" />
+    <Compile Include="Enums\EchoSign\AgreementStatusEnum.cs" />
+    <Compile Include="Enums\EchoSign\DocSecurityOptionEnum.cs" />
+    <Compile Include="Enums\EchoSign\DocumentLibraryItemScopeEnum.cs" />
+    <Compile Include="Enums\EchoSign\EventTypeEnum.cs" />
+    <Compile Include="Enums\EchoSign\ParticipantInfoSecurityOptionEnum.cs" />
+    <Compile Include="Enums\EchoSign\ParticipantRoleEnum.cs" />
+    <Compile Include="Enums\EchoSign\ReminderFrequencyEnum.cs" />
+    <Compile Include="Enums\Dialler\LogCallType.cs" />
     <Compile Include="Enums\State.cs" />
     <Compile Include="Enums\StatusType.cs" />
+    <Compile Include="Extension\AutoMapperExtension.cs" />
     <Compile Include="Exceptions\BusinessException.cs" />
     <Compile Include="Exceptions\CriticalException.cs" />
     <Compile Include="Exceptions\PsBaseException.cs" />
@@ -253,10 +321,6 @@
       <Project>{f4c86b09-f339-4a37-b2c1-e2ab6d7c2662}</Project>
       <Name>PS.Mothership.Core.Common.Log4NetJsonFormatter</Name>
     </ProjectReference>
-    <ProjectReference Include="..\PS.Mothership.Core.Common.Rellaid\PS.Mothership.Core.Common.Rellaid.csproj">
-      <Project>{808ef40d-2774-40cd-8b42-91785835795f}</Project>
-      <Name>PS.Mothership.Core.Common.Rellaid</Name>
-    </ProjectReference>
     <ProjectReference Include="..\PS.Mothership.Core.Common.Template\PS.Mothership.Core.Common.Template.csproj">
       <Project>{0f7a5532-b7d9-44df-b7b2-b30546f1922a}</Project>
       <Name>PS.Mothership.Core.Common.Template</Name>
@@ -273,6 +337,7 @@
     <Content Include="ThirdParty\MiniProfiler.Wcf.pdb" />
     <Content Include="ThirdParty\MiniProfiler.xml" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <BeforeTransform>CustomPreTransform</BeforeTransform>
     <AfterTransform>CustomPostTransform;$(AfterTransform)</AfterTransform>
