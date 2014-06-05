@@ -26,7 +26,13 @@ namespace PS.Mothership.Core.Common.Contracts
         ProspectResponseDto AddProspect(ProspectDto prospectDto);
 
         [OperationContract]
+        void AddProspectContact(MerchantContactDto dto);
+
+        [OperationContract]
         void RemoveProspectContact(MerchantContactDto dto);
+        
+        [OperationContract]
+        void AddProspectAddress(MerchantAddressDto dto);
 
         [OperationContract]
         void RemoveProspectAddress(MerchantAddressDto dto);
@@ -39,18 +45,6 @@ namespace PS.Mothership.Core.Common.Contracts
         [OperationContract]
         ICollection<ProspectDto> SimilarCustomers(ProspectDto prospectDto);
         
-        [OperationContract]
-        ContactDto GetContact(Guid contactGuid);
-
-        [OperationContract]
-        ContactDto SaveContact(MerchantContactDto contactDto);
-
-        [OperationContract]
-        FullAddressDto GetAddress(Guid addressGuid);
-
-        [OperationContract]
-        FullAddressDto SaveAddress(MerchantAddressDto addressDto);
-
         [OperationContract]
         PagedList<ProspectDto> GetProspectsByBusinessName(string businessName);
 

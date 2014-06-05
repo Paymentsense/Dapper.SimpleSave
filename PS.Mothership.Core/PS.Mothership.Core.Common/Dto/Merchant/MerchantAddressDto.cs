@@ -10,6 +10,6 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
     {
         public Guid MerchantGuid { get; set; }
 
-        public FullAddressDto Address { get; set; }
+        public Guid AddressGuid { get; set; }
     }
 }
