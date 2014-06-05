@@ -1,6 +1,7 @@
 ﻿using PS.Mothership.Core.Common.Contracts;
 using System;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace PS.Mothership.Core.Common.Helper
@@ -106,7 +107,7 @@ namespace PS.Mothership.Core.Common.Helper
         /// method to return the number of currently registered SignalR connections (tabs)
         /// </summary>
         /// <returns></returns>
-        public int Count()
+        public int GetConnectionCount()
         {
 
             return _connections.Count;
@@ -130,10 +131,19 @@ namespace PS.Mothership.Core.Common.Helper
         /// method to return the number of currently visible SignalR connections (tabs)
         /// </summary>
         /// <returns></returns>
-        public int CountVisible()
+        public int GetVisibleCount()
         {
 
             return _connections.Values.Count(r => r);
+        }
+
+        /// <summary>
+        /// method to return all the connection GUIDs being watched
+        /// </summary>
+        /// <returns></returns>
+        public ICollection<Guid> GetConnectionGuids()
+        {
+            return _connections.Keys;
         }
 
         #endregion
