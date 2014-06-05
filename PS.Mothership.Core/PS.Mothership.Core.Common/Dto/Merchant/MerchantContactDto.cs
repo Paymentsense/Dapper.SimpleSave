@@ -14,6 +14,6 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public Guid MerchantGuid { get; set; }
 
         [DataMember]
-        public Guid ContactGuid { get; set; }
+        public ContactDto Contact { get; set; }
     }
 }
