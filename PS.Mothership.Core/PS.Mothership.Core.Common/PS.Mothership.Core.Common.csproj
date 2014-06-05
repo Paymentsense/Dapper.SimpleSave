@@ -118,8 +118,10 @@
     <Compile Include="Constants\GlobalConstants.cs" />
     <Compile Include="Constants\NamingConstants.cs" />
     <Compile Include="Constructs\PagedList.cs" />
+    <Compile Include="Contracts\IAddressManagementService.cs" />
     <Compile Include="Contracts\IAddressService.cs" />
     <Compile Include="Contracts\IApplicationService.cs" />
+    <Compile Include="Contracts\IContactManagementService.cs" />
     <Compile Include="Contracts\IEchoSignCallbackService.cs" />
     <Compile Include="Contracts\IProspectCustomerService.cs" />
     <Compile Include="Contracts\IDiallerService.cs" />
