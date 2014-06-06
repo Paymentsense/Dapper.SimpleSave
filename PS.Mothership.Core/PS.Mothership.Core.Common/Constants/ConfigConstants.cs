@@ -82,7 +82,7 @@
         public const string CompaniesHouseGatewayUserId = "CompaniesHouseGatewayUserId";
         public const string CompaniesHouseGatewayPassword = "CompaniesHouseGatewayPassword";
 
-        //SessionHeader Constants
+        //SessionPrincipal Constants
         public const string SessionHeaderName = "session-header";
         public const string SessionHeaderNamespace = "s";
 
