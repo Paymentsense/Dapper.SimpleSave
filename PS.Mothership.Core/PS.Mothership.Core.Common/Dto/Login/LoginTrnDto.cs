@@ -16,7 +16,7 @@ namespace PS.Mothership.Core.Common.Dto.Login
         [DataMember]
         public long? IPKey { get; set; }
         [DataMember]
-        public int PasswordFailureCount { get; set; }
+        public int PasswordFailureCountChange { get; set; }
         [DataMember]
         public UsrLoginResultEnum LoginResultKey { get; set; }
         [DataMember]
