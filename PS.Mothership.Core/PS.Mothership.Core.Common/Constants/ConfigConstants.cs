@@ -83,5 +83,14 @@
         public const string SessionHeaderName = "session-header";
         public const string SessionHeaderNamespace = "s";
 
+        //Root Folder Constant
+        public const string RootFolderKey = "RootFolder";
+
+        //Common PdfEngine Constants
+        public const string PdfEngineLicense = "PdfEngineLicense";
+        public const string PdfEngineTemplatePdfs = "PdfEngineTemplatePdfs";
+        public const string PdfEngineTemplateHtml = "PdfEngineTemplateHtml";
+        public const string PdfEngineMerchantPdfs = "PdfEngineMerchantPdfs";
+
     }
 }
