@@ -95,5 +95,10 @@
 		// Companies House Constants
 		public const string CompaniesHouseGatewayUserId = "CompaniesHouseGatewayUserId";
 		public const string CompaniesHouseGatewayPassword = "CompaniesHouseGatewayPassword";
+        public const string CompaniesHouseXmlWebUrl = "XmlWebUrl";
+        public const string CompaniesHouseJsonWebUrl = "JsonWebUrl";
+        public const string ComapniesHouseGatewayEndpoint = "GatewayEndpoint";
+        public const string CompaniesHouseWebRequestTimeoutMilliseconds = "CompaniesHouseWebRequestTimeoutMilliseconds";
+        public const string CompaniesHouseMaxRetryCount = "CompaniesHouseMaxRetryCount";
     }
 }
