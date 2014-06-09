@@ -38,6 +38,8 @@ namespace PS.Mothership.Core.Common.Contracts
         [OperationContract]
         PagedList<ProspectDto> GetProspectsByFilter(DataRequestDto dataRequestDto);
 
+        [OperationContract]
+        PagedList<ProspectListWithAddressDto> GetProspectListWithAddress(DataRequestDto dataRequestDto);
 
     }
 }
