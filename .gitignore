@@ -72,3 +72,4 @@ _ReSharper*/
 *.REMOTE.*
 *.orig
 *Enum.cs
+*.old
