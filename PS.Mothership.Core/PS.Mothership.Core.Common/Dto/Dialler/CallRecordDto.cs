@@ -5,7 +5,7 @@ using PS.Mothership.Core.Common.Template.Dial;
 namespace PS.Mothership.Core.Common.Dto.Dialler
 {
     [DataContract]
-    public class CallDto
+    public class CallRecordDto
     {
         [DataMember]
         public Guid CallGuid { get; set; }
