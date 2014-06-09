@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using PS.Mothership.Core.Common.Constructs;
 using PS.Mothership.Core.Common.Dto.DynamicRequest;
 using PS.Mothership.Core.Common.Dto.Merchant;
+using PS.Mothership.Core.Common.Dto;
 
 namespace PS.Mothership.Core.Common.Contracts
 {
@@ -14,7 +15,7 @@ namespace PS.Mothership.Core.Common.Contracts
     public interface IProspectCustomerService
     {
         [OperationContract]
-        ProspectDto GetProspect(Guid id);
+        ProspectDto GetProspect(Guid merchantGuid);
 
         /// <summary>
         ///     Add Prospect
@@ -24,6 +25,12 @@ namespace PS.Mothership.Core.Common.Contracts
         [OperationContract]
         ProspectResponseDto AddProspect(ProspectDto prospectDto);
 
+        [OperationContract]
+        void RemoveProspectContact(MerchantContactDto dto);
+
+        [OperationContract]
+        void RemoveProspectAddress(MerchantAddressDto dto);
+
         /// <summary>
         ///     Get similiar customers
         /// </summary>
@@ -31,15 +38,23 @@ namespace PS.Mothership.Core.Common.Contracts
         /// <returns></returns>
         [OperationContract]
         ICollection<ProspectDto> SimilarCustomers(ProspectDto prospectDto);
+        
+        [OperationContract]
+        ContactDto GetContact(Guid contactGuid);
+
+        [OperationContract]
+        ContactDto SaveContact(MerchantContactDto contactDto);
+
+        [OperationContract]
+        FullAddressDto GetAddress(Guid addressGuid);
+
+        [OperationContract]
+        FullAddressDto SaveAddress(MerchantAddressDto addressDto);
 
         [OperationContract]
         PagedList<ProspectDto> GetProspectsByBusinessName(string businessName);
 
         [OperationContract]
         PagedList<ProspectDto> GetProspectsByFilter(DataRequestDto dataRequestDto);
-
-        [OperationContract]
-        PagedList<ProspectListWithAddressDto> GetProspectListWithAddress(DataRequestDto dataRequestDto);
-
     }
 }
