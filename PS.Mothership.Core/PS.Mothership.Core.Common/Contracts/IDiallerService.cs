@@ -1,8 +1,10 @@
-﻿using PS.Mothership.Core.Common.Rellaid.Dto;
+﻿using PS.Mothership.Core.Common.Dto.Dialler;
 using PS.Mothership.Core.Common.Template.Dial;
 using System;
 using System.Collections.Generic;
 using System.ServiceModel;
+using MissingCallRecordingDto = PS.Mothership.Core.Common.Dto.Dialler.MissingCallRecordingDto;
+
 
 namespace PS.Mothership.Core.Common.Contracts
 {
@@ -53,7 +55,7 @@ namespace PS.Mothership.Core.Common.Contracts
         void DeleteSpeedDialNumber(Guid userGuid, Guid updateSessionGuid, Guid speedDialNumberGuid);
 
         [OperationContract]
-        IEnumerable<SipAccountDto> GetSipAccountList(Guid userSipAccountGuid);
+        IEnumerable<SipAccountNumberDto> GetSipAccountList(Guid userSipAccountGuid);
 
         [OperationContract]
         Guid AddInboundCampaignCallRecord(Guid sipCallGuid, long campaignKey, string keyword, string referrerUrl, Guid updateSessionGuid);

@@ -61,5 +61,36 @@
         public const string OnBoardingUrl = "OnBoardingUrl";
         public const string CreditCheckUrl = "CreditCheckUrl";
 
+        // Common EchoSign Constants
+        public const string EchoSignUserEmail = "EchoSignUserEmail";
+        public const string EchoSignUserPassword = "EchoSignUserPassword";
+        public const string EchoSignUserApiKey = "EchoSignUserApiKey";
+        public const string EchoSignApplicationId = "EchoSignApplicationId";
+        public const string EchoSignApplicationSecret = "EchoSignApplicationSecret";
+        public const string EchoSignAuthTokenUrl = "EchoSignAuthTokenUrl";
+        public const string EchoSignAgreementsUrl = "EchoSignAgreementsUrl";
+        public const string EchoSignRemindersUrl = "EchoSignRemindersUrl";
+        public const string EchoSignLibraryDocumentsUrl = "EchoSignLibraryDocumentsUrl";
+        public const string EchoSignTransientDocumentsUrl = "EchoSignTransientDocumentsUrl";
+        public const string EchoSignUploadTransientDocumentBoundry = "EchoSignUploadTransientDocumentBoundry";
+        public const string EchoSignCallbackUri = "EchoSignCallbackUri";
+        public const string EchoSignDocumentSavePath = "EchoSignDocumentSavePath";
+        public const string EchoSignSignatureType = "EchoSignSignatureType";
+        public const string EchoSignSignatureFlow = "EchoSignSignatureFlow";
+        public const string EchoSignDaysUntilSigningDeadline = "EchoSignDaysUntilSigningDeadline";
+
+        //SessionPrincipal Constants
+        public const string SessionHeaderName = "session-header";
+        public const string SessionHeaderNamespace = "s";
+
+        //Root Folder Constant
+        public const string RootFolderKey = "RootFolder";
+
+        //Common PdfEngine Constants
+        public const string PdfEngineLicense = "PdfEngineLicense";
+        public const string PdfEngineTemplatePdfs = "PdfEngineTemplatePdfs";
+        public const string PdfEngineTemplateHtml = "PdfEngineTemplateHtml";
+        public const string PdfEngineMerchantPdfs = "PdfEngineMerchantPdfs";
+
     }
 }

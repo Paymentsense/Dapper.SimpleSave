@@ -1,4 +1,5 @@
-﻿using PS.Mothership.Core.Common.Dto;
+﻿using PS.Mothership.Core.Common.Constructs;
+using PS.Mothership.Core.Common.Dto;
 using PS.Mothership.Core.Common.Dto.DynamicRequest;
 using PS.Mothership.Core.Common.Dto.Groups;
 using PS.Mothership.Core.Common.Dto.Login;
@@ -6,6 +7,7 @@ using PS.Mothership.Core.Common.Dto.Roles;
 using System;
 using System.Collections.Generic;
 using System.ServiceModel;
+using PS.Mothership.Core.Common.Dto.User;
 
 namespace PS.Mothership.Core.Common.Contracts
 {
@@ -13,21 +15,21 @@ namespace PS.Mothership.Core.Common.Contracts
     public interface IUserManagementService 
     {        
         [OperationContract]
-        PS.Mothership.Core.Common.Dto.Login.UserDto AddUser(UserProfileDto userProfileDto, Guid updateSessionGuid);
+        UserLoginResultDto AddUser(UserProfileDto userProfileDto, Guid updateSessionGuid);
         [OperationContract]
-        PS.Mothership.Core.Common.Dto.Login.UserDto UpdateUser(UserProfileDto userProfileDto, Guid updateSessionGuid);
+        UserLoginResultDto UpdateUser(UserProfileDto userProfileDto, Guid updateSessionGuid);
         [OperationContract]
-        IEnumerable<UserProfileDto> GetUsers(DataRequestDto dataRequestDto);
+        PagedList<UserProfileDto> GetUsers(DataRequestDto dataRequestDto);
         [OperationContract]
         UserProfileDto GetUser(Guid userGuid);
         [OperationContract]
-        ICollection<UserProfileDto> GetSimilarNames(UserProfileDto userProfileDto); 
+        PagedList<UserProfileDto> GetSimilarNames(UserProfileDto userProfileDto); 
         [OperationContract]
-        IEnumerable<UserProfileDto> QuickSearch(SearchDto searchInput);
+        PagedList<UserProfileDto> QuickSearch(SearchDto searchInput);
         [OperationContract]
-        PS.Mothership.Core.Common.Dto.Roles.UserDto GetRolesForUser(Guid userGuid);
-        [OperationContract]
-        IEnumerable<PS.Mothership.Core.Common.Dto.Roles.UserDto> GetRolesForUsers();
+        UserRolesDto GetRolesForUser(Guid userGuid);
+        //[OperationContract]
+        //IEnumerable<UserRolesDto> GetRolesForUsers();
         [OperationContract]
         void RemoveRoleFromUser(BasicUserRoleDto userRole);
         [OperationContract]
@@ -37,9 +39,9 @@ namespace PS.Mothership.Core.Common.Contracts
         [OperationContract]
         void AddRole(RoleDto role);
         [OperationContract]
-        IEnumerable<RoleDto> GetRoles(SearchDto searchInput);
+        PagedList<RoleDto> GetRoles(SearchDto searchInput);
         [OperationContract]
-        List<GroupDto> GetAllRolesAndGroups(SearchDto searchInput);
+        PagedList<GroupDto> GetAllRolesAndGroups(SearchDto searchInput);
         [OperationContract]
         GroupDto GetRolesForGroup(Guid groupGuid);
         [OperationContract]
@@ -55,7 +57,7 @@ namespace PS.Mothership.Core.Common.Contracts
         [OperationContract]
         void RemoveInheritRole(RoleInheritanceDto roleInheritance);
         [OperationContract]
-        void AddGroupToUser(PS.Mothership.Core.Common.Dto.Groups.UserGroupDto userGroup);
+        void AddGroupToUser(Dto.Groups.UserGroupDto userGroup);
         [OperationContract]
         void RemoveGroupFromUser(PS.Mothership.Core.Common.Dto.Groups.UserGroupDto userGroup);
         [OperationContract]
@@ -63,6 +65,6 @@ namespace PS.Mothership.Core.Common.Contracts
         [OperationContract]
         InheritedRolesDto GetInheritedRoles(RoleDto role);
         [OperationContract]
-        PS.Mothership.Core.Common.Dto.Roles.UserDto RolesForUserAvailableAndAssigned(Guid userGuid);
+        UserRolesDto RolesForUserAvailableAndAssigned(Guid userGuid);
     }
 }
