@@ -67,3 +67,8 @@ packages/
 #Test files
 *.testsettings
 .cs.rej
+
+*.LOCAL.*
+*.REMOTE.*
+*.orig
+*Enum.cs
