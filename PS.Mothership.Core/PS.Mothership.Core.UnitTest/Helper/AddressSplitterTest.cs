@@ -20,7 +20,7 @@ namespace PS.Mothership.Core.UnitTest.Helper
             string fullAddress = null;
 
             // Arrange/Act
-            var result = AddressSplitter.SplitHouseNumber(null);
+            var result = AddressSplitter.SplitHouseNumber(fullAddress);
 
             // Assert
             Assert.IsEmpty(result, "Result should be empty");
