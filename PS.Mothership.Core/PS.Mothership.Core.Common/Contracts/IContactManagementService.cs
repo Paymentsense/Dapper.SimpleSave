@@ -1,6 +1,7 @@
 ﻿using PS.Mothership.Core.Common.Dto.Contact;
 using PS.Mothership.Core.Common.Dto.Merchant;
 using System;
+using System.Collections.Generic;
 using System.ServiceModel;
 
 namespace PS.Mothership.Core.Common.Contracts
@@ -15,6 +16,6 @@ namespace PS.Mothership.Core.Common.Contracts
         ContactDto SaveContact(ContactDto contactDto);
 
         [OperationContract]
-        CountryDto CountryCodes();
+        ICollection<CountryDto> CountryCodes();
     }
 }
