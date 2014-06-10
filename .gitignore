@@ -54,8 +54,8 @@ _ReSharper*/
 *~
 
 #NuGet
-packages/
-*.nupkg
+#packages/
+#*.nupkg
 
 #ncrunch
 *ncrunch*
@@ -68,9 +68,8 @@ packages/
 *.testsettings
 .cs.rej
 
-*.BACKUP.*
-*.BASE.*
 *.LOCAL.*
 *.REMOTE.*
 *.orig
 *Enum.cs
+*.old
