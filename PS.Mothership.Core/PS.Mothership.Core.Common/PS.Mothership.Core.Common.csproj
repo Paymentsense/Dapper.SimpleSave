@@ -148,8 +148,8 @@
     <Compile Include="Dto\Customer\MerchantDto.cs" />
     <Compile Include="Dto\Customer\ProspectDto.cs" />
     <Compile Include="Dto\Customer\ProspectResponseDto.cs" />
-    <Compile Include="Dto\Dialler\CallDto.cs" />
     <Compile Include="Dto\Dialler\CallLogItemDto.cs" />
+    <Compile Include="Dto\Dialler\CallRecordDto.cs" />
     <Compile Include="Dto\Dialler\CallRecordingEventDto.cs" />
     <Compile Include="Dto\Dialler\CallStatsDto.cs" />
     <Compile Include="Dto\Dialler\FinalisedDiallerCallDto.cs" />
