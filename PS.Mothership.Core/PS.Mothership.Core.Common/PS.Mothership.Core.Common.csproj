@@ -342,9 +342,7 @@
     <Content Include="ThirdParty\MiniProfiler.Wcf.pdb" />
     <Content Include="ThirdParty\MiniProfiler.xml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Dto\CompaniesHouse\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <BeforeTransform>CustomPreTransform</BeforeTransform>
     <AfterTransform>CustomPostTransform;$(AfterTransform)</AfterTransform>
