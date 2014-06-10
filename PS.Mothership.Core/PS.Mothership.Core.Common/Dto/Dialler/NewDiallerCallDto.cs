@@ -24,7 +24,7 @@ namespace PS.Mothership.Core.Common.Dto.Dialler
         [DataMember]
         public string CIDNumber { get; set; }
         [DataMember]
-        public Guid? MerchantGuid { get; set; }
+        public Guid MerchantGuid { get; set; }
         [DataMember]
         public Guid? ProspectingCampaignCallGuid { get; set; }
         [DataMember]
