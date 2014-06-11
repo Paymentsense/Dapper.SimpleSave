@@ -31,5 +31,6 @@ namespace PS.Mothership.Core.Common.Dto.Iridium
         public int NumOfTerminals { get; set; }
         public string ResultString { get; set; }
         public string ConfirmationUID { get; set; }
+        public bool WasAccountConfirmed { get; set; }
     }
 }
