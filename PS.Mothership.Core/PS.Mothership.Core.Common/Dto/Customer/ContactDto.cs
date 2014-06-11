@@ -10,19 +10,31 @@ namespace PS.Mothership.Core.Common.Dto.Customer
     [DataContract]
     public class ContactDto
     {
-        [DataMember]
-        public virtual string Email { get; set; }        
 
         [DataMember]
-        public virtual string FirstName { get; set; }
+        public Guid ContactGuid { get; set; }
 
         [DataMember]
-        public virtual string SurName { get; set; }
+        public long SalutationKey { get; set; }
 
         [DataMember]
-        public virtual string MobileNumber { get; set; }
+        public string FirstName { get; set; }
 
         [DataMember]
-        public virtual string OfficePhone { get; set; }
+        public string MiddleInitial { get; set; }
+
+        [DataMember]
+        public string Surname { get; set; }
+
+        [DataMember]
+        public Guid EmailAddressGuid { get; set; }
+
+        [DataMember]
+        public Guid MainPhoneGuid { get; set; }
+
+        [DataMember]
+        public Guid MobilePhoneGuid { get; set; }
+
+        
     }
 }
