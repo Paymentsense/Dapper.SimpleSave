@@ -2,6 +2,8 @@
 {
     public class ConfigConstants
     {
+        public const string IsInProduction = "IsInProduction";
+
         //common postcodeanywhere constants
         public const string PostCodeAnywhereAccountCode = "PostCodeAnywhereAccountCode";
         public const string PostCodeAnywhereLicenseKey = "PostCodeAnywhereLicenseKey";
@@ -84,6 +86,7 @@
         public const string IridiumUserName = "IridiumUserName";
         public const string IridiumPassword = "IridiumPassword";
         public const string IridiumEmailSendFrom = "IridiumEmailSendFrom";
+        public const string IridiumTestSendEmail = "IridiumTestSendEmail";
     }
 }
 
