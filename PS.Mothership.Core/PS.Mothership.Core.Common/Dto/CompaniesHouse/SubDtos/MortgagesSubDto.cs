@@ -1,12 +1,13 @@
-﻿namespace PS.Mothership.Core.Common.Dto.CompaniesHouse.SubDtos
+﻿using PS.Mothership.Core.Common.Enums.CompaniesHouse;
+
+namespace PS.Mothership.Core.Common.Dto.CompaniesHouse.SubDtos
 {
     public class MortgagesSubDto
     {
-        //TODO Enum
-        public string MortgageInd { get; set; }
-        public string NumMortCharges { get; set; }
-        public string NumMortOutstanding { get; set; }
-        public string NumMortPartSatisfied { get; set; }
-        public string NumMortSatisfied { get; set; }
+        public MortgageInd MortgageInd { get; set; }
+        public int NumMortCharges { get; set; }
+        public int NumMortOutstanding { get; set; }
+        public int NumMortPartSatisfied { get; set; }
+        public int NumMortSatisfied { get; set; }
     }
 }
