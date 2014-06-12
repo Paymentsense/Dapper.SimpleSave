@@ -64,5 +64,7 @@ namespace PS.Mothership.Core.Common.Contracts
         InheritedRolesDto GetInheritedRoles(RoleDto role);
         [OperationContract]
         UserRolesDto RolesForUserAvailableAndAssigned(Guid userGuid);
+        [OperationContract]
+        PagedList<UserListDto> GetUsersList(DataRequestDto dataRequestDto);
     }
 }
