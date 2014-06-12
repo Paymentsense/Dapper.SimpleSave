@@ -1,17 +1,18 @@
-﻿namespace PS.Mothership.Core.Common.Dto.CompaniesHouse.SubDtos
+﻿using System;
+using PS.Mothership.Core.Common.Enums.CompaniesHouse;
+
+namespace PS.Mothership.Core.Common.Dto.CompaniesHouse.SubDtos
 {
     public class OfficerApptDto
     {
         public string CompanyName { get; set; }
-        public string CompanyNumber { get; set; }
-        //TODO Enum
-        public string CompanyStatus { get; set; }
+        public int CompanyNumber { get; set; }
+        public CompanyStatus CompanyStatus { get; set; }
         public string AppointmentStatus { get; set; }
-        //TODO Enum
-        public string AppointmentType { get; set; }
+        public AppointmentType AppointmentType { get; set; }
         public string AppointmentDatePrefix { get; set; }
-        public string AppointmentDate { get; set; }
-        public string ResignationDate { get; set; }
+        public DateTime AppointmentDate { get; set; }
+        public DateTime ResignationDate { get; set; }
         public string Occupation { get; set; }
     }
 }

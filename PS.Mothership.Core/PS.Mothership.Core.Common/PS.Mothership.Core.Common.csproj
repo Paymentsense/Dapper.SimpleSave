@@ -288,7 +288,17 @@
     <Compile Include="Dto\User\UserRoleDto.cs" />
     <Compile Include="Dto\User\UserProfileDto.cs" />
     <Compile Include="Enums\Action.cs" />
+    <Compile Include="Enums\CompaniesHouse\AppointmentType.cs" />
+    <Compile Include="Enums\CompaniesHouse\SatisfiedChargesInd.cs" />
     <Compile Include="Enums\CompaniesHouse\CompanyIndexStatus.cs" />
+    <Compile Include="Enums\CompaniesHouse\CompanyStatus.cs" />
+    <Compile Include="Enums\CompaniesHouse\HasAppointments.cs" />
+    <Compile Include="Enums\CompaniesHouse\HasUkEstablishmentInfo.cs" />
+    <Compile Include="Enums\CompaniesHouse\IncludeResignedInd.cs" />
+    <Compile Include="Enums\CompaniesHouse\InLiquidation.cs" />
+    <Compile Include="Enums\CompaniesHouse\Media.cs" />
+    <Compile Include="Enums\CompaniesHouse\MortgageInd.cs" />
+    <Compile Include="Enums\CompaniesHouse\RegDateType.cs" />
     <Compile Include="Enums\EchoSign\AgreementStatusEnum.cs" />
     <Compile Include="Enums\EchoSign\DocSecurityOptionEnum.cs" />
     <Compile Include="Enums\EchoSign\DocumentLibraryItemScopeEnum.cs" />

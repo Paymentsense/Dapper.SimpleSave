@@ -4,13 +4,13 @@ namespace PS.Mothership.Core.Common.Dto.CompaniesHouse
 {
     public class MortgagesDto
     {
-        public string CompanyNumber { get; set; }
+        public int CompanyNumber { get; set; }
         public string CompanyName { get; set; }
-        public string NumMortCharges { get; set; }
-        public string NumMortOutstanding { get; set; }
-        public string NumMortPartSatisfied { get; set; }
-        public string NumMortSatisfied { get; set; }
-        public string SearchRows { get; set; }
+        public int NumMortCharges { get; set; }
+        public int NumMortOutstanding { get; set; }
+        public int NumMortPartSatisfied { get; set; }
+        public int NumMortSatisfied { get; set; }
+        public int SearchRows { get; set; }
         public string ContinuationKey { get; set; }
         public ChargeDto Charge { get; set; }
     }

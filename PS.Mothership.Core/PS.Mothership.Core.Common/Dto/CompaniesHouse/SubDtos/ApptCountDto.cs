@@ -2,8 +2,8 @@
 {
     public class ApptCountDto
     {
-        public string NumCurrentAppt { get; set; }
-        public string NumDissolvedAppt { get; set; }
-        public string NumResignedAppt { get; set; }
+        public int NumCurrentAppt { get; set; }
+        public int NumDissolvedAppt { get; set; }
+        public int NumResignedAppt { get; set; }
     }
 }
