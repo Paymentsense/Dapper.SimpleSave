@@ -2,8 +2,8 @@
 {
     public class FilingHistoryRequestDto
     {
-        public int CompanyNumber { get; set; }
-        public string CapitalDocInd { get; set; }
+        public string CompanyNumber { get; set; }
+        public bool CapitalDocInd { get; set; }
         public string ContinuationKey { get; set; }
     }
 }

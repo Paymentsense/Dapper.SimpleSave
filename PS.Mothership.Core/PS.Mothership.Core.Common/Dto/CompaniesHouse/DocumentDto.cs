@@ -1,11 +1,8 @@
-﻿using PS.Mothership.Core.Common.Dto.CompaniesHouse.SubDtos;
-
-namespace PS.Mothership.Core.Common.Dto.CompaniesHouse
+﻿namespace PS.Mothership.Core.Common.Dto.CompaniesHouse
 {
     public class DocumentDto
     {
-        public int CompanyNumber { get; set; }
-        public FormTypeDto FormType { get; set; }
-        public int NumberOfPages { get; set; }
+        public string CompanyNumber { get; set; }
+        public string FormType { get; set; }
     }
 }
