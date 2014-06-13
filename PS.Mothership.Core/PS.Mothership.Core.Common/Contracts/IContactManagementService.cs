@@ -16,6 +16,9 @@ namespace PS.Mothership.Core.Common.Contracts
         ContactDto SaveContact(ContactDto contactDto);
 
         [OperationContract]
-        ICollection<CountryDto> CountryCodes();
+        ICollection<CountryDto> Countries();
+
+        [OperationContract]
+        ICollection<CountyDto> Counties(long countryKey);
     }
 }
