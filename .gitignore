@@ -54,8 +54,9 @@ _ReSharper*/
 *~
 
 #NuGet
-#packages/
-#*.nupkg
+packages/
+!packages/*/lib
+*.nupkg
 
 #ncrunch
 *ncrunch*
