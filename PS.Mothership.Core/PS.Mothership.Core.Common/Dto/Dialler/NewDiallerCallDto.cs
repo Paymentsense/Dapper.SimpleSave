@@ -8,8 +8,6 @@ namespace PS.Mothership.Core.Common.Dto.Dialler
     public class NewDiallerCallDto
     {
         [DataMember]
-        public Guid MothershipSessionGuid { get; set; }
-        [DataMember]
         public Guid SipCallGuid { get; set; }
         [DataMember]
         public DialCallTypeEnum CallType { get; set; }
