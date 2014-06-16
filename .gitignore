@@ -72,6 +72,7 @@ packages/
 *.LOCAL.*
 *.REMOTE.*
 *.BACKUP.*
+*.BASE.*
 *.orig
 *Enum.cs
 *.old
