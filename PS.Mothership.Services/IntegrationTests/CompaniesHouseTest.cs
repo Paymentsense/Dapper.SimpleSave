@@ -37,14 +37,16 @@ namespace IntegrationTests
         private IGatewayConnection _gatewayConnection;
         private ICompaniesHouseGatewayServiceFacade _companiesHouseGatewayServiceFacade;
         private ICompaniesHouseGatewayService _companiesHouseGatewayService;
-        private ICompaniesHouseUriService _companiesHouseUriService;
+        private ICompaniesHouseUriService _companiesHouseUriJsonService;
+        private ICompaniesHouseUriService _companiesHouseUriXmlService;
         private ICompaniesHouseUriServiceFacade _companiesHouseUriServiceFacade;
         private ICompaniesHouseConfiguration _companiesHouseConfiguration;
         private ICompaniesHouseQueue _companiesHouseQueue;
         private ITransactionIdManager _transactionIdManager;
         private ICompaniesHouseRepository _companiesHouseRepository;
         private IUriConnection _uriConnection;
-        private ICompaniesHouseSerializer _companiesHouseSerializer;
+        private ICompaniesHouseSerializer _companiesHouseXmlSerializer;
+        private ICompaniesHouseSerializer _companiesHouseJsonSerializer;
         private HttpClientFactory _httpClientFactory;
         private Mock<IMSLogger> _mockLogger;
         private Mock<IUnitOfWork> _mockIUnitOfWork;
@@ -67,7 +69,8 @@ namespace IntegrationTests
         _mockLogger = null;
         _companiesHouseGatewayServiceFacade = null;
         _companiesHouseGatewayService = null;
-        _companiesHouseUriService = null;
+        _companiesHouseUriJsonService = null;
+        _companiesHouseUriXmlService = null;
         _companiesHouseConfiguration = null;
         _companiesHouseQueue = null;
         _transactionIdManager = null;
@@ -75,7 +78,8 @@ namespace IntegrationTests
         _mockIUnitOfWork = null;
         _mockIGenericRepository = null;
         _uriConnection = null;
-        _companiesHouseSerializer = null;
+        _companiesHouseXmlSerializer = null;
+        _companiesHouseJsonSerializer = null;
         _mockHttpClientFactory = null;
         _httpClientFactory = null;
         _mockHttpClientFacade = null;
@@ -130,11 +134,14 @@ namespace IntegrationTests
             _mockHttpClientFactory = new Mock<HttpClientFactory>();
             _mockHttpClientFactory.Setup(x => x.Create()).Returns(_mockHttpClientFacade.Object);
 
-            _companiesHouseSerializer = new CompaniesHouseSerializer(_mockLogger.Object);
             _uriConnection = new UriConnection(_companiesHouseConfiguration, _mockHttpClientFactory.Object
                 /*_httpClientFactory*/);
-            _companiesHouseUriService = new CompaniesHouseUriService(_uriConnection, _companiesHouseSerializer, _mockLogger.Object);
-            _companiesHouseUriServiceFacade = new CompaniesHouseUriServiceFacade(_companiesHouseUriService);
+
+            _companiesHouseXmlSerializer = new CompaniesHouseXmlSerializer(_mockLogger.Object);
+            _companiesHouseJsonSerializer = new CompaniesHouseJsonSerializer(_mockLogger.Object);
+            _companiesHouseUriJsonService = new CompaniesHouseUriService(_uriConnection, _companiesHouseJsonSerializer, _mockLogger.Object);
+            _companiesHouseUriXmlService = new CompaniesHouseUriService(_uriConnection, _companiesHouseXmlSerializer, _mockLogger.Object);
+            _companiesHouseUriServiceFacade = new CompaniesHouseUriServiceFacade(_companiesHouseUriJsonService, _companiesHouseUriXmlService);
         }
 
         private static Mock<HttpResponseMessageFacade> CreateMockHttpResonse(HttpContent httpContent = null, HttpStatusCode statusCode = HttpStatusCode.OK)
