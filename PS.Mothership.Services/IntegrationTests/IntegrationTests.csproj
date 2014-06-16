@@ -37,6 +37,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=3.2.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\AutoMapper.3.2.1\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Net4">
+      <HintPath>..\packages\AutoMapper.3.2.1\lib\net40\AutoMapper.Net4.dll</HintPath>
+    </Reference>
     <Reference Include="Moq">
       <HintPath>..\packages\Moq.4.2.1402.2112\lib\net40\Moq.dll</HintPath>
     </Reference>
@@ -79,6 +86,10 @@
       <Project>{f632bc04-3090-4e2b-aedc-3170760b48f8}</Project>
       <Name>PS.Mothership.DAL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PS.Mothership.Service\PS.Mothership.Service.csproj">
+      <Project>{2533f76b-7c9e-45c0-b100-b4852372131e}</Project>
+      <Name>PS.Mothership.Service</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PS.Mothership.ThirdParty.CompaniesHouse\PS.Mothership.ThirdParty.CompaniesHouse.csproj">
       <Project>{1947fd93-ff3f-4ffa-8aec-750c47096038}</Project>
       <Name>PS.Mothership.ThirdParty.CompaniesHouse</Name>
@@ -119,6 +130,7 @@
     </PropertyGroup>
     <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
   </Target>
+  <Import Project="..\packages\AutoMapper.3.2.1\tools\AutoMapper.targets" Condition="Exists('..\packages\AutoMapper.3.2.1\tools\AutoMapper.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
