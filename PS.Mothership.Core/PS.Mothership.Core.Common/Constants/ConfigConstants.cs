@@ -92,5 +92,9 @@
         public const string PdfEngineTemplateHtml = "PdfEngineTemplateHtml";
         public const string PdfEngineMerchantPdfs = "PdfEngineMerchantPdfs";
 
+		
+		// Companies House Constants
+		public const string CompaniesHouseGatewayUserId = "CompaniesHouseGatewayUserId";
+		public const string CompaniesHouseGatewayPassword = "CompaniesHouseGatewayPassword";
     }
 }
