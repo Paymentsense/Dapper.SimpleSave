@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Net;
 using System.Net.Http;
-using System.Threading.Tasks;
 using Castle.MicroKernel;
 using Castle.Windsor;
 using Moq;
@@ -44,7 +42,6 @@ namespace IntegrationTests
         private ICompaniesHouseGatewayService _companiesHouseGatewayService;
         private ICompaniesHouseUriServiceFacade _companiesHouseUriServiceFacade;
         private ICompaniesHouseConfiguration _companiesHouseConfiguration;
-        private ICompaniesHouseQueue _companiesHouseQueue;
         private ITransactionIdManager _transactionIdManager;
         private ICompaniesHouseRepository _companiesHouseRepository;
         private HttpClientFactory _httpClientFactory;
@@ -70,7 +67,6 @@ namespace IntegrationTests
         _companiesHouseGatewayServiceFacade = null;
         _companiesHouseGatewayService = null;
         _companiesHouseConfiguration = null;
-        _companiesHouseQueue = null;
         _transactionIdManager = null;
         _companiesHouseRepository = null;
         _mockIUnitOfWork = null;
@@ -143,21 +139,22 @@ namespace IntegrationTests
             var result = CreateMockHttpResonse(new StringContent(dataResponse));
             //_httpClientFactory = new HttpClientFactory();
             _mockHttpClientFacade = new Mock<IHttpClientFacade>();
-            _mockHttpClientFacade.Setup(x => x.GetAsync(It.IsAny<string>()))
-                .Returns(Task.Run(() => result.Object));
+            _mockHttpClientFacade.Setup(x => x.Get(It.IsAny<string>()))
+                .Returns(() => result.Object);
 
             _mockHttpClientFactory = new Mock<HttpClientFactory>();
             _mockHttpClientFactory.Setup(x => x.Create()).Returns(_mockHttpClientFacade.Object);
 
-            //container.Kernel.
+            container.Register(Component.For<HttpClientFactory>()
+                .Instance(_mockHttpClientFactory.Object)
+                .LifeStyle.Singleton);
 
-            //container.Register(Component.For<HttpClientFactory>()
-            //    .Instance(_mockHttpClientFactory.Object)
-            //    .LifeStyle.Singleton);
+            container.Register(Component.For<IHttpClientFacade>()
+                .Instance(_mockHttpClientFacade.Object)
+                .LifeStyle.Transient);
 
-            //container.Register(Component.For<IHttpClientFacade>()
-            //    .Instance(_mockHttpClientFacade.Object)
-            //    .LifeStyle.Transient);
+            container.Kernel.AddHandlerSelector(new HttpClientFactoryHandlerSelector());
+            container.Kernel.AddHandlerSelector(new HttpClientFacadeHandlerSelector());
         }
 
 
@@ -179,7 +176,6 @@ namespace IntegrationTests
                         Value = "1001"
                     }
                 });
-            _companiesHouseQueue = new CompaniesHouseQueue();
             _companiesHouseRepository = new CompaniesHouseRepository(_mockIUnitOfWork.Object, _mockIGenericRepository.Object, _mockLogger.Object);
             _transactionIdManager = new TransactionIdManager(_companiesHouseRepository);
 
@@ -189,7 +185,7 @@ namespace IntegrationTests
             //_mockHttpClientFacade.Setup(x => x.GetAsync(It.IsAny<string>()))
             //    .Returns(Task.Run(() => result.Object));
 
-            _gatewayConnection = new GatewayConnection(_companiesHouseConfiguration, _companiesHouseQueue, _httpClientFactory);
+            _gatewayConnection = new GatewayConnection(_companiesHouseConfiguration, _httpClientFactory);
             _companiesHouseGatewayService = new CompaniesHouseGatewayService(_gatewayConnection, _credentials, _mockLogger.Object, _transactionIdManager);
             _companiesHouseGatewayServiceFacade = new CompaniesHouseGatewayServiceFacade(_companiesHouseGatewayService);
         }
@@ -283,4 +279,32 @@ namespace IntegrationTests
                                                   </Result>";
         #endregion
     }
+
+    public class HttpClientFactoryHandlerSelector : IHandlerSelector
+    {
+        public static bool UseMockRegistrator { private get; set; }
+        public bool HasOpinionAbout(string key, Type service)
+        {
+            return service == typeof(HttpClientFactory);
+        }
+        public IHandler SelectHandler(string key, Type service, IHandler[] handlers)
+        {
+            return handlers.First(x => UseMockRegistrator ? x.ComponentModel.Implementation == typeof(Mock<HttpClientFactory>) :
+                                       x.ComponentModel.Implementation == typeof(HttpClientFactory));
+        }
+    }
+
+    public class HttpClientFacadeHandlerSelector : IHandlerSelector
+    {
+        public static bool UseMockRegistrator { private get; set; }
+        public bool HasOpinionAbout(string key, Type service)
+        {
+            return service == typeof(HttpClientFactory);
+        }
+        public IHandler SelectHandler(string key, Type service, IHandler[] handlers)
+        {
+            return handlers.First(x => UseMockRegistrator ? x.ComponentModel.Implementation == typeof(Mock<HttpClientFactory>) :
+                                       x.ComponentModel.Implementation == typeof(HttpClientFactory));
+        }
+    }  
 }
