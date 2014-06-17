@@ -1,7 +1,6 @@
-﻿using PS.Mothership.Core.Common.Contracts;
-using PS.Mothership.Core.Common.Dto.Session;
+﻿using PS.Mothership.Core.Common.Dto.Session;
 
-namespace PS.Mothership.Core.Common.Helper
+namespace PS.Mothership.Core.Common.SessionHandling
 {
     public class SessionManager : ISessionManager
     {

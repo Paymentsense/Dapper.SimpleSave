@@ -1,6 +1,6 @@
 ﻿using PS.Mothership.Core.Common.Dto.Session;
 
-namespace PS.Mothership.Core.Common.Contracts
+namespace PS.Mothership.Core.Common.SessionHandling
 {
     public interface ISessionManager
     {
