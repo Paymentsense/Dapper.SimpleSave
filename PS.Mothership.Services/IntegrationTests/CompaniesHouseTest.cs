@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Castle.MicroKernel;
+using Castle.Windsor;
 using Moq;
 using NUnit.Framework;
 using PS.Mothership.Core.Common.Config;
@@ -22,9 +25,11 @@ using PS.Mothership.ThirdParty.CompaniesHouse.Facades;
 using PS.Mothership.ThirdParty.CompaniesHouse.Factories;
 using PS.Mothership.ThirdParty.CompaniesHouse.Implementations;
 using PS.Mothership.ThirdParty.CompaniesHouse.Models;
+using PS.Mothership.ThirdParty.Config;
 using PS.Mothership.ThirdParty.Contracts;
 using PS.Mothership.ThirdParty.Implementations;
 using PS.Mothership.ThirdParty.Mappings;
+using Component = Castle.MicroKernel.Registration.Component;
 using ICredentials = PS.Mothership.ThirdParty.CompaniesHouse.Contracts.ICredentials;
 
 namespace IntegrationTests
@@ -37,16 +42,11 @@ namespace IntegrationTests
         private IGatewayConnection _gatewayConnection;
         private ICompaniesHouseGatewayServiceFacade _companiesHouseGatewayServiceFacade;
         private ICompaniesHouseGatewayService _companiesHouseGatewayService;
-        private ICompaniesHouseUriService _companiesHouseUriJsonService;
-        private ICompaniesHouseUriService _companiesHouseUriXmlService;
         private ICompaniesHouseUriServiceFacade _companiesHouseUriServiceFacade;
         private ICompaniesHouseConfiguration _companiesHouseConfiguration;
         private ICompaniesHouseQueue _companiesHouseQueue;
         private ITransactionIdManager _transactionIdManager;
         private ICompaniesHouseRepository _companiesHouseRepository;
-        private IUriConnection _uriConnection;
-        private ICompaniesHouseSerializer _companiesHouseXmlSerializer;
-        private ICompaniesHouseSerializer _companiesHouseJsonSerializer;
         private HttpClientFactory _httpClientFactory;
         private Mock<IMSLogger> _mockLogger;
         private Mock<IUnitOfWork> _mockIUnitOfWork;
@@ -69,26 +69,26 @@ namespace IntegrationTests
         _mockLogger = null;
         _companiesHouseGatewayServiceFacade = null;
         _companiesHouseGatewayService = null;
-        _companiesHouseUriJsonService = null;
-        _companiesHouseUriXmlService = null;
         _companiesHouseConfiguration = null;
         _companiesHouseQueue = null;
         _transactionIdManager = null;
         _companiesHouseRepository = null;
         _mockIUnitOfWork = null;
         _mockIGenericRepository = null;
-        _uriConnection = null;
-        _companiesHouseXmlSerializer = null;
-        _companiesHouseJsonSerializer = null;
-        _mockHttpClientFactory = null;
         _httpClientFactory = null;
-        _mockHttpClientFacade = null;
         }
 
         [Test]
         public void CompaniesHouseJsonCompanyTest()
         {
-            SetUriConfig(JsonDataReponse);
+            //Testing the IoC Configuration for Xml and Json works
+            var thirdParty = ThirdPartyIocConfig.New();
+            var container = thirdParty.Configure(null, new WindsorContainer());
+
+            SetUriConfig(JsonDataReponse, container);
+
+            container.Register(Component.For<IMSLogger>().Instance(new Mock<IMSLogger>().Object));
+            _companiesHouseUriServiceFacade = container.Resolve<ICompaniesHouseUriServiceFacade>();
 
             var response = _companiesHouseUriServiceFacade.CompanyDetailViaJson("02050399");
 
@@ -101,7 +101,14 @@ namespace IntegrationTests
         [Test]
         public void CompaniesHouseXmlCompanyTest()
         {
-            SetUriConfig(XmlDataResponse);
+            //Testing the IoC Configuration for Xml and Json works
+            var thirdParty = ThirdPartyIocConfig.New();
+            var container = thirdParty.Configure(null, new WindsorContainer());
+
+            SetUriConfig(JsonDataReponse, container);
+
+            container.Register(Component.For<IMSLogger>().Instance(new Mock<IMSLogger>().Object));
+            _companiesHouseUriServiceFacade = container.Resolve<ICompaniesHouseUriServiceFacade>();
 
             var response = _companiesHouseUriServiceFacade.CompanyDetailViaXml("02050399");
 
@@ -114,34 +121,13 @@ namespace IntegrationTests
         [Test]
         public void CompaniesHouseXmlService()
         {
-            SetGatewayConfig();
+            //SetGatewayConfig();
             var companyDetailsRequestDto = new CompanyDetailsRequestDto
             {
                 CompanyNumber = "02050399",
                 GiveMortTotals = false,
             };
             var response = _companiesHouseGatewayServiceFacade.CompanyDetails(companyDetailsRequestDto);
-        }
-
-        private void SetUriConfig(string dataResponse)
-        {
-            var result = CreateMockHttpResonse(new StringContent(dataResponse));
-            //_httpClientFactory = new HttpClientFactory();
-            _mockHttpClientFacade = new Mock<IHttpClientFacade>();
-            _mockHttpClientFacade.Setup(x => x.GetAsync(It.IsAny<string>()))
-                .Returns(Task.Run(() => result.Object));
-
-            _mockHttpClientFactory = new Mock<HttpClientFactory>();
-            _mockHttpClientFactory.Setup(x => x.Create()).Returns(_mockHttpClientFacade.Object);
-
-            _uriConnection = new UriConnection(_companiesHouseConfiguration, _mockHttpClientFactory.Object
-                /*_httpClientFactory*/);
-
-            _companiesHouseXmlSerializer = new CompaniesHouseXmlSerializer(_mockLogger.Object);
-            _companiesHouseJsonSerializer = new CompaniesHouseJsonSerializer(_mockLogger.Object);
-            _companiesHouseUriJsonService = new CompaniesHouseUriService(_uriConnection, _companiesHouseJsonSerializer, _mockLogger.Object);
-            _companiesHouseUriXmlService = new CompaniesHouseUriService(_uriConnection, _companiesHouseXmlSerializer, _mockLogger.Object);
-            _companiesHouseUriServiceFacade = new CompaniesHouseUriServiceFacade(_companiesHouseUriJsonService, _companiesHouseUriXmlService);
         }
 
         private static Mock<HttpResponseMessageFacade> CreateMockHttpResonse(HttpContent httpContent = null, HttpStatusCode statusCode = HttpStatusCode.OK)
@@ -152,7 +138,30 @@ namespace IntegrationTests
             return result;
         }
 
-        private void SetGatewayConfig()
+        private void SetUriConfig(string dataResponse, IWindsorContainer container)
+        {
+            var result = CreateMockHttpResonse(new StringContent(dataResponse));
+            //_httpClientFactory = new HttpClientFactory();
+            _mockHttpClientFacade = new Mock<IHttpClientFacade>();
+            _mockHttpClientFacade.Setup(x => x.GetAsync(It.IsAny<string>()))
+                .Returns(Task.Run(() => result.Object));
+
+            _mockHttpClientFactory = new Mock<HttpClientFactory>();
+            _mockHttpClientFactory.Setup(x => x.Create()).Returns(_mockHttpClientFacade.Object);
+
+            //container.Kernel.
+
+            //container.Register(Component.For<HttpClientFactory>()
+            //    .Instance(_mockHttpClientFactory.Object)
+            //    .LifeStyle.Singleton);
+
+            //container.Register(Component.For<IHttpClientFacade>()
+            //    .Instance(_mockHttpClientFacade.Object)
+            //    .LifeStyle.Transient);
+        }
+
+
+        private void SetGatewayConfig(string dataResponse)
         {
             AutoMapping.Configure(new IocBuildSettings()
                 .WithAutoMapperProfile(new CompaniesHouseDtoMappingProfile()));
@@ -167,7 +176,7 @@ namespace IntegrationTests
                     new SYSTEM_VALUE_MST
                     {
                         SystemValueKey = "CompaniesHouseTransactionId",
-                        Value = "1"
+                        Value = "1001"
                     }
                 });
             _companiesHouseQueue = new CompaniesHouseQueue();
@@ -187,7 +196,7 @@ namespace IntegrationTests
 
         #region Json and Xml Response Data
         private const string JsonDataReponse = @"{""primaryTopic"" : {
-                                                  ""CompanyName"" : ""ZENITH PRINT (UK) LIMITED"",
+                                                  ""CompanyName"" : ""ZENITH PINT (UK) LIMITED"",
                                                   ""CompanyNumber"" : ""02050399"",
                                                   ""RegAddress"" : {
                                                      ""AddressLine1"" : ""ZENITH HOUSE"",
