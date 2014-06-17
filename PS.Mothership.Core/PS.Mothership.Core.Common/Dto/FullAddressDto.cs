@@ -12,6 +12,6 @@ namespace PS.Mothership.Core.Common.Dto
 
         [DataMember]
         public CountyDto County { get; set; }
-        
+
     }
 }

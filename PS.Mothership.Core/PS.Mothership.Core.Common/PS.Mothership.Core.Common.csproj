@@ -216,6 +216,7 @@
     <Compile Include="Dto\Message\MessageEmailAttachmentsDto.cs" />
     <Compile Include="Dto\Message\MessageEmailDto.cs" />
     <Compile Include="Dto\Message\EmailAddressDto.cs" />
+    <Compile Include="Dto\PostcodeDto.cs" />
     <Compile Include="Dto\Roles\InheritedRolesDto.cs" />
     <Compile Include="Dto\LoginCredentialsDto.cs" />
     <Compile Include="Dto\NotificationDetailDto.cs" />
