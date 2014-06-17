@@ -1,5 +1,8 @@
 ﻿using PS.Mothership.Core.Common.Dto;
+using PS.Mothership.Core.Common.Dto.Contact;
+using PS.Mothership.Core.Common.Dto.DynamicRequest;
 using System;
+using System.Collections.Generic;
 using System.ServiceModel;
 
 namespace PS.Mothership.Core.Common.Contracts
@@ -12,5 +15,14 @@ namespace PS.Mothership.Core.Common.Contracts
 
         [OperationContract]
         FullAddressDto SaveAddress(FullAddressDto addressDto);
+
+        [OperationContract]
+        ICollection<CountryDto> Countries();
+
+        [OperationContract]
+        ICollection<CountyDto> Counties(long countryKey);
+
+        [OperationContract]
+        IEnumerable<PostcodeDto> Postcodes(FilterDto filter);
     }
 }
