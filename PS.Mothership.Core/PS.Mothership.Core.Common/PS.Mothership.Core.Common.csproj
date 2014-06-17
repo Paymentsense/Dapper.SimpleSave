@@ -139,6 +139,7 @@
     <Compile Include="Contracts\IMSLogger.cs" />
     <Compile Include="Contracts\ISendMessageService.cs" />
     <Compile Include="Contracts\ISendMessageStatusServiceCallback.cs" />
+    <Compile Include="Contracts\ISessionManager.cs" />
     <Compile Include="Contracts\ITaskNotificationCallback.cs" />
     <Compile Include="Contracts\ITaskNotificationService.cs" />
     <Compile Include="Contracts\IQuartzJobBase.cs" />
@@ -278,6 +279,7 @@
     <Compile Include="Contracts\ISignalRConnectionManager.cs" />
     <Compile Include="Helper\MSLogger.cs" />
     <Compile Include="Helper\RandomStringGenerator.cs" />
+    <Compile Include="Helper\SessionManager.cs" />
     <Compile Include="Helper\SignalRConnectionManager.cs" />
     <Compile Include="Helper\UniqueKeyGenerator.cs" />
     <Compile Include="Helper\JsonHelper.cs" />
