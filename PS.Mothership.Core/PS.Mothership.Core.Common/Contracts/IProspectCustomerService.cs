@@ -26,11 +26,14 @@ namespace PS.Mothership.Core.Common.Contracts
         ProspectResponseDto AddProspect(ProspectDto prospectDto);
 
         [OperationContract]
+        ProspectDetailsDto UpdateProspect(ProspectDetailsDto dto);
+
+        [OperationContract]
         void AddProspectContact(MerchantContactDto dto);
 
         [OperationContract]
         void RemoveProspectContact(MerchantContactDto dto);
-        
+
         [OperationContract]
         void AddProspectAddress(MerchantAddressDto dto);
 
@@ -47,6 +50,5 @@ namespace PS.Mothership.Core.Common.Contracts
 
         [OperationContract]
         PagedList<ProspectAddressDto> GetProspectsAddressByFilter(DataRequestDto dataRequestDto);
-
     }
 }
