@@ -157,6 +157,7 @@
     <Compile Include="Dto\Merchant\MerchantDto.cs" />
     <Compile Include="Dto\Merchant\MerchantAddressDto.cs" />
     <Compile Include="Dto\Merchant\ProspectAddressDto.cs" />
+    <Compile Include="Dto\Merchant\ProspectDetailsDto.cs" />
     <Compile Include="Dto\Merchant\ProspectDto.cs" />
     <Compile Include="Dto\Merchant\ProspectResponseDto.cs" />
     <Compile Include="Dto\Dialler\CallDto.cs" />
