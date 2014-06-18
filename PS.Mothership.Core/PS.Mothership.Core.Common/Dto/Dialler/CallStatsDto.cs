@@ -8,10 +8,8 @@ namespace PS.Mothership.Core.Common.Dto.Dialler
     {
         [DataMember]
         public Guid UserGuid { get; set; }
-
         [DataMember]
         public TimeSpan TotalTalkTime { get; set; }
-
         [DataMember]
         public TimeSpan TotalWrapTime { get; set; }
     }
