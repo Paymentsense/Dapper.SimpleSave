@@ -2,7 +2,8 @@
 {
     public class CompanyDetailsRequestDto
     {
-        public int CompanyNumber { get; set; }
+        public string CompanyNumber { get; set; }
         public bool GiveMortTotals { get; set; }
+        public bool GiveMortTotalsSpecified { get; set; }
     }
 }
