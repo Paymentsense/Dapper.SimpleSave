@@ -6,6 +6,6 @@ namespace PS.Mothership.Core.Common.Dto.CompaniesHouse
     public class NumberSearchDto
     {
         public int SearchRows { get; set; }
-        public IList<CoSearchItemDto> CoSeachItem { get; set; }
+        public IList<CoSearchItemDto> CoSearchItem { get; set; }
     }
 }

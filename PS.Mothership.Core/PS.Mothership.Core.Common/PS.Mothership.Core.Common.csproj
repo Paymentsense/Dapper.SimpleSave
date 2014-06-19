@@ -176,7 +176,7 @@
     <Compile Include="Dto\CompaniesHouse\SubDtos\FhistItemDto.cs" />
     <Compile Include="Dto\CompaniesHouse\SubDtos\LimitedPartnershipsDto.cs" />
     <Compile Include="Dto\CompaniesHouse\SubDtos\OfficerApptDto.cs" />
-    <Compile Include="Dto\CompaniesHouse\SubDtos\OfficerDetailsApptCount.cs" />
+    <Compile Include="Dto\CompaniesHouse\SubDtos\OfficerDetailsApptCountDto.cs" />
     <Compile Include="Dto\CompaniesHouse\SubDtos\OfficerDisqDto.cs" />
     <Compile Include="Dto\CompaniesHouse\SubDtos\OfficerSearchItemBaseDto.cs" />
     <Compile Include="Dto\CompaniesHouse\SubDtos\OfficerSearchItemDto.cs" />
