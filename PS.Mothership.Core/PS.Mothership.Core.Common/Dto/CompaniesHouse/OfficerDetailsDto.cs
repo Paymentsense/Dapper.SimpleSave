@@ -7,7 +7,7 @@ namespace PS.Mothership.Core.Common.Dto.CompaniesHouse
     {
         public PersonDto Person {get; set;}
 
-        public OfficerDetailsApptCount ApptCount { get; set; }
+        public OfficerDetailsApptCountDto ApptCount { get; set; }
 
         public string NumDisqualOrders {get; set;}
 
