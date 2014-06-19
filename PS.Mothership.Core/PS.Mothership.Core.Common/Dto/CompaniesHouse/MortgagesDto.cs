@@ -1,10 +1,18 @@
-﻿namespace PS.Mothership.Core.Common.Dto.CompaniesHouse
+﻿using System.Collections.Generic;
+using PS.Mothership.Core.Common.Dto.CompaniesHouse.SubDtos;
+
+namespace PS.Mothership.Core.Common.Dto.CompaniesHouse
 {
     public class MortgagesDto
     {
-        public decimal NumMortCharges { get; set; }
-        public decimal NumMortOutstanding { get; set; }
-        public decimal NumMortPartSatisfied { get; set; }
-        public decimal NumMortSatisfied { get; set; }
+        public string CompanyNumber {get; set;}
+        public string CompanyName {get; set;}
+        public string NumMortCharges {get; set;}
+        public string NumMortOutstanding {get; set;}
+        public string NumMortPartSatisfied {get; set;}
+        public string NumMortSatisfied {get; set;}
+        public string SearchRows {get; set;}
+        public string ContinuationKey {get; set;}
+        public List<ChargeDto> Charge { get; set; }
     }
 }

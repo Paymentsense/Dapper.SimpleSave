@@ -7,8 +7,8 @@ namespace PS.Mothership.Core.Common.Dto.CompaniesHouse
     {
         public string CompanyNumber { get; set; }
         public string CompanyName { get; set; }
-        public decimal SearchRows { get; set; }
+        public string SearchRows { get; set; }
         public string ContinuationKey { get; set; }
-        public IList<FhistItemDto> FhistItem { get; set; }
+        public List<FhistItemDto> FHistItem { get; set; }
     }
 }

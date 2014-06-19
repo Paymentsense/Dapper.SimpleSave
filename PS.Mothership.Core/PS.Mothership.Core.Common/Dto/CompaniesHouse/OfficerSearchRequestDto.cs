@@ -1,15 +1,17 @@
 ﻿using System.Collections.Generic;
+using PS.Mothership.Core.Common.Enums.CompaniesHouse;
 
 namespace PS.Mothership.Core.Common.Dto.CompaniesHouse
 {
     public class OfficerSearchRequestDto
     {
-        public string Surname { get; set; }
-        public IList<string> Forename { get; set; }
-        public string PostTown { get; set; }
-        public string OfficerType { get; set; }
-        public bool IncludeResignedInd { get; set; }
-        public string ContinuationKey { get; set; }
-        public string CountryOfResidence { get; set; }
+        public string Surname {get; set;}
+        public string PostTown {get; set;}
+        public OfficerType OfficerType {get; set;}
+        public string CountryOfResidence {get; set;}
+        public bool IncludeResignedInd {get; set;}
+        public bool IncludeResignedIndSpecified {get; set;}
+        public string ContinuationKey {get; set;}
+        public List<string> Forename { get; set; }
     }
 }

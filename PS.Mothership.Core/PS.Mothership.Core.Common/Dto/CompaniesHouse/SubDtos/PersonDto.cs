@@ -1,13 +1,19 @@
-﻿namespace PS.Mothership.Core.Common.Dto.CompaniesHouse.SubDtos
+﻿using System;
+using System.Collections.Generic;
+
+namespace PS.Mothership.Core.Common.Dto.CompaniesHouse.SubDtos
 {
     public class PersonDto
     {
-        public string Forename { get; set; }
+        public bool CorporateIndicator { get; set; }
+        public bool CorporateIndicatorSpecified { get; set; }
         public string Surname { get; set; }
         public string Title { get; set; }
-        public string Dob { get; set; }
+        public DateTime Dob { get; set; }
+        public bool DobSpecified { get; set; }
         public string Nationality { get; set; }
         public string CountryOfResidence { get; set; }
         public PersonAddressDto PersonAddress { get; set; }
-    }
+        public List<string> Forename { get; set; }
+     }
 }

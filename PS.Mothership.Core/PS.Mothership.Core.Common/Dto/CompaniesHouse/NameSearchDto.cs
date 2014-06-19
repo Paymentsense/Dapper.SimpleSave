@@ -7,7 +7,7 @@ namespace PS.Mothership.Core.Common.Dto.CompaniesHouse
     {
         public string ContinuationKey { get; set; }
         public string RegressionKey { get; set; }
-        public decimal SearchRows { get; set; }
+        public string SearchRows { get; set; }
         public IList<CoSearchItemDto> CoSearchItem { get; set; }
     }
 }

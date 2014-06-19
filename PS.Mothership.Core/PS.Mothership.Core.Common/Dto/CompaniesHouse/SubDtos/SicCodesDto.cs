@@ -4,6 +4,6 @@ namespace PS.Mothership.Core.Common.Dto.CompaniesHouse.SubDtos
 {
     public class SicCodesDto
     {
-        public IList<string> SicText { get; set; }
+        public List<string> SicText { get; set; }
     }
 }

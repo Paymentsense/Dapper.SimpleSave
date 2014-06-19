@@ -1,16 +1,13 @@
-﻿namespace PS.Mothership.Core.Common.Dto.CompaniesHouse.SubDtos
+﻿using System.Collections.Generic;
+using PS.Mothership.Core.Common.Enums.CompaniesHouse;
+
+namespace PS.Mothership.Core.Common.Dto.CompaniesHouse.SubDtos
 {
-    public class OfficerSearchItemDto
+    public class OfficerSearchItemDto : OfficerSearchItemBaseDto
     {
-        public string Title { get; set; }
-        public string Surname { get; set; }
-        public string Forename { get; set; }
-        public string Dob { get; set; }
-        public string Posttown { get; set; }
-        public string Postcode { get; set; }
-        public string CountryOfResidence { get; set; }
-        public string PersonId { get; set; }
-        public string SearchMatch { get; set; }
-        public DuplicateOfficersDto DuplicateOfficers { get; set; }
+        public string PersonId {get; set;}
+        public SearchMatch SearchMatch {get; set;}
+        public bool SearchMatchSpecified {get; set;}
+        public List<OfficerSearchItemBaseDto> DuplicateOfficers { get; set; }
     }
 }

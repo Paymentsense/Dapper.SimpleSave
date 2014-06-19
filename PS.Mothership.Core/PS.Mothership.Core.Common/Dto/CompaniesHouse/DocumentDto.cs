@@ -4,5 +4,6 @@
     {
         public string CompanyNumber { get; set; }
         public string FormType { get; set; }
+        public string NumPages { get; set; }
     }
 }

@@ -5,7 +5,7 @@ namespace PS.Mothership.Core.Common.Dto.CompaniesHouse
 {
     public class NumberSearchDto
     {
-        public decimal SearchRows { get; set; }
-        public IList<CoSearchItemDto> CoSearchItem { get; set; }
+        public int SearchRows { get; set; }
+        public IList<CoSearchItemDto> CoSeachItem { get; set; }
     }
 }

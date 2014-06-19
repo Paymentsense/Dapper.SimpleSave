@@ -2,7 +2,7 @@
 {
     public class LimitedPartnershipsDto
     {
-        public decimal NumGenPartners { get; set; }
-        public decimal NumLimPartners { get; set; }
+        public string NumGenPartners { get; set; }
+        public string NumLimPartners { get; set; }
     }
 }

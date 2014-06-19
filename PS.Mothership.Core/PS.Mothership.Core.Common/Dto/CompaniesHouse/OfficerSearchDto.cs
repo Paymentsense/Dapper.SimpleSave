@@ -5,6 +5,8 @@ namespace PS.Mothership.Core.Common.Dto.CompaniesHouse
 {
     public class OfficerSearchDto
     {
-        public IList<OfficerSearchItemDto> OfficerSearchItem { get; set; }
+        public string ContinuationKey {get; set;}
+        public string SearchRows {get; set;}
+        public List<OfficerSearchItemDto> OfficerSearchItem { get; set; }
     }
 }
