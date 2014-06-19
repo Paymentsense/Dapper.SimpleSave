@@ -156,6 +156,7 @@
     <Compile Include="Dto\CompaniesHouse\SubDtos\AccountsDto.cs" />
     <Compile Include="Dto\CompaniesHouse\SubDtos\ChargeDto.cs" />
     <Compile Include="Dto\CompaniesHouse\SubDtos\CoApptDto.cs" />
+    <Compile Include="Dto\CompaniesHouse\SubDtos\CompanyDetailsMortgagesDto.cs" />
     <Compile Include="Dto\CompaniesHouse\SubDtos\CoSearchItemDto.cs" />
     <Compile Include="Dto\CompaniesHouse\DocumentInfoDto.cs" />
     <Compile Include="Dto\CompaniesHouse\DocumentInfoRequestDto.cs" />
