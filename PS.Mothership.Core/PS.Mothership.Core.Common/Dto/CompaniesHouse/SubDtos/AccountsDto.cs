@@ -5,7 +5,7 @@ namespace PS.Mothership.Core.Common.Dto.CompaniesHouse.SubDtos
 {
     public class AccountsDto
     {
-        public DateTime AccountRefDate { get; set; }
+        public string AccountRefDate { get; set; }
         public bool AccountRefDateSpecified { get; set; }
         public DateTime NextDueDate { get; set; }
         public bool NextDueDateSpecified { get; set; }
