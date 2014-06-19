@@ -7,7 +7,6 @@ using System.Net.Http;
 using System.Xml.Linq;
 using Castle.MicroKernel;
 using Castle.Windsor;
-using CompaniesHouseGeneratedClasses;
 using Moq;
 using NUnit.Framework;
 using PS.Mothership.Core.Common.Config;
@@ -175,7 +174,7 @@ namespace IntegrationTests
                     new SYSTEM_VALUE_MST
                     {
                         SystemValueKey = "CompaniesHouseTransactionId",
-                        Value = "1038"
+                        Value = "1050"
                     }
                 });
             _companiesHouseRepository = new CompaniesHouseRepository(_mockIUnitOfWork.Object, _mockIGenericRepository.Object, _mockLogger.Object);
