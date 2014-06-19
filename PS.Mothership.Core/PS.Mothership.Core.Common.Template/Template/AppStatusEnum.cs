@@ -34,7 +34,7 @@ namespace PS.Mothership.Core.Common.Template.App
         public long EnumValue {get;set;}
 		public string EnumName {get;set;}
 		public string EnumDescription {get;set;}
-		public long ApplicationStatusKey {get;set;}
+		public long StatusKey {get;set;}
 		public int WobblyHours {get;set;}
 		public GenRecStatusEnum RecStatusKey {get;set;}
     }
@@ -58,7 +58,7 @@ namespace PS.Mothership.Core.Common.Template.App
 								EnumValue = 0,
 								EnumName = "None",
 								EnumDescription = "None",
-								ApplicationStatusKey = 0,
+								StatusKey = 0,
 								WobblyHours = 0,
 								RecStatusKey = (GenRecStatusEnum)1
 							},
@@ -67,7 +67,7 @@ namespace PS.Mothership.Core.Common.Template.App
 								EnumValue = 10,
 								EnumName = "DataEntry",
 								EnumDescription = "Data Entry",
-								ApplicationStatusKey = 10,
+								StatusKey = 10,
 								WobblyHours = 0,
 								RecStatusKey = (GenRecStatusEnum)1
 							},
@@ -76,7 +76,7 @@ namespace PS.Mothership.Core.Common.Template.App
 								EnumValue = 20,
 								EnumName = "DocsOut",
 								EnumDescription = "Docs Out",
-								ApplicationStatusKey = 20,
+								StatusKey = 20,
 								WobblyHours = 0,
 								RecStatusKey = (GenRecStatusEnum)1
 							},
@@ -85,7 +85,7 @@ namespace PS.Mothership.Core.Common.Template.App
 								EnumValue = 30,
 								EnumName = "DocsIn",
 								EnumDescription = "Docs In",
-								ApplicationStatusKey = 30,
+								StatusKey = 30,
 								WobblyHours = 0,
 								RecStatusKey = (GenRecStatusEnum)1
 							},
@@ -94,7 +94,7 @@ namespace PS.Mothership.Core.Common.Template.App
 								EnumValue = 40,
 								EnumName = "InReview",
 								EnumDescription = "In Review",
-								ApplicationStatusKey = 40,
+								StatusKey = 40,
 								WobblyHours = 0,
 								RecStatusKey = (GenRecStatusEnum)1
 							},
@@ -103,7 +103,7 @@ namespace PS.Mothership.Core.Common.Template.App
 								EnumValue = 50,
 								EnumName = "ReturnToSeller",
 								EnumDescription = "Return To Seller",
-								ApplicationStatusKey = 50,
+								StatusKey = 50,
 								WobblyHours = 0,
 								RecStatusKey = (GenRecStatusEnum)1
 							},
@@ -112,7 +112,7 @@ namespace PS.Mothership.Core.Common.Template.App
 								EnumValue = 60,
 								EnumName = "ToAcquirer",
 								EnumDescription = "To Acquirer",
-								ApplicationStatusKey = 60,
+								StatusKey = 60,
 								WobblyHours = 0,
 								RecStatusKey = (GenRecStatusEnum)1
 							},
@@ -121,7 +121,7 @@ namespace PS.Mothership.Core.Common.Template.App
 								EnumValue = 70,
 								EnumName = "CreditSentToAcquirer",
 								EnumDescription = "Credit Sent To Acquirer",
-								ApplicationStatusKey = 70,
+								StatusKey = 70,
 								WobblyHours = 0,
 								RecStatusKey = (GenRecStatusEnum)1
 							},
@@ -130,7 +130,7 @@ namespace PS.Mothership.Core.Common.Template.App
 								EnumValue = 80,
 								EnumName = "BoardingSentToAcquirer",
 								EnumDescription = "Boarding Sent To Acquirer",
-								ApplicationStatusKey = 80,
+								StatusKey = 80,
 								WobblyHours = 0,
 								RecStatusKey = (GenRecStatusEnum)1
 							},
@@ -139,7 +139,7 @@ namespace PS.Mothership.Core.Common.Template.App
 								EnumValue = 90,
 								EnumName = "AcquirerRejected",
 								EnumDescription = "Acquirer Rejected",
-								ApplicationStatusKey = 90,
+								StatusKey = 90,
 								WobblyHours = 0,
 								RecStatusKey = (GenRecStatusEnum)1
 							},
@@ -148,7 +148,7 @@ namespace PS.Mothership.Core.Common.Template.App
 								EnumValue = 100,
 								EnumName = "FailedToSend",
 								EnumDescription = "Failed To Send",
-								ApplicationStatusKey = 100,
+								StatusKey = 100,
 								WobblyHours = 0,
 								RecStatusKey = (GenRecStatusEnum)1
 							},
@@ -157,7 +157,7 @@ namespace PS.Mothership.Core.Common.Template.App
 								EnumValue = 110,
 								EnumName = "AcquirerAbandoned",
 								EnumDescription = "Acquirer Abandoned",
-								ApplicationStatusKey = 110,
+								StatusKey = 110,
 								WobblyHours = 0,
 								RecStatusKey = (GenRecStatusEnum)1
 							},
@@ -166,7 +166,7 @@ namespace PS.Mothership.Core.Common.Template.App
 								EnumValue = 120,
 								EnumName = "InCreditReview",
 								EnumDescription = "In Credit Review",
-								ApplicationStatusKey = 120,
+								StatusKey = 120,
 								WobblyHours = 0,
 								RecStatusKey = (GenRecStatusEnum)1
 							},
@@ -175,7 +175,7 @@ namespace PS.Mothership.Core.Common.Template.App
 								EnumValue = 130,
 								EnumName = "Referred",
 								EnumDescription = "Referred",
-								ApplicationStatusKey = 130,
+								StatusKey = 130,
 								WobblyHours = 0,
 								RecStatusKey = (GenRecStatusEnum)1
 							},
@@ -184,7 +184,7 @@ namespace PS.Mothership.Core.Common.Template.App
 								EnumValue = 140,
 								EnumName = "Abandoned",
 								EnumDescription = "Abandoned",
-								ApplicationStatusKey = 140,
+								StatusKey = 140,
 								WobblyHours = 0,
 								RecStatusKey = (GenRecStatusEnum)1
 							},
@@ -193,7 +193,7 @@ namespace PS.Mothership.Core.Common.Template.App
 								EnumValue = 150,
 								EnumName = "Approved",
 								EnumDescription = "Approved",
-								ApplicationStatusKey = 150,
+								StatusKey = 150,
 								WobblyHours = 0,
 								RecStatusKey = (GenRecStatusEnum)1
 							},
