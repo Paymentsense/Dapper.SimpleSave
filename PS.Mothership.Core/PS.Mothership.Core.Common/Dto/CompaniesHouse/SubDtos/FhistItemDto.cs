@@ -1,13 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace PS.Mothership.Core.Common.Dto.CompaniesHouse.SubDtos
 {
     public class FhistItemDto
     {
-        public string DocumentDescription { get; set; }
         public DateTime DocumentDate { get; set; }
-        public FormTypeDto FormType { get; set; }
-        public string DocBeingScanned { get; set; }
+        public string FormType { get; set; }
+        public bool DocBeingScanned { get; set; }
+        public bool DocBeingScannedSpecified { get; set; }
         public string ImageKey { get; set; }
+        public List<string> DocumentDesc { get; set; }
+        public List<FhistChildDocDto> ChildDocument { get; set; }
     }
 }

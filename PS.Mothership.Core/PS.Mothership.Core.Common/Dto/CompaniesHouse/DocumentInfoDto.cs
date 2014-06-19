@@ -1,14 +1,15 @@
-﻿using PS.Mothership.Core.Common.Dto.CompaniesHouse.SubDtos;
+﻿using System;
 using PS.Mothership.Core.Common.Enums.CompaniesHouse;
 
 namespace PS.Mothership.Core.Common.Dto.CompaniesHouse
 {
     public class DocumentInfoDto
     {
-        public int CompanyNumber { get; set; }
-        public FormTypeDto FormType { get; set; }
-        public int NumPages { get; set; }
-        public string MadeUpDate { get; set; }
+        public string CompanyNumber { get; set; }
+        public string FormType { get; set; }
+        public string NumPages { get; set; }
+        public DateTime MadeUpDate { get; set; }
+        public bool MadeUpDateSpecified { get; set; }
         public Media Media { get; set; }
         public string DocRequestKey { get; set; }
     }

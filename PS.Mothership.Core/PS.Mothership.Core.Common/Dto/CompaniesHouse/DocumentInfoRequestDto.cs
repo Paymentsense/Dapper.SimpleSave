@@ -2,8 +2,8 @@
 {
     public class DocumentInfoRequestDto
     {
-        public int CompanyNumber { get; set; }
+        public string CompanyNumber { get; set; }
         public string CompanyName { get; set; }
-        public string Imagekey { get; set; }
+        public string ImageKey { get; set; }
     }
 }

@@ -2,7 +2,7 @@
 {
     public class LimitedPartnershipsDto
     {
-        public int NumGenPartners { get; set; }
-        public int NumLimPartners { get; set; }
+        public string NumGenPartners { get; set; }
+        public string NumLimPartners { get; set; }
     }
 }
