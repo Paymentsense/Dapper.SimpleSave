@@ -1,13 +1,21 @@
-﻿namespace PS.Mothership.Core.Common.Enums.CompaniesHouse
+﻿using System.Xml.Serialization;
+
+namespace PS.Mothership.Core.Common.Enums.CompaniesHouse
 {
     public enum NumAppInd
     {
+        [XmlEnum(Name="")]
+        NotSpecified = -1,
+
         /// <remarks/>
         GE1000,
     }
 
     public enum AppointmentType
     {
+        [XmlEnum(Name = "")]
+        NotSpecified = -1,
+
         /// <remarks/>
         DIR,
 
@@ -56,6 +64,9 @@
 
     public enum AppointmentStatus
     {
+        [XmlEnum(Name = "")]
+        NotSpecified = -1,
+
         /// <remarks/>
         CURRENT,
 
@@ -65,12 +76,18 @@
 
     public enum ApptDatePrefix
     {
+        [XmlEnum(Name = "")]
+        NotSpecified = -1,
+
         /// <remarks/>
         PRE,
     }
 
     public enum Overdue
     {
+        [XmlEnum(Name = "")]
+        NotSpecified = -1,
+
         /// <remarks/>
         NO,
 
@@ -83,6 +100,9 @@
 
     public enum MortgageInd
     {
+        [XmlEnum(Name = "")]
+        NotSpecified = -1,
+
         /// <remarks/>
         NO,
 
@@ -95,6 +115,9 @@
 
     public enum Media
     {
+        [XmlEnum(Name = "")]
+        NotSpecified = -1,
+
         /// <remarks/>
         ARCHIVE,
 
@@ -110,15 +133,23 @@
 
     public enum FHistCPLXtTypeChildDocumentChildDocumentType
     {
+        [XmlEnum(Name = "")]
+        NotSpecified = -1,
+
         /// <remarks/>
         DOCUMENT,
 
         /// <remarks/>
         ANNOTATION,
+
+        STATEMENTOFCAPITAL,
     }
 
     public enum ItemsChoiceType
     {
+        [XmlEnum(Name = "")]
+        NotSpecified = -1,
+
         /// <remarks/>
         ChargeCode,
 
@@ -128,6 +159,9 @@
 
     public enum ChargeSatisfied
     {
+        [XmlEnum(Name = "")]
+        NotSpecified = -1,
+
         /// <remarks/>
         OUTSTANDING,
 
@@ -140,6 +174,9 @@
 
     public enum DataSet
     {
+        [XmlEnum(Name = "")]
+        NotSpecified = -1,
+
         /// <remarks/>
         LIVE,
 
@@ -155,6 +192,9 @@
 
     public enum CompanyIndexStatus
     {
+        [XmlEnum(Name = "")]
+        NotSpecified = -1,
+
         /// <remarks/>
         EFFECTIVE,
 
@@ -185,6 +225,9 @@
 
     public enum SearchMatch
     {
+        [XmlEnum(Name = "")]
+        NotSpecified = -1,
+
         /// <remarks/>
         NEAR,
 
@@ -194,6 +237,9 @@
 
     public enum OfficerType
     {
+        [XmlEnum(Name = "")]
+        NotSpecified = -1,
+
         /// <remarks/>
         CUR,
 
@@ -209,6 +255,9 @@
 
     public enum RegDateType
     {
+        [XmlEnum(Name = "")]
+        NotSpecified = -1,
+
         DateOfRegistration = 0,
         DateOfFormationInGB = 1,
         DateOfTransferIntoGB = 2,

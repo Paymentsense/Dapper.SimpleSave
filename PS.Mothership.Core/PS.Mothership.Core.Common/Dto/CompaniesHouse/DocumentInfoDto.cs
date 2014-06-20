@@ -9,7 +9,7 @@ namespace PS.Mothership.Core.Common.Dto.CompaniesHouse
         public string FormType { get; set; }
         public string NumPages { get; set; }
         public DateTime? MadeUpDate { get; set; }
-        public Media? Media { get; set; }
+        public Media Media { get; set; }
         public string DocRequestKey { get; set; }
     }
 }
