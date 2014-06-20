@@ -7,8 +7,7 @@ namespace PS.Mothership.Core.Common.Dto.CompaniesHouse.SubDtos
     {
         public DateTime? DocumentDate { get; set; }
         public string FormType { get; set; }
-        public bool DocBeingScanned { get; set; }
-        public bool DocBeingScannedSpecified { get; set; }
+        public bool? DocBeingScanned { get; set; }
         public string ImageKey { get; set; }
         public List<string> DocumentDesc { get; set; }
         public List<FhistChildDocDto> ChildDocument { get; set; }
