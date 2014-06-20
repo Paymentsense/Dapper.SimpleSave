@@ -179,6 +179,7 @@ namespace IntegrationTests
 
             Assert.That(response.CompanyName, Is.EqualTo("ZENITH PRINT (UK) LIMITED"));
             Assert.That(response.FHistItem.Any(x => x.DocumentDate == Convert.ToDateTime("2014-01-28")));
+            Assert.That(response.FHistItem.Any(x => x.FormType == "2014-01-28"));
         }
 
         [Test]
@@ -209,6 +210,9 @@ namespace IntegrationTests
             var response = _companiesHouseGatewayServiceFacade.OfficerDetails(officerDetailsRequestDto);
 
             Assert.That(response.ApptCount.NumCurrentAppt, Is.EqualTo("1"));
+            Assert.That(response.Person.Surname, Is.EqualTo("MOODY"));
+            Assert.That(response.Person.Surname, Is.EqualTo("WAYNE"));
+            Assert.That(response.Person.Nationality, Is.EqualTo("BRITISH"));
         }
 
         [Test]
@@ -226,6 +230,8 @@ namespace IntegrationTests
 
             Assert.That(response.OfficerSearchItem.Any(x=>x.SearchMatch == SearchMatch.NEAR));
             Assert.That(response.OfficerSearchItem.Any(x => x.Forename.Contains("MAXWELL")));
+            Assert.That(response.OfficerSearchItem.Any(x => x.PostTown.Contains("CAERPHILLY")));
+            Assert.That(response.OfficerSearchItem.Any(x => x.Surname.Contains("MOODY")));
         }
 
         private static Mock<HttpResponseMessageFacade> CreateMockHttpResonse(HttpContent httpContent = null, HttpStatusCode statusCode = HttpStatusCode.OK)
@@ -274,7 +280,7 @@ namespace IntegrationTests
                     new SYSTEM_VALUE_MST
                     {
                         SystemValueKey = "CompaniesHouseTransactionId",
-                        Value = "1074"
+                        Value = "1080"
                     }
                 });
             _companiesHouseRepository = new CompaniesHouseRepository(_mockIUnitOfWork.Object, _mockIGenericRepository.Object, _mockLogger.Object);
