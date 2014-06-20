@@ -14,25 +14,18 @@ namespace PS.Mothership.Core.Common.Dto.CompaniesHouse
         public string CompanyCategory { get; set; }
         public string CompanyStatus { get; set; }
         public string CountryOfOrigin { get; set; }
-        public DateTime RegistrationDate { get; set; }
-        public bool RegistrationDateSpecified { get; set; }
+        public DateTime? RegistrationDate { get; set; }
         public object RegDateType { get; set; }
-        public DateTime DissolutionDate { get; set; }
-        public bool DissolutionDateSpecified { get; set; }
-        public DateTime IncorporationDate { get; set; }
-        public bool IncorporationDateSpecified { get; set; }
-        public DateTime ClosureDate { get; set; }
-        public bool ClosureDateSpecified { get; set; }
+        public DateTime? DissolutionDate { get; set; }
+        public DateTime? IncorporationDate { get; set; }
+        public DateTime? ClosureDate { get; set; }
         public AccountsDto Accounts { get; set; }
         public ReturnsDto Returns { get; set; }
         public CompanyDetailsMortgagesDto Mortgages { get; set; }
         public SicCodesDto SicCodes { get; set; }
-        public DateTime LastFullMemDate { get; set; }
-        public bool LastFullMemDateSpecified { get; set; }
-        public DateTime LastBulkShareDate { get; set; }
-        public bool LastBulkShareDateSpecified { get; set; }
-        public DateTime WeededDate { get; set; }
-        public bool WeededDateSpecified { get; set; }
+        public DateTime? LastFullMemDate { get; set; }
+        public DateTime? LastBulkShareDate { get; set; }
+        public DateTime? WeededDate { get; set; }
         public bool HasUKestablishment { get; set; }
         public bool HasAppointments { get; set; }
         public bool InLiquidation { get; set; }
