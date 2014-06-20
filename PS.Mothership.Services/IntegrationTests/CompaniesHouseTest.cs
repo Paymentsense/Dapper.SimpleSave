@@ -165,8 +165,6 @@ namespace IntegrationTests
 
             Assert.That(response.CoSearchItem.Any(x => x.CompanyNumber == "02050399"));
             Assert.That(response.CoSearchItem.Any(x => x.CompanyName == "ZENITH PRINT (UK) LIMITED"));
-            //Assert.That(response.CoAppt.Any(x => x.Person.PersonAddress.AddressLine.Any(y => y.Contains("15 LON UCHAF"))));
-            //Assert.That(response.CoAppt.Any(x => x.AppointmentDate == Convert.ToDateTime("1994-01-01")));
         }
 
         [Test]
@@ -180,9 +178,7 @@ namespace IntegrationTests
             var response = _companiesHouseGatewayServiceFacade.FilingHistory(filingHistoryRequestDto);
 
             Assert.That(response.CompanyName, Is.EqualTo("ZENITH PRINT (UK) LIMITED"));
-            Assert.That(response.FHistItem.Any(x => x.DocumentDate == Convert.ToDateTime("")));
-            //Assert.That(response.CoAppt.Any(x => x.Person.PersonAddress.AddressLine.Any(y => y.Contains("15 LON UCHAF"))));
-            //Assert.That(response.CoAppt.Any(x => x.AppointmentDate == Convert.ToDateTime("1994-01-01")));
+            Assert.That(response.FHistItem.Any(x => x.DocumentDate == Convert.ToDateTime("2014-01-28")));
         }
 
         [Test]
@@ -197,11 +193,9 @@ namespace IntegrationTests
             };
             var response = _companiesHouseGatewayServiceFacade.NumberSearch(numberSearchRequestDto);
 
-            Assert.That(response.SearchRows, Is.EqualTo("5"));
-            Assert.That(response.CoSearchItem.Any(x => x.CompanyDate == Convert.ToDateTime("")));
+            Assert.That(response.SearchRows, Is.EqualTo(4));
+            Assert.That(response.CoSearchItem.Any(x => x.CompanyDate == Convert.ToDateTime("1993-04-22")));
             Assert.That(response.CoSearchItem.Any(x => x.CompanyName == "ZENITH PRINT (UK) LIMITED"));
-            //Assert.That(response.CoAppt.Any(x => x.Person.PersonAddress.AddressLine.Any(y => y.Contains("15 LON UCHAF"))));
-            //Assert.That(response.CoAppt.Any(x => x.AppointmentDate == Convert.ToDateTime("1994-01-01")));
         }
 
         [Test]
@@ -214,11 +208,7 @@ namespace IntegrationTests
             };
             var response = _companiesHouseGatewayServiceFacade.OfficerDetails(officerDetailsRequestDto);
 
-            Assert.That(response.ApptCount.NumCurrentAppt, Is.EqualTo("5"));
-            //Assert.That(response.CoSearchItem.Any(x => x.CompanyDate == Convert.ToDateTime("")));
-            //Assert.That(response.CoSearchItem.Any(x => x.CompanyName == "ZENITH PRINT (UK) LIMITED"));
-            //Assert.That(response.CoAppt.Any(x => x.Person.PersonAddress.AddressLine.Any(y => y.Contains("15 LON UCHAF"))));
-            //Assert.That(response.CoAppt.Any(x => x.AppointmentDate == Convert.ToDateTime("1994-01-01")));
+            Assert.That(response.ApptCount.NumCurrentAppt, Is.EqualTo("1"));
         }
 
         [Test]
@@ -231,15 +221,11 @@ namespace IntegrationTests
                 Surname = "MOODY",
                 PostTown = "CAERPHILLY",
                 CountryOfResidence = "UNITED KINGDOM",
-                
             };
             var response = _companiesHouseGatewayServiceFacade.OfficerSearch(officerSearchRequestDto);
 
-            Assert.That(response.OfficerSearchItem.Any(x=>x.SearchMatch == SearchMatch.EXACT));
-            //Assert.That(response.CoSearchItem.Any(x => x.CompanyDate == Convert.ToDateTime("")));
-            //Assert.That(response.CoSearchItem.Any(x => x.CompanyName == "ZENITH PRINT (UK) LIMITED"));
-            //Assert.That(response.CoAppt.Any(x => x.Person.PersonAddress.AddressLine.Any(y => y.Contains("15 LON UCHAF"))));
-            //Assert.That(response.CoAppt.Any(x => x.AppointmentDate == Convert.ToDateTime("1994-01-01")));
+            Assert.That(response.OfficerSearchItem.Any(x=>x.SearchMatch == SearchMatch.NEAR));
+            Assert.That(response.OfficerSearchItem.Any(x => x.Forename.Contains("MAXWELL")));
         }
 
         private static Mock<HttpResponseMessageFacade> CreateMockHttpResonse(HttpContent httpContent = null, HttpStatusCode statusCode = HttpStatusCode.OK)
