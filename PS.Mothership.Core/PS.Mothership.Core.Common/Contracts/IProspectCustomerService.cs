@@ -17,13 +17,8 @@ namespace PS.Mothership.Core.Common.Contracts
         [OperationContract]
         ProspectDto GetProspect(Guid merchantGuid);
 
-        /// <summary>
-        ///     Add Prospect
-        /// </summary>
-        /// <param name="prospectDto"></param>
-        /// <returns></returns>
         [OperationContract]
-        ProspectResponseDto AddProspect(ProspectDto prospectDto);
+        ProspectResponseDto AddProspect(AddProspectDto prospectDto);
 
         [OperationContract]
         ProspectDetailsDto UpdateProspect(ProspectDetailsDto dto);
@@ -40,15 +35,13 @@ namespace PS.Mothership.Core.Common.Contracts
         [OperationContract]
         void RemoveProspectAddress(MerchantAddressDto dto);
 
-        /// <summary>
-        ///     Get similiar customers
-        /// </summary>
-        /// <param name="prospectDto"></param>
-        /// <returns></returns>
         [OperationContract]
         PagedList<ProspectDto> GetProspectsByFilter(DataRequestDto dataRequestDto);
 
         [OperationContract]
         PagedList<ProspectAddressDto> GetProspectsAddressByFilter(DataRequestDto dataRequestDto);
+
+        [OperationContract]
+        PagedList<ProspectAddressDto> GetSimilarMerchants(FullAddressDto dto);
     }
 }
