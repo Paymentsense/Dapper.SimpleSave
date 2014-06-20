@@ -1,6 +1,6 @@
 ﻿namespace PS.Mothership.Core.Common.Dto.CompaniesHouse
 {
-    public class CompanyApptRequestDto
+    public class CompanyAppointmentsRequestDto
     {
         public string CompanyName { get; set; }
         public string CompanyNumber { get; set; }

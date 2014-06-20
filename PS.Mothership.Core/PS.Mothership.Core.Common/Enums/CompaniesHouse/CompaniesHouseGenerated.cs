@@ -206,4 +206,13 @@
         /// <remarks/>
         EUR,
     }
+
+    public enum RegDateType
+    {
+        DateOfRegistration = 0,
+        DateOfFormationInGB = 1,
+        DateOfTransferIntoGB = 2,
+        DateOfTransformation = 3,
+        DateOfConversion = 4
+    }
 }
