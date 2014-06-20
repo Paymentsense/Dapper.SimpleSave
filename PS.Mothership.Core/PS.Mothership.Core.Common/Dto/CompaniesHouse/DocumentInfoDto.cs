@@ -8,8 +8,7 @@ namespace PS.Mothership.Core.Common.Dto.CompaniesHouse
         public string CompanyNumber { get; set; }
         public string FormType { get; set; }
         public string NumPages { get; set; }
-        public DateTime MadeUpDate { get; set; }
-        public bool MadeUpDateSpecified { get; set; }
+        public DateTime? MadeUpDate { get; set; }
         public Media Media { get; set; }
         public string DocRequestKey { get; set; }
     }

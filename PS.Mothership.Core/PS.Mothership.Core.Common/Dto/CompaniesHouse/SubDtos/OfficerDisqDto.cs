@@ -8,8 +8,8 @@ namespace PS.Mothership.Core.Common.Dto.CompaniesHouse.SubDtos
         public string CompanyName { get; set; }
         public string CompanyNumber { get; set; }
         public string DisqReason { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
+        public DateTime? StartDate { get; set; }
+        public DateTime? EndDate { get; set; }
         public List<ExemptionDto> Exemption { get; set; }
     }
 }

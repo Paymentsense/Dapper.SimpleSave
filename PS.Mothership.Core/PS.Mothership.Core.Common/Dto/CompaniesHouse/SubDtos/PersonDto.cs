@@ -9,8 +9,7 @@ namespace PS.Mothership.Core.Common.Dto.CompaniesHouse.SubDtos
         public bool CorporateIndicatorSpecified { get; set; }
         public string Surname { get; set; }
         public string Title { get; set; }
-        public DateTime Dob { get; set; }
-        public bool DobSpecified { get; set; }
+        public DateTime? Dob { get; set; }
         public string Nationality { get; set; }
         public string CountryOfResidence { get; set; }
         public PersonAddressDto PersonAddress { get; set; }

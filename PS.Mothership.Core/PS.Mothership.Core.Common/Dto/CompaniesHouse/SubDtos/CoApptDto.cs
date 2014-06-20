@@ -1,4 +1,5 @@
-﻿using PS.Mothership.Core.Common.Enums.CompaniesHouse;
+﻿using System;
+using PS.Mothership.Core.Common.Enums.CompaniesHouse;
 
 namespace PS.Mothership.Core.Common.Dto.CompaniesHouse.SubDtos
 {
@@ -12,9 +13,8 @@ namespace PS.Mothership.Core.Common.Dto.CompaniesHouse.SubDtos
         public AppointmentStatus AppointmentStatus { get; set; }
         public ApptDatePrefix ApptDatePrefix { get; set; }
         public bool ApptDatePrefixSpecified { get; set; }
-        public System.DateTime AppointmentDate { get; set; }
-        public System.DateTime ResignationDate { get; set; }
-        public bool ResignationDateSpecified { get; set; }
+        public DateTime? AppointmentDate { get; set; }
+        public DateTime? ResignationDate { get; set; }
         public string Occupation { get; set; }
     }
 }
