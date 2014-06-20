@@ -1,11 +1,11 @@
-﻿using System;
+﻿using PS.Mothership.Core.Common.Template.Dial;
+using System;
 using System.Runtime.Serialization;
-using PS.Mothership.Core.Common.Template.Dial;
 
 namespace PS.Mothership.Core.Common.Dto.Dialler
 {
     [DataContract]
-    public class CallDto
+    public class CallRecordDto
     {
         [DataMember]
         public Guid CallGuid { get; set; }
@@ -24,25 +24,25 @@ namespace PS.Mothership.Core.Common.Dto.Dialler
         [DataMember]
         public DialCallDispositionEnum CallDispositionKey { get; set; }
         [DataMember]
-        public DateTimeOffset? StartDateTime { get; set; }
+        public DateTimeOffset StartDateTime { get; set; }
         [DataMember]
         public DateTimeOffset? EndDateTime { get; set; }
         [DataMember]
-        public Guid? MerchantGuid { get; set; }
+        public Guid MerchantGuid { get; set; }
         [DataMember]
         public Guid? ProspectingCampaignCallGuid { get; set; }
         [DataMember]
         public long CampaignKey { get; set; }
         [DataMember]
-        public int? PreviewTime { get; set; }
+        public int PreviewTime { get; set; }
         [DataMember]
-        public int? DialOrRingTime { get; set; }
+        public int DialOrRingTime { get; set; }
         [DataMember]
-        public int? TalkTime { get; set; }
+        public int TalkTime { get; set; }
         [DataMember]
-        public int? HoldTime { get; set; }
+        public int HoldTime { get; set; }
         [DataMember]
-        public int? WrapTime { get; set; }
+        public int WrapTime { get; set; }
         [DataMember]
         public Guid? SipCallGuid { get; set; }
         [DataMember]
