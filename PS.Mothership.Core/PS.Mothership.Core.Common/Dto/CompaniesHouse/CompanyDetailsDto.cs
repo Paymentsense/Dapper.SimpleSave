@@ -14,7 +14,7 @@ namespace PS.Mothership.Core.Common.Dto.CompaniesHouse
         public string CompanyStatus { get; set; }
         public string CountryOfOrigin { get; set; }
         public DateTime? RegistrationDate { get; set; }
-        public object RegDateType { get; set; }
+        public string RegDateType { get; set; }
         public DateTime? DissolutionDate { get; set; }
         public DateTime? IncorporationDate { get; set; }
         public DateTime? ClosureDate { get; set; }

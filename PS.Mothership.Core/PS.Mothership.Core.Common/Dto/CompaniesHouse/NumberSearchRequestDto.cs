@@ -7,6 +7,6 @@ namespace PS.Mothership.Core.Common.Dto.CompaniesHouse
     {
         public string PartialCompanyNumber {get; set;}
         public string SearchRows {get; set;}
-        public List<DataSet> DataSet { get; set; }
+        public List<DataSet?> DataSet { get; set; }
     }
 }
