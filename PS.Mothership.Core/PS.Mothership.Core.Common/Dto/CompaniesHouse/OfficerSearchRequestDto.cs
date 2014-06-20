@@ -7,7 +7,7 @@ namespace PS.Mothership.Core.Common.Dto.CompaniesHouse
     {
         public string Surname {get; set;}
         public string PostTown {get; set;}
-        public OfficerType? OfficerType {get; set;}
+        public OfficerType OfficerType {get; set;}
         public string CountryOfResidence {get; set;}
         public bool? IncludeResignedInd {get; set;}
         public string ContinuationKey {get; set;}
