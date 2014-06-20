@@ -1,0 +1,26 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace PS.Mothership.Core.Common.Dto.Merchant
+{
+    public class AddProspectDto
+    {
+        public string CompanyName { get; set; }
+
+        public string LocatorId
+        {
+            get
+            {
+                var id = Convert.ToString((CompanyName.GetHashCode() & 0xffffff) | 0x1000000, 16).Substring(1);
+                return id;
+            }
+        }
+
+        public Guid ContactGuid { get; set; }
+
+        public Guid AddressGuid { get; set; }
+    }
+}

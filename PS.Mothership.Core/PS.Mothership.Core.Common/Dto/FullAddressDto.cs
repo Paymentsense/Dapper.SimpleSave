@@ -8,6 +8,9 @@ namespace PS.Mothership.Core.Common.Dto
     public class FullAddressDto : AddressDto
     {
         [DataMember]
+        public string CompanyName { get; set; }
+
+        [DataMember]
         public string PostCode { get; set; }
 
         [DataMember]
