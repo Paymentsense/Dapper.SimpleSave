@@ -11,7 +11,6 @@ namespace PS.Mothership.Core.Common.Dto.CompaniesHouse.SubDtos
         public AppointmentStatus AppointmentStatus { get; set; }
         public AppointmentType AppointmentType { get; set; }
         public ApptDatePrefix ApptDatePrefix { get; set; }
-        public bool ApptDatePrefixSpecified { get; set; }
         public DateTime? AppointmentDate { get; set; }
         public DateTime? ResignationDate { get; set; }
         public string Occupation { get; set; }

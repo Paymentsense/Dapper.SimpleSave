@@ -7,8 +7,7 @@ namespace PS.Mothership.Core.Common.Dto.CompaniesHouse
         public string CompanyName { get; set; }
         public string CompanyNumber { get; set; }
         public string UserReference { get; set; }
-        public bool SatisfiedChargesInd { get; set; }
-        public bool SatisfiedChargesIndSpecified { get; set; }
+        public bool? SatisfiedChargesInd { get; set; }
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
         public string ContinuationKey { get; set; }

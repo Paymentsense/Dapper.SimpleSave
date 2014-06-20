@@ -7,8 +7,7 @@ namespace PS.Mothership.Core.Common.Dto.CompaniesHouse
     {
         public string CompanyName { get; set; }
         public string CompanyNumber { get; set; }
-        public bool HasInconsistencies { get; set; }
-        public bool HasInconsistenciesSpecified { get; set; }
+        public bool? HasInconsistencies { get; set; }
         public int NumCurrentAppt { get; set; }
         public int NumResignedAppt { get; set; }
         public int SearchRows { get; set; }

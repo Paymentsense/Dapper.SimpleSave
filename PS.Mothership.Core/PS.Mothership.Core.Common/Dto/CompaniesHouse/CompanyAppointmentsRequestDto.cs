@@ -4,8 +4,7 @@
     {
         public string CompanyName { get; set; }
         public string CompanyNumber { get; set; }
-        public bool IncludeResignedInd { get; set; }
-        public bool IncludeResignedIndSpecified { get; set; }
+        public bool? IncludeResignedInd { get; set; }
         public string UserReference { get; set; }
         public string ContinuationKey { get; set; }
     }

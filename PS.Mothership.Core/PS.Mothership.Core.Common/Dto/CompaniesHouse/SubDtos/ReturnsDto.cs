@@ -8,6 +8,6 @@ namespace PS.Mothership.Core.Common.Dto.CompaniesHouse.SubDtos
         public DateTime? NextDueDate { get; set; }
         public Overdue Overdue { get; set; }
         public DateTime? LastMadeUpDate { get; set; }
-        public bool DocumentAvailable { get; set; }
+        public bool? DocumentAvailable { get; set; }
     }
 }
