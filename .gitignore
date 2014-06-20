@@ -67,3 +67,11 @@ packages/
 #Test files
 *.testsettings
 .cs.rej
+
+*.LOCAL.*
+*.REMOTE.*
+*.BACKUP.*
+*.BASE.*
+*.orig
+*Enum.cs
+*.old
