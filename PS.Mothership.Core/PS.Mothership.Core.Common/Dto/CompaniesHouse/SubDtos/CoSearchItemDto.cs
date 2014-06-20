@@ -9,9 +9,7 @@ namespace PS.Mothership.Core.Common.Dto.CompaniesHouse.SubDtos
         public string CompanyNumber { get; set; }
         public DataSet DataSet { get; set; }
         public CompanyIndexStatus CompanyIndexStatus { get; set; }
-        public bool CompanyIndexStatusSpecified { get; set; }
         public DateTime? CompanyDate { get; set; }
         public SearchMatch SearchMatch { get; set; }
-        public bool SearchMatchSpecified { get; set; }
     }
 }

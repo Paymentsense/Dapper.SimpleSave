@@ -11,6 +11,5 @@ namespace PS.Mothership.Core.Common.Dto.CompaniesHouse.SubDtos
         public string DocumentDesc { get; set; }
         public string Description { get; set; }
         public bool? LastestStatementOfCapital { get; set; }
-        public bool LastestStatementOfCapitalSpecified { get; set; }
     }
 }

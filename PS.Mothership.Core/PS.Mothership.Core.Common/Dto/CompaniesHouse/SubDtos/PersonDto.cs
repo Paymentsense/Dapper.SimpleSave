@@ -5,8 +5,7 @@ namespace PS.Mothership.Core.Common.Dto.CompaniesHouse.SubDtos
 {
     public class PersonDto
     {
-        public bool CorporateIndicator { get; set; }
-        public bool CorporateIndicatorSpecified { get; set; }
+        public bool? CorporateIndicator { get; set; }
         public string Surname { get; set; }
         public string Title { get; set; }
         public DateTime? Dob { get; set; }

@@ -8,8 +8,7 @@ namespace PS.Mothership.Core.Common.Dto.CompaniesHouse
     {
         public string CompanyName { get; set; }
         public string CompanyNumber { get; set; }
-        public bool HasInconsistencies { get; set; }
-        public bool HasInconsistenciesSpecified { get; set; }
+        public bool? HasInconsistencies { get; set; }
         public RegAddressDto RegAddress { get; set; }
         public string CompanyCategory { get; set; }
         public string CompanyStatus { get; set; }
@@ -26,9 +25,9 @@ namespace PS.Mothership.Core.Common.Dto.CompaniesHouse
         public DateTime? LastFullMemDate { get; set; }
         public DateTime? LastBulkShareDate { get; set; }
         public DateTime? WeededDate { get; set; }
-        public bool HasUKestablishment { get; set; }
-        public bool HasAppointments { get; set; }
-        public bool InLiquidation { get; set; }
+        public bool? HasUKestablishment { get; set; }
+        public bool? HasAppointments { get; set; }
+        public bool? InLiquidation { get; set; }
         public LimitedPartnershipsDto LimitedPartnerships { get; set; }
         public List<PreviousNameDto> PreviousNames { get; set; }
     }
