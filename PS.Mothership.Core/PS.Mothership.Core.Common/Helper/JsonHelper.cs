@@ -31,9 +31,9 @@ namespace PS.Mothership.Core.Common.Helper
                     JsonConvert.SerializeObject(objData, Formatting.None, new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.All, ContractResolver = new DynamicContractResolver() }) :
                     JsonConvert.SerializeObject(objData, Formatting.None, new JsonSerializerSettings() { ContractResolver = new DynamicContractResolver() });
             }
-            catch (Exception ex)
+            catch
             {
-                // error logging later
+                //todo: error logging later
             }
 
             return null;
@@ -56,9 +56,9 @@ namespace PS.Mothership.Core.Common.Helper
                 serializer.Serialize(writer, objData);
                 return ms.ToArray();
             }
-            catch (Exception ex)
+            catch
             {
-                // error logging later
+                //todo: error logging later
             }
 
             return null;
@@ -86,9 +86,9 @@ namespace PS.Mothership.Core.Common.Helper
                     JsonConvert.DeserializeObject<dynamic>(jsonString, new JsonSerializerSettings() { ContractResolver = new DynamicContractResolver() });
 
             }
-            catch (Exception ex)
+            catch
             {
-                // error logging later
+                //todo: error logging later
             }
 
             return null;
@@ -108,9 +108,9 @@ namespace PS.Mothership.Core.Common.Helper
                 var outObject = JsonConvert.DeserializeObject<T>(jsonString);
                 return (T)Convert.ChangeType(outObject, typeof(T), CultureInfo.CurrentCulture);
             }
-            catch (Exception ex)
+            catch
             {
-                // error logging later
+                //todo: error logging later
             }
 
             // return default
@@ -134,9 +134,9 @@ namespace PS.Mothership.Core.Common.Helper
                 var outObject = serializer.Deserialize<T>(reader);
                 return (T)Convert.ChangeType(outObject, typeof(T), CultureInfo.CurrentCulture);
             }
-            catch (Exception ex)
+            catch
             {
-                // error logging later
+                //todo: error logging later
             }
 
             // return default
