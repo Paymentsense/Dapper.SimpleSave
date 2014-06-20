@@ -121,8 +121,8 @@ namespace IntegrationTests
             SetGatewayConfig(CompanyDetailsResponseXml);
             var companyDetailsRequestDto = new CompanyDetailsRequestDto
             {
-                CompanyNumber = "02050399",
-                //CompanyNumber = "02050205",
+                //CompanyNumber = "02050399",
+                CompanyNumber = "02050205",
                 GiveMortTotals = false,
             };
             var response = _companiesHouseGatewayServiceFacade.CompanyDetails(companyDetailsRequestDto);
@@ -174,7 +174,7 @@ namespace IntegrationTests
                     new SYSTEM_VALUE_MST
                     {
                         SystemValueKey = "CompaniesHouseTransactionId",
-                        Value = "1050"
+                        Value = "1052"
                     }
                 });
             _companiesHouseRepository = new CompaniesHouseRepository(_mockIUnitOfWork.Object, _mockIGenericRepository.Object, _mockLogger.Object);
