@@ -19,8 +19,14 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
             }
         }
 
+        public long MainPhoneCountryKey { get; set; }
+
+        public string MainPhoneNumber { get; set; }
+
         public Guid ContactGuid { get; set; }
 
         public Guid AddressGuid { get; set; }
+
+        public Guid MainPhoneGuid { get; set; }
     }
 }
