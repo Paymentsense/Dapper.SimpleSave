@@ -4,7 +4,6 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Net;
 using System.Net.Http;
-using System.Xml.Linq;
 using Castle.MicroKernel;
 using Castle.Windsor;
 using Moq;
@@ -73,7 +72,10 @@ namespace IntegrationTests
         _companiesHouseRepository = null;
         _mockIUnitOfWork = null;
         _mockIGenericRepository = null;
+        _mockHttpClientFacade = null;
+        _mockHttpClientFactory = null;
         _httpClientFactory = null;
+        _companiesHouseUriServiceFacade = null;
         }
 
         [Test]
@@ -279,7 +281,7 @@ namespace IntegrationTests
                     new SYSTEM_VALUE_MST
                     {
                         SystemValueKey = "CompaniesHouseTransactionId",
-                        Value = "1080"
+                        Value = "1090"
                     }
                 });
             _companiesHouseRepository = new CompaniesHouseRepository(_mockIUnitOfWork.Object, _mockIGenericRepository.Object, _mockLogger.Object);
