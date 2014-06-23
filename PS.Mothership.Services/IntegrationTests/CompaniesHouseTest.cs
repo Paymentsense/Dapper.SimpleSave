@@ -43,7 +43,7 @@ namespace IntegrationTests
         private ICompaniesHouseGatewayServiceFacade _companiesHouseGatewayServiceFacade;
         private ICompaniesHouseGatewayService _companiesHouseGatewayService;
         private ICompaniesHouseUriServiceFacade _companiesHouseUriServiceFacade;
-        private ICompaniesHouseConfiguration _companiesHouseConfiguration;
+        private ICompaniesHouseGatewayConfiguration _companiesHouseGatewayConfiguration;
         private ITransactionIdManager _transactionIdManager;
         private ICompaniesHouseRepository _companiesHouseRepository;
         private HttpClientFactory _httpClientFactory;
@@ -57,7 +57,7 @@ namespace IntegrationTests
         public void Initialize()
         {
             _mockLogger = new Mock<IMSLogger>();
-            _companiesHouseConfiguration = new CompaniesHouseConfiguration(_mockLogger.Object);
+            _companiesHouseGatewayConfiguration = new CompaniesHouseGatewayConfiguration(_mockLogger.Object);
         }
 
         [TearDown]
@@ -68,7 +68,7 @@ namespace IntegrationTests
         _mockLogger = null;
         _companiesHouseGatewayServiceFacade = null;
         _companiesHouseGatewayService = null;
-        _companiesHouseConfiguration = null;
+        _companiesHouseGatewayConfiguration = null;
         _transactionIdManager = null;
         _companiesHouseRepository = null;
         _mockIUnitOfWork = null;
@@ -179,7 +179,7 @@ namespace IntegrationTests
 
             Assert.That(response.CompanyName, Is.EqualTo("ZENITH PRINT (UK) LIMITED"));
             Assert.That(response.FHistItem.Any(x => x.DocumentDate == Convert.ToDateTime("2014-01-28")));
-            Assert.That(response.FHistItem.Any(x => x.FormType == "2014-01-28"));
+            Assert.That(response.FHistItem.Any(x => x.FormType == "AR01"));
         }
 
         [Test]
@@ -300,13 +300,13 @@ namespace IntegrationTests
             _mockHttpClientFacade.Setup(x => x.Post(It.IsAny<string>(), It.IsAny<HttpContent>())).Returns(result.Object);
             _mockHttpClientFactory = new Mock<HttpClientFactory>();
             _mockHttpClientFactory.Setup(x => x.Create()).Returns(_mockHttpClientFacade.Object);
-            _gatewayConnection = new GatewayConnection(_companiesHouseConfiguration, _mockHttpClientFactory.Object);
+            _gatewayConnection = new GatewayConnection(_companiesHouseGatewayConfiguration, _mockHttpClientFactory.Object);
         }
 
         private void UseRealGateway()
         {
             _httpClientFactory = new HttpClientFactory();
-            _gatewayConnection = new GatewayConnection(_companiesHouseConfiguration, _httpClientFactory);
+            _gatewayConnection = new GatewayConnection(_companiesHouseGatewayConfiguration, _httpClientFactory);
         }
 
         #region Json and Xml Response Data
