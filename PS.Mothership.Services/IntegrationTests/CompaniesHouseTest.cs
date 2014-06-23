@@ -79,8 +79,7 @@ namespace IntegrationTests
         [Test]
         public void CompaniesHouseJsonCompanyTest()
         {   
-            //TODO Check the Ioc is working correctly
-            //Testing the IoC Configuration for Xml and Json works
+            //Testing the IoC dependency configuration for Json works
             var thirdParty = ThirdPartyIocConfig.New();
             var container = thirdParty.Configure(null, new WindsorContainer());
 
@@ -100,8 +99,7 @@ namespace IntegrationTests
         [Test]
         public void CompaniesHouseXmlCompanyTest()
         {
-            //TODO Check the Ioc is working correctly
-            //Testing the IoC Configuration for Xml and Json works
+            //Testing the IoC dependency configuration for Xml works
             var thirdParty = ThirdPartyIocConfig.New();
             var container = thirdParty.Configure(null, new WindsorContainer());
 
@@ -211,7 +209,7 @@ namespace IntegrationTests
 
             Assert.That(response.ApptCount.NumCurrentAppt, Is.EqualTo("1"));
             Assert.That(response.Person.Surname, Is.EqualTo("MOODY"));
-            Assert.That(response.Person.Surname, Is.EqualTo("WAYNE"));
+            Assert.That(response.Person.Forename.Any(x => x == "WAYNE"));
             Assert.That(response.Person.Nationality, Is.EqualTo("BRITISH"));
         }
 
@@ -245,7 +243,6 @@ namespace IntegrationTests
         private void SetUriConfig(string dataResponse, IWindsorContainer container)
         {
             var result = CreateMockHttpResonse(new StringContent(dataResponse));
-            //_httpClientFactory = new HttpClientFactory();
             _mockHttpClientFacade = new Mock<IHttpClientFacade>();
             _mockHttpClientFacade.Setup(x => x.Get(It.IsAny<string>()))
                 .Returns(() => result.Object);
@@ -255,14 +252,16 @@ namespace IntegrationTests
 
             container.Register(Component.For<HttpClientFactory>()
                 .Instance(_mockHttpClientFactory.Object)
+                .Named("MockFactory")
                 .LifeStyle.Singleton);
 
             container.Register(Component.For<IHttpClientFacade>()
                 .Instance(_mockHttpClientFacade.Object)
+                .Named("MockFacade")
                 .LifeStyle.Transient);
 
-            container.Kernel.AddHandlerSelector(new HttpClientFactoryHandlerSelector());
-            container.Kernel.AddHandlerSelector(new HttpClientFacadeHandlerSelector());
+            //Comment out to use real connection
+            container.Kernel.AddHandlerSelector(new HttpMockHandlerSelector());
         }
 
         private void SetGatewayConfig(string dataResponse)
@@ -311,7 +310,7 @@ namespace IntegrationTests
 
         #region Json and Xml Response Data
 
-        private const string JsonDataReponse = @"{""primaryTopic"" : { ""CompanyName"" : ""ZENITH PINT (UK) LIMITED"",""CompanyNumber"" : ""02050399"",""RegAddress"" : {   ""AddressLine1"" : ""ZENITH HOUSE"",   ""AddressLine2"" : ""MOY ROAD INDUSTRIAL ESTATE"",   ""PostTown"" : ""TAFFS WELL"",   ""County"" : ""CARDIFF"",   ""Postcode"" : ""CF15 7QR""},""CompanyCategory"" : ""Private Limited Company"",""CompanyStatus"" : ""Active"",""CountryOfOrigin"" : ""United Kingdom"",""IncorporationDate"" : ""28/08/1986"",""PreviousNames"" : [   {      ""CONDate"" : ""22/03/1996"",      ""CompanyName"" : ""ZENITH TREFOREST PRESS LIMITED""   }],""Accounts"" : {   ""AccountRefDay"" : ""31"",   ""AccountRefMonth"" : ""03"",   ""NextDueDate"" : ""31/12/2014"",   ""LastMadeUpDate"" : ""31/03/2013"",   ""AccountCategory"" : ""TOTAL EXEMPTION SMALL""},""Returns"" : {   ""NextDueDate"" : ""28/01/2015"",   ""LastMadeUpDate"" : ""31/12/2013""},""Mortgages"" : {   ""NumMortCharges"" : ""6"",   ""NumMortOutstanding"" : ""2"",   ""NumMortPartSatisfied"" : ""0"",   ""NumMortSatisfied"" : ""4""},""SICCodes"" : {   ""SicText"" : [      ""70100 - Activities of head offices""   ]}   }}";
+        private const string JsonDataReponse = @"{""primaryTopic"" : { ""CompanyName"" : ""ZENITH PRINT (UK) LIMITED"",""CompanyNumber"" : ""02050399"",""RegAddress"" : {   ""AddressLine1"" : ""ZENITH HOUSE"",   ""AddressLine2"" : ""MOY ROAD INDUSTRIAL ESTATE"",   ""PostTown"" : ""TAFFS WELL"",   ""County"" : ""CARDIFF"",   ""Postcode"" : ""CF15 7QR""},""CompanyCategory"" : ""Private Limited Company"",""CompanyStatus"" : ""Active"",""CountryOfOrigin"" : ""United Kingdom"",""IncorporationDate"" : ""28/08/1986"",""PreviousNames"" : [   {      ""CONDate"" : ""22/03/1996"",      ""CompanyName"" : ""ZENITH TREFOREST PRESS LIMITED""   }],""Accounts"" : {   ""AccountRefDay"" : ""31"",   ""AccountRefMonth"" : ""03"",   ""NextDueDate"" : ""31/12/2014"",   ""LastMadeUpDate"" : ""31/03/2013"",   ""AccountCategory"" : ""TOTAL EXEMPTION SMALL""},""Returns"" : {   ""NextDueDate"" : ""28/01/2015"",   ""LastMadeUpDate"" : ""31/12/2013""},""Mortgages"" : {   ""NumMortCharges"" : ""6"",   ""NumMortOutstanding"" : ""2"",   ""NumMortPartSatisfied"" : ""0"",   ""NumMortSatisfied"" : ""4""},""SICCodes"" : {   ""SicText"" : [      ""70100 - Activities of head offices""   ]}   }}";
 
         private const string XmlDataResponse = @" <Result xmlns=""http://www.companieshouse.gov.uk/terms/xxx"">  <primaryTopic href=""http://business.data.gov.uk/id/company/02050399"">      <CompanyName>ZENITH PRINT (UK) LIMITED</CompanyName>      <CompanyNumber>02050399</CompanyNumber>      <RegAddress href=""http://data.companieshouse.gov.uk/doc/company/02050399#RegAddress"">          <AddressLine1>ZENITH HOUSE</AddressLine1>          <AddressLine2>MOY ROAD INDUSTRIAL ESTATE</AddressLine2>          <PostTown>TAFFS WELL</PostTown>          <County>CARDIFF</County>          <Postcode>CF15 7QR</Postcode>      </RegAddress>      <CompanyCategory>Private Limited Company</CompanyCategory>      <CompanyStatus>Active</CompanyStatus>      <CountryOfOrigin>United Kingdom</CountryOfOrigin>      <IncorporationDate>1986-08-28</IncorporationDate>      <PreviousNames href=""http://data.companieshouse.gov.uk/doc/company/02050399#PreviousNames"">          <CONDate>1996-03-22</CONDate>          <CompanyName>ZENITH TREFOREST PRESS LIMITED</CompanyName>      </PreviousNames>      <Accounts href=""http://data.companieshouse.gov.uk/doc/company/02050399#Accounts"">          <AccountRefDay>31</AccountRefDay>          <AccountRefMonth>03</AccountRefMonth>          <NextDueDate>2014-12-31</NextDueDate>          <LastMadeUpDate>2013-03-31</LastMadeUpDate>          <AccountCategory>TOTAL EXEMPTION SMALL</AccountCategory>      </Accounts>      <Returns href=""http://data.companieshouse.gov.uk/doc/company/02050399#Returns"">          <NextDueDate>2015-01-28</NextDueDate>          <LastMadeUpDate>2013-12-31</LastMadeUpDate>      </Returns>      <Mortgages href=""http://data.companieshouse.gov.uk/doc/company/02050399#Mortgages"">          <NumMortCharges>6</NumMortCharges>          <NumMortOutstanding>2</NumMortOutstanding>          <NumMortPartSatisfied>0</NumMortPartSatisfied>          <NumMortSatisfied>4</NumMortSatisfied>      </Mortgages>      <SICCodes href=""http://data.companieshouse.gov.uk/doc/company/02050399#SICCodes"">          <SicText>70100 - Activities of head offices</SicText>      </SICCodes>  </primaryTopic></Result>";
 
@@ -332,31 +331,36 @@ namespace IntegrationTests
         #endregion
     }
 
-    public class HttpClientFactoryHandlerSelector : IHandlerSelector
+    public class HttpMockHandlerSelector : IHandlerSelector
     {
-        public static bool UseMockRegistrator { private get; set; }
+        public static string UseMockRegistrator { private get; set; }
         public bool HasOpinionAbout(string key, Type service)
         {
-            return service == typeof(HttpClientFactory);
+            if (service == typeof (HttpClientFactory))
+            {
+                UseMockRegistrator = "MockFactory";
+                return true;
+            }
+            if (service == typeof(HttpClientFacade))
+            {
+                UseMockRegistrator = "MockFacade";
+                return true;
+            }
+            return false;
         }
+
         public IHandler SelectHandler(string key, Type service, IHandler[] handlers)
         {
-            return handlers.First(x => UseMockRegistrator ? x.ComponentModel.Implementation == typeof(Mock<HttpClientFactory>) :
-                                       x.ComponentModel.Implementation == typeof(HttpClientFactory));
+            IHandler handler = null;
+            if (UseMockRegistrator.Contains("MockFactory"))
+            {
+                handler = handlers.First(x => x.ComponentModel.ComponentName.Name == "MockFactory");
+            }
+            if (UseMockRegistrator.Contains("MockFacade"))
+            {
+                handler = handlers.First(x => x.ComponentModel.ComponentName.Name == "MockFacade");
+            }
+            return handler;
         }
     }
-
-    public class HttpClientFacadeHandlerSelector : IHandlerSelector
-    {
-        public static bool UseMockRegistrator { private get; set; }
-        public bool HasOpinionAbout(string key, Type service)
-        {
-            return service == typeof(HttpClientFactory);
-        }
-        public IHandler SelectHandler(string key, Type service, IHandler[] handlers)
-        {
-            return handlers.First(x => UseMockRegistrator ? x.ComponentModel.Implementation == typeof(Mock<HttpClientFactory>) :
-                                       x.ComponentModel.Implementation == typeof(HttpClientFactory));
-        }
-    }  
 }
