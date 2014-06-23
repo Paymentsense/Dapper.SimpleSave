@@ -137,7 +137,6 @@
     <Compile Include="Template\GenBusinessLegalTypeEnum.cs">
       <DependentUpon>DbEnumBuilder.tt</DependentUpon>
     </Compile>
-
     <Compile Include="Template\GenContactRoleEnum.cs">
       <DependentUpon>DbEnumBuilder.tt</DependentUpon>
     </Compile>
