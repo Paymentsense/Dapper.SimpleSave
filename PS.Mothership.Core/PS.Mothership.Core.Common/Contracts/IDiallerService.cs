@@ -3,8 +3,6 @@ using PS.Mothership.Core.Common.Template.Dial;
 using System;
 using System.Collections.Generic;
 using System.ServiceModel;
-using MissingCallRecordingDto = PS.Mothership.Core.Common.Dto.Dialler.MissingCallRecordingDto;
-
 
 namespace PS.Mothership.Core.Common.Contracts
 {
@@ -12,13 +10,13 @@ namespace PS.Mothership.Core.Common.Contracts
     public interface IDiallerService
     {
         [OperationContract]
-        ValidUserInfoDto ValidateUser(Guid updateSessionGuid);
+        ValidUserInfoDto ValidateUser();
 
         [OperationContract]
-        Guid LogDiallerSessionSubscribe(Guid userGuid, Guid updateSessionGuid);
+        Guid LogDiallerSessionSubscribe(Guid userGuid);
 
         [OperationContract]
-        void LogDiallerSessionUnsubscribe(Guid userGuid, Guid updateSessionGuid, Guid diallerSessionGuid,
+        void LogDiallerSessionUnsubscribe(Guid userGuid, Guid diallerSessionGuid,
             bool wasForcedLogout, DialLogoutReasonEnum logoutReason);
 
         [OperationContract]
@@ -28,7 +26,7 @@ namespace PS.Mothership.Core.Common.Contracts
         IEnumerable<MissingCallRecordingDto> GetMissingCallRecordings(DateTime dateStart, DateTime dateEnd);
 
         [OperationContract]
-        void UpdateRecorderCallIdForCallGuid(Guid callGuid, long recorderCallId, Guid updateSessionGuid);
+        void UpdateRecorderCallIdForCallGuid(Guid callGuid, long recorderCallId);
 
         [OperationContract]
         Dictionary<long, long> TryToFindDiallerDepartmentsByUserGuid(Guid userGuid);
@@ -37,7 +35,7 @@ namespace PS.Mothership.Core.Common.Contracts
         void InsertCallRecordingEvent(CallRecordingEventDto callRecordingEvent);
 
         [OperationContract]
-        Guid LogDiallerModeChange(Guid userGuid, Guid updateSessionGuid, DialModeEnum diallerMode);
+        Guid LogDiallerModeChange(Guid userGuid, DialModeEnum diallerMode);
 
         [OperationContract]
         void LogNewDiallerCall(NewDiallerCallDto diallerCall);
@@ -49,16 +47,16 @@ namespace PS.Mothership.Core.Common.Contracts
         bool IsCallResolved(Guid prospectingCampaignCallGuid);
 
         [OperationContract]
-        Guid AddOrUpdateSpeedDialNumber(Guid userGuid, Guid updateSessionGuid, SpeedDialNumberDto speedDialNumber);
+        Guid AddOrUpdateSpeedDialNumber(Guid userGuid, SpeedDialNumberDto speedDialNumber);
 
         [OperationContract]
-        void DeleteSpeedDialNumber(Guid userGuid, Guid updateSessionGuid, Guid speedDialNumberGuid);
+        void DeleteSpeedDialNumber(Guid userGuid, Guid speedDialNumberGuid);
 
         [OperationContract]
         IEnumerable<SipAccountNumberDto> GetSipAccountList(Guid userSipAccountGuid);
 
         [OperationContract]
-        Guid AddInboundCampaignCallRecord(Guid sipCallGuid, long campaignKey, string keyword, string referrerUrl, Guid updateSessionGuid);
+        Guid AddInboundCampaignCallRecord(Guid sipCallGuid, long campaignKey, string keyword, string referrerUrl);
 
         [OperationContract]
         void SetInboundCampaignCallRecordResolution(Guid inboundCampaignCallRecordGuid,

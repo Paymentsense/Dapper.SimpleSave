@@ -138,6 +138,7 @@
     <Compile Include="Contracts\IMSLogger.cs" />
     <Compile Include="Contracts\ISendMessageService.cs" />
     <Compile Include="Contracts\ISendMessageStatusServiceCallback.cs" />
+    <Compile Include="SessionHandling\ISessionManager.cs" />
     <Compile Include="Contracts\ITaskNotificationCallback.cs" />
     <Compile Include="Contracts\ITaskNotificationService.cs" />
     <Compile Include="Contracts\IQuartzJobBase.cs" />
@@ -161,8 +162,8 @@
     <Compile Include="Dto\Merchant\ProspectDetailsDto.cs" />
     <Compile Include="Dto\Merchant\ProspectDto.cs" />
     <Compile Include="Dto\Merchant\ProspectResponseDto.cs" />
-    <Compile Include="Dto\Dialler\CallDto.cs" />
     <Compile Include="Dto\Dialler\CallLogItemDto.cs" />
+    <Compile Include="Dto\Dialler\CallRecordDto.cs" />
     <Compile Include="Dto\Dialler\CallRecordingEventDto.cs" />
     <Compile Include="Dto\Dialler\CallStatsDto.cs" />
     <Compile Include="Dto\Dialler\FinalisedDiallerCallDto.cs" />
@@ -282,10 +283,11 @@
     <Compile Include="Helper\CTime.cs" />
     <Compile Include="Helper\DebugStopwatch.cs" />
     <Compile Include="Helper\DynamicContractResolver.cs" />
-    <Compile Include="Contracts\ISignalRConnectionManager.cs" />
+    <Compile Include="SignalRConnectionHandling\ISignalRConnectionManager.cs" />
     <Compile Include="Helper\MSLogger.cs" />
     <Compile Include="Helper\RandomStringGenerator.cs" />
-    <Compile Include="Helper\SignalRConnectionManager.cs" />
+    <Compile Include="SessionHandling\SessionManager.cs" />
+    <Compile Include="SignalRConnectionHandling\SignalRConnectionManager.cs" />
     <Compile Include="Helper\UniqueKeyGenerator.cs" />
     <Compile Include="Helper\JsonHelper.cs" />
     <Compile Include="Helper\Obfuscator.cs" />
