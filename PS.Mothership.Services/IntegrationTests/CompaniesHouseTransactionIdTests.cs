@@ -26,14 +26,14 @@ namespace IntegrationTests
     [TestFixture]
     public class CompaniesHouseTransactionIdTests
     {
-        private Mock<ICredentials> _mockCredentials;
-        private Mock<IGatewayConnection> _mockGatewayConnection;
-        private Mock<IGatewayResponse> _mockGatewayResponse;
+        private Mock<ICompaniesHouseCredentials> _mockCredentials;
+        private Mock<ICompaniesHouseGatewayConnection> _mockGatewayConnection;
+        private Mock<ICompaniesHouseGatewayResponse> _mockGatewayResponse;
         private GovTalkMessage _govTalkMessage;
 
         private ICompaniesHouseGatewayServiceFacade _companiesHouseGatewayServiceFacade;
         private ICompaniesHouseGatewayService _companiesHouseGatewayService;
-        private ITransactionIdManager _transactionIdManager;
+        private ICompaniesHouseTransactionIdManager _transactionIdManager;
         private ICompaniesHouseRepository _companiesHouseRepository;
         private IUnitOfWork _unitOfWork;
         private IGenericRepository<SYSTEM_VALUE_MST, MSDbContextType> _genericRepository;
@@ -106,15 +106,15 @@ namespace IntegrationTests
             AutoMapping.Configure(new IocBuildSettings()
                 .WithAutoMapperProfile(new CompaniesHouseDtoMappingProfile()));
 
-            _mockCredentials = new Mock<ICredentials>();
+            _mockCredentials = new Mock<ICompaniesHouseCredentials>();
             _mockCredentials.Setup(x => x.UserId).Returns("22075804094818262698720017563970");
             _mockCredentials.Setup(x => x.Password).Returns("6znnj4vnziaqcrgjg9ufbo0cqs0hl0b9");
             _mockCredentials.Setup(x => x.IsValid).Returns(true);
 
             _govTalkMessage = GetGovTalkMessage();
-            _mockGatewayResponse = new Mock<IGatewayResponse>();
+            _mockGatewayResponse = new Mock<ICompaniesHouseGatewayResponse>();
             _mockGatewayResponse.Setup(x => x.Response).Returns(_govTalkMessage);
-            _mockGatewayConnection = new Mock<IGatewayConnection>();
+            _mockGatewayConnection = new Mock<ICompaniesHouseGatewayConnection>();
             _mockGatewayConnection.Setup(x => x.RequestDataFromGateway(It.IsAny<GatewayRequest<NumberSearchRequest>>()))
                 .Returns(_mockGatewayResponse.Object);
             
@@ -128,7 +128,7 @@ namespace IntegrationTests
             _unitOfWork = new UnitOfWork(_databaseFactory, _windsorContainer);
             _genericRepository = new GenericRepository<SYSTEM_VALUE_MST, MSDbContextType>(_windsorContainer, _databaseFactory);
             _companiesHouseRepository = new CompaniesHouseRepository(_unitOfWork, _genericRepository);
-            _transactionIdManager = new TransactionIdManager(_companiesHouseRepository);
+            _transactionIdManager = new CompaniesHouseTransactionIdManager(_companiesHouseRepository);
 
             _companiesHouseGatewayService = new CompaniesHouseGatewayService(_mockGatewayConnection.Object, _mockCredentials.Object, 
                 _transactionIdManager);

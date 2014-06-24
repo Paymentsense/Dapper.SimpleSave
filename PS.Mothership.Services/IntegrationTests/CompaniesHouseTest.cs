@@ -29,7 +29,7 @@ using PS.Mothership.ThirdParty.Contracts;
 using PS.Mothership.ThirdParty.Implementations;
 using PS.Mothership.ThirdParty.Mappings;
 using Component = Castle.MicroKernel.Registration.Component;
-using ICredentials = PS.Mothership.ThirdParty.CompaniesHouse.Contracts.ICredentials;
+using ICredentials = PS.Mothership.ThirdParty.CompaniesHouse.Contracts.ICompaniesHouseCredentials;
 
 namespace IntegrationTests
 {
@@ -38,18 +38,18 @@ namespace IntegrationTests
     public class CompaniesHouseServiceTests
     {
         private ICredentials _credentials;
-        private IGatewayConnection _gatewayConnection;
+        private ICompaniesHouseGatewayConnection _gatewayConnection;
         private ICompaniesHouseGatewayServiceFacade _companiesHouseGatewayServiceFacade;
         private ICompaniesHouseGatewayService _companiesHouseGatewayService;
         private ICompaniesHouseUriServiceFacade _companiesHouseUriServiceFacade;
         private ICompaniesHouseGatewayConfiguration _companiesHouseGatewayConfiguration;
-        private ITransactionIdManager _transactionIdManager;
+        private ICompaniesHouseTransactionIdManager _transactionIdManager;
         private ICompaniesHouseRepository _companiesHouseRepository;
-        private HttpClientFactory _httpClientFactory;
+        private CompaniesHouseHttpClientFactory _httpClientFactory;
         private Mock<IUnitOfWork> _mockIUnitOfWork;
         private Mock<IGenericRepository<SYSTEM_VALUE_MST, MSDbContextType>> _mockIGenericRepository;
-        private Mock<IHttpClientFacade> _mockHttpClientFacade;
-        private Mock<HttpClientFactory> _mockHttpClientFactory;
+        private Mock<ICompaniesHouseHttpClientFacade> _mockHttpClientFacade;
+        private Mock<CompaniesHouseHttpClientFactory> _mockHttpClientFactory;
         
         [SetUp]
         public void Initialize()
@@ -88,12 +88,12 @@ namespace IntegrationTests
             container.Register(Component.For<IMSLogger>().Instance(new Mock<IMSLogger>().Object));
             _companiesHouseUriServiceFacade = container.Resolve<ICompaniesHouseUriServiceFacade>();
 
-            var response = _companiesHouseUriServiceFacade.CompanyDetailViaJson("02050399");
+            var primaryTopic = _companiesHouseUriServiceFacade.CompanyDetailViaJson("02050399");
 
-            Assert.That(response.primaryTopic.CompanyName, Is.EqualTo("ZENITH PRINT (UK) LIMITED"));
-            Assert.That(response.primaryTopic.CompanyNumber, Is.EqualTo("02050399"));
-            Assert.That(response.primaryTopic.SICCodes.SicText.Any(x => x.Contains("70100 - Activities of head offices")));
-            Assert.That(response.primaryTopic.PreviousNames.Any(x => x.CONDate.Contains("1996-03-22")));
+            Assert.That(primaryTopic.CompanyName, Is.EqualTo("ZENITH PRINT (UK) LIMITED"));
+            Assert.That(primaryTopic.CompanyNumber, Is.EqualTo("02050399"));
+            Assert.That(primaryTopic.SICCodes.SicText.Any(x => x.Contains("70100 - Activities of head offices")));
+            Assert.That(primaryTopic.PreviousNames.Any(x => x.CONDate.Contains("1996-03-22")));
         }
 
         [Test]
@@ -108,12 +108,12 @@ namespace IntegrationTests
             container.Register(Component.For<IMSLogger>().Instance(new Mock<IMSLogger>().Object));
             _companiesHouseUriServiceFacade = container.Resolve<ICompaniesHouseUriServiceFacade>();
 
-            var response = _companiesHouseUriServiceFacade.CompanyDetailViaXml("02050399");
+            var primaryTopic = _companiesHouseUriServiceFacade.CompanyDetailViaXml("02050399");
 
-            Assert.That(response.primaryTopic.CompanyName, Is.EqualTo("ZENITH PRINT (UK) LIMITED"));
-            Assert.That(response.primaryTopic.CompanyNumber, Is.EqualTo("02050399"));
-            Assert.That(response.primaryTopic.SICCodes.SicText.Any(x => x.Contains("70100 - Activities of head offices")));
-            Assert.That(response.primaryTopic.PreviousNames.Any(x => x.CONDate.Contains("1996-03-22")));
+            Assert.That(primaryTopic.CompanyName, Is.EqualTo("ZENITH PRINT (UK) LIMITED"));
+            Assert.That(primaryTopic.CompanyNumber, Is.EqualTo("02050399"));
+            Assert.That(primaryTopic.SICCodes.SicText.Any(x => x.Contains("70100 - Activities of head offices")));
+            Assert.That(primaryTopic.PreviousNames.Any(x => x.CONDate.Contains("1996-03-22")));
         }
 
         [Test]
@@ -159,10 +159,10 @@ namespace IntegrationTests
             {
                 CompanyName = "ZENITH PRINT (UK) LIMITED",
             };
-            var response = _companiesHouseGatewayServiceFacade.NameSearch(nameSearchRequestDto);
+            var coSearchItem = _companiesHouseGatewayServiceFacade.NameSearch(nameSearchRequestDto);
 
-            Assert.That(response.CoSearchItem.Any(x => x.CompanyNumber == "02050399"));
-            Assert.That(response.CoSearchItem.Any(x => x.CompanyName == "ZENITH PRINT (UK) LIMITED"));
+            Assert.That(coSearchItem.Any(x => x.CompanyNumber == "02050399"));
+            Assert.That(coSearchItem.Any(x => x.CompanyName == "ZENITH PRINT (UK) LIMITED"));
         }
 
         [Test]
@@ -190,11 +190,10 @@ namespace IntegrationTests
                 SearchRows = "5",
                 DataSet = new List<DataSet> { DataSet.LIVE, DataSet.DISSOLVED, DataSet.FORMER, DataSet.PROPOSED}
             };
-            var response = _companiesHouseGatewayServiceFacade.NumberSearch(numberSearchRequestDto);
+            var coSearchItem = _companiesHouseGatewayServiceFacade.NumberSearch(numberSearchRequestDto);
 
-            Assert.That(response.SearchRows, Is.EqualTo(4));
-            Assert.That(response.CoSearchItem.Any(x => x.CompanyDate == Convert.ToDateTime("1993-04-22")));
-            Assert.That(response.CoSearchItem.Any(x => x.CompanyName == "ZENITH PRINT (UK) LIMITED"));
+            Assert.That(coSearchItem.Any(x => x.CompanyDate == Convert.ToDateTime("1993-04-22")));
+            Assert.That(coSearchItem.Any(x => x.CompanyName == "ZENITH PRINT (UK) LIMITED"));
         }
 
         [Test]
@@ -224,12 +223,12 @@ namespace IntegrationTests
                 PostTown = "CAERPHILLY",
                 CountryOfResidence = "UNITED KINGDOM",
             };
-            var response = _companiesHouseGatewayServiceFacade.OfficerSearch(officerSearchRequestDto);
+            var officerSearchItem = _companiesHouseGatewayServiceFacade.OfficerSearch(officerSearchRequestDto);
 
-            Assert.That(response.OfficerSearchItem.Any(x=>x.SearchMatch == SearchMatch.NEAR));
-            Assert.That(response.OfficerSearchItem.Any(x => x.Forename.Contains("MAXWELL")));
-            Assert.That(response.OfficerSearchItem.Any(x => x.PostTown.Contains("CAERPHILLY")));
-            Assert.That(response.OfficerSearchItem.Any(x => x.Surname.Contains("MOODY")));
+            Assert.That(officerSearchItem.Any(x=>x.SearchMatch == SearchMatch.NEAR));
+            Assert.That(officerSearchItem.Any(x => x.Forename.Contains("MAXWELL")));
+            Assert.That(officerSearchItem.Any(x => x.PostTown.Contains("CAERPHILLY")));
+            Assert.That(officerSearchItem.Any(x => x.Surname.Contains("MOODY")));
         }
 
         private static Mock<HttpResponseMessageFacade> CreateMockHttpResonse(HttpContent httpContent = null, HttpStatusCode statusCode = HttpStatusCode.OK)
@@ -243,19 +242,19 @@ namespace IntegrationTests
         private void SetUriConfig(string dataResponse, IWindsorContainer container)
         {
             var result = CreateMockHttpResonse(new StringContent(dataResponse));
-            _mockHttpClientFacade = new Mock<IHttpClientFacade>();
+            _mockHttpClientFacade = new Mock<ICompaniesHouseHttpClientFacade>();
             _mockHttpClientFacade.Setup(x => x.Get(It.IsAny<string>()))
                 .Returns(() => result.Object);
 
-            _mockHttpClientFactory = new Mock<HttpClientFactory>();
+            _mockHttpClientFactory = new Mock<CompaniesHouseHttpClientFactory>();
             _mockHttpClientFactory.Setup(x => x.Create()).Returns(_mockHttpClientFacade.Object);
 
-            container.Register(Component.For<HttpClientFactory>()
+            container.Register(Component.For<CompaniesHouseHttpClientFactory>()
                 .Instance(_mockHttpClientFactory.Object)
                 .Named("MockFactory")
                 .LifeStyle.Singleton);
 
-            container.Register(Component.For<IHttpClientFacade>()
+            container.Register(Component.For<ICompaniesHouseHttpClientFacade>()
                 .Instance(_mockHttpClientFacade.Object)
                 .Named("MockFacade")
                 .LifeStyle.Transient);
@@ -268,7 +267,7 @@ namespace IntegrationTests
         {
             AutoMapping.Configure(new IocBuildSettings()
                 .WithAutoMapperProfile(new CompaniesHouseDtoMappingProfile()));
-            _credentials = new Credentials("22075804094818262698720017563970", "6znnj4vnziaqcrgjg9ufbo0cqs0hl0b9");
+            _credentials = new CompaniesHouseCredentials("22075804094818262698720017563970", "6znnj4vnziaqcrgjg9ufbo0cqs0hl0b9");
             _mockIUnitOfWork = new Mock<IUnitOfWork>();
             _mockIGenericRepository = new Mock<IGenericRepository<SYSTEM_VALUE_MST, MSDbContextType>>();
             _mockIGenericRepository.Setup(x => x.Get(
@@ -283,7 +282,7 @@ namespace IntegrationTests
                     }
                 });
             _companiesHouseRepository = new CompaniesHouseRepository(_mockIUnitOfWork.Object, _mockIGenericRepository.Object);
-            _transactionIdManager = new TransactionIdManager(_companiesHouseRepository);
+            _transactionIdManager = new CompaniesHouseTransactionIdManager(_companiesHouseRepository);
             UseMockGateway(dataResponse);
             //UseRealGateway();
 
@@ -294,17 +293,17 @@ namespace IntegrationTests
         private void UseMockGateway(string dataResponse)
         {
             var result = CreateMockHttpResonse(new StringContent(dataResponse));
-            _mockHttpClientFacade = new Mock<IHttpClientFacade>();
+            _mockHttpClientFacade = new Mock<ICompaniesHouseHttpClientFacade>();
             _mockHttpClientFacade.Setup(x => x.Post(It.IsAny<string>(), It.IsAny<HttpContent>())).Returns(result.Object);
-            _mockHttpClientFactory = new Mock<HttpClientFactory>();
+            _mockHttpClientFactory = new Mock<CompaniesHouseHttpClientFactory>();
             _mockHttpClientFactory.Setup(x => x.Create()).Returns(_mockHttpClientFacade.Object);
-            _gatewayConnection = new GatewayConnection(_companiesHouseGatewayConfiguration, _mockHttpClientFactory.Object);
+            _gatewayConnection = new CompaniesHouseGatewayConnection(_companiesHouseGatewayConfiguration, _mockHttpClientFactory.Object);
         }
 
         private void UseRealGateway()
         {
-            _httpClientFactory = new HttpClientFactory();
-            _gatewayConnection = new GatewayConnection(_companiesHouseGatewayConfiguration, _httpClientFactory);
+            _httpClientFactory = new CompaniesHouseHttpClientFactory();
+            _gatewayConnection = new CompaniesHouseGatewayConnection(_companiesHouseGatewayConfiguration, _httpClientFactory);
         }
 
         #region Json and Xml Response Data
@@ -335,12 +334,12 @@ namespace IntegrationTests
         public static string UseMockRegistrator { private get; set; }
         public bool HasOpinionAbout(string key, Type service)
         {
-            if (service == typeof (HttpClientFactory))
+            if (service == typeof (CompaniesHouseHttpClientFactory))
             {
                 UseMockRegistrator = "MockFactory";
                 return true;
             }
-            if (service == typeof(HttpClientFacade))
+            if (service == typeof(CompaniesHouseHttpClientFacade))
             {
                 UseMockRegistrator = "MockFacade";
                 return true;
