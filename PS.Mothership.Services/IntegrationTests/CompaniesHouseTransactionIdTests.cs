@@ -69,18 +69,18 @@ namespace IntegrationTests
         public void TestDbTransactionIdIncrementation()
         {
             SetConfig();
-            var transactionIdBefore = TransactionIdManager.ApplicationState.TransactionId;
+            var transactionIdBefore = _transactionIdManager.NextTransactionId;
             _companiesHouseGatewayServiceFacade.NumberSearch(new NumberSearchRequestDto());
-            var transactionIdAfter = TransactionIdManager.ApplicationState.TransactionId;
+            var transactionIdAfter = _transactionIdManager.NextTransactionId;
 
-            Assert.That(transactionIdAfter, Is.EqualTo(transactionIdBefore + 1));
+            Assert.That(transactionIdAfter, Is.EqualTo(transactionIdBefore + 2));
         }
 
         [Test]
         public void TestMultipleTransactionIdIncrementation()
         {
             SetConfig();
-            var transactionIdBefore = TransactionIdManager.ApplicationState.TransactionId;
+            var transactionIdBefore = _transactionIdManager.NextTransactionId;
 
             var tasks = new List<Task>
             {
@@ -101,8 +101,8 @@ namespace IntegrationTests
 
             Task.WaitAll(tasks.ToArray());
 
-            var transactionIdAfter = TransactionIdManager.ApplicationState.TransactionId;
-            Assert.That(transactionIdAfter, Is.EqualTo(transactionIdBefore + 11));
+            var transactionIdAfter = _transactionIdManager.NextTransactionId;
+            Assert.That(transactionIdAfter, Is.EqualTo(transactionIdBefore + 12));
         }
 
         private void SetConfig()
