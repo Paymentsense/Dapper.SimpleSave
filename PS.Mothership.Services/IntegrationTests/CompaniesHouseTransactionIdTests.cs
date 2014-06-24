@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Transactions;
 using System.Xml;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
@@ -23,6 +24,7 @@ using PS.Mothership.ThirdParty.Mappings;
 
 namespace IntegrationTests
 {
+    //TODO when integration tests fixed... move to integration tests and delete project
     [TestFixture]
     public class CompaniesHouseTransactionIdTests
     {
@@ -64,41 +66,48 @@ namespace IntegrationTests
         [Test]
         public void TestDbTransactionIdIncrementation()
         {
-            SetConfig();
-            var transactionIdBefore = _transactionIdManager.NextTransactionId;
-            _companiesHouseGatewayServiceFacade.NumberSearch(new NumberSearchRequestDto());
-            var transactionIdAfter = _transactionIdManager.NextTransactionId;
+            using (var transactionScope = new TransactionScope())
+            {
+                SetConfig();
+                var transactionIdBefore = _transactionIdManager.GetTransactionId();
+                _companiesHouseGatewayServiceFacade.NumberSearch(new NumberSearchRequestDto());
+                var transactionIdAfter = _transactionIdManager.GetTransactionId();
 
-            Assert.That(transactionIdAfter, Is.EqualTo(transactionIdBefore + 2));
+                Assert.That(transactionIdAfter, Is.EqualTo(transactionIdBefore + 1));
+                //roll back
+            }
         }
 
         [Test]
         public void TestMultipleTransactionIdIncrementation()
         {
-            SetConfig();
-            var transactionIdBefore = _transactionIdManager.NextTransactionId;
-
-            var tasks = new List<Task>
+            using (var transactionScope = new TransactionScope())
             {
-                new Task(() => _companiesHouseGatewayServiceFacade.NumberSearch(new NumberSearchRequestDto())),
-                new Task(() => _companiesHouseGatewayServiceFacade.NumberSearch(new NumberSearchRequestDto())),
-                new Task(() => _companiesHouseGatewayServiceFacade.NumberSearch(new NumberSearchRequestDto())),
-                new Task(() => _companiesHouseGatewayServiceFacade.NumberSearch(new NumberSearchRequestDto())),
-                new Task(() => _companiesHouseGatewayServiceFacade.NumberSearch(new NumberSearchRequestDto())),
-                new Task(() => _companiesHouseGatewayServiceFacade.NumberSearch(new NumberSearchRequestDto())),
-                new Task(() => _companiesHouseGatewayServiceFacade.NumberSearch(new NumberSearchRequestDto())),
-                new Task(() => _companiesHouseGatewayServiceFacade.NumberSearch(new NumberSearchRequestDto())),
-                new Task(() => _companiesHouseGatewayServiceFacade.NumberSearch(new NumberSearchRequestDto())),
-                new Task(() => _companiesHouseGatewayServiceFacade.NumberSearch(new NumberSearchRequestDto())),
-                new Task(() => _companiesHouseGatewayServiceFacade.NumberSearch(new NumberSearchRequestDto())),
-            };
+                SetConfig();
+                var transactionIdBefore = _transactionIdManager.GetTransactionId();
 
-            tasks.ForEach(x => x.Start());
+                var tasks = new List<Task>
+                {
+                    new Task(() => _companiesHouseGatewayServiceFacade.NumberSearch(new NumberSearchRequestDto())),
+                    new Task(() => _companiesHouseGatewayServiceFacade.NumberSearch(new NumberSearchRequestDto())),
+                    new Task(() => _companiesHouseGatewayServiceFacade.NumberSearch(new NumberSearchRequestDto())),
+                    new Task(() => _companiesHouseGatewayServiceFacade.NumberSearch(new NumberSearchRequestDto())),
+                    new Task(() => _companiesHouseGatewayServiceFacade.NumberSearch(new NumberSearchRequestDto())),
+                    new Task(() => _companiesHouseGatewayServiceFacade.NumberSearch(new NumberSearchRequestDto())),
+                    new Task(() => _companiesHouseGatewayServiceFacade.NumberSearch(new NumberSearchRequestDto())),
+                    new Task(() => _companiesHouseGatewayServiceFacade.NumberSearch(new NumberSearchRequestDto())),
+                    new Task(() => _companiesHouseGatewayServiceFacade.NumberSearch(new NumberSearchRequestDto())),
+                    new Task(() => _companiesHouseGatewayServiceFacade.NumberSearch(new NumberSearchRequestDto())),
+                    new Task(() => _companiesHouseGatewayServiceFacade.NumberSearch(new NumberSearchRequestDto())),
+                };
 
-            Task.WaitAll(tasks.ToArray());
+                tasks.ForEach(x => x.Start());
 
-            var transactionIdAfter = _transactionIdManager.NextTransactionId;
-            Assert.That(transactionIdAfter, Is.EqualTo(transactionIdBefore + 12));
+                Task.WaitAll(tasks.ToArray());
+                var transactionIdAfter = _transactionIdManager.GetTransactionId();
+                Assert.That(transactionIdAfter, Is.EqualTo(transactionIdBefore + 11));
+                //roll back
+            }
         }
 
         private void SetConfig()

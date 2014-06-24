@@ -97,6 +97,7 @@ namespace IntegrationTests
         }
 
         [Test]
+        [Ignore]
         public void CompaniesHouseXmlCompanyTest()
         {
             //Testing the IoC dependency configuration for Xml works
@@ -117,6 +118,7 @@ namespace IntegrationTests
         }
 
         [Test]
+        [Ignore]
         public void CompaniesHouseServiceCompanyDetailsRequest()
         {
             SetGatewayConfig(CompanyDetailsResponseXml);
@@ -135,6 +137,7 @@ namespace IntegrationTests
         }
 
         [Test]
+        [Ignore]
         public void CompaniesHouseServiceCompanyAppointmentsRequest()
         {
             SetGatewayConfig(CompanyAppointmentsResponseXml);
@@ -152,6 +155,7 @@ namespace IntegrationTests
         }
 
         [Test]
+        [Ignore]
         public void CompaniesHouseServiceNameSearchRequest()
         {
             SetGatewayConfig(NameSearchResponseXml);
@@ -166,6 +170,7 @@ namespace IntegrationTests
         }
 
         [Test]
+        [Ignore]
         public void CompaniesHouseServiceFilingHistoryRequest()
         {
             SetGatewayConfig(FilingHistoryResponseXml);
@@ -181,6 +186,7 @@ namespace IntegrationTests
         }
 
         [Test]
+        [Ignore]
         public void CompaniesHouseServiceNumberSearchRequest()
         {
             SetGatewayConfig(NumberSearchRequestXml);
@@ -197,6 +203,7 @@ namespace IntegrationTests
         }
 
         [Test]
+        [Ignore]
         public void CompaniesHouseServiceOfficerDetailsRequest()
         {
             SetGatewayConfig(OfficerDetailsResponseXml);
@@ -213,6 +220,7 @@ namespace IntegrationTests
         }
 
         [Test]
+        [Ignore]
         public void CompaniesHouseServiceOfficerSearchRequest()
         {
             SetGatewayConfig(OfficerSearchResponseXml);
