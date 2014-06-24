@@ -148,7 +148,6 @@
     <Compile Include="Config\ILayerIocBuilder.cs" />
     <Compile Include="Config\IocBuildSettings.cs" />
     <Compile Include="Config\WcfMode.cs" />
-    <Compile Include="Dto\CompaniesHouse\CompanyAppointmentsDto.cs" />
     <Compile Include="Dto\CompaniesHouse\CompanyAppointmentsRequestDto.cs" />
     <Compile Include="Dto\CompaniesHouse\CompanyDetailsDto.cs" />
     <Compile Include="Dto\CompaniesHouse\CompanyDetailsRequestDto.cs" />
