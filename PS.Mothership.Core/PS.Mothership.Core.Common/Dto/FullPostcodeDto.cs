@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace PS.Mothership.Core.Common.Dto
 {
+
     [DataContract]
     public class FullPostcodeDto
     {
