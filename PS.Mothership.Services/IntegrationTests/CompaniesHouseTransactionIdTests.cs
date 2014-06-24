@@ -6,7 +6,6 @@ using Castle.Windsor;
 using Moq;
 using NUnit.Framework;
 using PS.Mothership.Core.Common.Config;
-using PS.Mothership.Core.Common.Contracts;
 using PS.Mothership.Core.Common.Dto.CompaniesHouse;
 using PS.Mothership.Core.Common.SessionHandling;
 using PS.Mothership.DAL.Common.Contracts;
@@ -29,7 +28,6 @@ namespace IntegrationTests
     {
         private Mock<ICredentials> _mockCredentials;
         private Mock<IGatewayConnection> _mockGatewayConnection;
-        private Mock<IMSLogger> _mockLogger;
         private Mock<IGatewayResponse> _mockGatewayResponse;
         private GovTalkMessage _govTalkMessage;
 
@@ -45,7 +43,6 @@ namespace IntegrationTests
         [SetUp]
         public void Initialize()
         {
-            _mockLogger = new Mock<IMSLogger>();
         }
 
         [TearDown]
@@ -53,7 +50,6 @@ namespace IntegrationTests
         {
             _mockCredentials = null;
             _mockGatewayConnection = null;
-            _mockLogger = null;
             _companiesHouseGatewayServiceFacade = null;
             _companiesHouseGatewayService = null;
             _transactionIdManager = null;
@@ -131,11 +127,11 @@ namespace IntegrationTests
             
             _unitOfWork = new UnitOfWork(_databaseFactory, _windsorContainer);
             _genericRepository = new GenericRepository<SYSTEM_VALUE_MST, MSDbContextType>(_windsorContainer, _databaseFactory);
-            _companiesHouseRepository = new CompaniesHouseRepository(_unitOfWork, _genericRepository, _mockLogger.Object);
+            _companiesHouseRepository = new CompaniesHouseRepository(_unitOfWork, _genericRepository);
             _transactionIdManager = new TransactionIdManager(_companiesHouseRepository);
 
             _companiesHouseGatewayService = new CompaniesHouseGatewayService(_mockGatewayConnection.Object, _mockCredentials.Object, 
-                _mockLogger.Object, _transactionIdManager);
+                _transactionIdManager);
             _companiesHouseGatewayServiceFacade = new CompaniesHouseGatewayServiceFacade(_companiesHouseGatewayService);
         }
 

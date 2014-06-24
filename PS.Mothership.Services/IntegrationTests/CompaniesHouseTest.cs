@@ -46,7 +46,6 @@ namespace IntegrationTests
         private ITransactionIdManager _transactionIdManager;
         private ICompaniesHouseRepository _companiesHouseRepository;
         private HttpClientFactory _httpClientFactory;
-        private Mock<IMSLogger> _mockLogger;
         private Mock<IUnitOfWork> _mockIUnitOfWork;
         private Mock<IGenericRepository<SYSTEM_VALUE_MST, MSDbContextType>> _mockIGenericRepository;
         private Mock<IHttpClientFacade> _mockHttpClientFacade;
@@ -55,8 +54,7 @@ namespace IntegrationTests
         [SetUp]
         public void Initialize()
         {
-            _mockLogger = new Mock<IMSLogger>();
-            _companiesHouseGatewayConfiguration = new CompaniesHouseGatewayConfiguration(_mockLogger.Object);
+            _companiesHouseGatewayConfiguration = new CompaniesHouseGatewayConfiguration();
         }
 
         [TearDown]
@@ -64,7 +62,6 @@ namespace IntegrationTests
         {
         _credentials = null;
         _gatewayConnection = null;
-        _mockLogger = null;
         _companiesHouseGatewayServiceFacade = null;
         _companiesHouseGatewayService = null;
         _companiesHouseGatewayConfiguration = null;
@@ -79,6 +76,7 @@ namespace IntegrationTests
         }
 
         [Test]
+        [Ignore]
         public void CompaniesHouseJsonCompanyTest()
         {   
             //Testing the IoC dependency configuration for Json works
@@ -284,13 +282,12 @@ namespace IntegrationTests
                         Value = "1090"
                     }
                 });
-            _companiesHouseRepository = new CompaniesHouseRepository(_mockIUnitOfWork.Object, _mockIGenericRepository.Object, _mockLogger.Object);
+            _companiesHouseRepository = new CompaniesHouseRepository(_mockIUnitOfWork.Object, _mockIGenericRepository.Object);
             _transactionIdManager = new TransactionIdManager(_companiesHouseRepository);
-
             UseMockGateway(dataResponse);
             //UseRealGateway();
 
-            _companiesHouseGatewayService = new CompaniesHouseGatewayService(_gatewayConnection, _credentials, _mockLogger.Object, _transactionIdManager);
+            _companiesHouseGatewayService = new CompaniesHouseGatewayService(_gatewayConnection, _credentials, _transactionIdManager);
             _companiesHouseGatewayServiceFacade = new CompaniesHouseGatewayServiceFacade(_companiesHouseGatewayService);
         }
 
