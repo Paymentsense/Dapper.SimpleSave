@@ -12,6 +12,9 @@ namespace PS.Mothership.Core.Common.Template.Event
     {
        [Description("None")][EnumMember]None = 0,
        [Description("General")][EnumMember]General = 1,
+       [Description("Call")][EnumMember]Call = 2,
+       [Description("Email")][EnumMember]Email = 3,
+       [Description("Create Appointment")][EnumMember]CreateAppointment = 4,
         
     }    
     
@@ -52,6 +55,30 @@ namespace PS.Mothership.Core.Common.Template.Event
 								EnumName = "General",
 								EnumDescription = "General",
 								EventCategoryKey = 1,
+								RecStatusKey = (GenRecStatusEnum)1
+							},
+							new EventCategory
+							{
+								EnumValue = 2,
+								EnumName = "Call",
+								EnumDescription = "Call",
+								EventCategoryKey = 2,
+								RecStatusKey = (GenRecStatusEnum)1
+							},
+							new EventCategory
+							{
+								EnumValue = 3,
+								EnumName = "Email",
+								EnumDescription = "Email",
+								EventCategoryKey = 3,
+								RecStatusKey = (GenRecStatusEnum)1
+							},
+							new EventCategory
+							{
+								EnumValue = 4,
+								EnumName = "CreateAppointment",
+								EnumDescription = "Create Appointment",
+								EventCategoryKey = 4,
 								RecStatusKey = (GenRecStatusEnum)1
 							},
                         };

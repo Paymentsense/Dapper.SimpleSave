@@ -32,5 +32,6 @@ namespace PS.Mothership.Core.Common.Dto.Iridium
         public string ResultString { get; set; }
         public string ConfirmationUID { get; set; }
         public bool WasAccountConfirmed { get; set; }
+        public DateTimeOffset LastProvisionAttempt { get; set; }
     }
 }
