@@ -21,7 +21,7 @@ namespace PS.Mothership.Core.Common.Dto.CompaniesHouse
         public DateTime? ClosureDate { get; set; }
         public AccountsDto Accounts { get; set; }
         public ReturnsDto Returns { get; set; }
-        public MortgagesDto Mortgages { get; set; }
+        public CompanyDetailsMortgagesDto Mortgages { get; set; }
         public SicCodesDto SicCodes { get; set; }
         public DateTime? LastFullMemDate { get; set; }
         public DateTime? LastBulkShareDate { get; set; }
