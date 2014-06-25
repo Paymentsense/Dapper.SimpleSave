@@ -45,6 +45,6 @@ namespace PS.Mothership.Core.Common.Dto.DynamicRequest
         /// Gets or sets the child filter expressions. Set to <c>null</c> if there are no child expressions.
         /// </summary>
         [DataMember(Name = "filters")]
-        public IEnumerable<FilterDto> Filters { get; set; }
+        public ICollection<FilterDto> Filters { get; set; }
     }
 }
