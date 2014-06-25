@@ -92,5 +92,13 @@
         public const string PdfEngineTemplateHtml = "PdfEngineTemplateHtml";
         public const string PdfEngineMerchantPdfs = "PdfEngineMerchantPdfs";
 
+		// Companies House Constants
+		public const string CompaniesHouseGatewayUserId = "CompaniesHouseGatewayUserId";
+		public const string CompaniesHouseGatewayPassword = "CompaniesHouseGatewayPassword";
+        public const string CompaniesHouseXmlWebUrl = "CompaniesHouseXmlWebUrl";
+        public const string CompaniesHouseJsonWebUrl = "CompaniesHouseJsonWebUrl";
+        public const string ComapniesHouseGatewayEndpoint = "CompaniesHouseGatewayEndpoint";
+        public const string CompaniesHouseWebRequestTimeoutMilliseconds = "CompaniesHouseWebRequestTimeoutMilliseconds";
+        public const string CompaniesHouseMaxRetryCount = "CompaniesHouseMaxRetryCount";
     }
 }
