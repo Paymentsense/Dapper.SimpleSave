@@ -138,8 +138,11 @@
     <Compile Include="Contracts\IIdentityCheckService.cs" />
     <Compile Include="Contracts\ILoggingService.cs" />
     <Compile Include="Contracts\IMSLogger.cs" />
+    <Compile Include="Contracts\IQuartzManagementService.cs" />
     <Compile Include="Contracts\ISendMessageService.cs" />
     <Compile Include="Contracts\ISendMessageStatusServiceCallback.cs" />
+    <Compile Include="Dto\QuartzManagement\JobGroupStateDto.cs" />
+    <Compile Include="Dto\QuartzManagement\QuartzServerInfoDto.cs" />
     <Compile Include="Enums\QuartzManagement\AvailableJobGroupsEnum.cs" />
     <Compile Include="Enums\QuartzManagement\SchedulerStatusEnum.cs" />
     <Compile Include="SessionHandling\ISessionManager.cs" />
