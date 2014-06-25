@@ -265,7 +265,7 @@
     <Compile Include="Dto\Roles\RoleInheritanceDto.cs" />
     <Compile Include="Dto\Session\SessionHeaderDto.cs" />
     <Compile Include="Dto\Task\TaskNotificationLogDto.cs" />
-    <Compile Include="Dto\Task\TaskNotificationDto.cs" />
+    <Compile Include="Dto\Task\NotificationDto.cs" />
     <Compile Include="Dto\User\UserRemoteAccessTrnDto.cs" />
     <Compile Include="Dto\User\UserStatusTrnDto.cs" />
     <Compile Include="Dto\User\UserDto.cs" />

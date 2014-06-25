@@ -13,6 +13,8 @@ namespace PS.Mothership.Core.Common.Dto
         [DataMember]
         public string UserName { get; set; }
         [DataMember]
+        public Guid UserGuid { get; set; }
+        [DataMember]
         public string Description { get; set; }
         [DataMember]
         public bool IsRecurring { get; set; }

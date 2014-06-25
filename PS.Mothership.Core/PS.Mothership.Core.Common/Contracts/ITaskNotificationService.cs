@@ -17,8 +17,8 @@ namespace PS.Mothership.Core.Common.Contracts
         void EndSubscribe(string applicationName);
         [OperationContract]
         void AddNewTask(TaskDto taskDto);
-        [OperationContract]
-        void UpdateTask(TaskDto taskDto);
+        //[OperationContract]
+        //void UpdateTask(TaskDto taskDto);
         [OperationContract]
         void CompleteTask(long pendingNotificationId);
         [OperationContract]
