@@ -14,9 +14,6 @@ namespace PS.Mothership.Core.Common.Contracts
         QuartzServerInfoDto GetQuartzServerInfo();
 
         [OperationContract]
-        IList<AvailableJobGroupsEnum> GetAvailableJobGroups();
-
-        [OperationContract]
         IList<JobGroupStateDto> GetActiveJobGroups();
 
         [OperationContract]
@@ -26,7 +23,7 @@ namespace PS.Mothership.Core.Common.Contracts
         IJobDetail GetJobGroupDetail(string jobGroupName);
 
         [OperationContract]
-        void ScheduleNewJob(AvailableJobGroupsEnum jobGroupName, string jobName, string jobClass, string triggerName, string cronExpression, DateTime startDate);
+        void ScheduleNewJob(AvailableJobGroupsEnum jobGroup, string jobName, string jobClass, string triggerName, string cronExpression, DateTime startDateTime);
 
         [OperationContract]
         void PauseAllTriggers();

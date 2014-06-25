@@ -7,7 +7,7 @@ namespace PS.Mothership.Core.Common.Dto.QuartzManagement
     {
         public string SchedulerName { get; set; }
         public Type JobStoreType { get; set; }
-        public int NumberofJobs { get; set; }
+        public int NumberOfJobsExecuted { get; set; }
         public DateTimeOffset? RunningSince { get; set; }
         public SchedulerStatusEnum SchedulerStatus { get; set; }
     }
