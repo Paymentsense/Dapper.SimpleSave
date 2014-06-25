@@ -24,13 +24,13 @@ namespace PS.Mothership.Core.Common.Dto.Dialler
         [DataMember]
         public Guid MerchantGuid { get; set; }
         [DataMember]
-        public Guid? ProspectingCampaignCallGuid { get; set; }
+        public Guid ProspectingCampaignCallGuid { get; set; }
         [DataMember]
-        public long? CampaignKey { get; set; }
+        public long CampaignKey { get; set; }
         [DataMember]
-        public Guid? ConsultOriginSipCallGuid { get; set; }
+        public Guid ConsultOriginSipCallGuid { get; set; }
         [DataMember]
-        public Guid? ProspectingCampaignResponseTapCallGuid { get; set; }
+        public Guid ProspectingCampaignResponseTapCallGuid { get; set; }
         [DataMember]
         public Guid InboundCampaignCallGuid { get; set; }
         [DataMember]
