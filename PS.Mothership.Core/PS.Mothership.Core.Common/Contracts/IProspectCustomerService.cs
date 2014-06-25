@@ -4,28 +4,44 @@ using System.Linq;
 using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
-using PS.Mothership.Core.Common.Dto.Customer;
+using PS.Mothership.Core.Common.Constructs;
+using PS.Mothership.Core.Common.Dto.DynamicRequest;
+using PS.Mothership.Core.Common.Dto.Merchant;
+using PS.Mothership.Core.Common.Dto;
 
 namespace PS.Mothership.Core.Common.Contracts
 {
     [ServiceContract(Name = "ProspectCustomerService")]
     public interface IProspectCustomerService
     {
-        /// <summary>
-        ///     Add customer
-        /// </summary>
-        /// <param name="prospectDto"></param>
-       /// <param name="prospectDetailsDto"></param>
-        /// <returns></returns>
         [OperationContract]
-        ProspectResponseDto AddCustomer(ProspectDetailsDto prospectDetailsDto);
+        ProspectDto GetProspect(Guid merchantGuid);
 
-        /// <summary>
-        ///     Get similiar customers
-        /// </summary>
-        /// <param name="prospectDto"></param>
-        /// <returns></returns>
         [OperationContract]
-        ICollection<ProspectDto> SimilarCustomers(ProspectDto prospectDto);
+        ProspectResponseDto AddProspect(AddProspectDto prospectDto);
+
+        [OperationContract]
+        ProspectDetailsDto UpdateProspect(ProspectDetailsDto dto);
+
+        [OperationContract]
+        void AddProspectContact(MerchantContactDto dto);
+
+        [OperationContract]
+        void RemoveProspectContact(MerchantContactDto dto);
+
+        [OperationContract]
+        void AddProspectAddress(MerchantAddressDto dto);
+
+        [OperationContract]
+        void RemoveProspectAddress(MerchantAddressDto dto);
+
+        [OperationContract]
+        PagedList<ProspectDto> GetProspectsByFilter(DataRequestDto dataRequestDto);
+
+        [OperationContract]
+        PagedList<ProspectAddressDto> GetProspectsAddressByFilter(DataRequestDto dataRequestDto);
+
+        [OperationContract]
+        PagedList<ProspectAddressDto> GetSimilarMerchants(FullAddressDto dto);
     }
 }

@@ -18,6 +18,6 @@ namespace PS.Mothership.Core.Common.Dto.Groups
         [DataMember]
         public GenRecStatusEnum RecStatusKey { get; set; }
         [DataMember]
-        public List<RoleDto> Roles { get; set; }
+        public ICollection<RoleDto> Roles { get; set; }
     }
 }

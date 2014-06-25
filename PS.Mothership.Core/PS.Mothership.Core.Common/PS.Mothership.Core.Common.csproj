@@ -94,12 +94,10 @@
     <Reference Include="log4net">
       <HintPath>..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.6.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Quartz, Version=2.2.3.400, Culture=neutral, PublicKeyToken=f6b8c98a402cc8a4, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Quartz">
       <HintPath>..\packages\Quartz.2.2.3\lib\net40\Quartz.dll</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -127,8 +125,10 @@
     <Compile Include="Constants\GlobalConstants.cs" />
     <Compile Include="Constants\NamingConstants.cs" />
     <Compile Include="Constructs\PagedList.cs" />
+    <Compile Include="Contracts\IAddressManagementService.cs" />
     <Compile Include="Contracts\IAddressService.cs" />
     <Compile Include="Contracts\IApplicationService.cs" />
+    <Compile Include="Contracts\IContactManagementService.cs" />
     <Compile Include="Contracts\IEchoSignCallbackService.cs" />
     <Compile Include="Contracts\IProspectCustomerService.cs" />
     <Compile Include="Contracts\IDiallerService.cs" />
@@ -139,6 +139,8 @@
     <Compile Include="Contracts\IMSLogger.cs" />
     <Compile Include="Contracts\ISendMessageService.cs" />
     <Compile Include="Contracts\ISendMessageStatusServiceCallback.cs" />
+    <Compile Include="Dto\CompaniesHouse\CompanyAppointmentsDto.cs" />
+    <Compile Include="Dto\FullPostcodeDto.cs" />
     <Compile Include="SessionHandling\ISessionManager.cs" />
     <Compile Include="Contracts\ITaskNotificationCallback.cs" />
     <Compile Include="Contracts\ITaskNotificationService.cs" />
@@ -148,15 +150,55 @@
     <Compile Include="Config\ILayerIocBuilder.cs" />
     <Compile Include="Config\IocBuildSettings.cs" />
     <Compile Include="Config\WcfMode.cs" />
+    <Compile Include="Dto\CompaniesHouse\CompanyAppointmentsRequestDto.cs" />
+    <Compile Include="Dto\CompaniesHouse\CompanyDetailsDto.cs" />
+    <Compile Include="Dto\CompaniesHouse\CompanyDetailsRequestDto.cs" />
+    <Compile Include="Dto\CompaniesHouse\DocumentRequestDto.cs" />
+    <Compile Include="Dto\CompaniesHouse\SubDtos\AccountsDto.cs" />
+    <Compile Include="Dto\CompaniesHouse\SubDtos\ChargeDto.cs" />
+    <Compile Include="Dto\CompaniesHouse\SubDtos\CoApptDto.cs" />
+    <Compile Include="Dto\CompaniesHouse\SubDtos\CompanyDetailsMortgagesDto.cs" />
+    <Compile Include="Dto\CompaniesHouse\SubDtos\CoSearchItemDto.cs" />
+    <Compile Include="Dto\CompaniesHouse\DocumentInfoRequestDto.cs" />
+    <Compile Include="Dto\CompaniesHouse\FilingHistoryDto.cs" />
+    <Compile Include="Dto\CompaniesHouse\FilingHistoryRequestDto.cs" />
+    <Compile Include="Dto\CompaniesHouse\MortgagesRequestDto.cs" />
+    <Compile Include="Dto\CompaniesHouse\NameSearchRequestDto.cs" />
+    <Compile Include="Dto\CompaniesHouse\NumberSearchRequestDto.cs" />
+    <Compile Include="Dto\CompaniesHouse\OfficerDetailsDto.cs" />
+    <Compile Include="Dto\CompaniesHouse\OfficerDetailsRequestDto.cs" />
+    <Compile Include="Dto\CompaniesHouse\OfficerSearchRequestDto.cs" />
+    <Compile Include="Dto\CompaniesHouse\SubDtos\ExemptionDto.cs" />
+    <Compile Include="Dto\CompaniesHouse\SubDtos\FhistChildDocDto.cs" />
+    <Compile Include="Dto\CompaniesHouse\SubDtos\FhistItemDto.cs" />
+    <Compile Include="Dto\CompaniesHouse\SubDtos\LimitedPartnershipsDto.cs" />
+    <Compile Include="Dto\CompaniesHouse\SubDtos\OfficerApptDto.cs" />
+    <Compile Include="Dto\CompaniesHouse\SubDtos\OfficerDetailsApptCountDto.cs" />
+    <Compile Include="Dto\CompaniesHouse\SubDtos\OfficerDisqDto.cs" />
+    <Compile Include="Dto\CompaniesHouse\SubDtos\OfficerSearchItemBaseDto.cs" />
+    <Compile Include="Dto\CompaniesHouse\SubDtos\OfficerSearchItemDto.cs" />
+    <Compile Include="Dto\CompaniesHouse\SubDtos\PersonAddressDto.cs" />
+    <Compile Include="Dto\CompaniesHouse\SubDtos\PersonAppointmentDto.cs" />
+    <Compile Include="Dto\CompaniesHouse\SubDtos\PersonDto.cs" />
+    <Compile Include="Dto\CompaniesHouse\SubDtos\PreviousNameDto.cs" />
+    <Compile Include="Dto\CompaniesHouse\SubDtos\RegAddressDto.cs" />
+    <Compile Include="Dto\CompaniesHouse\SubDtos\ReturnsDto.cs" />
+    <Compile Include="Dto\CompaniesHouse\SubDtos\SicCodesDto.cs" />
     <Compile Include="Dto\Contact\AddressDto.cs" />
+    <Compile Include="Dto\Contact\CountryDto.cs" />
+    <Compile Include="Dto\Contact\CountyDto.cs" />
     <Compile Include="Dto\Contact\PhoneNumberDto.cs" />
-    <Compile Include="Dto\Customer\ContactDto.cs" />
-    <Compile Include="Dto\Customer\CustomerDetailsDto.cs" />
-    <Compile Include="Dto\Customer\ProspectDetailsDto.cs" />
-    <Compile Include="Dto\Customer\CustomerDto.cs" />
-    <Compile Include="Dto\Customer\MerchantDto.cs" />
-    <Compile Include="Dto\Customer\ProspectDto.cs" />
-    <Compile Include="Dto\Customer\ProspectResponseDto.cs" />
+    <Compile Include="Dto\Merchant\AddProspectDto.cs" />
+    <Compile Include="Dto\Merchant\ContactDto.cs" />
+    <Compile Include="Dto\Merchant\CustomerDetailsDto.cs" />
+    <Compile Include="Dto\Merchant\CustomerDto.cs" />
+    <Compile Include="Dto\Merchant\MerchantContactDto.cs" />
+    <Compile Include="Dto\Merchant\MerchantDto.cs" />
+    <Compile Include="Dto\Merchant\MerchantAddressDto.cs" />
+    <Compile Include="Dto\Merchant\ProspectAddressDto.cs" />
+    <Compile Include="Dto\Merchant\ProspectDetailsDto.cs" />
+    <Compile Include="Dto\Merchant\ProspectDto.cs" />
+    <Compile Include="Dto\Merchant\ProspectResponseDto.cs" />
     <Compile Include="Dto\Dialler\CallLogItemDto.cs" />
     <Compile Include="Dto\Dialler\CallRecordDto.cs" />
     <Compile Include="Dto\Dialler\CallRecordingEventDto.cs" />
@@ -219,6 +261,7 @@
     <Compile Include="Dto\Message\MessageEmailAttachmentsDto.cs" />
     <Compile Include="Dto\Message\MessageEmailDto.cs" />
     <Compile Include="Dto\Message\EmailAddressDto.cs" />
+    <Compile Include="Dto\PostcodeDto.cs" />
     <Compile Include="Dto\Roles\InheritedRolesDto.cs" />
     <Compile Include="Dto\LoginCredentialsDto.cs" />
     <Compile Include="Dto\NotificationDetailDto.cs" />
@@ -231,6 +274,7 @@
     <Compile Include="Dto\Session\SessionHeaderDto.cs" />
     <Compile Include="Dto\Task\TaskNotificationLogDto.cs" />
     <Compile Include="Dto\Task\TaskNotificationDto.cs" />
+    <Compile Include="Dto\User\UserListDto.cs" />
     <Compile Include="Dto\User\UserRemoteAccessTrnDto.cs" />
     <Compile Include="Dto\User\UserStatusTrnDto.cs" />
     <Compile Include="Dto\User\UserDto.cs" />
@@ -256,6 +300,7 @@
     <Compile Include="Dto\User\UserRoleDto.cs" />
     <Compile Include="Dto\User\UserProfileDto.cs" />
     <Compile Include="Enums\Action.cs" />
+    <Compile Include="Enums\CompaniesHouse\CompaniesHouseGenerated.cs" />
     <Compile Include="Enums\EchoSign\AgreementStatusEnum.cs" />
     <Compile Include="Enums\EchoSign\DocSecurityOptionEnum.cs" />
     <Compile Include="Enums\EchoSign\DocumentLibraryItemScopeEnum.cs" />
