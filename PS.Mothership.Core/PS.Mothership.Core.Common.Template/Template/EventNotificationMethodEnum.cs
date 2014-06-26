@@ -11,6 +11,7 @@ namespace PS.Mothership.Core.Common.Template.Event
     public enum EventNotificationMethodEnum : long
     {
        [Description("None")][EnumMember]None = 0,
+       [Description("Popup")][EnumMember]Popup = 1,
         
     }    
     
@@ -44,6 +45,14 @@ namespace PS.Mothership.Core.Common.Template.Event
 								EnumDescription = "None",
 								NotificationMethodKey = 0,
 								RecStatusKey = (GenRecStatusEnum)0
+							},
+							new EventNotificationMethod
+							{
+								EnumValue = 1,
+								EnumName = "Popup",
+								EnumDescription = "Popup",
+								NotificationMethodKey = 1,
+								RecStatusKey = (GenRecStatusEnum)1
 							},
                         };
                     

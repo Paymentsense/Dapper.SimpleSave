@@ -22,6 +22,8 @@ namespace PS.Mothership.Core.Common.Template.Event
        [Description("EmailSendFailed")][EnumMember]EmailSendFailed = 9,
        [Description("Dialler Call Made")][EnumMember]DiallerCallMade = 10,
        [Description("Dialler Call Recording")][EnumMember]DiallerCallRecording = 11,
+       [Description("Notification Scheduled")][EnumMember]NotificationScheduled = 12,
+       [Description("Notification Actioned")][EnumMember]NotificationActioned = 13,
         
     }    
     
@@ -154,6 +156,24 @@ namespace PS.Mothership.Core.Common.Template.Event
 								EnumName = "DiallerCallRecording",
 								EnumDescription = "Dialler Call Recording",
 								EventTypeKey = 11,
+								EventCategoryKey = 1,
+								RecStatusKey = (GenRecStatusEnum)1
+							},
+							new EventType
+							{
+								EnumValue = 12,
+								EnumName = "NotificationScheduled",
+								EnumDescription = "Notification Scheduled",
+								EventTypeKey = 12,
+								EventCategoryKey = 1,
+								RecStatusKey = (GenRecStatusEnum)1
+							},
+							new EventType
+							{
+								EnumValue = 13,
+								EnumName = "NotificationActioned",
+								EnumDescription = "Notification Actioned",
+								EventTypeKey = 13,
 								EventCategoryKey = 1,
 								RecStatusKey = (GenRecStatusEnum)1
 							},
