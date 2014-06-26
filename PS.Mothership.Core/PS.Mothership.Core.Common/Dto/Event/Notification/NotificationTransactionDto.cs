@@ -2,10 +2,10 @@
 using System.Runtime.Serialization;
 using PS.Mothership.Core.Common.Template.Event;
 
-namespace PS.Mothership.Core.Common.Dto.Task
+namespace PS.Mothership.Core.Common.Dto.Event.Notification
 {
     [DataContract]
-    public class NotificationDto
+    public class NotificationTransactionDto
     {
         [DataMember]
         public Guid NotificationGuid { get; set; }
