@@ -1,19 +1,20 @@
 ﻿using System;
 using System.Runtime.Serialization;
-using PS.Mothership.Core.Common.Template.Event;
 
 namespace PS.Mothership.Core.Common.Dto.Event.Notification
 {
     [DataContract]
-    public class PendingTaskNotificationDto
+    public class TaskNotificationDto
     {
         [DataMember]
-        public Guid NotificationId { get; set; }
+        public Guid NotificationGuid { get; set; }
         [DataMember]
         public DateTime ScheduledDate { get; set; }
         [DataMember]
-        public EventNotificationMethodEnum NotificationMethodKey { get; set; }
+        public string Description { get; set; }
         [DataMember]
-        public string NotificationDescription { get; set; }
+        public Guid UserGuid { get; set; }
+        [DataMember]
+        public string UserName { get; set; }
     }
 }
