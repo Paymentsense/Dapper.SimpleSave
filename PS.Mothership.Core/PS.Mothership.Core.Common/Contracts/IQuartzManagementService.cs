@@ -1,4 +1,6 @@
-﻿using PS.Mothership.Core.Common.Dto.QuartzManagement;
+﻿using PS.Mothership.Core.Common.Constructs;
+using PS.Mothership.Core.Common.Dto.DynamicRequest;
+using PS.Mothership.Core.Common.Dto.QuartzManagement;
 using PS.Mothership.Core.Common.Enums.QuartzManagement;
 using Quartz;
 using System;
@@ -13,17 +15,8 @@ namespace PS.Mothership.Core.Common.Contracts
         [OperationContract]
         QuartzServerInfoDto GetQuartzServerInfo();
 
-        [OperationContract]
-        IList<JobGroupStateDto> GetActiveJobGroups();
-
-        [OperationContract]
-        IList<string> GetUnassignedJobs();
-
-        [OperationContract]
-        IJobDetail GetJobGroupDetail(string jobGroupName);
-
-        [OperationContract]
-        void ScheduleNewJob(AvailableJobGroupsEnum jobGroup, string jobName, string jobClass, string triggerName, string cronExpression, DateTime startDateTime);
+        //[OperationContract]
+        //void ScheduleNewJob(AvailableJobGroupsEnum jobGroup, string jobName, string jobClass, string triggerName, string cronExpression, DateTime startDateTime);
 
         [OperationContract]
         void PauseAllTriggers();
@@ -32,15 +25,18 @@ namespace PS.Mothership.Core.Common.Contracts
         void ResumeAllTriggers();
 
         [OperationContract]
-        void PauseJobGroup(string jobGroupName);
+        void PauseJob(string jobName);
 
         [OperationContract]
-        void ResumeJobGroup(string jobGroupName);
+        void ResumeJob(string jobName);
 
         [OperationContract]
         void PauseTrigger(string triggerName);
 
         [OperationContract]
         void ResumeTrigger(string triggerName);
+
+        [OperationContract]
+        PagedList<JobProfileDto> GetJobs(DataRequestDto dataRequestDto);
     }
 }
