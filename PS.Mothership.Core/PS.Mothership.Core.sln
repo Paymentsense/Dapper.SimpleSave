@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PS.Mothership.Core.Common", "PS.Mothership.Core.Common\PS.Mothership.Core.Common.csproj", "{2E26F270-5FB3-447D-83B6-416A1BDBB0FC}"
 	ProjectSection(ProjectDependencies) = postProject
 		{0F7A5532-B7D9-44DF-B7B2-B30546F1922A} = {0F7A5532-B7D9-44DF-B7B2-B30546F1922A}
