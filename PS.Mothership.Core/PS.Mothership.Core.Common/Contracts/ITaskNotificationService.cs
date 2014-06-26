@@ -4,6 +4,7 @@ using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using PS.Mothership.Core.Common.Dto;
+using PS.Mothership.Core.Common.Dto.Event.Notification;
 using Quartz;
 
 namespace PS.Mothership.Core.Common.Contracts
@@ -16,7 +17,7 @@ namespace PS.Mothership.Core.Common.Contracts
         [OperationContract(IsOneWay = true)]
         void EndSubscribe(string applicationName);
         [OperationContract]
-        void AddNewTask(TaskDto taskDto);
+        void AddNewTask(NotificationDto taskDto);
         //[OperationContract]
         //void UpdateTask(TaskDto taskDto);
         [OperationContract]
