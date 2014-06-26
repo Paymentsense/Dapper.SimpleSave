@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+using PS.Mothership.Core.Common.Dto.Event.Notification;
 
-namespace PS.Mothership.Core.Common.Dto.Event.Notification
+namespace PS.Mothership.Core.Common.Dto
 {
     [DataContract]
-    public class NotificationDto
+    public class TaskDto
     {
-       
         [DataMember]
         public DateTime TaskStartDateTime { get; set; }
         [DataMember]

@@ -1,5 +1,5 @@
 ﻿using System.ServiceModel;
-using PS.Mothership.Core.Common.Dto.Event.Notification;
+using PS.Mothership.Core.Common.Dto;
 
 namespace PS.Mothership.Core.Common.Contracts
 {
@@ -13,10 +13,10 @@ namespace PS.Mothership.Core.Common.Contracts
         void EndSubscribe(string applicationName);
 
         [OperationContract]
-        void AddNewTask(NotificationDto taskDto);
+        void AddNewTask(TaskDto taskDto);
 
         [OperationContract]
-        void UpdateTask(NotificationDto taskDto);
+        void UpdateTask(TaskDto taskDto);
 
         [OperationContract]
         void CompleteTask(long pendingNotificationId);

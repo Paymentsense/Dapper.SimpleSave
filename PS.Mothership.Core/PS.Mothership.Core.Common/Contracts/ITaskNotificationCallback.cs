@@ -1,5 +1,5 @@
 ﻿using System.ServiceModel;
-using PS.Mothership.Core.Common.Dto.Event.Notification;
+using PS.Mothership.Core.Common.Dto;
 
 namespace PS.Mothership.Core.Common.Contracts
 {
@@ -7,6 +7,6 @@ namespace PS.Mothership.Core.Common.Contracts
     public interface ITaskNotificationCallback
     {
         [OperationContract(IsOneWay = true)]
-        void ReceiveNotification(NotificationDto taskDto);
+        void ReceiveNotification(TaskDto taskDto);
     }
 }

@@ -1,11 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System;
+using System.Collections.Generic;
 using System.ServiceModel;
-using System.Text;
-using System.Threading.Tasks;
-using PS.Mothership.Core.Common.Dto;
 using PS.Mothership.Core.Common.Dto.Event.Notification;
-using Quartz;
 
 namespace PS.Mothership.Core.Common.Contracts
 {
@@ -17,12 +13,10 @@ namespace PS.Mothership.Core.Common.Contracts
         [OperationContract(IsOneWay = true)]
         void EndSubscribe(string applicationName);
         [OperationContract]
-        void AddNewTask(NotificationDto taskDto);
-        //[OperationContract]
-        //void UpdateTask(TaskDto taskDto);
+        void AddNewTask(TaskNotificationDto taskNotificationDto);
         [OperationContract]
-        void CompleteTask(long pendingNotificationId);
+        IList<TaskNotificationDto> RetreiveUserTasks(Guid userGuid);
         [OperationContract]
-        void PushPendingTaskNotifications(string userName);
+        void UpdateTask(TaskNotificationDto taskDto);
     }
 }
