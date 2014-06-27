@@ -29,7 +29,7 @@ namespace PS.Mothership.Core.Common.Dto.User
         public Template.Usr.UsrUserTypeEnum UserType { get; set; }
 
         public bool IsUserPasswordLocked { get { return UserStatus == Template.Usr.UsrUserStatusEnum.PasswordLock; } }
-        
+
         [DataMember]
         public bool UnlockAccount { get; set; }
 

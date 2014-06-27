@@ -18,7 +18,7 @@ namespace PS.Mothership.Core.Common.Dto.User
     /// </remarks>
     [DataContract]
     public class UserProfileDto
-    {        
+    {
         [DataMember]
         public Guid UserGuid { get; set; }
         [DataMember]
@@ -53,17 +53,17 @@ namespace PS.Mothership.Core.Common.Dto.User
 
         [DataMember]
         public string Message { get; set; }
-       
+
         [DataMember]
         public string ValidationCode { get; set; }
         [DataMember]
-        public ICollection<string> AlternateLoginNames { get; set; }         
+        public ICollection<string> AlternateLoginNames { get; set; }
         [DataMember]
         public string ChosenLoginName { get; set; }
         [DataMember]
         public ICollection<UserProfileDto> SimilarNames { get; set; }
-                
-        [JsonIgnore]     
+
+        [JsonIgnore]
         [DataMember]
         public Guid SessionId { get; set; }
 
@@ -80,8 +80,8 @@ namespace PS.Mothership.Core.Common.Dto.User
             get { return _statusOptions; }
             set { _statusOptions = value; }
         }
-        
-        private UsrUserStatusEnum _userStatus = UsrUserStatusEnum.NewHire;        
+
+        private UsrUserStatusEnum _userStatus = UsrUserStatusEnum.NewHire;
         [DataMember]
         public UsrUserStatusEnum UserStatus
         {
