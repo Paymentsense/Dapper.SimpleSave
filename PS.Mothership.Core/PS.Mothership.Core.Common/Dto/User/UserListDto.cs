@@ -56,5 +56,8 @@ namespace PS.Mothership.Core.Common.Dto.User
 
         [DataMember]
         public Guid SipAccountGuid { get; set; }
+
+        [DataMember]
+        public string EMail { get; set; }
     }
 }
