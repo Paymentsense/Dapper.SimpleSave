@@ -15,8 +15,9 @@ namespace PS.Mothership.Core.Common.Contracts
         [OperationContract]
         QuartzServerInfoDto GetQuartzServerInfo();
 
-        //[OperationContract]
-        //void ScheduleNewJob(AvailableJobGroupsEnum jobGroup, string jobName, string jobClass, string triggerName, string cronExpression, DateTime startDateTime);
+        [OperationContract]
+        void ScheduleNewJob(string triggerName, string jobName, AvailableJobGroupsEnum jobGroupName,
+            string jobClass, IntervalUnit occurance, string interval, DateTimeOffset startTime, IEnumerable<DayOfWeek> dayOfWeek);
 
         [OperationContract]
         void PauseAllTriggers();
