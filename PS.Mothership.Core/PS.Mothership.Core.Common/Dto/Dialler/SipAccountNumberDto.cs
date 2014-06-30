@@ -8,7 +8,6 @@ namespace PS.Mothership.Core.Common.Dto.Dialler
     {
         [DataMember]
         public Guid SipAccountGuid { get; set; }
-
         [DataMember]
         public string PhoneNumber { get; set; }
     }

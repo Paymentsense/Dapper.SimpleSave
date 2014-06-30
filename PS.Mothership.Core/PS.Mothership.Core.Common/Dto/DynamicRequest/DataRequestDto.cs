@@ -34,7 +34,7 @@ namespace PS.Mothership.Core.Common.Dto.DynamicRequest
         public int End { get; set; }
 
         [DataMember]
-        public IEnumerable<SortDto> Sort { get; set; }
+        public ICollection<SortDto> Sort { get; set; }
 
         [DataMember]
         public FilterDto Filter { get; set; }

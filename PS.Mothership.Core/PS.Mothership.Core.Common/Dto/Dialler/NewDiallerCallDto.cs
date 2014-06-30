@@ -8,47 +8,31 @@ namespace PS.Mothership.Core.Common.Dto.Dialler
     public class NewDiallerCallDto
     {
         [DataMember]
-        public Guid MothershipSessionGuid { get; set; }
-
-        [DataMember]
         public Guid SipCallGuid { get; set; }
-
         [DataMember]
         public DialCallTypeEnum CallType { get; set; }
-
         [DataMember]
         public Guid SessionModeGuid { get; set; }
-
         [DataMember]
         public DateTimeOffset StartDateTime { get; set; }
-
         [DataMember]
         public string DialledNumber { get; set; }
-
         [DataMember]
         public Guid UserSipPhoneGuid { get; set; }
-
         [DataMember]
         public string CIDNumber { get; set; }
-
         [DataMember]
-        public Guid? MerchantGuid { get; set; }
-
+        public Guid MerchantGuid { get; set; }
         [DataMember]
-        public Guid? ProspectingCampaignCallGuid { get; set; }
-
+        public Guid ProspectingCampaignCallGuid { get; set; }
         [DataMember]
-        public long? CampaignKey { get; set; }
-
+        public long CampaignKey { get; set; }
         [DataMember]
-        public Guid? ConsultOriginSipCallGuid { get; set; }
-
+        public Guid ConsultOriginSipCallGuid { get; set; }
         [DataMember]
-        public Guid? ProspectingCampaignResponseTapCallGuid { get; set; }
-
+        public Guid ProspectingCampaignResponseTapCallGuid { get; set; }
         [DataMember]
         public Guid InboundCampaignCallGuid { get; set; }
-
         [DataMember]
         public DialCallDispositionEnum CallDisposition { get; set; }
     }
