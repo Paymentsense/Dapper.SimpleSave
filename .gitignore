@@ -76,3 +76,4 @@ packages/
 *.orig
 *Enum.cs
 *.old
+UpgradeLog.htm
