@@ -28,6 +28,14 @@ namespace PS.Mothership.Core.Common.Dto.User
         [DataMember]
         public Template.Usr.UsrUserTypeEnum UserType { get; set; }
 
+        public bool IsUserPasswordLocked { get { return UserStatus == Template.Usr.UsrUserStatusEnum.PasswordLock; } }
+
+        [DataMember]
+        public bool UnlockAccount { get; set; }
+
+        [DataMember]
+        public bool ResetPassword { get; set; }
+
         [DataMember]
         public ICollection<RoleDto> Roles { get; set; }
 
@@ -56,5 +64,8 @@ namespace PS.Mothership.Core.Common.Dto.User
 
         [DataMember]
         public Guid SipAccountGuid { get; set; }
+
+        [DataMember]
+        public string EMail { get; set; }
     }
 }

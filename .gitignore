@@ -55,6 +55,7 @@ _ReSharper*/
 
 #NuGet
 packages/
+!packages/repositories.config
 !packages/*/lib
 *.nupkg
 
@@ -74,6 +75,6 @@ packages/
 *.BACKUP.*
 *.BASE.*
 *.orig
-*Enum.cs
 *.old
+**/Template/*Enum.cs
 UpgradeLog.htm
