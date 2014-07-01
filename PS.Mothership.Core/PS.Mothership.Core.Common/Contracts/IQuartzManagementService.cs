@@ -17,7 +17,7 @@ namespace PS.Mothership.Core.Common.Contracts
 
         [OperationContract]
         void ScheduleNewJob(string triggerName, string jobName, AvailableJobGroupsEnum jobGroupName,
-            string jobClass, IntervalUnit occurance, string interval, DateTimeOffset startTime, IEnumerable<DayOfWeek> dayOfWeek);
+            string jobClass, IntervalUnit occurance, string interval, DateTimeOffset startTime, IEnumerable<DayOfWeek> dayOfWeek = null);
 
         [OperationContract]
         void PauseAllTriggers();
@@ -39,5 +39,8 @@ namespace PS.Mothership.Core.Common.Contracts
 
         [OperationContract]
         PagedList<JobProfileDto> GetJobs(DataRequestDto dataRequestDto);
+
+        [OperationContract]
+        void ExecuteJobNow(string jobName);
     }
 }

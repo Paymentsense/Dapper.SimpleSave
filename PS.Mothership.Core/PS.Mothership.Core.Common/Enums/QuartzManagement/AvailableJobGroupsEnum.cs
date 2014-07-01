@@ -6,16 +6,26 @@ namespace PS.Mothership.Core.Common.Enums.QuartzManagement
     public enum AvailableJobGroupsEnum
     {
         [EnumMember]
-        Default = 0,
+        None = 0,
         [EnumMember]
-        JobGroup1 = 1,
+        Default = 1,
         [EnumMember]
-        JobGroup2 = 2,
+        HR = 2,
         [EnumMember]
-        JobGroup3 = 3,
+        Ecom = 3,
         [EnumMember]
-        JobGroup4 = 4,
+        Finance = 4,
         [EnumMember]
-        JobGroup5 = 5
+        Dialler = 5,
+        [EnumMember]
+        CustomerService = 6,
+        [EnumMember]
+        Marketing = 7,
+        [EnumMember]
+        ProSupport = 8,
+        [EnumMember]
+        EchoSign = 9,
+        [EnumMember]
+        Iridium = 10
     }
 }
