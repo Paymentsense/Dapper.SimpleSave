@@ -7,7 +7,9 @@ namespace PS.Mothership.Core.Common.Dto.Event.Notification
     public class TaskNotificationDto
     {
         [DataMember]
-        public Guid NotificationGuid { get; set; }
+        public Guid EventGuid { get; set; }
+        [DataMember]
+        public Guid NotificationGuidGuid { get; set; }
         [DataMember]
         public DateTimeOffset ScheduledDate { get; set; }
         [DataMember]
