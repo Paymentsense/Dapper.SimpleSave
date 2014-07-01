@@ -130,6 +130,7 @@
     <Compile Include="Contracts\IApplicationService.cs" />
     <Compile Include="Contracts\IContactManagementService.cs" />
     <Compile Include="Contracts\IEchoSignCallbackService.cs" />
+    <Compile Include="Contracts\IManageableJob.cs" />
     <Compile Include="Contracts\IProspectCustomerService.cs" />
     <Compile Include="Contracts\IDiallerService.cs" />
     <Compile Include="Contracts\IDiallerTaskNotificationCallback.cs" />
@@ -137,10 +138,16 @@
     <Compile Include="Contracts\IIdentityCheckService.cs" />
     <Compile Include="Contracts\ILoggingService.cs" />
     <Compile Include="Contracts\IMSLogger.cs" />
+    <Compile Include="Contracts\IQuartzManagementService.cs" />
     <Compile Include="Contracts\ISendMessageService.cs" />
     <Compile Include="Contracts\ISendMessageStatusServiceCallback.cs" />
     <Compile Include="Dto\CompaniesHouse\CompanyAppointmentsDto.cs" />
     <Compile Include="Dto\FullPostcodeDto.cs" />
+    <Compile Include="Dto\QuartzManagement\JobProfileDto.cs" />
+    <Compile Include="Dto\QuartzManagement\TriggerProfileDto.cs" />
+    <Compile Include="Dto\QuartzManagement\QuartzServerInfoDto.cs" />
+    <Compile Include="Enums\QuartzManagement\AvailableJobGroupsEnum.cs" />
+    <Compile Include="Enums\QuartzManagement\SchedulerStatusEnum.cs" />
     <Compile Include="SessionHandling\ISessionManager.cs" />
     <Compile Include="Contracts\ITaskNotificationCallback.cs" />
     <Compile Include="Contracts\ITaskNotificationService.cs" />
