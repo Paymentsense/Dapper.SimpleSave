@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ServiceModel;
+using PS.Mothership.Core.Common.Dto.Iridium;
 
 namespace PS.Mothership.Core.Common.Contracts
 {
@@ -9,8 +10,8 @@ namespace PS.Mothership.Core.Common.Contracts
         [OperationContract]
         void SubmitToIridium(Guid opportunityGuid);
 
-        //[OperationContract]
-        //void ConfirmIridiumAccount(IridiumBo iridiumBo);
+        [OperationContract]
+        IridiumConfirmResultsDto ConfirmIridiumAccount(Guid gatewayAccountGuid);
 
     }
 }

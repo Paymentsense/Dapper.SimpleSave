@@ -18,9 +18,9 @@ namespace PS.Mothership.Core.Common.Template.Usr
        [Description("Role Management")][EnumMember]RoleManagement = 5,
        [Description("Group Management")][EnumMember]GroupManagement = 6,
        [Description("Dialler Client")][EnumMember]Dialler = 7,
-       [Description("Merchant")][EnumMember]MerchantManagement = 8,
+       [Description("Merchant")][EnumMember]Merchant = 8,
        [Description("Schedule Management")][EnumMember]ScheduleManagement = 9,
-       [Description("Search")][EnumMember]Merchant = 10,
+       [Description("Search")][EnumMember]MerchantSearch = 10,
         
     }    
     
@@ -159,10 +159,10 @@ namespace PS.Mothership.Core.Common.Template.Usr
 							new UsrResource
 							{
 								EnumValue = 8,
-								EnumName = "MerchantManagement",
+								EnumName = "Merchant",
 								EnumDescription = "Merchant",
 								ResourceKey = 8,
-								ActionName = "IndexFull",
+								ActionName = "Index",
 								ControllerName = "Merchant",
 								Area = "Merchant",
 								ContainerName = "",
@@ -185,10 +185,10 @@ namespace PS.Mothership.Core.Common.Template.Usr
 							new UsrResource
 							{
 								EnumValue = 10,
-								EnumName = "Merchant",
+								EnumName = "MerchantSearch",
 								EnumDescription = "Search",
 								ResourceKey = 10,
-								ActionName = "Index",
+								ActionName = "Search",
 								ControllerName = "Merchant",
 								Area = "Merchant",
 								ContainerName = "Merchant Management",
