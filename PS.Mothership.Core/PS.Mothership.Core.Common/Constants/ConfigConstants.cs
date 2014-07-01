@@ -111,5 +111,10 @@
         public const string IridiumEmailSendFrom = "IridiumEmailSendFrom";
         public const string IridiumTestSendEmail = "IridiumTestSendEmail";
         public const string IridiumConfirmMaxMinutesToCheck = "IridiumConfirmMaxMinutesToCheck";
+
+        //First Data Constants
+        public const string FirstDataCredential = "FirstDataCredential";
+        public const string VATRate = "VATRate";
+        public const string FirstDataAgentBankCode = "FirstDataAgentBankCode";
     }
 }
