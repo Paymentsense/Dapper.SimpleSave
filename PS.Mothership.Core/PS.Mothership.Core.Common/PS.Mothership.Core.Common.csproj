@@ -142,6 +142,9 @@
     <Compile Include="Contracts\ISendMessageStatusServiceCallback.cs" />
     <Compile Include="Dto\CompaniesHouse\CompanyAppointmentsDto.cs" />
     <Compile Include="Dto\FullPostcodeDto.cs" />
+    <Compile Include="Dto\Iridium\IridiumConfirmResultsDto.cs" />
+    <Compile Include="Dto\Iridium\IridiumRequestDto.cs" />
+    <Compile Include="Dto\Iridium\IridiumResultsDto.cs" />
     <Compile Include="SessionHandling\ISessionManager.cs" />
     <Compile Include="Contracts\ITaskNotificationCallback.cs" />
     <Compile Include="Contracts\ITaskNotificationService.cs" />
@@ -245,9 +248,6 @@
     <Compile Include="Dto\Experian\IdentityResultBlockDto.cs" />
     <Compile Include="Dto\Experian\PreviousAddressTypeDto.cs" />
     <Compile Include="Dto\Experian\PrivateInformationTypeDto.cs" />
-    <Compile Include="Dto\Iridium\IridiumRequestDto.cs" />
-    <Compile Include="Dto\Iridium\IridiumResultsDto.cs" />
-    <Compile Include="Dto\Iridium\IridiumConfirmResultsDto.cs" />
     <Compile Include="Dto\Login\AccountDto.cs" />
     <Compile Include="Dto\Login\ChangePasswordDto.cs" />
     <Compile Include="Dto\Login\ChangePasswordResultDto.cs" />

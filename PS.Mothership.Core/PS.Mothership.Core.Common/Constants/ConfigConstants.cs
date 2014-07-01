@@ -2,8 +2,6 @@
 {
     public class ConfigConstants
     {
-        public const string IsInProduction = "IsInProduction";
-
         //common postcodeanywhere constants
         public const string PostCodeAnywhereAccountCode = "PostCodeAnywhereAccountCode";
         public const string PostCodeAnywhereLicenseKey = "PostCodeAnywhereLicenseKey";
@@ -94,21 +92,14 @@
         public const string PdfEngineTemplateHtml = "PdfEngineTemplateHtml";
         public const string PdfEngineMerchantPdfs = "PdfEngineMerchantPdfs";
 
+		
 		// Companies House Constants
 		public const string CompaniesHouseGatewayUserId = "CompaniesHouseGatewayUserId";
-		public const string CompaniesHouseGatewayPassword = "CompaniesHouseGatewayPassword";
+        public const string CompaniesHouseGatewayPassword = "CompaniesHouseGatewayPassword";
         public const string CompaniesHouseXmlWebUrl = "CompaniesHouseXmlWebUrl";
         public const string CompaniesHouseJsonWebUrl = "CompaniesHouseJsonWebUrl";
         public const string ComapniesHouseGatewayEndpoint = "CompaniesHouseGatewayEndpoint";
         public const string CompaniesHouseWebRequestTimeoutMilliseconds = "CompaniesHouseWebRequestTimeoutMilliseconds";
         public const string CompaniesHouseMaxRetryCount = "CompaniesHouseMaxRetryCount";
-        //Iridium Constants
-        public const string IridiumDomain = "IridiumDomain";
-        public const string IridiumUserName = "IridiumUserName";
-        public const string IridiumPassword = "IridiumPassword";
-        public const string IridiumEmailSendFrom = "IridiumEmailSendFrom";
-        public const string IridiumTestSendEmail = "IridiumTestSendEmail";
-        public const string IridiumConfirmMaxMinutesToCheck = "IridiumConfirmMaxMinutesToCheck";
     }
 }
-

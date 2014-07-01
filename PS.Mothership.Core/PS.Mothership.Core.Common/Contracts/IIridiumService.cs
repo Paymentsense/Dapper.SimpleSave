@@ -8,7 +8,7 @@ namespace PS.Mothership.Core.Common.Contracts
     public interface IIridiumService : IQuartzJobBase
     {
         [OperationContract]
-        void SubmitToIridium(Guid opportunityGuid);
+        IridiumResultsDto PrivisionGateWayAccountWithIridium(Guid opportunityGuid);
 
         [OperationContract]
         IridiumConfirmResultsDto ConfirmIridiumAccount(Guid gatewayAccountGuid);
