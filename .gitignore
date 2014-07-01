@@ -75,4 +75,4 @@ packages/
 *.BASE.*
 *.orig
 *.old
-/Externals/*/*Enum.cs
+/Externals/*/Template/*Enum.cs
