@@ -21,7 +21,7 @@ namespace PS.Mothership.Core.Common.Contracts
         [OperationContract]
         UserProfileDto GetUser(Guid userGuid);
         [OperationContract]
-        PagedList<UserProfileDto> GetSimilarNames(UserProfileDto userProfileDto); 
+        PagedList<UserListDto> GetSimilarNames(DataRequestDto dataRequestDto, UserProfileDto userProfileDto);
         [OperationContract]
         PagedList<UserProfileDto> QuickSearch(SearchDto searchInput);
         [OperationContract]
