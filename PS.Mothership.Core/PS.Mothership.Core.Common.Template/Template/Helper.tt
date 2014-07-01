@@ -1,0 +1,472 @@
+﻿<#@ assembly name="System" #>
+<#@ assembly name="System.Xml" #>
+<#@ assembly Name="System.Core" #>
+<#@ assembly Name="System.Data" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.Text.RegularExpressions" #>
+<#@ import namespace="System.Data" #> 
+<#@ import namespace="System.Xml" #>
+<#@ import namespace="System.Data.SqlClient" #> 
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Text" #>
+
+<#
+    const string SYS_TABLES_SQL = @"SELECT DISTINCT SCHEMA_NAME(t.schema_id) + '.' + t.NAME as Name,
+        SCHEMA_NAME(t.schema_id) as SchemaName
+        FROM SYS.tables as t
+        INNER JOIN SYS.columns AS c ON t.object_id = c.object_id
+        AND c.name like '%{0}' and t.name like '%{1}'";
+
+    const string USER_TABLES_SQL=@"SELECT * FROM {0}";
+
+    const string FLAG_VALUES= "[Flags]";    
+
+ #>
+
+<#+
+
+    public string ResolvePathLocal(string fileDirectory)
+        {                    
+            string[] files = null;
+
+                if (fileDirectory == null)
+                {
+                    throw new ArgumentNullException("the file name cannot be null");
+                }
+                           
+               string filePath = fileDirectory;
+               string directoryName;
+               int i = 0;
+
+                while (filePath != null)
+                {
+                    directoryName = Path.GetDirectoryName(filePath);                    
+                    filePath = directoryName;
+
+                    try
+                    {
+                        files = Directory.GetFiles(filePath);
+                        foreach (string file in files)
+                        {
+                            try
+                            {
+                                // get all the file
+                                FileInfo fi = new FileInfo(file);
+                                if (Regex.IsMatch(fi.Name,"(app|web).config",RegexOptions.IgnoreCase))
+                                {
+                                     return Path.Combine(filePath, fi.Name);
+                                }
+                            }
+                            catch (FileNotFoundException)
+                            {                            
+                                continue;
+                            }
+                        }
+                    }
+                    // This is thrown if even one of the files requires permissions greater 
+                    // than the application provides. 
+                    catch (UnauthorizedAccessException)
+                    {
+                    }                    
+
+                    if (i == 1)
+                    {
+                        filePath = directoryName + @"\";  // this will preserve the previous path
+                    }
+                    i++;
+                }
+            
+            return string.Empty;
+        }
+        public string GetDataBaseName(string connectionString)
+        {
+            var dbName=string.Empty;
+
+            using (var connection = new SqlConnection(connectionString))
+            {
+                SqlDataReader reader = null;
+
+                try
+                {
+                    var command = new SqlCommand("SELECT DB_NAME() AS DataBaseName", connection);
+                    connection.Open();
+
+                    reader = command.ExecuteReader();
+
+                    // Call Read before accessing data. 
+                    var idxName = reader.GetOrdinal("DataBaseName");
+                    while (reader.Read())
+                    {
+                        dbName = reader.GetString(idxName);                                                
+                    }
+                }
+                catch(Exception)
+                {
+                    // log the sql, as the exception                                        
+                }
+                finally
+                {
+                    // Call Close when done reading.
+                    if (reader != null)
+                        reader.Close();
+                }
+
+                return dbName;
+            }
+        }
+       /// <summary>
+        /// Get all the table name
+        /// </summary>
+        /// <param name="dynamicQueryString"></param>
+        /// <returns></returns>
+        public Dictionary<string,string> GetTableNames(string dynamicQueryString, string connectionString)
+        {
+            var tableNames= new Dictionary<string,string>();
+
+            using (var connection = new SqlConnection(connectionString))
+            {
+                SqlDataReader reader = null;
+
+                try
+                {
+                    var command = new SqlCommand(dynamicQueryString, connection);
+                    connection.Open();
+
+                    reader = command.ExecuteReader();
+
+                    // Call Read before accessing data. 
+                    var idxName = reader.GetOrdinal("Name");
+                    var idxSchemaName= reader.GetOrdinal("SchemaName");    
+                    while (reader.Read())
+                    {
+                        if(tableNames.ContainsKey(reader.GetString(idxName))) continue;
+                        tableNames.Add(reader.GetString(idxName),reader.GetString(idxSchemaName));                                                
+                    }
+                }
+                catch(Exception)
+                {
+                    // log the sql, as the exception                                        
+                }
+                finally
+                {
+                    // Call Close when done reading.
+                    if (reader != null)
+                        reader.Close();
+                }
+            }
+
+            // return
+            return tableNames;
+    }
+              
+    public void GetEnumData(string dynamicQueryString, string connectionString, 
+                               string enumDescriptionColumnName, string enumDescriptionValueColumnName,
+                               ref DataHolder dataHolder)
+    {           
+           var columnName = string.Empty;           
+           var columnType=string.Empty;
+           var queryColumnName =string.Empty;
+           var queryDescriptionColumnName= string.Empty;
+           var additionalColumnNames = new List<string>();
+           var dataCount=0;    
+           var ignoredColumnNames= new List<string>{"name","rowguid","description"};
+
+           using (var connection = new SqlConnection(connectionString))
+           {
+                SqlDataReader reader = null;
+                var rand = new Random();
+
+                try
+                {
+                    var command = new SqlCommand(dynamicQueryString, connection);
+                    connection.Open();
+
+                    reader = command.ExecuteReader();                
+                    columnType=reader.GetFieldType(0).ToString();
+                                       
+                    // load into dataHolder
+                    dataHolder.Type = GetType(columnType);     
+                    
+                    for (int col = 0; col < reader.FieldCount; col++)
+                    {
+                        // Gets the column name 
+                        columnName =reader.GetName(col).ToString();                
+                        if(columnName == enumDescriptionColumnName)
+                        {   
+                            queryColumnName = columnName;
+                            continue;
+                        }
+                        if(columnName == enumDescriptionValueColumnName)
+                        {   
+                            queryDescriptionColumnName = columnName;
+                            continue;
+                        }
+                        if(!ignoredColumnNames.Any(str=>str == columnName.ToLower()))
+                        {
+                            additionalColumnNames.Add(columnName);
+                        }
+                    }   
+ 
+                    while (reader.Read())
+                    {
+                        if(!string.IsNullOrEmpty(reader[queryColumnName].ToString().Trim()))
+                        {           
+                            EnumDetails enumDetails;
+                            if(!string.IsNullOrWhiteSpace(queryDescriptionColumnName))
+                            {
+                                enumDetails =  new EnumDetails
+                                    {
+                                       EnumValue=reader[0].ToString().Trim(),
+                                       EnumDescription=reader[queryDescriptionColumnName].ToString().Trim()
+                                    };
+                                dataHolder.KeyValue.Add(CleanEnum(reader[queryColumnName].ToString().Trim()), enumDetails);
+                            }
+                            else
+                            {
+                                    enumDetails =  new EnumDetails
+                                    {
+                                       EnumValue=reader[0].ToString().Trim(),
+                                       EnumDescription=string.Empty
+                                    };
+
+                                    dataHolder.KeyValue.Add(CleanEnum(reader[queryColumnName].ToString().Trim()),enumDetails);                                    
+                            }
+
+                             //add the additional columns found
+                            foreach(var name in additionalColumnNames)
+                            {                           
+                                enumDetails.AdditionalFields.Add(rand.Next().ToString(), new AdditionalFieldDetails
+                                                                        {                                   
+                                                                            FieldType = GetType(reader.GetFieldType(reader.GetOrdinal(name)).ToString(), name), 
+                                                                            Name = name,
+                                                                            Value = reader[name].ToString()
+                                                                        });
+                            }
+                            
+                        dataCount++;                        
+                        }
+                    }  
+
+                    // load the data
+                    dataHolder.DataCount = dataCount;
+                }
+                catch(Exception)
+                {
+                    // log the sql, as the exception                                        
+                }
+                finally
+                {
+                    // Call Close when done reading.
+                    if (reader != null)
+                        reader.Close();
+                }
+            }        
+    }
+         
+      
+
+        /// <summary>
+        /// Converts the phrase to specified convention.
+        /// </summary>
+        /// <param name="phrase"></param>
+        /// <param name="cases">The cases.</param>
+        /// <returns>string</returns>
+        public static string ConvertCaseString(string phrase)
+        {
+            phrase = phrase.ToLower().Replace("_", " ");
+            string[] splittedPhrase = phrase.Split(' ', '-', '.');
+            var sb = new StringBuilder();
+
+            sb = new StringBuilder();
+
+            foreach (String s in splittedPhrase)
+            {
+                char[] splittedPhraseChars = s.ToCharArray();
+                if (splittedPhraseChars.Length > 0)
+                {
+                    splittedPhraseChars[0] = ((new String(splittedPhraseChars[0], 1)).ToUpper().ToCharArray())[0];
+                }
+                sb.Append(new String(splittedPhraseChars));
+            }
+            return sb.ToString();
+        }
+
+        public static string CleanEnum(string phrase)
+        {
+            phrase = phrase.Replace("_", " ");
+            string[] splittedPhrase = phrase.Split(' ', '-', '.');
+            var sb = new StringBuilder();
+
+            sb = new StringBuilder();
+
+            foreach (String s in splittedPhrase)
+            {
+                char[] splittedPhraseChars = s.ToCharArray();
+                if (splittedPhraseChars.Length > 0)
+                {
+                    splittedPhraseChars[0] = ((new String(splittedPhraseChars[0], 1)).ToUpper().ToCharArray())[0];
+                }
+                sb.Append(new String(splittedPhraseChars));
+            }
+            return sb.ToString();
+        }
+
+		public static string GetType(string originalType)
+        {
+			var d = new Dictionary<string, string>()
+            {
+                {"System.Int32", "int"},
+                {"System.Int64", "long"},
+                {"System.Boolean", "bool"},
+				{"System.String", "string"}
+            };
+
+            if (d.ContainsKey(originalType))
+                return d[originalType];
+
+            return "int";
+        } 
+
+        public static string GetType(string originalType, string columnName)
+        {
+			if (columnName == "RecStatusKey")
+			{
+				return "GenRecStatusEnum";
+			}
+
+			var d = new Dictionary<string, string>()
+            {
+                {"System.Int32", "int"},
+                {"System.Int64", "long"},
+                {"System.Boolean", "bool"},
+				{"System.String", "string"}
+            };
+
+            if (d.ContainsKey(originalType))
+                return d[originalType];
+
+            return "int";
+        } 
+        
+        /// <summary>
+        ///     Splits data
+        /// </summary>
+        /// <param name="strValue"></param>
+        /// <param name="dataDelimiter">The cases.</param>
+        /// <returns>string</returns>
+        public static string[] SplitData(string strValue, string dataDelimiter)
+        {
+            return strValue.Split(dataDelimiter.ToCharArray());            
+        }
+
+        /// <summary>
+        ///     Creates a property string
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="dataType"></param>
+        /// <returns>string</returns>
+        public static string CreatePropertyString(string name, string dataType)
+        {            
+            var s= string.Format("public {0} {1} {{get;set;}}",dataType,name);             
+            return s;
+        }
+
+        //Creates a new Class list with default values
+        public static string CreateNewClassString(string className, Dictionary<string, EnumDetails> enums, string enumValueProperty, 
+            string enumNameProperty, string enumDescriptionProperty)
+        {
+            var sb = new StringBuilder();
+            
+			bool first = true;
+
+            //populate enum properties
+            foreach(var kvp in enums)
+            {
+				if (!first)
+				{
+					sb.Append(AddTabForIndentation(7));
+				}
+                sb.AppendFormat("new {0}",className).AppendLine();
+                sb.Append(AddTabForIndentation(7)).AppendLine("{");
+                sb.Append(AddTabForIndentation(8));
+                sb.AppendFormat("{0} = {1}",enumValueProperty,kvp.Value.EnumValue).AppendLine(",");                 
+                sb.Append(AddTabForIndentation(8));
+                sb.AppendFormat(@"{0} = ""{1}""",enumNameProperty,kvp.Key).AppendLine(",");
+                sb.Append(AddTabForIndentation(8));
+                sb.AppendFormat(@"{0} = ""{1}""",enumDescriptionProperty,kvp.Value.EnumDescription);
+                //populate additional properties
+                foreach(KeyValuePair<string,AdditionalFieldDetails> kvp2 in kvp.Value.AdditionalFields)
+                {
+                    sb.Append(",").AppendLine(); 
+                    sb.Append(AddTabForIndentation(8));
+                    sb.AppendFormat("{0} = {1}",kvp2.Value.Name, kvp2.Value.Value == null ? "null" :
+																(kvp2.Value.FieldType == "bool" ? kvp2.Value.Value.ToLower() : 
+																	kvp2.Value.FieldType == "string" ? string.Concat("\"",kvp2.Value.Value,"\"") :
+																		kvp2.Value.FieldType == "GenRecStatusEnum" ? string.Concat("(GenRecStatusEnum)",kvp2.Value.Value) :
+																			kvp2.Value.Value));
+                }       
+                sb.AppendLine().Append(AddTabForIndentation(7)).AppendLine("},");
+
+				first = false;
+            }
+
+            //remove the last comma
+            sb.Remove(sb.Length-1,1);
+
+            return sb.ToString();
+            
+        }
+
+        //Returns tab in a string based on the requested count
+        public static string AddTabForIndentation(int tabCount)
+        {
+            var result = new StringBuilder();
+            for(var i = 0;i<=tabCount-1;i++)
+            {
+                result.Append("\t");
+            }
+            return result.ToString();
+        }
+        
+ #>
+
+
+
+<#+
+    public class DataHolder 
+    {
+        public DataHolder()
+        {
+            KeyValue = new Dictionary<string,EnumDetails>();
+            
+        }
+
+        public string ContextName{ get; set;}
+        public string DataBaseName { get; set;}
+        public string TableName{ get; set;}
+        public string SchemaName{ get; set;}    
+        public Dictionary<string,EnumDetails> KeyValue { get; set;}            
+        public string Type { get; set;}        
+        public bool isFlag { get; set;}
+        public string FlagValue { get; set;}     
+        public int DataCount { get;set;}
+    }
+
+    public class EnumDetails
+    {
+        public EnumDetails()
+        {
+            AdditionalFields = new Dictionary<string, AdditionalFieldDetails>();
+        }
+        public string EnumValue {get; set;}
+        public string EnumDescription {get; set;}
+        public Dictionary<string, AdditionalFieldDetails> AdditionalFields { get; set;}    
+    }
+
+    public class AdditionalFieldDetails
+    {
+        public string FieldType {get; set;}
+        public string Name {get; set;}
+        public string Value {get; set;}
+    }
+ #>
