@@ -9,7 +9,7 @@ namespace PS.Mothership.Core.Common.Dto.Event.Notification
         [DataMember]
         public Guid EventGuid { get; set; }
         [DataMember]
-        public Guid NotificationGuidGuid { get; set; }
+        public Guid NotificationGuid { get; set; }
         [DataMember]
         public DateTimeOffset ScheduledDate { get; set; }
         [DataMember]
