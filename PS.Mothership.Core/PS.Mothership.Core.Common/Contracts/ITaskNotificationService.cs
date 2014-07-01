@@ -17,7 +17,7 @@ namespace PS.Mothership.Core.Common.Contracts
         [OperationContract]
         IList<TaskNotificationDto> RetreiveUserTasks(Guid userGuid);
         [OperationContract]
-        void UpdateTask(TaskNotificationDto taskDto);
+        void UpdateTask(TaskNotificationDto taskNotificationDto);
         [OperationContract]
         void DeleteTask(TaskNotificationDto taskNotificationDto);
     }
