@@ -48,7 +48,7 @@ namespace PS.Mothership.Core.Common.Contracts
             IntervalUnit occurance, string interval, DateTimeOffset startTime, IEnumerable<DayOfWeek> dayOfWeek = null);
 
         [OperationContract]
-        void DeleteTriggerFromJob(string triggerName);
+        void DeleteTrigger(string triggerName);
 
         [OperationContract]
         void RescheduleTrigger(string triggerName, IntervalUnit occurance, string interval, DateTimeOffset startTime,
