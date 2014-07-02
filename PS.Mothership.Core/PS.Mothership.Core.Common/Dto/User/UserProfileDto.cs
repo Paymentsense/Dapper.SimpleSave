@@ -35,12 +35,12 @@ namespace PS.Mothership.Core.Common.Dto.User
         [DataMember]
         public string Email { get; set; }
 
-        [DataMember]
-        public bool IsLoggedIn { get; set; }
-        [DataMember]
-        public bool IsPersistent { get; set; }
-        [DataMember]
-        public bool IsValid { get; set; }
+        //[DataMember]
+        //public bool IsLoggedIn { get; set; }
+        //[DataMember]
+        //public bool IsPersistent { get; set; }
+        //[DataMember]
+        //public bool IsValid { get; set; }
         [DataMember]
         public bool IsDefining { get; set; }
         [DataMember]
