@@ -109,20 +109,25 @@ namespace PS.Mothership.Core.Common.WcfErrorHandling
         public void ProvideFault(Exception error, MessageVersion version, ref Message fault)
         {
 
-            var uniqueKey = UniqueKeyGenerator.Generate();
+            var wcfException = error as CustomServerException;
 
-            //create the custom wcfexception before passing that to client
-            var wcfException = new CustomServerException("Unknown Error has occured. Please contact your administrator!", uniqueKey);
+            if (wcfException != null)
+            {
+                Logger.Error(wcfException.UniqueKey, wcfException);
+            }
+            else
+            {
+                var uniqueKey = UniqueKeyGenerator.Generate();
 
-            //log the exception
-            Logger.Error(uniqueKey, error);
+                //create the custom wcfexception before passing that to client
+                wcfException = new CustomServerException("Unknown Error has occured. Please contact your administrator!", uniqueKey);
+
+                //log the exception
+                Logger.Error(uniqueKey, error);
+            }
 
             var user = ServiceSecurityContext.Current;
-            MessageFault messageFault = MessageFault.CreateFault(
-                new FaultCode("Sender"),
-                new FaultReason(wcfException.Message),
-                wcfException,
-                new NetDataContractSerializer());
+            MessageFault messageFault = MessageFault.CreateFault(new FaultCode("Sender"), new FaultReason(wcfException.Message), wcfException, new NetDataContractSerializer());
             fault = Message.CreateMessage(version, messageFault, null);
 
         }
