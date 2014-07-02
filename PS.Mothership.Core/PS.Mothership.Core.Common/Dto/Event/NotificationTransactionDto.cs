@@ -16,8 +16,8 @@ namespace PS.Mothership.Core.Common.Dto.Event
         [DataMember]
         public EventNotificationMethodEnum NotificationMethodKey { get; set; }
         [DataMember]
-        public DateTime ScheduledDate { get; set; }
+        public DateTimeOffset ScheduledDate { get; set; }
         [DataMember]
-        public DateTime UpdateDate { get; set; }
+        public DateTimeOffset UpdateDate { get; set; }
     }
 }
