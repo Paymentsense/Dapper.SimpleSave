@@ -42,5 +42,16 @@ namespace PS.Mothership.Core.Common.Contracts
 
         [OperationContract]
         void ExecuteJobNow(string jobName);
+
+        [OperationContract]
+        void AddTriggerToJob(string triggerName, string jobName,
+            IntervalUnit occurance, string interval, DateTimeOffset startTime, IEnumerable<DayOfWeek> dayOfWeek = null);
+
+        [OperationContract]
+        void DeleteTriggerFromJob(string triggerName);
+
+        [OperationContract]
+        void RescheduleTrigger(string triggerName, IntervalUnit occurance, string interval, DateTimeOffset startTime,
+            IEnumerable<DayOfWeek> dayOfWeek = null);
     }
 }
