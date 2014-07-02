@@ -19,7 +19,7 @@ namespace PS.Mothership.Core.Common.Contracts
         [OperationContract]
         void UpdateTask(TaskNotificationDto taskNotificationDto);
         [OperationContract]
-        void DeleteTask(TaskNotificationDto taskNotificationDto);
+        void CloseTask(TaskNotificationDto taskNotificationDto);
         [OperationContract]
         void CancelTask(TaskNotificationDto taskNotificationDto);
     }
