@@ -111,5 +111,7 @@
         public const string IridiumEmailSendFrom = "IridiumEmailSendFrom";
         public const string IridiumTestSendEmail = "IridiumTestSendEmail";
         public const string IridiumConfirmMaxMinutesToCheck = "IridiumConfirmMaxMinutesToCheck";
+
+
     }
 }

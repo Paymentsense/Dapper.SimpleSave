@@ -130,6 +130,7 @@
     <Compile Include="Contracts\IApplicationService.cs" />
     <Compile Include="Contracts\IContactManagementService.cs" />
     <Compile Include="Contracts\IEchoSignCallbackService.cs" />
+    <Compile Include="Contracts\IFirstDataService.cs" />
     <Compile Include="Contracts\IIridiumService.cs" />
     <Compile Include="Contracts\IProspectCustomerService.cs" />
     <Compile Include="Contracts\IDiallerService.cs" />
