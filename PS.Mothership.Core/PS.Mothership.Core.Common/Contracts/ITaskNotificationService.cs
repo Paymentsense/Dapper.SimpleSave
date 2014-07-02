@@ -13,11 +13,11 @@ namespace PS.Mothership.Core.Common.Contracts
         [OperationContract(IsOneWay = true)]
         void EndSubscribe(string applicationName);
         [OperationContract]
-        void AddNewTask(TaskNotificationDto taskNotificationDto);
+        TaskNotificationDto AddNewTask(TaskNotificationDto taskNotificationDto);
         [OperationContract]
         IList<TaskNotificationDto> RetreiveUserTasks(Guid userGuid);
         [OperationContract]
-        void UpdateTask(TaskNotificationDto taskNotificationDto);
+        TaskNotificationDto UpdateTask(TaskNotificationDto taskNotificationDto);
         [OperationContract]
         void CloseTask(TaskNotificationDto taskNotificationDto);
         [OperationContract]
