@@ -5,7 +5,7 @@ using PS.Mothership.Core.Common.Dto.Iridium;
 namespace PS.Mothership.Core.Common.Contracts
 {
     [ServiceContract]
-    public interface IIridiumService : IQuartzJobBase
+    public interface IIridiumService 
     {
         [OperationContract]
         IridiumResultsDto SubmitToIridium(Guid opportunityGuid);
