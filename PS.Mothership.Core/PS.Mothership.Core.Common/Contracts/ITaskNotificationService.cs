@@ -8,6 +8,10 @@ namespace PS.Mothership.Core.Common.Contracts
     [ServiceContract(CallbackContract = typeof(ITaskNotificationCallback))]
     public interface ITaskNotificationService : IQuartzJobBase
     {
+        [OperationContract(IsOneWay = false)]
+        void Subscribe(string applicationName);
+        [OperationContract(IsOneWay = true)]
+        void EndSubscribe(string applicationName);
         [OperationContract]
         TaskNotificationDto AddNewTask(TaskNotificationDto taskNotificationDto);
         [OperationContract]
