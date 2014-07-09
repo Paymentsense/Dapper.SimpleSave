@@ -5,6 +5,7 @@ using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using PS.Mothership.Core.Common.Dto;
+using PS.Mothership.Core.Common.Dto.Message;
 using PS.Mothership.Core.Common.Dto.SendMessage;
 using PS.Mothership.Core.Common.Template.Comm;
 using Quartz;
@@ -52,5 +53,8 @@ namespace PS.Mothership.Core.Common.Contracts
 
         [OperationContract]
         void StartMessageListener();
+
+        [OperationContract]
+        List<MessageServiceStatusDto> GetMessageServiceStatus();
     }
 }
