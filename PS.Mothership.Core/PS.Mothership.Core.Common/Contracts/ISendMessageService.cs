@@ -1,14 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.ServiceModel;
-using System.Text;
-using System.Threading.Tasks;
-using PS.Mothership.Core.Common.Dto;
-using PS.Mothership.Core.Common.Dto.Message;
 using PS.Mothership.Core.Common.Dto.SendMessage;
-using PS.Mothership.Core.Common.Template.Comm;
-using Quartz;
 
 namespace PS.Mothership.Core.Common.Contracts
 {
@@ -33,12 +26,6 @@ namespace PS.Mothership.Core.Common.Contracts
         [OperationContract]
         string SendSMSMessageFrom(Guid userGuid);
 
-        [OperationContract]
-        void PushSMSServiceStatus(CommMessageServiceStatusEnum serviceStatus);
-
-        [OperationContract]
-        void PushEmailServiceStatus(CommMessageServiceStatusEnum serviceStatus);
-
         [OperationContract(IsOneWay = false)]
         void SendSMSServiceSubscribe(string applicationName);
 
@@ -55,6 +42,6 @@ namespace PS.Mothership.Core.Common.Contracts
         void StartMessageListener();
 
         [OperationContract]
-        List<MessageServiceStatusDto> GetMessageServiceStatus();
+        List<SendMessageServiceStatusDto> GetMessageServiceStatus();
     }
 }
