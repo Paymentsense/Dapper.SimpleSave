@@ -130,6 +130,8 @@
     <Compile Include="Contracts\IApplicationService.cs" />
     <Compile Include="Contracts\IContactManagementService.cs" />
     <Compile Include="Contracts\IEchoSignCallbackService.cs" />
+    <Compile Include="Contracts\IFirstDataService.cs" />
+    <Compile Include="Contracts\IIridiumService.cs" />
     <Compile Include="Contracts\IProspectCustomerService.cs" />
     <Compile Include="Contracts\IDiallerService.cs" />
     <Compile Include="Contracts\IDiallerTaskNotificationCallback.cs" />
@@ -142,6 +144,9 @@
     <Compile Include="Dto\CompaniesHouse\CompanyAppointmentsDto.cs" />
     <Compile Include="Dto\FullPostcodeDto.cs" />
     <Compile Include="Dto\Merchant\MerchantAdvancedSearchDto.cs" />
+    <Compile Include="Dto\Iridium\IridiumConfirmResultsDto.cs" />
+    <Compile Include="Dto\Iridium\IridiumRequestDto.cs" />
+    <Compile Include="Dto\Iridium\IridiumResultsDto.cs" />
     <Compile Include="SessionHandling\ISessionManager.cs" />
     <Compile Include="Contracts\ITaskNotificationCallback.cs" />
     <Compile Include="Contracts\ITaskNotificationService.cs" />
