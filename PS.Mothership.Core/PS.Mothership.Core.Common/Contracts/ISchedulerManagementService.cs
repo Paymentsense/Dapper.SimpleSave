@@ -1,7 +1,7 @@
 ﻿using PS.Mothership.Core.Common.Constructs;
 using PS.Mothership.Core.Common.Dto.DynamicRequest;
-using PS.Mothership.Core.Common.Dto.QuartzManagement;
-using PS.Mothership.Core.Common.Enums.QuartzManagement;
+using PS.Mothership.Core.Common.Dto.SchedulerManagement;
+using PS.Mothership.Core.Common.Template.Gen;
 using Quartz;
 using System;
 using System.Collections.Generic;
@@ -9,14 +9,14 @@ using System.ServiceModel;
 
 namespace PS.Mothership.Core.Common.Contracts
 {
-    [ServiceContract(Name = "QuartzManagementService")]
-    public interface IQuartzManagementService
+    [ServiceContract(Name = "SchedulerManagementService")]
+    public interface ISchedulerManagementService
     {
         [OperationContract]
-        QuartzServerInfoDto GetQuartzServerInfo();
+        SchedulerServerInfoDto GetSchedulerServerInfo();
 
         [OperationContract]
-        void ScheduleNewJob(string triggerName, string jobName, AvailableJobGroupsEnum jobGroupName,
+        void ScheduleNewJob(string triggerName, string jobName, GenSchedulerJobGroupEnum jobGroupName,
             string jobClass, IntervalUnit occurance, string interval, DateTimeOffset startTime, IEnumerable<DayOfWeek> dayOfWeek = null);
 
         [OperationContract]

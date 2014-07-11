@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace PS.Mothership.Core.Common.Enums.QuartzManagement
+namespace PS.Mothership.Core.Common.Enums.SchedulerManagement
 {
     [DataContract]
     public enum SchedulerStatusEnum

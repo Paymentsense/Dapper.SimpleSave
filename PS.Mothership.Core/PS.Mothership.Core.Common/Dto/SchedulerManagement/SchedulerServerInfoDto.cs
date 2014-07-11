@@ -1,9 +1,9 @@
-﻿using PS.Mothership.Core.Common.Enums.QuartzManagement;
+﻿using PS.Mothership.Core.Common.Enums.SchedulerManagement;
 using System;
 
-namespace PS.Mothership.Core.Common.Dto.QuartzManagement
+namespace PS.Mothership.Core.Common.Dto.SchedulerManagement
 {
-    public class QuartzServerInfoDto
+    public class SchedulerServerInfoDto
     {
         public string SchedulerName { get; set; }
         public Type JobStoreType { get; set; }

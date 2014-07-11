@@ -1,7 +1,7 @@
 ﻿using Quartz;
 using System;
 
-namespace PS.Mothership.Core.Common.Dto.QuartzManagement
+namespace PS.Mothership.Core.Common.Dto.SchedulerManagement
 {
     public class TriggerProfileDto
     {
