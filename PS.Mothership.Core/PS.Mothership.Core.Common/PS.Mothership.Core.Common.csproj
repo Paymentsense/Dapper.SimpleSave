@@ -130,6 +130,8 @@
     <Compile Include="Contracts\IApplicationService.cs" />
     <Compile Include="Contracts\IContactManagementService.cs" />
     <Compile Include="Contracts\IEchoSignCallbackService.cs" />
+    <Compile Include="Contracts\IFirstDataService.cs" />
+    <Compile Include="Contracts\IIridiumService.cs" />
     <Compile Include="Contracts\IManageableJob.cs" />
     <Compile Include="Contracts\IProspectCustomerService.cs" />
     <Compile Include="Contracts\IDiallerService.cs" />
@@ -143,6 +145,9 @@
     <Compile Include="Contracts\ISendMessageStatusServiceCallback.cs" />
     <Compile Include="Dto\CompaniesHouse\CompanyAppointmentsDto.cs" />
     <Compile Include="Dto\FullPostcodeDto.cs" />
+    <Compile Include="Dto\Iridium\IridiumConfirmResultsDto.cs" />
+    <Compile Include="Dto\Iridium\IridiumRequestDto.cs" />
+    <Compile Include="Dto\Iridium\IridiumResultsDto.cs" />
     <Compile Include="Dto\SchedulerManagement\JobProfileDto.cs" />
     <Compile Include="Dto\SchedulerManagement\TriggerProfileDto.cs" />
     <Compile Include="Dto\SchedulerManagement\SchedulerServerInfoDto.cs" />
