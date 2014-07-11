@@ -138,7 +138,7 @@
     <Compile Include="Contracts\ILoggingService.cs" />
     <Compile Include="Contracts\IMSLogger.cs" />
     <Compile Include="Contracts\ISendMessageService.cs" />
-    <Compile Include="Contracts\ISendMessageStatusServiceCallback.cs" />
+    <Compile Include="Contracts\ISendMessageServiceCallback.cs" />
     <Compile Include="Dto\CompaniesHouse\CompanyAppointmentsDto.cs" />
     <Compile Include="Dto\Event\Notification\NotificationReceivedDto.cs" />
     <Compile Include="Dto\FullPostcodeDto.cs" />
