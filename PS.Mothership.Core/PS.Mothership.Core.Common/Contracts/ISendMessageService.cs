@@ -5,7 +5,7 @@ using PS.Mothership.Core.Common.Dto.SendMessage;
 
 namespace PS.Mothership.Core.Common.Contracts
 {
-    [ServiceContract(CallbackContract = typeof(ISendMessageStatusServiceCallback))]
+    [ServiceContract(CallbackContract = typeof(ISendMessageServiceCallback))]
     public interface ISendMessageService : IQuartzJobBase
     {
         [OperationContract]
