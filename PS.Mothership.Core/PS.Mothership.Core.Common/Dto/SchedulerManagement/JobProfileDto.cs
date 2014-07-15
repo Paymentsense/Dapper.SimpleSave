@@ -8,5 +8,6 @@ namespace PS.Mothership.Core.Common.Dto.SchedulerManagement
         public string Name { get; set; }
         public GenSchedulerJobGroupEnum Group { get; set; }
         public IList<TriggerProfileDto> Triggers { get; set; }
+        public bool Active { get; set; }
     }
 }
