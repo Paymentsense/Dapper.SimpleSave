@@ -47,6 +47,6 @@ namespace PS.Mothership.Core.Common.Contracts
         IList<SendMessageServiceStatusDto> GetMessageServiceStatus();
 
         [OperationContract]
-        IList<NotificationReceivedDto> GetEventNotications();
+        IList<NotificationReceivedDto> GetEventNotications(Guid userGuid);
     }
 }
