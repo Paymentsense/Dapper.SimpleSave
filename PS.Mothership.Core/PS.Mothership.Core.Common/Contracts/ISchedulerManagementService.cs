@@ -39,6 +39,9 @@ namespace PS.Mothership.Core.Common.Contracts
 
         [OperationContract]
         PagedList<JobProfileDto> GetJobs(DataRequestDto dataRequestDto);
+        
+        [OperationContract]
+        PagedList<JobProfileDto> GetJob(string jobName);
 
         [OperationContract]
         void ExecuteJobNow(string jobName);
