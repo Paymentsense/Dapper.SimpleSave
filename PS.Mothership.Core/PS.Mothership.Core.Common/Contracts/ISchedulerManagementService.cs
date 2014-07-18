@@ -44,6 +44,12 @@ namespace PS.Mothership.Core.Common.Contracts
         JobProfileDto GetJob(string jobName);
 
         [OperationContract]
+        PagedList<TriggerProfileDto> GetTriggers(string jobName, DataRequestDto dataRequestDto);
+
+        [OperationContract]
+        TriggerProfileDto GetTrigger(string jobName, string triggerName);
+
+        [OperationContract]
         void ExecuteJobNow(string jobName);
 
         [OperationContract]
