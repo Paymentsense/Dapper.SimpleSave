@@ -14,7 +14,7 @@ namespace PS.Mothership.Core.Common.Contracts
         void QueueSMSMessage(SendSmsRequestDto insertSmsMessageDto);
 
         [OperationContract]
-        void QueueEmailMessage(SendEmailRequestDto insertSmsMessageDto);
+        void QueueEmailMessage(SendEmailRequestDto insertEmailMessageDto);
 
         [OperationContract]
         void SMSMessageDeliveryFailed(string xmlString);
