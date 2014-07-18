@@ -40,6 +40,18 @@ namespace PS.Mothership.Core.Common.Contracts
         [OperationContract(IsOneWay = true)]
         void SendEmailServiceEndSubscribe(string applicationName);
 
+        [OperationContract(IsOneWay = false)]
+        void EmailNotificationSubscribe(string applicationName);
+
+        [OperationContract(IsOneWay = true)]
+        void EmailNotificationEndSubscribe(string applicationName);
+
+        [OperationContract(IsOneWay = false)]
+        void SmsNotificationSubscribe(string applicationName);
+
+        [OperationContract(IsOneWay = true)]
+        void SmsNotificationEndSubscribe(string applicationName);
+
         [OperationContract]
         void StartMessageListener();
 
