@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using PS.Mothership.Core.Common.Template.Event;
+﻿using PS.Mothership.Core.Common.Template.Event;
 
 namespace PS.Mothership.Core.Common.Dto.Event.Notification
 {
@@ -7,6 +6,6 @@ namespace PS.Mothership.Core.Common.Dto.Event.Notification
     {
         public EventTypeEnum EventType { get; set; }
         public int EventTypeTotalNotifications { get; set; }
-        public IList<string> Usernames { get; set; }
+        public string Username { get; set; }
     }
 }
