@@ -147,6 +147,8 @@
     <Compile Include="Dto\Iridium\IridiumConfirmResultsDto.cs" />
     <Compile Include="Dto\Iridium\IridiumRequestDto.cs" />
     <Compile Include="Dto\Iridium\IridiumResultsDto.cs" />
+    <Compile Include="Dto\Merchant\AdvancedSearchDto.cs" />
+    <Compile Include="Dto\Merchant\MerchantDataRequestDto.cs" />
     <Compile Include="SessionHandling\ISessionManager.cs" />
     <Compile Include="Contracts\ITaskNotificationCallback.cs" />
     <Compile Include="Contracts\ITaskNotificationService.cs" />
