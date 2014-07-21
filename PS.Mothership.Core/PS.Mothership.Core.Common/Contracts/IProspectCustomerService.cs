@@ -48,7 +48,7 @@ namespace PS.Mothership.Core.Common.Contracts
         PagedList<ProspectAddressDto> QuickSearch(SearchDto dto);
 
         [OperationContract]
-        PagedList<MerchantAdvancedSearchDto> AdvancedSearch(DataRequestDto dto);
+        PagedList<ProspectAddressDto> AdvancedSearch(MerchantDataRequestDto dto);
 
     }
 }
