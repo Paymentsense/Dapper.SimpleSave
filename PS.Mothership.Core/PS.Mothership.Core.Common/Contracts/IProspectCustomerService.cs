@@ -43,5 +43,12 @@ namespace PS.Mothership.Core.Common.Contracts
 
         [OperationContract]
         PagedList<ProspectAddressDto> GetSimilarMerchants(FullAddressDto dto);
+
+        [OperationContract]
+        PagedList<ProspectAddressDto> QuickSearch(SearchDto dto);
+
+        [OperationContract]
+        PagedList<MerchantAdvancedSearchDto> AdvancedSearch(DataRequestDto dto);
+
     }
 }
