@@ -148,6 +148,8 @@
     <Compile Include="Dto\Iridium\IridiumConfirmResultsDto.cs" />
     <Compile Include="Dto\Iridium\IridiumRequestDto.cs" />
     <Compile Include="Dto\Iridium\IridiumResultsDto.cs" />
+    <Compile Include="Dto\Merchant\AdvancedSearchDto.cs" />
+    <Compile Include="Dto\Merchant\MerchantDataRequestDto.cs" />
     <Compile Include="Dto\SchedulerManagement\JobProfileDto.cs" />
     <Compile Include="Dto\SchedulerManagement\TriggerProfileDto.cs" />
     <Compile Include="Dto\SchedulerManagement\SchedulerServerInfoDto.cs" />

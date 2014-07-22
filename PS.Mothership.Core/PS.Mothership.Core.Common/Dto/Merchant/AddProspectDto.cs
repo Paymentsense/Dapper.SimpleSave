@@ -14,7 +14,8 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         {
             get
             {
-                var id = Convert.ToString((CompanyName.GetHashCode() & 0xffffff) | 0x1000000, 16).Substring(1);
+                var id = Convert.ToString(((CompanyName.GetHashCode() ^ DateTime.UtcNow.Ticks.GetHashCode())
+                    & 0xffffff) | 0x1000000, 16).Substring(1);
                 return id;
             }
         }

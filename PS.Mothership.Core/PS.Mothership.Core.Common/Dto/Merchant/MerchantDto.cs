@@ -14,7 +14,7 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public Guid MerchantGuid { get; set; }
 
         [DataMember]
-        public long V1MerchantId { get; set; }
+        public long? V1MerchantId { get; set; }
 
         [DataMember]
         public string LocatorId { get; set; }
