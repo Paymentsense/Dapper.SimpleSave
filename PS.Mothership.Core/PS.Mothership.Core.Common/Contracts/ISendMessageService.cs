@@ -29,16 +29,10 @@ namespace PS.Mothership.Core.Common.Contracts
         string SendSMSMessageFrom(Guid userGuid);
 
         [OperationContract(IsOneWay = false)]
-        void SendSMSServiceSubscribe(string applicationName);
+        void MessageServiceStatusSubscribe(string applicationName);
 
         [OperationContract(IsOneWay = true)]
-        void SendSMSServiceEndSubscribe(string applicationName);
-
-        [OperationContract(IsOneWay = false)]
-        void SendEmailServiceSubscribe(string applicationName);
-
-        [OperationContract(IsOneWay = true)]
-        void SendEmailServiceEndSubscribe(string applicationName);
+        void MessageServiceStatusEndSubscribe(string applicationName);
 
         [OperationContract(IsOneWay = false)]
         void EmailNotificationSubscribe(string applicationName);
