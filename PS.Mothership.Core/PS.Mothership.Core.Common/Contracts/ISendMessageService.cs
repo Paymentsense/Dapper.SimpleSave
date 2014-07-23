@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ServiceModel;
 using PS.Mothership.Core.Common.Dto.Event.Notification;
+using PS.Mothership.Core.Common.Dto.Message;
 using PS.Mothership.Core.Common.Dto.SendMessage;
 
 namespace PS.Mothership.Core.Common.Contracts
@@ -23,7 +24,7 @@ namespace PS.Mothership.Core.Common.Contracts
         void SMSMessageDeliverySuccess(string xmlString);
 
         [OperationContract]
-        void SMSMessageReceived(string xmlString);
+        void SmsMessageReceived(InboundMessage inboundMessage);
 
         [OperationContract]
         string SendSMSMessageFrom(Guid userGuid);
