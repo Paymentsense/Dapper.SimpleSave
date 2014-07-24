@@ -16,8 +16,8 @@ namespace PS.Mothership.Core.Common.Contracts
         SchedulerServerInfoDto GetSchedulerServerInfo();
 
         [OperationContract]
-        void ScheduleNewJob(string jobName, string triggerName, GenSchedulerJobGroupEnum jobGroup, string jobClass,
-            IntervalUnit occurrence, int interval, DateTimeOffset startTime, IEnumerable<DayOfWeek> dayOfWeek = null);
+        void ScheduleNewJob(GenSchedulerJobGroupEnum jobGroup, string jobClass, string jobName, string triggerName,
+            IntervalUnit triggerOccurrence, int triggerInterval, DateTimeOffset triggerStartTime, IEnumerable<DayOfWeek> triggerDaysOfWeek = null);
 
         [OperationContract]
         void PauseAllTriggers();
@@ -53,14 +53,14 @@ namespace PS.Mothership.Core.Common.Contracts
         void ExecuteJobNow(string jobName);
 
         [OperationContract]
-        void AddTriggerToJob(string jobName, string triggerName, IntervalUnit occurrence, int interval,
-            DateTimeOffset startTime, IEnumerable<DayOfWeek> dayOfWeek = null);
+        void AddTriggerToJob(string jobName, string triggerName, IntervalUnit triggerOccurrence, int triggerInterval,
+            DateTimeOffset triggerStartTime, IEnumerable<DayOfWeek> triggerDaysOfWeek = null);
 
         [OperationContract]
         void DeleteTrigger(string jobName, string triggerName);
 
         [OperationContract]
-        void RescheduleTrigger(string jobName, string triggerName, IntervalUnit occurrence, int interval,
-            DateTimeOffset startTime, IEnumerable<DayOfWeek> dayOfWeek = null);
+        void RescheduleTrigger(string jobName, string triggerName, IntervalUnit triggerOccurrence, int triggerInterval,
+            DateTimeOffset triggerStartTime, IEnumerable<DayOfWeek> triggerDaysOfWeek = null);
     }
 }
