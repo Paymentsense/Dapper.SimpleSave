@@ -16,14 +16,14 @@ namespace PS.Mothership.Core.Common.Contracts
         UserLoginResultDto AddUser(UserProfileDto userProfileDto, Guid updateSessionGuid);
         [OperationContract]
         UserLoginResultDto UpdateUser(UserProfileDto userProfileDto, Guid updateSessionGuid);
-        [OperationContract]
-        PagedList<UserProfileDto> GetUsers(DataRequestDto dataRequestDto);
+        //[OperationContract]
+        //PagedList<UserProfileDto> GetUsers(DataRequestDto dataRequestDto);
         [OperationContract]
         UserProfileDto GetUser(Guid userGuid);
         [OperationContract]
         PagedList<UserListDto> GetSimilarNames(DataRequestDto dataRequestDto, UserProfileDto userProfileDto);
-        [OperationContract]
-        PagedList<UserProfileDto> QuickSearch(SearchDto searchInput);
+        //[OperationContract]
+        //PagedList<UserProfileDto> QuickSearch(SearchDto searchInput);
         [OperationContract]
         UserRolesDto GetRolesForUser(Guid userGuid);
         //[OperationContract]

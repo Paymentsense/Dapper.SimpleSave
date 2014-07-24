@@ -25,7 +25,7 @@ namespace PS.Mothership.Core.Common.Contracts.Security
         AccountDto GetImpersonatedAccount(UserProfileDto profileImpersonating, Guid userGuid);
 
         [OperationContract]
-        PagedList<UserProfileDto> GetUserProfile(long departmentId, UserProfileDto accessUserProfile, DataRequestDto dataRequestDto);
+        PagedList<UserImpersonationDto> GetUserImpersonations(long departmentId, UserProfileDto accessUserProfile, DataRequestDto dataRequestDto);
 
         [OperationContract]
         PagedList<GroupDto> GetGroups(Guid userGuid);
