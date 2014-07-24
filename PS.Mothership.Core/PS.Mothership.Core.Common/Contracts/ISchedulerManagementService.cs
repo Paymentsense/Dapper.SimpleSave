@@ -26,41 +26,41 @@ namespace PS.Mothership.Core.Common.Contracts
         void ResumeAllTriggers();
 
         [OperationContract]
-        void PauseJob(string jobName);
+        void PauseJob(GenSchedulerJobGroupEnum jobGroup, string jobName);
 
         [OperationContract]
-        void ResumeJob(string jobName);
+        void ResumeJob(GenSchedulerJobGroupEnum jobGroup, string jobName);
 
         [OperationContract]
-        void PauseTrigger(string jobName, string triggerName);
+        void PauseTrigger(GenSchedulerJobGroupEnum jobGroup, string jobName, string triggerName);
 
         [OperationContract]
-        void ResumeTrigger(string jobName, string triggerName);
+        void ResumeTrigger(GenSchedulerJobGroupEnum jobGroup, string jobName, string triggerName);
 
         [OperationContract]
         PagedList<JobProfileDto> GetJobs(DataRequestDto dataRequestDto);
 
         [OperationContract]
-        JobProfileDto GetJob(string jobName);
+        JobProfileDto GetJob(GenSchedulerJobGroupEnum jobGroup, string jobName);
 
         [OperationContract]
-        PagedList<TriggerProfileDto> GetTriggers(string jobName, DataRequestDto dataRequestDto);
+        PagedList<TriggerProfileDto> GetTriggers(GenSchedulerJobGroupEnum jobGroup, string jobName, DataRequestDto dataRequestDto);
 
         [OperationContract]
-        TriggerProfileDto GetTrigger(string jobName, string triggerName);
+        TriggerProfileDto GetTrigger(GenSchedulerJobGroupEnum jobGroup, string jobName, string triggerName);
 
         [OperationContract]
-        void ExecuteJobNow(string jobName);
+        void ExecuteJobNow(GenSchedulerJobGroupEnum jobGroup, string jobName);
 
         [OperationContract]
-        void AddTriggerToJob(string jobName, string triggerName, IntervalUnit triggerOccurrence, int triggerInterval,
+        void AddTriggerToJob(GenSchedulerJobGroupEnum jobGroup, string jobName, string triggerName, IntervalUnit triggerOccurrence, int triggerInterval,
             DateTimeOffset triggerStartTime, IEnumerable<DayOfWeek> triggerDaysOfWeek = null);
 
         [OperationContract]
-        void DeleteTrigger(string jobName, string triggerName);
+        void DeleteTrigger(GenSchedulerJobGroupEnum jobGroup, string jobName, string triggerName);
 
         [OperationContract]
-        void RescheduleTrigger(string jobName, string triggerName, IntervalUnit triggerOccurrence, int triggerInterval,
+        void RescheduleTrigger(GenSchedulerJobGroupEnum jobGroup, string jobName, string triggerName, IntervalUnit triggerOccurrence, int triggerInterval,
             DateTimeOffset triggerStartTime, IEnumerable<DayOfWeek> triggerDaysOfWeek = null);
     }
 }
