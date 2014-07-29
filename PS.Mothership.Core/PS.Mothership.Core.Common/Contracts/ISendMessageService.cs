@@ -48,9 +48,6 @@ namespace PS.Mothership.Core.Common.Contracts
         void SmsNotificationEndSubscribe(string applicationName);
 
         [OperationContract]
-        void StartMessageListener();
-
-        [OperationContract]
         IList<SendMessageServiceStatusDto> GetMessageServiceStatus();
 
         [OperationContract]
