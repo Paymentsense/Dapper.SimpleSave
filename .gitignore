@@ -54,8 +54,9 @@ _ReSharper*/
 *~
 
 #NuGet
-#packages/
-#*.nupkg
+packages/
+!packages/repositories.config
+*.nupkg
 
 #ncrunch
 *ncrunch*
@@ -73,5 +74,5 @@ _ReSharper*/
 *.BACKUP.*
 *.BASE.*
 *.orig
-*Enum.cs
 *.old
+/Externals/*/Template/*Enum.cs
