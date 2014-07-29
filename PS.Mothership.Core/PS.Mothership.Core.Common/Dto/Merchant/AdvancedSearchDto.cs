@@ -55,6 +55,9 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public string LastUpdateTo { get; set; }
 
         [DataMember]
+        public string Stage { get; set; }
+
+        [DataMember]
         public string SubStage { get; set; }
 
         [DataMember]
