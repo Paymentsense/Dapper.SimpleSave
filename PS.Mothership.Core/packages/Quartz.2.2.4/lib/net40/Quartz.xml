@@ -15704,6 +15704,21 @@
             <param name="timeZoneInfo"></param>
             <returns></returns>
         </member>
+        <member name="M:Quartz.Util.TimeZoneUtil.GetUtcOffset(System.DateTimeOffset,System.TimeZoneInfo)">
+            <summary>
+            TimeZoneInfo.GetUtcOffset(DateTimeOffset) is not supported under mono
+            </summary>
+            <param name="dateTimeOffset"></param>
+            <param name="timeZoneInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Quartz.Util.TimeZoneUtil.FindTimeZoneById(System.String)">
+            <summary>
+            Tries to find time zone with given id, has ability do some fallbacks when necessary.
+            </summary>
+            <param name="id">System id of the time zone.</param>
+            <returns></returns>
+        </member>
         <member name="T:Quartz.Xml.JobSchedulingData20.QuartzXmlConfiguration20">
             <remarks/>
         </member>
