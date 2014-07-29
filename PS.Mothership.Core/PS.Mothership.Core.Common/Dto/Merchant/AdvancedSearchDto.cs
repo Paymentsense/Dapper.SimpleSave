@@ -25,5 +25,64 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
 
         [DataMember]
         public string PostCode { get; set; }
+
+
+        [DataMember]
+        public string PhoneNumber { get; set; }
+
+        [DataMember]
+        public string Mobile { get; set; }
+
+        [DataMember]
+        public long V1MerchantId { get; set; }
+
+        [DataMember]
+        public string LocatorId { get; set; }
+
+        [DataMember]
+        public string RegisteredNo { get; set; }
+
+        [DataMember]
+        public string CreatedFrom { get; set; }
+
+        [DataMember]
+        public string CreatedTo { get; set; }
+
+        [DataMember]
+        public string LastUpdateFrom { get; set; }
+
+        [DataMember]
+        public string LastUpdateTo { get; set; }
+
+        [DataMember]
+        public string SubStage { get; set; }
+
+        [DataMember]
+        public string Department { get; set; }
+
+        [DataMember]
+        public string Owner { get; set; }
+
+        [DataMember]
+        public string Source { get; set; }
+
+        [DataMember]
+        public string BusinessType { get; set; }
+
+        [DataMember]
+        public long ThompsonCode { get; set; }
+
+        [DataMember]
+        public string Provisioner { get; set; }
+
+        [DataMember]
+        public string OpportunityId { get; set; }
+
+        [DataMember]
+        public string BankMid { get; set; }
+
+        [DataMember]
+        public string BankAccount { get; set; }
+
     }
 }
