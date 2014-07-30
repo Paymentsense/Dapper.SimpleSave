@@ -34,7 +34,7 @@ namespace PS.Mothership.Core.Common.Contracts
 
         [OperationContract]
         void RemoveProspectAddress(MerchantAddressDto dto);
-        
+
         [OperationContract]
         PagedList<MerchantListDto> GetMerchantsByFilter(DataRequestDto dataRequestDto);
 

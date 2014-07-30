@@ -10,8 +10,8 @@ using System.ServiceModel;
 namespace PS.Mothership.Core.Common.Contracts
 {
     [ServiceContract(Name = "UserManagementService")]
-    public interface IUserManagementService 
-    {        
+    public interface IUserManagementService
+    {
         [OperationContract]
         UserLoginResultDto AddUser(UserProfileDto userProfileDto, Guid updateSessionGuid);
         [OperationContract]

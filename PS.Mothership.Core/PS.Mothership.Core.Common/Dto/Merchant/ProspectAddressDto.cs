@@ -33,5 +33,7 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
 
         [DataMember]
         public string PostCode { get; set; }
+
+
     }
 }

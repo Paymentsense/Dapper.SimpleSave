@@ -39,7 +39,7 @@ namespace PS.Mothership.Core.Common.Extension
         /// <param name="currentPage">The current page number (1 based).</param>
         /// <param name="itemsPerPage">Size of a page (number of items per page).</param>
         /// <returns></returns>
-        public static PagedList<T> ToPagedList<T>(this IEnumerable<T> source, int totalItems, int currentPage = 1, int itemsPerPage = 10)
+        public static PagedList<T> ToPagedList<T>(this IEnumerable<T> source, int totalItems, int currentPage=1, int itemsPerPage=10)
         {
             return new PagedList<T>(source, totalItems, currentPage, itemsPerPage);
         }
