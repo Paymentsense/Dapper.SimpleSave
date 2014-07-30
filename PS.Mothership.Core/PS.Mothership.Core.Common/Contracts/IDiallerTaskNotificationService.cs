@@ -4,7 +4,7 @@ using PS.Mothership.Core.Common.Dto;
 namespace PS.Mothership.Core.Common.Contracts
 {
     [ServiceContract(Name="DiallerTaskNotificationService", CallbackContract = typeof (IDiallerTaskNotificationCallback))]
-    public interface IDiallerTaskNotificationService : IQuartzJobBase
+    public interface IDiallerTaskNotificationService
     {
         [OperationContract(IsOneWay = false)]
         void Subscribe(string applicationName);

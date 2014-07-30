@@ -155,7 +155,6 @@
     <Compile Include="SessionHandling\ISessionManager.cs" />
     <Compile Include="Contracts\ITaskNotificationCallback.cs" />
     <Compile Include="Contracts\ITaskNotificationService.cs" />
-    <Compile Include="Contracts\IQuartzJobBase.cs" />
     <Compile Include="Contracts\IUserManagementService.cs" />
     <Compile Include="Contracts\Security\IAuthenticationService.cs" />
     <Compile Include="Config\ILayerIocBuilder.cs" />
