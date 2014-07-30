@@ -6,7 +6,7 @@ using PS.Mothership.Core.Common.Dto.Event.Notification;
 namespace PS.Mothership.Core.Common.Contracts
 {
     [ServiceContract(CallbackContract = typeof(ITaskNotificationCallback))]
-    public interface ITaskNotificationService : IQuartzJobBase
+    public interface ITaskNotificationService
     {
         [OperationContract(IsOneWay = false)]
         void Subscribe(string applicationName);
