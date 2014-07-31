@@ -2,9 +2,6 @@
 using PS.Mothership.Core.Common.Dto.DynamicRequest;
 using PS.Mothership.Core.Common.Dto.SchedulerManagement;
 using PS.Mothership.Core.Common.Template.Gen;
-using Quartz;
-using System;
-using System.Collections.Generic;
 using System.ServiceModel;
 
 namespace PS.Mothership.Core.Common.Contracts
@@ -16,8 +13,22 @@ namespace PS.Mothership.Core.Common.Contracts
         SchedulerServerInfoDto GetSchedulerServerInfo();
 
         [OperationContract]
-        void ScheduleNewJob(GenSchedulerJobGroupEnum jobGroup, string jobClass, string jobName, string triggerName,
-            IntervalUnit triggerOccurrence, int triggerInterval, DateTimeOffset triggerStartTime, IEnumerable<DayOfWeek> triggerDaysOfWeek = null);
+        PagedList<JobProfileDto> GetJobs(DataRequestDto dataRequestDto);
+
+        [OperationContract]
+        JobProfileDto GetJob(GenSchedulerJobGroupEnum jobGroup, string jobName);
+
+        [OperationContract]
+        PagedList<TriggerProfileDto> GetTriggers(GenSchedulerJobGroupEnum jobGroup, string jobName, DataRequestDto dataRequestDto);
+
+        [OperationContract]
+        TriggerProfileDto GetTrigger(GenSchedulerJobGroupEnum jobGroup, string jobName, string triggerName);
+
+        [OperationContract]
+        void AddOrUpdateTrigger(GenSchedulerJobGroupEnum jobGroup, string jobName, TriggerProfileDto trigger);
+
+        [OperationContract]
+        void DeleteTrigger(GenSchedulerJobGroupEnum jobGroup, string jobName, string triggerName);
 
         [OperationContract]
         void PauseAllTriggers();
@@ -38,29 +49,6 @@ namespace PS.Mothership.Core.Common.Contracts
         void ResumeTrigger(GenSchedulerJobGroupEnum jobGroup, string jobName, string triggerName);
 
         [OperationContract]
-        PagedList<JobProfileDto> GetJobs(DataRequestDto dataRequestDto);
-
-        [OperationContract]
-        JobProfileDto GetJob(GenSchedulerJobGroupEnum jobGroup, string jobName);
-
-        [OperationContract]
-        PagedList<TriggerProfileDto> GetTriggers(GenSchedulerJobGroupEnum jobGroup, string jobName, DataRequestDto dataRequestDto);
-
-        [OperationContract]
-        TriggerProfileDto GetTrigger(GenSchedulerJobGroupEnum jobGroup, string jobName, string triggerName);
-
-        [OperationContract]
         void ExecuteJobNow(GenSchedulerJobGroupEnum jobGroup, string jobName);
-
-        [OperationContract]
-        void AddTriggerToJob(GenSchedulerJobGroupEnum jobGroup, string jobName, string triggerName, IntervalUnit triggerOccurrence, int triggerInterval,
-            DateTimeOffset triggerStartTime, IEnumerable<DayOfWeek> triggerDaysOfWeek = null);
-
-        [OperationContract]
-        void DeleteTrigger(GenSchedulerJobGroupEnum jobGroup, string jobName, string triggerName);
-
-        [OperationContract]
-        void RescheduleTrigger(GenSchedulerJobGroupEnum jobGroup, string jobName, string triggerName, IntervalUnit triggerOccurrence, int triggerInterval,
-            DateTimeOffset triggerStartTime, IEnumerable<DayOfWeek> triggerDaysOfWeek = null);
     }
 }
