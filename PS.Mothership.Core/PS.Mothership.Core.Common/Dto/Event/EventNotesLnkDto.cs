@@ -20,6 +20,6 @@ namespace PS.Mothership.Core.Common.Dto.Event
         [DataMember]
         public EventTransactionDto Event { get; set; }
         [DataMember]
-        public IList<NotesTransactionDto> Notes { get; set; }
+        public NotesTransactionDto Notes { get; set; }
     }
 }
