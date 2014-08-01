@@ -14,6 +14,10 @@ namespace PS.Mothership.Core.Common.Dto.Event
         [DataMember]
         public Guid EventGuid { get; set; }
         [DataMember]
+        public DateTimeOffset UpdateDate { get; set; }
+        [DataMember]
+        public Guid UpdateSessionGuid { get; set; }
+        [DataMember]
         public EventTransactionDto Event { get; set; }
         [DataMember]
         public RoleDto Role { get; set; }
