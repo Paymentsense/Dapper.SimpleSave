@@ -143,6 +143,7 @@
     <Compile Include="Contracts\ISendMessageService.cs" />
     <Compile Include="Contracts\ISendMessageServiceCallback.cs" />
     <Compile Include="Dto\CompaniesHouse\CompanyAppointmentsDto.cs" />
+    <Compile Include="Dto\Event\EventNotesLnkDto.cs" />
     <Compile Include="Dto\Event\Notification\NotificationReceivedDto.cs" />
     <Compile Include="Dto\FullPostcodeDto.cs" />
     <Compile Include="Dto\Iridium\IridiumConfirmResultsDto.cs" />
