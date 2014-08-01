@@ -25,9 +25,13 @@ namespace PS.Mothership.Core.Common.Dto.Event
         [DataMember]
         public StatusOwnerTransactionDto StatusOwnerCurrent { get; set; }
         [DataMember]
+        public IList<StatusOwnerTransactionDto> StatusOwners { get; set; }
+        [DataMember]
         public IList<NotesTransactionDto> Notes { get; set; }
         [DataMember]
         public NotificationTransactionDto NotificationCurrent { get; set; }
+        [DataMember]
+        public IList<NotificationTransactionDto> Notifications { get; set; }
         [DataMember]
         public IList<EventRoleLnkDto> EventRoleLnk { get; set; }
         [DataMember]
