@@ -1,21 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
-using PS.Mothership.Core.Common.Template.Event;
 
 namespace PS.Mothership.Core.Common.Dto.Event
 {
     [DataContract]
-    public class NotificationTransactionDto
+    public class EventNotesLnkDto
     {
         [DataMember]
-        public Guid NotificationGuid { get; set; }
+        public Guid EventNotesGuid { get; set; }
+        [DataMember]
+        public Guid NotesGuid { get; set; }
         [DataMember]
         public Guid EventGuid { get; set; }
-        [DataMember]
-        public EventNotificationMethodEnum NotificationMethodKey { get; set; }
-        [DataMember]
-        public DateTimeOffset ScheduledDate { get; set; }
         [DataMember]
         public DateTimeOffset UpdateDate { get; set; }
         [DataMember]
@@ -23,6 +20,6 @@ namespace PS.Mothership.Core.Common.Dto.Event
         [DataMember]
         public EventTransactionDto Event { get; set; }
         [DataMember]
-        public IList<EventTransactionDto> EventIsCurrent { get; set; }
+        public IList<NotesTransactionDto> Notes { get; set; }
     }
 }
