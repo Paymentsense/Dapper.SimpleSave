@@ -27,5 +27,7 @@ namespace PS.Mothership.Core.Common.Dto.SendMessage
         public Guid CustomerGuid { get; set; }
         [DataMember]
 		public CommMessageTypeEnum MessageType { get; set; }
+        [DataMember]
+        public Guid SendFromUserGuid { get; set; }
     }
 }
