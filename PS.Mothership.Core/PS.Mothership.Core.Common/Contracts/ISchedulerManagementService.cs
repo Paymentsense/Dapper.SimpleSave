@@ -19,6 +19,18 @@ namespace PS.Mothership.Core.Common.Contracts
         JobProfileDto GetJob(GenSchedulerJobGroupEnum jobGroup, string jobName);
 
         [OperationContract]
+        void PauseJob(GenSchedulerJobGroupEnum jobGroup, string jobName);
+
+        [OperationContract]
+        void ResumeJob(GenSchedulerJobGroupEnum jobGroup, string jobName);
+
+        [OperationContract]
+        void DeleteJob(GenSchedulerJobGroupEnum jobGroup, string jobName);
+
+        [OperationContract]
+        void ExecuteJobNow(GenSchedulerJobGroupEnum jobGroup, string jobName);
+
+        [OperationContract]
         PagedList<TriggerProfileDto> GetTriggers(GenSchedulerJobGroupEnum jobGroup, string jobName, DataRequestDto dataRequestDto);
 
         [OperationContract]
@@ -31,24 +43,15 @@ namespace PS.Mothership.Core.Common.Contracts
         void DeleteTrigger(GenSchedulerJobGroupEnum jobGroup, string jobName, string triggerName);
 
         [OperationContract]
-        void PauseAllTriggers();
-
-        [OperationContract]
-        void ResumeAllTriggers();
-
-        [OperationContract]
-        void PauseJob(GenSchedulerJobGroupEnum jobGroup, string jobName);
-
-        [OperationContract]
-        void ResumeJob(GenSchedulerJobGroupEnum jobGroup, string jobName);
-
-        [OperationContract]
         void PauseTrigger(GenSchedulerJobGroupEnum jobGroup, string jobName, string triggerName);
 
         [OperationContract]
         void ResumeTrigger(GenSchedulerJobGroupEnum jobGroup, string jobName, string triggerName);
 
         [OperationContract]
-        void ExecuteJobNow(GenSchedulerJobGroupEnum jobGroup, string jobName);
+        void PauseAllTriggers();
+
+        [OperationContract]
+        void ResumeAllTriggers();
     }
 }
