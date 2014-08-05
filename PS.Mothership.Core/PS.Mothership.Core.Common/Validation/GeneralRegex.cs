@@ -8,13 +8,40 @@ namespace PS.Mothership.Core.Common.Validation
 
         public static RegexValidation AlphaOnly
         {
-            get { return new RegexValidation {Regex = "", ErrorMessage = ""}; }
+            get
+            {
+                return new RegexValidation
+                {
+                    Regex = @"^[a-zA-Z]+$", //This regex doesn't allow whitespaces
+                    ErrorMessage = "Please specify letters only."
+                };
+            }
         }
 
         public static RegexValidation NumericOnly
         {
 
-            get { return new RegexValidation {Regex = "", ErrorMessage = ""}; }
+            get
+            {
+                return new RegexValidation
+                {
+                    Regex = @"^[0-9]+$", 
+                    ErrorMessage = "Please specify numbers only."
+                };
+            }
+        }
+
+        public static RegexValidation AlphaNumericOnly
+        {
+
+            get
+            {
+                return new RegexValidation
+                {
+                    Regex = @"^[a-zA-Z0-9]+$",
+                    ErrorMessage = "Please specify letters and numbers only."
+                };
+            }
         }
 
         public static RegexValidation UkDate {
@@ -66,6 +93,34 @@ namespace PS.Mothership.Core.Common.Validation
                 {
                     Regex = @"^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$",
                     ErrorMessage = "Please specify a valid email address"
+                };
+
+            }
+        }
+
+        public static RegexValidation BusinessName
+        {
+
+            get
+            {
+                return new RegexValidation
+                {
+                    Regex = @"^[a-zA-Z\d\s-'().&]*$", //allows for lower/upper case letters, numbers, spaces, apostrophe,hypen, plus, and curved brackets
+                    ErrorMessage = "Please specify a valid business name. Valid characters are a-z,A-Z,0-9,&,',-,+,(,)"
+                };
+
+            }
+        }
+
+        public static RegexValidation PersonName
+        {
+
+            get
+            {
+                return new RegexValidation
+                {
+                    Regex = @"^[a-zA-Z\d\s-'().&]*$", //allows for lower/upper case letters, spaces, apostraphe and hypen
+                    ErrorMessage = "Please specify a valid name. Valid characters are a-z,A-Z,',-,"
                 };
 
             }
