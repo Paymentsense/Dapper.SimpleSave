@@ -7,5 +7,6 @@ namespace PS.Mothership.Core.Common.Dto.Notification
         public EventTypeEnum EventType { get; set; }
         public int EventTypeTotalNotifications { get; set; }
         public string Username { get; set; }
+        public string NotificationClass { get; set; }
     }
 }
