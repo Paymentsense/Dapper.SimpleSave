@@ -1,6 +1,6 @@
 ﻿using PS.Mothership.Core.Common.Template.Event;
 
-namespace PS.Mothership.Core.Common.Dto.Event.Notification
+namespace PS.Mothership.Core.Common.Dto.Notification
 {
     public class NotificationReceivedDto
     {

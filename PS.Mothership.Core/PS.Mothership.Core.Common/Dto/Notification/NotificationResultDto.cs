@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
 
-namespace PS.Mothership.Core.Common.Dto.Event.Notification
+namespace PS.Mothership.Core.Common.Dto.Notification
 {
     [DataContract]
     public class NotificationResultDto
