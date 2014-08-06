@@ -23,7 +23,7 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public long ThompsonCodeKey { get; set; }
 
         [DataMember]
-        public CustAnnualTurnoverEnum AnnualTurnover { get; set; }
+        public long AnnualTurnover { get; set; }
 
         [DataMember]
         public CustNumberEmployeesEnum NumberEmployeesKey { get; set; }
