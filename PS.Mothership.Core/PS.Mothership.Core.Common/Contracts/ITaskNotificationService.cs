@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ServiceModel;
-using PS.Mothership.Core.Common.Dto.Event.Notification;
+using PS.Mothership.Core.Common.Dto.Notification;
 
 namespace PS.Mothership.Core.Common.Contracts
 {
