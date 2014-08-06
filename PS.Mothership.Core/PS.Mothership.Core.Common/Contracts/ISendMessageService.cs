@@ -52,5 +52,8 @@ namespace PS.Mothership.Core.Common.Contracts
 
         [OperationContract]
         IList<NotificationReceivedDto> GetEventNotications(Guid userGuid);
+
+        [OperationContract]
+        IList<NotificationStatusDto> GetNotificationsAndStatuses(Guid userGuid);
     }
 }
