@@ -29,6 +29,7 @@ namespace PS.Mothership.Core.Common.Extension
             }
             return list;
         }
+
         /// <summary>
         /// Convert to a new instance of the <see cref="PagedList&lt;T&gt;"/> class
         /// </summary>
