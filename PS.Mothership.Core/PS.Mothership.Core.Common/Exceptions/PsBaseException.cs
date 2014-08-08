@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Runtime.Serialization;
 
 namespace PS.Mothership.Core.Common.Exceptions
 {
+    [Serializable]
     public abstract class PsBaseException : ApplicationException
     {
         public PsBaseException()
@@ -22,5 +24,12 @@ namespace PS.Mothership.Core.Common.Exceptions
         }
 
         public Guid ErrorId { get; set; }
+
+        public override void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            base.GetObjectData(info, context);
+
+            info.AddValue("ErrorId", ErrorId);
+        }
     }
 }
