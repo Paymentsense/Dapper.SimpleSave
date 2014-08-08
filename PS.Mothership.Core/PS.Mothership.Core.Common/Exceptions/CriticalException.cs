@@ -5,6 +5,7 @@ namespace PS.Mothership.Core.Common.Exceptions
     /// <summary>
     /// Use this class so we 
     /// </summary>
+    [Serializable]
     public class CriticalException : PsBaseException
     {        
             public CriticalException()
