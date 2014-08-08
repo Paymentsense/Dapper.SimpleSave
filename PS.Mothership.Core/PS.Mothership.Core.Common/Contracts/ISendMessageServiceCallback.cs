@@ -10,9 +10,6 @@ namespace PS.Mothership.Core.Common.Contracts
         void PushServiceStatus(SendMessageServiceStatusDto serviceStatus);
 
         [OperationContract(IsOneWay = true)]
-        void PushSmsNotificationReceived(NotificationReceivedDto notificationReceived, int totalUserNotifications);
-
-        [OperationContract(IsOneWay = true)]
-        void PushEmailNotificationReceived(NotificationReceivedDto notificationReceived, int totalUserNotifications); 
+        void PushNotificationReceived(NotificationReceivedDto notificationReceived, int totalUserNotifications);
     }
 }
