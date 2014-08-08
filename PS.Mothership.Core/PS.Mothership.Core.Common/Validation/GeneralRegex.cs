@@ -25,7 +25,7 @@ namespace PS.Mothership.Core.Common.Validation
             {
                 return new RegexValidation
                 {
-                    Regex = @"^[0-9]+$", 
+                    Regex = @"^[0-9]+$",
                     ErrorMessage = "Please specify numbers only."
                 };
             }
@@ -44,13 +44,14 @@ namespace PS.Mothership.Core.Common.Validation
             }
         }
 
-        public static RegexValidation UkDate {
+        public static RegexValidation UkDate
+        {
 
             get
             {
                 return new RegexValidation
                 {
-                    Regex = @"^(((0[1-9]|[12][0-8])[\/](0[1-9]|1[012]))|((29|30|31)[\/](0[13578]|1[02]))|((29|30)[\/](0[4,6,9]|11)))[\/](19|[2-9][0-9])\d\d$)|(^29[\/]02[\/](19|[2-9][0-9])(00|04|08|12|16|20|24|28|32|36|40|44|48|52|56|60|64|68|72|76|80|84|88|92|96)$", 
+                    Regex = @"^(((0[1-9]|[12][0-8])[\/](0[1-9]|1[012]))|((29|30|31)[\/](0[13578]|1[02]))|((29|30)[\/](0[4,6,9]|11)))[\/](19|[2-9][0-9])\d\d$)|(^29[\/]02[\/](19|[2-9][0-9])(00|04|08|12|16|20|24|28|32|36|40|44|48|52|56|60|64|68|72|76|80|84|88|92|96)$",
                     ErrorMessage = "Please specify a valid date"
                 };
             }
@@ -63,14 +64,14 @@ namespace PS.Mothership.Core.Common.Validation
             {
                 return new RegexValidation
                 {
-                    Regex =@"^(([-\s()]*(\+|00)?[-\s()]*353([-\s()]*\d){9,10}[-\s()]*)|([-\s()]*0?[-\s()]*[1-689]([-\s()]*\d){8,9}[-\s()]*))$", 
+                    Regex = @"^(([-\s()]*(\+|00)?[-\s()]*353([-\s()]*\d){9,10}[-\s()]*)|([-\s()]*0?[-\s()]*[1-689]([-\s()]*\d){8,9}[-\s()]*))$",
                     ErrorMessage = "Please specify a valid landline number"
-                };              
+                };
             }
         }
 
 
-        public static RegexValidation  MobilePhoneNumber 
+        public static RegexValidation MobilePhoneNumber
         {
 
             get
