@@ -14,6 +14,9 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public Guid MerchantGuid { get; set; }
 
         [DataMember]
+        public string Type { get; set; }
+
+        [DataMember]
         public string BusinessName { get; set; }
 
         [DataMember]
