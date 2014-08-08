@@ -10,6 +10,7 @@ namespace PS.Mothership.Core.Common.Dto.SchedulerManagement
         public string Name { get; set; }
         public TriggerState State { get; set; }
         public DateTimeOffset? NextFireTime { get; set; }
+        public DateTimeOffset? PreviousFireTime { get; set; }
         public string Schedule { get; set; }
         public DateTimeOffset StartTime { get; set; }
         public IntervalUnit Occurrence { get; set; }
