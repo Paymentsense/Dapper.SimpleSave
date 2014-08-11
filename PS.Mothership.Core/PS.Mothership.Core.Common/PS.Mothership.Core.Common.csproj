@@ -156,6 +156,7 @@
     <Compile Include="Dto\SendMessage\MessageServiceStatus.cs" />
     <Compile Include="Dto\Merchant\MerchantDataRequestDto.cs" />
     <Compile Include="Enums\NotificationIcon.cs" />
+    <Compile Include="Helper\EnumHelper.cs" />
     <Compile Include="SessionHandling\ISessionManager.cs" />
     <Compile Include="Contracts\ITaskNotificationCallback.cs" />
     <Compile Include="Contracts\ITaskNotificationService.cs" />
