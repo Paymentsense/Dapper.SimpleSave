@@ -101,6 +101,7 @@
       <HintPath>..\packages\Quartz.2.2.3\lib\net40\Quartz.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Services" />
@@ -154,6 +155,7 @@
     <Compile Include="Dto\Notification\NotificationStatusDto.cs" />
     <Compile Include="Dto\SendMessage\MessageServiceStatus.cs" />
     <Compile Include="Dto\Merchant\MerchantDataRequestDto.cs" />
+    <Compile Include="Enums\NotificationIcon.cs" />
     <Compile Include="SessionHandling\ISessionManager.cs" />
     <Compile Include="Contracts\ITaskNotificationCallback.cs" />
     <Compile Include="Contracts\ITaskNotificationService.cs" />
