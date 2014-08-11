@@ -101,6 +101,7 @@
       <HintPath>..\packages\Quartz.2.2.3\lib\net40\Quartz.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Services" />

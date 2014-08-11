@@ -1,8 +1,12 @@
-﻿namespace PS.Mothership.Core.Common.Enums
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace PS.Mothership.Core.Common.Enums
 {
     public enum NotificationIcon
     {
-        EmailReceived = 2,
-        SMSReceived = 3,
+        [Display(Name = "notification-tab-message")]
+        EmailReceived = 1,
+        [Display(Name = "notification-tab-chat")]
+        SMSReceived = 2,
     }
 }
