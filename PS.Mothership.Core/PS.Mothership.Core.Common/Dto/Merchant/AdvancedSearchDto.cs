@@ -1,4 +1,5 @@
 ﻿using System.Runtime.Serialization;
+using PS.Mothership.Core.Common.Template.Cust;
 
 
 namespace PS.Mothership.Core.Common.Dto.Merchant
@@ -51,8 +52,7 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         [DataMember]
         public string Owner { get; set; }
 
-        [DataMember]
-        
+        [DataMember]    
         public string PhoneNumber { get; set; }
 
         [DataMember]
@@ -87,6 +87,7 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
 
         [DataMember]
         public string V1MerchantId { get; set; }
+
 
     }
 }
