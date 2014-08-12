@@ -13,7 +13,7 @@ namespace PS.Mothership.Core.Common.Validation
                 return new RegexValidation
                 {
                     Regex = @"^[a-zA-Z]+$", //This regex doesn't allow whitespaces
-                    ErrorMessage = "Please specify letters only."
+                    ErrorMessage = "Please specify letters only"
                 };
             }
         }
@@ -26,7 +26,7 @@ namespace PS.Mothership.Core.Common.Validation
                 return new RegexValidation
                 {
                     Regex = @"^[0-9]+$",
-                    ErrorMessage = "Please specify numbers only."
+                    ErrorMessage = "Please specify numbers only"
                 };
             }
         }
@@ -39,7 +39,7 @@ namespace PS.Mothership.Core.Common.Validation
                 return new RegexValidation
                 {
                     Regex = @"^[a-zA-Z0-9]+$",
-                    ErrorMessage = "Please specify letters and numbers only."
+                    ErrorMessage = "Please specify letters and numbers only"
                 };
             }
         }
@@ -135,7 +135,7 @@ namespace PS.Mothership.Core.Common.Validation
                 return new RegexValidation
                 {
                     Regex = @"[A-Z]{1}\d{3}[A-Z]{1}\d{2}|[A-Za-z0-9]{6}_OLD", //allows for one upper case letter, three numbers,one uppercase letter, and two numbers
-                    ErrorMessage = "Please specify a valid locator ID,"
+                    ErrorMessage = "Please specify a valid locator ID"
                 };
 
             }
@@ -149,7 +149,7 @@ namespace PS.Mothership.Core.Common.Validation
                 return new RegexValidation
                 {
                     Regex = @"[A-Za-z0-9]{6}_OLD", //allows for siz lower/upper case numbers and letters followed by suffix of "_OLD"
-                    ErrorMessage = "Please specify a valid locator ID,"
+                    ErrorMessage = "Please specify a valid locator ID"
                 };
 
             }
