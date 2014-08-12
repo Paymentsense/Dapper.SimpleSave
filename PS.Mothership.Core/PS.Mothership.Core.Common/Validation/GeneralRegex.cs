@@ -127,5 +127,33 @@ namespace PS.Mothership.Core.Common.Validation
             }
         }
 
+        public static RegexValidation LocatorId
+        {
+
+            get
+            {
+                return new RegexValidation
+                {
+                    Regex = @"[A-Z]{1}\d{3}[A-Z]{1}\d{2}|[A-Za-z0-9]{6}_OLD", //allows for one upper case letter, three numbers,one uppercase letter, and two numbers
+                    ErrorMessage = "Please specify a valid locator ID,"
+                };
+
+            }
+        }
+
+        public static RegexValidation LocatorIdOld
+        {
+
+            get
+            {
+                return new RegexValidation
+                {
+                    Regex = @"[A-Za-z0-9]{6}_OLD", //allows for siz lower/upper case numbers and letters followed by suffix of "_OLD"
+                    ErrorMessage = "Please specify a valid locator ID,"
+                };
+
+            }
+        }
+
     }
 }
