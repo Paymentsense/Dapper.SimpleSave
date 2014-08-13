@@ -2,6 +2,7 @@
 
 namespace PS.Mothership.Core.Common.Exceptions
 {
+    [Serializable]
     public class BusinessException : PsBaseException
     {
         public BusinessException()
