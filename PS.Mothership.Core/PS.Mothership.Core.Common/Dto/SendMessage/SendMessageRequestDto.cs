@@ -11,12 +11,12 @@ namespace PS.Mothership.Core.Common.Dto.SendMessage
     [KnownType(typeof(SendSmsRequestDto))]
     public abstract class SendMessageRequestDto
     {
-		[DataMember]
+        [DataMember]
         public Guid MessageGuid { get; set; }
         [DataMember]
-        public List<Guid> SendTo { get; set; }
+        public List<Guid> OtherPartyFromToGuids { get; set; }
         [DataMember]
-        public Guid SendFrom { get; set; }
+        public Guid MothershipFromToGuid { get; set; }
         [DataMember]
         public string Subject { get; set; }
         [DataMember]
@@ -26,7 +26,7 @@ namespace PS.Mothership.Core.Common.Dto.SendMessage
         [DataMember]
         public Guid CustomerGuid { get; set; }
         [DataMember]
-		public CommMessageTypeEnum MessageType { get; set; }
+        public CommMessageTypeEnum MessageType { get; set; }
         [DataMember]
         public Guid SendFromUserGuid { get; set; }
     }
