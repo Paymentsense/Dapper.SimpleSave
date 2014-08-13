@@ -76,3 +76,4 @@ packages/
 *.orig
 *.old
 /Externals/*/Template/*Enum.cs
+*.jf
