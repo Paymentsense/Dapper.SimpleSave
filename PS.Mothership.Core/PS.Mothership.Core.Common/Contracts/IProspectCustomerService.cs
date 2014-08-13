@@ -39,10 +39,10 @@ namespace PS.Mothership.Core.Common.Contracts
         PagedList<MerchantListDto> GetMerchantsByFilter(DataRequestDto dataRequestDto);
 
         [OperationContract]
-        PagedList<ProspectAddressDto> GetSimilarMerchants(FullAddressDto dto);
+        PagedList<MerchantListDto> GetSimilarMerchants(FullAddressDto dto);
 
         [OperationContract]
-        PagedList<ProspectAddressDto> QuickSearch(SearchDto dto);
+        PagedList<MerchantListDto> QuickSearch(SearchDto dto);
 
         [OperationContract]
         PagedList<ProspectAddressDto> AdvancedSearch(MerchantDataRequestDto dto);
