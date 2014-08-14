@@ -150,6 +150,7 @@
     <Compile Include="Dto\Merchant\MerchantListDto.cs" />
     <Compile Include="Dto\Merchant\AdvancedSearchDto.cs" />
     <Compile Include="Dto\Merchant\MerchantDataRequestDto.cs" />
+    <Compile Include="Dto\Merchant\MerchantSearchDataDto.cs" />
     <Compile Include="Dto\User\UserImpersonationDto.cs" />
     <Compile Include="SessionHandling\ISessionManager.cs" />
     <Compile Include="Contracts\ITaskNotificationCallback.cs" />
