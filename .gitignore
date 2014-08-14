@@ -79,3 +79,4 @@ packages/
 *.old
 **/Template/*Enum.cs
 UpgradeLog*.htm
+*.jf
