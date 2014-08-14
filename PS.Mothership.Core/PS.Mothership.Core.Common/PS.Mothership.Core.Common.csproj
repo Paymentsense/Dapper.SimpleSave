@@ -125,6 +125,7 @@
     <Compile Include="Constants\GlobalConstants.cs" />
     <Compile Include="Constants\NamingConstants.cs" />
     <Compile Include="Constructs\PagedList.cs" />
+    <Compile Include="Constructs\RegexValidation.cs" />
     <Compile Include="Contracts\IAddressManagementService.cs" />
     <Compile Include="Contracts\IAddressService.cs" />
     <Compile Include="Contracts\IApplicationService.cs" />
@@ -348,6 +349,8 @@
     <Compile Include="ValidationCode\CodeMaker.cs" />
     <Compile Include="Helper\CryptoRandom.cs" />
     <Compile Include="Helper\RandomProvider.cs" />
+    <Compile Include="Validation\AddressRegex.cs" />
+    <Compile Include="Validation\GeneralRegex.cs" />
     <Compile Include="WcfErrorHandling\PassThroughExceptionExtension.cs" />
     <Compile Include="WcfErrorHandling\PassThroughExceptionHandlingBehaviour.cs" />
     <Compile Include="WcfErrorHandling\CustomServerException.cs" />
