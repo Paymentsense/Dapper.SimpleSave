@@ -125,7 +125,6 @@
     <Compile Include="Constants\GlobalConstants.cs" />
     <Compile Include="Constants\NamingConstants.cs" />
     <Compile Include="Constructs\PagedList.cs" />
-    <Compile Include="Contracts\ApplicationService.cs" />
     <Compile Include="Contracts\IAddressManagementService.cs" />
     <Compile Include="Contracts\IAddressService.cs" />
     <Compile Include="Contracts\IApplicationService.cs" />
@@ -147,8 +146,10 @@
     <Compile Include="Dto\Iridium\IridiumConfirmResultsDto.cs" />
     <Compile Include="Dto\Iridium\IridiumRequestDto.cs" />
     <Compile Include="Dto\Iridium\IridiumResultsDto.cs" />
+    <Compile Include="Dto\Merchant\MerchantListDto.cs" />
     <Compile Include="Dto\Merchant\AdvancedSearchDto.cs" />
     <Compile Include="Dto\Merchant\MerchantDataRequestDto.cs" />
+    <Compile Include="Dto\User\UserImpersonationDto.cs" />
     <Compile Include="SessionHandling\ISessionManager.cs" />
     <Compile Include="Contracts\ITaskNotificationCallback.cs" />
     <Compile Include="Contracts\ITaskNotificationService.cs" />
