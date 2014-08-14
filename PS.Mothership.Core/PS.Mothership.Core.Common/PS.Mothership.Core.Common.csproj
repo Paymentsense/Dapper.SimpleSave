@@ -97,8 +97,9 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.6.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Quartz">
-      <HintPath>..\packages\Quartz.2.2.3\lib\net40\Quartz.dll</HintPath>
+    <Reference Include="Quartz, Version=2.2.4.400, Culture=neutral, PublicKeyToken=f6b8c98a402cc8a4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Quartz.2.2.4\lib\net40\Quartz.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -132,6 +133,7 @@
     <Compile Include="Contracts\IEchoSignCallbackService.cs" />
     <Compile Include="Contracts\IFirstDataService.cs" />
     <Compile Include="Contracts\IIridiumService.cs" />
+    <Compile Include="Contracts\IManageableJob.cs" />
     <Compile Include="Contracts\IProspectCustomerService.cs" />
     <Compile Include="Contracts\IDiallerService.cs" />
     <Compile Include="Contracts\IDiallerTaskNotificationCallback.cs" />
@@ -139,6 +141,7 @@
     <Compile Include="Contracts\IIdentityCheckService.cs" />
     <Compile Include="Contracts\ILoggingService.cs" />
     <Compile Include="Contracts\IMSLogger.cs" />
+    <Compile Include="Contracts\ISchedulerManagementService.cs" />
     <Compile Include="Contracts\ISendMessageService.cs" />
     <Compile Include="Contracts\ISendMessageStatusServiceCallback.cs" />
     <Compile Include="Dto\CompaniesHouse\CompanyAppointmentsDto.cs" />
@@ -150,6 +153,10 @@
     <Compile Include="Dto\Merchant\AdvancedSearchDto.cs" />
     <Compile Include="Dto\Merchant\MerchantDataRequestDto.cs" />
     <Compile Include="Dto\User\UserImpersonationDto.cs" />
+    <Compile Include="Dto\SchedulerManagement\JobProfileDto.cs" />
+    <Compile Include="Dto\SchedulerManagement\TriggerProfileDto.cs" />
+    <Compile Include="Dto\SchedulerManagement\SchedulerServerInfoDto.cs" />
+    <Compile Include="Enums\SchedulerManagement\SchedulerStatusEnum.cs" />
     <Compile Include="SessionHandling\ISessionManager.cs" />
     <Compile Include="Contracts\ITaskNotificationCallback.cs" />
     <Compile Include="Contracts\ITaskNotificationService.cs" />
