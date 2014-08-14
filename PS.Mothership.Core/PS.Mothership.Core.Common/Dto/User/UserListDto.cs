@@ -46,7 +46,6 @@ namespace PS.Mothership.Core.Common.Dto.User
         {
             get
             {
-                if (DefiningRole == null) return null;
                 return
                     (from g in Groups
                      from r in g.Roles

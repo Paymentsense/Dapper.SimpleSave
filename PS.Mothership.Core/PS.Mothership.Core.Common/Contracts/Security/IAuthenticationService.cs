@@ -17,7 +17,7 @@ namespace PS.Mothership.Core.Common.Contracts.Security
     {
         [OperationContract]
         AccountDto Login(LoginCredentialsDto loginCredentialsDto);
-
+        
         [OperationContract]
         AccountDto GetUserAccount(Guid userGuid);
 
@@ -25,7 +25,7 @@ namespace PS.Mothership.Core.Common.Contracts.Security
         AccountDto GetImpersonatedAccount(UserProfileDto profileImpersonating, Guid userGuid);
 
         [OperationContract]
-        PagedList<UserImpersonationDto> GetUserImpersonations(long departmentId, UserProfileDto accessUserProfile, DataRequestDto dataRequestDto);
+        PagedList<UserProfileDto> GetUserProfile(long departmentId, UserProfileDto accessUserProfile, DataRequestDto dataRequestDto);
 
         [OperationContract]
         PagedList<GroupDto> GetGroups(Guid userGuid);
@@ -56,10 +56,10 @@ namespace PS.Mothership.Core.Common.Contracts.Security
         /// <returns></returns>
         [OperationContract]
         bool UnLockAccount(Guid userGuid);
-
+        
         [OperationContract]
         string GenerateCode(Guid userGuid);
-
+        
         [OperationContract]
         bool CodeExists(Guid userGuid, string validationCode);
 
