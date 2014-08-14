@@ -1,14 +1,20 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.Serialization;
-
+using System.Text;
+using System.Threading.Tasks;
 
 namespace PS.Mothership.Core.Common.Dto.Merchant
 {
     [DataContract]
-    public class ProspectAddressDto
+    public class MerchantListDto
     {
         [DataMember]
         public Guid MerchantGuid { get; set; }
+
+        [DataMember]
+        public string Type { get; set; }
 
         [DataMember]
         public string BusinessName { get; set; }
