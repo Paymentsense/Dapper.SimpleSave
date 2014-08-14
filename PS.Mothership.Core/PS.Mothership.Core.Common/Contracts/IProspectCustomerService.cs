@@ -36,16 +36,13 @@ namespace PS.Mothership.Core.Common.Contracts
         void RemoveProspectAddress(MerchantAddressDto dto);
 
         [OperationContract]
-        PagedList<ProspectDto> GetProspectsByFilter(DataRequestDto dataRequestDto);
+        PagedList<MerchantListDto> GetMerchantsByFilter(DataRequestDto dataRequestDto);
 
         [OperationContract]
-        PagedList<ProspectAddressDto> GetProspectsAddressByFilter(DataRequestDto dataRequestDto);
+        PagedList<MerchantListDto> GetSimilarMerchants(FullAddressDto dto);
 
         [OperationContract]
-        PagedList<ProspectAddressDto> GetSimilarMerchants(FullAddressDto dto);
-
-        [OperationContract]
-        PagedList<ProspectAddressDto> QuickSearch(SearchDto dto);
+        PagedList<MerchantListDto> QuickSearch(SearchDto dto);
 
         [OperationContract]
         PagedList<ProspectAddressDto> AdvancedSearch(MerchantDataRequestDto dto);
