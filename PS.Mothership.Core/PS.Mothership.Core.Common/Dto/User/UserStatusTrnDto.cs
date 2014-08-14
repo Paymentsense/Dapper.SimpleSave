@@ -13,5 +13,6 @@ namespace PS.Mothership.Core.Common.Dto.User
         public Guid UserGuid { get; set; }
         public UsrUserStatusEnum UserStatusKey { get; set; }
         public Guid UpdateSessionGuid { get; set; }
+
     }
 }

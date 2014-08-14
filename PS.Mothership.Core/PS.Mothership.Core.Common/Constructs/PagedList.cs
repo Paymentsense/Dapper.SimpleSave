@@ -74,14 +74,14 @@ namespace PS.Mothership.Core.Common.Constructs
             return new PagedList<T>(new List<T>(), 0);
         }
 
-        public static explicit operator PagedList<T>(Collection<T> target)
-        {
-            if (target.GetType() == typeof(PagedList<T>))
-                return (PagedList<T>)target;
-            var totalItems = target.Count();
-            return target.ToPagedList(totalItems);
+        //public static explicit operator PagedList<T>(Collection<T> target)
+        //{
+        //    if (target.GetType() == typeof(PagedList<T>))
+        //        return (PagedList<T>)target;
+        //    var totalItems = target.Count();
+        //    return target.ToPagedList(totalItems);
 
-        }
+        //}
 
        
     }
