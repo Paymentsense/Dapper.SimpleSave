@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using PS.Mothership.Core.Common.Template.Usr;
+using System;
 using System.Runtime.Serialization;
-using PS.Mothership.Core.Common.Template.Usr;
 
 namespace PS.Mothership.Core.Common.Dto.User
 {
@@ -13,6 +12,5 @@ namespace PS.Mothership.Core.Common.Dto.User
         public Guid UserGuid { get; set; }
         public UsrUserStatusEnum UserStatusKey { get; set; }
         public Guid UpdateSessionGuid { get; set; }
-
     }
 }
