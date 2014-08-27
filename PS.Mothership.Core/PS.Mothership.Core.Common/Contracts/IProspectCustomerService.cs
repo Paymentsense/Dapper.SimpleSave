@@ -1,9 +1,13 @@
-﻿using PS.Mothership.Core.Common.Constructs;
-using PS.Mothership.Core.Common.Dto;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.ServiceModel;
+using System.Text;
+using System.Threading.Tasks;
+using PS.Mothership.Core.Common.Constructs;
 using PS.Mothership.Core.Common.Dto.DynamicRequest;
 using PS.Mothership.Core.Common.Dto.Merchant;
-using System;
-using System.ServiceModel;
+using PS.Mothership.Core.Common.Dto;
 
 namespace PS.Mothership.Core.Common.Contracts
 {
@@ -30,7 +34,7 @@ namespace PS.Mothership.Core.Common.Contracts
 
         [OperationContract]
         void RemoveProspectAddress(MerchantAddressDto dto);
-        
+
         [OperationContract]
         PagedList<MerchantListDto> GetMerchantsByFilter(DataRequestDto dataRequestDto);
 
