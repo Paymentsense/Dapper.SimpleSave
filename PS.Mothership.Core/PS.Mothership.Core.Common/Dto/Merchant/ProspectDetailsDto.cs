@@ -14,7 +14,7 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
 
         public PS.Mothership.Core.Common.Template.Gen.GenBusinessLegalTypeEnum BusinessLegalTypeKey { get; set; }
 
-        public PS.Mothership.Core.Common.Template.Cust.CustAnnualTurnoverEnum AnnualTurnover { get; set; }
+        public long AnnualTurnover { get; set; }
 
         public long CallRestrictedReasonKey { get; set; }
     }
