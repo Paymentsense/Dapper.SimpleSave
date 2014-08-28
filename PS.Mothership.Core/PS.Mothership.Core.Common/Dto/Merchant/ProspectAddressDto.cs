@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-
 namespace PS.Mothership.Core.Common.Dto.Merchant
 {
     [DataContract]
@@ -33,7 +32,5 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
 
         [DataMember]
         public string PostCode { get; set; }
-
-
     }
 }
