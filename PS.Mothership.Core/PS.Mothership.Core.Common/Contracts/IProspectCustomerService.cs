@@ -17,7 +17,7 @@ namespace PS.Mothership.Core.Common.Contracts
         ProspectResponseDto AddProspect(AddProspectDto prospectDto);
 
         [OperationContract]
-        ProspectDetailsDto UpdateProspect(ProspectDetailsDto dto);
+        ProspectDto UpdateProspect(ProspectDto dto);
 
         [OperationContract]
         void AddProspectContact(MerchantContactDto dto);
