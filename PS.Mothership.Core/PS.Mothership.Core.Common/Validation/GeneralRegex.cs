@@ -129,26 +129,18 @@ namespace PS.Mothership.Core.Common.Validation
 
         public static RegexValidation LocatorId
         {
-
+            //allows for following test sample formats:
+            //  PE678E40 = PANNNAA
+            //  B05789 = ANNNNN
+            //  F058N42 = ANNNANN
+            //  CQ678E08 = CANNNANN
+            // OX678E68 = OANNNANN
             get
             {
                 return new RegexValidation
                 {
-                    Regex = @"[A-Z]{1}\d{3}[A-Z]{1}\d{2}|[A-Za-z0-9]{6}_OLD", //allows for one upper case letter, three numbers,one uppercase letter, and two numbers
-                    ErrorMessage = "Please specify a valid locator ID"
-                };
-
-            }
-        }
-
-        public static RegexValidation LocatorIdOld
-        {
-
-            get
-            {
-                return new RegexValidation
-                {
-                    Regex = @"[A-Za-z0-9]{6}_OLD", //allows for siz lower/upper case numbers and letters followed by suffix of "_OLD"
+                    RegexJavaScript = @"^([CcPpOo]{1})?((?![IOio])[A-Za-z]{1}\d{3}(?![IiOo])[A-Za-z]{1}\d{2}|[A-Za-z]{1}\d{5})$",
+                    Regex = @"^([CcPpOo]{1})?([A-Za-z-[IOio]]{1}\d{3}[A-Z-[IO]]{1}\d{2}|[A-Za-z]{1}\d{5})$",
                     ErrorMessage = "Please specify a valid locator ID"
                 };
 
