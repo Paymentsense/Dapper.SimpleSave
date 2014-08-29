@@ -26,6 +26,9 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public string CreatedTo { get; set; }
 
         [DataMember]
+        public string County { get; set; }
+    
+        [DataMember]
         public string Department { get; set; }
 
         [DataMember]
@@ -87,7 +90,6 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
 
         [DataMember]
         public string V1MerchantId { get; set; }
-
 
     }
 }
