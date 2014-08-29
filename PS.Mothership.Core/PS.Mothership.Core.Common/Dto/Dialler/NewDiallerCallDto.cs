@@ -26,7 +26,7 @@ namespace PS.Mothership.Core.Common.Dto.Dialler
         [DataMember]
         public Guid ProspectingCampaignCallGuid { get; set; }
         [DataMember]
-        public long CampaignKey { get; set; }
+        public Guid CampaignGuid { get; set; }
         [DataMember]
         public Guid ConsultOriginSipCallGuid { get; set; }
         [DataMember]
