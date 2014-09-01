@@ -148,6 +148,8 @@
     <Compile Include="Dto\Iridium\IridiumRequestDto.cs" />
     <Compile Include="Dto\Iridium\IridiumResultsDto.cs" />
     <Compile Include="Dto\Merchant\MerchantDetailDto.cs" />
+    <Compile Include="Dto\Merchant\OpportunityDto.cs" />
+    <Compile Include="Dto\Merchant\PartnerDto.cs" />
     <Compile Include="Dto\Merchant\OfferDto.cs" />
     <Compile Include="Dto\Merchant\MerchantListDto.cs" />
     <Compile Include="Dto\Merchant\AdvancedSearchDto.cs" />

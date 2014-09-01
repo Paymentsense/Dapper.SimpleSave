@@ -8,12 +8,18 @@ using System.Threading.Tasks;
 namespace PS.Mothership.Core.Common.Dto.Merchant
 {
     [DataContract]
-    public class OfferDto
+    public class OpportunityDto
     {
         [DataMember]
-        public Guid OfferGuid { get; set; }
+        public Guid OpportunityGuid { get; set; }
 
         [DataMember]
-        public OpportunityDto Opportunity { get; set; }
+        public string OpportunityLocatorId { get; set; }
+
+        [DataMember]
+        public MerchantDto Merchant { get; set; }
+
+        [DataMember]
+        public PartnerDto Partner { get; set; }
     }
 }
