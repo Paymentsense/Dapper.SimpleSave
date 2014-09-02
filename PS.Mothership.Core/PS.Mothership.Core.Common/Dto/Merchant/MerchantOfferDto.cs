@@ -15,6 +15,8 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
 
         public string Reference { get; set; }
 
+        public string Description { get; set; }
+
         public OppOpportunityStatusEnum Status { get; set; }
 
         public Decimal Credit { get; set; }
