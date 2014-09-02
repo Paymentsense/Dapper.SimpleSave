@@ -58,6 +58,7 @@
         public const string ImapPassword = "IMAPPassword";
         public const string ImapIdleConnectionTime = "IDLEConnectionTime";
         public const string PollingTime = "PollingTime";
+        public const string ImapListenerEnabled = "ImapListenerEnabled";
 
         //Onboarding Constants
         public const string OnboardingUserName = "OnboardingUserName";
