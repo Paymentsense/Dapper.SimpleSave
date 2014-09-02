@@ -19,11 +19,27 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
 
         public OppOpportunityStatusEnum Status { get; set; }
 
+        public string StatusDescription
+        {
+            get
+            {
+                return OppOpportunityStatusCollection.OppOpportunityStatusList.Single(x => x.EnumValue == (long)Status).EnumDescription;
+            }
+        }
+
         public Decimal Credit { get; set; }
 
         public Decimal Debit { get; set; }
 
         public OppContractLengthEnum Duration { get; set; }
+
+        public string DurationDescription
+        {
+            get
+            {
+                return OppContractLengthCollection.OppContractLengthList.Single(x => x.EnumValue == (long)Duration).EnumDescription;
+            }
+        }
 
         public DateTimeOffset UpdateDate { get; set; }
 
