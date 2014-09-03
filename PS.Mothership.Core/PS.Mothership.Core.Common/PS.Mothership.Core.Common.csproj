@@ -133,6 +133,7 @@
     <Compile Include="Contracts\IEchoSignCallbackService.cs" />
     <Compile Include="Contracts\IFirstDataService.cs" />
     <Compile Include="Contracts\IIridiumService.cs" />
+    <Compile Include="Contracts\IMerchantService.cs" />
     <Compile Include="Contracts\IProspectCustomerService.cs" />
     <Compile Include="Contracts\IDiallerService.cs" />
     <Compile Include="Contracts\IDiallerTaskNotificationCallback.cs" />
@@ -148,6 +149,11 @@
     <Compile Include="Dto\Iridium\IridiumRequestDto.cs" />
     <Compile Include="Dto\Iridium\IridiumResultsDto.cs" />
     <Compile Include="Dto\Merchant\MerchantDetailDto.cs" />
+    <Compile Include="Dto\Merchant\OfferAuthorizationFeeDto.cs" />
+    <Compile Include="Dto\Merchant\OfferMetaDataDto.cs" />
+    <Compile Include="Dto\Merchant\OfferMinimumMonthlyServiceChargeDto.cs" />
+    <Compile Include="Dto\Merchant\OfferParametersDto.cs" />
+    <Compile Include="Dto\Merchant\OfferSalesChannelDto.cs" />
     <Compile Include="Dto\Merchant\OpportunityDto.cs" />
     <Compile Include="Dto\Merchant\PartnerDto.cs" />
     <Compile Include="Dto\Merchant\OfferDto.cs" />
