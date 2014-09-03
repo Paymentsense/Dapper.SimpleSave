@@ -38,8 +38,5 @@ namespace PS.Mothership.Core.Common.Dto.DynamicRequest
 
         [DataMember]
         public FilterDto Filter { get; set; }
-
-        //[DataMember]
-        //public AdvancedSearchDto AdvancedSearch { get; set; }
     }
 }
