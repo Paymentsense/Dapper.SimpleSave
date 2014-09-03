@@ -10,7 +10,7 @@ namespace PS.Mothership.Core.Common.Dto.Dialler
         [DataMember]
         public Guid InboundCampaignCallGuid { get; set; }
         [DataMember]
-        public long CampaignKey { get; set; }
+        public Guid CampaignGuid { get; set; }
         [DataMember]
         public string Keyword { get; set; }
         [DataMember]
