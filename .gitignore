@@ -30,6 +30,7 @@ ipch/
 [Dd]ebug*/
 [Rr]elease*/
 Ankh.NoLoad
+*.vsp
 
 #MonoDevelop
 *.pidb
@@ -76,4 +77,5 @@ packages/
 *.orig
 *.old
 /Externals/*/Template/*Enum.cs
+UpgradeLog*.htm
 *.jf
