@@ -2,7 +2,7 @@
 
 namespace PS.Mothership.Core.Common.Contracts
 {
-    [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall, ConcurrencyMode = ConcurrencyMode.Multiple)]
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall)]
     public abstract class ApplicationService : IApplicationService
     {
        
