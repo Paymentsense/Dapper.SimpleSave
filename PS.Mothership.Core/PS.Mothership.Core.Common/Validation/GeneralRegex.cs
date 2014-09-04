@@ -1,5 +1,4 @@
-﻿using System.Text.RegularExpressions;
-using PS.Mothership.Core.Common.Constructs;
+﻿using PS.Mothership.Core.Common.Constructs;
 
 namespace PS.Mothership.Core.Common.Validation
 {
@@ -44,6 +43,9 @@ namespace PS.Mothership.Core.Common.Validation
             }
         }
 
+        /// <summary>
+        /// Regex checks UK formatted date
+        /// </summary>
         public static RegexValidation UkDate
         {
 
@@ -56,7 +58,9 @@ namespace PS.Mothership.Core.Common.Validation
                 };
             }
         }
-
+        /// <summary>
+        /// Regex checks both UK and RoI landline numbers
+        /// </summary>
         public static RegexValidation PhoneNumber
         {
 
@@ -70,7 +74,9 @@ namespace PS.Mothership.Core.Common.Validation
             }
         }
 
-
+        /// <summary>
+        /// Regex checks both UK and RoI mobile numbers
+        /// </summary>
         public static RegexValidation MobilePhoneNumber
         {
 
@@ -127,14 +133,16 @@ namespace PS.Mothership.Core.Common.Validation
             }
         }
 
+        /// <summary>
+        /// Regex checks for LocatorID that match the following patterns:
+        ///  B05789 = ANNNNN
+        ///  F058N42 = ANNNANN
+        ///  PE678E40 = PANNNAA
+        ///  CQ678E08 = CANNNANN
+        ///  OX678E68 = OANNNANN
+        /// </summary>
         public static RegexValidation LocatorId
         {
-            //allows for following test sample formats:
-            //  PE678E40 = PANNNAA
-            //  B05789 = ANNNNN
-            //  F058N42 = ANNNANN
-            //  CQ678E08 = CANNNANN
-            // OX678E68 = OANNNANN
             get
             {
                 return new RegexValidation
