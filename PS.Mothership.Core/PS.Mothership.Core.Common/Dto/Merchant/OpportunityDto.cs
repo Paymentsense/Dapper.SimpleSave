@@ -17,9 +17,17 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public string OpportunityLocatorId { get; set; }
 
         [DataMember]
-        public MerchantDto Merchant { get; set; }
+        public Guid ProspectGuid { get; set; }
 
         [DataMember]
-        public PartnerDto Partner { get; set; }
+        public Guid CustomerGuid { get; set; }
+
+        [DataMember]
+        public Guid CurrentOfferGuid { get; set; }
+
+        [DataMember]
+        public Guid PartnerGuid { get; set; }
+
+        
     }
 }
