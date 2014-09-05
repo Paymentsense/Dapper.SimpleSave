@@ -27,6 +27,8 @@ namespace PS.Mothership.Core.Common.Contracts
         //PagedList<UserProfileDto> QuickSearch(SearchDto searchInput);
         [OperationContract]
         UserRolesDto GetRolesForUser(Guid userGuid);
+        //[OperationContract]
+        //IEnumerable<UserRolesDto> GetRolesForUsers();
         [OperationContract]
         void RemoveRoleFromUser(BasicUserRoleDto userRole);
         [OperationContract]
