@@ -3,6 +3,7 @@ using PS.Mothership.Core.Common.Dto;
 using PS.Mothership.Core.Common.Dto.DynamicRequest;
 using PS.Mothership.Core.Common.Dto.Merchant;
 using System;
+using System.Collections.Generic;
 using System.ServiceModel;
 
 namespace PS.Mothership.Core.Common.Contracts
@@ -11,13 +12,16 @@ namespace PS.Mothership.Core.Common.Contracts
     public interface IProspectCustomerService
     {
         [OperationContract]
+        IEnumerable<MerchantOfferDto> GetLatestOffersForMerchant(Guid merchantGuid);
+
+        [OperationContract]
         ProspectDto GetProspect(Guid merchantGuid);
 
         [OperationContract]
         ProspectResponseDto AddProspect(AddProspectDto prospectDto);
 
         [OperationContract]
-        ProspectDetailsDto UpdateProspect(ProspectDetailsDto dto);
+        ProspectDto UpdateProspect(ProspectDto prospectDto);
 
         [OperationContract]
         void AddProspectContact(MerchantContactDto dto);

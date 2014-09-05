@@ -192,7 +192,16 @@
     <Compile Include="Template\OppCommissionTypeEnum.cs">
       <DependentUpon>DbEnumBuilder.tt</DependentUpon>
     </Compile>
+    <Compile Include="Template\OppContractLengthEnum.cs">
+      <DependentUpon>DbEnumBuilder.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Template\OppCustomerTypeEnum.cs">
+      <DependentUpon>DbEnumBuilder.tt</DependentUpon>
+    </Compile>
     <Compile Include="Template\OppEquipmentCategoryEnum.cs">
+      <DependentUpon>DbEnumBuilder.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Template\OppOfferConstraintTypeEnum.cs">
       <DependentUpon>DbEnumBuilder.tt</DependentUpon>
     </Compile>
     <Compile Include="Template\OppOpportunityStatusEnum.cs">
