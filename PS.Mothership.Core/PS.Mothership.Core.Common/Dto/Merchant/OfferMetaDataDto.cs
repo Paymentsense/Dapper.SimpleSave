@@ -7,7 +7,7 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
     public class OfferMetaDataDto
     {
 
-        public IEnumerable<OppContractLength> Durations { get; set; }
+        public IEnumerable<OppContractLengthEnum> Durations { get; set; }
         public IEnumerable<CountryDto> Countries { get; set; }
         public IEnumerable<OfferSalesChannelDto> SalesChannels { get; set; }
         public IEnumerable<OfferAuthorizationFeeDto> AuthorizationFees { get; set; }
