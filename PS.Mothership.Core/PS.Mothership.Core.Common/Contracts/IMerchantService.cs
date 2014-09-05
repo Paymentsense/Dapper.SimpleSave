@@ -7,6 +7,7 @@ namespace PS.Mothership.Core.Common.Contracts
     public interface IMerchantService
     {
         [OperationContract]
-        OfferMetaDataDto GetOfferMetaDataDto(OfferParametersDto parameters);
+        OfferMetaDataDto GetOfferMetaDataDto(OfferMetadataDataRequestDto dataRequestDto);
+
     }
 }
