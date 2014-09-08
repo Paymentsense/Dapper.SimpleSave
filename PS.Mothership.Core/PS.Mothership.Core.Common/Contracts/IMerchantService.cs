@@ -9,5 +9,8 @@ namespace PS.Mothership.Core.Common.Contracts
         [OperationContract]
         OfferMetaDataDto GetOfferMetaDataDto(OfferMetadataDataRequestDto dataRequestDto);
 
+        [OperationContract]
+        OfferDto UpdateOffer(OfferDto offer);
+
     }
 }
