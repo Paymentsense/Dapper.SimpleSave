@@ -1,4 +1,5 @@
-﻿using System.ServiceModel;
+﻿using System;
+using System.ServiceModel;
 using PS.Mothership.Core.Common.Dto.Merchant;
 
 namespace PS.Mothership.Core.Common.Contracts
@@ -10,7 +11,9 @@ namespace PS.Mothership.Core.Common.Contracts
         OfferMetaDataDto GetOfferMetaDataDto(OfferMetadataDataRequestDto dataRequestDto);
 
         [OperationContract]
-        OfferDto UpdateOffer(OfferDto offer);
+        OfferDto GetOffer(Guid offerGuid);
 
+        [OperationContract]
+        OfferDto UpdateOffer(OfferDto offer);
     }
 }
