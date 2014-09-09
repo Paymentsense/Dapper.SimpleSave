@@ -24,7 +24,7 @@ namespace PS.Mothership.Core.Common.Contracts
         ProspectDto UpdateMerchant(ProspectDto prospectDto);
 
         [OperationContract]
-        void AddProspectContact(MerchantContactDto dto);
+        ContactDto AddProspectContact(MerchantContactDto dto);
 
         [OperationContract]
         void RemoveProspectContact(MerchantContactDto dto);
@@ -34,7 +34,7 @@ namespace PS.Mothership.Core.Common.Contracts
 
         [OperationContract]
         void RemoveProspectAddress(MerchantAddressDto dto);
-        
+
         [OperationContract]
         PagedList<MerchantListDto> GetMerchantsByFilter(DataRequestDto dataRequestDto);
 
