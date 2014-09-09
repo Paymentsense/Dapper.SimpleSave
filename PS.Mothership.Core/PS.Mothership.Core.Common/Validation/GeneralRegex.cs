@@ -126,7 +126,7 @@ namespace PS.Mothership.Core.Common.Validation
             {
                 return new RegexValidation
                 {
-                    Regex = @"^[a-zA-Z\d\s-'().&]*$", //allows for lower/upper case letters, spaces, apostraphe and hypen
+                    Regex = @"^[\u00c0-\u01ffa-zA-Z\' -]+$", //allows for lower/upper case letters, spaces, apostraphe and hypen
                     ErrorMessage = "Please specify a valid name. Valid characters are a-z,A-Z,',-,"
                 };
 
