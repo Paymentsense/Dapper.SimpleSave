@@ -1,3 +1,7 @@
+using System;
+using System.Runtime.Serialization;
+using PS.Mothership.Core.Common.Template.Gen;
+
 namespace PS.Mothership.Core.Common.Dto.Merchant
 {
     /// <summary>
@@ -5,8 +9,14 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
     /// </summary>
     public class OfferSalesChannelDto
     {
-        public long SalesChannelKey { get; set; }
-        public string SalesChannel { get; set; }
+        [DataMember]
+        public Guid DepartmentKey { get; set; }
+
+        [DataMember]
+        public string Name { get; set; }
+
+        [DataMember]
+        public long CountryKey { get; set; }
 
     }
 }
