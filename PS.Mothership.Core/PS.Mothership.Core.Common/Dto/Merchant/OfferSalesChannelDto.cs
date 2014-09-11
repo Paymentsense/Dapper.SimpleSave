@@ -10,6 +10,9 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
     public class OfferSalesChannelDto
     {
         [DataMember]
+        public Guid SalesChannelGuid { get; set; }
+
+        [DataMember]
         public long DepartmentKey { get; set; }
 
         [DataMember]
