@@ -30,7 +30,7 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public IEnumerable<RatesRangeDto> RatesRangeCollection { get; set; }
 
         [DataMember]
-        public IEnumerable<OppEquipmentCategory> EquipmentCatogories { get; set; }
+        public IEnumerable<OppEquipmentCategory> EquipmentCategories { get; set; }
 
         [DataMember]
         public IEnumerable<EquipmentModelDto> EquipmentModels { get; set; } 
