@@ -160,7 +160,7 @@ namespace <#=enumNameSpace+"."+schemaName #>
     {
         <#        
         
-        this.WriteLine(CreatePropertyString("EnumValue","long"));
+        this.WriteLine(CreatePropertyString("EnumValue","int"));
         this.Write(AddTabForIndentation(2));
         this.WriteLine(CreatePropertyString("EnumName","string"));
         this.Write(AddTabForIndentation(2));
