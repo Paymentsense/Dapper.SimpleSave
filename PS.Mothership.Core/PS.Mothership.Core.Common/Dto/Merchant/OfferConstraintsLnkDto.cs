@@ -15,10 +15,10 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public Guid OfferConstraintGuid { get; set; }
 
         [DataMember]
-        public long AddOnServiceKey { get; set; }
+        public int AddOnServiceKey { get; set; }
 
         [DataMember]
-        public long EquipmentlModelKey { get; set; }
+        public int EquipmentModelKey { get; set; }
 
         [DataMember]
         public ProdAcquirerEnum AcquirerKey { get; set; }
@@ -30,22 +30,22 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public OppTypeOfTransactionsEnum TypeOfTransactionKey { get; set; }
 
         [DataMember]
-        public long EquipmentOptionKey { get; set; }
+        public int EquipmentOptionKey { get; set; }
 
         [DataMember]
-        public long LessorKey { get; set; }
+        public int LessorKey { get; set; }
 
         [DataMember]
         public OppOfferConstraintTypeEnum OfferConstraintTypeKey { get; set; }
 
         [DataMember]
-        public long FieldKey { get; set; }
+        public int FieldKey { get; set; }
 
         [DataMember]
-        public long CalculatorVersionKey { get; set; } //If not for now this will be made use of for checking the selected offer's version and the current version.
+        public int CalculatorVersionKey { get; set; } //If not for now this will be made use of for checking the selected offer's version and the current version.
 
         [DataMember]
-        public long CountryKey { get; set; }
+        public int CountryKey { get; set; }
 
         [DataMember]
         public OppContractLengthEnum ContractLengthKey { get; set; }

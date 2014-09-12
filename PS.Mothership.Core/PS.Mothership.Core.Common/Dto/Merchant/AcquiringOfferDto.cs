@@ -13,7 +13,7 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public Guid OfferGuid { get; set; }
 
         [DataMember]
-        public long SwitcherCurrentBankKey { get; set; }
+        public int SwitcherCurrentBankKey { get; set; }
 
         [DataMember]
         public int LocationTurnoverMonthly { get; set; }
@@ -61,7 +61,7 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public bool AMEXNewAccount { get; set; }
 
         [DataMember]
-        public long MCCKey { get; set; }
+        public int MCCKey { get; set; }
 
         [DataMember]
         public GenBusinessLegalTypeEnum BusinessLegalTypeKey { get; set; }

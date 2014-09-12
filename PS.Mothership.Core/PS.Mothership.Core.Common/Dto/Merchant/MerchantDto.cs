@@ -20,7 +20,7 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public string LocatorId { get; set; }
 
         [DataMember]
-        public long ThompsonCodeKey { get; set; }
+        public int ThompsonCodeKey { get; set; }
 
         [DataMember]
         public long AnnualTurnover { get; set; }
@@ -32,13 +32,13 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public GenBusinessLegalTypeEnum BusinessLegalTypeKey { get; set; }
        
         [DataMember]
-        public long CurrentTradingBankKey { get; set; }
+        public int CurrentTradingBankKey { get; set; }
 
         [DataMember]
         public GenNoContactReasonEnum CallRestrictedReasonKey { get; set; }
 
         [DataMember]
-        public long EmailRestrictedReasonKey { get; set; }
+        public int EmailRestrictedReasonKey { get; set; }
 
         [DataMember]
         public FullAddressDto Address { get; set; }

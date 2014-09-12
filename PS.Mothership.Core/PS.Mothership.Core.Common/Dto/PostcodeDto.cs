@@ -14,6 +14,6 @@ namespace PS.Mothership.Core.Common.Dto
         public string PostCode { get; set; }
 
         [DataMember]
-        public long PostCodeKey { get; set; }
+        public int PostCodeKey { get; set; }
     }
 }
