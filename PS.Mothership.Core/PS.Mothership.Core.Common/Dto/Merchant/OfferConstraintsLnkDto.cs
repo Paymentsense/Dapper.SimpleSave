@@ -27,7 +27,7 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public GenGatewayEnum GatewayKey { get; set; }
 
         [DataMember]
-        public OppTypeOfTransactionsEnum TypeOfTransactionKey { get; set; }
+        public GenTypeOfTransactionEnum TypeOfTransactionKey { get; set; }
 
         [DataMember]
         public int EquipmentOptionKey { get; set; }

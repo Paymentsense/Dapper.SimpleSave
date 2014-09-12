@@ -27,9 +27,9 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
             }
         }
 
-        public double Credit { get; set; }
+        public decimal Credit { get; set; }
 
-        public double Debit { get; set; }
+        public decimal Debit { get; set; }
 
         public OppContractLengthEnum Duration { get; set; }
 
