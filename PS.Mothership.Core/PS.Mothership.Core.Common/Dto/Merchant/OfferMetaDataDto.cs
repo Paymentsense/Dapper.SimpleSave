@@ -18,7 +18,7 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public IEnumerable<OppCustomerType> CustomerTypes { get; set; }
         
         [DataMember]
-        public IEnumerable<OppTypeOfTransactions> ProductType { get; set; }
+        public IEnumerable<OppTypeOfTransactions> TypeOfTransactions { get; set; }
         
         [DataMember]
         public IEnumerable<CountryDto> Countries { get; set; }
