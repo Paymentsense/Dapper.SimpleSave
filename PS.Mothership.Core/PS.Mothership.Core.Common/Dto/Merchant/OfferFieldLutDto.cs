@@ -10,13 +10,13 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
     public class OfferFieldLutDto
     {
         [DataMember]
-        public long FieldKey { get; set; }
+        public int FieldKey { get; set; }
 
         [DataMember]
-        public long Name { get; set; }
+        public string Name { get; set; }
 
         [DataMember]
-        public long Description { get; set; }
+        public string Description { get; set; }
 
         [DataMember]
         public GenRecStatusEnum RecStatusKey { get; set; }
