@@ -18,10 +18,10 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public int CountryKey { get; set; }
 
         [DataMember]
-        public decimal FloorPrice { get; set; }
+        public double FloorPrice { get; set; }
 
         [DataMember]
-        public decimal CeilingPrice { get; set; }        
+        public double CeilingPrice { get; set; }        
 
     }
     

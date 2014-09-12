@@ -14,22 +14,22 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public bool IsBilledYearly { get; set; }
 
         [DataMember]
-        public decimal PeriodicCharge { get; set; }
+        public double PeriodicCharge { get; set; }
 
         [DataMember]
         public int FreeTransactionCount { get; set; }
 
         [DataMember]
-        public decimal OveragePerTransactionCharge { get; set; }
+        public double OveragePerTransactionCharge { get; set; }
 
         [DataMember]
-        public decimal FreeProcessingValue { get; set; }
+        public double FreeProcessingValue { get; set; }
 
         [DataMember]
-        public decimal OverageProcessingPercent { get; set; }
+        public double OverageProcessingPercent { get; set; }
 
         [DataMember]
-        public decimal TransactionChargeCap { get; set; }
+        public double TransactionChargeCap { get; set; }
 
         [DataMember]
         public GenRecStatusEnum RecStatusKey { get; set; }
