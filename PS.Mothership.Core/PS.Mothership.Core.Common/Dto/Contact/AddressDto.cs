@@ -25,13 +25,13 @@ namespace PS.Mothership.Core.Common.Dto.Contact
         public string TownName { get; set; }
 
         [DataMember]
-        public long PostCodeKey { get; set; }
+        public int PostCodeKey { get; set; }
         
         [DataMember]
-        public long CountyKey { get; set; }
+        public int CountyKey { get; set; }
 
         [DataMember]
-        public long AddressTypeKey { get; set; }
+        public int AddressTypeKey { get; set; }
 
         [DataMember]
         public DateTime? AddressConfirmedDate { get; set; }

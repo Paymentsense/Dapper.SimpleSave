@@ -11,13 +11,13 @@ namespace PS.Mothership.Core.Common.Dto.Contact
     public class CountyDto
     {
         [DataMember]
-        public long CountyKey { get; set; }
+        public int CountyKey { get; set; }
 
         [DataMember]
         public string CountyName { get; set; }
 
         [DataMember]
-        public long CountryKey { get; set; }
+        public int CountryKey { get; set; }
 
         [DataMember]
         public CountryDto Country { get; set; }
