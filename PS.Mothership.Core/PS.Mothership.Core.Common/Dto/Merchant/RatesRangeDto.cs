@@ -21,7 +21,7 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public double FloorPrice { get; set; }
 
         [DataMember]
-        public double CeilingPrice { get; set; }        
+        public double? CeilingPrice { get; set; }        
 
     }
     
