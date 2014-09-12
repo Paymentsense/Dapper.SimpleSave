@@ -26,7 +26,7 @@ namespace PS.Mothership.Core.Common.Dto.Dialler
         [DataMember]
         public int WrapTime { get; set; }
         [DataMember]
-        public long? RecorderCallId { get; set; }
+        public int? RecorderCallId { get; set; }
         [DataMember]
         public Guid MerchantGuid { get; set; }
     }

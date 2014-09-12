@@ -11,7 +11,7 @@ namespace PS.Mothership.Core.Common.Dto.Message
 		[DataMember]
         public string EmailAddress { get; set; }
 		[DataMember]
-        public long ReasonKey { get; set; }
+        public int ReasonKey { get; set; }
 		[DataMember]
         public Guid UpdateSessionGuid { get; set; }
 		[DataMember]
