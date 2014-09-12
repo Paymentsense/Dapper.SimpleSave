@@ -15,18 +15,18 @@ namespace PS.Mothership.Core.Common.Dto
         public string PostCode { get; set; }
 
         [DataMember]
-        public long PostCodeKey { get; set; }
+        public int PostCodeKey { get; set; }
 
         [DataMember]
         public string CountyName { get; set; }
 
         [DataMember]
-        public long CountyKey { get; set; }
+        public int CountyKey { get; set; }
 
         [DataMember]
         public string CountryName { get; set; }
 
         [DataMember]
-        public long CountryKey { get; set; }
+        public int CountryKey { get; set; }
     }
 }

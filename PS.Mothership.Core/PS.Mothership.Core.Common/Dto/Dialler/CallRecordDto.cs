@@ -48,7 +48,7 @@ namespace PS.Mothership.Core.Common.Dto.Dialler
         [DataMember]
         public Guid ConsultOriginSipCallGuid { get; set; }
         [DataMember]
-        public long? RecorderCallId { get; set; }
+        public int? RecorderCallId { get; set; }
         [DataMember]
         public Guid ProspectingCampaignResponseTapCallGuid { get; set; }
         [DataMember]

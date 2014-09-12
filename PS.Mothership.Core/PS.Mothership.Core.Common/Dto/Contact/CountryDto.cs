@@ -11,7 +11,7 @@ namespace PS.Mothership.Core.Common.Dto.Contact
     public class CountryDto
     {
         [DataMember]
-        public long CountryKey { get; set; }
+        public int CountryKey { get; set; }
 
         [DataMember]
         public string CountryName { get; set; }
