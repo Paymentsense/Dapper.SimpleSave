@@ -25,10 +25,10 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public int Quantity { get; set; }
 
         [DataMember]
-        public decimal SellPrice { get; set; }
+        public double SellPrice { get; set; }
 
         [DataMember]
-        public decimal WholesaleCost { get; set; }
+        public double WholesaleCost { get; set; }
 
         [DataMember]
         public GenRecStatusEnum RecStatusKey { get; set; }

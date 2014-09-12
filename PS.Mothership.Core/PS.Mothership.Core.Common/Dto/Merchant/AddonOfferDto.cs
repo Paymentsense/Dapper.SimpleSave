@@ -16,10 +16,10 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public Guid OfferGuid { get; set; }
 
         [DataMember]
-        public decimal SellPrice { get; set; }
+        public double SellPrice { get; set; }
 
         [DataMember]
-        public decimal CostPrice { get; set; }
+        public double CostPrice { get; set; }
 
         [DataMember]
         public GenRecStatusEnum RecStatusKey { get; set; }
