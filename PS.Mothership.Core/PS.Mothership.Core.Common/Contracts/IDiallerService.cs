@@ -26,7 +26,7 @@ namespace PS.Mothership.Core.Common.Contracts
         IEnumerable<MissingCallRecordingDto> GetMissingCallRecordings(DateTime dateStart, DateTime dateEnd);
 
         [OperationContract]
-        void UpdateRecorderCallIdForCallGuid(Guid callGuid, long recorderCallId);
+        void UpdateRecorderCallIdForCallGuid(Guid callGuid, int recorderCallId);
 
         [OperationContract]
         Dictionary<long, long> TryToFindDiallerDepartmentsByUserGuid(Guid userGuid);
