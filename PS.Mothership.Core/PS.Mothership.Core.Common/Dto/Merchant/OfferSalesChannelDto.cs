@@ -13,13 +13,13 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public Guid SalesChannelGuid { get; set; }
 
         [DataMember]
-        public long DepartmentKey { get; set; }
+        public int DepartmentKey { get; set; }
 
         [DataMember]
         public string Name { get; set; }
 
         [DataMember]
-        public long CountryKey { get; set; }
+        public int CountryKey { get; set; }
 
     }
 }

@@ -10,10 +10,10 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
     public class EquipmentModelDto
     {
         [DataMember]
-        public long EquipmentlModelKey { get; set; }
+        public int EquipmentModelKey { get; set; }
 
         [DataMember]
-        public long EquipmentVendorKey { get; set; }
+        public int EquipmentVendorKey { get; set; }
 
         [DataMember]
         public OppEquipmentCategoryEnum EquipmentCategoryKey { get; set; }

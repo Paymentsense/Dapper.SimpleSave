@@ -10,7 +10,7 @@ namespace PS.Mothership.Core.Common.Dto.Contact
         public Guid PhoneGuid { get; set; }
 
         [DataMember]
-        public long CountryKey { get; set; }
+        public int CountryKey { get; set; }
 
         [DataMember]
         public string PhoneNumber { get; set; }

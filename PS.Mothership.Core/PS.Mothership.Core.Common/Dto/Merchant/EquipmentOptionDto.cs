@@ -19,7 +19,7 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public Guid EquipmentOfferGuid { get; set; }
 
         [DataMember]
-        public long EquipmentOptionKey { get; set; }
+        public int EquipmentOptionKey { get; set; }
 
         [DataMember]
         public int Quantity { get; set; }

@@ -12,10 +12,10 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
     public class RatesRangeDto
     {
         [DataMember]
-        public long FieldKey { get; set; }
+        public int FieldKey { get; set; }
 
         [DataMember]
-        public long CountryKey { get; set; }
+        public int CountryKey { get; set; }
 
         [DataMember]
         public decimal FloorPrice { get; set; }
