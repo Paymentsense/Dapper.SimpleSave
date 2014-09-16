@@ -156,6 +156,7 @@
     <Compile Include="Dto\Merchant\AddOnServicePriceDto.cs" />
     <Compile Include="Dto\Merchant\EquipmentOptionDto.cs" />
     <Compile Include="Dto\Merchant\AddOnOfferDto.cs" />
+    <Compile Include="Dto\Merchant\EquipmentOptionLutDto.cs" />
     <Compile Include="Dto\Merchant\MerchantDetailDto.cs" />
     <Compile Include="Dto\Merchant\OfferAuthorizationFeeDto.cs" />
     <Compile Include="Dto\Merchant\AcquiringOfferDto.cs" />
