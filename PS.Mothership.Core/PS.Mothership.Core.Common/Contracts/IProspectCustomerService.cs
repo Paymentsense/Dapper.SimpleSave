@@ -12,7 +12,7 @@ namespace PS.Mothership.Core.Common.Contracts
     public interface IProspectCustomerService
     {
         [OperationContract]
-        IEnumerable<MerchantOfferDto> GetLatestOffersForMerchant(Guid merchantGuid);
+        IEnumerable<MerchantOfferDto> GetLatestOffersForMerchant(Guid merchantGuid, int top);
 
         [OperationContract]
         ProspectDto GetProspect(Guid merchantGuid);
