@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
 using PS.Mothership.Core.Common.Template.Gen;
 using PS.Mothership.Core.Common.Template.Opp;
@@ -25,7 +26,15 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public string Description { get; set; }
 
         [DataMember]
+        public double FloorPrice { get; set; }
+
+        [DataMember]
+        public double CeilingPrice { get; set; }
+
+        [DataMember]
+        public IList<EquipmentOptionLutDto> EquipmentOptions { get; set; }
+
+        [DataMember]
         public GenRecStatusEnum RecStatusKey { get; set; }
-        
     }
 }
