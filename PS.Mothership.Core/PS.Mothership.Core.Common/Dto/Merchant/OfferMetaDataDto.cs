@@ -33,7 +33,10 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public IEnumerable<OppEquipmentCategory> EquipmentCategories { get; set; }
 
         [DataMember]
-        public IEnumerable<EquipmentModelDto> EquipmentModels { get; set; } 
+        public IEnumerable<EquipmentModelDto> EquipmentModels { get; set; }
+
+        [DataMember]
+        public IEnumerable<EquipmentOptionLutDto> EquipmentOptions { get; set; }
         
         [DataMember]
         public IEnumerable<OfferAuthorizationFeeDto> AuthorizationFees { get; set; }
