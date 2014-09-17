@@ -40,12 +40,6 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public double NTCJoiningFee { get; set; }
 
         [DataMember]
-        public double MMServiceCharge { get; set; }
-
-        [DataMember]
-        public double AuthorisationFee { get; set; }
-
-        [DataMember]
         public string AMEXAccountNumber { get; set; }
 
         [DataMember]
@@ -64,9 +58,6 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public int MCCKey { get; set; }
 
         [DataMember]
-        public GenBusinessLegalTypeEnum BusinessLegalTypeKey { get; set; }
-
-        [DataMember]
         public double PCIComplianceFee { get; set; }
 
         [DataMember]
@@ -76,15 +67,24 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public ProdAcquirerEnum AcquirerKey { get; set; }
 
         [DataMember]
-        public OppCustomerTypeEnum CustomerTypeKey { get; set; }
+        public OppTypeOfTransactionsEnum TypeOfTransactionKey { get; set; }
 
         [DataMember]
-        public OppTypeOfTransactionsEnum TypeOfTransactionKey { get; set; }
+        public Guid EquipmentOfferGuid { get; set; }
+
+        [DataMember]
+        public OppCustomerTypeEnum CustomerTypeKey { get; set; }
 
         [DataMember]
         public OppContractLengthEnum ContractLengthKey { get; set; }
 
         [DataMember]
-        public Guid EquipmentOfferGuid { get; set; }
+        public GenBusinessLegalTypeEnum BusinessLegalTypeKey { get; set; }
+
+        [DataMember]
+        public GenBusinessLegalTypeEnum MmscKey { get; set; }
+
+        [DataMember]
+        public GenBusinessLegalTypeEnum AuthorisationFeeKey { get; set; }
     }
 }
