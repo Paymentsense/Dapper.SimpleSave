@@ -10,8 +10,8 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
 
         public int SalesChannel { get; set; } // Telesales, Field North, FieldSouth
 
-        public OppCustomerTypeEnum CustomerType { get; set; } // NTC Switcher, or Switcher (No Statement)
+        public int CustomerType { get; set; } // NTC Switcher, or Switcher (No Statement)
 
-        public GenTypeOfTransactionEnum ProductType { get; set; }  // F2F, ECOM, MOTO, EPOS, PSConnect (Terminal), PSConnect (ECom)
+        public int ProductType { get; set; }  // F2F, ECOM, MOTO, EPOS, PSConnect (Terminal), PSConnect (ECom)
     }
 }

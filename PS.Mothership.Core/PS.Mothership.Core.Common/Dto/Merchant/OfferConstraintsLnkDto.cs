@@ -27,7 +27,7 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public GenGatewayEnum GatewayKey { get; set; }
 
         [DataMember]
-        public GenTypeOfTransactionEnum TypeOfTransactionKey { get; set; }
+        public int TypeOfTransactionKey { get; set; }
 
         [DataMember]
         public int EquipmentOptionKey { get; set; }
@@ -48,7 +48,7 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public int CountryKey { get; set; }
 
         [DataMember]
-        public OppContractLengthEnum ContractLengthKey { get; set; }
+        public int ContractLengthKey { get; set; }
 
         [DataMember]
         public GenRecStatusEnum RecStatusKey { get; set; }
