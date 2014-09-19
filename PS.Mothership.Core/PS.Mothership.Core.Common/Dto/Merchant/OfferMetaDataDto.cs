@@ -1,10 +1,7 @@
-using System.Collections.Generic;
-using System.Data;
-using System.Runtime.Serialization;
 using PS.Mothership.Core.Common.Dto.Contact;
-using PS.Mothership.Core.Common.Template.Gen;
 using PS.Mothership.Core.Common.Template.Opp;
-using PS.Mothership.Core.Common.Template.Prod;
+using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace PS.Mothership.Core.Common.Dto.Merchant
 {

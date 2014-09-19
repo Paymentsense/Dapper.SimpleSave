@@ -153,8 +153,10 @@
     <Compile Include="Dto\Iridium\IridiumConfirmResultsDto.cs" />
     <Compile Include="Dto\Iridium\IridiumRequestDto.cs" />
     <Compile Include="Dto\Iridium\IridiumResultsDto.cs" />
-    <Compile Include="Dto\Merchant\TypeOfTransactionDto.cs" />
     <Compile Include="Dto\Merchant\CustomerTypeDto.cs" />
+    <Compile Include="Dto\Merchant\TypeOfTransactionDto.cs" />
+    <Compile Include="Dto\Merchant\ContractLengthDto.cs" />
+    <Compile Include="Dto\Merchant\OpportunityStatusTrnDto.cs" />
     <Compile Include="Dto\Merchant\EquipmentOfferTrnDto.cs" />
     <Compile Include="Dto\Merchant\EquipmentModelDto.cs" />
     <Compile Include="Dto\Merchant\AddOnServicePriceDto.cs" />
@@ -165,7 +167,6 @@
     <Compile Include="Dto\Merchant\OfferAuthorizationFeeDto.cs" />
     <Compile Include="Dto\Merchant\AcquiringOfferDto.cs" />
     <Compile Include="Dto\Merchant\GatewayOfferDto.cs" />
-    <Compile Include="Dto\Merchant\ContractLengthDto.cs" />
     <Compile Include="Dto\Merchant\RatesRangeDto.cs" />
     <Compile Include="Dto\Merchant\OfferFieldLutDto.cs" />
     <Compile Include="Dto\Merchant\OfferMetadataDataRequestDto.cs" />

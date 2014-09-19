@@ -78,13 +78,13 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         [DataMember]
         public int ContractLengthKey { get; set; }
 
-        [DataMember]
-        public GenBusinessLegalTypeEnum BusinessLegalTypeKey { get; set; }
+        //[DataMember]
+        //public GenBusinessLegalTypeEnum BusinessLegalTypeKey { get; set; }
 
         [DataMember]
-        public GenBusinessLegalTypeEnum MmscKey { get; set; }
+        public int MmscKey { get; set; }
 
         [DataMember]
-        public GenBusinessLegalTypeEnum AuthorisationFeeKey { get; set; }
+        public int AuthorisationFeeKey { get; set; }
     }
 }

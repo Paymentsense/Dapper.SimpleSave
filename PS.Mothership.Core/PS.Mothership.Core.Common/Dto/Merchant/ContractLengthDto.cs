@@ -32,5 +32,4 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public int FieldItemKey { get; set; }
 
     }
-
 }

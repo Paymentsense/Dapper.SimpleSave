@@ -13,7 +13,6 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         [DataMember]
         public Int32 TypeOfTransactionKey { get; set; }
 
-        [DataMember]
         public string Name { get; set; }
 
         [DataMember]
