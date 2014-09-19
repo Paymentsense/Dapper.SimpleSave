@@ -12,30 +12,15 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
     {
         [DataMember]
         public int EquipmentModelKey { get; set; }
+        
+        [DataMember]
+        public double Price { get; set; }
 
         [DataMember]
-        public int EquipmentVendorKey { get; set; }
-
-        [DataMember]
-        public OppEquipmentCategoryEnum EquipmentCategoryKey { get; set; }
-
-        [DataMember]
-        public string ModelNumber { get; set; }
-
-        [DataMember]
-        public string Description { get; set; }
-
-        [DataMember]
-        public double FloorPrice { get; set; }
-
-        [DataMember]
-        public double CeilingPrice { get; set; }
+        public int Quantity { get; set; }
 
         [DataMember]
         public IList<EquipmentOptionDto> EquipmentOptions { get; set; }
-
-        [DataMember]
-        public GenRecStatusEnum RecStatusKey { get; set; }
        
     }
 }
