@@ -18,15 +18,15 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
 
         public string Description { get; set; }
 
-        public GenOpportunityStatus Status { get; set; }
+        //public GenOpportunityStatus Status { get; set; }
 
-        public string StatusDescription
-        {
-            get
-            {
-                return GenOpportunityStatusCollection.GenOpportunityStatusList.Single(x => x.EnumValue == Status.EnumValue).EnumDescription;
-            }
-        }
+        //public string StatusDescription
+        //{
+        //    get
+        //    {
+        //        return GenOpportunityStatusCollection.GenOpportunityStatusList.Single(x => x.EnumValue == Status.EnumValue).EnumDescription;
+        //    }
+        //}
 
         public decimal Credit { get; set; }
 
