@@ -24,17 +24,17 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         [DataMember]
         public string Description { get; set; }
 
-        [DataMember]
-        public GenOpportunityStatus Status { get; set; }
+        //[DataMember]
+        //public GenOpportunityStatus Status { get; set; }
 
-        [DataMember]
-        public string StatusDescription
-        {
-            get
-            {
-                return GenOpportunityStatusCollection.GenOpportunityStatusList.Single(x => x.EnumValue == Status.EnumValue).EnumDescription;
-            }
-        }
+        //[DataMember]
+        //public string StatusDescription
+        //{
+        //    get
+        //    {
+        //        return GenOpportunityStatusCollection.GenOpportunityStatusList.Single(x => x.EnumValue == Status.EnumValue).EnumDescription;
+        //    }
+        //}
 
         [DataMember]
         public decimal Credit { get; set; }
