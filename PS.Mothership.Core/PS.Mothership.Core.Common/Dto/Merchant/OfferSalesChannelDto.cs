@@ -7,6 +7,7 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
     /// <summary>
     /// Sales Channel
     /// </summary>
+    [DataContract]
     public class OfferSalesChannelDto
     {
         [DataMember]
