@@ -8,7 +8,7 @@ using PS.Mothership.Core.Common.Template.Prod;
 namespace PS.Mothership.Core.Common.Dto.Merchant
 {
     [DataContract]
-    public class EquipmentModelDto
+    public class EquipmentModelMetadataDto
     {
         [DataMember]
         public int EquipmentModelKey { get; set; }
@@ -32,7 +32,7 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public double CeilingPrice { get; set; }
 
         [DataMember]
-        public IList<EquipmentOptionDto> EquipmentOptions { get; set; }
+        public IList<EquipmentOptionLutDto> EquipmentOptions { get; set; }
 
         [DataMember]
         public GenRecStatusEnum RecStatusKey { get; set; }

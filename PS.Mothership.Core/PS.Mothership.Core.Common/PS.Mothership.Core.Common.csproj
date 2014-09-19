@@ -154,11 +154,12 @@
     <Compile Include="Dto\Iridium\IridiumRequestDto.cs" />
     <Compile Include="Dto\Iridium\IridiumResultsDto.cs" />
     <Compile Include="Dto\Merchant\CustomerTypeDto.cs" />
+    <Compile Include="Dto\Merchant\EquipmentModelDto.cs" />
     <Compile Include="Dto\Merchant\TypeOfTransactionDto.cs" />
     <Compile Include="Dto\Merchant\ContractLengthDto.cs" />
     <Compile Include="Dto\Merchant\OpportunityStatusTrnDto.cs" />
     <Compile Include="Dto\Merchant\EquipmentOfferTrnDto.cs" />
-    <Compile Include="Dto\Merchant\EquipmentModelDto.cs" />
+    <Compile Include="Dto\Merchant\EquipmentModelMetaDataDto.cs" />
     <Compile Include="Dto\Merchant\AddOnServicePriceDto.cs" />
     <Compile Include="Dto\Merchant\EquipmentOptionDto.cs" />
     <Compile Include="Dto\Merchant\AddOnOfferDto.cs" />

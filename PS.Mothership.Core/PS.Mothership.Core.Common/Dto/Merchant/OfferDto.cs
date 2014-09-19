@@ -29,9 +29,9 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         [DataMember]    
         public AcquiringOfferDto AcquiringOffer { get; set; }
 
-        [DataMember]    
-        public IList<EquipmentOptionDto> EquipmentOptions { get; set; }
-
+        [DataMember]
+        public IList<EquipmentModelDto> Equipment { get; set; }
+       
         [DataMember]
         public IList<AddOnOfferDto> OfferAddOns { get; set; }
 
