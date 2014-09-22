@@ -15,31 +15,31 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public Guid OfferGuid { get; set; }
 
         [DataMember]
+        public string OfferReference { get; set; }
+
+        [DataMember]
         public OpportunityDto Opportunity { get; set; }
 
         [DataMember]
         public GatewayOfferDto GatewayOffer { get; set; }
 
         [DataMember]
+        public Guid SalesChannelGuid { get; set; }
+
+        [DataMember]
         public CountryDto Country { get; set; }
 
         [DataMember]
-        public long CalculatorVersionKey { get; set; }
+        public int CalculatorVersionKey { get; set; }
 
-        [DataMember]    
+        [DataMember]
         public AcquiringOfferDto AcquiringOffer { get; set; }
 
         [DataMember]
         public IList<EquipmentModelDto> Equipment { get; set; }
-       
+
         [DataMember]
         public IList<AddOnOfferDto> OfferAddOns { get; set; }
-
-
-
-
-
-
 
     }
 }
