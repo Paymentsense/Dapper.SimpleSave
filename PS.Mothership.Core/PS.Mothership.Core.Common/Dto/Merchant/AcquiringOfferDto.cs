@@ -25,31 +25,31 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public int DebitCardTranxMonthly { get; set; }
 
         [DataMember]
-        public double CreditCardRate { get; set; }
+        public decimal CreditCardRate { get; set; }
 
         [DataMember]
-        public double DebitCardRate { get; set; }
+        public decimal DebitCardRate { get; set; }
 
         [DataMember]
-        public double PremiumCardRate { get; set; }
+        public decimal PremiumCardRate { get; set; }
 
         [DataMember]
-        public double CommercialCardRate { get; set; }
+        public decimal CommercialCardRate { get; set; }
 
         [DataMember]
-        public double NTCJoiningFee { get; set; }
+        public decimal NTCJoiningFee { get; set; }
 
         [DataMember]
         public string AMEXAccountNumber { get; set; }
 
         [DataMember]
-        public double MinimumCardTransactionValue { get; set; }
+        public decimal MinimumCardTransactionValue { get; set; }
 
         [DataMember]
-        public double MaximumCardTransactionValue { get; set; }
+        public decimal MaximumCardTransactionValue { get; set; }
 
         [DataMember]
-        public double AverageCardTransactionValue { get; set; }
+        public decimal AverageCardTransactionValue { get; set; }
 
         [DataMember]
         public bool AMEXNewAccount { get; set; }
@@ -58,7 +58,7 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public int MCCKey { get; set; }
 
         [DataMember]
-        public double PCIComplianceFee { get; set; }
+        public decimal PCIComplianceFee { get; set; }
 
         [DataMember]
         public GenRecStatusEnum RecStatusKey { get; set; }
@@ -78,8 +78,8 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         [DataMember]
         public int ContractLengthKey { get; set; }
 
-        //[DataMember]
-        //public GenBusinessLegalTypeEnum BusinessLegalTypeKey { get; set; }
+        [DataMember]
+        public GenBusinessLegalTypeEnum BusinessLegalTypeKey { get; set; }
 
         [DataMember]
         public int MmscKey { get; set; }

@@ -1,8 +1,5 @@
-using System.Collections.Generic;
-using System.Runtime.Serialization;
-using PS.Mothership.Core.Common.Dto.Contact;
 using PS.Mothership.Core.Common.Template.Gen;
-using PS.Mothership.Core.Common.Template.Opp;
+using System.Runtime.Serialization;
 
 namespace PS.Mothership.Core.Common.Dto.Merchant
 {
@@ -20,7 +17,5 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
 
         [DataMember]
         public GenRecStatusEnum RecStatusKey { get; set; }
-
     }
-    
 }

@@ -1,4 +1,5 @@
 using System.Runtime.Serialization;
+
 namespace PS.Mothership.Core.Common.Dto.Merchant
 {
     [DataContract]

@@ -1,8 +1,5 @@
-﻿using System;
-using PS.Mothership.Core.Common.Dto.Contact;
-using PS.Mothership.Core.Common.Template.Gen;
-using PS.Mothership.Core.Common.Template.Opp;
-using System.Collections.Generic;
+﻿using PS.Mothership.Core.Common.Template.Gen;
+using System;
 using System.Runtime.Serialization;
 
 namespace PS.Mothership.Core.Common.Dto.Merchant
@@ -11,7 +8,7 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
     public class TypeOfTransactionDto
     {
         [DataMember]
-        public Int32 TypeOfTransactionKey { get; set; }
+        public int TypeOfTransactionKey { get; set; }
 
         public string Name { get; set; }
 
@@ -26,7 +23,5 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
 
         [DataMember]
         public int FieldItemKey { get; set; }
-
     }
-
 }
