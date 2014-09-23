@@ -28,6 +28,9 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         [DataMember]
         public Guid PartnerGuid { get; set; }
 
+        [DataMember]
+        public Guid CurrentStatusTrnGuid { get; set; }
+
         
     }
 }

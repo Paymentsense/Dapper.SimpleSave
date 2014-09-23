@@ -32,14 +32,16 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         [DataMember]
         public int CalculatorVersionKey { get; set; }
 
-        [DataMember]
+        [DataMember]    
         public AcquiringOfferDto AcquiringOffer { get; set; }
 
         [DataMember]
         public IList<EquipmentModelDto> Equipment { get; set; }
-
+       
         [DataMember]
         public IList<AddOnOfferDto> OfferAddOns { get; set; }
 
+        [DataMember]
+        public string LastUpdatedUserName { get; set; }
     }
 }
