@@ -43,5 +43,8 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
 
         [DataMember]
         public string LastUpdatedUserName { get; set; }
+        
+        [DataMember]
+        public Guid LastUpdatedUserGuid { get; set; }
     }
 }
