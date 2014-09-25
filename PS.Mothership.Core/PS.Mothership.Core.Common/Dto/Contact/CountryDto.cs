@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Runtime.Serialization;
 
 namespace PS.Mothership.Core.Common.Dto.Contact
 {
@@ -18,5 +13,8 @@ namespace PS.Mothership.Core.Common.Dto.Contact
 
         [DataMember]
         public string TelephoneCountryCode { get; set; }
+
+        [DataMember]
+        public string DisplayName { get; set; }
     }
 }
