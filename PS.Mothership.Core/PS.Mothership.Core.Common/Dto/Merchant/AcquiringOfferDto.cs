@@ -67,11 +67,8 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public ProdAcquirerEnum AcquirerKey { get; set; }
 
         [DataMember]
-        public int TypeOfTransactionKey { get; set; }
-
-        [DataMember]
-        public Guid EquipmentOfferGuid { get; set; }
-
+        public OppTypeOfTransactionEnum TypeOfTransactionKey { get; set; }
+        
         [DataMember]
         public int CustomerTypeKey { get; set; }
 
