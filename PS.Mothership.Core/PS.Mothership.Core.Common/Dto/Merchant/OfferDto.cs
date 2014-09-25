@@ -33,6 +33,9 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public int CalculatorVersionKey { get; set; }
 
         [DataMember]
+        public AcquiringOfferDto AcquiringOffer { get; set; }
+
+        [DataMember]
         public IList<EquipmentModelDto> Equipment { get; set; }
        
         [DataMember]
