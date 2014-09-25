@@ -1,6 +1,7 @@
 ﻿using PS.Mothership.Core.Common.Template.Gen;
 using System;
 using System.Runtime.Serialization;
+using PS.Mothership.Core.Common.Template.Opp;
 
 namespace PS.Mothership.Core.Common.Dto.Merchant
 {
@@ -22,6 +23,6 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public GenRecStatusEnum RecStatusKey { get; set; }
 
         [DataMember]
-        public int FieldItemKey { get; set; }
+        public OppTypeOfTransactionEnum TypeOfTransactionEnumKey { get; set; }
     }
 }
