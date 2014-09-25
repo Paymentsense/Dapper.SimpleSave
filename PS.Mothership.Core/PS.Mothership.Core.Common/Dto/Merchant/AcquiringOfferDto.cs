@@ -10,7 +10,7 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
     public class AcquiringOfferDto
     {
         [DataMember]
-        public Guid OfferGuid { get; set; }
+        public OfferDto Offer { get; set; }
 
         [DataMember]
         public int SwitcherCurrentBankKey { get; set; }
