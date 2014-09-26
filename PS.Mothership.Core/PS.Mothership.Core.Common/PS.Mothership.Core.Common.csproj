@@ -154,6 +154,7 @@
     <Compile Include="Dto\Iridium\IridiumRequestDto.cs" />
     <Compile Include="Dto\Iridium\IridiumResultsDto.cs" />
     <Compile Include="Dto\Merchant\CustomerTypeDto.cs" />
+    <Compile Include="Dto\Merchant\EquipmentPriceTrnDto.cs" />
     <Compile Include="Dto\Merchant\EquipmentModelDto.cs" />
     <Compile Include="Dto\Merchant\TypeOfTransactionDto.cs" />
     <Compile Include="Dto\Merchant\ContractLengthDto.cs" />
