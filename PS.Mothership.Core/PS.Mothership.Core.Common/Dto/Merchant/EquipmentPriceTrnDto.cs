@@ -8,25 +8,22 @@ using PS.Mothership.Core.Common.Template.Prod;
 namespace PS.Mothership.Core.Common.Dto.Merchant
 {
     [DataContract]
-    public class EquipmentModelDto
+    public class EquipmentPriceTrnDto
     {
         [DataMember]
+        public Guid EquipPriceTrnGuid { get; set; }
+
+        [DataMember]
         public int EquipmentModelKey { get; set; }
-
-        [DataMember]
-        public Guid EquipmentPriceTrnGuid { get; set; }
-
-        [DataMember]
-        public int EquipmentVendorKey { get; set; }
         
         [DataMember]
-        public double Price { get; set; }
+        public int CountryKey { get; set; }
 
         [DataMember]
-        public int Quantity { get; set; }
+        public int CustomerTypeKey { get; set; }
 
         [DataMember]
-        public IList<EquipmentOptionDto> EquipmentOptions { get; set; }
+        public double WholesaleCost { get; set; }
        
     }
 }

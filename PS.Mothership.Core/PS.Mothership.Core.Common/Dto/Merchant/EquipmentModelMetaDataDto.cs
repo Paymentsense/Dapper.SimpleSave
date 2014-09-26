@@ -1,4 +1,5 @@
-﻿using PS.Mothership.Core.Common.Template.Gen;
+﻿using System;
+using PS.Mothership.Core.Common.Template.Gen;
 using PS.Mothership.Core.Common.Template.Opp;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
@@ -22,6 +23,9 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
 
         [DataMember]
         public string Description { get; set; }
+
+        [DataMember]
+        public Guid EquipPriceTrnGuid { get; set; }
 
         [DataMember]
         public double FloorPrice { get; set; }
