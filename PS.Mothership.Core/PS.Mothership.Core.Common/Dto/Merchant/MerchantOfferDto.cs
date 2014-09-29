@@ -37,16 +37,16 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         //}
 
         [DataMember]
-        public decimal Credit { get; set; }
+        public double Credit { get; set; }
 
         [DataMember]
-        public decimal Debit { get; set; }
+        public double Debit { get; set; }
 
         [DataMember]
-        public int DurationKey { get; set; }
+        public int ContractLengthKey { get; set; }
 
         [DataMember]
-        public string DurationDescription { get; set; }
+        public string ContractLengthDescription { get; set; }
 
         [DataMember]
         public DateTimeOffset UpdateDate { get; set; }
