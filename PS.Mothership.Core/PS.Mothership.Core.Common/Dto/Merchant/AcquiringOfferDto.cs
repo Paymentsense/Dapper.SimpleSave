@@ -25,31 +25,31 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public int DebitCardTranxMonthly { get; set; }
 
         [DataMember]
-        public decimal CreditCardRate { get; set; }
+        public double CreditCardRate { get; set; }
 
         [DataMember]
-        public decimal DebitCardRate { get; set; }
+        public double DebitCardRate { get; set; }
 
         [DataMember]
-        public decimal PremiumCardRate { get; set; }
+        public double PremiumCardRate { get; set; }
 
         [DataMember]
-        public decimal CommercialCardRate { get; set; }
+        public double CommercialCardRate { get; set; }
 
         [DataMember]
-        public decimal NTCJoiningFee { get; set; }
+        public double NTCJoiningFee { get; set; }
 
         [DataMember]
         public string AMEXAccountNumber { get; set; }
 
         [DataMember]
-        public decimal MinimumCardTransactionValue { get; set; }
+        public double MinimumCardTransactionValue { get; set; }
 
         [DataMember]
-        public decimal MaximumCardTransactionValue { get; set; }
+        public double MaximumCardTransactionValue { get; set; }
 
         [DataMember]
-        public decimal AverageCardTransactionValue { get; set; }
+        public double AverageCardTransactionValue { get; set; }
 
         [DataMember]
         public bool AMEXNewAccount { get; set; }
@@ -58,7 +58,7 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public int MCCKey { get; set; }
 
         [DataMember]
-        public decimal PCIComplianceFee { get; set; }
+        public double PCIComplianceFee { get; set; }
 
         [DataMember]
         public GenRecStatusEnum RecStatusKey { get; set; }
