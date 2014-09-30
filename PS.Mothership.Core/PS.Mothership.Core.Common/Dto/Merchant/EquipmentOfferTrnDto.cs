@@ -17,7 +17,7 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public Guid OfferGuid { get; set; }
 
         [DataMember]
-        public int EquipmentlModelKey { get; set; }
+        public int EquipmentModelKey { get; set; }
 
         [DataMember]
         public int Quantity { get; set; }
