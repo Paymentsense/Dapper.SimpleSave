@@ -27,6 +27,8 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
 
         [DataMember]
         public IList<EquipmentOptionDto> EquipmentOptions { get; set; }
-       
+
+        [DataMember]
+        public int EquipmentCategoryKey { get; set; }
     }
 }

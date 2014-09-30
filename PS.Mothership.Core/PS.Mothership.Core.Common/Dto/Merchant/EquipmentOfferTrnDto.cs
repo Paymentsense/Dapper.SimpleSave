@@ -36,5 +36,8 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
 
         [DataMember]
         public int LessorKey { get; set; }
+
+        [DataMember]
+        public IList<EquipmentOptionDto> EquipmentOptions { get; set; } 
     }
 }
