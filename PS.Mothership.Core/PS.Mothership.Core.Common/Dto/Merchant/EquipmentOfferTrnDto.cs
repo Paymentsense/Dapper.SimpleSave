@@ -17,7 +17,7 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public Guid OfferGuid { get; set; }
 
         [DataMember]
-        public int EquipmentlModelKey { get; set; }
+        public int EquipmentModelKey { get; set; }
 
         [DataMember]
         public int Quantity { get; set; }
@@ -36,5 +36,8 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
 
         [DataMember]
         public int LessorKey { get; set; }
+
+        [DataMember]
+        public IList<EquipmentOptionDto> EquipmentOptions { get; set; } 
     }
 }
