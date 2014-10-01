@@ -26,7 +26,7 @@ namespace PS.Mothership.Core.Common.Contracts
         IEnumerable<MissingCallRecordingDto> GetMissingCallRecordings(DateTime dateStart, DateTime dateEnd);
 
         [OperationContract]
-        void UpdateRecorderCallIdForCallGuid(Guid callGuid, long recorderCallId);
+        void UpdateRecorderCallIdForCallGuid(Guid callGuid, int recorderCallId);
 
         [OperationContract]
         Dictionary<long, long> TryToFindDiallerDepartmentsByUserGuid(Guid userGuid);
@@ -56,7 +56,7 @@ namespace PS.Mothership.Core.Common.Contracts
         IEnumerable<SipAccountNumberDto> GetSipAccountList(Guid userSipAccountGuid);
 
         [OperationContract]
-        Guid AddInboundCampaignCallRecord(Guid sipCallGuid, long campaignKey, string keyword, string referrerUrl);
+        Guid AddInboundCampaignCallRecord(Guid sipCallGuid, Guid campaignGuid, string keyword, string referrerUrl);
 
         [OperationContract]
         void SetInboundCampaignCallRecordResolution(Guid inboundCampaignCallRecordGuid,

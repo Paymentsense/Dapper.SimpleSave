@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-
 namespace PS.Mothership.Core.Common.Dto.Merchant
 {
     [DataContract]
@@ -15,16 +14,16 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
 
         [DataMember]
         public string HouseNumber { get; set; }
-
-        [DataMember]
-        public string Street { get; set; }
-
+  
         [DataMember]
         public string HouseName { get; set; }
-
+       
         [DataMember]
         public string FlatAptSuite { get; set; }
 
+        [DataMember]
+        public string Street { get; set; }
+ 
         [DataMember]
         public string Town { get; set; }
 
@@ -33,7 +32,5 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
 
         [DataMember]
         public string PostCode { get; set; }
-
-
     }
 }

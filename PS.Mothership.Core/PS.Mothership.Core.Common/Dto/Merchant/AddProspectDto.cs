@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PS.Mothership.Core.Common.Dto.Merchant
 {
@@ -10,15 +6,7 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
     {
         public string CompanyName { get; set; }
 
-        public string LocatorId
-        {
-            get
-            {
-                var id = Convert.ToString(((CompanyName.GetHashCode() ^ DateTime.UtcNow.Ticks.GetHashCode())
-                    & 0xffffff) | 0x1000000, 16).Substring(1);
-                return id;
-            }
-        }
+        public string LocatorId { get; set; }
 
         public long MainPhoneCountryKey { get; set; }
 
