@@ -17,6 +17,6 @@ namespace PS.Mothership.Core.Common.Contracts
         OfferDto SaveOrUpdateOffer(OfferDto offer);
 
         [OperationContract]
-        OpportunityDto GetOpportunity(Guid id);
+        OpportunityLatestOfferDto GetOpportunity(Guid id);
     }
 }
