@@ -19,6 +19,9 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public Guid OfferGuid { get; set; }
 
         [DataMember]
+        public Guid OpportunityGuid { get; set; }
+
+        [DataMember]
         public string Reference { get; set; }
 
         [DataMember]
