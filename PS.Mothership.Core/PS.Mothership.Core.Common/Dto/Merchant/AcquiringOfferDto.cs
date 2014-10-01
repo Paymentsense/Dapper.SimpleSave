@@ -13,16 +13,16 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public Guid OfferGuid { get; set; }
 
         [DataMember]
-        public int SwitcherCurrentBankKey { get; set; }
+        public int CardTransactionPerAnnum { get; set; }
 
         [DataMember]
-        public int LocationTurnoverMonthly { get; set; }
+        public int DebitCardTransactionPercentage { get; set; }
 
         [DataMember]
-        public int CredtCardTurnoverMonthly { get; set; }
+        public int CreditCardTurnoverMonthly { get; set; }
 
         [DataMember]
-        public int DebitCardTranxMonthly { get; set; }
+        public int DebitCardTransactionMonthly { get; set; }
 
         [DataMember]
         public double CreditCardRate { get; set; }
@@ -31,34 +31,10 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public double DebitCardRate { get; set; }
 
         [DataMember]
-        public double PremiumCardRate { get; set; }
-
-        [DataMember]
-        public double CommercialCardRate { get; set; }
-
-        [DataMember]
         public double NTCJoiningFee { get; set; }
 
         [DataMember]
-        public string AMEXAccountNumber { get; set; }
-
-        [DataMember]
-        public double MinimumCardTransactionValue { get; set; }
-
-        [DataMember]
-        public double MaximumCardTransactionValue { get; set; }
-
-        [DataMember]
         public double AverageCardTransactionValue { get; set; }
-
-        [DataMember]
-        public bool AMEXNewAccount { get; set; }
-
-        [DataMember]
-        public int MCCKey { get; set; }
-
-        [DataMember]
-        public double PCIComplianceFee { get; set; }
 
         [DataMember]
         public GenRecStatusEnum RecStatusKey { get; set; }
@@ -74,9 +50,6 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
 
         [DataMember]
         public int ContractLengthKey { get; set; }
-
-        [DataMember]
-        public GenBusinessLegalTypeEnum BusinessLegalTypeKey { get; set; }
 
         [DataMember]
         public int MmscKey { get; set; }

@@ -11,6 +11,5 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
     {
         [DataMember]
         public int EquipmentOptionKey { get; set; }
-        
     }
 }

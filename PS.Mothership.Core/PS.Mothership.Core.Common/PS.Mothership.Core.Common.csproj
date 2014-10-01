@@ -156,6 +156,8 @@
     <Compile Include="Dto\Merchant\CustomerTypeDto.cs" />
     <Compile Include="Dto\Merchant\EquipmentPriceTrnDto.cs" />
     <Compile Include="Dto\Merchant\EquipmentModelDto.cs" />
+    <Compile Include="Dto\Merchant\OfferVersionDto.cs" />
+    <Compile Include="Dto\Merchant\OpportunityLatestDto.cs" />
     <Compile Include="Dto\Merchant\TypeOfTransactionDto.cs" />
     <Compile Include="Dto\Merchant\ContractLengthDto.cs" />
     <Compile Include="Dto\Merchant\OpportunityStatusTrnDto.cs" />
@@ -352,7 +354,7 @@
     <Compile Include="Enums\EchoSign\AgreementStatusEnum.cs" />
     <Compile Include="Enums\EchoSign\DocSecurityOptionEnum.cs" />
     <Compile Include="Enums\EchoSign\DocumentLibraryItemScopeEnum.cs" />
-    <Compile Include="Enums\EchoSign\EventTypeEnum.cs" />
+    <Compile Include="Enums\EchoSign\EchoSignEventTypeEnum.cs" />
     <Compile Include="Enums\EchoSign\ParticipantInfoSecurityOptionEnum.cs" />
     <Compile Include="Enums\EchoSign\ParticipantRoleEnum.cs" />
     <Compile Include="Enums\EchoSign\ReminderFrequencyEnum.cs" />
