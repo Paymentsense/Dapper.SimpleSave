@@ -29,7 +29,7 @@ namespace PS.Mothership.Core.Common.Dto.Iridium
         public string State { get; set; }
         public bool isECom { get; set; }
         public int CountryCode { get; set; }
-        public OppTypeOfTransactionsEnum TypeOfTranx { get; set; }
+        public OppTypeOfTransactionEnum TypeOfTranx { get; set; }
         public int NumOfTerminals { get; set; }
         public string ResultString { get; set; }
         public string ConfirmationUID { get; set; }
