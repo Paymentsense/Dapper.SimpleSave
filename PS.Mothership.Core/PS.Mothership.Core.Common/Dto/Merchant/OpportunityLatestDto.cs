@@ -17,6 +17,6 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public OfferDto LatestOffer { get; set; }
 
         [DataMember]
-        public OfferVersionDto OfferVersions { get; set; }
+        public OfferVersionDto OfferVersion { get; set; }
     }
 }
