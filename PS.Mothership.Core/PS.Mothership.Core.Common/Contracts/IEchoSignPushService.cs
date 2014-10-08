@@ -7,6 +7,6 @@ namespace PS.Mothership.Core.Common.Contracts
     public interface IEchoSignPushService
     {
         [OperationContract]
-        void DocumentNotification(string agreementId, AgreementStatusEnum status, EventTypeEnum eventType);
+        void DocumentNotification(string agreementId, AgreementStatusEnum status, EchoSignEventTypeEnum eventType);
     }
 }

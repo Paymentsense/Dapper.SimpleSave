@@ -16,6 +16,6 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
 
         public long AnnualTurnover { get; set; }
 
-        public long CallRestrictedReasonKey { get; set; }
+        public int CallRestrictedReasonKey { get; set; }
     }
 }

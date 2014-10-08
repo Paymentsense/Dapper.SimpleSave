@@ -77,6 +77,6 @@ packages/
 *.BASE.*
 *.orig
 *.old
-**/Template/*Enum.cs
+/PS.Mothership.Core/PS.Mothership.Core.Common.Template/Template/*Enum.cs
 UpgradeLog*.htm
 *.jf

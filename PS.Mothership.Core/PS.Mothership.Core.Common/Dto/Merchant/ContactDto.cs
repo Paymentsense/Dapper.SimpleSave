@@ -17,7 +17,7 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public Guid ContactGuid { get; set; }
 
         [DataMember]
-        public long SalutationKey { get; set; }
+        public int SalutationKey { get; set; }
 
         [DataMember]
         public string FirstName { get; set; }
