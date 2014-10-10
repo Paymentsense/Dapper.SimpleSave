@@ -20,7 +20,7 @@ namespace PS.Mothership.Core.Common.Contracts
         ICollection<CountryDto> Countries();
 
         [OperationContract]
-        ICollection<CountyDto> Counties(long countryKey);
+        ICollection<CountyDto> Counties(int countryKey);
 
         [OperationContract]
         IEnumerable<PostcodeDto> Postcodes(FilterDto filter);
