@@ -50,10 +50,16 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public string PhoneNumber { get; set; }
 
         [DataMember]
+        public PhoneNumberDto Phone { get; set; }
+
+        [DataMember]
         public Guid FaxGuid { get; set; }
 
         [DataMember]
-        public string Fax { get; set; }
+        public string FaxNumber { get; set; }
+
+        [DataMember]
+        public PhoneNumberDto Fax { get; set; }
 
         [DataMember]
         public Guid EmailAddressGuid { get; set; }
