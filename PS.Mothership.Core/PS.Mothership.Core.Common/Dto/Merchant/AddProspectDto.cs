@@ -1,4 +1,5 @@
 ﻿using System;
+using PS.Mothership.Core.Common.Template.Gen;
 
 namespace PS.Mothership.Core.Common.Dto.Merchant
 {
@@ -8,7 +9,7 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
 
         public string LocatorId { get; set; }
 
-        public int MainPhoneCountryKey { get; set; }
+        public GenCountryEnum MainPhoneCountryKey { get; set; }
 
         public string MainPhoneNumber { get; set; }
 

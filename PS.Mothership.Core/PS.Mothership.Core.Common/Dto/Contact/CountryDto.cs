@@ -1,4 +1,5 @@
 ﻿using System.Runtime.Serialization;
+using PS.Mothership.Core.Common.Template.Gen;
 
 namespace PS.Mothership.Core.Common.Dto.Contact
 {
@@ -6,7 +7,7 @@ namespace PS.Mothership.Core.Common.Dto.Contact
     public class CountryDto
     {
         [DataMember]
-        public int CountryKey { get; set; }
+        public GenCountryEnum CountryKey { get; set; }
 
         [DataMember]
         public string CountryName { get; set; }

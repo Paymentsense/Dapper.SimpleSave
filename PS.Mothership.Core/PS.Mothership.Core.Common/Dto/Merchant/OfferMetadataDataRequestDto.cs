@@ -9,7 +9,7 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
     public class OfferMetadataDataRequestDto
     {
         [DataMember]
-        public int CountryKey { get; set; } // UK or ROI
+        public GenCountryEnum CountryKey { get; set; } // UK or ROI
 
         [DataMember]
         public int SalesChannel { get; set; } // Telesales, Field North, FieldSouth

@@ -4,6 +4,7 @@ using PS.Mothership.Core.Common.Dto.DynamicRequest;
 using System;
 using System.Collections.Generic;
 using System.ServiceModel;
+using PS.Mothership.Core.Common.Template.Gen;
 
 namespace PS.Mothership.Core.Common.Contracts
 {
@@ -20,7 +21,7 @@ namespace PS.Mothership.Core.Common.Contracts
         ICollection<CountryDto> Countries();
 
         [OperationContract]
-        ICollection<CountyDto> Counties(long countryKey);
+        ICollection<CountyDto> Counties(GenCountryEnum countryKey);
 
         [OperationContract]
         IEnumerable<PostcodeDto> Postcodes(FilterDto filter);
