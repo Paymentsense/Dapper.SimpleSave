@@ -42,6 +42,9 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public IEnumerable<OfferMinimumMonthlyServiceChargeDto> MinimumMonthlyServiceCharges { get; set; }
 
         [DataMember]
+        public IEnumerable<AddOnServiceDto> AddOns { get; set; }
+
+        [DataMember]
         public IEnumerable<OfferConstraintsLnkDto> OfferConstraints { get; set; }
 
         [DataMember]
