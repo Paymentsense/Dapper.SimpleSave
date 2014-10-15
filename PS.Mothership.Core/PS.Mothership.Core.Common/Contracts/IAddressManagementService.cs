@@ -1,10 +1,10 @@
 ﻿using PS.Mothership.Core.Common.Dto;
 using PS.Mothership.Core.Common.Dto.Contact;
 using PS.Mothership.Core.Common.Dto.DynamicRequest;
+using PS.Mothership.Core.Common.Template.Gen;
 using System;
 using System.Collections.Generic;
 using System.ServiceModel;
-using PS.Mothership.Core.Common.Template.Gen;
 
 namespace PS.Mothership.Core.Common.Contracts
 {
@@ -18,7 +18,7 @@ namespace PS.Mothership.Core.Common.Contracts
         FullAddressDto SaveAddress(FullAddressDto addressDto);
 
         [OperationContract]
-        ICollection<CountryDto> Countries();
+        ICollection<GenCountryEnum> Countries();
 
         [OperationContract]
         ICollection<CountyDto> Counties(GenCountryEnum countryKey);

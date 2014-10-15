@@ -1,10 +1,7 @@
-﻿using System;
+﻿using PS.Mothership.Core.Common.Template.Gen;
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
-using PS.Mothership.Core.Common.Dto.Contact;
 
 namespace PS.Mothership.Core.Common.Dto.Merchant
 {
@@ -27,7 +24,7 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public Guid SalesChannelGuid { get; set; }
 
         [DataMember]
-        public CountryDto Country { get; set; }
+        public GenCountryEnum CountryKey { get; set; }
 
         [DataMember]
         public int CalculatorVersionKey { get; set; }
