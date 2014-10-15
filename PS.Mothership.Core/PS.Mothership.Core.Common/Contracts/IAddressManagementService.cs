@@ -18,7 +18,7 @@ namespace PS.Mothership.Core.Common.Contracts
         FullAddressDto SaveAddress(FullAddressDto addressDto);
 
         [OperationContract]
-        ICollection<GenCountryEnum> Countries();
+        ICollection<GenCountry> Countries();
 
         [OperationContract]
         ICollection<CountyDto> Counties(GenCountryEnum countryKey);
