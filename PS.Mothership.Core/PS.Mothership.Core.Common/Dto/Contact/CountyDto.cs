@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using PS.Mothership.Core.Common.Template.Gen;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PS.Mothership.Core.Common.Dto.Contact
 {
@@ -17,9 +13,6 @@ namespace PS.Mothership.Core.Common.Dto.Contact
         public string CountyName { get; set; }
 
         [DataMember]
-        public int CountryKey { get; set; }
-
-        [DataMember]
-        public CountryDto Country { get; set; }
+        public GenCountryEnum CountryKey { get; set; }
     }
 }
