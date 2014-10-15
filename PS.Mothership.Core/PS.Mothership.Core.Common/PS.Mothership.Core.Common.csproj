@@ -242,7 +242,6 @@
     <Compile Include="Dto\CompaniesHouse\SubDtos\ReturnsDto.cs" />
     <Compile Include="Dto\CompaniesHouse\SubDtos\SicCodesDto.cs" />
     <Compile Include="Dto\Contact\AddressDto.cs" />
-    <Compile Include="Dto\Contact\CountryDto.cs" />
     <Compile Include="Dto\Contact\CountyDto.cs" />
     <Compile Include="Dto\Contact\PhoneNumberDto.cs" />
     <Compile Include="Dto\Merchant\AddProspectDto.cs" />

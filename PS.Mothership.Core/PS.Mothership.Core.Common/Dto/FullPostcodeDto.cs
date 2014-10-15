@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using PS.Mothership.Core.Common.Template.Gen;
 using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PS.Mothership.Core.Common.Dto
 {
@@ -24,9 +21,16 @@ namespace PS.Mothership.Core.Common.Dto
         public int CountyKey { get; set; }
 
         [DataMember]
-        public string CountryName { get; set; }
+        public string CountryName
+        {
+            get
+            {
+                var genCountry = GenCountryCollection.GenCountryList.FirstOrDefault(x => x.CountryKey == (int)CountryKey);
+                return genCountry != null ? genCountry.EnumDescription : string.Empty;
+            }
+        }
 
         [DataMember]
-        public int CountryKey { get; set; }
+        public GenCountryEnum CountryKey { get; set; }
     }
 }

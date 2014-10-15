@@ -43,7 +43,7 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public int CalculatorVersionKey { get; set; } //If not for now this will be made use of for checking the selected offer's version and the current version.
 
         [DataMember]
-        public int CountryKey { get; set; }
+        public GenCountryEnum CountryKey { get; set; }
 
         [DataMember]
         public int ContractLengthKey { get; set; }
