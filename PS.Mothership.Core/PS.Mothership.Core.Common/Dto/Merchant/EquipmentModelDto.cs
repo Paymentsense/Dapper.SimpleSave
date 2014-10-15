@@ -18,7 +18,7 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
 
         [DataMember]
         public int EquipmentVendorKey { get; set; }
-        
+
         [DataMember]
         public double Price { get; set; }
 
