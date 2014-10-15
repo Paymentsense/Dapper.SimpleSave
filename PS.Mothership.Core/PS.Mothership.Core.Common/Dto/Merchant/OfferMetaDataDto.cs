@@ -9,6 +9,9 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
     public class OfferMetaDataDto
     {
         [DataMember]
+        public int CalculatorVersionKey { get; set; }
+
+        [DataMember]
         public IEnumerable<ContractLengthDto> ContractLengths { get; set; }
 
         [DataMember]
