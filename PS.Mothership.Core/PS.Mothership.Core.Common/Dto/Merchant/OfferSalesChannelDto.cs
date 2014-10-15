@@ -1,5 +1,6 @@
 using System;
 using System.Runtime.Serialization;
+using PS.Mothership.Core.Common.Template.Gen;
 
 namespace PS.Mothership.Core.Common.Dto.Merchant
 {
@@ -19,6 +20,6 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public string Name { get; set; }
 
         [DataMember]
-        public int CountryKey { get; set; }
+        public GenCountryEnum CountryKey { get; set; }
     }
 }

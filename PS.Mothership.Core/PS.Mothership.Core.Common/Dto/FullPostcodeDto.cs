@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using PS.Mothership.Core.Common.Template.Gen;
 
 namespace PS.Mothership.Core.Common.Dto
 {
@@ -27,6 +28,6 @@ namespace PS.Mothership.Core.Common.Dto
         public string CountryName { get; set; }
 
         [DataMember]
-        public int CountryKey { get; set; }
+        public GenCountryEnum CountryKey { get; set; }
     }
 }

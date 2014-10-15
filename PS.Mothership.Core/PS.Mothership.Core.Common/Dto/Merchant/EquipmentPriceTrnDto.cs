@@ -17,7 +17,7 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public int EquipmentModelKey { get; set; }
         
         [DataMember]
-        public int CountryKey { get; set; }
+        public GenCountryEnum CountryKey { get; set; }
 
         [DataMember]
         public int CustomerTypeKey { get; set; }
