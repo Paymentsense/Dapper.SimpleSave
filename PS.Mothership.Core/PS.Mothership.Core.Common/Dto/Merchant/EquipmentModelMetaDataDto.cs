@@ -38,5 +38,14 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
 
         [DataMember]
         public GenRecStatusEnum RecStatusKey { get; set; }
+
+        [DataMember]
+        public int CountryKey { get; set; }
+
+        [DataMember]
+        public int CustomerTypeKey { get; set; }
+
+        [DataMember]
+        public int TypeOfTransactionKey { get; set; }
     }
 }

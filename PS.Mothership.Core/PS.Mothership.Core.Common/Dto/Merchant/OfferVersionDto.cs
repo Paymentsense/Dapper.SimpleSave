@@ -14,6 +14,6 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public Guid OfferGuid { get; set; }
 
         [DataMember]
-        public string Version { get; set; }
+        public DateTimeOffset UpdateDate { get; set; }
     }
 }

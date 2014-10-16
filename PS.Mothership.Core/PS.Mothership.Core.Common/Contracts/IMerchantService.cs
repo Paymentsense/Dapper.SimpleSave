@@ -8,7 +8,7 @@ namespace PS.Mothership.Core.Common.Contracts
     public interface IMerchantService
     {
         [OperationContract]
-        OfferMetaDataDto GetOfferMetaDataDto();
+        OfferMetaDataDto GetOfferMetaDataDto(int versionKey);
 
         [OperationContract]
         OfferDto GetOffer(Guid offerGuid);
