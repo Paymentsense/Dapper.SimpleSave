@@ -37,25 +37,28 @@
         public const string SendSMSMessageSent = "SendSMSMessageSent";
         public const string SendSMSMessageDelivered = "SendSMSMessageDelivered";
         public const string SendSMSMessageBounced = "SendSMSMessageBounced";
-        public const string SendSMSMessageDefault = "SendSMSMessageDefault";
-        public const string SendSMSTestNumber = "SendSMSTestNumber";
+        public const string SendSmsMessageDefault = "SendSMSMessageDefault";
+        public const string SendSmsTestNumber = "SendSMSTestNumber";
         public const string SendSmsTestAccountReference = "SendSmsTestAccountReference";
         public const string SendSMSTestNumberGuid = "SendSMSTestNumberGuid";
-        public const string SendSMSMessageDefaultNumber = "SendSMSMessageDefaultNumber";
+        public const string SendSmsMessageDefaultNumber = "SendSMSMessageDefaultNumber";
+        public const string SendSmsIsInProduction = "SendSmsIsInProduction";
 
         // Common SMTP Constants
-        public const string SMTPServer = "SMTPServer";
-        public const string SMTPEnableSsl = "SMTPEnableSsl";
-        public const string SMTPPortNumber = "SMTPPortNumber";
-        public const string NetworkName = "NetworkName";
-        public const string NetworkPassword = "NetworkPassword";
+        public const string SmtpServer = "SMTPServer";
+        public const string SmtpEnableSsl = "SMTPEnableSsl";
+        public const string SmtpPortNumber = "SMTPPortNumber";
+        public const string SmtpNetworkName = "NetworkName";
+        public const string SmtpNetworkPassword = "NetworkPassword";
 
         // Common IMAP Constants
-        public const string IMAPServer = "IMAPServer";
-        public const string IMAPPortNumber = "IMAPPortNumber";
-        public const string IMAPUsername = "IMAPUsername";
-        public const string IMAPPassword = "IMAPPassword";
-        public const string IDLEConnectionTime = "IDLEConnectionTime";
+        public const string ImapServer = "IMAPServer";
+        public const string ImapPortNumber = "IMAPPortNumber";
+        public const string ImapUsername = "IMAPUsername";
+        public const string ImapPassword = "IMAPPassword";
+        public const string ImapIdleConnectionTime = "IDLEConnectionTime";
+        public const string PollingTime = "PollingTime";
+        public const string ImapListenerEnabled = "ImapListenerEnabled";
 
         //Onboarding Constants
         public const string OnboardingUserName = "OnboardingUserName";
@@ -111,6 +114,7 @@
         public const string IridiumTestSendEmail = "IridiumTestSendEmail";
         public const string IridiumConfirmMaxMinutesToCheck = "IridiumConfirmMaxMinutesToCheck";
 
-
+        //CacheConfig Constants
+        public const string CacheName = "CacheName";
     }
 }

@@ -1,24 +1,21 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using System.ServiceModel;
-using System.Text;
-using System.Threading.Tasks;
-using PS.Mothership.Core.Common.Dto;
+using PS.Mothership.Core.Common.Dto.Message;
+using PS.Mothership.Core.Common.Dto.Notification;
 using PS.Mothership.Core.Common.Dto.SendMessage;
-using PS.Mothership.Core.Common.Template.Comm;
-using Quartz;
 
 namespace PS.Mothership.Core.Common.Contracts
 {
-    [ServiceContract(CallbackContract = typeof(ISendMessageStatusServiceCallback))]
-    public interface ISendMessageService : IQuartzJobBase
+    [ServiceContract(CallbackContract = typeof(ISendMessageServiceCallback))]
+    public interface ISendMessageService
     {
         [OperationContract]
         void QueueSMSMessage(SendSmsRequestDto insertSmsMessageDto);
 
         [OperationContract]
-        void QueueEmailMessage(SendEmailRequestDto insertSmsMessageDto);
+        void QueueEmailMessage(SendEmailRequestDto insertEmailMessageDto);
 
         [OperationContract]
         void SMSMessageDeliveryFailed(string xmlString);
@@ -27,30 +24,36 @@ namespace PS.Mothership.Core.Common.Contracts
         void SMSMessageDeliverySuccess(string xmlString);
 
         [OperationContract]
-        void SMSMessageReceived(string xmlString);
+        void SmsMessageReceived(InboundMessage inboundMessage);
 
         [OperationContract]
         string SendSMSMessageFrom(Guid userGuid);
 
-        [OperationContract]
-        void PushSMSServiceStatus(CommMessageServiceStatusEnum serviceStatus);
-
-        [OperationContract]
-        void PushEmailServiceStatus(CommMessageServiceStatusEnum serviceStatus);
-
         [OperationContract(IsOneWay = false)]
-        void SendSMSServiceSubscribe(string applicationName);
+        void MessageServiceStatusSubscribe(string applicationName);
 
         [OperationContract(IsOneWay = true)]
-        void SendSMSServiceEndSubscribe(string applicationName);
+        void MessageServiceStatusEndSubscribe(string applicationName);
 
         [OperationContract(IsOneWay = false)]
-        void SendEmailServiceSubscribe(string applicationName);
+        void EmailNotificationSubscribe(string applicationName);
 
         [OperationContract(IsOneWay = true)]
-        void SendEmailServiceEndSubscribe(string applicationName);
+        void EmailNotificationEndSubscribe(string applicationName);
+
+        [OperationContract(IsOneWay = false)]
+        void SmsNotificationSubscribe(string applicationName);
+
+        [OperationContract(IsOneWay = true)]
+        void SmsNotificationEndSubscribe(string applicationName);
 
         [OperationContract]
-        void StartMessageListener();
+        IList<SendMessageServiceStatusDto> GetMessageServiceStatus();
+
+        [OperationContract]
+        IList<NotificationReceivedDto> GetEventNotications(Guid userGuid);
+
+        [OperationContract]
+        IList<NotificationStatusDto> GetNotificationsAndStatuses(Guid userGuid);
     }
 }

@@ -1,27 +1,26 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System;
+using System.Collections.Generic;
 using System.ServiceModel;
-using System.Text;
-using System.Threading.Tasks;
-using PS.Mothership.Core.Common.Dto;
-using Quartz;
+using PS.Mothership.Core.Common.Dto.Notification;
 
 namespace PS.Mothership.Core.Common.Contracts
 {
     [ServiceContract(CallbackContract = typeof(ITaskNotificationCallback))]
-    public interface ITaskNotificationService : IQuartzJobBase
+    public interface ITaskNotificationService
     {
         [OperationContract(IsOneWay = false)]
         void Subscribe(string applicationName);
         [OperationContract(IsOneWay = true)]
         void EndSubscribe(string applicationName);
         [OperationContract]
-        void AddNewTask(TaskDto taskDto);
+        TaskNotificationDto AddNewTask(TaskNotificationDto taskNotificationDto);
         [OperationContract]
-        void UpdateTask(TaskDto taskDto);
+        IList<TaskNotificationDto> RetreiveUserTasks(Guid userGuid);
         [OperationContract]
-        void CompleteTask(long pendingNotificationId);
+        TaskNotificationDto UpdateTask(TaskNotificationDto taskNotificationDto);
         [OperationContract]
-        void PushPendingTaskNotifications(string userName);
+        void CloseTask(TaskNotificationDto taskNotificationDto);
+        [OperationContract]
+        void CancelTask(TaskNotificationDto taskNotificationDto);
     }
 }

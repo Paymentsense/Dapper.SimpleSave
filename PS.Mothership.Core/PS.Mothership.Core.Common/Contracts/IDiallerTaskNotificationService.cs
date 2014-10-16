@@ -1,10 +1,11 @@
-﻿using PS.Mothership.Core.Common.Dto;
-using System.ServiceModel;
+﻿using System.ServiceModel;
+using PS.Mothership.Core.Common.Dto;
+using Quartz;
 
 namespace PS.Mothership.Core.Common.Contracts
 {
     [ServiceContract(Name="DiallerTaskNotificationService", CallbackContract = typeof (IDiallerTaskNotificationCallback))]
-    public interface IDiallerTaskNotificationService : IQuartzJobBase
+    public interface IDiallerTaskNotificationService
     {
         [OperationContract(IsOneWay = false)]
         void Subscribe(string applicationName);
@@ -23,5 +24,7 @@ namespace PS.Mothership.Core.Common.Contracts
 
         [OperationContract]
         void PushPendingTaskNotifications(string userName);
+
+        void ExecuteJob(IJobExecutionContext context);
     }
 }
