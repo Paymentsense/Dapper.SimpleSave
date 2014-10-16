@@ -159,6 +159,7 @@
     <Compile Include="Dto\Merchant\CustomerTypeDto.cs" />
     <Compile Include="Dto\Merchant\EquipmentPriceTrnDto.cs" />
     <Compile Include="Dto\Merchant\EquipmentModelDto.cs" />
+    <Compile Include="Dto\Merchant\GatewayContractLnkDto.cs" />
     <Compile Include="Dto\Merchant\GatewayTariffDto.cs" />
     <Compile Include="Dto\Merchant\OfferVersionDto.cs" />
     <Compile Include="Dto\Merchant\OpportunityLatestDto.cs" />
