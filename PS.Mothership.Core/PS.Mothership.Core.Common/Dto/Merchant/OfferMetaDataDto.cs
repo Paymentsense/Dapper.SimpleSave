@@ -1,4 +1,4 @@
-using PS.Mothership.Core.Common.Dto.Contact;
+using PS.Mothership.Core.Common.Template.Gen;
 using PS.Mothership.Core.Common.Template.Opp;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
@@ -21,7 +21,7 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public IEnumerable<TypeOfTransactionDto> TypeOfTransactions { get; set; }
         
         [DataMember]
-        public IEnumerable<CountryDto> Countries { get; set; }
+        public IEnumerable<GenCountry> Countries { get; set; }
 
         [DataMember]
         public IEnumerable<OfferSalesChannelDto> SalesChannels { get; set; }

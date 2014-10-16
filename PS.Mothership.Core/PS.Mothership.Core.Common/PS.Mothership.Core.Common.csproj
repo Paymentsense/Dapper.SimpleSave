@@ -103,6 +103,7 @@
       <HintPath>..\packages\Quartz.2.2.4\lib\net40\Quartz.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Services" />
@@ -147,8 +148,10 @@
     <Compile Include="Contracts\IMSLogger.cs" />
     <Compile Include="Contracts\ISchedulerManagementService.cs" />
     <Compile Include="Contracts\ISendMessageService.cs" />
-    <Compile Include="Contracts\ISendMessageStatusServiceCallback.cs" />
+    <Compile Include="Contracts\ISendMessageServiceCallback.cs" />
     <Compile Include="Dto\CompaniesHouse\CompanyAppointmentsDto.cs" />
+    <Compile Include="Dto\Event\EventNotesLnkDto.cs" />
+    <Compile Include="Dto\Notification\NotificationReceivedDto.cs" />
     <Compile Include="Dto\FullPostcodeDto.cs" />
     <Compile Include="Dto\Iridium\IridiumConfirmResultsDto.cs" />
     <Compile Include="Dto\Iridium\IridiumRequestDto.cs" />
@@ -183,10 +186,15 @@
     <Compile Include="Dto\Merchant\OfferDto.cs" />
     <Compile Include="Dto\Merchant\MerchantListDto.cs" />
     <Compile Include="Dto\Merchant\AdvancedSearchDto.cs" />
+    <Compile Include="Dto\Message\InboundMessage.cs" />
+    <Compile Include="Dto\Notification\NotificationStatusDto.cs" />
+    <Compile Include="Dto\SendMessage\MessageServiceStatus.cs" />
     <Compile Include="Dto\Merchant\MerchantDataRequestDto.cs" />
     <Compile Include="Dto\Merchant\MerchantSearchDataDto.cs" />
     <Compile Include="Dto\Merchant\MerchantOfferDto.cs" />
     <Compile Include="Dto\User\UserImpersonationDto.cs" />
+    <Compile Include="Enums\NotificationIcon.cs" />
+    <Compile Include="Helper\EnumHelper.cs" />
     <Compile Include="Dto\SchedulerManagement\JobProfileDto.cs" />
     <Compile Include="Dto\SchedulerManagement\TriggerProfileDto.cs" />
     <Compile Include="Dto\SchedulerManagement\SchedulerServerInfoDto.cs" />
@@ -194,7 +202,6 @@
     <Compile Include="SessionHandling\ISessionManager.cs" />
     <Compile Include="Contracts\ITaskNotificationCallback.cs" />
     <Compile Include="Contracts\ITaskNotificationService.cs" />
-    <Compile Include="Contracts\IQuartzJobBase.cs" />
     <Compile Include="Contracts\IUserManagementService.cs" />
     <Compile Include="Contracts\Security\IAuthenticationService.cs" />
     <Compile Include="Config\ILayerIocBuilder.cs" />
@@ -235,7 +242,6 @@
     <Compile Include="Dto\CompaniesHouse\SubDtos\ReturnsDto.cs" />
     <Compile Include="Dto\CompaniesHouse\SubDtos\SicCodesDto.cs" />
     <Compile Include="Dto\Contact\AddressDto.cs" />
-    <Compile Include="Dto\Contact\CountryDto.cs" />
     <Compile Include="Dto\Contact\CountyDto.cs" />
     <Compile Include="Dto\Contact\PhoneNumberDto.cs" />
     <Compile Include="Dto\Merchant\AddProspectDto.cs" />
@@ -314,16 +320,15 @@
     <Compile Include="Dto\PostcodeDto.cs" />
     <Compile Include="Dto\Roles\InheritedRolesDto.cs" />
     <Compile Include="Dto\LoginCredentialsDto.cs" />
-    <Compile Include="Dto\NotificationDetailDto.cs" />
-    <Compile Include="Dto\NotificationResultDto.cs" />
-    <Compile Include="Dto\PendingTaskNotificationDto.cs" />
+    <Compile Include="Dto\Notification\TaskNotificationDto.cs" />
+    <Compile Include="Dto\Notification\NotificationResultDto.cs" />
+    <Compile Include="Dto\Notification\PendingTaskNotificationDto.cs" />
     <Compile Include="Dto\RegisterDto.cs" />
     <Compile Include="Dto\Roles\ResourceRolePermissionsDto.cs" />
     <Compile Include="Dto\Roles\RoleDto.cs" />
     <Compile Include="Dto\Roles\RoleInheritanceDto.cs" />
     <Compile Include="Dto\Session\SessionHeaderDto.cs" />
-    <Compile Include="Dto\Task\TaskNotificationLogDto.cs" />
-    <Compile Include="Dto\Task\TaskNotificationDto.cs" />
+    <Compile Include="Dto\Event\NotificationTransactionDto.cs" />
     <Compile Include="Dto\User\UserListDto.cs" />
     <Compile Include="Dto\User\UserRemoteAccessTrnDto.cs" />
     <Compile Include="Dto\User\UserStatusTrnDto.cs" />
