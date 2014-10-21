@@ -36,7 +36,7 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public IEnumerable<EquipmentModelMetadataDto> EquipmentModels { get; set; }
         
         [DataMember]
-        public IEnumerable<OfferAuthorizationFeeDto> AuthorizationFees { get; set; }
+        public IEnumerable<OfferAuthorizationFeeDto> AuthorisationFees { get; set; }
 
         [DataMember]
         public IEnumerable<OfferMinimumMonthlyServiceChargeDto> MinimumMonthlyServiceCharges { get; set; }
@@ -49,6 +49,9 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
 
         [DataMember]
         public IEnumerable<OfferFieldLutDto> OfferFields { get; set; }
+
+        [DataMember]
+        public IEnumerable<OfferDefaultDto> Defaults { get; set; }
 
         [DataMember]
         public IEnumerable<GatewayTariffDto> GatewayTariffs { get; set; }

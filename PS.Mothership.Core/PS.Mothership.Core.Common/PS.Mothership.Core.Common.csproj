@@ -158,6 +158,8 @@
     <Compile Include="Dto\Application\ApplicationOpportunitiesDto.cs" />
     <Compile Include="Dto\Application\ApplicationDto.cs" />
     <Compile Include="Dto\CompaniesHouse\CompanyAppointmentsDto.cs" />
+    <Compile Include="Dto\Event\EventNotesLnkDto.cs" />
+    <Compile Include="Dto\Merchant\OfferDefaultDto.cs" />
     <Compile Include="Dto\Event\EventTrnFullDto.cs" />
     <Compile Include="Dto\Notification\NotificationReceivedDto.cs" />
     <Compile Include="Dto\FullPostcodeDto.cs" />
@@ -187,7 +189,6 @@
     <Compile Include="Dto\Merchant\GatewayOfferDto.cs" />
     <Compile Include="Dto\Merchant\RatesRangeDto.cs" />
     <Compile Include="Dto\Merchant\OfferFieldLutDto.cs" />
-    <Compile Include="Dto\Merchant\OfferMetadataDataRequestDto.cs" />
     <Compile Include="Dto\Merchant\OfferConstraintsLnkDto.cs" />
     <Compile Include="Dto\Merchant\OfferMetaDataDto.cs" />
     <Compile Include="Dto\Merchant\OfferMinimumMonthlyServiceChargeDto.cs" />
