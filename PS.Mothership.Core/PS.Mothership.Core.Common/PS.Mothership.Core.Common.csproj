@@ -150,7 +150,7 @@
     <Compile Include="Contracts\ISendMessageService.cs" />
     <Compile Include="Contracts\ISendMessageServiceCallback.cs" />
     <Compile Include="Dto\CompaniesHouse\CompanyAppointmentsDto.cs" />
-    <Compile Include="Dto\Event\EventNotesLnkDto.cs" />
+    <Compile Include="Dto\Event\EventTrnFullDto.cs" />
     <Compile Include="Dto\Notification\NotificationReceivedDto.cs" />
     <Compile Include="Dto\FullPostcodeDto.cs" />
     <Compile Include="Dto\Iridium\IridiumConfirmResultsDto.cs" />
@@ -159,6 +159,8 @@
     <Compile Include="Dto\Merchant\CustomerTypeDto.cs" />
     <Compile Include="Dto\Merchant\EquipmentPriceTrnDto.cs" />
     <Compile Include="Dto\Merchant\EquipmentModelDto.cs" />
+    <Compile Include="Dto\Merchant\GatewayContractLnkDto.cs" />
+    <Compile Include="Dto\Merchant\GatewayTariffDto.cs" />
     <Compile Include="Dto\Merchant\OfferVersionDto.cs" />
     <Compile Include="Dto\Merchant\OpportunityLatestDto.cs" />
     <Compile Include="Dto\Merchant\TypeOfTransactionDto.cs" />
@@ -288,10 +290,9 @@
     <Compile Include="Dto\EchoSign\NextParticipantInfosDto.cs" />
     <Compile Include="Dto\EchoSign\ParticipantInfoDto.cs" />
     <Compile Include="Dto\EchoSign\ReminderCreationResultDto.cs" />
-    <Compile Include="Dto\Event\NotesTransactionDto.cs" />
-    <Compile Include="Dto\Event\EventRoleLnkDto.cs" />
-    <Compile Include="Dto\Event\StatusOwnerTransactionDto.cs" />
-    <Compile Include="Dto\Event\EventTransactionDto.cs" />
+    <Compile Include="Dto\Event\EventNotesTrnDto.cs" />
+    <Compile Include="Dto\Event\EventStatusOwnerTrnDto.cs" />
+    <Compile Include="Dto\Event\EventTrnDto.cs" />
     <Compile Include="Dto\Experian\CurrentAddressTypeDto.cs" />
     <Compile Include="Dto\Experian\IdentityCheckDto.cs" />
     <Compile Include="Dto\Experian\IdentityCheckRequestDto.cs" />
@@ -328,7 +329,7 @@
     <Compile Include="Dto\Roles\RoleDto.cs" />
     <Compile Include="Dto\Roles\RoleInheritanceDto.cs" />
     <Compile Include="Dto\Session\SessionHeaderDto.cs" />
-    <Compile Include="Dto\Event\NotificationTransactionDto.cs" />
+    <Compile Include="Dto\Event\EventNotificationTrnDto.cs" />
     <Compile Include="Dto\User\UserListDto.cs" />
     <Compile Include="Dto\User\UserRemoteAccessTrnDto.cs" />
     <Compile Include="Dto\User\UserStatusTrnDto.cs" />

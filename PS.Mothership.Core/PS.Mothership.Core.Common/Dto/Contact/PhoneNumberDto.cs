@@ -21,5 +21,8 @@ namespace PS.Mothership.Core.Common.Dto.Contact
 
         [DataMember]
         public bool IsDoNotCall { get; set; }
+
+        [DataMember]
+        public int PhoneCountryCode { get; set; }
     }
 }

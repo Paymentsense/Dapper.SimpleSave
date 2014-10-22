@@ -5,6 +5,16 @@ namespace PS.Mothership.Core.Common.Validation
     public static class GeneralRegex
     {
 
+        public const string InternationalPhoneNumberRegEx =
+            @"^(([-\s()]*(\+|00)?[-\s()]*353([-\s()]*\d){9,10}[-\s()]*)|([-\s()]*0?[-\s()]*[1-689]([-\s()]*\d){8,9}[-\s()]*))$";
+
+        //This regex only allows for phone numbers without international code  
+        public const string PhoneNumberRegEx_UK = @"^(0)[(1-9)][0-9]{9,9}$";
+        public const string PhoneNumberRegEx_ROI = @"^(0)[(1-9)][0-9]{7,8}$";
+
+        public const string PhoneNumberErrorMessage = "Please specify a valid phone number";
+        public const string FaxNumberErrorMessage = "Please specify a valid fax number";
+
         public static RegexValidation AlphaOnly
         {
             get
