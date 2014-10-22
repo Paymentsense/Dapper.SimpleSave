@@ -25,6 +25,9 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public string Reference { get; set; }
 
         [DataMember]
+        public int TypeOfTransactionKey { get; set; }
+
+        [DataMember]
         public string Description { get; set; }
 
         //[DataMember]
