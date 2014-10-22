@@ -47,13 +47,13 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public Guid PhoneGuid { get; set; }
 
         [DataMember]
-        public string PhoneNumber { get; set; }
+        public PhoneNumberDto Phone { get; set; }
 
         [DataMember]
         public Guid FaxGuid { get; set; }
 
         [DataMember]
-        public string Fax { get; set; }
+        public PhoneNumberDto Fax { get; set; }
 
         [DataMember]
         public Guid EmailAddressGuid { get; set; }
