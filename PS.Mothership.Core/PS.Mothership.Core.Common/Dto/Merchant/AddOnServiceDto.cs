@@ -27,7 +27,7 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
 
         [DataMember]
         public IEnumerable<AddOnServicePriceDto> AddOnServicePrices { get; set; }
-
+        
         [DataMember]
         public int DisplayOrder { get; set; }
 

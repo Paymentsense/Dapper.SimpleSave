@@ -45,6 +45,9 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public IEnumerable<AddOnServiceDto> AddOns { get; set; }
 
         [DataMember]
+        public IEnumerable<AddOnServiceDefaultDto> AddOnDefaults { get; set; }
+
+        [DataMember]
         public IEnumerable<OfferConstraintsLnkDto> OfferConstraints { get; set; }
 
         [DataMember]

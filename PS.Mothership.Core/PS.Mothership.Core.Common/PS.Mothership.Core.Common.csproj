@@ -158,7 +158,7 @@
     <Compile Include="Dto\Application\ApplicationOpportunitiesDto.cs" />
     <Compile Include="Dto\Application\ApplicationDto.cs" />
     <Compile Include="Dto\CompaniesHouse\CompanyAppointmentsDto.cs" />
-    <Compile Include="Dto\Event\EventNotesLnkDto.cs" />
+    <Compile Include="Dto\Merchant\AddOnServiceDefaultDto.cs" />
     <Compile Include="Dto\Merchant\OfferDefaultDto.cs" />
     <Compile Include="Dto\Event\EventTrnFullDto.cs" />
     <Compile Include="Dto\Notification\NotificationReceivedDto.cs" />
