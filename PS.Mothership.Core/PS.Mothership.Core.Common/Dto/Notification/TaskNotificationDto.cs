@@ -8,12 +8,16 @@ namespace PS.Mothership.Core.Common.Dto.Notification
     {
         [DataMember]
         public Guid EventGuid { get; set; }
+
         [DataMember]
         public DateTimeOffset ScheduledDate { get; set; }
+
         [DataMember]
         public string Description { get; set; }
+
         [DataMember]
         public Guid UserGuid { get; set; }
+
         [DataMember]
         public string UserName { get; set; }
     }
