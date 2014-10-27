@@ -13,6 +13,9 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public GenCountryEnum CountryKey { get; set; }
 
         [DataMember]
+        public int TypeOfTransactionKey { get; set; }
+
+        [DataMember]
         public double FloorPrice { get; set; }
 
         [DataMember]
