@@ -1,3 +1,4 @@
+using System;
 using System.ServiceModel;
 using PS.Mothership.Core.Common.Dto.Merchant;
 
@@ -7,16 +8,16 @@ namespace PS.Mothership.Core.Common.Contracts
     public interface IApplicationBoardingService
     {
         [OperationContract]
-        ApplicationOpportunitiesDto GetApplicationOpportunities();
+        ApplicationOpportunitiesDto GetApplicationOpportunities(Guid applicationGuid);
 
         [OperationContract]
-        void SaveApplicationOpportunities(ApplicationOpportunitiesDto applicationOpportunitiesDto);
+        ApplicationOpportunitiesDto SaveApplicationOpportunities(ApplicationOpportunitiesDto applicationOpportunitiesDto);
 
         [OperationContract]
-        ApplicationDetailsDto GetApplicationDetails();
+        ApplicationDetailsDto GetApplicationDetails(Guid applicationGuid);
 
         [OperationContract]
-        void SaveApplicationDetails(ApplicationDetailsDto applicationDetailsDto);
+        ApplicationDetailsDto SaveApplicationDetails(ApplicationDetailsDto applicationDetailsDto);
 
     }
 }
