@@ -132,6 +132,7 @@
     <Compile Include="Contracts\ApplicationService.cs" />
     <Compile Include="Contracts\IAddressManagementService.cs" />
     <Compile Include="Contracts\IAddressService.cs" />
+    <Compile Include="Contracts\IApplicationBoardingService.cs" />
     <Compile Include="Contracts\IApplicationService.cs" />
     <Compile Include="Contracts\IContactManagementService.cs" />
     <Compile Include="Contracts\IEchoSignPushService.cs" />
@@ -149,6 +150,13 @@
     <Compile Include="Contracts\ISchedulerManagementService.cs" />
     <Compile Include="Contracts\ISendMessageService.cs" />
     <Compile Include="Contracts\ISendMessageServiceCallback.cs" />
+    <Compile Include="Dto\Application\ApplicationDetailsDto.cs" />
+    <Compile Include="Dto\Application\ApplicationDetailLocationDto.cs" />
+    <Compile Include="Dto\Application\ApplicationOpportunityLocationDto.cs" />
+    <Compile Include="Dto\Application\LocationProductMstDto.cs" />
+    <Compile Include="Dto\Application\LocationMstDto.cs" />
+    <Compile Include="Dto\Application\ApplicationOpportunitiesDto.cs" />
+    <Compile Include="Dto\Application\ApplicationDto.cs" />
     <Compile Include="Dto\CompaniesHouse\CompanyAppointmentsDto.cs" />
     <Compile Include="Dto\Event\EventTrnFullDto.cs" />
     <Compile Include="Dto\Notification\NotificationReceivedDto.cs" />
