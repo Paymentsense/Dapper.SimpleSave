@@ -150,7 +150,6 @@
     <Compile Include="Contracts\ISchedulerManagementService.cs" />
     <Compile Include="Contracts\ISendMessageService.cs" />
     <Compile Include="Contracts\ISendMessageServiceCallback.cs" />
-    <Compile Include="Dto\Application\ApplicationDetailMetadataDto.cs" />
     <Compile Include="Dto\Application\ApplicationOpportunitiesMetadataDto.cs" />
     <Compile Include="Dto\Application\LegalInfoDto.cs" />
     <Compile Include="Dto\Application\ApplicationDetailsDto.cs" />

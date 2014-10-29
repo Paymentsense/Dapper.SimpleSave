@@ -18,6 +18,12 @@ namespace PS.Mothership.Core.Common.Dto.Application
         public Guid ApplicationGuid { get; set; }
 
         [DataMember]
+        public string BusinessName { get; set; }
+
+        [DataMember]
+        public Guid TradingAddressGuid { get; set; }
+
+        [DataMember]
         public IList<LocationProductMstDto> LocationProducts { get; set; }
     }
 }
