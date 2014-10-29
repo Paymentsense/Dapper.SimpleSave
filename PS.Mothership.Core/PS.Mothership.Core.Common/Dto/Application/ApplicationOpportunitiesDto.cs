@@ -12,6 +12,9 @@ namespace PS.Mothership.Core.Common.Dto.Application
         public Guid ApplicationGuid { get; set; }
 
         [DataMember]
+        public Guid MerchantGuid { get; set; }
+
+        [DataMember]
         public GenCountryEnum CountryKey { get; set; }
 
         [DataMember]
