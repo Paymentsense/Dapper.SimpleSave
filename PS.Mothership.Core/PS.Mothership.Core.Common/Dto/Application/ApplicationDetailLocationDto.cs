@@ -1,6 +1,4 @@
-﻿
-using PS.Mothership.Core.Common.Template.Gen;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 

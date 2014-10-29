@@ -20,9 +20,7 @@ namespace PS.Mothership.Core.Common.Dto.Application
         [DataMember]
         public IList<ApplicationOpportunityLocationDto> Locations { get; set; }
 
-        
-
-        
-
+        [DataMember]
+        public string ApplicationReference { get; set; }
     }
 }
