@@ -1,7 +1,10 @@
-﻿using System;
+﻿using PS.Mothership.Core.Common.Dto.Application;
+using PS.Mothership.Core.Common.Template.Gen;
+using System;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
 
-namespace PS.Mothership.Core.Common.Dto.Application
+namespace PS.Mothership.Core.Common.Dto.Merchant
 {
     [DataContract]
     public class ApplicationDto

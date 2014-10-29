@@ -1,10 +1,9 @@
-﻿using System;
+﻿using PS.Mothership.Core.Common.Template.Gen;
+using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
-using PS.Mothership.Core.Common.Dto.Merchant;
-using PS.Mothership.Core.Common.Template.Gen;
 
-namespace PS.Mothership.Core.Common.Dto.Application
+namespace PS.Mothership.Core.Common.Dto.Merchant
 {
     [DataContract]
     public class ApplicationOpportunitiesDto
@@ -21,7 +20,9 @@ namespace PS.Mothership.Core.Common.Dto.Application
         [DataMember]
         public IList<ApplicationOpportunityLocationDto> Locations { get; set; }
 
-        [DataMember]
-        public string ApplicationReference { get; set; }
+        
+
+        
+
     }
 }
