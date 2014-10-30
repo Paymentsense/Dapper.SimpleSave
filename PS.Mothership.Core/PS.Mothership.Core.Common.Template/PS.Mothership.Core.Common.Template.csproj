@@ -63,9 +63,6 @@
     <Compile Include="Template\AppPremisesOwnershipTypeEnum.cs">
       <DependentUpon>DbEnumBuilder.tt</DependentUpon>
     </Compile>
-    <Compile Include="Template\AppReasonEnum.cs">
-      <DependentUpon>DbEnumBuilder.tt</DependentUpon>
-    </Compile>
     <Compile Include="Template\AppRefundDaysEnum.cs">
       <DependentUpon>DbEnumBuilder.tt</DependentUpon>
     </Compile>
@@ -217,6 +214,9 @@
       <DependentUpon>DbEnumBuilder.tt</DependentUpon>
     </Compile>
     <Compile Include="Template\OppProvisionTypeEnum.cs">
+      <DependentUpon>DbEnumBuilder.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Template\OppReasonEnum.cs">
       <DependentUpon>DbEnumBuilder.tt</DependentUpon>
     </Compile>
     <Compile Include="Template\OppTypeOfTransactionEnum.cs">
