@@ -14,6 +14,12 @@ namespace PS.Mothership.Core.Common.Dto.Application
 
         [DataMember]
         public Guid OpportunityGuid { get; set; }
-      
+
+        [DataMember]
+        public Guid ContactGuid { get; set; }
+
+        [DataMember]
+        public Guid MerchantGuid { get; set; }
+    
     }
 }
