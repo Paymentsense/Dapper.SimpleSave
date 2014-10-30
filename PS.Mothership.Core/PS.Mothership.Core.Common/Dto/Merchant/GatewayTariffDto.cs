@@ -65,5 +65,8 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
 
         [DataMember]
         public int? V1EcomTariffId { get; set; }
+
+        [DataMember]
+        public int CountryKey { get; set; }
     }
 }
