@@ -22,7 +22,7 @@ namespace PS.Mothership.Core.Common.Template.Gen
        [Description("Live")][EnumMember]Live = 9,
        [Description("Cancelled Cool Off")][EnumMember]CancelledCoolOff = 10,
        [Description("Cancelled")][EnumMember]Cancelled = 11,
-       [Description("Dead")][EnumMember]Dead = 12,
+       [Description("Abandoned")][EnumMember]Abandoned = 12,
         
     }    
     
@@ -187,8 +187,8 @@ namespace PS.Mothership.Core.Common.Template.Gen
 							new GenOpportunityStatus
 							{
 								EnumValue = 12,
-								EnumName = "Dead",
-								EnumDescription = "Dead",
+								EnumName = "Abandoned",
+								EnumDescription = "Abandoned",
 								OpportunityStatusKey = 12,
 								OpportunityStatusCategoryKey = 0,
 								ApplicationStatusCategoryKey = 0,
