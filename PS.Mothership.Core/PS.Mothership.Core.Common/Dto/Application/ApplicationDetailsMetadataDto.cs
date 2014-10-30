@@ -7,6 +7,7 @@ namespace PS.Mothership.Core.Common.Dto.Application
     [DataContract]
     public class ApplicationDetailsMetadataDto
     {
+        [DataMember]
         public IList<GenBusinessLegalType> BusinessLegalTypes { get; set; }
     }
 }
