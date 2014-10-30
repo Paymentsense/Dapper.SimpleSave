@@ -17,12 +17,13 @@ namespace PS.Mothership.Core.Common.Contracts
         ApplicationOpportunitiesMetadataDto GetApplicationOpportunitiesMetadata();
 
         [OperationContract]
+        ApplicationDetailsMetadataDto GetApplicationDetailsMetadata();
+
+        [OperationContract]
         ApplicationDetailsDto GetApplicationDetails(Guid applicationGuid);
 
         [OperationContract]
         ApplicationDetailsDto SaveApplicationDetails(ApplicationDetailsDto applicationDetailsDto);
 
-        [OperationContract]
-        ApplicationOpportunitiesMetadataDto GetApplicationDetailMetadata();
     }
 }
