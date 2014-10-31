@@ -152,6 +152,7 @@
     <Compile Include="Contracts\ISendMessageServiceCallback.cs" />
     <Compile Include="Dto\Application\ApplicationDetailsMetadataDto.cs" />
     <Compile Include="Dto\Application\ApplicationOpportunitiesMetadataDto.cs" />
+    <Compile Include="Dto\Application\ApplicationSummaryDto.cs" />
     <Compile Include="Dto\Application\LegalInfoDto.cs" />
     <Compile Include="Dto\Application\ApplicationDetailsDto.cs" />
     <Compile Include="Dto\Application\ApplicationDetailLocationDto.cs" />
@@ -160,6 +161,8 @@
     <Compile Include="Dto\Application\LocationMstDto.cs" />
     <Compile Include="Dto\Application\ApplicationOpportunitiesDto.cs" />
     <Compile Include="Dto\Application\ApplicationDto.cs" />
+    <Compile Include="Dto\Application\LocationSummaryDto.cs" />
+    <Compile Include="Dto\Application\OpportunitySummaryDto.cs" />
     <Compile Include="Dto\CompaniesHouse\CompanyAppointmentsDto.cs" />
     <Compile Include="Dto\Event\EventTrnFullDto.cs" />
     <Compile Include="Dto\Notification\NotificationReceivedDto.cs" />
