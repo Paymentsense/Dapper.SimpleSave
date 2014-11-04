@@ -36,7 +36,7 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public IList<EquipmentModelDto> Equipment { get; set; }
        
         [DataMember]
-        public IList<AddOnOfferDto> OfferAddOns { get; set; }
+        public IList<AddOnOfferTrnDto> OfferAddOns { get; set; }
 
         [DataMember]
         public string LastUpdatedUserName { get; set; }

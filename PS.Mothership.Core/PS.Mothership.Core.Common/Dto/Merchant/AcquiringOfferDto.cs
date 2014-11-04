@@ -52,7 +52,7 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public int ContractLengthKey { get; set; }
 
         [DataMember]
-        public int MmscKey { get; set; }
+        public int MinimumMonthlyServiceChargeKey { get; set; }
 
         [DataMember]
         public int AuthorisationFeeKey { get; set; }
