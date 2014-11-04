@@ -19,19 +19,23 @@ namespace PS.Mothership.Core.Common.Dto.Application
 
         [DataMember]
         public string VATNumber { get; set; }
-        
+
         [DataMember]
         public DateTime? CompanyStartDate { get; set; }
-        
+
         [DataMember]
         public DateTime? CompanyRegistrationDate { get; set; }
-        
+
         [DataMember]
         public string RegisteredCharityNumber { get; set; }
 
+        [DataMember]
+        public FullAddressDto Address { get; set; }
 
+        [DataMember]
+        public string RegisteredName { get; set; }
 
-
-        
+        [DataMember]
+        public string PhoneNumber { get; set; }
     }
 }
