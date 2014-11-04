@@ -158,12 +158,15 @@
     <Compile Include="Dto\Application\ApplicationOpportunitiesDto.cs" />
     <Compile Include="Dto\Application\ApplicationDto.cs" />
     <Compile Include="Dto\CompaniesHouse\CompanyAppointmentsDto.cs" />
+    <Compile Include="Dto\Merchant\AddOnServiceDefaultDto.cs" />
+    <Compile Include="Dto\Merchant\OfferDefaultDto.cs" />
     <Compile Include="Dto\Event\EventTrnFullDto.cs" />
     <Compile Include="Dto\Notification\NotificationReceivedDto.cs" />
     <Compile Include="Dto\FullPostcodeDto.cs" />
     <Compile Include="Dto\Iridium\IridiumConfirmResultsDto.cs" />
     <Compile Include="Dto\Iridium\IridiumRequestDto.cs" />
     <Compile Include="Dto\Iridium\IridiumResultsDto.cs" />
+    <Compile Include="Dto\Merchant\AddOnOfferTrnDto.cs" />
     <Compile Include="Dto\Merchant\CustomerTypeDto.cs" />
     <Compile Include="Dto\Merchant\EquipmentPriceTrnDto.cs" />
     <Compile Include="Dto\Merchant\EquipmentModelDto.cs" />
@@ -178,7 +181,7 @@
     <Compile Include="Dto\Merchant\EquipmentModelMetaDataDto.cs" />
     <Compile Include="Dto\Merchant\AddOnServicePriceDto.cs" />
     <Compile Include="Dto\Merchant\EquipmentOptionDto.cs" />
-    <Compile Include="Dto\Merchant\AddOnOfferDto.cs" />
+    <Compile Include="Dto\Merchant\AddOnServiceDto.cs" />
     <Compile Include="Dto\Merchant\EquipmentOptionLutDto.cs" />
     <Compile Include="Dto\Merchant\MerchantDetailDto.cs" />
     <Compile Include="Dto\Merchant\OfferAuthorizationFeeDto.cs" />
@@ -186,7 +189,6 @@
     <Compile Include="Dto\Merchant\GatewayOfferDto.cs" />
     <Compile Include="Dto\Merchant\RatesRangeDto.cs" />
     <Compile Include="Dto\Merchant\OfferFieldLutDto.cs" />
-    <Compile Include="Dto\Merchant\OfferMetadataDataRequestDto.cs" />
     <Compile Include="Dto\Merchant\OfferConstraintsLnkDto.cs" />
     <Compile Include="Dto\Merchant\OfferMetaDataDto.cs" />
     <Compile Include="Dto\Merchant\OfferMinimumMonthlyServiceChargeDto.cs" />

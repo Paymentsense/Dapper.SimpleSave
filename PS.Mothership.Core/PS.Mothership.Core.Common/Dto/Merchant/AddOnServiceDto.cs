@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
 using PS.Mothership.Core.Common.Template.Gen;
 using PS.Mothership.Core.Common.Template.Opp;
@@ -7,24 +8,28 @@ using PS.Mothership.Core.Common.Template.Prod;
 namespace PS.Mothership.Core.Common.Dto.Merchant
 {
     [DataContract]
-    public class AddOnOfferDto
+    public class AddOnServiceDto
     {
         [DataMember]
-        public Guid AddOnOfferGuid { get; set; }
+        public int AddOnServiceKey { get; set; }
 
         [DataMember]
-        public Guid OfferGuid { get; set; }
+        public string ShortName { get; set; }
 
         [DataMember]
-        public double SellPrice { get; set; }
+        public string Name { get; set; }
 
         [DataMember]
-        public double CostPrice { get; set; }
+        public string Description { get; set; }
 
         [DataMember]
         public GenRecStatusEnum RecStatusKey { get; set; }
 
         [DataMember]
-        public Guid AddOnServicePriceGuid { get; set; }
+        public IEnumerable<AddOnServicePriceDto> AddOnServicePrices { get; set; }
+        
+        [DataMember]
+        public int DisplayOrder { get; set; }
+
     }
 }
