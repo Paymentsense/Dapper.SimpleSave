@@ -11,6 +11,7 @@ namespace PS.Mothership.Core.Common.Template.Prod
     public enum ProdLessorEnum : int
     {
        [Description("")][EnumMember]None = 0,
+       [Description("")][EnumMember]FDGL = 1,
         
     }    
     
@@ -45,6 +46,15 @@ namespace PS.Mothership.Core.Common.Template.Prod
 								EnumDescription = "",
 								LessorKey = 0,
 								ShortName = "None",
+								RecStatusKey = (GenRecStatusEnum)1
+							},
+							new ProdLessor
+							{
+								EnumValue = 1,
+								EnumName = "FDGL",
+								EnumDescription = "",
+								LessorKey = 1,
+								ShortName = "FDGL",
 								RecStatusKey = (GenRecStatusEnum)1
 							},
                         };
