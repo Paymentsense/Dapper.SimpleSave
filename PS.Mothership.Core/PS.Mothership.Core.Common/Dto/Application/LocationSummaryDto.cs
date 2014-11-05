@@ -1,19 +1,22 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
 using PS.Mothership.Core.Common.Dto.Merchant;
 
 namespace PS.Mothership.Core.Common.Dto.Application
 {
     [DataContract]
-    public class ApplicationDto
+    public class LocationSummaryDto
     {
         [DataMember]
-        public Guid ApplicationGuid { get; set; }
+        public Guid LocationGuid { get; set; }
 
         [DataMember]
-        public ApplicationOpportunitiesDto Opportunities { get; set; }
+        public string LocationReference { get; set; }
 
         [DataMember]
-        public ApplicationDetailsDto Details { get; set; }
+        public IList<OpportunitySummaryDto> Opportunities { get; set; }
+
+
     }
 }

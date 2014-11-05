@@ -1,9 +1,8 @@
-﻿using PS.Mothership.Core.Common.Template.Gen;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 
-namespace PS.Mothership.Core.Common.Dto.Merchant
+namespace PS.Mothership.Core.Common.Dto.Application
 {
     [DataContract]
     public class ApplicationDetailLocationDto
