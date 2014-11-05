@@ -1,7 +1,6 @@
 using System;
 using System.ServiceModel;
 using PS.Mothership.Core.Common.Dto.Application;
-using PS.Mothership.Core.Common.Dto.Merchant;
 
 namespace PS.Mothership.Core.Common.Contracts
 {
@@ -13,6 +12,12 @@ namespace PS.Mothership.Core.Common.Contracts
 
         [OperationContract]
         ApplicationOpportunitiesDto SaveApplicationOpportunities(ApplicationOpportunitiesDto applicationOpportunitiesDto);
+
+        [OperationContract]
+        ApplicationOpportunitiesMetadataDto GetApplicationOpportunitiesMetadata();
+
+        [OperationContract]
+        ApplicationDetailsMetadataDto GetApplicationDetailsMetadata();
 
         [OperationContract]
         ApplicationDetailsDto GetApplicationDetails(Guid applicationGuid);
