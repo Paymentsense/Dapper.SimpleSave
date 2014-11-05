@@ -69,7 +69,7 @@
     </Reference>
     <Reference Include="Castle.Core, Version=3.3.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Castle.Core.3.3.1\lib\net45\Castle.Core.dll</HintPath>
+      <HintPath>..\packages\Castle.Core.3.3.2\lib\net45\Castle.Core.dll</HintPath>
     </Reference>
     <Reference Include="Castle.Facilities.Logging, Version=3.3.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -81,7 +81,7 @@
     </Reference>
     <Reference Include="Castle.Services.Logging.Log4netIntegration, Version=3.3.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Castle.Core-log4net.3.3.1\lib\net45\Castle.Services.Logging.Log4netIntegration.dll</HintPath>
+      <HintPath>..\packages\Castle.Core-log4net.3.3.2\lib\net45\Castle.Services.Logging.Log4netIntegration.dll</HintPath>
     </Reference>
     <Reference Include="Castle.Windsor, Version=3.3.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -164,12 +164,15 @@
     <Compile Include="Dto\Application\LocationSummaryDto.cs" />
     <Compile Include="Dto\Application\OpportunitySummaryDto.cs" />
     <Compile Include="Dto\CompaniesHouse\CompanyAppointmentsDto.cs" />
+    <Compile Include="Dto\Merchant\AddOnServiceDefaultDto.cs" />
+    <Compile Include="Dto\Merchant\OfferDefaultDto.cs" />
     <Compile Include="Dto\Event\EventTrnFullDto.cs" />
     <Compile Include="Dto\Notification\NotificationReceivedDto.cs" />
     <Compile Include="Dto\FullPostcodeDto.cs" />
     <Compile Include="Dto\Iridium\IridiumConfirmResultsDto.cs" />
     <Compile Include="Dto\Iridium\IridiumRequestDto.cs" />
     <Compile Include="Dto\Iridium\IridiumResultsDto.cs" />
+    <Compile Include="Dto\Merchant\AddOnOfferTrnDto.cs" />
     <Compile Include="Dto\Merchant\CustomerTypeDto.cs" />
     <Compile Include="Dto\Merchant\EquipmentPriceTrnDto.cs" />
     <Compile Include="Dto\Merchant\EquipmentModelDto.cs" />
@@ -184,7 +187,7 @@
     <Compile Include="Dto\Merchant\EquipmentModelMetaDataDto.cs" />
     <Compile Include="Dto\Merchant\AddOnServicePriceDto.cs" />
     <Compile Include="Dto\Merchant\EquipmentOptionDto.cs" />
-    <Compile Include="Dto\Merchant\AddOnOfferDto.cs" />
+    <Compile Include="Dto\Merchant\AddOnServiceDto.cs" />
     <Compile Include="Dto\Merchant\EquipmentOptionLutDto.cs" />
     <Compile Include="Dto\Merchant\MerchantDetailDto.cs" />
     <Compile Include="Dto\Merchant\OfferAuthorizationFeeDto.cs" />
@@ -192,7 +195,6 @@
     <Compile Include="Dto\Merchant\GatewayOfferDto.cs" />
     <Compile Include="Dto\Merchant\RatesRangeDto.cs" />
     <Compile Include="Dto\Merchant\OfferFieldLutDto.cs" />
-    <Compile Include="Dto\Merchant\OfferMetadataDataRequestDto.cs" />
     <Compile Include="Dto\Merchant\OfferConstraintsLnkDto.cs" />
     <Compile Include="Dto\Merchant\OfferMetaDataDto.cs" />
     <Compile Include="Dto\Merchant\OfferMinimumMonthlyServiceChargeDto.cs" />

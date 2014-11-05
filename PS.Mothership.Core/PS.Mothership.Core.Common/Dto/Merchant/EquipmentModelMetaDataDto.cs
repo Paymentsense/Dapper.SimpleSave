@@ -34,6 +34,9 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public double CeilingPrice { get; set; }
 
         [DataMember]
+        public double DefaultPrice { get; set; }
+
+        [DataMember]
         public IList<EquipmentOptionLutDto> EquipmentOptions { get; set; }
 
         [DataMember]
