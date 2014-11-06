@@ -36,7 +36,7 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public int EquipmentVendorKey { get; set; }
 
         [DataMember]
-        public int LessorKey { get; set; }
+        public ProdLessorEnum LessorKey { get; set; }
 
         [DataMember]
         public IList<EquipmentOptionDto> EquipmentOptions { get; set; } 
