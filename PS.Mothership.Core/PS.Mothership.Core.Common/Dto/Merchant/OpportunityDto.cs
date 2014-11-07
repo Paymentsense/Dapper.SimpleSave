@@ -31,6 +31,7 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         [DataMember]
         public Guid CurrentStatusTrnGuid { get; set; }
 
-        
+        [DataMember]
+        public OfferDto CurrentOffer { get; set; }
     }
 }
