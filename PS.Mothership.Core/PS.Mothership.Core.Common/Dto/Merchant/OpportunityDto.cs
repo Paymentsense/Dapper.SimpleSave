@@ -35,7 +35,7 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public OfferDto CurrentOffer { get; set; }
 
         [DataMember]
-        public Guid UpdateUserGuid { get; set; }
+        public Guid UpdateSessionGuid { get; set; }
 
         [DataMember]
         public string UpdateUsername { get; set; }
