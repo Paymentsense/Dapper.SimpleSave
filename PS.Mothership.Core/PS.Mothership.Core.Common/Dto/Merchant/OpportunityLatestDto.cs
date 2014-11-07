@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PS.Mothership.Core.Common.Dto.Merchant
 {
@@ -18,5 +15,14 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
 
         [DataMember]
         public IList<OfferVersionDto> OfferVersions { get; set; }
+
+        [DataMember]
+        public DateTimeOffset UpdateDate { get; set; }
+
+        [DataMember]
+        public Guid UpdateSessionGuid { get; set; }
+
+        [DataMember]
+        public string UpdateUsername { get; set; }
     }
 }
