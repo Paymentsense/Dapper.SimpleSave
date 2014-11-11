@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Runtime.Serialization;
-using PS.Mothership.Core.Common.Dto.Merchant;
+using PS.Mothership.Core.Common.Template.Gen;
 
 namespace PS.Mothership.Core.Common.Dto.Application
 {
@@ -23,7 +23,7 @@ namespace PS.Mothership.Core.Common.Dto.Application
         public string Reference { get; set; }
 
         [DataMember]
-        public string Status { get; set; }
+        public GenOpportunityStatusEnum OpportunityStatusKey { get; set; }
 
         [DataMember]
         public string ContractLengthDescription { get; set; }

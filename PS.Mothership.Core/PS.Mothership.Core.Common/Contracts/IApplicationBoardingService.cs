@@ -25,5 +25,8 @@ namespace PS.Mothership.Core.Common.Contracts
         [OperationContract]
         ApplicationDetailsDto SaveApplicationDetails(ApplicationDetailsDto applicationDetailsDto);
 
+        [OperationContract]
+        ApplicationInfoDto GetApplicationInfo(Guid applicationGuid); 
+
     }
 }
