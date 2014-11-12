@@ -17,10 +17,10 @@ namespace PS.Mothership.Core.Common.Dto.Application
         public double Debit { get; set; }
 
         [DataMember]
-        public string Description { get; set; }
+        public string TypeOfTransaction { get; set; }
 
         [DataMember]
-        public string Reference { get; set; }
+        public string ProductType { get; set; }
 
         [DataMember]
         public GenOpportunityStatusEnum OpportunityStatusKey { get; set; }
