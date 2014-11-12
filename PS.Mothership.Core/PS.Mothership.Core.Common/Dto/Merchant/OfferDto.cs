@@ -15,7 +15,7 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public string OfferReference { get; set; }
 
         [DataMember]
-        public OpportunityDto Opportunity { get; set; }
+        public Guid OpportunityGuid { get; set; }
 
         [DataMember]
         public GatewayOfferDto GatewayOffer { get; set; }
