@@ -17,13 +17,13 @@ namespace PS.Mothership.Core.Common.Dto.Application
         public double TotalLtr { get; set; }
 
         [DataMember]
-        public string LastModifiedBy { get; set; }
+        public string UpdateUsername { get; set; }
 
         [DataMember]
-        public Guid LastUpdateSessionGuid { get; set; }
+        public DateTimeOffset UpdateDate { get; set; }
 
         [DataMember]
-        public DateTimeOffset LastModifiedOn { get; set; }
+        public Guid UpdateSessionGuid { get; set; }
 
         [DataMember]
         public string Status { get; set; }
