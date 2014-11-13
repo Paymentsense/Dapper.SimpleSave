@@ -42,5 +42,8 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
 
         [DataMember]
         public DateTimeOffset UpdateDate { get; set; }
+
+        [DataMember]
+        public IList<OfferVersionDto> OfferVersions { get; set; }
     }
 }
