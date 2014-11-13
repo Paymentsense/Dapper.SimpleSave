@@ -20,7 +20,10 @@ namespace PS.Mothership.Core.Common.Dto.Application
         public string LastModifiedBy { get; set; }
 
         [DataMember]
-        public DateTime LastModifiedOn { get; set; }
+        public Guid LastUpdateSessionGuid { get; set; }
+
+        [DataMember]
+        public DateTimeOffset LastModifiedOn { get; set; }
 
         [DataMember]
         public string Status { get; set; }
