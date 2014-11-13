@@ -28,6 +28,7 @@ namespace PS.Mothership.Core.Common.Dto.Application
         [DataMember]
         public string ContractLengthDescription { get; set; }
 
-
+        [DataMember]
+        public string Status { get; set; }
     }
 }
