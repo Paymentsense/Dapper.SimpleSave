@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+using PS.Mothership.Core.Common.Template.Gen;
 
 namespace PS.Mothership.Core.Common.Dto.Application
 {
@@ -27,6 +28,9 @@ namespace PS.Mothership.Core.Common.Dto.Application
 
         [DataMember]
         public string Status { get; set; }
+
+        [DataMember]
+        public GenOpportunityStatusEnum ApplicationStatusKey { get; set; }
 
         [DataMember]
         public IList<LocationSummaryDto> Locations { get; set; }
