@@ -6,7 +6,7 @@ using PS.Mothership.Core.Common.Dto.Merchant;
 namespace PS.Mothership.Core.Common.Dto.Application
 {
     [DataContract]
-    public class LocationMstDto
+    public class LocationDto
     {
         [DataMember]
         public Guid LocationGuid { get; set; }
@@ -24,6 +24,6 @@ namespace PS.Mothership.Core.Common.Dto.Application
         public Guid TradingAddressGuid { get; set; }
 
         [DataMember]
-        public IList<LocationProductMstDto> LocationProducts { get; set; }
+        public IList<LocationProductDto> LocationProducts { get; set; }
     }
 }

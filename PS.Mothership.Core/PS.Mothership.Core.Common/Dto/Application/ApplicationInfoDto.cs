@@ -1,19 +1,21 @@
 ﻿using System;
 using System.Runtime.Serialization;
 using PS.Mothership.Core.Common.Dto.Merchant;
+using PS.Mothership.Core.Common.Template.Gen;
 
 namespace PS.Mothership.Core.Common.Dto.Application
 {
     [DataContract]
-    public class ApplicationDto
+    public class ApplicationInfoDto
     {
         [DataMember]
         public Guid ApplicationGuid { get; set; }
 
         [DataMember]
-        public ApplicationOpportunitiesDto Opportunities { get; set; }
+        public Guid MerchantGuid { get; set; }
 
         [DataMember]
-        public ApplicationDetailsDto Details { get; set; }
+        public ApplicationStatusDto Status { get; set; }
+        
     }
 }
