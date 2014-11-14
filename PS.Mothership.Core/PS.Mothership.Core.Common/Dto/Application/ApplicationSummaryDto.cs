@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+using PS.Mothership.Core.Common.Template.Gen;
 
 namespace PS.Mothership.Core.Common.Dto.Application
 {
@@ -17,13 +18,19 @@ namespace PS.Mothership.Core.Common.Dto.Application
         public double TotalLtr { get; set; }
 
         [DataMember]
-        public string LastModifiedBy { get; set; }
+        public string UpdateUsername { get; set; }
 
         [DataMember]
-        public DateTime LastModifiedOn { get; set; }
+        public DateTimeOffset UpdateDate { get; set; }
+
+        [DataMember]
+        public Guid UpdateSessionGuid { get; set; }
 
         [DataMember]
         public string Status { get; set; }
+
+        [DataMember]
+        public GenOpportunityStatusEnum ApplicationStatusKey { get; set; }
 
         [DataMember]
         public IList<LocationSummaryDto> Locations { get; set; }
