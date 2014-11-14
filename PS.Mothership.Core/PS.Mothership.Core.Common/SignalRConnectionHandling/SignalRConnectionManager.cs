@@ -2,9 +2,11 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 
 namespace PS.Mothership.Core.Common.SignalRConnectionHandling
 {
+    [DataContract]
     public class SignalRConnectionManager : ISignalRConnectionManager
     {
         #region Constants
@@ -19,19 +21,16 @@ namespace PS.Mothership.Core.Common.SignalRConnectionHandling
         /// storage to keep count of the current connections, using a ConcurrentDictionary since there is no ConcurrentSet 
         /// the value field will be used to hold the page visibility status for each connection
         /// </summary>
-        public ConcurrentDictionary<Guid, bool> Connections { get; set; }
-
-        private ISignalRUser _signalRUser;
+        [DataMember]
+        private readonly ConcurrentDictionary<Guid, bool> _connections;
 
         #endregion
 
         #region Constructor
 
-        public SignalRConnectionManager(ISignalRUser signalRUser)
+        public SignalRConnectionManager()
         {
-            Connections = new ConcurrentDictionary<Guid, bool>();
-
-            _signalRUser = signalRUser;
+            _connections = new ConcurrentDictionary<Guid, bool>();
         }
 
         #endregion
@@ -46,7 +45,7 @@ namespace PS.Mothership.Core.Common.SignalRConnectionHandling
         public bool CanAddConnection()
         {
 
-            return Connections.Count < MaxConnections;
+            return _connections.Count < MaxConnections;
         }
 
         /// <summary>
@@ -59,7 +58,7 @@ namespace PS.Mothership.Core.Common.SignalRConnectionHandling
         public bool IsLastConnection()
         {
 
-            return Connections.Count == 1;
+            return _connections.Count == 1;
         }
 
         /// <summary>
@@ -71,9 +70,9 @@ namespace PS.Mothership.Core.Common.SignalRConnectionHandling
         {
 
             bool dontCare;
-            foreach (Guid g in Connections.Keys.Where(r => r != connectionGuid))
+            foreach (Guid g in _connections.Keys.Where(r => r != connectionGuid))
             {
-                Connections.TryRemove(g, out dontCare);
+                _connections.TryRemove(g, out dontCare);
             }
         }
 
@@ -82,17 +81,12 @@ namespace PS.Mothership.Core.Common.SignalRConnectionHandling
         /// </summary>
         /// <param name="connectionGuid"></param>
         /// <param name="visible"></param>
-        public bool AddConnection(Guid connectionGuid, bool visible = true)
+        public virtual bool AddConnection(Guid connectionGuid, bool visible = true)
         {
             bool success = false;
             if (CanAddConnection())
             {
-                success = Connections.TryAdd(connectionGuid, visible);
-            }
-
-            if (success)
-            {
-                _signalRUser.UpdateCollection();
+                success = _connections.TryAdd(connectionGuid, visible);
             }
 
             return success;
@@ -103,16 +97,11 @@ namespace PS.Mothership.Core.Common.SignalRConnectionHandling
         /// </summary>
         /// <param name="connectionGuid"></param>
         /// <returns></returns>
-        public bool RemoveConnection(Guid connectionGuid)
+        public virtual bool RemoveConnection(Guid connectionGuid)
         {
             bool valueRemoved;
 
-            var success = Connections.TryRemove(connectionGuid, out valueRemoved);
-
-            if (success)
-            {
-                _signalRUser.UpdateCollection();
-            }
+            var success = _connections.TryRemove(connectionGuid, out valueRemoved);
 
             return success;
         }
@@ -123,7 +112,7 @@ namespace PS.Mothership.Core.Common.SignalRConnectionHandling
         /// <returns></returns>
         public int GetConnectionCount()
         {
-            return Connections.Count;
+            return _connections.Count;
         }
 
         /// <summary>
@@ -131,14 +120,12 @@ namespace PS.Mothership.Core.Common.SignalRConnectionHandling
         /// </summary>
         /// <param name="connectionGuid"></param>
         /// <param name="visible"></param>
-        public void SetVisibility(Guid connectionGuid, bool visible)
+        public virtual void SetVisibility(Guid connectionGuid, bool visible)
         {
-            if (Connections.ContainsKey(connectionGuid))
+            if (_connections.ContainsKey(connectionGuid))
             {
-                Connections[connectionGuid] = visible;
+                _connections[connectionGuid] = visible;
             }
-               
-            _signalRUser.UpdateCollection();
         }
 
         /// <summary>
@@ -147,7 +134,7 @@ namespace PS.Mothership.Core.Common.SignalRConnectionHandling
         /// <returns></returns>
         public int GetVisibleCount()
         {
-            return Connections.Values.Count(r => r);
+            return _connections.Values.Count(r => r);
         }
 
         /// <summary>
@@ -156,7 +143,7 @@ namespace PS.Mothership.Core.Common.SignalRConnectionHandling
         /// <returns></returns>
         public ICollection<Guid> GetConnectionGuids()
         {
-            return Connections.Keys;
+            return _connections.Keys;
         }
 
         #endregion
