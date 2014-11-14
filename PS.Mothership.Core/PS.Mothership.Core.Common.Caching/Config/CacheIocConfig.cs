@@ -1,12 +1,11 @@
-﻿using System;
-using Castle.MicroKernel.Registration;
+﻿using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 using Microsoft.ApplicationServer.Caching;
-using PS.Mothership.Caching.Contracts;
-using PS.Mothership.Caching.Implementations;
+using PS.Mothership.Core.Common.Caching.Contracts;
+using PS.Mothership.Core.Common.Caching.Implementations;
 using PS.Mothership.Core.Common.Config;
 
-namespace PS.Mothership.Caching.Config
+namespace PS.Mothership.Core.Common.Caching.Config
 {
     public class CacheIocConfig : ILayerIocBuilder
     {

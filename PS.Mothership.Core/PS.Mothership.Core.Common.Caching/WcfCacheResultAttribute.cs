@@ -7,11 +7,11 @@ using System.ServiceModel.Channels;
 using System.ServiceModel.Description;
 using System.ServiceModel.Dispatcher;
 using System.Threading.Tasks;
-using PS.Mothership.Core.Common.Enums;
 using PS.Mothership.Core.Common.Contracts;
+using PS.Mothership.Core.Common.Enums;
 using PS.Mothership.Core.Common.Helper;
 
-namespace PS.Mothership.Caching.Service
+namespace PS.Mothership.Core.Common.Caching
 {
     /// <summary>
     ///     Provider for caching
