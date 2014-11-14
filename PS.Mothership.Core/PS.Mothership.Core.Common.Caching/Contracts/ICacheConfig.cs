@@ -1,4 +1,4 @@
-﻿namespace PS.Mothership.Caching.Contracts
+﻿namespace PS.Mothership.Core.Common.Caching.Contracts
 {
     public interface ICacheConfig
     {

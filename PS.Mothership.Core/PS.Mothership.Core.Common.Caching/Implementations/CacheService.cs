@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.ApplicationServer.Caching;
-using PS.Mothership.Caching.Contracts;
+using PS.Mothership.Core.Common.Caching.Contracts;
 using PS.Mothership.Core.Common.Contracts;
 
-namespace PS.Mothership.Caching.Implementations
+namespace PS.Mothership.Core.Common.Caching.Implementations
 {
     public class CacheService : ICacheService
     {

@@ -7,8 +7,8 @@
     <ProjectGuid>{3DA2126D-265A-412E-ADB2-E2581954702E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PS.Mothership.Caching</RootNamespace>
-    <AssemblyName>PS.Mothership.Caching</AssemblyName>
+    <RootNamespace>PS.Mothership.Core.Common.Caching</RootNamespace>
+    <AssemblyName>PS.Mothership.Core.Common.Caching</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>

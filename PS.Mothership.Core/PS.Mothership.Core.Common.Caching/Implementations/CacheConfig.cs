@@ -1,8 +1,8 @@
 ﻿using System.Configuration;
-using PS.Mothership.Caching.Contracts;
+using PS.Mothership.Core.Common.Caching.Contracts;
 using PS.Mothership.Core.Common.Constants;
 
-namespace PS.Mothership.Caching.Implementations
+namespace PS.Mothership.Core.Common.Caching.Implementations
 {
     public class CacheConfig : ICacheConfig
     {
