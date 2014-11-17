@@ -6,7 +6,7 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
     public class OfferMinimumMonthlyServiceChargeDto
     {
         [DataMember]
-        public int MmscKey { get; set; }
+        public int MinimumMonthlyServiceChargeKey { get; set; }
 
         [DataMember]
         public string Name { get; set; }

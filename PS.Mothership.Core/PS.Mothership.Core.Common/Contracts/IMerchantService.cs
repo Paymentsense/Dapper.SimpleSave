@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ServiceModel;
+using PS.Mothership.Core.Common.Dto.Application;
 using PS.Mothership.Core.Common.Dto.Merchant;
 
 namespace PS.Mothership.Core.Common.Contracts
@@ -18,5 +20,8 @@ namespace PS.Mothership.Core.Common.Contracts
 
         [OperationContract]
         OpportunityLatestOfferDto GetOpportunity(Guid id);
+
+        [OperationContract]
+        IEnumerable<ApplicationSummaryDto> GetApplicationSummaries(Guid merchantGuid);
     }
 }

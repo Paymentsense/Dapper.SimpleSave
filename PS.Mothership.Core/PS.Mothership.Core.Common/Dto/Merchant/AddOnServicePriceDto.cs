@@ -7,24 +7,39 @@ using PS.Mothership.Core.Common.Template.Prod;
 namespace PS.Mothership.Core.Common.Dto.Merchant
 {
     [DataContract]
-    public class AddOnServicePriceDtos
+    public class AddOnServicePriceDto
     {
         [DataMember]
-        public Guid AddOnOfferGuid { get; set; }
-
-        [DataMember]
-        public Guid OfferGuid { get; set; }
-
-        [DataMember]
-        public double SellPrice { get; set; }
-
-        [DataMember]
-        public double CostPrice { get; set; }
-
-        [DataMember]
-        public GenRecStatusEnum RecStatusKey { get; set; }
-
-        [DataMember]
         public Guid AddOnServicePriceGuid { get; set; }
+
+        [DataMember]
+        public int AddOnServiceKey { get; set; }
+
+        [DataMember]
+        public int CountryKey { get; set; }
+
+        [DataMember]
+        public DateTime EffectiveDate { get; set; }
+
+        [DataMember]
+        public double RegularPrice { get; set; }
+
+        [DataMember]
+        public double CeilingPrice { get; set; }
+
+        [DataMember]
+        public double WholesaleCost { get; set; }
+
+        [DataMember]
+        public int CalculatorVersionKey { get; set; }
+
+        [DataMember]
+        public double FloorPrice { get; set; }
+
+        [DataMember]
+        public string DisplayName { get; set; }
+
+        [DataMember]
+        public OppProvisionTypeEnum ProvisionTypeKey { get; set; }
     }
 }
