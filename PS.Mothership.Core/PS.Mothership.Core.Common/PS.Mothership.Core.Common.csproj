@@ -125,6 +125,7 @@
     <Compile Include="Constants\CacheRegionConstants.cs" />
     <Compile Include="Constants\ConfigConstants.cs" />
     <Compile Include="Constants\EntityConstants.cs" />
+    <Compile Include="Constants\ExceptionConstants.cs" />
     <Compile Include="Constants\GlobalConstants.cs" />
     <Compile Include="Constants\NamingConstants.cs" />
     <Compile Include="Constructs\PagedList.cs" />
@@ -400,10 +401,12 @@
     <Compile Include="Helper\CTime.cs" />
     <Compile Include="Helper\DebugStopwatch.cs" />
     <Compile Include="Helper\DynamicContractResolver.cs" />
+    <Compile Include="SignalRConnectionHandling\IClientsCollection.cs" />
     <Compile Include="SignalRConnectionHandling\ISignalRConnectionManager.cs" />
     <Compile Include="Helper\MSLogger.cs" />
     <Compile Include="Helper\RandomStringGenerator.cs" />
     <Compile Include="SessionHandling\SessionManager.cs" />
+    <Compile Include="SignalRConnectionHandling\ISignalRUser.cs" />
     <Compile Include="SignalRConnectionHandling\SignalRConnectionManager.cs" />
     <Compile Include="Helper\UniqueKeyGenerator.cs" />
     <Compile Include="Helper\JsonHelper.cs" />
@@ -412,6 +415,7 @@
     <Compile Include="IPManager\IPInspector.cs" />
     <Compile Include="Contracts\ISearchService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SignalRConnectionHandling\SignalRUser.cs" />
     <Compile Include="ValidationCode\CodeMaker.cs" />
     <Compile Include="Helper\CryptoRandom.cs" />
     <Compile Include="Helper\RandomProvider.cs" />
