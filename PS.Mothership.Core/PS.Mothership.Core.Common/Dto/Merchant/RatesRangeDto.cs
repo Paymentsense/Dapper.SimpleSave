@@ -13,12 +13,21 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public GenCountryEnum CountryKey { get; set; }
 
         [DataMember]
+        public int CustomerTypeKey { get; set; }
+
+        [DataMember]
         public int TypeOfTransactionKey { get; set; }
+
+        [DataMember]
+        public int CalculatorVersionKey { get; set; }
 
         [DataMember]
         public double FloorPrice { get; set; }
 
         [DataMember]
         public double? CeilingPrice { get; set; }
+
+        [DataMember]
+        public double DefaultPrice { get; set; }
     }
 }

@@ -21,5 +21,11 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
 
         [DataMember]
         public Guid OwnerUserGuid { get; set; }
+
+        [DataMember]
+        public OppReasonEnum ReasonKey { get; set; }
+
+        [DataMember]
+        public Guid ReferRoleGuid { get; set; }
     }
 }

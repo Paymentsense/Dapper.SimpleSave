@@ -49,6 +49,12 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public int ContractLengthKey { get; set; }
 
         [DataMember]
+        public int CustomerTypeKey { get; set; }
+
+        [DataMember]
+        public int AuthorisationFeeKey { get; set; }
+
+        [DataMember]
         public GenRecStatusEnum RecStatusKey { get; set; }
     }
 }
