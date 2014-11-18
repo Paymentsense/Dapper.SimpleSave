@@ -8,6 +8,8 @@ namespace PS.Mothership.Core.Common.Dto.Application
     [DataContract]
     public class LegalInfoDto
     {
+
+        //Business Info section
         [DataMember]
         public Guid ApplicationGuid { get; set; }
 
@@ -40,6 +42,29 @@ namespace PS.Mothership.Core.Common.Dto.Application
 
         [DataMember]
         public string PhoneNumber { get; set; }
+
+
+        //Risk info section
+        [DataMember]
+        public int PersonalInvestment { get; set; }
+
+        [DataMember]
+        public int YearsTrading { get; set; }
+
+        [DataMember]
+        public int YearsInIndustry { get; set; }
+
+        [DataMember]
+        public bool BusinessBankAccountHeld { get; set; }
+
+        [DataMember]
+        public DateTimeOffset AccountOpenDate { get; set; }
+
+        [DataMember]
+        public int OverdraftLimit { get; set; }
+
+        [DataMember]
+        public int[] AdvertisingTypes { get; set; }
 
         [DataMember]
         public string CommentToUnderwriting { get; set; }
