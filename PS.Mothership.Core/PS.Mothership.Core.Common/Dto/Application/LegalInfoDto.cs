@@ -40,5 +40,9 @@ namespace PS.Mothership.Core.Common.Dto.Application
 
         [DataMember]
         public string PhoneNumber { get; set; }
+
+        [DataMember]
+        public string CommentToUnderwriting { get; set; }
+
     }
 }
