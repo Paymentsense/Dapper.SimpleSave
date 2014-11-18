@@ -36,6 +36,9 @@ namespace PS.Mothership.Core.Common.Dto.Application
         public string RegisteredName { get; set; }
 
         [DataMember]
+        public int PhoneCountryKey { get; set; }
+
+        [DataMember]
         public string PhoneNumber { get; set; }
     }
 }
