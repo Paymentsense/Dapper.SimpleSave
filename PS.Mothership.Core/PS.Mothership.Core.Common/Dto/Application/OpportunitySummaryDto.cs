@@ -1,6 +1,7 @@
-﻿using System;
+﻿using PS.Mothership.Core.Common.Template.Gen;
+using PS.Mothership.Core.Common.Template.Opp;
+using System;
 using System.Runtime.Serialization;
-using PS.Mothership.Core.Common.Template.Gen;
 
 namespace PS.Mothership.Core.Common.Dto.Application
 {
@@ -17,18 +18,18 @@ namespace PS.Mothership.Core.Common.Dto.Application
         public double Debit { get; set; }
 
         [DataMember]
-        public string TypeOfTransaction { get; set; }
+        public OppTypeOfTransactionEnum TypeOfTransactionKey { get; set; }
 
         [DataMember]
-        public string ProductType { get; set; }
+        public string Vendor { get; set; }
+
+        [DataMember]
+        public string Model { get; set; }
 
         [DataMember]
         public GenOpportunityStatusEnum OpportunityStatusKey { get; set; }
 
         [DataMember]
         public string ContractLengthDescription { get; set; }
-
-        [DataMember]
-        public string Status { get; set; }
     }
 }
