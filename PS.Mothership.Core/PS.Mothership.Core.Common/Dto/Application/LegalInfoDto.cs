@@ -21,10 +21,10 @@ namespace PS.Mothership.Core.Common.Dto.Application
         public string VATNumber { get; set; }
 
         [DataMember]
-        public DateTime? CompanyStartDate { get; set; }
+        public DateTimeOffset? CompanyStartDate { get; set; }
 
         [DataMember]
-        public DateTime? CompanyRegistrationDate { get; set; }
+        public DateTimeOffset? CompanyRegistrationDate { get; set; }
 
         [DataMember]
         public string RegisteredCharityNumber { get; set; }
