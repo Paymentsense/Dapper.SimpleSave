@@ -26,6 +26,6 @@ namespace PS.Mothership.Core.Common.Contracts
         IEnumerable<ApplicationSummaryDto> GetApplicationSummaries(Guid merchantGuid);
 
         [OperationContract]
-        IEnumerable<PhoneCountryCodeMetadata> GetPhoneCountryCodeMetadata();
+        IEnumerable<PhoneCountryCodeMetadataDto> GetPhoneCountryCodeMetadata();
     }
 }

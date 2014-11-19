@@ -3,7 +3,7 @@
 namespace PS.Mothership.Core.Common.Dto.Contact
 {
     [DataContract]
-    public class PhoneCountryCodeMetadata
+    public class PhoneCountryCodeMetadataDto
     {
         [DataMember]
         public int CountryKey { get; set; }
