@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ServiceModel;
 using PS.Mothership.Core.Common.Dto.Application;
+using PS.Mothership.Core.Common.Dto.Contact;
 using PS.Mothership.Core.Common.Dto.Merchant;
 
 namespace PS.Mothership.Core.Common.Contracts
@@ -23,5 +24,8 @@ namespace PS.Mothership.Core.Common.Contracts
 
         [OperationContract]
         IEnumerable<ApplicationSummaryDto> GetApplicationSummaries(Guid merchantGuid);
+
+        [OperationContract]
+        IEnumerable<PhoneCountryCodeMetadata> GetPhoneCountryCodeMetadata();
     }
 }
