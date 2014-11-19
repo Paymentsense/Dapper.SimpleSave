@@ -9,6 +9,6 @@ namespace PS.Mothership.Core.Common.Dto.Contact
         public int CountryKey { get; set; }
 
         [DataMember]
-        public int CountryCode { get; set; }
+        public string CountryCode { get; set; }
     }
 }
