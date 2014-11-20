@@ -21,10 +21,7 @@ namespace PS.Mothership.Core.Common.Dto.Application
         public OppTypeOfTransactionEnum TypeOfTransactionKey { get; set; }
 
         [DataMember]
-        public string Vendor { get; set; }
-
-        [DataMember]
-        public string Model { get; set; }
+        public string ProductType { get; set; }
 
         [DataMember]
         public GenOpportunityStatusEnum OpportunityStatusKey { get; set; }
