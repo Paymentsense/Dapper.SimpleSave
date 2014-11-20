@@ -170,6 +170,7 @@
     <Compile Include="Dto\Application\OpportunitySummaryDto.cs" />
     <Compile Include="Dto\CompaniesHouse\CompanyAppointmentsDto.cs" />
     <Compile Include="Dto\Merchant\AddOnServiceDefaultDto.cs" />
+    <Compile Include="Dto\Merchant\CurrencyCodeDto.cs" />
     <Compile Include="Dto\Merchant\OfferDefaultDto.cs" />
     <Compile Include="Dto\Event\EventTrnFullDto.cs" />
     <Compile Include="Dto\Notification\NotificationReceivedDto.cs" />
