@@ -64,7 +64,7 @@ namespace PS.Mothership.Core.Common.Dto.Application
         public int OverdraftLimit { get; set; }
 
         [DataMember]
-        public int[] AdvertisingTypes { get; set; }
+        public int AdvertisingTypes { get; set; }
 
         [DataMember]
         public string CommentToUnderwriting { get; set; }
