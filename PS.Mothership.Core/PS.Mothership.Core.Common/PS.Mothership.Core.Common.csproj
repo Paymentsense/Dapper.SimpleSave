@@ -219,6 +219,8 @@
     <Compile Include="Dto\Merchant\MerchantOfferDto.cs" />
     <Compile Include="Dto\User\UserImpersonationDto.cs" />
     <Compile Include="Enums\NotificationIcon.cs" />
+    <Compile Include="Extension\DoubleExtension.cs" />
+    <Compile Include="Extension\IntExtension.cs" />
     <Compile Include="Helper\EnumHelper.cs" />
     <Compile Include="Dto\SchedulerManagement\JobProfileDto.cs" />
     <Compile Include="Dto\SchedulerManagement\TriggerProfileDto.cs" />
