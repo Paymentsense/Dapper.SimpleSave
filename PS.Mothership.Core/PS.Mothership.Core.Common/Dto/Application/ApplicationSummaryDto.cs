@@ -27,7 +27,7 @@ namespace PS.Mothership.Core.Common.Dto.Application
         public Guid UpdateSessionGuid { get; set; }
 
         [DataMember]
-        public ApplicationStatusDto ApplicationStatus { get; set; }
+        public GenOpportunityStatusEnum ApplicationStatusKey { get; set; }
 
         [DataMember]
         public IList<LocationSummaryDto> Locations { get; set; }

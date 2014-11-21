@@ -25,8 +25,5 @@ namespace PS.Mothership.Core.Common.Dto.Application
 
         [DataMember]
         public string ApplicationReference { get; set; }
-
-        [DataMember]
-        public ApplicationSummaryDto AppSummary { get; set; }
     }
 }
