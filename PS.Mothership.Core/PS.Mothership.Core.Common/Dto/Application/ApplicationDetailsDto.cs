@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
 using PS.Mothership.Core.Common.Dto.Merchant;
 using PS.Mothership.Core.Common.Template.Gen;
@@ -15,7 +16,7 @@ namespace PS.Mothership.Core.Common.Dto.Application
         public LegalInfoDto LegalInfo { get; set; }
 
         [DataMember]
-        public ApplicationDetailLocationDto ApplicationDetailLocation { get; set; }
+        public IEnumerable<LocationMstDto> ApplicationDetailLocation { get; set; }
 
 
 
