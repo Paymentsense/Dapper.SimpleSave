@@ -17,16 +17,16 @@ namespace PS.Mothership.Core.Common.Dto.Application
         public GenBusinessLegalTypeEnum BusinessType { get; set; }
 
         [DataMember]
-        public int CompanyRegistrationNumber { get; set; }
+        public string CompanyRegistrationNumber { get; set; }
 
         [DataMember]
         public string VATNumber { get; set; }
 
         [DataMember]
-        public DateTimeOffset? CompanyStartDate { get; set; }
+        public DateTime? CompanyStartDate { get; set; }
 
         [DataMember]
-        public DateTimeOffset? CompanyRegistrationDate { get; set; }
+        public DateTime? CompanyRegistrationDate { get; set; }
 
         [DataMember]
         public string RegisteredCharityNumber { get; set; }
@@ -58,7 +58,7 @@ namespace PS.Mothership.Core.Common.Dto.Application
         public bool BusinessBankAccountHeld { get; set; }
 
         [DataMember]
-        public DateTimeOffset AccountOpenDate { get; set; }
+        public DateTime AccountOpenDate { get; set; }
 
         [DataMember]
         public int OverdraftLimit { get; set; }
