@@ -28,8 +28,15 @@ namespace PS.Mothership.Core.Common.Dto.Application
         public int LocationNumber { get; set; }
 
         [DataMember]
-        public int PremisesOwnershipTypeKey { get; set; }
+        public Guid BillToAddressGuid { get; set; }
 
+        [DataMember]
+        public Guid ShippingAddressGuid { get; set; }
+
+        //[DataMember]
+        //public int PremisesOwnershipTypeKey { get; set; }
+
+        //TODO: do we need this parameter?
         [DataMember]
         public DateTime PremisesOpenDate { get; set; }
 
@@ -67,28 +74,31 @@ namespace PS.Mothership.Core.Common.Dto.Application
         public int MembershipsPaymentPercentOfSales { get; set; }
 
         [DataMember]
+        public int MembershipsAverageLengthMonths { get; set; }
+
+        [DataMember]
         public int RefundDaysKey { get; set; }
 
         [DataMember]
-        public int Delivery0To7Days { get; set; }
+        public int Delivery0To7DaysPercent { get; set; }
 
         [DataMember]
-        public int Delivery8To14Days { get; set; }
+        public int Delivery8To14DaysPercent { get; set; }
 
         [DataMember]
-        public int Delivery15To30Days { get; set; }
+        public int Delivery15To30DaysPercent { get; set; }
 
         [DataMember]
-        public int Delivery30PlusDays { get; set; }
+        public int Delivery30PlusDaysPercent { get; set; }
 
         [DataMember]
         public string EcommWebUrl { get; set; }
 
         [DataMember]
-        public int CurencyCodeKey { get; set; }
+        public int CurrencyCodeKey { get; set; }
 
         [DataMember]
-        public int StatementDeleiveryKey { get; set; }
+        public int StatementDeliveryKey { get; set; }
 
         [DataMember]
         public int SwitcherCurrentBankKey { get; set; }
@@ -100,19 +110,19 @@ namespace PS.Mothership.Core.Common.Dto.Application
         public string DeposityAccountSortCode { get; set; }
 
         [DataMember]
-        public string FessAccount { get; set; }
+        public string FeesAccount { get; set; }
 
         [DataMember]
-        public string FessAccountSortCode { get; set; }
+        public string FeesAccountSortCode { get; set; }
 
         [DataMember]
-        public double SatementDeliveryKeyMonthly { get; set; }
+        public double SatementDeliveryFeeMonthly { get; set; }
 
         [DataMember]
-        public string AcquireLocationMID { get; set; }
+        public string AcquirerLocationMID { get; set; }
 
         [DataMember]
-        public bool AreWarrantPaymentsTaken { get; set; }
+        public bool AreWarrantyPaymentsTaken { get; set; }
 
         [DataMember]
         public bool AreAutomaticRenewelsPerformed { get; set; }
