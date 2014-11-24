@@ -14,6 +14,16 @@ namespace PS.Mothership.Core.Common.Dto.Application
         public Guid ApplicationGuid { get; set; }
 
         [DataMember]
+        public FullAddressDto Address { get; set; }
+
+        [DataMember]
+        public  bool SiteVisitRequired { get; set; }
+
+        [DataMember]
         public IList<LocationProductMstDto> Opportunities { get; set; }
+
+
+
+       
     }
 }
