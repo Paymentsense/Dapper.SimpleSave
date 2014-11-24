@@ -21,7 +21,7 @@ namespace PS.Mothership.Core.Common.Dto.Application
         public string BusinessName { get; set; }
 
         [DataMember]
-        public Guid TradingAddressGuid { get; set; }
+        public FullAddressDto TradingAddress { get; set; }
 
         [DataMember]
         public IList<LocationProductMstDto> LocationProducts { get; set; }
