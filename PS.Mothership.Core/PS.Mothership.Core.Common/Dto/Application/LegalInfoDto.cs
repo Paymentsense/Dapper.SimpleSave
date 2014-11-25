@@ -43,6 +43,8 @@ namespace PS.Mothership.Core.Common.Dto.Application
         [DataMember]
         public string PhoneNumber { get; set; }
 
+        [DataMember]
+        public Guid PhoneNumberGuid { get; set; }
 
         //Risk info section
         [DataMember]
