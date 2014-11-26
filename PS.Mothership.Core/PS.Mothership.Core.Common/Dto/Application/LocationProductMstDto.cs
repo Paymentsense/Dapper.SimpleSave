@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.Serialization;
+using PS.Mothership.Core.Common.Dto.Merchant;
 
 namespace PS.Mothership.Core.Common.Dto.Application
 {
@@ -16,7 +17,7 @@ namespace PS.Mothership.Core.Common.Dto.Application
         public Guid OpportunityGuid { get; set; }
 
         [DataMember]
-        public Guid ContactGuid { get; set; }
+        public ContactDto ContactDto { get; set; }
 
         [DataMember]
         public Guid MerchantGuid { get; set; }
