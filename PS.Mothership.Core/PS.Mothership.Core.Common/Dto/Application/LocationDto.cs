@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
-using PS.Mothership.Core.Common.Dto.Merchant;
 
 namespace PS.Mothership.Core.Common.Dto.Application
 {
@@ -21,7 +20,7 @@ namespace PS.Mothership.Core.Common.Dto.Application
         public string BusinessName { get; set; }
 
         [DataMember]
-        public Guid TradingAddressGuid { get; set; }
+        public FullAddressDto TradingAddress { get; set; }
 
         [DataMember]
         public IList<LocationProductDto> LocationProducts { get; set; }
