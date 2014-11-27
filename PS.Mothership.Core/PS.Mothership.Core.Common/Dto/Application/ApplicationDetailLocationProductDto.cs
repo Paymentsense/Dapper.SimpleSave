@@ -18,7 +18,7 @@ namespace PS.Mothership.Core.Common.Dto.Application
         public Guid OpportunityGuid { get; set; }
 
         [DataMember]
-        public OpportunityDto Opportunity { get; set; }
+        public OfferDto CurrentOffer { get; set; }
 
         [DataMember]
         public Guid ContactGuid { get; set; }
