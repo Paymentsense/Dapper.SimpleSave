@@ -33,10 +33,10 @@ namespace PS.Mothership.Core.Common.Dto.Application
         public int LocationNumber { get; set; }
 
         [DataMember]
-        public Guid BillToAddressGuid { get; set; }
+        public FullAddressDto BillToAddress { get; set; }
 
         [DataMember]
-        public Guid ShippingAddressGuid { get; set; }
+        public FullAddressDto ShippingAddress { get; set; }
 
         //[DataMember]
         //public int PremisesOwnershipTypeKey { get; set; }
@@ -67,7 +67,7 @@ namespace PS.Mothership.Core.Common.Dto.Application
         public int DepositPercentOfTransaction { get; set; }
 
         [DataMember]
-        public int DepositDaysOfDelivery { get; set; }
+        public int DepositDaysToDelivery { get; set; }
 
         [DataMember]
         public int AdvancedPaymentPercentOfSales { get; set; }
