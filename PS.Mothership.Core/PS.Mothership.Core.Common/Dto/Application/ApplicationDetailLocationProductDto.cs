@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
 using PS.Mothership.Core.Common.Dto.Merchant;
 
 namespace PS.Mothership.Core.Common.Dto.Application
 {
     [DataContract]
-    public class LocationProductMstDto
+    public class ApplicationDetailLocationProductDto
     {
         [DataMember]
         public Guid LocationProductGuid { get; set; }
@@ -17,7 +18,10 @@ namespace PS.Mothership.Core.Common.Dto.Application
         public Guid OpportunityGuid { get; set; }
 
         [DataMember]
-        public Guid ContactGuid { get; set; }
+        public OfferDto CurrentOffer { get; set; }
+
+        [DataMember]
+        public ContactDto Contact { get; set; }
 
         [DataMember]
         public Guid MerchantGuid { get; set; }
@@ -29,10 +33,10 @@ namespace PS.Mothership.Core.Common.Dto.Application
         public int LocationNumber { get; set; }
 
         [DataMember]
-        public Guid BillToAddressGuid { get; set; }
+        public FullAddressDto BillToAddress { get; set; }
 
         [DataMember]
-        public Guid ShippingAddressGuid { get; set; }
+        public FullAddressDto ShippingAddress { get; set; }
 
         //[DataMember]
         //public int PremisesOwnershipTypeKey { get; set; }
@@ -63,7 +67,7 @@ namespace PS.Mothership.Core.Common.Dto.Application
         public int DepositPercentOfTransaction { get; set; }
 
         [DataMember]
-        public int DepositDaysOfDelivery { get; set; }
+        public int DepositDaysToDelivery { get; set; }
 
         [DataMember]
         public int AdvancedPaymentPercentOfSales { get; set; }
@@ -150,10 +154,9 @@ namespace PS.Mothership.Core.Common.Dto.Application
         public float MaximumCardTransactionValue { get; set; }
 
         [DataMember]
-        public DateTimeOffset UpdateDate { get; set; }
+        public int BillingAddressSelectionKey { get; set; }
 
         [DataMember]
-        public Guid UpdateSessionGuid { get; set; }
-
+        public int ShippingAddressSelectionKey { get; set; }
     }
 }
