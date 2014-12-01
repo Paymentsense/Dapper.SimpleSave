@@ -20,6 +20,5 @@ namespace PS.Mothership.Core.Common.Dto.Application
 
         [DataMember]
         public Guid MerchantGuid { get; set; }
-    
     }
 }
