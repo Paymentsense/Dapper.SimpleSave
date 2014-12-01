@@ -11,6 +11,9 @@ namespace PS.Mothership.Core.Common.Dto.Application
         public Guid ApplicationGuid { get; set; }
 
         [DataMember]
+        public Guid MerchantGuid { get; set; }
+
+        [DataMember]
         public LegalInfoDto LegalInfo { get; set; }
 
         [DataMember]
