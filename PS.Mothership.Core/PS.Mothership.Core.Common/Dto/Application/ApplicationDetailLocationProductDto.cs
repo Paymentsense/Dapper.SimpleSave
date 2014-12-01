@@ -153,6 +153,10 @@ namespace PS.Mothership.Core.Common.Dto.Application
         [DataMember]
         public float MaximumCardTransactionValue { get; set; }
 
+        [DataMember]
+        public int BillingAddressSelectionKey { get; set; }
 
+        [DataMember]
+        public int ShippingAddressSelectionKey { get; set; }
     }
 }
