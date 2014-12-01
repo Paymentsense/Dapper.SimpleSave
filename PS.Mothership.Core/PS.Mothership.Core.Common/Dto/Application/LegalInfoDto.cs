@@ -43,25 +43,27 @@ namespace PS.Mothership.Core.Common.Dto.Application
         [DataMember]
         public string PhoneNumber { get; set; }
 
+        [DataMember]
+        public Guid PhoneNumberGuid { get; set; }
 
         //Risk info section
         [DataMember]
         public int PersonalInvestment { get; set; }
 
         [DataMember]
-        public int YearsTrading { get; set; }
+        public int? YearsTrading { get; set; }
 
         [DataMember]
-        public int YearsInIndustry { get; set; }
+        public int? YearsInIndustry { get; set; }
 
         [DataMember]
         public bool BusinessBankAccountHeld { get; set; }
 
         [DataMember]
-        public DateTime AccountOpenDate { get; set; }
+        public DateTime? AccountOpenDate { get; set; }
 
         [DataMember]
-        public int OverdraftLimit { get; set; }
+        public int? OverdraftLimit { get; set; }
 
         [DataMember]
         public int AdvertisingTypes { get; set; }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 
+
 namespace PS.Mothership.Core.Common.Dto.Application
 {
     [DataContract]
@@ -14,16 +15,17 @@ namespace PS.Mothership.Core.Common.Dto.Application
         public Guid ApplicationGuid { get; set; }
 
         [DataMember]
-        public FullAddressDto Address { get; set; }
+        public string LocationReference { get; set; }
 
         [DataMember]
-        public  bool SiteVisitRequired { get; set; }
+        public string BusinessName { get; set; }
 
         [DataMember]
-        public IList<LocationProductMstDto> Opportunities { get; set; }
+        public FullAddressDto TradingAddress { get; set; }
+
+        [DataMember]
+        public IList<ApplicationDetailLocationProductDto> ApplicationDetailLocationProduct { get; set; }
 
 
-
-       
     }
 }

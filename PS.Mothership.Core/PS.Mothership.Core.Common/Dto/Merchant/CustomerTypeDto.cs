@@ -21,5 +21,8 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
 
         [DataMember]
         public GenRecStatusEnum RecStatusKey { get; set; }
+
+        [DataMember]
+        public int DisplayOrder { get; set; }
     }
 }
