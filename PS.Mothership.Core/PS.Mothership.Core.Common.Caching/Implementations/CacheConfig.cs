@@ -10,7 +10,7 @@ namespace PS.Mothership.Core.Common.Caching.Implementations
         {
             get
             {
-                return GetCacheConfig(ConfigConstants.CacheName, ExceptionConstants.CacheNameDoesNotExist);
+                return GetCacheConfig(ConfigurationConstants.CacheName, ExceptionConstants.CacheNameDoesNotExist);
             }
         }
 
