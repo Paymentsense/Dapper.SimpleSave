@@ -17,11 +17,15 @@ namespace PS.Mothership.Core.Common.Dto.Application
         [DataMember]
         public string LocationReference { get; set; }
 
-        [DataMember]
-        public string BusinessName { get; set; }
+        //[DataMember]
+        //public string BusinessName { get; set; }
 
         [DataMember]
         public FullAddressDto TradingAddress { get; set; }
+
+        //TODO: uncomment below when PREMISIS_TYPE_ENUM table is available
+        //[DataMember]
+        //public PremisesTypeEnum PremsesType { get; set; }
 
         [DataMember]
         public IList<ApplicationDetailLocationProductDto> ApplicationDetailLocationProduct { get; set; }
