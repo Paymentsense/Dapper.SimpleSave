@@ -16,9 +16,6 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public int AddOnServiceKey { get; set; }
 
         [DataMember]
-        public int AddOnServiceItemKey { get; set; }
-
-        [DataMember]
         public int CountryKey { get; set; }
 
         [DataMember]
@@ -44,8 +41,5 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
 
         [DataMember]
         public OppProvisionTypeEnum ProvisionTypeKey { get; set; }
-
-        [DataMember]
-        public int DisplayOrder { get; set; }
     }
 }

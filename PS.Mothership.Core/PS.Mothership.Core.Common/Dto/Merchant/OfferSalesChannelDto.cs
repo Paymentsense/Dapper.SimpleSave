@@ -21,8 +21,5 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
 
         [DataMember]
         public GenCountryEnum CountryKey { get; set; }
-
-        [DataMember]
-        public int DisplayOrder { get; set; }
     }
 }

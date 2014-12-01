@@ -38,13 +38,13 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
 
         [DataMember]
         public double FreeProcessingValue { get; set; }
-
+       
         [DataMember]
         public double OverageProcessingPercent { get; set; }
 
         [DataMember]
         public double TransactionChargeCap { get; set; }
-
+        
         [DataMember]
         public string Benefit1 { get; set; }
 
@@ -68,11 +68,5 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
 
         [DataMember]
         public int CountryKey { get; set; }
-
-        [DataMember]
-        public int DisplayOrder { get; set; }
-
-        [DataMember]
-        public string Description { get; set; }
     }
 }

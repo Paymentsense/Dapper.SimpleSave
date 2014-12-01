@@ -16,8 +16,5 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
 
         [DataMember]
         public double Value { get; set; }
-
-        [DataMember]
-        public int DisplayOrder { get; set; }
     }
 }
