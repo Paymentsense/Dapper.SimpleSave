@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+using PS.Mothership.Core.Common.Template.App;
 
 
 namespace PS.Mothership.Core.Common.Dto.Application
@@ -23,9 +24,8 @@ namespace PS.Mothership.Core.Common.Dto.Application
         [DataMember]
         public FullAddressDto TradingAddress { get; set; }
 
-        //TODO: uncomment below when PREMISIS_TYPE_ENUM table is available
-        //[DataMember]
-        //public PremisesTypeEnum PremsesType { get; set; }
+        [DataMember]
+        public AppPremisesTypeEnum PremisesType { get; set; }
 
         [DataMember]
         public IList<ApplicationDetailLocationProductDto> ApplicationDetailLocationProduct { get; set; }
