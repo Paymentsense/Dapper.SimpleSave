@@ -29,7 +29,7 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public Guid PartnerGuid { get; set; }
 
         [DataMember]
-        public Guid CurrentStatusTrnGuid { get; set; }
+        public Guid CurrentStatusGuid { get; set; }
 
         [DataMember]
         public OfferDto CurrentOffer { get; set; }
