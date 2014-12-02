@@ -17,5 +17,8 @@ namespace PS.Mothership.Core.Common.Dto.Application
 
         [DataMember]
         public IList<AppAdvertisingFlags> AdvertisingTypes { get; set; }
+
+        [DataMember]
+        public IList<AppPremisesType> PremisesTypes { get; set; }
     }
 }

@@ -31,5 +31,5 @@ namespace PS.Mothership.Core.Common.Dto.Application
 
         [DataMember]
         public IList<LocationSummaryDto> Locations { get; set; }
-    }
+    };
 }
