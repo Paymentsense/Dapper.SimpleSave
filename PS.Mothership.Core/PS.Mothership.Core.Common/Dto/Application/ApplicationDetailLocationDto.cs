@@ -28,6 +28,9 @@ namespace PS.Mothership.Core.Common.Dto.Application
         public AppPremisesTypeEnum PremisesType { get; set; }
 
         [DataMember]
+        public bool SiteVisit { get; set; }
+
+        [DataMember]
         public IList<ApplicationDetailLocationProductDto> ApplicationDetailLocationProduct { get; set; }
 
 
