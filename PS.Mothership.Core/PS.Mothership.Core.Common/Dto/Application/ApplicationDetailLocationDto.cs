@@ -25,7 +25,7 @@ namespace PS.Mothership.Core.Common.Dto.Application
 
         //TODO: uncomment below when PREMISIS_TYPE_ENUM table is available
         //[DataMember]
-        //public PremisesTypeEnum PremsesType { get; set; }
+        //public PremisesTypeEnum PremisesType { get; set; }
 
         [DataMember]
         public IList<ApplicationDetailLocationProductDto> ApplicationDetailLocationProduct { get; set; }
