@@ -2,8 +2,8 @@
 {
     public interface IClientsCollection
     {
-        ISignalRUser Get(string machineName, string username);
-        ISignalRUser GetOrAdd(string machineName, string username);
+        ISignalRUser Get(string username);
+        ISignalRUser GetOrAdd(string username);
         void AddOrReplace(ISignalRUser inputUser);
     }
 }
