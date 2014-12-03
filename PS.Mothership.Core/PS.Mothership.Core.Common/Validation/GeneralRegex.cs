@@ -101,6 +101,8 @@ namespace PS.Mothership.Core.Common.Validation
             }
         }
 
+        public const string EmailAddressRegex = @"^(([^<>()[\]\\.,;:\s@""]+(\.[^<>()[\]\\.,;:\s@""]+)*)|("".+""))@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*";
+
         public static RegexValidation EmailAddress
         {
 
@@ -108,7 +110,7 @@ namespace PS.Mothership.Core.Common.Validation
             {
                 return new RegexValidation
                 {
-                    Regex = @"^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$",
+                    Regex = GeneralRegex.EmailAddressRegex,
                     ErrorMessage = "Please specify a valid email address"
                 };
 
