@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using PS.Mothership.Core.Common.Dto.Merchant;
+using PS.Mothership.Core.Common.Template.App;
+using PS.Mothership.Core.Common.Template.Gen;
 
 namespace PS.Mothership.Core.Common.Dto.Application
 {
@@ -33,9 +35,9 @@ namespace PS.Mothership.Core.Common.Dto.Application
         [DataMember]
         public string EcommWebUrl { get; set; }
         [DataMember]
-        public int StatementDeliveryKey { get; set; }
+        public int? StatementDeliveryKey { get; set; }
         [DataMember]
-        public int BusinessCategoryKey { get; set; }
+        public GenBusinessCategoryEnum BusinessCategoryKey { get; set; }
         [DataMember]
         public int MccKey { get; set; }
         [DataMember]
@@ -54,15 +56,15 @@ namespace PS.Mothership.Core.Common.Dto.Application
 
         //Transaction Details section
         [DataMember]
-        public double TotalAnnualSales { get; set; }
+        public double? TotalAnnualSales { get; set; }
         [DataMember]
-        public float MinimumCardTransactionValue { get; set; }
+        public double? MinimumCardTransactionValue { get; set; }
         [DataMember]
-        public float MaximumCardTransactionValue { get; set; }
+        public double? MaximumCardTransactionValue { get; set; }
         [DataMember]
         public bool AutomaticRenewalsPerformed { get; set; }
         [DataMember]
-        public int CurrencyCodeKey { get; set; }
+        public int? CurrencyCodeKey { get; set; }
 
         //Bank Info section
         [DataMember]
@@ -74,7 +76,7 @@ namespace PS.Mothership.Core.Common.Dto.Application
         [DataMember]
         public string IBAN { get; set; }
         [DataMember]
-        public int SettlementCurrencyKey { get; set; }
+        public int? SettlementCurrencyKey { get; set; }
         [DataMember]
         public string DeposityAccount { get; set; }
         [DataMember]
@@ -86,75 +88,81 @@ namespace PS.Mothership.Core.Common.Dto.Application
 
         //Method of Sales section
         [DataMember]
-        public int SalesMethodKey { get; set; }
+        public int? SalesMethodKey { get; set; }
         [DataMember]
-        public int SalesCardPresentPercent { get; set; } //Chip & Pin
+        public int? SalesCardPresentPercent { get; set; } //Chip & Pin
         [DataMember]
-        public int SalesMailOrderPercent { get; set; }//CNP = Card Not Present
+        public int? SalesMailOrderPercent { get; set; }//CNP = Card Not Present
         [DataMember]
-        public int SalesInternetPercent { get; set; }
+        public int? SalesInternetPercent { get; set; }
         [DataMember]
-        public int B2BPaymentsPercent { get; set; }
+        public int? B2BPaymentsPercent { get; set; }
+
 
 
         //Refunds section
         [DataMember]
-        public int RefundDaysKey { get; set; }
+        public int? RefundDaysKey { get; set; }
 
 
         //Delivery section
         [DataMember]
         public bool AdvancePaymentsTaken { get; set; }
+
         [DataMember]
-        public int AdvancePaymentPercentOfSales { get; set; }
+        public int? AdvancePaymentPercentOfSales { get; set; }
+
         [DataMember]
-        public int AdvancePaymentDaysToDelivery { get; set; }
+        public int? AdvancePaymentDaysToDelivery { get; set; }
+
         [DataMember]
-        public int Delivery0To7DaysPercent { get; set; }
+        public int? Delivery0To7DaysPercent { get; set; }
         [DataMember]
-        public int Delivery8To14DaysPercent { get; set; }
+        public int? Delivery8To14DaysPercent { get; set; }
         [DataMember]
-        public int Delivery15To30DaysPercent { get; set; }
+        public int? Delivery15To30DaysPercent { get; set; }
         [DataMember]
-        public int Delivery30PlusDaysPercent { get; set; }
+        public int? Delivery30PlusDaysPercent { get; set; }
         [DataMember]
-        public int DeliveryWeeks { get; set; }
+        public int? DeliveryWeeks { get; set; }
 
         //Deposits section 
         [DataMember]
         public bool DepositRequired { get; set; }
         [DataMember]
-        public int DepositRequiredPercent { get; set; }
+        public int? DepositRequiredPercent { get; set; }
         [DataMember]
-        public int DepositPercentOfTransaction { get; set; }
+        public int? DepositPercentOfTransaction { get; set; }
         [DataMember]
-        public int DepositDaysToDelivery { get; set; }
+        public int? DepositDaysToDelivery { get; set; }
 
 
-        //membership/Subscription section
+
+        // Membership/Subscription section
         [DataMember]
         public bool MembershipTaken { get; set; }
-        [DataMember]
-        public int MembershipCtoPercent { get; set; }
-        [DataMember]
-        public int MembershipsAverageLengthMonths { get; set; }
 
-        //Guarentees/extended warranties section
+        [DataMember]
+        public int? MembershipCtoPercent { get; set; }
+
+        [DataMember]
+        public int? MembershipsAverageLengthMonths { get; set; }
+
+        // Guarantees/extended warranties section
         [DataMember]
         public bool WarrantyTaken { get; set; }
-        [DataMember]
-        public int WarrantyCtoPercent { get; set; }
-        [DataMember]
-        public int WarrantyAverageLength { get; set; }
-
 
         [DataMember]
-        public int SwitcherCurrentBankKey { get; set; }
-
-
+        public int? WarrantyCtoPercent { get; set; }
 
         [DataMember]
-        public double SatementDeliveryFeeMonthly { get; set; }
+        public int? WarrantyAverageLength { get; set; }
+
+        [DataMember]
+        public int? SwitcherCurrentBankKey { get; set; }
+
+        [DataMember]
+        public double? SatementDeliveryFeeMonthly { get; set; }
 
         [DataMember]
         public string AcquirerLocationMID { get; set; }
@@ -162,26 +170,24 @@ namespace PS.Mothership.Core.Common.Dto.Application
 
 
         [DataMember]
-        public double AverageGoodsReturnedPercent { get; set; }
+        public double? AverageGoodsReturnedPercent { get; set; }
 
         [DataMember]
-        public int LocationTurnoverMonthly { get; set; }
+        public int? LocationTurnoverMonthly { get; set; }
 
         [DataMember]
-        public float PremiumCardRate { get; set; }
+        public double? PremiumCardRate { get; set; }
 
         [DataMember]
-        public float CommercialCardRate { get; set; }
+        public double? CommercialCardRate { get; set; }
 
         [DataMember]
         public string AmexAccountNumber { get; set; }
 
-
+        [DataMember]
+        public AppAddressSelectionEnum BillingAddressSelectionKey { get; set; }
 
         [DataMember]
-        public int BillingAddressSelectionKey { get; set; }
-
-        [DataMember]
-        public int ShippingAddressSelectionKey { get; set; }
+        public AppAddressSelectionEnum ShippingAddressSelectionKey { get; set; }
     }
 }
