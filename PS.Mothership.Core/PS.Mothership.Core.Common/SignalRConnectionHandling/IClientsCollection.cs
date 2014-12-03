@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace PS.Mothership.Core.Common.SignalRConnectionHandling
+﻿namespace PS.Mothership.Core.Common.SignalRConnectionHandling
 {
     public interface IClientsCollection
     {
