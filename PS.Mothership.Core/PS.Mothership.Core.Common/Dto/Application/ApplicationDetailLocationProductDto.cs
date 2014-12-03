@@ -104,7 +104,7 @@ namespace PS.Mothership.Core.Common.Dto.Application
 
         //Delivery section
         [DataMember]
-        public int AdvancePaymentsTaken { get; set; }
+        public bool AdvancePaymentsTaken { get; set; }
         [DataMember]
         public int AdvancePaymentPercentOfSales { get; set; }
         [DataMember]
