@@ -62,7 +62,7 @@ namespace PS.Mothership.Core.Common.Template.App
 								EnumName = "Registered",
 								EnumDescription = "Registered",
 								AddressSelectionKey = 2,
-								RecStatusKey = (GenRecStatusEnum)2
+								RecStatusKey = (GenRecStatusEnum)1
 							},
 							new AppAddressSelection
 							{
@@ -70,7 +70,7 @@ namespace PS.Mothership.Core.Common.Template.App
 								EnumName = "Other",
 								EnumDescription = "Other",
 								AddressSelectionKey = 3,
-								RecStatusKey = (GenRecStatusEnum)3
+								RecStatusKey = (GenRecStatusEnum)1
 							},
                         };
                     
