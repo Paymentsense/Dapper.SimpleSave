@@ -25,6 +25,9 @@ namespace PS.Mothership.Core.Common.Dto.Application
         [DataMember]
         public OfferDto CurrentOffer { get; set; }
 
+        [DataMember]
+        public OpportunitySummaryDto OpportunitySummary { get; set; }
+
         //Contact info section
         [DataMember]
         public ContactDto Contact { get; set; }
@@ -64,8 +67,8 @@ namespace PS.Mothership.Core.Common.Dto.Application
         [DataMember]
         public bool AutomaticRenewalsPerformed { get; set; }
         [DataMember]
-        public int? CurrencyCodeKey { get; set; }
-
+        public GenCurrencyCodeEnum CurrencyCodeKey { get; set; }
+        
         //Bank Info section
         [DataMember]
         public string BankName { get; set; }
@@ -76,7 +79,7 @@ namespace PS.Mothership.Core.Common.Dto.Application
         [DataMember]
         public string IBAN { get; set; }
         [DataMember]
-        public int? SettlementCurrencyKey { get; set; }
+        public GenCurrencyCodeEnum SettlementCurrencyKey { get; set; }
         [DataMember]
         public string DeposityAccount { get; set; }
         [DataMember]
