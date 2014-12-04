@@ -56,7 +56,7 @@ namespace PS.Mothership.Core.Common.Dto.Application
 
         //Transaction Details section
         [DataMember]
-        public double? TotalAnnualSales { get; set; }
+        public decimal? TotalAnnualSales { get; set; }
         [DataMember]
         public double? MinimumCardTransactionValue { get; set; }
         [DataMember]
