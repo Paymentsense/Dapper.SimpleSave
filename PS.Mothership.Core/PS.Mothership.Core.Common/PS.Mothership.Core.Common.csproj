@@ -163,8 +163,6 @@
     <Compile Include="Dto\Application\ApplicationOpportunityLocationDto.cs" />
     <Compile Include="Dto\Application\ApplicationOpportunitiesDto.cs" />
     <Compile Include="Dto\Application\ApplicationDto.cs" />
-    <Compile Include="Dto\Application\LocationMstDto.cs" />
-    <Compile Include="Dto\Application\LocationProductMstDto.cs" />
     <Compile Include="Dto\Application\LocationSummaryDto.cs" />
     <Compile Include="Dto\Application\OpportunitySummaryDto.cs" />
     <Compile Include="Dto\CompaniesHouse\CompanyAppointmentsDto.cs" />
