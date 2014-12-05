@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+using PS.Mothership.Core.Common.Template.App;
+
 
 
 namespace PS.Mothership.Core.Common.Dto.Application
@@ -15,6 +17,23 @@ namespace PS.Mothership.Core.Common.Dto.Application
         public Guid ApplicationGuid { get; set; }
 
         [DataMember]
-        public IList<LocationProductMstDto> Opportunities { get; set; }
+        public string LocationReference { get; set; }
+
+        //[DataMember]
+        //public string BusinessName { get; set; }
+
+        [DataMember]
+        public FullAddressDto TradingAddress { get; set; }
+
+        [DataMember]
+        public AppPremisesTypeEnum PremisesType { get; set; }
+
+        [DataMember]
+        public bool SiteVisit { get; set; }
+
+        [DataMember]
+        public IList<ApplicationDetailLocationProductDto> ApplicationDetailLocationProduct { get; set; }
+
+
     }
 }

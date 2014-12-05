@@ -151,6 +151,8 @@
     <Compile Include="Contracts\ISchedulerManagementService.cs" />
     <Compile Include="Contracts\ISendMessageService.cs" />
     <Compile Include="Contracts\ISendMessageServiceCallback.cs" />
+    <Compile Include="Dto\Application\ApplicationDetailLocationDto.cs" />
+    <Compile Include="Dto\Application\ApplicationDetailLocationProductDto.cs" />
     <Compile Include="Dto\Application\ApplicationInfoDto.cs" />
     <Compile Include="Dto\Application\ApplicationDetailsMetadataDto.cs" />
     <Compile Include="Dto\Application\ApplicationStatusDto.cs" />
@@ -158,7 +160,6 @@
     <Compile Include="Dto\Application\ApplicationSummaryDto.cs" />
     <Compile Include="Dto\Application\LegalInfoDto.cs" />
     <Compile Include="Dto\Application\ApplicationDetailsDto.cs" />
-    <Compile Include="Dto\Application\ApplicationDetailLocationDto.cs" />
     <Compile Include="Dto\Application\ApplicationOpportunityLocationDto.cs" />
     <Compile Include="Dto\Application\ApplicationOpportunitiesDto.cs" />
     <Compile Include="Dto\Application\ApplicationDto.cs" />
