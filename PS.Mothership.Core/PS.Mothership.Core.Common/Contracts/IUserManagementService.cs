@@ -1,5 +1,4 @@
 ﻿using PS.Mothership.Core.Common.Constructs;
-using PS.Mothership.Core.Common.Dto;
 using PS.Mothership.Core.Common.Dto.DynamicRequest;
 using PS.Mothership.Core.Common.Dto.Groups;
 using PS.Mothership.Core.Common.Dto.Roles;
@@ -36,9 +35,9 @@ namespace PS.Mothership.Core.Common.Contracts
         [OperationContract]
         void AddRole(RoleDto role);
         [OperationContract]
-        PagedList<RoleDto> GetRoles(SearchDto searchInput);
+        PagedList<RoleDto> GetRoles(DataRequestDto dataRequest);
         [OperationContract]
-        PagedList<GroupDto> GetAllRolesAndGroups(SearchDto searchInput);
+        PagedList<GroupDto> GetAllRolesAndGroups(DataRequestDto dataRequest);
         [OperationContract]
         GroupDto GetRolesForGroup(Guid groupGuid);
         [OperationContract]

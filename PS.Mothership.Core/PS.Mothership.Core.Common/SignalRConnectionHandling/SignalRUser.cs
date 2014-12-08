@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Castle.Windsor;
+using System;
 using System.Runtime.Serialization;
-using Castle.Windsor;
 
 namespace PS.Mothership.Core.Common.SignalRConnectionHandling
 {
@@ -8,6 +8,9 @@ namespace PS.Mothership.Core.Common.SignalRConnectionHandling
     public class SignalRUser : SignalRConnectionManager, ISignalRUser
     {
         private IClientsCollection _clientsCollection;
+
+        [DataMember]
+        public string MachineName { get; set; }
 
         [DataMember]
         public string Name { get; set; }
