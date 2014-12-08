@@ -8,6 +8,7 @@ using PS.Mothership.Core.Common.Dto.Login;
 using PS.Mothership.Core.Common.Dto.Roles;
 using PS.Mothership.Core.Common.Dto.DynamicRequest;
 using PS.Mothership.Core.Common.Dto.User;
+using PS.Mothership.Core.Common.Template.Comm;
 using PS.Mothership.Core.Common.Template.Usr;
 
 namespace PS.Mothership.Core.Common.Contracts.Security
@@ -58,7 +59,7 @@ namespace PS.Mothership.Core.Common.Contracts.Security
         bool UnLockAccount(Guid userGuid);
 
         [OperationContract]
-        string GenerateCode(Guid userGuid);
+        string GenerateAndSendRemoteValidationCode(Guid userGuid, CommMessageTypeEnum messageType);
 
         [OperationContract]
         bool CodeExists(Guid userGuid, string validationCode);
