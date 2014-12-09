@@ -44,12 +44,15 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
 
         [DataMember]
         public OppTypeOfTransactionEnum TypeOfTransactionKey { get; set; }
-        
+
         [DataMember]
         public int CustomerTypeKey { get; set; }
 
         [DataMember]
         public int ContractLengthKey { get; set; }
+
+        [DataMember]
+        public string ContractLengthDescription { get; set; }
 
         [DataMember]
         public int MinimumMonthlyServiceChargeKey { get; set; }

@@ -11,7 +11,7 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
     public class OpportunityStatusTrnDto
     {
         [DataMember]
-        public Guid OpportunityStatusTrnGuid { get; set; }
+        public Guid OpportunityStatusGuid { get; set; }
 
         [DataMember]
         public Guid OpportunityGuid { get; set; }

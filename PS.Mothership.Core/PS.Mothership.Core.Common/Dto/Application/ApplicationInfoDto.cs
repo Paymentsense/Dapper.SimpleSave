@@ -16,6 +16,12 @@ namespace PS.Mothership.Core.Common.Dto.Application
 
         [DataMember]
         public ApplicationStatusDto Status { get; set; }
-        
+
+        [DataMember]
+        public Guid SalesChannelGuid { get; set; }
+
+        [DataMember]
+        public GenCountryEnum CountryKey { get; set; }
+
     }
 }

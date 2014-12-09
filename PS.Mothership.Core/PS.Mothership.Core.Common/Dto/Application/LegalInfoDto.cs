@@ -8,6 +8,8 @@ namespace PS.Mothership.Core.Common.Dto.Application
     [DataContract]
     public class LegalInfoDto
     {
+
+        //Business Info section
         [DataMember]
         public Guid ApplicationGuid { get; set; }
 
@@ -15,7 +17,7 @@ namespace PS.Mothership.Core.Common.Dto.Application
         public GenBusinessLegalTypeEnum BusinessType { get; set; }
 
         [DataMember]
-        public int CompanyRegistrationNumber { get; set; }
+        public string CompanyRegistrationNumber { get; set; }
 
         [DataMember]
         public string VATNumber { get; set; }
@@ -36,6 +38,38 @@ namespace PS.Mothership.Core.Common.Dto.Application
         public string RegisteredName { get; set; }
 
         [DataMember]
+        public int PhoneCountryKey { get; set; }
+
+        [DataMember]
         public string PhoneNumber { get; set; }
+
+        [DataMember]
+        public Guid PhoneNumberGuid { get; set; }
+
+        //Risk info section
+        [DataMember]
+        public int PersonalInvestment { get; set; }
+
+        [DataMember]
+        public int? YearsTrading { get; set; }
+
+        [DataMember]
+        public int? YearsInIndustry { get; set; }
+
+        [DataMember]
+        public bool BusinessBankAccountHeld { get; set; }
+
+        [DataMember]
+        public DateTime? AccountOpenDate { get; set; }
+
+        [DataMember]
+        public int? OverdraftLimit { get; set; }
+
+        [DataMember]
+        public int AdvertisingTypes { get; set; }
+
+        [DataMember]
+        public string CommentToUnderwriting { get; set; }
+
     }
 }
