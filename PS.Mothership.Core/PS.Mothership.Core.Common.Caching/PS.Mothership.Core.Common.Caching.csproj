@@ -81,7 +81,7 @@
     <Compile Include="Implementations\CacheConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceCacheData.cs" />
-    <Compile Include="WcfCacheResultAttribute.cs" />
+    <Compile Include="CacheResultAttribute.cs" />
     <Compile Include="Implementations\CacheService.cs" />
   </ItemGroup>
   <ItemGroup>
