@@ -42,7 +42,7 @@ namespace PS.Mothership.Core.Common.Dto.Application
         [DataMember]
         public GenBusinessCategoryEnum BusinessCategoryKey { get; set; }
         [DataMember]
-        public int MccKey { get; set; }
+        public MerchantCategoryCodeDto Mcc { get; set; }
         [DataMember]
         public string ProductsServicesSold { get; set; }
 
