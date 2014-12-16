@@ -1,4 +1,6 @@
-﻿using System.ServiceModel;
+﻿using PS.Mothership.Core.Common.Dto.Campaign;
+using System.Collections.Generic;
+using System.ServiceModel;
 
 namespace PS.Mothership.Core.Common.Contracts
 {
@@ -10,6 +12,6 @@ namespace PS.Mothership.Core.Common.Contracts
         /// the available prospects to a configured database
         /// </summary>
         [OperationContract]
-        void ImportProspects();
+        void ImportProspects(IEnumerable<ImportProspectDto> prospects);
     }
 }
