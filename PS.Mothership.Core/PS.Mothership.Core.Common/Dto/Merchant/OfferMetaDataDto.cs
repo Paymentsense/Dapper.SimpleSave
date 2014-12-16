@@ -12,14 +12,20 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public int CalculatorVersionKey { get; set; }
 
         [DataMember]
+        public IEnumerable<CurrencyCodeDto> CurrencyCodes { get; set; }
+
+        [DataMember]
+        public IEnumerable<OppOfferConstraintType> ConstraintTypes { get; set; }
+
+        [DataMember]
         public IEnumerable<ContractLengthDto> ContractLengths { get; set; }
 
         [DataMember]
         public IEnumerable<CustomerTypeDto> CustomerTypes { get; set; }
-        
+
         [DataMember]
         public IEnumerable<TypeOfTransactionDto> TypeOfTransactions { get; set; }
-        
+
         [DataMember]
         public IEnumerable<GenCountry> Countries { get; set; }
 
@@ -34,7 +40,7 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
 
         [DataMember]
         public IEnumerable<EquipmentModelMetadataDto> EquipmentModels { get; set; }
-        
+
         [DataMember]
         public IEnumerable<OfferAuthorizationFeeDto> AuthorisationFees { get; set; }
 

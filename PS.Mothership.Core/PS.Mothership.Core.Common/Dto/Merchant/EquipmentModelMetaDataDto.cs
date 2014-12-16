@@ -50,5 +50,8 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
 
         [DataMember]
         public int TypeOfTransactionKey { get; set; }
+
+        [DataMember]
+        public int DisplayOrder { get; set; }
     }
 }
