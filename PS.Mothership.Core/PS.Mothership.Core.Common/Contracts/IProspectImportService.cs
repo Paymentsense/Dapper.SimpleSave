@@ -12,6 +12,6 @@ namespace PS.Mothership.Core.Common.Contracts
         /// the available prospects to a configured database
         /// </summary>
         [OperationContract]
-        void ImportProspects(IEnumerable<ImportProspectDto> prospects);
+        IEnumerable<ImportProspectDto> ImportProspects(IEnumerable<ImportProspectDto> prospects);
     }
 }
