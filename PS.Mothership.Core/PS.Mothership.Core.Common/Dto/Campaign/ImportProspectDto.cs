@@ -36,7 +36,19 @@ namespace PS.Mothership.Core.Common.Dto.Campaign
         public string MobileNumber { get; set; }
 
         [DataMember]
+        public string LocatorID { get; set; }
+
+        [DataMember]
         public string CID { get; set; }
+
+        [DataMember]
+        public string cPage { get; set; }
+
+        [DataMember]
+        public string MSAction { get; set; }
+
+        [DataMember]
+        public string Domain { get; set; }
 
         [DataMember]
         public string MatchType { get; set; }
