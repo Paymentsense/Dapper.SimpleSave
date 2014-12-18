@@ -30,6 +30,7 @@ namespace PS.Mothership.Core.Common.Contracts
         [OperationContract]
         ApplicationInfoDto GetApplicationInfo(Guid applicationGuid);
 
+
         [OperationContract]
         IEnumerable<MerchantCategoryCodeDto> GetMerchantCategoryCodes(DataRequestDto dataRequestDto);
     }
