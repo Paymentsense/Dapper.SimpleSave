@@ -2,7 +2,7 @@
 using System.Runtime.Serialization;
 using PS.Mothership.Core.Common.Dto.Contact;
 using PS.Mothership.Core.Common.Dto.User;
-using PS.Mothership.Core.Common.Template.Gen;
+using PS.Mothership.Core.Common.Template.Mrkt;
 
 namespace PS.Mothership.Core.Common.Dto.Campaign
 {
@@ -24,10 +24,10 @@ namespace PS.Mothership.Core.Common.Dto.Campaign
         public PhoneNumberDto Phone { get; set; }
 
         [DataMember]
-        public GenCampaignTypeEnum CampaignType { get; set; }
+        public MrktCampaignTypeEnum CampaignType { get; set; }
 
         [DataMember]
-        public GenCampaignSourceEnum CampaignSource { get; set; }
+        public MrktCampaignSourceEnum CampaignSource { get; set; }
 
         [DataMember]
         public UserDto StartedByUser { get; set; }
