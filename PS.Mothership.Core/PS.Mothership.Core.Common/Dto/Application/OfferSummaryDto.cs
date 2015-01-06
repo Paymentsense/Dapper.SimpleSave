@@ -1,0 +1,50 @@
+﻿//using PS.Mothership.Core.Common.Template.Gen;
+//using PS.Mothership.Core.Common.Template.Opp;
+//using System;
+//using System.Runtime.Serialization;
+
+//namespace PS.Mothership.Core.Common.Dto.Application
+//{
+//    [DataContract]
+//    public class OfferSummaryDto
+//    {
+//        [DataMember]
+//        public Guid OfferGuid { get; set; }
+
+//        [DataMember]
+//        public Guid OpportunityGuid { get; set; }
+
+//        [DataMember]
+//        public double Credit { get; set; }
+
+//        [DataMember]
+//        public double Debit { get; set; }
+
+//        [DataMember]
+//        public int AuthorisationFeeKey { get; set; }
+
+//        [DataMember]
+//        public int MinimumMonthlyServiceChargeKey { get; set; }
+
+//        [DataMember]
+//        public OppTypeOfTransactionEnum TypeOfTransactionKey { get; set; }
+
+//        [DataMember]
+//        public string ProductType { get; set; }
+
+//        [DataMember]
+//        public GenOpportunityStatusEnum OpportunityStatusKey { get; set; }
+
+//        [DataMember]
+//        public string ContractLengthDescription { get; set; }
+
+//        [DataMember]
+//        public string LastUpdatedUserName { get; set; }
+
+//        [DataMember]
+//        public DateTimeOffset LastUpdatedDate { get; set; }
+
+//        [DataMember]
+//        public int ContractLengthKey { get; set; }
+//    }
+//}

@@ -165,6 +165,7 @@
     <Compile Include="Dto\Application\ApplicationDto.cs" />
     <Compile Include="Dto\Application\LocationSummaryDto.cs" />
     <Compile Include="Dto\Application\MerchantCategoryCodeDto.cs" />
+    <Compile Include="Dto\Application\OfferSummaryDto.cs" />
     <Compile Include="Dto\Application\OpportunitySummaryDto.cs" />
     <Compile Include="Dto\CompaniesHouse\CompanyAppointmentsDto.cs" />
     <Compile Include="Dto\Contact\PhoneCountryCodeMetadataDto.cs" />
