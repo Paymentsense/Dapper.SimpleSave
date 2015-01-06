@@ -34,5 +34,8 @@ namespace PS.Mothership.Core.Common.Dto.Application
 
         [DataMember]
         public DateTimeOffset LastUpdatedDate { get; set; }
+
+        [DataMember]
+        public int ContractLengthKey { get; set; }
     }
 }
