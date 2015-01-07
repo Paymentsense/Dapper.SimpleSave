@@ -4,7 +4,7 @@ using PS.Mothership.Core.Common.Dto.Merchant;
 
 namespace PS.Mothership.Core.Common.Dto.Campaign
 {
-    public class CampaignQueueTrnDto
+    public class CampaignQueueDto
     {
         [DataMember]
         public Guid CampaignQueueGuid { get; set; }
