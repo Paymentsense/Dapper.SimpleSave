@@ -27,7 +27,6 @@ namespace PS.Mothership.Core.Common.Dto.Application
         [DataMember]
         public IList<GenContactRole> ContactRoles { get; set; }
 
-        [DataMember]
-        public IList<ApplicationDetailPrincipalDto> AvailableContactDetails { get; set; }
+
     }
 }
