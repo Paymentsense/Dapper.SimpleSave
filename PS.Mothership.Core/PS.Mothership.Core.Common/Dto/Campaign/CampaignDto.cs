@@ -9,6 +9,9 @@ namespace PS.Mothership.Core.Common.Dto.Campaign
     public class CampaignDto
     {
         [DataMember]
+        public Guid CampaignGuid { get; set; }
+
+        [DataMember]
         public string CampaignName { get; set; }
 
         [DataMember]
