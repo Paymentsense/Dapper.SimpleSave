@@ -20,5 +20,11 @@ namespace PS.Mothership.Core.Common.Dto.Application
 
         [DataMember]
         public IList<AppPremisesType> PremisesTypes { get; set; }
+
+        [DataMember]
+        public IList<GenSalutation> SalutationTypes { get; set; }
+
+        [DataMember]
+        public IList<GenContactRole> ContactRoles { get; set; } 
     }
 }
