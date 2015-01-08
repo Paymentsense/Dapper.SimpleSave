@@ -153,6 +153,7 @@
     <Compile Include="Contracts\ISendMessageServiceCallback.cs" />
     <Compile Include="Dto\Application\ApplicationDetailLocationDto.cs" />
     <Compile Include="Dto\Application\ApplicationDetailLocationProductDto.cs" />
+    <Compile Include="Dto\Application\ApplicationDetailPrincipalDto.cs" />
     <Compile Include="Dto\Application\ApplicationInfoDto.cs" />
     <Compile Include="Dto\Application\ApplicationDetailsMetadataDto.cs" />
     <Compile Include="Dto\Application\ApplicationStatusDto.cs" />
@@ -164,7 +165,10 @@
     <Compile Include="Dto\Application\ApplicationOpportunitiesDto.cs" />
     <Compile Include="Dto\Application\ApplicationDto.cs" />
     <Compile Include="Dto\Application\LocationSummaryDto.cs" />
+    <Compile Include="Dto\Application\MerchantCategoryCodeDto.cs" />
+    <Compile Include="Dto\Application\OfferSummaryDto.cs" />
     <Compile Include="Dto\Application\OpportunitySummaryDto.cs" />
+    <Compile Include="Dto\Application\PrincipalAddressDto.cs" />
     <Compile Include="Dto\CompaniesHouse\CompanyAppointmentsDto.cs" />
     <Compile Include="Dto\Contact\PhoneCountryCodeMetadataDto.cs" />
     <Compile Include="Dto\Merchant\AddOnServiceDefaultDto.cs" />

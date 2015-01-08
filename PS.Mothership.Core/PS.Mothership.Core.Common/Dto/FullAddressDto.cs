@@ -16,5 +16,10 @@ namespace PS.Mothership.Core.Common.Dto
         [DataMember]
         public CountyDto County { get; set; }
 
+        [DataMember]
+        public bool Verified { get; set; }
+
+        [DataMember]
+        public string VerifiedId { get; set; }
     }
 }

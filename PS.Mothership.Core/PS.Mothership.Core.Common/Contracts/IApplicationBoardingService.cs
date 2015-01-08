@@ -1,6 +1,8 @@
 using System;
+using System.Collections.Generic;
 using System.ServiceModel;
 using PS.Mothership.Core.Common.Dto.Application;
+using PS.Mothership.Core.Common.Dto.DynamicRequest;
 
 namespace PS.Mothership.Core.Common.Contracts
 {
@@ -26,7 +28,11 @@ namespace PS.Mothership.Core.Common.Contracts
         ApplicationDetailsDto SaveApplicationDetails(ApplicationDetailsDto applicationDetailsDto);
 
         [OperationContract]
-        ApplicationInfoDto GetApplicationInfo(Guid applicationGuid); 
+        ApplicationInfoDto GetApplicationInfo(Guid applicationGuid);
 
+        [OperationContract]
+        IEnumerable<MerchantCategoryCodeDto> GetMerchantCategoryCodes(DataRequestDto dataRequestDto);
+        [OperationContract]
+        IEnumerable<MerchantCategoryCodeDto> GetAllMerchantCategoryCodes();
     }
 }
