@@ -149,6 +149,7 @@
     <Compile Include="Contracts\ILoggingService.cs" />
     <Compile Include="Contracts\IMSLogger.cs" />
     <Compile Include="Contracts\IProspectImportService.cs" />
+    <Compile Include="Contracts\IQueueItem.cs" />
     <Compile Include="Contracts\ISchedulerManagementService.cs" />
     <Compile Include="Contracts\ISendMessageService.cs" />
     <Compile Include="Contracts\ISendMessageServiceCallback.cs" />
@@ -167,7 +168,8 @@
     <Compile Include="Dto\Application\LocationSummaryDto.cs" />
     <Compile Include="Dto\Application\OpportunitySummaryDto.cs" />
     <Compile Include="Dto\Campaign\CampaignDto.cs" />
-    <Compile Include="Dto\Campaign\CampaignQueueTrnDto.cs" />
+    <Compile Include="Dto\Campaign\CampaignProspectLnkDto.cs" />
+    <Compile Include="Dto\Campaign\CampaignQueueDto.cs" />
     <Compile Include="Dto\Campaign\DefaultCampaignLutDto.cs" />
     <Compile Include="Dto\Campaign\ImportProspectDto.cs" />
     <Compile Include="Dto\CompaniesHouse\CompanyAppointmentsDto.cs" />
@@ -218,6 +220,8 @@
     <Compile Include="Dto\Merchant\AdvancedSearchDto.cs" />
     <Compile Include="Dto\Message\InboundMessage.cs" />
     <Compile Include="Dto\Notification\NotificationStatusDto.cs" />
+    <Compile Include="Dto\Queue\CampaignQueueItemDto.cs" />
+    <Compile Include="Dto\Queue\QueueItemDto.cs" />
     <Compile Include="Dto\SendMessage\MessageServiceStatus.cs" />
     <Compile Include="Dto\Merchant\MerchantDataRequestDto.cs" />
     <Compile Include="Dto\Merchant\MerchantSearchDataDto.cs" />
@@ -292,7 +296,7 @@
     <Compile Include="Dto\Dialler\CallRecordingEventDto.cs" />
     <Compile Include="Dto\Dialler\CallStatsDto.cs" />
     <Compile Include="Dto\Dialler\FinalisedDiallerCallDto.cs" />
-    <Compile Include="Dto\Dialler\InboundCampaignCallDto.cs" />
+    <Compile Include="Dto\Campaign\CampaignCallDto.cs" />
     <Compile Include="Dto\Dialler\InboundQueueDetailsDto.cs" />
     <Compile Include="Dto\Dialler\InboundQueueDistributorDto.cs" />
     <Compile Include="Dto\Dialler\InboundQueueQueuePhoneDto.cs" />
