@@ -123,7 +123,7 @@
   <ItemGroup>
     <Compile Include="Config\WcfClientCertificateValidator.cs" />
     <Compile Include="Constants\CacheRegionConstants.cs" />
-    <Compile Include="Constants\ConfigConstants.cs" />
+    <Compile Include="Constants\ConfigurationConstants.cs" />
     <Compile Include="Constants\EntityConstants.cs" />
     <Compile Include="Constants\ExceptionConstants.cs" />
     <Compile Include="Constants\GlobalConstants.cs" />
@@ -166,7 +166,10 @@
     <Compile Include="Dto\Application\ApplicationOpportunitiesDto.cs" />
     <Compile Include="Dto\Application\ApplicationDto.cs" />
     <Compile Include="Dto\Application\LocationSummaryDto.cs" />
+    <Compile Include="Dto\Application\MerchantCategoryCodeDto.cs" />
+    <Compile Include="Dto\Application\OfferSummaryDto.cs" />
     <Compile Include="Dto\Application\OpportunitySummaryDto.cs" />
+    <Compile Include="Dto\Campaign\CampaignCallTrnDto.cs" />
     <Compile Include="Dto\Campaign\CampaignDto.cs" />
     <Compile Include="Dto\Campaign\CampaignProspectLnkDto.cs" />
     <Compile Include="Dto\Campaign\CampaignQueueDto.cs" />
@@ -229,6 +232,7 @@
     <Compile Include="Dto\User\UserImpersonationDto.cs" />
     <Compile Include="Enums\NotificationIcon.cs" />
     <Compile Include="Extension\DoubleExtension.cs" />
+    <Compile Include="Extension\LinqExtension.cs" />
     <Compile Include="Extension\IntExtension.cs" />
     <Compile Include="Helper\EnumHelper.cs" />
     <Compile Include="Dto\SchedulerManagement\JobProfileDto.cs" />
@@ -296,7 +300,7 @@
     <Compile Include="Dto\Dialler\CallRecordingEventDto.cs" />
     <Compile Include="Dto\Dialler\CallStatsDto.cs" />
     <Compile Include="Dto\Dialler\FinalisedDiallerCallDto.cs" />
-    <Compile Include="Dto\Campaign\CampaignCallDto.cs" />
+    <Compile Include="Dto\Campaign\CampaignCallMstDto.cs" />
     <Compile Include="Dto\Dialler\InboundQueueDetailsDto.cs" />
     <Compile Include="Dto\Dialler\InboundQueueDistributorDto.cs" />
     <Compile Include="Dto\Dialler\InboundQueueQueuePhoneDto.cs" />
