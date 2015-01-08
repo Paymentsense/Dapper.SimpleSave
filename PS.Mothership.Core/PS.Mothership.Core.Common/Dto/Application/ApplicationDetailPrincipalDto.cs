@@ -30,5 +30,8 @@ namespace PS.Mothership.Core.Common.Dto.Application
 
         [DataMember]
         public IList<PrincipalAddressDto> Addresses { get; set; }
+
+        [DataMember]
+        public bool HasValidEidCheck { get; set; }
     }
 }
