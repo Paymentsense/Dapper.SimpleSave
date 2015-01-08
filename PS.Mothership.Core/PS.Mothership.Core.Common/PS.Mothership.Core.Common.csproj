@@ -156,6 +156,7 @@
     <Compile Include="Dto\Application\ApplicationDetailPrincipalDto.cs" />
     <Compile Include="Dto\Application\ApplicationInfoDto.cs" />
     <Compile Include="Dto\Application\ApplicationDetailsMetadataDto.cs" />
+    <Compile Include="Dto\Application\ApplicationDetailPrincipalDto.cs" />
     <Compile Include="Dto\Application\ApplicationStatusDto.cs" />
     <Compile Include="Dto\Application\ApplicationOpportunitiesMetadataDto.cs" />
     <Compile Include="Dto\Application\ApplicationSummaryDto.cs" />
