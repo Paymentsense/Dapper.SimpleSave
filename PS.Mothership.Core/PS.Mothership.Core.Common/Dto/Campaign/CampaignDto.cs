@@ -2,6 +2,7 @@
 using System.Runtime.Serialization;
 using PS.Mothership.Core.Common.Dto.Contact;
 using PS.Mothership.Core.Common.Dto.User;
+using PS.Mothership.Core.Common.Template.Gen;
 using PS.Mothership.Core.Common.Template.Mrkt;
 
 namespace PS.Mothership.Core.Common.Dto.Campaign
@@ -18,10 +19,10 @@ namespace PS.Mothership.Core.Common.Dto.Campaign
         public string CampaignDescription { get; set; }
 
         [DataMember]
-        public DateTime? StartDate { get; set; }
+        public DateTimeOffset StartDate { get; set; }
 
         [DataMember]
-        public DateTime? EndDate { get; set; }
+        public DateTimeOffset? EndDate { get; set; }
 
         [DataMember]
         public PhoneNumberDto Phone { get; set; }
@@ -40,5 +41,11 @@ namespace PS.Mothership.Core.Common.Dto.Campaign
 
         [DataMember]
         public DateTime? UpdateDate { get; set; }
+
+        [DataMember]
+        public Guid RolePermissionGuid { get; set; }
+
+        [DataMember]
+        public GenRecStatusEnum RecStatus { get; set; }
     }
 }
