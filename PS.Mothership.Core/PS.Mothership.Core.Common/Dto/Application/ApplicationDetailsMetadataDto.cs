@@ -50,5 +50,11 @@ namespace PS.Mothership.Core.Common.Dto.Application
 
         [DataMember]
         public IEnumerable<GatewayTariffDto> GatewayTariffs { get; set; }
+
+        [DataMember]
+        public IEnumerable<OfferAuthorizationFeeDto> AuthorizationFees { get; set; }
+
+        [DataMember]
+        public IEnumerable<OfferMinimumMonthlyServiceChargeDto> MinimumMonthlyServiceCharges { get; set; }
     }
 }
