@@ -184,6 +184,7 @@
     <Compile Include="Dto\Merchant\MerchantEventLnkDto.cs" />
     <Compile Include="Dto\Merchant\OfferDefaultDto.cs" />
     <Compile Include="Dto\Event\EventTrnFullDto.cs" />
+    <Compile Include="Dto\Merchant\ProspectMatchDto.cs" />
     <Compile Include="Dto\Notification\NotificationReceivedDto.cs" />
     <Compile Include="Dto\FullPostcodeDto.cs" />
     <Compile Include="Dto\Iridium\IridiumConfirmResultsDto.cs" />

@@ -1,4 +1,6 @@
 ﻿using PS.Mothership.Core.Common.Dto.Dialler;
+using PS.Mothership.Core.Common.Dto.Merchant;
+using PS.Mothership.Core.Common.Dto.User;
 using PS.Mothership.Core.Common.Template.Dial;
 using System;
 using System.Collections.Generic;
@@ -16,8 +18,7 @@ namespace PS.Mothership.Core.Common.Contracts
         Guid LogDiallerSessionSubscribe(Guid userGuid);
 
         [OperationContract]
-        void LogDiallerSessionUnsubscribe(Guid userGuid, Guid diallerSessionGuid,
-            bool wasForcedLogout, DialLogoutReasonEnum logoutReason);
+        void LogDiallerSessionUnsubscribe(Guid userGuid, Guid diallerSessionGuid, bool wasForcedLogout, DialLogoutReasonEnum logoutReason);
 
         [OperationContract]
         IEnumerable<InboundQueueDetailsDto> GetInboundQueueDetails();
@@ -59,7 +60,15 @@ namespace PS.Mothership.Core.Common.Contracts
         Guid AddInboundCampaignCallRecord(Guid sipCallGuid, Guid campaignGuid, string keyword, string referrerUrl);
 
         [OperationContract]
-        void SetInboundCampaignCallRecordResolution(Guid inboundCampaignCallRecordGuid,
-            DialInboundCampaignCallResolutionEnum resolution);
+        void SetInboundCampaignCallRecordResolution(Guid inboundCampaignCallRecordGuid, DialInboundCampaignCallResolutionEnum resolution);
+
+        [OperationContract]
+        void ProcessInboundCall(NewDiallerCallDto diallerCall);
+
+        [OperationContract]
+        ProspectMatchDto IsMatchToExistingMerchant(NewDiallerCallDto diallerCall);
+
+        [OperationContract]
+        UserProfileDto GetUser(Guid userGuid);
     }
 }
