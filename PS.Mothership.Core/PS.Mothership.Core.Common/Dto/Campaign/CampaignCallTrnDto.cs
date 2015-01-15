@@ -1,6 +1,6 @@
-﻿using System;
+﻿using PS.Mothership.Core.Common.Template.Dial;
+using System;
 using System.Runtime.Serialization;
-using PS.Mothership.Core.Common.Template.Dial;
 
 namespace PS.Mothership.Core.Common.Dto.Campaign
 {
@@ -13,9 +13,15 @@ namespace PS.Mothership.Core.Common.Dto.Campaign
         public Guid CallGuid { get; set; }
 
         [DataMember]
-        public Guid PhoneNumberGuid { get; set; }
+        public DialInboundCampaignCallResolutionEnum CampaignCallResolutionKey { get; set; }
 
         [DataMember]
-        public DialInboundCampaignCallResolutionEnum CampaignCallResolutionKey { get; set; }
+        public Guid ResponseTapTrnGuid { get; set; }
+
+        [DataMember]
+        public Guid CampaignGuid { get; set; }
+
+        [DataMember]
+        public Guid QueueGuid { get; set; }
     }
 }

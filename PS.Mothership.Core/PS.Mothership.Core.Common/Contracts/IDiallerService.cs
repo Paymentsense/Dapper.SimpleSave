@@ -18,7 +18,8 @@ namespace PS.Mothership.Core.Common.Contracts
         Guid LogDiallerSessionSubscribe(Guid userGuid);
 
         [OperationContract]
-        void LogDiallerSessionUnsubscribe(Guid userGuid, Guid diallerSessionGuid, bool wasForcedLogout, DialLogoutReasonEnum logoutReason);
+        void LogDiallerSessionUnsubscribe(Guid userGuid, Guid diallerSessionGuid,
+            bool wasForcedLogout, DialLogoutReasonEnum logoutReason);
 
         [OperationContract]
         IEnumerable<InboundQueueDetailsDto> GetInboundQueueDetails();
@@ -60,7 +61,8 @@ namespace PS.Mothership.Core.Common.Contracts
         Guid AddInboundCampaignCallRecord(Guid sipCallGuid, Guid campaignGuid, string keyword, string referrerUrl);
 
         [OperationContract]
-        void SetInboundCampaignCallRecordResolution(Guid inboundCampaignCallRecordGuid, DialInboundCampaignCallResolutionEnum resolution);
+        void SetInboundCampaignCallRecordResolution(Guid inboundCampaignCallRecordGuid,
+            DialInboundCampaignCallResolutionEnum resolution);
 
         [OperationContract]
         void ProcessInboundCall(NewDiallerCallDto diallerCall);

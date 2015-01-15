@@ -171,7 +171,7 @@
     <Compile Include="Dto\Application\OpportunitySummaryDto.cs" />
     <Compile Include="Dto\Campaign\CampaignCallTrnDto.cs" />
     <Compile Include="Dto\Campaign\CampaignDto.cs" />
-    <Compile Include="Dto\Campaign\CampaignProspectLnkDto.cs" />
+    <Compile Include="Dto\Campaign\CampaignProspectTrnDto.cs" />
     <Compile Include="Dto\Campaign\CampaignQueueDto.cs" />
     <Compile Include="Dto\Campaign\DefaultCampaignLutDto.cs" />
     <Compile Include="Dto\Campaign\ImportProspectDto.cs" />
@@ -301,7 +301,6 @@
     <Compile Include="Dto\Dialler\CallRecordingEventDto.cs" />
     <Compile Include="Dto\Dialler\CallStatsDto.cs" />
     <Compile Include="Dto\Dialler\FinalisedDiallerCallDto.cs" />
-    <Compile Include="Dto\Campaign\CampaignCallMstDto.cs" />
     <Compile Include="Dto\Dialler\InboundQueueDetailsDto.cs" />
     <Compile Include="Dto\Dialler\InboundQueueDistributorDto.cs" />
     <Compile Include="Dto\Dialler\InboundQueueQueuePhoneDto.cs" />

@@ -3,16 +3,16 @@ using System.Runtime.Serialization;
 
 namespace PS.Mothership.Core.Common.Dto.Campaign
 {
-    public class CampaignProspectLnkDto
+    public class CampaignProspectTrnDto
     {
         [DataMember]
-        public Guid CampaignProspectLnkGuid { get; set; }
+        public Guid CampaignProspectTrnGuid { get; set; }
 
         [DataMember]
         public Guid CampaignGuid { get; set; }
 
         [DataMember]
-        public Guid ProspectGuid { get; set; }
+        public Guid MerchantGuid { get; set; }
 
         [DataMember]
         public Guid EventGuid { get; set; }
