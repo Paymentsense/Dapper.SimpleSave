@@ -171,6 +171,7 @@
     <Compile Include="Dto\Application\PrincipalAddressDto.cs" />
     <Compile Include="Dto\CompaniesHouse\CompanyAppointmentsDto.cs" />
     <Compile Include="Dto\Contact\PhoneCountryCodeMetadataDto.cs" />
+    <Compile Include="Dto\Experian\ExperianIdCheckTrnDto.cs" />
     <Compile Include="Dto\Merchant\AddOnServiceDefaultDto.cs" />
     <Compile Include="Dto\Merchant\CurrencyCodeDto.cs" />
     <Compile Include="Dto\Merchant\OfferDefaultDto.cs" />
