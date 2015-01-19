@@ -1,4 +1,5 @@
 ﻿using System.Runtime.Serialization;
+using PS.Mothership.Core.Common.Template.Gen;
 
 namespace PS.Mothership.Core.Common.Dto.Campaign
 {
@@ -79,5 +80,8 @@ namespace PS.Mothership.Core.Common.Dto.Campaign
 
         [DataMember]
         public string Key2 { get; set; }
+
+        [DataMember]
+        public GenCountryEnum CountryKey { get; set; }
     }
 }
