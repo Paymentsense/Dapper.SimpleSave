@@ -30,10 +30,6 @@ namespace PS.Mothership.Core.Common.Dto.Dialler
         [DataMember]
         public Guid MerchantGuid { get; set; }
         [DataMember]
-        public Guid ProspectingCampaignCallGuid { get; set; }
-        [DataMember]
-        public Guid CampaignGuid { get; set; }
-        [DataMember]
         public int PreviewTime { get; set; }
         [DataMember]
         public int DialOrRingTime { get; set; }
@@ -49,9 +45,5 @@ namespace PS.Mothership.Core.Common.Dto.Dialler
         public Guid ConsultOriginSipCallGuid { get; set; }
         [DataMember]
         public int? RecorderCallId { get; set; }
-        [DataMember]
-        public Guid ProspectingCampaignResponseTapCallGuid { get; set; }
-        [DataMember]
-        public Guid InboundCampaignCallGuid { get; set; }
     }
 }

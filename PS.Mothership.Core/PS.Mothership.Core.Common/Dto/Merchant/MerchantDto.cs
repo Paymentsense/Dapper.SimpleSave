@@ -80,7 +80,7 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public DateTimeOffset UpdateDate { get; set; }
 
         [DataMember]
-        public Guid WorkingWithGuid { get; set; }
+        public Guid OwnershipUserGuid { get; set; }
 
         [DataMember]
         public IList<ContactDto> Contacts { get; set; }

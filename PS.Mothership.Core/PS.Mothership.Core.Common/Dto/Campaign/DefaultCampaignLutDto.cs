@@ -22,7 +22,7 @@ namespace PS.Mothership.Core.Common.Dto.Campaign
         public string Description { get; set; }
 
         [DataMember]
-        public string Url { get; set; }
+        public string Domain { get; set; }
 
         [DataMember]
         public GenCountryEnum CountryKey { get; set; }
