@@ -10,6 +10,13 @@ namespace PS.Mothership.Core.Common.Dto.Experian
     [DataContract]
     public class IdentityCheckRequestDto
     {
+
+        [DataMember]
+        public Guid ExperianIdCheckGuid { get; set; }
+
+        [DataMember]
+        public Guid ContactGuid { get; set; }
+
         [DataMember]
         public PrivateInformationTypeDto PersonalInformation { get; set; }
         [DataMember]

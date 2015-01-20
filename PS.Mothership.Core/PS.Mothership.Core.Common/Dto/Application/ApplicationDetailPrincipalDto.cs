@@ -33,5 +33,11 @@ namespace PS.Mothership.Core.Common.Dto.Application
 
         [DataMember]
         public bool HasValidEidCheck { get; set; }
+
+        [DataMember]
+        public Guid ExperianIdCheckGuid { get; set; }
+
+        [DataMember]
+        public string ExperianScore { get; set; }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ServiceModel;
 using PS.Mothership.Core.Common.Dto.Application;
 using PS.Mothership.Core.Common.Dto.DynamicRequest;
+using PS.Mothership.Core.Common.Dto.Experian;
 
 namespace PS.Mothership.Core.Common.Contracts
 {
@@ -32,7 +33,16 @@ namespace PS.Mothership.Core.Common.Contracts
 
         [OperationContract]
         IEnumerable<MerchantCategoryCodeDto> GetMerchantCategoryCodes(DataRequestDto dataRequestDto);
+        
         [OperationContract]
         IEnumerable<MerchantCategoryCodeDto> GetAllMerchantCategoryCodes();
+
+        [OperationContract]
+        IdentityCheckResponseDto GetExperianScore(IdentityCheckRequestDto principalDto);
+
+        [OperationContract]
+        string GetExperianPDF(Guid contactGuid);
+
+
     }
 }
