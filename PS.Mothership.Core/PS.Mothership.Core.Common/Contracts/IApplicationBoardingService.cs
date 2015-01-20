@@ -39,5 +39,10 @@ namespace PS.Mothership.Core.Common.Contracts
 
         [OperationContract]
         IdentityCheckResponseDto GetExperianScore(IdentityCheckRequestDto principalDto);
+
+        [OperationContract]
+        string GetExperianPDF(Guid contactGuid);
+
+
     }
 }
