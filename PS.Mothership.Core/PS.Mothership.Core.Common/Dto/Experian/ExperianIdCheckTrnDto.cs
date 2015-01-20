@@ -22,5 +22,8 @@ namespace PS.Mothership.Core.Common.Dto.Experian
         [DataMember]
         public IdentityCheckResponseDto IdentityCheckResponseDto { get; set; }
 
+        [DataMember]
+        public DateTimeOffset ExperianCheckRunOn { get; set; }
+
     }
 }
