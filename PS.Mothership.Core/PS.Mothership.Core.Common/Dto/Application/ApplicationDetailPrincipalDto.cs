@@ -39,5 +39,8 @@ namespace PS.Mothership.Core.Common.Dto.Application
 
         [DataMember]
         public string ExperianScore { get; set; }
+
+        [DataMember]
+        public string ExperianMessage { get; set; }
     }
 }

@@ -38,7 +38,7 @@ namespace PS.Mothership.Core.Common.Contracts
         IEnumerable<MerchantCategoryCodeDto> GetAllMerchantCategoryCodes();
 
         [OperationContract]
-        IdentityCheckResponseDto GetExperianScore(IdentityCheckRequestDto principalDto);
+        ExperianDetailsDto GetExperianScore(IdentityCheckRequestDto principalDto);
 
         [OperationContract]
         string GetExperianPDF(Guid contactGuid);
