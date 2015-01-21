@@ -1,0 +1,519 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <!--<Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />-->
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2E26F270-5FB3-447D-83B6-416A1BDBB0FC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PS.Mothership.Core.Common</RootNamespace>
+    <AssemblyName>PS.Mothership.Core.Common</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'TeamCity_Excld_Core|AnyCPU'">
+    <OutputPath>bin\TeamCity_Excld_Core\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Production|AnyCPU'">
+    <OutputPath>bin\Production\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=3.2.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.3.2.1\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Net4">
+      <HintPath>..\packages\AutoMapper.3.2.1\lib\net40\AutoMapper.Net4.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Core, Version=3.3.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Castle.Core.3.3.3\lib\net45\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Facilities.Logging, Version=3.3.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Castle.LoggingFacility.3.3.0\lib\net45\Castle.Facilities.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Facilities.WcfIntegration, Version=3.3.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Castle.WcfIntegrationFacility.3.3.0\lib\net45\Castle.Facilities.WcfIntegration.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Services.Logging.Log4netIntegration, Version=3.3.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Castle.Core-log4net.3.3.3\lib\net45\Castle.Services.Logging.Log4netIntegration.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Windsor, Version=3.3.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Castle.Windsor.3.3.0\lib\net45\Castle.Windsor.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Logging, Version=2.3.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Common.Logging.2.3.1\lib\net40\Common.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Quartz, Version=2.3.0.18, Culture=neutral, PublicKeyToken=f6b8c98a402cc8a4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Quartz.2.3\lib\net40\Quartz.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Services" />
+    <Reference Include="System.IdentityModel" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Activation" />
+    <Reference Include="System.ServiceModel.Discovery" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Config\WcfClientCertificateValidator.cs" />
+    <Compile Include="Constants\CacheRegionConstants.cs" />
+    <Compile Include="Constants\ConfigurationConstants.cs" />
+    <Compile Include="Constants\EntityConstants.cs" />
+    <Compile Include="Constants\ExceptionConstants.cs" />
+    <Compile Include="Constants\GlobalConstants.cs" />
+    <Compile Include="Constants\NamingConstants.cs" />
+    <Compile Include="Constructs\PagedList.cs" />
+    <Compile Include="Constructs\RegexValidation.cs" />
+    <Compile Include="Contracts\ApplicationService.cs" />
+    <Compile Include="Contracts\IAddressManagementService.cs" />
+    <Compile Include="Contracts\IAddressService.cs" />
+    <Compile Include="Contracts\IApplicationBoardingService.cs" />
+    <Compile Include="Contracts\IApplicationService.cs" />
+    <Compile Include="Contracts\ICampaignQueueItem.cs" />
+    <Compile Include="Contracts\IContactManagementService.cs" />
+    <Compile Include="Contracts\IEchoSignPushService.cs" />
+    <Compile Include="Contracts\IFirstDataService.cs" />
+    <Compile Include="Contracts\IIridiumService.cs" />
+    <Compile Include="Contracts\IManageableJob.cs" />
+    <Compile Include="Contracts\IMerchantService.cs" />
+    <Compile Include="Contracts\IProspectCustomerService.cs" />
+    <Compile Include="Contracts\IDiallerService.cs" />
+    <Compile Include="Contracts\IDiallerTaskNotificationCallback.cs" />
+    <Compile Include="Contracts\IDiallerTaskNotificationService.cs" />
+    <Compile Include="Contracts\IIdentityCheckService.cs" />
+    <Compile Include="Contracts\ILoggingService.cs" />
+    <Compile Include="Contracts\IMSLogger.cs" />
+    <Compile Include="Contracts\IQueueItem.cs" />
+    <Compile Include="Contracts\ISchedulerManagementService.cs" />
+    <Compile Include="Contracts\ISendMessageService.cs" />
+    <Compile Include="Contracts\ISendMessageServiceCallback.cs" />
+    <Compile Include="Dto\Application\ApplicationDetailLocationDto.cs" />
+    <Compile Include="Dto\Application\ApplicationDetailLocationProductDto.cs" />
+    <Compile Include="Dto\Application\ApplicationInfoDto.cs" />
+    <Compile Include="Dto\Application\ApplicationDetailsMetadataDto.cs" />
+    <Compile Include="Dto\Application\ApplicationStatusDto.cs" />
+    <Compile Include="Dto\Application\ApplicationOpportunitiesMetadataDto.cs" />
+    <Compile Include="Dto\Application\ApplicationSummaryDto.cs" />
+    <Compile Include="Dto\Application\LegalInfoDto.cs" />
+    <Compile Include="Dto\Application\ApplicationDetailsDto.cs" />
+    <Compile Include="Dto\Application\ApplicationOpportunityLocationDto.cs" />
+    <Compile Include="Dto\Application\ApplicationOpportunitiesDto.cs" />
+    <Compile Include="Dto\Application\ApplicationDto.cs" />
+    <Compile Include="Dto\Application\LocationSummaryDto.cs" />
+    <Compile Include="Dto\Application\MerchantCategoryCodeDto.cs" />
+    <Compile Include="Dto\Application\OfferSummaryDto.cs" />
+    <Compile Include="Dto\Application\OpportunitySummaryDto.cs" />
+    <Compile Include="Dto\Campaign\CampaignCallTrnDto.cs" />
+    <Compile Include="Dto\Campaign\CampaignDto.cs" />
+    <Compile Include="Dto\Campaign\CampaignProspectTrnDto.cs" />
+    <Compile Include="Dto\Campaign\CampaignQueueDto.cs" />
+    <Compile Include="Dto\Campaign\DefaultCampaignLutDto.cs" />
+    <Compile Include="Dto\Campaign\ImportProspectDto.cs" />
+    <Compile Include="Dto\CompaniesHouse\CompanyAppointmentsDto.cs" />
+    <Compile Include="Dto\Contact\PhoneCountryCodeMetadataDto.cs" />
+    <Compile Include="Dto\Event\TouchEventTrnDto.cs" />
+    <Compile Include="Dto\Event\TouchEventTrnFullDto.cs" />
+    <Compile Include="Dto\Merchant\AddOnServiceDefaultDto.cs" />
+    <Compile Include="Dto\Merchant\CurrencyCodeDto.cs" />
+    <Compile Include="Dto\Merchant\MerchantEventLnkDto.cs" />
+    <Compile Include="Dto\Merchant\OfferDefaultDto.cs" />
+    <Compile Include="Dto\Event\EventTrnFullDto.cs" />
+    <Compile Include="Dto\Merchant\ProspectMatchDto.cs" />
+    <Compile Include="Dto\Notification\NotificationReceivedDto.cs" />
+    <Compile Include="Dto\FullPostcodeDto.cs" />
+    <Compile Include="Dto\Iridium\IridiumConfirmResultsDto.cs" />
+    <Compile Include="Dto\Iridium\IridiumRequestDto.cs" />
+    <Compile Include="Dto\Iridium\IridiumResultsDto.cs" />
+    <Compile Include="Dto\Merchant\AddOnOfferTrnDto.cs" />
+    <Compile Include="Dto\Merchant\CustomerTypeDto.cs" />
+    <Compile Include="Dto\Merchant\EquipmentPriceTrnDto.cs" />
+    <Compile Include="Dto\Merchant\EquipmentModelDto.cs" />
+    <Compile Include="Dto\Merchant\GatewayContractLnkDto.cs" />
+    <Compile Include="Dto\Merchant\GatewayTariffDto.cs" />
+    <Compile Include="Dto\Merchant\OfferVersionDto.cs" />
+    <Compile Include="Dto\Merchant\OpportunityLatestDto.cs" />
+    <Compile Include="Dto\Merchant\TypeOfTransactionDto.cs" />
+    <Compile Include="Dto\Merchant\ContractLengthDto.cs" />
+    <Compile Include="Dto\Merchant\OpportunityStatusTrnDto.cs" />
+    <Compile Include="Dto\Merchant\EquipmentOfferTrnDto.cs" />
+    <Compile Include="Dto\Merchant\EquipmentModelMetaDataDto.cs" />
+    <Compile Include="Dto\Merchant\AddOnServicePriceDto.cs" />
+    <Compile Include="Dto\Merchant\EquipmentOptionDto.cs" />
+    <Compile Include="Dto\Merchant\AddOnServiceDto.cs" />
+    <Compile Include="Dto\Merchant\EquipmentOptionLutDto.cs" />
+    <Compile Include="Dto\Merchant\MerchantDetailDto.cs" />
+    <Compile Include="Dto\Merchant\OfferAuthorizationFeeDto.cs" />
+    <Compile Include="Dto\Merchant\AcquiringOfferDto.cs" />
+    <Compile Include="Dto\Merchant\GatewayOfferDto.cs" />
+    <Compile Include="Dto\Merchant\RatesRangeDto.cs" />
+    <Compile Include="Dto\Merchant\OfferFieldLutDto.cs" />
+    <Compile Include="Dto\Merchant\OfferConstraintsLnkDto.cs" />
+    <Compile Include="Dto\Merchant\OfferMetaDataDto.cs" />
+    <Compile Include="Dto\Merchant\OfferMinimumMonthlyServiceChargeDto.cs" />
+    <Compile Include="Dto\Merchant\OfferSalesChannelDto.cs" />
+    <Compile Include="Dto\Merchant\OpportunityDto.cs" />
+    <Compile Include="Dto\Merchant\PartnerDto.cs" />
+    <Compile Include="Dto\Merchant\OfferDto.cs" />
+    <Compile Include="Dto\Merchant\MerchantListDto.cs" />
+    <Compile Include="Dto\Merchant\AdvancedSearchDto.cs" />
+    <Compile Include="Dto\Message\InboundMessage.cs" />
+    <Compile Include="Dto\Notification\NotificationStatusDto.cs" />
+    <Compile Include="Dto\Queue\CampaignQueueItemDto.cs" />
+    <Compile Include="Dto\Queue\QueueItemDto.cs" />
+    <Compile Include="Dto\SendMessage\MessageServiceStatus.cs" />
+    <Compile Include="Dto\Merchant\MerchantDataRequestDto.cs" />
+    <Compile Include="Dto\Merchant\MerchantSearchDataDto.cs" />
+    <Compile Include="Dto\Merchant\MerchantOfferDto.cs" />
+    <Compile Include="Dto\User\UserImpersonationDto.cs" />
+    <Compile Include="Enums\NotificationIcon.cs" />
+    <Compile Include="Extension\DoubleExtension.cs" />
+    <Compile Include="Extension\LinqExtension.cs" />
+    <Compile Include="Extension\IntExtension.cs" />
+    <Compile Include="Helper\EnumHelper.cs" />
+    <Compile Include="Dto\SchedulerManagement\JobProfileDto.cs" />
+    <Compile Include="Dto\SchedulerManagement\TriggerProfileDto.cs" />
+    <Compile Include="Dto\SchedulerManagement\SchedulerServerInfoDto.cs" />
+    <Compile Include="Enums\SchedulerManagement\SchedulerStatusEnum.cs" />
+    <Compile Include="SessionHandling\ISessionManager.cs" />
+    <Compile Include="Contracts\ITaskNotificationCallback.cs" />
+    <Compile Include="Contracts\ITaskNotificationService.cs" />
+    <Compile Include="Contracts\IUserManagementService.cs" />
+    <Compile Include="Contracts\Security\IAuthenticationService.cs" />
+    <Compile Include="Config\ILayerIocBuilder.cs" />
+    <Compile Include="Config\IocBuildSettings.cs" />
+    <Compile Include="Config\WcfMode.cs" />
+    <Compile Include="Dto\CompaniesHouse\CompanyAppointmentsRequestDto.cs" />
+    <Compile Include="Dto\CompaniesHouse\CompanyDetailsDto.cs" />
+    <Compile Include="Dto\CompaniesHouse\CompanyDetailsRequestDto.cs" />
+    <Compile Include="Dto\CompaniesHouse\DocumentRequestDto.cs" />
+    <Compile Include="Dto\CompaniesHouse\SubDtos\AccountsDto.cs" />
+    <Compile Include="Dto\CompaniesHouse\SubDtos\ChargeDto.cs" />
+    <Compile Include="Dto\CompaniesHouse\SubDtos\CoApptDto.cs" />
+    <Compile Include="Dto\CompaniesHouse\SubDtos\CompanyDetailsMortgagesDto.cs" />
+    <Compile Include="Dto\CompaniesHouse\SubDtos\CoSearchItemDto.cs" />
+    <Compile Include="Dto\CompaniesHouse\DocumentInfoRequestDto.cs" />
+    <Compile Include="Dto\CompaniesHouse\FilingHistoryDto.cs" />
+    <Compile Include="Dto\CompaniesHouse\FilingHistoryRequestDto.cs" />
+    <Compile Include="Dto\CompaniesHouse\MortgagesRequestDto.cs" />
+    <Compile Include="Dto\CompaniesHouse\NameSearchRequestDto.cs" />
+    <Compile Include="Dto\CompaniesHouse\NumberSearchRequestDto.cs" />
+    <Compile Include="Dto\CompaniesHouse\OfficerDetailsDto.cs" />
+    <Compile Include="Dto\CompaniesHouse\OfficerDetailsRequestDto.cs" />
+    <Compile Include="Dto\CompaniesHouse\OfficerSearchRequestDto.cs" />
+    <Compile Include="Dto\CompaniesHouse\SubDtos\ExemptionDto.cs" />
+    <Compile Include="Dto\CompaniesHouse\SubDtos\FhistChildDocDto.cs" />
+    <Compile Include="Dto\CompaniesHouse\SubDtos\FhistItemDto.cs" />
+    <Compile Include="Dto\CompaniesHouse\SubDtos\LimitedPartnershipsDto.cs" />
+    <Compile Include="Dto\CompaniesHouse\SubDtos\OfficerApptDto.cs" />
+    <Compile Include="Dto\CompaniesHouse\SubDtos\OfficerDetailsApptCountDto.cs" />
+    <Compile Include="Dto\CompaniesHouse\SubDtos\OfficerDisqDto.cs" />
+    <Compile Include="Dto\CompaniesHouse\SubDtos\OfficerSearchItemBaseDto.cs" />
+    <Compile Include="Dto\CompaniesHouse\SubDtos\OfficerSearchItemDto.cs" />
+    <Compile Include="Dto\CompaniesHouse\SubDtos\PersonAddressDto.cs" />
+    <Compile Include="Dto\CompaniesHouse\SubDtos\PersonAppointmentDto.cs" />
+    <Compile Include="Dto\CompaniesHouse\SubDtos\PersonDto.cs" />
+    <Compile Include="Dto\CompaniesHouse\SubDtos\PreviousNameDto.cs" />
+    <Compile Include="Dto\CompaniesHouse\SubDtos\RegAddressDto.cs" />
+    <Compile Include="Dto\CompaniesHouse\SubDtos\ReturnsDto.cs" />
+    <Compile Include="Dto\CompaniesHouse\SubDtos\SicCodesDto.cs" />
+    <Compile Include="Dto\Contact\AddressDto.cs" />
+    <Compile Include="Dto\Contact\CountyDto.cs" />
+    <Compile Include="Dto\Contact\PhoneNumberDto.cs" />
+    <Compile Include="Dto\Merchant\AddProspectDto.cs" />
+    <Compile Include="Dto\Merchant\ContactDto.cs" />
+    <Compile Include="Dto\Merchant\CustomerDetailsDto.cs" />
+    <Compile Include="Dto\Merchant\CustomerDto.cs" />
+    <Compile Include="Dto\Merchant\MerchantContactDto.cs" />
+    <Compile Include="Dto\Merchant\MerchantDto.cs" />
+    <Compile Include="Dto\Merchant\MerchantAddressDto.cs" />
+    <Compile Include="Dto\Merchant\ProspectAddressDto.cs" />
+    <Compile Include="Dto\Merchant\ProspectDetailsDto.cs" />
+    <Compile Include="Dto\Merchant\ProspectDto.cs" />
+    <Compile Include="Dto\Merchant\ProspectResponseDto.cs" />
+    <Compile Include="Dto\Dialler\CallLogItemDto.cs" />
+    <Compile Include="Dto\Dialler\CallRecordDto.cs" />
+    <Compile Include="Dto\Dialler\CallRecordingEventDto.cs" />
+    <Compile Include="Dto\Dialler\CallStatsDto.cs" />
+    <Compile Include="Dto\Dialler\FinalisedDiallerCallDto.cs" />
+    <Compile Include="Dto\Dialler\InboundQueueDetailsDto.cs" />
+    <Compile Include="Dto\Dialler\InboundQueueDistributorDto.cs" />
+    <Compile Include="Dto\Dialler\InboundQueueQueuePhoneDto.cs" />
+    <Compile Include="Dto\Dialler\InboundQueueSubscriptionDto.cs" />
+    <Compile Include="Dto\Dialler\MissingCallRecordingDto.cs" />
+    <Compile Include="Dto\Dialler\NewDiallerCallDto.cs" />
+    <Compile Include="Dto\Dialler\SipAccountDto.cs" />
+    <Compile Include="Dto\Dialler\SipAccountNumberDto.cs" />
+    <Compile Include="Dto\Dialler\SpeedDialNumberDto.cs" />
+    <Compile Include="Dto\Dialler\DiallerSessionDto.cs" />
+    <Compile Include="Dto\Dialler\ValidUserInfoDto.cs" />
+    <Compile Include="Dto\DynamicRequest\DataRequestDto.cs" />
+    <Compile Include="Dto\DynamicRequest\FilterDto.cs" />
+    <Compile Include="Dto\DynamicRequest\SortDto.cs" />
+    <Compile Include="Dto\EchoSign\AgreementCreationDto.cs" />
+    <Compile Include="Dto\EchoSign\AgreementDocumentIdDto.cs" />
+    <Compile Include="Dto\EchoSign\AgreementInfoDto.cs" />
+    <Compile Include="Dto\EchoSign\DeviceLocationDto.cs" />
+    <Compile Include="Dto\EchoSign\DocumentHistoryEventDto.cs" />
+    <Compile Include="Dto\EchoSign\DocumentLibraryItemDto.cs" />
+    <Compile Include="Dto\EchoSign\DocumentsInfoDto.cs" />
+    <Compile Include="Dto\EchoSign\LibraryDocumentIdDto.cs" />
+    <Compile Include="Dto\EchoSign\MergeFieldInfoDto.cs" />
+    <Compile Include="Dto\EchoSign\NewAgreementDto.cs" />
+    <Compile Include="Dto\EchoSign\NextParticipantInfosDto.cs" />
+    <Compile Include="Dto\EchoSign\ParticipantInfoDto.cs" />
+    <Compile Include="Dto\EchoSign\ReminderCreationResultDto.cs" />
+    <Compile Include="Dto\Event\EventNotesTrnDto.cs" />
+    <Compile Include="Dto\Event\EventStatusOwnerTrnDto.cs" />
+    <Compile Include="Dto\Event\EventTrnDto.cs" />
+    <Compile Include="Dto\Experian\CurrentAddressTypeDto.cs" />
+    <Compile Include="Dto\Experian\IdentityCheckDto.cs" />
+    <Compile Include="Dto\Experian\IdentityCheckRequestDto.cs" />
+    <Compile Include="Dto\Experian\IdentityCheckResponseDto.cs" />
+    <Compile Include="Dto\Experian\IdentityCheckTokenDto.cs" />
+    <Compile Include="Dto\Experian\IdentityResultBlockDto.cs" />
+    <Compile Include="Dto\Experian\PreviousAddressTypeDto.cs" />
+    <Compile Include="Dto\Experian\PrivateInformationTypeDto.cs" />
+    <Compile Include="Dto\Login\AccountDto.cs" />
+    <Compile Include="Dto\Login\ChangePasswordDto.cs" />
+    <Compile Include="Dto\Login\ChangePasswordResultDto.cs" />
+    <Compile Include="Dto\FullAddressDto.cs" />
+    <Compile Include="Dto\Groups\GroupDto.cs" />
+    <Compile Include="Dto\Groups\GroupDescDto.cs" />
+    <Compile Include="Dto\Groups\GroupRoleDto.cs" />
+    <Compile Include="Dto\Login\SessionDto.cs" />
+    <Compile Include="Dto\Login\LoginTrnDto.cs" />
+    <Compile Include="Dto\Message\MessageSMSRecipientsDto.cs" />
+    <Compile Include="Dto\Message\MessageSMSDto.cs" />
+    <Compile Include="Dto\Message\MessageSendTrnDto.cs" />
+    <Compile Include="Dto\Message\MessageEmailRecipientsDto.cs" />
+    <Compile Include="Dto\Message\MessageDto.cs" />
+    <Compile Include="Dto\Message\MessageEmailAttachmentsDto.cs" />
+    <Compile Include="Dto\Message\MessageEmailDto.cs" />
+    <Compile Include="Dto\Message\EmailAddressDto.cs" />
+    <Compile Include="Dto\PostcodeDto.cs" />
+    <Compile Include="Dto\Roles\InheritedRolesDto.cs" />
+    <Compile Include="Dto\LoginCredentialsDto.cs" />
+    <Compile Include="Dto\Notification\TaskNotificationDto.cs" />
+    <Compile Include="Dto\Notification\NotificationResultDto.cs" />
+    <Compile Include="Dto\Notification\PendingTaskNotificationDto.cs" />
+    <Compile Include="Dto\RegisterDto.cs" />
+    <Compile Include="Dto\Roles\ResourceRolePermissionsDto.cs" />
+    <Compile Include="Dto\Roles\RoleDto.cs" />
+    <Compile Include="Dto\Roles\RoleInheritanceDto.cs" />
+    <Compile Include="Dto\Session\SessionHeaderDto.cs" />
+    <Compile Include="Dto\Event\EventNotificationTrnDto.cs" />
+    <Compile Include="Dto\User\UserListDto.cs" />
+    <Compile Include="Dto\User\UserRemoteAccessTrnDto.cs" />
+    <Compile Include="Dto\User\UserStatusTrnDto.cs" />
+    <Compile Include="Dto\User\UserDto.cs" />
+    <Compile Include="Dto\User\UserGroupDto.cs" />
+    <Compile Include="Dto\User\UserPermissionDto.cs" />
+    <Compile Include="Dto\SearchDto.cs" />
+    <Compile Include="Dto\SendMessage\MessageNotificationDto.cs" />
+    <Compile Include="Dto\SendMessage\MessageReceivedDto.cs" />
+    <Compile Include="Dto\SendMessage\SendEmailRequestDto.cs" />
+    <Compile Include="Dto\SendMessage\SendMessageRequestDto.cs" />
+    <Compile Include="Dto\SendMessage\SendMessageServiceStatusDto.cs" />
+    <Compile Include="Dto\SendMessage\SendMessageSmsDto.cs" />
+    <Compile Include="Dto\SendMessage\SendMessageSmsToDto.cs" />
+    <Compile Include="Dto\SendMessage\SendSmsRequestDto.cs" />
+    <Compile Include="Dto\SendMessage\SmsMessageReceivedDto.cs" />
+    <Compile Include="Dto\SendMessage\SmsNotificationDto.cs" />
+    <Compile Include="Dto\TaskDto.cs" />
+    <Compile Include="Dto\User\UserAssignedAndAvailableRoleDto.cs" />
+    <Compile Include="Dto\User\UserLoginResultDto.cs" />
+    <Compile Include="Dto\User\UserRolesDto.cs" />
+    <Compile Include="Dto\Groups\UserGroupDto.cs" />
+    <Compile Include="Dto\Roles\BasicUserRoleDto.cs" />
+    <Compile Include="Dto\User\UserRoleDto.cs" />
+    <Compile Include="Dto\User\UserProfileDto.cs" />
+    <Compile Include="Enums\Action.cs" />
+    <Compile Include="Enums\CompaniesHouse\CompaniesHouseGenerated.cs" />
+    <Compile Include="Enums\EchoSign\AgreementStatusEnum.cs" />
+    <Compile Include="Enums\EchoSign\DocSecurityOptionEnum.cs" />
+    <Compile Include="Enums\EchoSign\DocumentLibraryItemScopeEnum.cs" />
+    <Compile Include="Enums\EchoSign\EchoSignEventTypeEnum.cs" />
+    <Compile Include="Enums\EchoSign\ParticipantInfoSecurityOptionEnum.cs" />
+    <Compile Include="Enums\EchoSign\ParticipantRoleEnum.cs" />
+    <Compile Include="Enums\EchoSign\ReminderFrequencyEnum.cs" />
+    <Compile Include="Enums\Dialler\LogCallType.cs" />
+    <Compile Include="Enums\State.cs" />
+    <Compile Include="Enums\StatusType.cs" />
+    <Compile Include="Extension\AutoMapperExtension.cs" />
+    <Compile Include="Exceptions\BusinessException.cs" />
+    <Compile Include="Exceptions\CriticalException.cs" />
+    <Compile Include="Exceptions\PsBaseException.cs" />
+    <Compile Include="Extension\EnumerableExtension.cs" />
+    <Compile Include="Enums\UserRoleType.cs" />
+    <Compile Include="Contracts\ICacheService.cs" />
+    <Compile Include="Extension\EnumExtension.cs" />
+    <Compile Include="Helper\KeyValuePair.cs" />
+    <Compile Include="Helper\AddressSplitter.cs" />
+    <Compile Include="Helper\CTime.cs" />
+    <Compile Include="Helper\DebugStopwatch.cs" />
+    <Compile Include="Helper\DynamicContractResolver.cs" />
+    <Compile Include="SignalRConnectionHandling\IClientsCollection.cs" />
+    <Compile Include="SignalRConnectionHandling\ISignalRConnectionManager.cs" />
+    <Compile Include="Helper\MSLogger.cs" />
+    <Compile Include="Helper\RandomStringGenerator.cs" />
+    <Compile Include="SessionHandling\SessionManager.cs" />
+    <Compile Include="SignalRConnectionHandling\ISignalRUser.cs" />
+    <Compile Include="SignalRConnectionHandling\SignalRConnectionManager.cs" />
+    <Compile Include="Helper\UniqueKeyGenerator.cs" />
+    <Compile Include="Helper\JsonHelper.cs" />
+    <Compile Include="Helper\Obfuscator.cs" />
+    <Compile Include="Helper\Util.cs" />
+    <Compile Include="IPManager\IPInspector.cs" />
+    <Compile Include="Contracts\ISearchService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SignalRConnectionHandling\SignalRUser.cs" />
+    <Compile Include="ValidationCode\CodeMaker.cs" />
+    <Compile Include="Helper\CryptoRandom.cs" />
+    <Compile Include="Helper\RandomProvider.cs" />
+    <Compile Include="Validation\AddressRegex.cs" />
+    <Compile Include="Validation\GeneralRegex.cs" />
+    <Compile Include="WcfErrorHandling\PassThroughExceptionExtension.cs" />
+    <Compile Include="WcfErrorHandling\PassThroughExceptionHandlingBehaviour.cs" />
+    <Compile Include="WcfErrorHandling\CustomServerException.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="job_scheduling_data_2_0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <Import Project="$(VSToolsPath)\TextTemplating\Microsoft.TextTemplating.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\TextTemplating\Microsoft.TextTemplating.targets" Condition="false" />
+  <PropertyGroup>
+    <IncludeFolders>$(MSBuildProgramFiles32)\Microsoft Visual Studio 11.0\Common7\IDE\Extensions\Microsoft\Entity Framework Tools\Templates\Includes</IncludeFolders>
+    <TransformOnBuild>true</TransformOnBuild>
+    <OverwriteReadOnlyOutputFiles>true</OverwriteReadOnlyOutputFiles>
+    <TransformOutOfDateOnly>false</TransformOutOfDateOnly>
+    <IncludeDslT4Settings>false</IncludeDslT4Settings>
+  </PropertyGroup>
+  <!--if we set IncludeDslT4Settings to true, then we don't need the below-->
+  <ItemGroup>
+    <T4ReferencePath Include="$(VsIdePath)PublicAssemblies\">
+      <InProject>False</InProject>
+    </T4ReferencePath>
+    <DirectiveProcessor Include="T4VSHost">
+      <Class>Microsoft.Data.Entity.Design.VisualStudio.Directives.FallbackT4VSHostProcessor</Class>
+      <CodeBase>$(MSBuildProgramFiles32)\Microsoft Visual Studio 11.0\Common7\IDE\Microsoft.Data.Entity.Design.dll</CodeBase>
+      <InProject>False</InProject>
+    </DirectiveProcessor>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PS.Mothership.Core.Common.Log4NetJsonFormatter\PS.Mothership.Core.Common.Log4NetJsonFormatter.csproj">
+      <Project>{f4c86b09-f339-4a37-b2c1-e2ab6d7c2662}</Project>
+      <Name>PS.Mothership.Core.Common.Log4NetJsonFormatter</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PS.Mothership.Core.Common.Template\PS.Mothership.Core.Common.Template.csproj">
+      <Project>{0f7a5532-b7d9-44df-b7b2-b30546f1922a}</Project>
+      <Name>PS.Mothership.Core.Common.Template</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ThirdParty\MiniProfiler.dll" />
+    <Content Include="ThirdParty\MiniProfiler.EntityFramework6.dll" />
+    <Content Include="ThirdParty\MiniProfiler.EntityFramework6.pdb" />
+    <Content Include="ThirdParty\MiniProfiler.Mvc.dll" />
+    <Content Include="ThirdParty\MiniProfiler.Mvc.pdb" />
+    <Content Include="ThirdParty\MiniProfiler.pdb" />
+    <Content Include="ThirdParty\MiniProfiler.Wcf.dll" />
+    <Content Include="ThirdParty\MiniProfiler.Wcf.pdb" />
+    <Content Include="ThirdParty\MiniProfiler.xml" />
+  </ItemGroup>
+  <ItemGroup />
+  <PropertyGroup>
+    <BeforeTransform>CustomPreTransform</BeforeTransform>
+    <AfterTransform>CustomPostTransform;$(AfterTransform)</AfterTransform>
+  </PropertyGroup>
+  <Target Name="CustomPreTransform">
+    <Message Text="In CustomPreTransform..." Importance="High" />
+  </Target>
+  <Target Name="CustomPostTransform">
+    <Message Text="In CustomPostTransform..." Importance="High" />
+  </Target>
+  <Import Project="..\packages\AutoMapper.3.2.1\tools\AutoMapper.targets" Condition="Exists('..\packages\AutoMapper.3.2.1\tools\AutoMapper.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
