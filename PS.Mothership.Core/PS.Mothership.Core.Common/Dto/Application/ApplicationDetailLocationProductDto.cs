@@ -75,7 +75,7 @@ namespace PS.Mothership.Core.Common.Dto.Application
         [DataMember]
         public string BacsName { get; set; }
         [DataMember]
-        public string AccountHeldFor { get; set; }
+        public DateTimeOffset? AccountHeldSince { get; set; }
         [DataMember]
         public string DepositIBAN { get; set; }
         [DataMember]

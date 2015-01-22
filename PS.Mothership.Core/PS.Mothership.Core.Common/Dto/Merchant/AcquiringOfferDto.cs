@@ -59,5 +59,8 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
 
         [DataMember]
         public int AuthorisationFeeKey { get; set; }
+
+        [DataMember]
+        public double DiscountPlan { get; set; }
     }
 }

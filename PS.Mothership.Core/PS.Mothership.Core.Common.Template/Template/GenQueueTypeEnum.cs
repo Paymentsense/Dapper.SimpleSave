@@ -11,6 +11,7 @@ namespace PS.Mothership.Core.Common.Template.Gen
     public enum GenQueueTypeEnum : int
     {
        [Description("None")][EnumMember]None = 0,
+       [Description("Web Lead")][EnumMember]WebLead = 1,
         
     }    
     
@@ -44,6 +45,14 @@ namespace PS.Mothership.Core.Common.Template.Gen
 								EnumDescription = "None",
 								QueueTypeKey = 0,
 								RecStatusKey = (GenRecStatusEnum)2
+							},
+							new GenQueueType
+							{
+								EnumValue = 1,
+								EnumName = "WebLead",
+								EnumDescription = "Web Lead",
+								QueueTypeKey = 1,
+								RecStatusKey = (GenRecStatusEnum)1
 							},
                         };
                     

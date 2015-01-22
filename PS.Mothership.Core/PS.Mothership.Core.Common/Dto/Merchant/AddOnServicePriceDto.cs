@@ -22,30 +22,24 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public int CountryKey { get; set; }
 
         [DataMember]
-        public DateTime EffectiveDate { get; set; }
+        public DateTimeOffset EffectiveDate { get; set; }
 
         [DataMember]
-        public double RegularPrice { get; set; }
+        public decimal RegularPrice { get; set; }
 
         [DataMember]
-        public double CeilingPrice { get; set; }
+        public decimal CeilingPrice { get; set; }
 
         [DataMember]
-        public double WholesaleCost { get; set; }
+        public decimal WholesaleCost { get; set; }
 
         [DataMember]
         public int CalculatorVersionKey { get; set; }
 
         [DataMember]
-        public double FloorPrice { get; set; }
-
-        [DataMember]
-        public string DisplayName { get; set; }
+        public decimal FloorPrice { get; set; }
 
         [DataMember]
         public OppProvisionTypeEnum ProvisionTypeKey { get; set; }
-
-        [DataMember]
-        public int DisplayOrder { get; set; }
     }
 }
