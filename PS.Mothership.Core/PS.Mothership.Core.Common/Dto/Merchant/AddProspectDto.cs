@@ -18,5 +18,7 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public Guid AddressGuid { get; set; }
 
         public Guid MainPhoneGuid { get; set; }
+
+        public Guid EmailAddressGuid { get; set; }
     }
 }
