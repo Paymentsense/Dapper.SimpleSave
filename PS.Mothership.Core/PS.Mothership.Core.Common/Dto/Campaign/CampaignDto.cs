@@ -25,7 +25,7 @@ namespace PS.Mothership.Core.Common.Dto.Campaign
         public DateTimeOffset? EndDate { get; set; }
 
         [DataMember]
-        public PhoneNumberDto Phone { get; set; }
+        public Guid PhoneGuid { get; set; }
 
         [DataMember]
         public MrktCampaignTypeEnum CampaignType { get; set; }
@@ -34,10 +34,10 @@ namespace PS.Mothership.Core.Common.Dto.Campaign
         public MrktCampaignSourceEnum CampaignSource { get; set; }
 
         [DataMember]
-        public UserDto StartedByUser { get; set; }
+        public Guid StartedByUserGuid { get; set; }
 
         [DataMember]
-        public UserDto EndedByUser { get; set; }
+        public Guid EndedByUserGuid { get; set; }
 
         [DataMember]
         public DateTime? UpdateDate { get; set; }

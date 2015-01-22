@@ -23,5 +23,8 @@ namespace PS.Mothership.Core.Common.Dto.Campaign
 
         [DataMember]
         public Guid QueueGuid { get; set; }
+
+        [DataMember]
+        public Guid PhoneNumberGuid { get; set; }
     }
 }
