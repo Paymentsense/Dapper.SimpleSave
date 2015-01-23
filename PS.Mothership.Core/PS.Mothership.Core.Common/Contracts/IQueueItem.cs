@@ -1,4 +1,5 @@
 ﻿using System;
+using PS.Mothership.Core.Common.Template.Gen;
 
 namespace PS.Mothership.Core.Common.Contracts
 {
@@ -8,6 +9,7 @@ namespace PS.Mothership.Core.Common.Contracts
     public interface IQueueItem
     {
         Guid QueueGuid { get; set; }
+        GenQueueTypeEnum QueueTypeKey { get; set; }
         Guid EventGuid { get; set; }
         Guid PermissionGuid { get; set; }
         DateTimeOffset? ScheduledTime { get; set; }

@@ -40,7 +40,7 @@ namespace PS.Mothership.Core.Common.Dto.Campaign
         public Guid EndedByUserGuid { get; set; }
 
         [DataMember]
-        public DateTime? UpdateDate { get; set; }
+        public DateTimeOffset UpdateDate { get; set; }
 
         [DataMember]
         public Guid RolePermissionGuid { get; set; }

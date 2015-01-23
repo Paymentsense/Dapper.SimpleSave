@@ -1,19 +1,25 @@
 ﻿using System;
 using System.Runtime.Serialization;
-using PS.Mothership.Core.Common.Dto.Merchant;
+using PS.Mothership.Core.Common.Template.Gen;
 
 namespace PS.Mothership.Core.Common.Dto.Campaign
 {
     public class CampaignQueueDto
     {
         [DataMember]
-        public Guid CampaignQueueGuid { get; set; }
+        public Guid QueueGuid { get; set; }
 
         [DataMember]
-        public CampaignDto Campaign { get; set; }
+        public Guid CampaignProspectTrnGuid { get; set; }
 
         [DataMember]
-        public MerchantDto Merchant { get; set; }
+        public Guid EventGuid { get; set; }
+
+        [DataMember]
+        public Guid RolePermissionGuid { get; set; }
+
+        [DataMember]
+        public GenQueueTypeEnum QueueType { get; set; }
 
         [DataMember]
         public Guid UpdateSessionGuid { get; set; }
