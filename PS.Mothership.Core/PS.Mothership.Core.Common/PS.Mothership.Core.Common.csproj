@@ -179,6 +179,8 @@
     <Compile Include="Dto\Campaign\ImportProspectDto.cs" />
     <Compile Include="Dto\CompaniesHouse\CompanyAppointmentsDto.cs" />
     <Compile Include="Dto\Contact\PhoneCountryCodeMetadataDto.cs" />
+    <Compile Include="Dto\Merchant\DiallerMerchantDto.cs" />
+    <Compile Include="Dto\Campaign\ResponseTapDto.cs" />
     <Compile Include="Dto\Event\TouchEventTrnDto.cs" />
     <Compile Include="Dto\Event\TouchEventTrnFullDto.cs" />
     <Compile Include="Dto\Merchant\AddOnServiceDefaultDto.cs" />

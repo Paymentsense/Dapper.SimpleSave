@@ -1,4 +1,5 @@
-﻿using PS.Mothership.Core.Common.Dto.Dialler;
+﻿using PS.Mothership.Core.Common.Dto.Campaign;
+using PS.Mothership.Core.Common.Dto.Dialler;
 using PS.Mothership.Core.Common.Dto.Merchant;
 using PS.Mothership.Core.Common.Dto.User;
 using PS.Mothership.Core.Common.Template.Dial;
@@ -72,5 +73,17 @@ namespace PS.Mothership.Core.Common.Contracts
 
         [OperationContract]
         UserProfileDto GetUser(Guid userGuid);
+
+        [OperationContract]
+        string GetMerchantBusinessNameByGuid(Guid merchantGuid);
+
+        [OperationContract]
+        IEnumerable<DiallerMerchantDto> GetMerchantsByPhoneNumber(string phoneNumber);
+
+        [OperationContract]
+        ResponseTapDto GetResponseTapRecordByPhoneNumber(string phoneNumber);
+
+        [OperationContract]
+        CampaignDto GetCampaignByPhoneNumber(string phoneNumber);
     }
 }
