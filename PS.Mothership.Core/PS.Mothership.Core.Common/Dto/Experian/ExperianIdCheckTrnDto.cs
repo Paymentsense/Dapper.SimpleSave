@@ -25,5 +25,8 @@ namespace PS.Mothership.Core.Common.Dto.Experian
         [DataMember]
         public DateTimeOffset ExperianCheckRunOn { get; set; }
 
+        [DataMember]
+        public bool IsPreviousAddressSupplied { get; set; }
     }
+
 }
