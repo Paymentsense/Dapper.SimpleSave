@@ -2,6 +2,7 @@
 using System.Runtime.Serialization;
 using PS.Mothership.Core.Common.Dto.Message;
 using PS.Mothership.Core.Common.Dto.Contact;
+using PS.Mothership.Core.Common.Template.Gen;
 
 namespace PS.Mothership.Core.Common.Dto.Merchant
 {
@@ -12,7 +13,7 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public Guid ContactGuid { get; set; }
 
         [DataMember]
-        public int SalutationKey { get; set; }
+        public GenSalutationEnum SalutationKey { get; set; }
 
         [DataMember]
         public string SalutationText { get; set; }
@@ -36,7 +37,7 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public PhoneNumberDto MobilePhone { get; set; }
 
         [DataMember]
-        public int ContactRoleKey { get; set; }
+        public GenContactRoleEnum ContactRoleKey { get; set; }
 
         [DataMember]
         public string ContactRoleText { get; set; }

@@ -32,7 +32,6 @@ namespace PS.Mothership.Core.Common.Contracts
 
         [OperationContract]
         IEnumerable<MerchantCategoryCodeDto> GetMerchantCategoryCodes(DataRequestDto dataRequestDto);
-
         [OperationContract]
         IEnumerable<MerchantCategoryCodeDto> GetAllMerchantCategoryCodes();
     }
