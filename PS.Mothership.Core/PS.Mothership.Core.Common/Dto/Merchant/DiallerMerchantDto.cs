@@ -18,5 +18,7 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public string StreetAddress { get; set; }
         [DataMember]
         public string BusinessName { get; set; }
+        [DataMember]
+        public bool IsCustomer { get; set; }
     }
 }
