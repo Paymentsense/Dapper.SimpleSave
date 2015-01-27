@@ -22,5 +22,7 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         [DataMember]
         public GenRecStatusEnum RecStatusKey { get; set; }
 
+        [DataMember]
+        public decimal ActualPrice { get; set; }
     }
 }

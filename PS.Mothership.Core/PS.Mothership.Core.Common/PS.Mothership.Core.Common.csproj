@@ -136,6 +136,7 @@
     <Compile Include="Contracts\IApplicationBoardingService.cs" />
     <Compile Include="Contracts\IApplicationService.cs" />
     <Compile Include="Contracts\IContactManagementService.cs" />
+    <Compile Include="Contracts\IDueDilService.cs" />
     <Compile Include="Contracts\IEchoSignPushService.cs" />
     <Compile Include="Contracts\IFirstDataService.cs" />
     <Compile Include="Contracts\IIridiumService.cs" />
@@ -171,10 +172,19 @@
     <Compile Include="Dto\Application\PrincipalAddressDto.cs" />
     <Compile Include="Dto\CompaniesHouse\CompanyAppointmentsDto.cs" />
     <Compile Include="Dto\Contact\PhoneCountryCodeMetadataDto.cs" />
+    <Compile Include="Dto\DueDil\CompanyDetailsDto.cs" />
+    <Compile Include="Dto\DueDil\CompanyListDto.cs" />
+    <Compile Include="Dto\DueDil\DirectorResponseDto.cs" />
+    <Compile Include="Dto\DueDil\CompanyResponseDto.cs" />
+    <Compile Include="Dto\DueDil\DueDilFilterDto.cs" />
+    <Compile Include="Dto\DueDil\CompanyListResponseDto.cs" />
+    <Compile Include="Dto\DueDil\ProcessResponseDto.cs" />
+    <Compile Include="Dto\DueDil\ShareholderResponseDto.cs" />
     <Compile Include="Dto\Merchant\AddOnServiceDefaultDto.cs" />
     <Compile Include="Dto\Merchant\CurrencyCodeDto.cs" />
     <Compile Include="Dto\Merchant\OfferDefaultDto.cs" />
     <Compile Include="Dto\Event\EventTrnFullDto.cs" />
+    <Compile Include="Dto\Merchant\OfferFieldItemLutDto.cs" />
     <Compile Include="Dto\Notification\NotificationReceivedDto.cs" />
     <Compile Include="Dto\FullPostcodeDto.cs" />
     <Compile Include="Dto\Iridium\IridiumConfirmResultsDto.cs" />
@@ -219,6 +229,7 @@
     <Compile Include="Dto\Merchant\MerchantSearchDataDto.cs" />
     <Compile Include="Dto\Merchant\MerchantOfferDto.cs" />
     <Compile Include="Dto\User\UserImpersonationDto.cs" />
+    <Compile Include="Enums\DueDil\DueDilLocale.cs" />
     <Compile Include="Enums\NotificationIcon.cs" />
     <Compile Include="Extension\DoubleExtension.cs" />
     <Compile Include="Extension\LinqExtension.cs" />
