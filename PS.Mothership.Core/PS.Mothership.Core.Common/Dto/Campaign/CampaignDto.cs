@@ -47,5 +47,8 @@ namespace PS.Mothership.Core.Common.Dto.Campaign
 
         [DataMember]
         public GenRecStatusEnum RecStatus { get; set; }
+
+        [DataMember]
+        public Guid SalesChannelGuid { get; set; }
     }
 }
