@@ -40,6 +40,12 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public decimal FloorPrice { get; set; }
 
         [DataMember]
+        public string DisplayName { get; set; }
+
+        [DataMember]
         public OppProvisionTypeEnum ProvisionTypeKey { get; set; }
+
+        [DataMember]
+        public int DisplayOrder { get; set; }
     }
 }

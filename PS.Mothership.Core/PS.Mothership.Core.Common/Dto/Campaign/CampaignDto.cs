@@ -50,5 +50,8 @@ namespace PS.Mothership.Core.Common.Dto.Campaign
 
         [DataMember]
         public Guid SalesChannelGuid { get; set; }
+
+        [DataMember]
+        public Guid CampaignPhoneNumberGuid { get; set; }
     }
 }

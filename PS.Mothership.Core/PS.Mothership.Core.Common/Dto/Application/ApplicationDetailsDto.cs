@@ -15,9 +15,11 @@ namespace PS.Mothership.Core.Common.Dto.Application
 
         [DataMember]
         public LegalInfoDto LegalInfo { get; set; }
-        
-        [DataMember]
-        public IEnumerable<ApplicationDetailLocationDto> ApplicationDetailLocation { get; set; }
 
+        [DataMember]
+        public IList<ApplicationDetailLocationDto> ApplicationDetailLocation { get; set; }
+
+        [DataMember]
+        public IList<ApplicationDetailPrincipalDto> ApplicationDetailPrincipal { get; set; }
     }
 }
