@@ -19,7 +19,5 @@ namespace PS.Mothership.Core.Common.Dto.Dialler
         public string Description { get; set; }
         [DataMember]
         public GenRecStatusEnum RecStatusKey { get; set; }
-        [DataMember]
-        public bool Locked { get; set; }
     }
 }

@@ -39,5 +39,7 @@ namespace PS.Mothership.Core.Common.Dto.Dialler
         public Guid UserSipPhoneGuid { get; set; }
         [DataMember]
         public string LoginName { get; set; }
+        [DataMember]
+        public IList<SpeedDialNumberDto> TransferNumbers { get; set; }
     }
 }
