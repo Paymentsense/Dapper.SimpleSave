@@ -12,8 +12,6 @@ namespace PS.Mothership.Core.Common.Dto.Dialler
         [DataMember]
         public Guid DiallerSessionGuid { get; set; }
         [DataMember]
-        public string Extension  { get; set; }
-        [DataMember]
         public string SipUserId { get; set; }
         [DataMember]
         public string SipPassword { get; set; }
