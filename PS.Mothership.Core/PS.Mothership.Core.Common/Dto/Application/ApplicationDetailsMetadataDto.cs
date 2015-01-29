@@ -25,7 +25,7 @@ namespace PS.Mothership.Core.Common.Dto.Application
         public IList<GenSalutation> SalutationTypes { get; set; }
 
         [DataMember]
-        public IList<GenContactRole> ContactRoles { get; set; } 
+        public IList<GenContactRole> ContactRoles { get; set; }
 
         [DataMember]
         public IEnumerable<GenCountry> Countries { get; set; }

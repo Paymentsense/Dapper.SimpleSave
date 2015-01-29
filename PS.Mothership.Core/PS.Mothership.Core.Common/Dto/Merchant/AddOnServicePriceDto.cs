@@ -41,5 +41,11 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
 
         [DataMember]
         public OppProvisionTypeEnum ProvisionTypeKey { get; set; }
+
+        [DataMember]
+        public string DisplayName { get; set; }
+
+        [DataMember]
+        public int DisplayOrder { get; set; }
     }
 }

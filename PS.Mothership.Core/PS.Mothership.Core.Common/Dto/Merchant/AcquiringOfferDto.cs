@@ -61,6 +61,6 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public int AuthorisationFeeKey { get; set; }
 
         [DataMember]
-        public double DiscountPlan { get; set; }
+        public decimal? DiscountPlan { get; set; }
     }
 }

@@ -34,7 +34,7 @@ namespace PS.Mothership.Core.Common.Dto.Contact
         public int AddressTypeKey { get; set; }
 
         [DataMember]
-        public DateTime? AddressConfirmedDate { get; set; }
+        public DateTimeOffset? AddressConfirmedDate { get; set; }
         
     }
 }

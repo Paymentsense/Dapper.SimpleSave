@@ -65,5 +65,8 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         [DataMember]
         public IEnumerable<GatewayTariffDto> GatewayTariffs { get; set; }
 
+        [DataMember]
+        public IEnumerable<OfferFieldItemLutDto> OfferFieldItems { get; set; }
+
     }
 }
