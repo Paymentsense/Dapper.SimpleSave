@@ -174,10 +174,10 @@
     <Compile Include="Dto\Contact\PhoneCountryCodeMetadataDto.cs" />
     <Compile Include="Dto\DueDil\CompanyDetailsDto.cs" />
     <Compile Include="Dto\DueDil\CompanyListDto.cs" />
-    <Compile Include="Dto\DueDil\DirectorResponseDto.cs" />
-    <Compile Include="Dto\DueDil\CompanyResponseDto.cs" />
-    <Compile Include="Dto\DueDil\DueDilFilterDto.cs" />
     <Compile Include="Dto\DueDil\CompanyListResponseDto.cs" />
+    <Compile Include="Dto\DueDil\CompanyResponseDto.cs" />
+    <Compile Include="Dto\DueDil\DirectorResponseDto.cs" />
+    <Compile Include="Dto\DueDil\DueDilFilterDto.cs" />
     <Compile Include="Dto\DueDil\ProcessResponseDto.cs" />
     <Compile Include="Dto\DueDil\ShareholderResponseDto.cs" />
     <Compile Include="Dto\Merchant\AddOnServiceDefaultDto.cs" />
