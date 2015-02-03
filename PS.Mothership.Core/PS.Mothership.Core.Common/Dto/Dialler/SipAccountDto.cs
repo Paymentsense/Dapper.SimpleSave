@@ -12,8 +12,6 @@ namespace PS.Mothership.Core.Common.Dto.Dialler
         [DataMember]
         public Guid DiallerSessionGuid { get; set; }
         [DataMember]
-        public string Extension  { get; set; }
-        [DataMember]
         public string SipUserId { get; set; }
         [DataMember]
         public string SipPassword { get; set; }
@@ -23,8 +21,6 @@ namespace PS.Mothership.Core.Common.Dto.Dialler
         public string SipProxyPassword { get; set; }
         [DataMember]
         public DialSipAccountTypeEnum SipAccountTypeKey { get; set; }
-        [DataMember]
-        public string VoicemailNumber { get; set; }
         [DataMember]
         public GenRecStatusEnum RecStatusKey { get; set; }
     }

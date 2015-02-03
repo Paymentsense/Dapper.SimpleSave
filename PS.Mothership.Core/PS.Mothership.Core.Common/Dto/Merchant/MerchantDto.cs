@@ -82,6 +82,9 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         [DataMember]
         public IList<ContactDto> Contacts { get; set; }
 
+        [DataMember]
+        public Guid OwnershipUserGuid { get; set; }
+
         public MerchantDto()
         {
             this.Contacts = new List<ContactDto>();

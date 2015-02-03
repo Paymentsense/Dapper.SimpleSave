@@ -41,5 +41,8 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
 
         [DataMember]
         public string ContactRoleText { get; set; }
+
+        [DataMember]
+        public bool IsPrimaryContact { get; set; }
     }
 }

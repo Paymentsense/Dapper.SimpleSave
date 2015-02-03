@@ -126,8 +126,6 @@ namespace PS.Mothership.Core.Common.Dto.Application
         public int? Delivery15To30DaysPercent { get; set; }
         [DataMember]
         public int? Delivery30PlusDaysPercent { get; set; }
-        [DataMember]
-        public int? DeliveryWeeks { get; set; }
 
         //Deposits section 
         [DataMember]
@@ -204,5 +202,11 @@ namespace PS.Mothership.Core.Common.Dto.Application
 
         [DataMember]
         public AppAddressSelectionEnum ShippingAddressSelectionKey { get; set; }
+
+        [DataMember]
+        public DateTimeOffset? DepositAccountVerifiedDate { get; set; }
+
+        [DataMember]
+        public DateTimeOffset? FeesAccountVerifiedDate { get; set; }
     }
 }
