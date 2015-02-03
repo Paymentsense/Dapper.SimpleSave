@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.Serialization;
+using PS.Mothership.Core.Common.Template.Gen;
 
 namespace PS.Mothership.Core.Common.Dto.Contact
 {
@@ -31,7 +32,7 @@ namespace PS.Mothership.Core.Common.Dto.Contact
         public int CountyKey { get; set; }
 
         [DataMember]
-        public int AddressTypeKey { get; set; }
+        public GenAddressTypesEnum AddressTypeKey { get; set; }
 
         [DataMember]
         public DateTimeOffset? AddressConfirmedDate { get; set; }

@@ -1,4 +1,8 @@
-﻿using PS.Mothership.Core.Common.Dto.Dialler;
+﻿using PS.Mothership.Core.Common.Dto.Campaign;
+using PS.Mothership.Core.Common.Dto.Contact;
+using PS.Mothership.Core.Common.Dto.Dialler;
+using PS.Mothership.Core.Common.Dto.Merchant;
+using PS.Mothership.Core.Common.Dto.User;
 using PS.Mothership.Core.Common.Template.Dial;
 using System;
 using System.Collections.Generic;
@@ -61,5 +65,32 @@ namespace PS.Mothership.Core.Common.Contracts
         [OperationContract]
         void SetInboundCampaignCallRecordResolution(Guid inboundCampaignCallRecordGuid,
             DialInboundCampaignCallResolutionEnum resolution);
+
+        [OperationContract]
+        void ProcessInboundCall(NewDiallerCallDto diallerCall);
+
+        [OperationContract]
+        ProspectMatchDto IsMatchToExistingMerchant(NewDiallerCallDto diallerCall);
+
+        [OperationContract]
+        UserProfileDto GetUser(Guid userGuid);
+
+        [OperationContract]
+        string GetMerchantBusinessNameByGuid(Guid merchantGuid);
+
+        [OperationContract]
+        IEnumerable<DiallerMerchantDto> GetMerchantsByPhoneNumber(string phoneNumber);
+
+        [OperationContract]
+        ResponseTapDto GetResponseTapRecordByPhoneNumber(string phoneNumber);
+
+        [OperationContract]
+        CampaignDto GetCampaignByPhoneNumber(string phoneNumber);
+
+        [OperationContract]
+        string GetTransferNumber(DialTransferNumberEnum transfer);
+
+        [OperationContract]
+        IEnumerable<SpeedDialNumberDto> GetAllTransferNumbers();
     }
 }

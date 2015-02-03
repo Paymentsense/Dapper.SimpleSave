@@ -18,6 +18,8 @@ namespace PS.Mothership.Core.Common.Dto.Dialler
         [DataMember]
         public string DialledNumber { get; set; }
         [DataMember]
+        public string DisplayNumber { get; set; }
+        [DataMember]
         public Guid UserSipPhoneGuid { get; set; }
         [DataMember]
         public string CIDNumber { get; set; }

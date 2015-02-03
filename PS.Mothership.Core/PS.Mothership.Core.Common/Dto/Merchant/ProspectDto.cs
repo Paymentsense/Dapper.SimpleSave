@@ -12,9 +12,9 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public string DeDupeBusinessName { get; set; }
 
         [DataMember]
-        public bool DoesEcommerce { get; set; }
+        public bool? DoesEcommerce { get; set; }
 
         [DataMember]
-        public int DelphiScore { get; set; }
+        public short? DelphiScore { get; set; }
     }
 }

@@ -14,8 +14,6 @@ namespace PS.Mothership.Core.Common.Dto.Dialler
         [DataMember]
         public string SipUserPhoneNumber { get; set; }
         [DataMember]
-        public string UserPhoneNumber { get; set; }
-        [DataMember]
         public DialCallTypeEnum? CallType { get; set; }
         [DataMember]
         public int? TotalTime { get; set; }
@@ -23,8 +21,6 @@ namespace PS.Mothership.Core.Common.Dto.Dialler
         public string DialledNumber { get; set; }
         [DataMember]
         public Guid? UserGuid { get; set; }
-        [DataMember]
-        public Guid? ProspectingCampaignCallGuid { get; set; }
         [DataMember]
         public Guid? MerchantGuid { get; set; }
         [DataMember]

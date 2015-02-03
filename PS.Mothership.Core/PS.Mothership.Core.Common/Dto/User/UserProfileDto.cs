@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
+using PS.Mothership.Core.Common.Dto.Contact;
 using PS.Mothership.Core.Common.Dto.Groups;
 using PS.Mothership.Core.Common.Dto.Roles;
 using PS.Mothership.Core.Common.Template.Usr;
@@ -34,6 +35,8 @@ namespace PS.Mothership.Core.Common.Dto.User
         public string Initial { get; set; }
         [DataMember]
         public string Email { get; set; }
+        [DataMember]
+        public PhoneNumberDto Phone { get; set; }
 
         //[DataMember]
         //public bool IsLoggedIn { get; set; }

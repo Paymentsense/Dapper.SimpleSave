@@ -15,5 +15,7 @@ namespace PS.Mothership.Core.Common.Dto.Dialler
         public LogCallType CallType { get; set; }
         [DataMember]
         public string Description { get; set; }
+
+        public Guid MerchantGuid { get; set; }
     }
 }
