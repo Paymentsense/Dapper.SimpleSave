@@ -240,6 +240,9 @@
     <Compile Include="Dto\Notification\NotificationStatusDto.cs" />
     <Compile Include="Dto\Queue\CampaignQueueItemDto.cs" />
     <Compile Include="Dto\Queue\QueueItemDto.cs" />
+    <Compile Include="Dto\ScheduledCallBack\ScheduledCallBackContactMetaDataDto.cs" />
+    <Compile Include="Dto\ScheduledCallBack\ScheduledCallBackDto.cs" />
+    <Compile Include="Dto\ScheduledCallBack\ScheduledCallBackMetaDataDto.cs" />
     <Compile Include="Dto\SendMessage\MessageServiceStatus.cs" />
     <Compile Include="Dto\Merchant\MerchantDataRequestDto.cs" />
     <Compile Include="Dto\Merchant\MerchantSearchDataDto.cs" />
