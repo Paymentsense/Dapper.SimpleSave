@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ServiceModel;
 using PS.Mothership.Core.Common.Dto.ScheduledCallBack;
 
@@ -14,7 +15,7 @@ namespace PS.Mothership.Core.Common.Contracts
         void EndSubscribe(string applicationName);
 
         [OperationContract]
-        void AddNewTask(ScheduledCallBackDto scheduledCallBackDto);
+        ScheduledCallBackDto AddNewTask(ScheduledCallBackDto scheduledCallBackDto);
 
         [OperationContract]
         void UpdateTask(ScheduledCallBackDto scheduledCallBackDto);
@@ -23,6 +24,6 @@ namespace PS.Mothership.Core.Common.Contracts
         void CancelTask(ScheduledCallBackDto scheduledCallBackDto);
 
         [OperationContract]
-        void GetPendingTasksById(Guid userGuid, Guid merchantGuid);
+        IList<ScheduledCallBackDto> GetPendingTasksById(Guid userGuid, Guid merchantGuid);
     }
 }
