@@ -15,15 +15,18 @@ namespace PS.Mothership.Core.Common.Contracts
         void EndSubscribe(string applicationName);
 
         [OperationContract]
-        ScheduledCallBackDto AddNewTask(ScheduledCallBackDto scheduledCallBackDto);
+        ScheduledCallbackDto AddNewTask(ScheduledCallbackDto scheduledCallBackDto);
 
         [OperationContract]
-        void UpdateTask(ScheduledCallBackDto scheduledCallBackDto);
+        void UpdateTask(ScheduledCallbackDto scheduledCallBackDto);
 
         [OperationContract]
-        void CancelTask(ScheduledCallBackDto scheduledCallBackDto);
+        void CancelTask(ScheduledCallbackDto scheduledCallBackDto);
 
         [OperationContract]
-        IList<ScheduledCallBackDto> GetPendingTasksById(Guid userGuid, Guid merchantGuid);
+        IList<ScheduledCallbackDto> GetPendingTasksById(Guid userGuid, Guid merchantGuid);
+
+        [OperationContract]
+        IList<ScheduledCallbackMetaDataDto> GetScheduledCallBackMetaData(Guid merchantGuid);
     }
 }

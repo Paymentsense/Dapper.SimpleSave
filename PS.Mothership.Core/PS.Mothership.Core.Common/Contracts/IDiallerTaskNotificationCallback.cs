@@ -7,6 +7,6 @@ namespace PS.Mothership.Core.Common.Contracts
     public interface IDiallerTaskNotificationCallback
     {
         [OperationContract(IsOneWay = true)]
-        void ReceiveNotification(ScheduledCallBackDto taskDto);
+        void ReceiveNotification(ScheduledCallbackDto taskDto);
     }
 }

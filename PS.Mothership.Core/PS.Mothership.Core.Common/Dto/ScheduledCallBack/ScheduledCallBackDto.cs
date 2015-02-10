@@ -6,7 +6,7 @@ using PS.Mothership.Core.Common.Template.Event;
 namespace PS.Mothership.Core.Common.Dto.ScheduledCallBack
 {
     [DataContract]
-    public class ScheduledCallBackDto : TaskNotificationDto
+    public class ScheduledCallbackDto : TaskNotificationDto
     {
         [DataMember]
         public EventTypeEnum CallBackType { get; set; }

@@ -5,7 +5,7 @@ using PS.Mothership.Core.Common.Template.Gen;
 namespace PS.Mothership.Core.Common.Dto.ScheduledCallBack
 {
     [DataContract]
-    public class ScheduledCallBackContactMetaDataDto
+    public class ScheduledCallbackContactMetaDataDto
     {
         [DataMember]
         public Guid ContactGuid { get; set; }
