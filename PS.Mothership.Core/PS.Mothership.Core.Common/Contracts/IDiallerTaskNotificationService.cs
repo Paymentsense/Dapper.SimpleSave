@@ -27,6 +27,6 @@ namespace PS.Mothership.Core.Common.Contracts
         IList<ScheduledCallbackDto> GetPendingTasksById(Guid userGuid, Guid merchantGuid);
 
         [OperationContract]
-        IList<ScheduledCallbackMetaDataDto> GetScheduledCallBackMetaData(Guid merchantGuid);
+        ScheduledCallbackMetaDataDto GetScheduledCallBackMetaData(Guid merchantGuid);
     }
 }

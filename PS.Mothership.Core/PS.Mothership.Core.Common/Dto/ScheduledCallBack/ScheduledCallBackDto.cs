@@ -16,5 +16,8 @@ namespace PS.Mothership.Core.Common.Dto.ScheduledCallBack
 
         [DataMember]
         public Guid ContactGuid { get; set; }
+
+        [DataMember]
+        public Guid PhoneGuid { get; set; }
     }
 }
