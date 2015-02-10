@@ -1,5 +1,4 @@
 ﻿using PS.Mothership.Core.Common.Dto.Campaign;
-using PS.Mothership.Core.Common.Dto.Contact;
 using PS.Mothership.Core.Common.Dto.Dialler;
 using PS.Mothership.Core.Common.Dto.Merchant;
 using PS.Mothership.Core.Common.Dto.User;
@@ -92,5 +91,8 @@ namespace PS.Mothership.Core.Common.Contracts
 
         [OperationContract]
         IEnumerable<SpeedDialNumberDto> GetAllTransferNumbers();
+
+        [OperationContract]
+        IDictionary<string, string> RequestDescriptionForUnknownPhoneNumber(IList<string> unknownPhoneNumbers);
     }
 }
