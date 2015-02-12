@@ -15,10 +15,7 @@ namespace PS.Mothership.Core.Common.Contracts
         void EndSubscribe(string applicationName);
 
         [OperationContract]
-        ScheduledCallbackDto AddNewTask(ScheduledCallbackDto scheduledCallBackDto);
-
-        [OperationContract]
-        void UpdateTask(ScheduledCallbackDto scheduledCallBackDto);
+        ScheduledCallbackDto AddOrUpdateTask(ScheduledCallbackDto scheduledCallBackDto);
 
         [OperationContract]
         void CancelTask(ScheduledCallbackDto scheduledCallBackDto);
