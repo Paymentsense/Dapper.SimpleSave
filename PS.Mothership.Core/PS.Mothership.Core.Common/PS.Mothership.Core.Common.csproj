@@ -179,6 +179,7 @@
     <Compile Include="Dto\Campaign\DefaultCampaignLutDto.cs" />
     <Compile Include="Dto\Campaign\ImportProspectDto.cs" />
     <Compile Include="Dto\CompaniesHouse\CompanyAppointmentsDto.cs" />
+    <Compile Include="Dto\Contact\ContactEventLnkDto.cs" />
     <Compile Include="Dto\Contact\PhoneCountryCodeMetadataDto.cs" />
     <Compile Include="Dto\DueDil\CompanyDetailsDto.cs" />
     <Compile Include="Dto\DueDil\CompanyListDto.cs" />
