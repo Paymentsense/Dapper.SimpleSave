@@ -1,5 +1,5 @@
 ﻿using System.ServiceModel;
-using PS.Mothership.Core.Common.Dto;
+using PS.Mothership.Core.Common.Dto.ScheduledCallBack;
 
 namespace PS.Mothership.Core.Common.Contracts
 {
@@ -7,6 +7,6 @@ namespace PS.Mothership.Core.Common.Contracts
     public interface IDiallerTaskNotificationCallback
     {
         [OperationContract(IsOneWay = true)]
-        void ReceiveNotification(TaskDto taskDto);
+        void ReceiveNotification(ScheduledCallbackDto taskDto);
     }
 }
