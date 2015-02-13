@@ -21,6 +21,9 @@ namespace PS.Mothership.Core.Common.Contracts
         void CancelTask(ScheduledCallbackDto scheduledCallBackDto);
 
         [OperationContract]
+        void CancelTask(Guid id, Guid eventId);
+
+        [OperationContract]
         IList<ScheduledCallbackDto> GetPendingTasksById(Guid userGuid, Guid merchantGuid);
 
         [OperationContract]
