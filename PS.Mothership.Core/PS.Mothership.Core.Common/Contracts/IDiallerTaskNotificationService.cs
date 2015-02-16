@@ -21,10 +21,13 @@ namespace PS.Mothership.Core.Common.Contracts
         void CancelTask(ScheduledCallbackDto scheduledCallBackDto);
 
         [OperationContract]
-        void CancelTask(Guid id, Guid eventId);
+        void CancelTaskById(Guid id, Guid eventId);
 
         [OperationContract]
-        IList<ScheduledCallbackDto> GetPendingTasksById(Guid userGuid, Guid merchantGuid);
+        IList<ScheduledCallbackDto> GetPendingTasksById(Guid merchantGuid);
+
+        [OperationContract]
+        ScheduledCallbackDto GetTask(Guid eventId);
 
         [OperationContract]
         ScheduledCallbackMetaDataDto GetScheduledCallBackMetaData(Guid merchantGuid);
