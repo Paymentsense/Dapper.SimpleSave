@@ -50,5 +50,8 @@ namespace PS.Mothership.Core.Common.Contracts
 
         [OperationContract]
         IQueryable<ProspectDto> GetMerchantsByPhoneNumber(string phoneNumber);
+
+        [OperationContract]
+        void UpdateMerchantAccessByUser(Guid merchantGuid, Guid userGuid);
     }
 }
