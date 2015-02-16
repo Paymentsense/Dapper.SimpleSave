@@ -22,6 +22,11 @@
         public const string ExperianRequestWaspTokenUrl   = "ExperianRequestWaspTokenUrl";
         public const string ExperianEIHEndpointRequestUrl = "ExperianEIHEndpointRequestUrl";
         public const string ExperianRequestOutPutTemplate = "ExperianRequestOutPutTemplate";
+        public const string ExperianInputTemplate = "ExperianInputTemplate";
+        public const string ExperianCertFindType = "ExperianCertFindType";
+        public const string ExperianCertFindString = "ExperianCertFindString";
+        public const string ExperianStoreLocation = "ExperianStoreLocation";
+
 
         //Send Message Constants
         public const string SendMessageMaxErrorDelay = "SendMessageMaxErrorDelay";
@@ -104,6 +109,10 @@
         public const string PdfEngineTemplatePdfs = "PdfEngineTemplatePdfs";
         public const string PdfEngineTemplateHtml = "PdfEngineTemplateHtml";
         public const string PdfEngineMerchantPdfs = "PdfEngineMerchantPdfs";
+
+        //Documents Settings
+        public const string DocumentRootFolder = "DocumentRootFolder";
+        public const string MerchantDocumentFolder = "MerchantDocumentFolder";
 
 		// Companies House Constants
         public const string CompaniesHouseGatewayUserId                 = "CompaniesHouseGatewayUserId";

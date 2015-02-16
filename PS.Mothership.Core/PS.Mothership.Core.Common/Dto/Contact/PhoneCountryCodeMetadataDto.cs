@@ -10,5 +10,8 @@ namespace PS.Mothership.Core.Common.Dto.Contact
 
         [DataMember]
         public string CountryCode { get; set; }
+
+        [DataMember]
+        public string DisplayName { get; set; }
     }
 }

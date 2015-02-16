@@ -188,6 +188,9 @@
     <Compile Include="Dto\DueDil\DueDilFilterDto.cs" />
     <Compile Include="Dto\DueDil\ProcessResponseDto.cs" />
     <Compile Include="Dto\DueDil\ShareholderResponseDto.cs" />
+    <Compile Include="Dto\Experian\ExperianDetailsDto.cs" />
+    <Compile Include="Dto\Experian\ExperianIdCheckTrnDto.cs" />
+    <Compile Include="Dto\Merchant\AddOnServiceItemDto.cs" />
     <Compile Include="Dto\Merchant\DiallerMerchantDto.cs" />
     <Compile Include="Dto\Campaign\ResponseTapDto.cs" />
     <Compile Include="Dto\Event\TouchEventTrnDto.cs" />

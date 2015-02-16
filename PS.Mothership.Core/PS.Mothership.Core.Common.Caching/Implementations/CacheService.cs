@@ -22,13 +22,31 @@ namespace PS.Mothership.Core.Common.Caching.Implementations
         /// <param name="cacheKey">Cache Key</param>
         /// <param name="region">Name of the region to store cache objects</param>
         /// <returns></returns>
-        public T GetData<T>(string cacheKey, string region = null)
+        public T GetData<T>(string cacheKey, string region = null) where T : class
         {
-            if(string.IsNullOrWhiteSpace(region))
-                return (T)_dataCache.Get(cacheKey);
+            try
+            {
+                if (string.IsNullOrWhiteSpace(region))
+                {
+                    return (T)_dataCache.Get(cacheKey);
+                }
 
-            // if region passed
-            return (T)_dataCache.Get(cacheKey, region);
+                // if region passed
+                return (T)_dataCache.Get(cacheKey, region);
+            }
+            catch
+            {
+                // TODO: log here?
+                if (string.IsNullOrWhiteSpace(region))
+                {
+                    _dataCache.Remove(cacheKey);
+                }
+                else
+                {
+                    _dataCache.Remove(cacheKey, region);
+                }
+                return (T)null;
+            }
         }
 
 
@@ -57,14 +75,14 @@ namespace PS.Mothership.Core.Common.Caching.Implementations
                 if (string.IsNullOrWhiteSpace(region))
                     _dataCache.Put(cacheKey, type, timeSpan);
                 else
-                    _dataCache.Put(cacheKey, type, timeSpan, region);                
+                    _dataCache.Put(cacheKey, type, timeSpan, region);
             }
             else
             {
                 if (string.IsNullOrWhiteSpace(region))
                     _dataCache.Put(cacheKey, type);
                 else
-                    _dataCache.Put(cacheKey, type, region);                
+                    _dataCache.Put(cacheKey, type, region);
             }
         }
 

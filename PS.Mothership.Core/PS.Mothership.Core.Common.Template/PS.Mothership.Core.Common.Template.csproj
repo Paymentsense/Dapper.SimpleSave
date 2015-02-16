@@ -299,7 +299,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Template\ConfigurationAccessor.tt" />
     <None Include="Template\DbEnumBuilder.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

@@ -68,5 +68,8 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         [DataMember]
         public IEnumerable<OfferFieldItemLutDto> OfferFieldItems { get; set; }
 
+        [DataMember]
+        public IEnumerable<AddOnServiceItemDto> AddOnServiceItems { get; set; }
+
     }
 }
