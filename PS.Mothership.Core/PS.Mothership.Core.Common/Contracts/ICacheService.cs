@@ -30,7 +30,7 @@ namespace PS.Mothership.Core.Common.Contracts
         /// <param name="cacheKey">Cache Key</param>
         /// <param name="region">Name of the region to store cache objects</param>
         /// <returns></returns>
-        T GetData<T>(string cacheKey, string region=null);
+        T GetData<T>(string cacheKey, string region = null) where T : class;
 
         /// <summary>
         ///     Store data in cache
