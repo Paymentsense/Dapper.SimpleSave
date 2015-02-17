@@ -91,6 +91,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Common.Logging.2.3.1\lib\net40\Common.Logging.dll</HintPath>
     </Reference>
+    <Reference Include="libphonenumber">
+      <HintPath>ThirdParty\libphonenumber.dll</HintPath>
+    </Reference>
     <Reference Include="log4net">
       <HintPath>..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
     </Reference>
@@ -180,6 +183,7 @@
     <Compile Include="Dto\Campaign\ImportProspectDto.cs" />
     <Compile Include="Dto\CompaniesHouse\CompanyAppointmentsDto.cs" />
     <Compile Include="Dto\Contact\PhoneCountryCodeMetadataDto.cs" />
+    <Compile Include="Dto\Dialler\ParsedPhoneNumberDto.cs" />
     <Compile Include="Dto\DueDil\CompanyDetailsDto.cs" />
     <Compile Include="Dto\DueDil\CompanyListDto.cs" />
     <Compile Include="Dto\DueDil\CompanyListResponseDto.cs" />
@@ -258,6 +262,7 @@
     <Compile Include="Dto\SchedulerManagement\TriggerProfileDto.cs" />
     <Compile Include="Dto\SchedulerManagement\SchedulerServerInfoDto.cs" />
     <Compile Include="Enums\SchedulerManagement\SchedulerStatusEnum.cs" />
+    <Compile Include="Helper\PhoneNumberParserHelper.cs" />
     <Compile Include="SessionHandling\ISessionManager.cs" />
     <Compile Include="Contracts\ITaskNotificationCallback.cs" />
     <Compile Include="Contracts\ITaskNotificationService.cs" />

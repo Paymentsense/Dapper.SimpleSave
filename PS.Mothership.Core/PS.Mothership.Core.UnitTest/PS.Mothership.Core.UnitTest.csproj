@@ -60,6 +60,7 @@
     <Compile Include="Helper\CTimeTest.cs" />
     <Compile Include="Helper\JsonHelperTest.cs" />
     <Compile Include="Helper\ObfuscatorTest.cs" />
+    <Compile Include="Helper\PhoneNumberParserHelperTest.cs" />
     <Compile Include="IPManager\IPInspectorPerformanceTest.cs" />
     <Compile Include="IPManager\IPInspectorTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -73,6 +74,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\PS.Mothership.Core.Common.Template\PS.Mothership.Core.Common.Template.csproj">
+      <Project>{0F7A5532-B7D9-44DF-B7B2-B30546F1922A}</Project>
+      <Name>PS.Mothership.Core.Common.Template</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PS.Mothership.Core.Common\PS.Mothership.Core.Common.csproj">
       <Project>{2e26f270-5fb3-447d-83b6-416a1bdbb0fc}</Project>
       <Name>PS.Mothership.Core.Common</Name>
