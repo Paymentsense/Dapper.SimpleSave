@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+using PS.Mothership.Core.Common.Dto.DueDil;
 
 namespace PS.Mothership.Core.Common.Dto.Application
 {
@@ -21,5 +22,6 @@ namespace PS.Mothership.Core.Common.Dto.Application
 
         [DataMember]
         public IList<ApplicationDetailPrincipalDto> ApplicationDetailPrincipal { get; set; }
+
     }
 }

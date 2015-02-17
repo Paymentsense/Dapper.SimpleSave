@@ -7,7 +7,9 @@
         //common postcodeanywhere constants
         public const string PostCodeAnywhereAccountCode     = "PostCodeAnywhereAccountCode";
         public const string PostCodeAnywhereLicenseKey      = "PostCodeAnywhereLicenseKey";
-        public const string PostCodeAnywhereFindUrl         = "PostCodeAnywhereFindUrl";
+        public const string PostCodeAnywhereFindUrl = "PostCodeAnywhereFindUrl";
+        public const string PostCodeAnywhereAccountValidateUrl = "PostCodeAnywhereAccountValidateUrl";
+        public const string PostCodeAnywhereIBANValidateUrl = "PostCodeAnywhereIBANValidateUrl";
         public const string PostCodeAnywhereRetrieveUrl     = "PostCodeAnywhereRetrieveUrl";
         public const string PostCodeAnywhereDataType        = "PostCodeAnywhereDataType";
         public const string ForceDisplayExceptionDetailsKey = "ForceDisplayExceptionDetails";
