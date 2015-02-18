@@ -5,7 +5,7 @@ namespace PS.Mothership.Core.Common.Contracts
 {
     public interface IDiallerServiceCallback
     {
-        [OperationContract(IsOneWay = true)]
+        [OperationContract]
         bool CheckUserAvailability(Guid userGuid);
     }
 }
