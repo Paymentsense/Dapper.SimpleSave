@@ -5,8 +5,10 @@ namespace PS.Mothership.Core.Common.Contracts
     [ServiceContract(CallbackContract = typeof(IDiallerTaskServiceCallback))]
     public interface IDiallerTaskService
     {
-        //This is only here because wcf needs atleast one operation contract per service contract
-        [OperationContract]
-        void Post();
+        [OperationContract(IsOneWay = false)]
+        void Subscribe(string applicationName);
+
+        [OperationContract(IsOneWay = true)]
+        void EndSubscribe(string applicationName);
     }
 }
