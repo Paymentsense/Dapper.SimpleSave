@@ -182,6 +182,7 @@
     <Compile Include="Dto\Campaign\DefaultCampaignLutDto.cs" />
     <Compile Include="Dto\Campaign\ImportProspectDto.cs" />
     <Compile Include="Dto\CompaniesHouse\CompanyAppointmentsDto.cs" />
+    <Compile Include="Dto\Contact\ContactEventLnkDto.cs" />
     <Compile Include="Dto\Contact\PhoneCountryCodeMetadataDto.cs" />
     <Compile Include="Dto\Dialler\ParsedPhoneNumberDto.cs" />
     <Compile Include="Dto\DueDil\CompanyDetailsDto.cs" />
@@ -201,6 +202,7 @@
     <Compile Include="Dto\Event\TouchEventTrnFullDto.cs" />
     <Compile Include="Dto\Merchant\AddOnServiceDefaultDto.cs" />
     <Compile Include="Dto\Merchant\CurrencyCodeDto.cs" />
+    <Compile Include="Dto\Merchant\MerchantHistoryDto.cs" />
     <Compile Include="Dto\Merchant\MerchantEventLnkDto.cs" />
     <Compile Include="Dto\Merchant\OfferDefaultDto.cs" />
     <Compile Include="Dto\Event\EventTrnFullDto.cs" />
@@ -247,6 +249,9 @@
     <Compile Include="Dto\Notification\NotificationStatusDto.cs" />
     <Compile Include="Dto\Queue\CampaignQueueItemDto.cs" />
     <Compile Include="Dto\Queue\QueueItemDto.cs" />
+    <Compile Include="Dto\ScheduledCallBack\ScheduledCallbackContactMetaDataDto.cs" />
+    <Compile Include="Dto\ScheduledCallBack\ScheduledCallbackDto.cs" />
+    <Compile Include="Dto\ScheduledCallBack\ScheduledCallbackMetaDataDto.cs" />
     <Compile Include="Dto\SendMessage\MessageServiceStatus.cs" />
     <Compile Include="Dto\Merchant\MerchantDataRequestDto.cs" />
     <Compile Include="Dto\Merchant\MerchantSearchDataDto.cs" />

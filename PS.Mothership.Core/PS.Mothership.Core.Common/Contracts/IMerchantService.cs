@@ -27,5 +27,8 @@ namespace PS.Mothership.Core.Common.Contracts
 
         [OperationContract]
         IEnumerable<PhoneCountryCodeMetadataDto> GetPhoneCountryCodeMetadata();
+
+        [OperationContract]
+        IEnumerable<MerchantHistoryDto> GetLastViewedMerchants(Guid userGuid, int count);
     }
 }

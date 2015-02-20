@@ -1,6 +1,7 @@
-﻿using System.ServiceModel;
-using PS.Mothership.Core.Common.Dto;
-using Quartz;
+﻿using System;
+using System.Collections.Generic;
+using System.ServiceModel;
+using PS.Mothership.Core.Common.Dto.ScheduledCallBack;
 
 namespace PS.Mothership.Core.Common.Contracts
 {
@@ -14,17 +15,21 @@ namespace PS.Mothership.Core.Common.Contracts
         void EndSubscribe(string applicationName);
 
         [OperationContract]
-        void AddNewTask(TaskDto taskDto);
+        ScheduledCallbackDto AddOrUpdateTask(ScheduledCallbackDto scheduledCallBackDto);
 
         [OperationContract]
-        void UpdateTask(TaskDto taskDto);
+        void CancelTask(ScheduledCallbackDto scheduledCallBackDto);
 
         [OperationContract]
-        void CompleteTask(long pendingNotificationId);
+        void CancelTaskById(Guid id, Guid eventId);
 
         [OperationContract]
-        void PushPendingTaskNotifications(string userName);
+        IList<ScheduledCallbackDto> GetPendingTasksById(Guid merchantGuid);
 
-        void ExecuteJob(IJobExecutionContext context);
+        [OperationContract]
+        ScheduledCallbackDto GetTask(Guid eventId);
+
+        [OperationContract]
+        ScheduledCallbackMetaDataDto GetScheduledCallBackMetaData(Guid merchantGuid);
     }
 }
