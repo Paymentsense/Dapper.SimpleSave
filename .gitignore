@@ -57,6 +57,7 @@ _ReSharper*/
 #NuGet
 packages/
 !packages/repositories.config
+!packages/*/lib
 *.nupkg
 
 #ncrunch
@@ -76,7 +77,6 @@ packages/
 *.BASE.*
 *.orig
 *.old
-/Externals/Core/PS.Mothership.Core/PS.Mothership.Core.Common.Template/Template/*Enum.cs
+/PS.Mothership.Core/PS.Mothership.Core.Common.Template/Template/*Enum.cs
 UpgradeLog*.htm
 *.jf
-*.json
