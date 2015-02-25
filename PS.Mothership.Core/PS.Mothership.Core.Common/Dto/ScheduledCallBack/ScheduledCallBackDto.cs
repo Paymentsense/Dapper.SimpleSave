@@ -22,5 +22,8 @@ namespace PS.Mothership.Core.Common.Dto.ScheduledCallBack
 
         [DataMember]
         public bool IsEditableByThisUser { get; set; }
+
+        [DataMember]
+        public string PhoneNumber { get; set; }
     }
 }
