@@ -185,6 +185,8 @@
     <Compile Include="Dto\Contact\ContactEventLnkDto.cs" />
     <Compile Include="Dto\Contact\PhoneCountryCodeMetadataDto.cs" />
     <Compile Include="Dto\Dialler\ParsedPhoneNumberDto.cs" />
+    <Compile Include="Dto\DueDil\BusinessDetailTrnDto.cs" />
+    <Compile Include="Dto\DueDil\LastFetchedDetailsDto.cs" />
     <Compile Include="Dto\DueDil\CompanyDetailsDto.cs" />
     <Compile Include="Dto\DueDil\CompanyListDto.cs" />
     <Compile Include="Dto\DueDil\CompanyListResponseDto.cs" />

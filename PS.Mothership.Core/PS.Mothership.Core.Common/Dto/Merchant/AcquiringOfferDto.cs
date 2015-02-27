@@ -62,5 +62,11 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
 
         [DataMember]
         public decimal? DiscountPlan { get; set; }
+
+        [DataMember]
+        public decimal? EposUpfront { get; set; }
+
+        [DataMember]
+        public decimal? EposOngoing { get; set; }
     }
 }

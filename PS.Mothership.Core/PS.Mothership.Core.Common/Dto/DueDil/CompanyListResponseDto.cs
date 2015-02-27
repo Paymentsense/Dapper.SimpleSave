@@ -11,6 +11,8 @@ namespace PS.Mothership.Core.Common.Dto.DueDil
 
         public string Name { get; set; }
 
+        public string Location { get; set; }
+
         public string Postcode { get; set; }
 
         public string CompanyUrl { get; set; }

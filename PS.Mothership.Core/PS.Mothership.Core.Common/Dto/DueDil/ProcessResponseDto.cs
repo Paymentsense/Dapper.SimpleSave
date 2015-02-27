@@ -5,7 +5,6 @@ using PS.Mothership.Core.Common.Enums.DueDil;
 
 namespace PS.Mothership.Core.Common.Dto.DueDil
 {
-    [DataContract]
     public class ProcessResponseDto
     {
         public HttpStatusCode Status { get; set; }
