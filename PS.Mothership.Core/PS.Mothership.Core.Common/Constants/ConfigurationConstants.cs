@@ -98,6 +98,7 @@
         public const string DueDilResultUrl       = "DueDilResultUrl";
         public const string DueDilShareholdersUrl = "DueDilShareholdersUrl";
         public const string DueDilDirectorsUrl    = "DueDilDirectorsUrl";
+        public const string DueDilRegisteredAddressUrl = "DueDilRegisteredAddressUrl";
         
         //SessionPrincipal Constants
         public const string SessionHeaderName      = "session-header";
