@@ -34,5 +34,8 @@ namespace PS.Mothership.Core.Common.Contracts
 
         [OperationContract]
         void PushbackCallback(ScheduledCallbackDto scheduledCallBackDto);
+
+        [OperationContract]
+        void ScheduledCallbackCallMade(ScheduledCallbackDto scheduledCallbackDto);
     }
 }
