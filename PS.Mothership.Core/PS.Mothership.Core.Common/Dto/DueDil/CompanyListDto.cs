@@ -7,5 +7,6 @@ namespace PS.Mothership.Core.Common.Dto.DueDil
     public class CompanyListDto : ProcessResponseDto
     {
         public IList<CompanyListResponseDto> CompanyList { get; set; }
+        public int TotalCount { get; set; }
     }
 }

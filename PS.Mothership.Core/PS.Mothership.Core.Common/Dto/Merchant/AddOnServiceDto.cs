@@ -31,5 +31,7 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         [DataMember]
         public int DisplayOrder { get; set; }
 
+        [DataMember]
+        public OppAddonServiceTypeEnum AddOnServiceTypeKey { get; set; }
     }
 }

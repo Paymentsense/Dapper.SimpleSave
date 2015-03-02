@@ -28,5 +28,11 @@ namespace PS.Mothership.Core.Common.Dto.ScheduledCallBack
 
         [DataMember]
         public string ContactName { get; set; }
+
+        [DataMember]
+        public int ItemRescheduleCount { get; set; }
+
+        [DataMember]
+        public bool CallbackPushedBackOver30Minutes { get; set; }
     }
 }
