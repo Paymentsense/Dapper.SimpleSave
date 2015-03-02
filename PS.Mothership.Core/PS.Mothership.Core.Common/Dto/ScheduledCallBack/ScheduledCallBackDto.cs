@@ -25,5 +25,8 @@ namespace PS.Mothership.Core.Common.Dto.ScheduledCallBack
 
         [DataMember]
         public string PhoneNumber { get; set; }
+
+        [DataMember]
+        public string ContactName { get; set; }
     }
 }
