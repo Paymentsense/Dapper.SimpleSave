@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Runtime.Serialization;
 using PS.Mothership.Core.Common.Template.Event;
 
@@ -19,5 +18,8 @@ namespace PS.Mothership.Core.Common.Dto.Event
 
         [DataMember]
         public DateTimeOffset ScheduledDate { get; set; }
+
+        [DataMember]
+        public EventNotificationTypeEnum NotificationType { get; set; }
     }
 }
