@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ServiceModel;
+using PS.Mothership.Core.Common.Dto.Merchant;
 using PS.Mothership.Core.Common.Dto.ScheduledCallBack;
 
 namespace PS.Mothership.Core.Common.Contracts
@@ -37,5 +38,8 @@ namespace PS.Mothership.Core.Common.Contracts
 
         [OperationContract]
         void ScheduledCallbackCallMade(ScheduledCallbackDto scheduledCallbackDto);
+
+        [OperationContract]
+        MerchantReminderTypeMetadataDto GetReminderMetaData();
     }
 }
