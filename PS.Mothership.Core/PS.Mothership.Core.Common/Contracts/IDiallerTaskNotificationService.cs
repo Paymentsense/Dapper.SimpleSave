@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.ServiceModel;
 using PS.Mothership.Core.Common.Dto.Merchant;
 using PS.Mothership.Core.Common.Dto.ScheduledCallBack;
+using PS.Mothership.Core.Common.Dto.Reminder;
 
 namespace PS.Mothership.Core.Common.Contracts
 {
-    [ServiceContract(Name="DiallerTaskNotificationService", CallbackContract = typeof (IDiallerTaskNotificationCallback))]
+    [ServiceContract(Name = "DiallerTaskNotificationService", CallbackContract = typeof(IDiallerTaskNotificationCallback))]
     public interface IDiallerTaskNotificationService
     {
         [OperationContract(IsOneWay = false)]
@@ -17,6 +18,11 @@ namespace PS.Mothership.Core.Common.Contracts
 
         [OperationContract]
         ScheduledCallbackDto AddOrUpdateTask(ScheduledCallbackDto scheduledCallBackDto);
+
+
+        [OperationContract]
+        ReminderDto AddOrUpdateReminderTask(ReminderDto reminderDto);
+
 
         [OperationContract]
         void CancelTask(ScheduledCallbackDto scheduledCallBackDto);
@@ -39,7 +45,7 @@ namespace PS.Mothership.Core.Common.Contracts
         [OperationContract]
         void ScheduledCallbackCallMade(ScheduledCallbackDto scheduledCallbackDto);
 
-        [OperationContract]
+        [OperationContract] 
         MerchantReminderTypeMetadataDto GetReminderMetaData();
     }
 }
