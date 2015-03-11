@@ -32,5 +32,11 @@ namespace PS.Mothership.Core.Common.Contracts
 
         [OperationContract]
         ScheduledCallbackMetaDataDto GetScheduledCallBackMetaData(Guid merchantGuid);
+
+        [OperationContract]
+        void PushbackCallback(ScheduledCallbackDto scheduledCallBackDto);
+
+        [OperationContract]
+        void ScheduledCallbackCallMade(ScheduledCallbackDto scheduledCallbackDto);
     }
 }

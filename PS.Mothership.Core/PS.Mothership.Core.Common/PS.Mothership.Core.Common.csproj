@@ -140,6 +140,7 @@
     <Compile Include="Contracts\IApplicationService.cs" />
     <Compile Include="Contracts\ICampaignQueueItem.cs" />
     <Compile Include="Contracts\IContactManagementService.cs" />
+    <Compile Include="Contracts\IDiallerTaskService.cs" />
     <Compile Include="Contracts\IDueDilService.cs" />
     <Compile Include="Contracts\IEchoSignPushService.cs" />
     <Compile Include="Contracts\IFirstDataService.cs" />
