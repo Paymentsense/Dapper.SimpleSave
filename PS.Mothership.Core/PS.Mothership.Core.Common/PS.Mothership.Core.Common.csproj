@@ -149,7 +149,7 @@
     <Compile Include="Contracts\IMerchantService.cs" />
     <Compile Include="Contracts\IProspectCustomerService.cs" />
     <Compile Include="Contracts\IDiallerService.cs" />
-    <Compile Include="Contracts\IDiallerTaskNotificationCallback.cs" />
+    <Compile Include="Contracts\IDiallerTaskWebNotificationService.cs" />
     <Compile Include="Contracts\IDiallerTaskNotificationService.cs" />
     <Compile Include="Contracts\IIdentityCheckService.cs" />
     <Compile Include="Contracts\ILoggingService.cs" />
@@ -157,7 +157,9 @@
     <Compile Include="Contracts\IQueueItem.cs" />
     <Compile Include="Contracts\ISchedulerManagementService.cs" />
     <Compile Include="Contracts\ISendMessageService.cs" />
-    <Compile Include="Contracts\ISendMessageServiceCallback.cs" />
+    <Compile Include="Contracts\ISendMessageNotificationService.cs" />
+    <Compile Include="Contracts\IWebApplicationService.cs" />
+    <Compile Include="Contracts\WebApplicationService.cs" />
     <Compile Include="Dto\Application\ApplicationDetailLocationDto.cs" />
     <Compile Include="Dto\Application\ApplicationDetailLocationProductDto.cs" />
     <Compile Include="Dto\Application\ApplicationDetailPrincipalDto.cs" />
@@ -272,7 +274,7 @@
     <Compile Include="Enums\SchedulerManagement\SchedulerStatusEnum.cs" />
     <Compile Include="Helper\PhoneNumberParserHelper.cs" />
     <Compile Include="SessionHandling\ISessionManager.cs" />
-    <Compile Include="Contracts\ITaskNotificationCallback.cs" />
+    <Compile Include="Contracts\ITaskWebNotification.cs" />
     <Compile Include="Contracts\ITaskNotificationService.cs" />
     <Compile Include="Contracts\IUserManagementService.cs" />
     <Compile Include="Contracts\Security\IAuthenticationService.cs" />

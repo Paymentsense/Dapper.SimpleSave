@@ -6,15 +6,9 @@ using PS.Mothership.Core.Common.Template.Event;
 
 namespace PS.Mothership.Core.Common.Contracts
 {
-    [ServiceContract(Name="DiallerTaskNotificationService", CallbackContract = typeof (IDiallerTaskNotificationCallback))]
+    [ServiceContract(Name="DiallerTaskNotificationService")]
     public interface IDiallerTaskNotificationService
     {
-        [OperationContract(IsOneWay = false)]
-        void Subscribe(string applicationName);
-
-        [OperationContract(IsOneWay = true)]
-        void EndSubscribe(string applicationName);
-
         [OperationContract]
         ScheduledCallbackDto AddOrUpdateTask(ScheduledCallbackDto scheduledCallBackDto, EventNotificationTypeEnum notificationType);
 

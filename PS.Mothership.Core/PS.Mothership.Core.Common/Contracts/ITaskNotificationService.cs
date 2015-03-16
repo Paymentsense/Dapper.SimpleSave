@@ -6,13 +6,9 @@ using PS.Mothership.Core.Common.Template.Event;
 
 namespace PS.Mothership.Core.Common.Contracts
 {
-    [ServiceContract(CallbackContract = typeof(ITaskNotificationCallback))]
+    [ServiceContract]
     public interface ITaskNotificationService
     {
-        [OperationContract(IsOneWay = false)]
-        void Subscribe(string applicationName);
-        [OperationContract(IsOneWay = true)]
-        void EndSubscribe(string applicationName);
         [OperationContract]
         TaskNotificationDto AddNewTask(TaskNotificationDto taskNotificationDto, EventNotificationTypeEnum notificationType);
         [OperationContract]
