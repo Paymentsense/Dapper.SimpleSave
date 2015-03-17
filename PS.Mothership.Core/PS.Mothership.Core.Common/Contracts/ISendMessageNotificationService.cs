@@ -4,6 +4,7 @@ using PS.Mothership.Core.Common.Dto.SendMessage;
 
 namespace PS.Mothership.Core.Common.Contracts
 {
+    [ServiceContract]
     public interface ISendMessageNotificationService
     {
         [OperationContract(IsOneWay = true)]
