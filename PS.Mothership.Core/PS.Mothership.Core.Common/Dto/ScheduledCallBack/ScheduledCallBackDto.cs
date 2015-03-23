@@ -24,9 +24,21 @@ namespace PS.Mothership.Core.Common.Dto.ScheduledCallBack
         public bool IsEditableByThisUser { get; set; }
 
         [DataMember]
+        public int PhoneCountryKey { get; set; }
+
+        [DataMember]
         public string PhoneNumber { get; set; }
 
         [DataMember]
         public string ContactName { get; set; }
+
+        [DataMember]
+        public EventNotificationMethodEnum NotificationType { get; set; }
+
+        [DataMember]
+        public int ItemRescheduleCount { get; set; }
+
+        [DataMember]
+        public bool CallbackPushedBackOver30Minutes { get; set; }
     }
 }

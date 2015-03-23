@@ -9,6 +9,9 @@ namespace PS.Mothership.Core.Common.Dto.Reminder
     public class ReminderDto : TaskNotificationDto
     {
         [DataMember]
+        public EventNotificationMethodEnum NotificationType { get; set; }
+
+        [DataMember]
         public EventTypeEnum ReminderType { get; set; }
 
         [DataMember]
@@ -28,5 +31,8 @@ namespace PS.Mothership.Core.Common.Dto.Reminder
 
         [DataMember]
         public string ContactName { get; set; }
+
+        [DataMember]
+        public int PhoneCountryKey { get; set; }
     }
 }

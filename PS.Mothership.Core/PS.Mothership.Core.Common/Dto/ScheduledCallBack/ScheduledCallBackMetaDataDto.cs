@@ -11,6 +11,9 @@ namespace PS.Mothership.Core.Common.Dto.ScheduledCallBack
         public IList<EventType> EventTypes { get; set; }
 
         [DataMember]
+        public IList<EventNotificationMethod> NotificationTypes { get; set; }
+
+        [DataMember]
         public IList<ScheduledCallbackContactMetaDataDto> MerchantContacts { get; set; }
     }
 }

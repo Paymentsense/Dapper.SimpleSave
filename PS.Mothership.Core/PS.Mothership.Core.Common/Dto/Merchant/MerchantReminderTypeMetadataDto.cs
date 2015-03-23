@@ -7,8 +7,8 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
     public class MerchantReminderTypeMetadataDto
     {
         [Key, Required]
-        public int ReminderValueKey { get; set; }
+        public int NotificationValueKey { get; set; }
 
-        public string ReminderText { get; set; }
+        public string NotificationText { get; set; }
     }
 }
