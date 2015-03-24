@@ -8,7 +8,7 @@ using PS.Mothership.Core.Common.Dto.SendMessage;
 
 namespace PS.Mothership.Core.Common.Contracts
 {
-    [ServiceContract(CallbackContract = typeof(ISendMessageServiceCallback))]
+    [ServiceContract]
     public interface ISendMessageService
     {
         [OperationContract]
@@ -28,24 +28,6 @@ namespace PS.Mothership.Core.Common.Contracts
 
         [OperationContract]
         string SendSMSMessageFrom(Guid userGuid);
-
-        [OperationContract(IsOneWay = false)]
-        void MessageServiceStatusSubscribe(string applicationName);
-
-        [OperationContract(IsOneWay = true)]
-        void MessageServiceStatusEndSubscribe(string applicationName);
-
-        [OperationContract(IsOneWay = false)]
-        void EmailNotificationSubscribe(string applicationName);
-
-        [OperationContract(IsOneWay = true)]
-        void EmailNotificationEndSubscribe(string applicationName);
-
-        [OperationContract(IsOneWay = false)]
-        void SmsNotificationSubscribe(string applicationName);
-
-        [OperationContract(IsOneWay = true)]
-        void SmsNotificationEndSubscribe(string applicationName);
 
         [OperationContract]
         IList<SendMessageServiceStatusDto> GetMessageServiceStatus();

@@ -1,14 +1,12 @@
-﻿using System.ServiceModel;
+﻿using System;
+using System.ServiceModel;
 
 namespace PS.Mothership.Core.Common.Contracts
 {
-    [ServiceContract(CallbackContract = typeof(IDiallerTaskServiceCallback))]
+    [ServiceContract]
     public interface IDiallerTaskService
     {
-        [OperationContract(IsOneWay = false)]
-        void Subscribe(string applicationName);
-
-        [OperationContract(IsOneWay = true)]
-        void EndSubscribe(string applicationName);
+        [OperationContract]
+        bool CheckUserAvailability(Guid userGuid);
     }
 }

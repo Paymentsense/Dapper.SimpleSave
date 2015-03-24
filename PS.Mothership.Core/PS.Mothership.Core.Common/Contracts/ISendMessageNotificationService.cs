@@ -4,7 +4,8 @@ using PS.Mothership.Core.Common.Dto.SendMessage;
 
 namespace PS.Mothership.Core.Common.Contracts
 {
-    public interface ISendMessageServiceCallback
+    [ServiceContract]
+    public interface ISendMessageNotificationService
     {
         [OperationContract(IsOneWay = true)]
         void PushServiceStatus(SendMessageServiceStatusDto serviceStatus);

@@ -8,44 +8,82 @@ namespace PS.Mothership.Core.Common.Dto.DueDil
     {
         public string Id { get; set; }
 
-        public string LastUpdate { get; set; }
-
-        public string RetiredDirectorshipsCount { get; set; }
-
-        public string RetiredTradingDirectorshipsCount { get; set; }
-
-        public string RetiredTradingDirectorDirectorshipsCount { get; set; }
-
-        public string RetiredTradingSecretaryDirectorshipsCount { get; set; }
-
-        public string DirectorDirectorshipsCount { get; set; }
-
-        public string RetiredDirectorDirectorshipsCount { get; set; }
-
-        public string SecretaryDirectorshipsCount { get; set; }
-
-        public string RetiredSecretaryDirectorshipsCount { get; set; }
-
-        public string ForeName { get; set; }
-
-        public string SurName { get; set; }
-
-        public DateTime? DateOfBirth { get; set; }
-
-        public string DirectorshipsUrl { get; set; }
-
-        public string CompaniesUrl { get; set; }
-
-        public string DirectorUrl { get; set; }
-
         public string Title { get; set; }
 
-        public string MiddleName { get; set; }
+        public string DirectorForename { get; set; }
+
+        public string DirectorSurname { get; set; }
+
+        public string DirectorMiddleName { get; set; }
+
+        public string Suffix { get; set; }
 
         public string PostalTitle { get; set; }
 
-        public string Nationality { get; set; }
+        public string Address1 { get; set; }
+
+        public string Address2 { get; set; }
+
+        public string Address3 { get; set; }
+
+        public string Address4 { get; set; }
+
+        public string Canonical { get; set; }
 
         public string NationCode { get; set; }
+
+        public string Nationality { get; set; }
+
+        public string NumberOfDirectorsOpenDirectorships { get; set; }
+
+        public string NumberOfOpenDirectorships { get; set; }
+
+        public string NumberOfOpenSecretaryDirectorshipsCount { get; set; }
+
+        public string NumberOfDirectorsOpenTradingDirectorships { get; set; }
+
+        public string NumberOfDirectorsOpenTradingDirectorships2 { get; set; }
+
+        public string NumberOfOpenTradingSecretaryDirectorships { get; set; }
+
+        public string NumberOfDirectorsClosedDirectorships { get; set; }
+
+        public string NumberOfClosedDirectorships { get; set; }
+
+        public string NumberOfClosedSecretaryDirectorships { get; set; }
+
+        public string NumberOfDirectorsClosedTradingDirectorships { get; set; }
+
+        public string NumberOfClosedTradingDirectorships { get; set; }
+
+        public string NumberOfClosedTradingSecretaryDirectorships { get; set; }
+
+        public string NumberOfDirectorsRetiredDirectorships { get; set; }
+
+        public string NumberOfRetiredDirectorships { get; set; }
+
+        public string NumberOfRetiredSecretaryDirectorships { get; set; }
+
+        public string NumberOfRetiredTradingDirectorDirectorships { get; set; }
+
+        public string NumberOfRetiredTradingDirectorships { get; set; }
+
+        public string NumberOfRetiredTradingSecretaryDirectorships { get; set; }
+
+        public string NumberOfSecretaryDirectorships { get; set; }
+
+        public string DirectorDOB { get; set; }
+
+        public string NumberOfDirectorDirectorships { get; set; }
+
+        public string LinkToDirectorships { get; set; }
+
+        public string Honours { get; set; }
+
+        public string LinkToCompanies { get; set; }
+
+        public string LinkToDirectors { get; set; }
+
+        public string Link { get; set; }
     }
 }

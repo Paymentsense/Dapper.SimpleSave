@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+using Newtonsoft.Json;
 
 namespace PS.Mothership.Core.Common.Dto.DueDil
 {
@@ -11,5 +12,7 @@ namespace PS.Mothership.Core.Common.Dto.DueDil
         public IList<DirectorResponseDto> Directors { get; set; }
 
         public IList<ShareholderResponseDto> ShareHolders { get; set; }
+
+        public Guid BusinessDetailGuid { get; set; }
     }
 }
