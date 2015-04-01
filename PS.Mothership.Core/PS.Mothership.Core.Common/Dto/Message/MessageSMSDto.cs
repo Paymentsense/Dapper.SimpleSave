@@ -10,6 +10,8 @@ namespace PS.Mothership.Core.Common.Dto.Message
         public string MessageBody { get; set; }
         [DataMember]
         public Guid FromPhoneGuid { get; set; }
+
+        public string RecipentPhoneNumber { get; set; }
         
 	}
 }
