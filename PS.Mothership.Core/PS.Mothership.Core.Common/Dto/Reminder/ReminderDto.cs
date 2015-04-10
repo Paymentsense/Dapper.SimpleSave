@@ -34,5 +34,8 @@ namespace PS.Mothership.Core.Common.Dto.Reminder
 
         [DataMember]
         public int PhoneCountryKey { get; set; }
+
+        [DataMember]
+        public string MerchantName { get; set; }
     }
 }

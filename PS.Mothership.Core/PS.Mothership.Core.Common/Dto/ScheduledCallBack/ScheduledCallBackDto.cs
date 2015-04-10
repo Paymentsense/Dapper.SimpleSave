@@ -40,5 +40,8 @@ namespace PS.Mothership.Core.Common.Dto.ScheduledCallBack
 
         [DataMember]
         public bool CallbackPushedBackOver30Minutes { get; set; }
+
+        [DataMember]
+        public string MerchantName { get; set; }
     }
 }

@@ -3,6 +3,7 @@ using PS.Mothership.Core.Common.Dto.Dialler;
 using PS.Mothership.Core.Common.Dto.Merchant;
 using PS.Mothership.Core.Common.Dto.User;
 using PS.Mothership.Core.Common.Template.Dial;
+using PS.Mothership.Core.Common.Template.Mrkt;
 using System;
 using System.Collections.Generic;
 using System.ServiceModel;
@@ -59,11 +60,7 @@ namespace PS.Mothership.Core.Common.Contracts
         IEnumerable<SipAccountNumberDto> GetSipAccountList(Guid userSipAccountGuid);
 
         [OperationContract]
-        Guid AddInboundCampaignCallRecord(Guid sipCallGuid, Guid campaignGuid, string keyword, string referrerUrl);
-
-        [OperationContract]
-        void SetInboundCampaignCallRecordResolution(Guid inboundCampaignCallRecordGuid,
-            DialInboundCampaignCallResolutionEnum resolution);
+        void AddCampaignCallResolutionBySipCallGuid(Guid sipCallGuid, MrktCampaignCallResolutionEnum resolution);
 
         [OperationContract]
         void ProcessInboundCall(NewDiallerCallDto diallerCall);
