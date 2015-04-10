@@ -38,5 +38,11 @@ namespace PS.Mothership.Core.Common.Contracts
 
         [OperationContract]
         void ScheduledCallbackCallMade(ScheduledCallbackDto scheduledCallbackDto);
+
+        [OperationContract]
+        void AcknowledgeReminderFromUser(ReminderDto reminderDto);
+
+        [OperationContract]
+        void UnacknowledgedReminderFromUser(ReminderDto reminderDto);
     }
 }
