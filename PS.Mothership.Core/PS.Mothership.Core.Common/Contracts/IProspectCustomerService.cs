@@ -2,6 +2,7 @@
 using PS.Mothership.Core.Common.Constructs;
 using PS.Mothership.Core.Common.Dto;
 using PS.Mothership.Core.Common.Dto.DynamicRequest;
+using PS.Mothership.Core.Common.Dto.Event;
 using PS.Mothership.Core.Common.Dto.Merchant;
 using System;
 using System.Collections.Generic;
@@ -53,5 +54,14 @@ namespace PS.Mothership.Core.Common.Contracts
 
         [OperationContract]
         void UpdateMerchantAccessByUser(Guid merchantGuid, Guid userGuid);
+
+        [OperationContract]
+        void AddMerchantNote(EventNotesTrnDto eventNoteDto);
+
+        [OperationContract]
+        IEnumerable<EventNotesTrnDto> GetMerchantPastEventList(Guid merchantid);
+
+        [OperationContract]
+        EventNotesTrnDto GetEvent(Guid eventId);
     }
 }

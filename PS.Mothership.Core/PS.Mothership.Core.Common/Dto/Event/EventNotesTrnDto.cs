@@ -14,6 +14,15 @@ namespace PS.Mothership.Core.Common.Dto.Event
         public Guid EventGuid { get; set; }
 
         [DataMember]
+        public Guid MerchantGuid { get; set; }
+
+        [DataMember]
+        public Guid UserGuid { get; set; }
+
+        [DataMember]
+        public string UserName { get; set; }
+
+        [DataMember]
         public string Notes { get; set; }
 
         [DataMember]
@@ -21,5 +30,8 @@ namespace PS.Mothership.Core.Common.Dto.Event
 
         [DataMember]
         public DateTimeOffset UpdateDate { get; set; }
+
+        [DataMember]
+        public bool IsEditable { get; set; }
     }
 }
