@@ -20,5 +20,7 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public string BusinessName { get; set; }
         [DataMember]
         public bool IsCustomer { get; set; }
+        [DataMember]
+        public Guid OwnershipUserGuid { get; set; }
     }
 }
