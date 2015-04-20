@@ -41,6 +41,9 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public int EmailRestrictedReasonKey { get; set; }
 
         [DataMember]
+        public Guid AddressGuid { get; set; }
+
+        [DataMember]
         public FullAddressDto Address { get; set; }
 
         [DataMember]
