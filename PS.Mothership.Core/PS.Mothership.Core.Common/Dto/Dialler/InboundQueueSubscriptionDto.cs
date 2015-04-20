@@ -17,5 +17,9 @@ namespace PS.Mothership.Core.Common.Dto.Dialler
         public string ServiceAgent { get; set; }
         [DataMember]
         public IList<InboundQueueDistributorDto> QueueDistributors { get; set; }
+        [DataMember]
+        public Guid ServiceAgentGuid { get; set; }
+        [DataMember]
+        public Guid PhoneNumberGuid { get; set; }
     }
 }

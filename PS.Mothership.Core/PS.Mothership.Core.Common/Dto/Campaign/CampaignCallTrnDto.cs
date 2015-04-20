@@ -1,4 +1,4 @@
-﻿using PS.Mothership.Core.Common.Template.Dial;
+﻿using PS.Mothership.Core.Common.Template.Mrkt;
 using System;
 using System.Runtime.Serialization;
 
@@ -13,7 +13,7 @@ namespace PS.Mothership.Core.Common.Dto.Campaign
         public Guid CallGuid { get; set; }
 
         [DataMember]
-        public DialInboundCampaignCallResolutionEnum CampaignCallResolutionKey { get; set; }
+        public MrktCampaignCallResolutionEnum CampaignCallResolutionKey { get; set; }
 
         [DataMember]
         public Guid ResponseTapTrnGuid { get; set; }

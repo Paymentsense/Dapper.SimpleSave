@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
 
 namespace PS.Mothership.Core.Common.Dto.Dialler
 {
@@ -11,5 +12,7 @@ namespace PS.Mothership.Core.Common.Dto.Dialler
         public int RungCount { get; set; }
         [DataMember]
         public bool CanReceiveCalls { get; set; }
+        [DataMember]
+        public Guid FilterNumberGuid { get; set; }
     }
 }
