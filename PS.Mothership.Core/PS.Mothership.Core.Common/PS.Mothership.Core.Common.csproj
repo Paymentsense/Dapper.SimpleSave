@@ -124,9 +124,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\DapperIgnore.cs" />
+    <Compile Include="Attributes\DapperKey.cs" />
     <Compile Include="Config\WcfClientCertificateValidator.cs" />
     <Compile Include="Constants\CacheRegionConstants.cs" />
     <Compile Include="Constants\ConfigurationConstants.cs" />
+    <Compile Include="Constants\DbSchemaConstants.cs" />
     <Compile Include="Constants\EntityConstants.cs" />
     <Compile Include="Constants\ExceptionConstants.cs" />
     <Compile Include="Constants\GlobalConstants.cs" />
@@ -271,6 +274,7 @@
     <Compile Include="Dto\User\UserImpersonationDto.cs" />
     <Compile Include="Enums\DueDil\DueDilLocale.cs" />
     <Compile Include="Enums\NotificationIcon.cs" />
+    <Compile Include="Exceptions\UnknownNamespaceException.cs" />
     <Compile Include="Extension\DoubleExtension.cs" />
     <Compile Include="Extension\LinqExtension.cs" />
     <Compile Include="Extension\IntExtension.cs" />
