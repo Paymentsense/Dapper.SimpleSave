@@ -2,6 +2,7 @@
 
 namespace PS.Mothership.Core.Common.Exceptions
 {
+    [Serializable]
     public class UnknownNamespaceException : PsBaseException
     {
         private const string ExceptionMessage = "The namespace of the object could not be determined when attempting to get it via the object's type.";

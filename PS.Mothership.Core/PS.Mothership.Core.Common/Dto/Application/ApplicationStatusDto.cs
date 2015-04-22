@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
-using PS.Mothership.Core.Common.Dto.Merchant;
 using PS.Mothership.Core.Common.Template.App;
 using PS.Mothership.Core.Common.Template.Event;
 
