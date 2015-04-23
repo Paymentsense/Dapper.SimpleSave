@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using PS.Mothership.Core.Common.Constructs;
+﻿using PS.Mothership.Core.Common.Constructs;
 using PS.Mothership.Core.Common.Dto;
 using PS.Mothership.Core.Common.Dto.DynamicRequest;
 using PS.Mothership.Core.Common.Dto.Event;
@@ -50,7 +49,7 @@ namespace PS.Mothership.Core.Common.Contracts
         PagedList<MerchantListDto> AdvancedSearch(MerchantDataRequestDto dto);
 
         [OperationContract]
-        IQueryable<ProspectDto> GetMerchantsByPhoneNumber(string phoneNumber);
+        IEnumerable<ProspectDto> GetMerchantsByPhoneNumber(string phoneNumber);
 
         [OperationContract]
         void UpdateMerchantAccessByUser(Guid merchantGuid, Guid userGuid);

@@ -124,9 +124,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\DapperIgnore.cs" />
+    <Compile Include="Attributes\DapperKey.cs" />
     <Compile Include="Config\WcfClientCertificateValidator.cs" />
     <Compile Include="Constants\CacheRegionConstants.cs" />
     <Compile Include="Constants\ConfigurationConstants.cs" />
+    <Compile Include="Constants\DbSchemaConstants.cs" />
     <Compile Include="Constants\EntityConstants.cs" />
     <Compile Include="Constants\ExceptionConstants.cs" />
     <Compile Include="Constants\GlobalConstants.cs" />
@@ -209,6 +212,7 @@
     <Compile Include="Dto\Merchant\CurrencyCodeDto.cs" />
     <Compile Include="Dto\Merchant\MerchantHistoryDto.cs" />
     <Compile Include="Dto\Merchant\MerchantEventLnkDto.cs" />
+    <Compile Include="Dto\Merchant\MerchantReminderTypeMetadataDto.cs" />
     <Compile Include="Dto\Merchant\OfferDefaultDto.cs" />
     <Compile Include="Dto\Event\EventTrnFullDto.cs" />
     <Compile Include="Dto\Merchant\OfferFieldItemLutDto.cs" />
@@ -254,6 +258,9 @@
     <Compile Include="Dto\Notification\NotificationStatusDto.cs" />
     <Compile Include="Dto\Queue\CampaignQueueItemDto.cs" />
     <Compile Include="Dto\Queue\QueueItemDto.cs" />
+    <Compile Include="Dto\Reminder\ReminderContactMetadataDto.cs" />
+    <Compile Include="Dto\Reminder\ReminderDto.cs" />
+    <Compile Include="Dto\Reminder\ReminderMetaDataDto.cs" />
     <Compile Include="Dto\ScheduledCallBack\ScheduledCallbackContactMetaDataDto.cs" />
     <Compile Include="Dto\ScheduledCallBack\ScheduledCallbackDto.cs" />
     <Compile Include="Dto\ScheduledCallBack\ScheduledCallbackMetaDataDto.cs" />
@@ -264,6 +271,7 @@
     <Compile Include="Dto\User\UserImpersonationDto.cs" />
     <Compile Include="Enums\DueDil\DueDilLocale.cs" />
     <Compile Include="Enums\NotificationIcon.cs" />
+    <Compile Include="Exceptions\UnknownNamespaceException.cs" />
     <Compile Include="Extension\DoubleExtension.cs" />
     <Compile Include="Extension\LinqExtension.cs" />
     <Compile Include="Extension\IntExtension.cs" />

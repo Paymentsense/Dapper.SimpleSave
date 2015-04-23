@@ -228,6 +228,9 @@
     <Compile Include="Template\LtrExtraLtrTypeEnum.cs">
       <DependentUpon>DbEnumBuilder.tt</DependentUpon>
     </Compile>
+    <Compile Include="Template\MrktCampaignCallResolutionEnum.cs">
+      <DependentUpon>DbEnumBuilder.tt</DependentUpon>
+    </Compile>
     <Compile Include="Template\MrktCampaignSourceEnum.cs">
       <DependentUpon>DbEnumBuilder.tt</DependentUpon>
     </Compile>

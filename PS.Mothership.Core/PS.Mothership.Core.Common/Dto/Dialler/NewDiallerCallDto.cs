@@ -32,10 +32,12 @@ namespace PS.Mothership.Core.Common.Dto.Dialler
         [DataMember]
         public Guid ConsultOriginSipCallGuid { get; set; }
         [DataMember]
-        public Guid ProspectingCampaignResponseTapCallGuid { get; set; }
-        [DataMember]
-        public Guid InboundCampaignCallGuid { get; set; }
+        public Guid ResponseTapTrnGuid { get; set; }
         [DataMember]
         public DialCallDispositionEnum CallDisposition { get; set; }
+        [DataMember]
+        public string Keyword { get; set; }
+        [DataMember]
+        public string ReferrerUrl { get; set; }
     }
 }

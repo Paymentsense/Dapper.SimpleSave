@@ -7,6 +7,9 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
     public class MerchantHistoryDto
     {
         [DataMember]
+        public Guid UserMerchantAccessLnkGuid { get; set; }
+
+        [DataMember]
         public string BusinessName { get; set; }
 
         [DataMember]

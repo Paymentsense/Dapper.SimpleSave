@@ -3,13 +3,16 @@ using System.Runtime.Serialization;
 using PS.Mothership.Core.Common.Dto.Notification;
 using PS.Mothership.Core.Common.Template.Event;
 
-namespace PS.Mothership.Core.Common.Dto.ScheduledCallBack
+namespace PS.Mothership.Core.Common.Dto.Reminder
 {
     [DataContract]
-    public class ScheduledCallbackDto : TaskNotificationDto
+    public class ReminderDto : TaskNotificationDto
     {
         [DataMember]
-        public EventTypeEnum CallBackType { get; set; }
+        public EventNotificationMethodEnum NotificationType { get; set; }
+
+        [DataMember]
+        public EventTypeEnum ReminderType { get; set; }
 
         [DataMember]
         public Guid MerchantGuid { get; set; }
@@ -24,22 +27,13 @@ namespace PS.Mothership.Core.Common.Dto.ScheduledCallBack
         public bool IsEditableByThisUser { get; set; }
 
         [DataMember]
-        public int PhoneCountryKey { get; set; }
-
-        [DataMember]
         public string PhoneNumber { get; set; }
 
         [DataMember]
         public string ContactName { get; set; }
 
         [DataMember]
-        public EventNotificationMethodEnum NotificationType { get; set; }
-
-        [DataMember]
-        public int ItemRescheduleCount { get; set; }
-
-        [DataMember]
-        public bool CallbackPushedBackOver30Minutes { get; set; }
+        public int PhoneCountryKey { get; set; }
 
         [DataMember]
         public string MerchantName { get; set; }
