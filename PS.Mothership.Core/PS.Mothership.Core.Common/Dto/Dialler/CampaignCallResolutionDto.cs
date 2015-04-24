@@ -9,7 +9,7 @@ namespace PS.Mothership.Core.Common.Dto.Dialler
     public class CampaignCallResolutionDto
     {
         [DataMember]
-        public Guid EventGuid { get; set; }
+        public Guid SipCallGuid { get; set; }
 
         [DataMember]
         public MrktCampaignCallResolutionEnum CallResolutionKey { get; set; }

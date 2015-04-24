@@ -8,7 +8,7 @@ namespace PS.Mothership.Core.Common.Dto.Dialler
     public class CallResolutionDto
     {
         [DataMember]
-        public Guid EventGuid { get; set; }
+        public Guid SipCallGuid { get; set; }
 
         //TODO: add enum for non campaign resolutions and squash from core
         [DataMember]

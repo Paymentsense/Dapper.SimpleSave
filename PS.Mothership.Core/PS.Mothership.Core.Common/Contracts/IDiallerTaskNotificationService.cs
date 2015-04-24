@@ -15,7 +15,7 @@ namespace PS.Mothership.Core.Common.Contracts
 
 
         [OperationContract]
-        ReminderDto AddOrUpdateReminderTask(ReminderDto reminderDto);
+        ScheduledCallbackDto AddOrUpdateReminderTask(ScheduledCallbackDto reminderDto);
 
 
         [OperationContract]
