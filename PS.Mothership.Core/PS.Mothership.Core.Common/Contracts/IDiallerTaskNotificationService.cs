@@ -44,9 +44,6 @@ namespace PS.Mothership.Core.Common.Contracts
         void AcknowledgeReminderFromUser(ReminderDto reminderDto);
 
         [OperationContract]
-        void UnacknowledgedReminderFromUser(ReminderDto reminderDto);
-
-        [OperationContract]
         IList<NotificationPanelTask> FetchAllUnacknowledgedNotifications(Guid userGuid);
 
         [OperationContract]
