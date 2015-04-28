@@ -262,6 +262,7 @@
     <Compile Include="Dto\Reminder\ReminderContactMetadataDto.cs" />
     <Compile Include="Dto\Reminder\ReminderDto.cs" />
     <Compile Include="Dto\Reminder\ReminderMetaDataDto.cs" />
+    <Compile Include="Dto\ScheduledCallBack\AutoRescheduleResultDto.cs" />
     <Compile Include="Dto\ScheduledCallBack\ScheduledCallbackContactMetaDataDto.cs" />
     <Compile Include="Dto\ScheduledCallBack\ScheduledCallbackDto.cs" />
     <Compile Include="Dto\ScheduledCallBack\ScheduledCallbackMetaDataDto.cs" />
