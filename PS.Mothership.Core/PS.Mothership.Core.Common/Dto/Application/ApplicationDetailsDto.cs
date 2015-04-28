@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
-using PS.Mothership.Core.Common.Dto.DueDil;
+using PS.Mothership.Core.Common.Template.App;
 
 namespace PS.Mothership.Core.Common.Dto.Application
 {
@@ -15,6 +15,9 @@ namespace PS.Mothership.Core.Common.Dto.Application
         public Guid MerchantGuid { get; set; }
 
         [DataMember]
+        public AppStatusEnum Status { get; set; }
+
+        [DataMember]
         public LegalInfoDto LegalInfo { get; set; }
 
         [DataMember]
@@ -22,6 +25,5 @@ namespace PS.Mothership.Core.Common.Dto.Application
 
         [DataMember]
         public IList<ApplicationDetailPrincipalDto> ApplicationDetailPrincipal { get; set; }
-
     }
 }

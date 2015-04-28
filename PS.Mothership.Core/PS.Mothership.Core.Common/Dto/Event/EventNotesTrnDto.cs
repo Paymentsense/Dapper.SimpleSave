@@ -33,5 +33,8 @@ namespace PS.Mothership.Core.Common.Dto.Event
 
         [DataMember]
         public bool IsEditable { get; set; }
+
+        [DataMember]
+        public string EventName { get; set; }
     }
 }

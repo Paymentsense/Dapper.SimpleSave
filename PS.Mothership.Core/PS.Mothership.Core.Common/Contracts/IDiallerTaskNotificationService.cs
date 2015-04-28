@@ -14,11 +14,9 @@ namespace PS.Mothership.Core.Common.Contracts
         [OperationContract]
         ScheduledCallbackDto AddOrUpdateTask(ScheduledCallbackDto scheduledCallBackDto, EventNotificationTypeEnum notificationType);
 
-
         [OperationContract]
         ReminderDto AddOrUpdateReminderTask(ReminderDto reminderDto);
-
-
+        
         [OperationContract]
         void CancelTask(ScheduledCallbackDto scheduledCallBackDto);
 

@@ -217,8 +217,7 @@
     <Compile Include="Dto\Event\EventTrnFullDto.cs" />
     <Compile Include="Dto\Merchant\OfferFieldItemLutDto.cs" />
     <Compile Include="Dto\Merchant\ProspectMatchDto.cs" />
-    <Compile Include="Dto\NotificationPanel\NotificationPanel.cs" />
-    <Compile Include="Dto\NotificationPanel\NotificationPanelTasks.cs" />
+    <Compile Include="Dto\NotificationPanel\NotificationPanelTask.cs" />
     <Compile Include="Dto\Notification\NotificationReceivedDto.cs" />
     <Compile Include="Dto\FullPostcodeDto.cs" />
     <Compile Include="Dto\Iridium\IridiumConfirmResultsDto.cs" />
