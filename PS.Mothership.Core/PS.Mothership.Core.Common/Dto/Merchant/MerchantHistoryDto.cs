@@ -20,5 +20,11 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
 
         [DataMember]
         public DateTimeOffset? LastAccessTime { get; set; }
+
+        [DataMember]
+        public string LocatorId { get; set; }
+
+        [DataMember]
+        public string PostCodeOrCounty { get; set; }
     }
 }

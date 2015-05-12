@@ -13,7 +13,7 @@ namespace PS.Mothership.Core.Common.Template.Dial
        [Description("None")][EnumMember]None = 0,
        [Description("Bad Number")][EnumMember]BadNumber = 1,
        [Description("Live or Sale")][EnumMember]LiveOrSale = 2,
-       [Description("unable to reach voicemail")][EnumMember]UnableToReachVoicemail = 3,
+       [Description("Unable to Reach / Voicemail")][EnumMember]UnableToReach = 3,
        [Description("Transferred")][EnumMember]Transferred = 4,
        [Description("InternalBusiness")][EnumMember]InternalBusiness = 5,
         
@@ -48,7 +48,7 @@ namespace PS.Mothership.Core.Common.Template.Dial
 								EnumName = "None",
 								EnumDescription = "None",
 								CallResolutionKey = 0,
-								RecStatusKey = (GenRecStatusEnum)3
+								RecStatusKey = (GenRecStatusEnum)0
 							},
 							new DialCallResolution
 							{
@@ -69,8 +69,8 @@ namespace PS.Mothership.Core.Common.Template.Dial
 							new DialCallResolution
 							{
 								EnumValue = 3,
-								EnumName = "UnableToReachVoicemail",
-								EnumDescription = "unable to reach voicemail",
+								EnumName = "UnableToReach",
+								EnumDescription = "Unable to Reach / Voicemail",
 								CallResolutionKey = 3,
 								RecStatusKey = (GenRecStatusEnum)1
 							},
