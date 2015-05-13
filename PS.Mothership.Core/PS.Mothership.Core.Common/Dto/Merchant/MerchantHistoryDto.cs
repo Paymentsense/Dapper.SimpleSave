@@ -25,6 +25,9 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public string LocatorId { get; set; }
 
         [DataMember]
-        public string PostCodeOrCounty { get; set; }
+        public string Postcode { get; set; }
+
+        [DataMember]
+        public string County { get; set; }
     }
 }
