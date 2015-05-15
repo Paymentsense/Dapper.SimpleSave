@@ -526,8 +526,7 @@ namespace PS.Mothership.Core.Common.Template.Event
 								EventTypeKey = 38,
 								EventCategoryKey = 9,
 								RecStatusKey = (GenRecStatusEnum)2
-							},
-
+							},
                         };
                     
                 }
