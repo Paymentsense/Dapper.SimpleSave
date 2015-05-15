@@ -19,6 +19,15 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public int DebitCardTransactionPercentage { get; set; }
 
         [DataMember]
+        public int DebitPriorityKey { get; set; }
+
+        [DataMember]
+        public double DebitPercent { get; set; }
+
+        [DataMember]
+        public double DebitPound { get; set; }
+
+        [DataMember]
         public int CreditCardTurnoverMonthly { get; set; }
 
         [DataMember]

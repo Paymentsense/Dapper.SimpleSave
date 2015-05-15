@@ -36,5 +36,8 @@ namespace PS.Mothership.Core.Common.Contracts
 
         [OperationContract]
         IList<NotificationStatusDto> GetNotificationsAndStatuses(Guid userGuid);
+
+        [OperationContract]
+        SendContactMessageDto SendMessageToContact(SendContactMessageDto sendContactMessageDto);
     }
 }

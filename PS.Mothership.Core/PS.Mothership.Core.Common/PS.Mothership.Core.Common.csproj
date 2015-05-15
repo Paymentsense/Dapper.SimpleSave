@@ -271,6 +271,7 @@
     <Compile Include="Dto\Merchant\MerchantDataRequestDto.cs" />
     <Compile Include="Dto\Merchant\MerchantSearchDataDto.cs" />
     <Compile Include="Dto\Merchant\MerchantOfferDto.cs" />
+    <Compile Include="Dto\SendMessage\SendContactMessageDto.cs" />
     <Compile Include="Dto\User\UserImpersonationDto.cs" />
     <Compile Include="Enums\DueDil\DueDilLocale.cs" />
     <Compile Include="Enums\NotificationIcon.cs" />
