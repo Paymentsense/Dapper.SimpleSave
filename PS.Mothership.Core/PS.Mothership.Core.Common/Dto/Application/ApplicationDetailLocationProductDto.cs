@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Runtime.Serialization;
 using PS.Mothership.Core.Common.Dto.Merchant;
 using PS.Mothership.Core.Common.Template.App;
@@ -105,12 +104,9 @@ namespace PS.Mothership.Core.Common.Dto.Application
         [DataMember]
         public int? B2BPaymentsPercent { get; set; }
 
-
-
         //Refunds section
         [DataMember]
         public AppRefundDaysEnum RefundDaysKey { get; set; }
-
 
         //Delivery section
         [DataMember]
@@ -140,8 +136,6 @@ namespace PS.Mothership.Core.Common.Dto.Application
         public int? DepositPercentOfTransaction { get; set; }
         [DataMember]
         public int? DepositDaysToDelivery { get; set; }
-
-
 
         // Membership/Subscription section
         [DataMember]
@@ -173,8 +167,6 @@ namespace PS.Mothership.Core.Common.Dto.Application
         [DataMember]
         public bool? StoresCardDetails { get; set; }
 
-
-
         [DataMember]
         public int? SwitcherCurrentBankKey { get; set; }
 
@@ -183,8 +175,6 @@ namespace PS.Mothership.Core.Common.Dto.Application
 
         [DataMember]
         public string AcquirerLocationMID { get; set; }
-
-
 
         [DataMember]
         public double? AverageGoodsReturnedPercent { get; set; }
@@ -197,9 +187,6 @@ namespace PS.Mothership.Core.Common.Dto.Application
 
         [DataMember]
         public double? CommercialCardRate { get; set; }
-
-        [DataMember]
-        public string AmexAccountNumber { get; set; }
 
         [DataMember]
         public AppAddressSelectionEnum BillingAddressSelectionKey { get; set; }
