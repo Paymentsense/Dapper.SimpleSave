@@ -16,6 +16,8 @@ namespace PS.Mothership.Core.Common.Template.Dial
        [Description("Unable to Reach / Voicemail")][EnumMember]UnableToReach = 3,
        [Description("Transferred")][EnumMember]Transferred = 4,
        [Description("InternalBusiness")][EnumMember]InternalBusiness = 5,
+       [Description("No Interest Or No Sale")][EnumMember]NoInterestOrNoSale = 6,
+       [Description("Callback Or Reminder")][EnumMember]CallbackOrReminder = 7,
         
     }    
     
@@ -88,6 +90,22 @@ namespace PS.Mothership.Core.Common.Template.Dial
 								EnumName = "InternalBusiness",
 								EnumDescription = "InternalBusiness",
 								CallResolutionKey = 5,
+								RecStatusKey = (GenRecStatusEnum)1
+							},
+							new DialCallResolution
+							{
+								EnumValue = 6,
+								EnumName = "NoInterestOrNoSale",
+								EnumDescription = "No Interest Or No Sale",
+								CallResolutionKey = 6,
+								RecStatusKey = (GenRecStatusEnum)1
+							},
+							new DialCallResolution
+							{
+								EnumValue = 7,
+								EnumName = "CallbackOrReminder",
+								EnumDescription = "Callback Or Reminder",
+								CallResolutionKey = 7,
 								RecStatusKey = (GenRecStatusEnum)1
 							},
                         };

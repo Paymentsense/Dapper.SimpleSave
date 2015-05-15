@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
+using log4net;
 using Microsoft.ApplicationServer.Caching;
 using PS.Mothership.Core.Common.Caching.Contracts;
 using PS.Mothership.Core.Common.Contracts;
@@ -8,6 +10,7 @@ namespace PS.Mothership.Core.Common.Caching.Implementations
 {
     public class CacheService : ICacheService
     {
+        private readonly ILog _log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
         private readonly DataCache _dataCache;
 
         public CacheService(DataCacheFactory dataCacheFactory, ICacheConfig cacheConfig)
@@ -31,21 +34,27 @@ namespace PS.Mothership.Core.Common.Caching.Implementations
                     return (T)_dataCache.Get(cacheKey);
                 }
 
-                // if region passed
                 return (T)_dataCache.Get(cacheKey, region);
             }
-            catch
+            catch (Exception getException)
             {
-                // TODO: log here?
-                if (string.IsNullOrWhiteSpace(region))
+                _log.Error(string.Format("Unable to get the item from the cache, will try to remove the item as fallback. Key {0}, Region {1}", cacheKey, region), getException);
+                try
                 {
-                    _dataCache.Remove(cacheKey);
+                    if (string.IsNullOrWhiteSpace(region))
+                    {
+                        _dataCache.Remove(cacheKey);
+                    }
+                    else
+                    {
+                        _dataCache.Remove(cacheKey, region);
+                    }
                 }
-                else
+                catch (Exception removeException)
                 {
-                    _dataCache.Remove(cacheKey, region);
+                    _log.Error(string.Format("Unable to get the item from cache and then failed trying to remove the item from the cache: Key {0}, Region {1}", cacheKey, region), removeException);
                 }
-                return (T)null;
+                return default(T);
             }
         }
 

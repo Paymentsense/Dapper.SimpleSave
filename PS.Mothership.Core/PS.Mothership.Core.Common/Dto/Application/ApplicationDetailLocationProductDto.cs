@@ -46,6 +46,10 @@ namespace PS.Mothership.Core.Common.Dto.Application
         [DataMember]
         public string ProductsServicesSold { get; set; }
 
+        // Amex section
+        [DataMember]
+        public string AmexNumber { get; set; }
+
         //TODO: Where is this filed usd?
         [DataMember]
         public int LocationNumber { get; set; }
