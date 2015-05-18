@@ -14,9 +14,9 @@ namespace PS.Mothership.Core.Common.Dto.SendMessage
         [DataMember]
         public Guid MessageGuid { get; set; }
         [DataMember]
-        public List<Guid> OtherPartySendReceiveGuids { get; set; }
+        public List<Guid> RecipientGuids { get; set; }
         [DataMember]
-        public Guid MothershipSendReceiveGuid { get; set; }
+        public Guid SenderGuid { get; set; }
         [DataMember]
         public string Subject { get; set; }
         [DataMember]
