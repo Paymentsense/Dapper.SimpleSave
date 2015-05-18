@@ -10,6 +10,9 @@ namespace PS.Mothership.Core.Common.Dto.SendMessage
         public Guid ContactGuid { get; set; }
 
         [DataMember]
+        public Guid MerchantGuid { get; set; }
+
+        [DataMember]
         public string MessageBody { get; set; }
     }
 }

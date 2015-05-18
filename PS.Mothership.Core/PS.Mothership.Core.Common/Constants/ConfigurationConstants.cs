@@ -142,5 +142,8 @@
         public const string DiscountPlanTreatedAsAddOn = "DiscountPlan";
         public const string EposUpfrontTreatedAsAddon = "EposUpfront";
         public const string EposOngoingTreatedAsAddon = "EposOngoing";
+
+        //SignalR Status
+        public static string SignalRStatusEnabled = "SignalRStatusEnabled";
     }
 }

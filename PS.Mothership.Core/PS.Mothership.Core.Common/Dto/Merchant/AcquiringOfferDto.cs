@@ -22,7 +22,7 @@ namespace PS.Mothership.Core.Common.Dto.Merchant
         public int DebitPriorityKey { get; set; }
 
         [DataMember]
-        public double DebitPercent { get; set; }
+        public double DebitPct { get; set; }
 
         [DataMember]
         public double DebitPound { get; set; }
