@@ -6,18 +6,26 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Dapper.SimpleSave.Impl {
-    public class DtoMetadata
+    public class DtoMetadata : BaseMetadata
     {
-        public DtoMetadata(Type type)
+        public DtoMetadata(Type type) : base(type)
         {
             DtoType = type;
             InitProperties();
+            InitTableName();
         }
 
         public Type DtoType { get; set; }
 
         public string TableName { get; set; }
+
+        public bool IsReferenceData
+        {
+            get { return GetAttribute<ReferenceDataAttribute>() != null; }
+        }
+
         public PropertyMetadata PrimaryKey { get; set; }
+
         public IEnumerable<PropertyMetadata> Properties { get; set; }
 
         public int GetPrimaryKeyValue(object obj)
@@ -46,5 +54,17 @@ namespace Dapper.SimpleSave.Impl {
 
             Properties = target;
         }
+
+        private void InitTableName()
+        {
+            var attr = GetAttribute<TableAttribute>();
+            var name = null == attr ? null : attr.Name;
+            if (null == name)
+            {
+                //  TODO: generate names for enums and DTOs without any name specified
+            }
+            TableName = name;
+        }
+
     }
 }

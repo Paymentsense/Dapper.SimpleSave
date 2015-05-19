@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Dapper.SimpleSave.Impl {
     public class Difference {
-        public Type ObjectType { get; set; }
+        public DtoMetadata TypeMetadata { get; set; }
         
         public int ID { get; set; }
 

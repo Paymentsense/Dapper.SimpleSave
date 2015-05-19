@@ -44,7 +44,7 @@ namespace Dapper.SimpleSave.Impl
                  Property  = prop,
                  ID = objKey,
                  NewValue = newValue,
-                 ObjectType = typeof(T),
+                 TypeMetadata = metadata,
                  OldValue = oldValue
                });
             }

@@ -5,29 +5,14 @@ using System.Reflection;
 
 namespace Dapper.SimpleSave.Impl
 {
-    public class PropertyMetadata
+    public class PropertyMetadata : BaseMetadata
     {
-
-        private IDictionary<Type, Attribute> _attributes = new Dictionary<Type, Attribute>(); 
 
         public PropertyInfo Prop { get; set; }
 
-        public PropertyMetadata(PropertyInfo prop)
+        public PropertyMetadata(PropertyInfo prop) : base(prop)
         {
             Prop = prop;
-            InitAttributes();
-        }
-
-        public bool HasAttribute<T>()
-        {
-            return _attributes.ContainsKey(typeof (T));
-        }
-
-        public Attribute GetAttribute<T>()
-        {
-            Attribute attr;
-            _attributes.TryGetValue(typeof (T), out attr);
-            return attr;
         }
 
         public bool IsPrimaryKey
@@ -58,14 +43,6 @@ namespace Dapper.SimpleSave.Impl
         public object GetValue(object source)
         {
             return Prop.GetGetMethod().Invoke(source, new object[0]);
-        }
-
-        private void InitAttributes()
-        {
-            foreach (var attr in Prop.GetCustomAttributes(true).OfType<Attribute>())
-            {
-                _attributes [attr.GetType()] = attr;
-            }
         }
     }
 }
