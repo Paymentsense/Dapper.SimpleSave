@@ -103,7 +103,7 @@ namespace PS.Mothership.Core.Common.Template.Usr
 								Area = "",
 								ContainerName = "",
 								ResourceTypeKey = 1,
-								RecStatusKey = (GenRecStatusEnum)1
+								RecStatusKey = (GenRecStatusEnum)3
 							},
 							new UsrResource
 							{

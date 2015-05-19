@@ -20,6 +20,7 @@ namespace PS.Mothership.Core.Common.Template.Event
        [Description("Touch")][EnumMember]Touch = 7,
        [Description("Dialler")][EnumMember]Dialler = 8,
        [Description("Callback")][EnumMember]Callback = 9,
+       [Description("Call Resolution")][EnumMember]CallResolution = 13,
        [Description("Reminder")][EnumMember]Reminder = 10,
        [Description("System Generated")][EnumMember]SystemGenerated = 11,
        [Description("Note")][EnumMember]Note = 12,
@@ -127,6 +128,14 @@ namespace PS.Mothership.Core.Common.Template.Event
 								EnumName = "Callback",
 								EnumDescription = "Callback",
 								EventCategoryKey = 9,
+								RecStatusKey = (GenRecStatusEnum)1
+							},
+							new EventCategory
+							{
+								EnumValue = 13,
+								EnumName = "CallResolution",
+								EnumDescription = "Call Resolution",
+								EventCategoryKey = 13,
 								RecStatusKey = (GenRecStatusEnum)1
 							},
 							new EventCategory

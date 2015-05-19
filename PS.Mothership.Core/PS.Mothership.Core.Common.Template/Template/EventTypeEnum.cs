@@ -47,6 +47,7 @@ namespace PS.Mothership.Core.Common.Template.Event
        [Description("SMS")][EnumMember]SMSReminderAdded = 43,
        [Description("Reminder Added")][EnumMember]ReminderAdded = 45,
        [Description("ReminderNotAcknowledged")][EnumMember]ReminderNotAcknowledged = 48,
+       [Description("Call resolved")][EnumMember]CallResolved = 49,
        [Description("Campaign Queue Item Added")][EnumMember]CampaignQueueItemAdded = 23,
        [Description("Campaign Queue Item Removed")][EnumMember]CampaignQueueItemRemoved = 24,
        [Description("Campaign Queue Item Updated")][EnumMember]CampaignQueueItemUpdated = 25,
@@ -417,6 +418,15 @@ namespace PS.Mothership.Core.Common.Template.Event
 								EnumDescription = "ReminderNotAcknowledged",
 								EventTypeKey = 48,
 								EventCategoryKey = 10,
+								RecStatusKey = (GenRecStatusEnum)1
+							},
+							new EventType
+							{
+								EnumValue = 49,
+								EnumName = "CallResolved",
+								EnumDescription = "Call resolved",
+								EventTypeKey = 49,
+								EventCategoryKey = 13,
 								RecStatusKey = (GenRecStatusEnum)1
 							},
 							new EventType
