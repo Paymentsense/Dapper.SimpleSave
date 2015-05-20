@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ForeignKeyReferenceAttribute.cs" />
     <Compile Include="Impl\BaseCommand.cs" />
     <Compile Include="Impl\BaseMetadata.cs" />
     <Compile Include="Impl\BaseOperation.cs" />
@@ -59,6 +60,8 @@
     <Compile Include="Impl\Differ.cs" />
     <Compile Include="Impl\Difference.cs" />
     <Compile Include="Impl\DtoMetadataCache.cs" />
+    <Compile Include="Impl\InsertCommand.cs" />
+    <Compile Include="Impl\InsertOperation.cs" />
     <Compile Include="Impl\MemberInfoExtensions.cs" />
     <Compile Include="Impl\OperationBuilder.cs" />
     <Compile Include="Impl\PropertyMetadata.cs" />

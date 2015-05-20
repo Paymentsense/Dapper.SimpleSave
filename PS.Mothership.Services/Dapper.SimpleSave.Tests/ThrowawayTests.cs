@@ -76,7 +76,7 @@ namespace Dapper.SimpleSave.Tests
             Assert.AreEqual(4, operations.Count(), "Unexpected number of operations.");
             Assert.AreEqual(2, commands.Count(), "Unexpected number of commands.");
 
-            var scriptBuilder = new ScriptBuilder();
+            var scriptBuilder = new ScriptBuilder(cache);
             var transactionScript = scriptBuilder.BuildTransaction(commands);
 
             Assert.IsNotNull(transactionScript, "#badtimes - null transaction script");
@@ -124,7 +124,7 @@ namespace Dapper.SimpleSave.Tests
             Assert.AreEqual(4, operations.Count(), "Unexpected number of operations.");
             Assert.AreEqual(2, commands.Count(), "Unexpected number of commands.");
 
-            var scriptBuilder = new ScriptBuilder();
+            var scriptBuilder = new ScriptBuilder(cache);
             var transactionScript = scriptBuilder.BuildTransaction(commands);
 
             Assert.IsNotNull(transactionScript, "#badtimes - null transaction script");

@@ -16,10 +16,17 @@ namespace Dapper.SimpleSave.Impl {
                 switch (diff.DifferenceType)
                 {
                     case DifferenceType.Added:
-                        //var insertOperation = new InsertOperation
-                        //{
-
-                        //};
+                        var insertOperation = new InsertOperation
+                        {
+                            OwnerMetadata = diff.OwnerMetadata,
+                            OwnerPropertyMetadata = diff.OwnerPropertyMetadata,
+                            OwnerPrimaryKeyColumn = diff.OwnerMetadata.PrimaryKey.Prop.Name,
+                            OwnerPrimaryKey = diff.OwnerId,
+                            TableName = diff.OwnerMetadata.TableName,
+                            ValueMetadata = diff.ValueMetadata,
+                            Value = diff.NewValue
+                        };
+                        operations.Add(TransformInsertOrRemove(insertOperation));
                         break;
 
                     case DifferenceType.Removed:
@@ -33,7 +40,7 @@ namespace Dapper.SimpleSave.Impl {
                             ValueMetadata = diff.ValueMetadata,
                             Value = diff.OldValue
                         };
-                        operations.Add(TransformRemove(removeOperation));
+                        operations.Add(TransformInsertOrRemove(removeOperation));
                         break;
 
                     case DifferenceType.Changed:
@@ -54,30 +61,30 @@ namespace Dapper.SimpleSave.Impl {
             return operations;
         }
 
-        private BaseOperation TransformRemove(RemoveOperation operation)
+        private BaseOperation TransformInsertOrRemove(RemoveOperation insertOrRemoveOperation)
         {
-            if (operation.ValueMetadata != null)
+            if (insertOrRemoveOperation.ValueMetadata != null)
             {
-                if (operation.OwnerPropertyMetadata.HasAttribute<ManyToManyAttribute>())
+                if (insertOrRemoveOperation.OwnerPropertyMetadata.HasAttribute<ManyToManyAttribute>())
                 {
                     //  Remove record in link table; don't touch either entity table
-                    return operation;
+                    return insertOrRemoveOperation;
                 }
 
-                if (operation.OwnerPropertyMetadata.HasAttribute<OneToManyAttribute>()
-                    && !operation.ValueMetadata.HasAttribute<ReferenceDataAttribute>())
+                if (insertOrRemoveOperation.OwnerPropertyMetadata.HasAttribute<OneToManyAttribute>()
+                    && !insertOrRemoveOperation.ValueMetadata.HasAttribute<ReferenceDataAttribute>())
                 {
                     //  DELETE the value from the other table
-                    return operation;
+                    return insertOrRemoveOperation;
                 }
             }
 
             return new UpdateOperation {
-                ColumnName = operation.OwnerPropertyMetadata.Prop.Name,
-                Value = operation.Value,
-                OwnerPrimaryKeyColumn = operation.OwnerPrimaryKeyColumn,
-                OwnerPrimaryKey = operation.OwnerPrimaryKey,
-                TableName = operation.TableName
+                ColumnName = insertOrRemoveOperation.OwnerPropertyMetadata.Prop.Name,
+                Value = insertOrRemoveOperation.Value,
+                OwnerPrimaryKeyColumn = insertOrRemoveOperation.OwnerPrimaryKeyColumn,
+                OwnerPrimaryKey = insertOrRemoveOperation.OwnerPrimaryKey,
+                TableName = insertOrRemoveOperation.TableName
             };
         }
 
@@ -92,19 +99,17 @@ namespace Dapper.SimpleSave.Impl {
                 {
                     CoalesceUpdates(operation, tablesToUpdates, results);
                 }
+                else if (operation is InsertOperation)
+                {
+                    results.Add(new InsertCommand(operation as InsertOperation));
+                }
                 else if (operation is RemoveOperation)
                 {
-                    BuildDeleteCommand(operation, results);
+                    results.Add(new DeleteCommand(operation as RemoveOperation));
                 }
             }
 
             return results;
-        }
-
-        private static void BuildDeleteCommand(BaseOperation operation, List<BaseCommand> results)
-        {
-            var removeOperation = operation as RemoveOperation;
-            results.Add(new DeleteCommand(removeOperation));
         }
 
         private static void CoalesceUpdates(BaseOperation operation, Dictionary<string, IDictionary<int, UpdateCommand>> tablesToUpdates, List<BaseCommand> results)
