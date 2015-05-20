@@ -30,5 +30,13 @@ namespace Dapper.SimpleSave.Impl {
         {
             return GetMetadataFor(typeof(T));
         }
+
+        public bool HasMetaDataFor(Type type)
+        {
+            lock (_lock)
+            {
+                return _metadata.ContainsKey(type);
+            }
+        }
     }
 }

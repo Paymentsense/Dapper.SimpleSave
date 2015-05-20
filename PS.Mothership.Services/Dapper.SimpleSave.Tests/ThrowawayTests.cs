@@ -15,7 +15,6 @@ namespace Dapper.SimpleSave.Tests
     {
 
         private UserDto _old;
-        private UserDto _new;
 
         [SetUp]
         public void Setup()
@@ -27,34 +26,103 @@ namespace Dapper.SimpleSave.Tests
                 LastName = "Smith",
                 PhoneNumber = "0207 1234567",
                 EmailAddress = "john.smith@paymentsense.com",
-                Username = "john.smith"
+                Username = "john.smith",
+                Department = new List<DepartmentDto>(new []
+                {
+                    new DepartmentDto
+                    {
+                        DepartmentKey = 1,
+                        Name = "The Flying Squad"
+                    },
+                    new DepartmentDto
+                    {
+                        DepartmentKey = 2,
+                        Name = "The Pancake Landing Squad"
+                    } 
+                })
             };
+        }
 
-            _new = new UserDto() {
+        [Test]
+        public void multi_level_updates_with_department_removal_generates_correct_sql()
+        {
+            var newUser = new UserDto() {
                 UserKey = 1,
                 FirstName = "Zargon",
                 LastName = "Smith",
                 PhoneNumber = "0207 666 6666",
                 EmailAddress = "john.smith@paymentsense.com",
-                Username = "zargon.smith"
+                Username = "zargon.smith",
+                Department = new List<DepartmentDto>(new []
+                {
+                    new DepartmentDto
+                    {
+                        DepartmentKey = 2,
+                        Name = "The Pancake Landing Squad"
+                    } 
+                })
             };
-        }
-
-        [Test]
-        public void single_level_updates_generate_correct_sql()
-        {
+            
             var cache = new DtoMetadataCache();
             var differ = new Differ(cache);
-            var differences = differ.Diff(_old, _new);
+            var differences = differ.Diff(_old, newUser);
 
-            Assert.AreEqual(3, differences.Count(), "Unexpected number of differences.");
+            Assert.AreEqual(4, differences.Count(), "Unexpected number of differences.");
 
             var operationBuilder = new OperationBuilder();
             var operations = operationBuilder.Build(differences);
             var commands = operationBuilder.Coalesce(operations);
 
-            Assert.AreEqual(3, operations.Count(), "Unexpected number of oeprations.");
-            Assert.AreEqual(1, commands.Count(), "Unexpected number of commands.");
+            Assert.AreEqual(4, operations.Count(), "Unexpected number of operations.");
+            Assert.AreEqual(2, commands.Count(), "Unexpected number of commands.");
+
+            var scriptBuilder = new ScriptBuilder();
+            var transactionScript = scriptBuilder.BuildTransaction(commands);
+
+            Assert.IsNotNull(transactionScript, "#badtimes - null transaction script");
+        }
+
+        [Test]
+        public void multi_level_updates_with_department_added_generates_correct_sql() {
+            var newUser = new UserDto() {
+                UserKey = 1,
+                FirstName = "Zargon",
+                LastName = "Smith",
+                PhoneNumber = "0207 666 6666",
+                EmailAddress = "john.smith@paymentsense.com",
+                Username = "zargon.smith",
+                Department = new List<DepartmentDto>(new []
+                {
+                    new DepartmentDto
+                    {
+                        DepartmentKey = 1,
+                        Name = "The Flying Squad"
+                    },
+                    new DepartmentDto
+                    {
+                        DepartmentKey = 2,
+                        Name = "The Pancake Landing Squad"
+                    },
+                    new DepartmentDto
+                    {
+                        DepartmentKey = 3,
+                        Name = "Zombie Hunters"
+                    }
+                })
+            };
+
+            var cache = new DtoMetadataCache();
+            var differ = new Differ(cache);
+            var differences = differ.Diff(_old, newUser);
+
+            Assert.AreEqual(4, differences.Count(), "Unexpected number of differences.");
+
+            var operationBuilder = new OperationBuilder();
+            var operations = operationBuilder.Build(differences);
+            var commands = operationBuilder.Coalesce(operations);
+
+            Assert.AreEqual(4, operations.Count(), "Unexpected number of operations.");
+            Assert.AreEqual(2, commands.Count(), "Unexpected number of commands.");
 
             var scriptBuilder = new ScriptBuilder();
             var transactionScript = scriptBuilder.BuildTransaction(commands);

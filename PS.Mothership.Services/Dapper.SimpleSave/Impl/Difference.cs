@@ -7,13 +7,16 @@ using System.Threading.Tasks;
 
 namespace Dapper.SimpleSave.Impl {
     public class Difference {
-        public DtoMetadata TypeMetadata { get; set; }
+        //public object OldParentObject { get; set; }
+        //public object NewParentObject { get; set; }
+        public DtoMetadata OwnerMetadata { get; set; }
         
-        public int Id { get; set; }
+        public int OwnerId { get; set; }
+        public PropertyMetadata OwnerPropertyMetadata { get; set; }
 
         public DifferenceType DifferenceType { get; set; }
 
-        public PropertyMetadata Property { get; set; }
+        public DtoMetadata ValueMetadata { get; set; }
         public object OldValue { get; set; }
         public object NewValue { get; set; }
     }

@@ -5,25 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Dapper.SimpleSave.Impl {
-    public class UpdateCommand {
+    public class UpdateCommand : BaseCommand
+    {
 
         private readonly IList<UpdateOperation> _operations = new List<UpdateOperation>();
 
-        public string TableName
-        {
-            get { return _operations.Count > 0 ? _operations[0].TableName : null; }
-        }
-
-        public int? PrimaryKey
-        {
-            get { return _operations.Count > 0 ? (int?) _operations[0].PrimaryKey : null; }
-        }
-
-        public string PrimaryKeyColumn
-        {
-            get { return _operations.Count > 0 ? _operations[0].PrimaryKeyColumn : null; }
-        }
- 
         public void AddOperation(UpdateOperation operation)
         {
             var name = TableName;
@@ -36,24 +22,28 @@ namespace Dapper.SimpleSave.Impl {
             }
 
             var pk = PrimaryKey;
-            if (null != pk && operation.PrimaryKey != pk.Value)
+            if (null != pk && operation.OwnerPrimaryKey != pk.Value)
             {
                 throw new ArgumentException(string.Format(
                     "Primary key mismatch for UPDATE command on table {0}. Expected: {1}. Actual: {2}.",
                     name,
                     pk,
-                    operation.PrimaryKey));
+                    operation.OwnerPrimaryKey));
             }
 
             name = PrimaryKeyColumn;
-            if (null != name && operation.PrimaryKeyColumn != name)
+            if (null != name && operation.OwnerPrimaryKeyColumn != name)
             {
                 throw new ArgumentException(string.Format(
                     "Primary key column mismatch for UPDATE command on table {0}. Expected: {1}. Actual: {2}.",
                     TableName,
                     name,
-                    operation.PrimaryKeyColumn));
+                    operation.OwnerPrimaryKeyColumn));
             }
+
+            TableName = operation.TableName;
+            PrimaryKey = operation.OwnerPrimaryKey;
+            PrimaryKeyColumn = operation.OwnerPrimaryKeyColumn;
 
             _operations.Add(operation);
         }

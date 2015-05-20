@@ -14,6 +14,7 @@ namespace Dapper.SimpleSave.Impl
         {
             Prop = prop;
 
+            InitDictionary();
             InitEnumerable();
             InitValueType();
             InitEnum();
@@ -21,6 +22,7 @@ namespace Dapper.SimpleSave.Impl
             InitDateTime();
             InitDateTimeOffset();
             InitNumericType();
+            InitString();
             InitReferenceType();
         }
 
@@ -54,6 +56,8 @@ namespace Dapper.SimpleSave.Impl
             get { return !IsReadOnly && IsPublic; }
         }
 
+        public bool IsGenericDictionary { get; private set; }
+
         public bool IsEnumerable { get; private set; }
 
         public bool IsEnum { get; private set; }
@@ -70,9 +74,16 @@ namespace Dapper.SimpleSave.Impl
 
         public bool IsReferenceType { get; private set; }
 
+        public bool IsString { get; private set; }
+
         public object GetValue(object source)
         {
             return Prop.GetGetMethod().Invoke(source, new object[0]);
+        }
+
+        public void InitDictionary()
+        {
+            IsGenericDictionary = Prop.PropertyType.IsGenericDictionary();
         }
 
         private void InitEnumerable()
@@ -112,6 +123,11 @@ namespace Dapper.SimpleSave.Impl
         private void InitReferenceType()
         {
             IsReferenceType = Prop.PropertyType.IsClass || Prop.PropertyType.IsInterface;
+        }
+
+        private void InitString()
+        {
+            IsString = typeof (string) == Prop.PropertyType;
         }
     }
 }

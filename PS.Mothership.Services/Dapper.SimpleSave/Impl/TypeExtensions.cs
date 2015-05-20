@@ -12,5 +12,10 @@ namespace Dapper.SimpleSave.Impl {
         {
             return typeof (IEnumerable).IsAssignableFrom(type) || type.IsArray;
         }
+
+        public static bool IsGenericDictionary(this Type type)
+        {
+            return typeof (IDictionary<,>).IsAssignableFrom(type);
+        }
     }
 }
