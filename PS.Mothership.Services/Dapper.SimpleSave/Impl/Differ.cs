@@ -89,6 +89,10 @@ namespace Dapper.SimpleSave.Impl
             var newItems = GetItemDictionary(newObject as IEnumerable, pk);
 
             var removed = FindRemovedItems(oldItems, newItems);
+
+            //TODO: REMOVE DUPLICATION!!!
+
+
             foreach (var item in removed.Values)
             {
                 differences.Add(new Difference
