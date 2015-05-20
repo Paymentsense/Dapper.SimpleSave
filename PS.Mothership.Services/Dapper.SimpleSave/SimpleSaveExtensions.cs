@@ -15,7 +15,17 @@ namespace Dapper.SimpleSave {
 
         public static void Update<T>(this IDbConnection connection, IEnumerable<T> collection)
         {
-            
+            throw new NotImplementedException();
+        }
+
+        public static void Create<T>(this IDbConnection connection, T obj)
+        {
+            Create<T>(connection, new [] { obj });
+        }
+
+        public static void Create<T>(this IDbConnection connection, IEnumerable<T> collection)
+        {
+            throw new NotImplementedException();
         }
     }
 }

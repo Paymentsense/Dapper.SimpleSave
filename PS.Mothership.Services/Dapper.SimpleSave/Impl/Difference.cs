@@ -9,7 +9,9 @@ namespace Dapper.SimpleSave.Impl {
     public class Difference {
         public DtoMetadata TypeMetadata { get; set; }
         
-        public int ID { get; set; }
+        public int Id { get; set; }
+
+        public DifferenceType DifferenceType { get; set; }
 
         public PropertyMetadata Property { get; set; }
         public object OldValue { get; set; }

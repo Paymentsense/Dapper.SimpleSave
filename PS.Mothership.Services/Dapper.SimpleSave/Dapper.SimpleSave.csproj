@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Impl\BaseMetadata.cs" />
+    <Compile Include="Impl\DifferenceType.cs" />
     <Compile Include="Impl\DtoMetadata.cs" />
     <Compile Include="Impl\Differ.cs" />
     <Compile Include="Impl\Difference.cs" />
@@ -55,9 +56,13 @@
     <Compile Include="Impl\OperationBuilder.cs" />
     <Compile Include="Impl\PropertyMetadata.cs" />
     <Compile Include="Impl\ScriptBuilder.cs" />
+    <Compile Include="Impl\TypeExtensions.cs" />
     <Compile Include="Impl\UpdateCommand.cs" />
     <Compile Include="Impl\UpdateOperation.cs" />
     <Compile Include="ManyToManyAttribute.cs" />
+    <Compile Include="ManyToOneAttribute.cs" />
+    <Compile Include="NoTableAttribute.cs" />
+    <Compile Include="OneToManyAttribute.cs" />
     <Compile Include="PrimaryKeyAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReadOnlyAttribute.cs" />

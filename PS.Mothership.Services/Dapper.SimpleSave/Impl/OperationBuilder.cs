@@ -15,7 +15,7 @@ namespace Dapper.SimpleSave.Impl {
                 ColumnName = diff.Property.Prop.Name,
                 Value = diff.NewValue,
                 PrimaryKeyColumn = diff.TypeMetadata.PrimaryKey.Prop.Name,
-                PrimaryKey = diff.ID,
+                PrimaryKey = diff.Id,
                 TableName = diff.TypeMetadata.TableName
             });
         }
