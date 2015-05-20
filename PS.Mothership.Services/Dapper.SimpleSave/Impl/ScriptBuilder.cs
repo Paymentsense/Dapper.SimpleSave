@@ -34,14 +34,23 @@ COMMIT TRANSACTION;");
         {
             foreach (var command in commands)
             {
-                buff.Append(string.Format(@"UPDATE {0}", command.TableName));
-                
+                buff.Append(string.Format(@"UPDATE {0}
+    SET ", command.TableName));
+
+                int count = 0;
                 foreach (var operation in command.Operations)
                 {
-                    buff.Append(string.Format(@"SET [{0}] = '{1}', ", operation.ColumnName, operation.Value));
+                    if (count > 0)
+                    {
+                        buff.Append(@",
+        ");
+                    }
+                    buff.Append(string.Format(@"[{0}] = '{1}'", operation.ColumnName, operation.Value));
+                    ++count;
                 }
 
-                buff.Append(string.Format(@"WHERE {0} = '{1}'", command.PrimaryKeyColumn, command.PrimaryKey));
+                buff.Append(string.Format(@"
+WHERE {0} = '{1}'", command.PrimaryKeyColumn, command.PrimaryKey));
                 buff.Append("\r\n");
             }
         }

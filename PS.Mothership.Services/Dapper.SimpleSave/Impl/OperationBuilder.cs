@@ -20,7 +20,7 @@ namespace Dapper.SimpleSave.Impl {
             });
         }
 
-        public IEnumerable<UpdateCommand> BuildAndCoalesce(IEnumerable<UpdateOperation> operations)
+        public IEnumerable<UpdateCommand> Coalesce(IEnumerable<UpdateOperation> operations)
         {
             var results = new List<UpdateCommand>();
             var tablesToUpdates = new Dictionary<string, IDictionary<int, UpdateCommand>>();

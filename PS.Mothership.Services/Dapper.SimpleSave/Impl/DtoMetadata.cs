@@ -37,7 +37,7 @@ namespace Dapper.SimpleSave.Impl {
         {
             var target = new List<PropertyMetadata>();
             foreach (var prop in DtoType.GetProperties(
-                BindingFlags.FlattenHierarchy | BindingFlags.Public)) {
+                BindingFlags.FlattenHierarchy | BindingFlags.Public | BindingFlags.Instance)) {
                 var propMeta = new PropertyMetadata(prop);
                 if (!propMeta.IsSaveable)
                 {
