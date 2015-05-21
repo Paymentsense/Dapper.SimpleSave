@@ -165,10 +165,10 @@ namespace Dapper.SimpleSave.Tests
             CheckCount(counts, typeof(DeleteCommand), expectedDeleteCommands);
 
             var scriptBuilder = new ScriptBuilder(cache);
-            var transactionScript = scriptBuilder.BuildTransaction(commands);
+            var transactionScript = scriptBuilder.Build(commands);
 
             Assert.IsNotNull(transactionScript, "#badtimes - null transaction script");
-            Assert.IsTrue(transactionScript.Length > 0, "#badtimes - empty transaction script");
+            Assert.IsTrue(transactionScript.Buffer.Length > 0, "#badtimes - empty transaction script");
         }
 
         private void CheckCount(IDictionary<Type, int> counts, Type type, int expectedCount)

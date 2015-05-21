@@ -1,5 +1,6 @@
 ﻿using System;
 using System.CodeDom;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Tracing;
 using System.Linq;
@@ -16,53 +17,36 @@ namespace Dapper.SimpleSave.Impl {
             _dtoMetadataCache = dtoMetadataCache;
         }
 
-        public string Build(IEnumerable<BaseCommand> commands)
+        public Script Build(IEnumerable<BaseCommand> commands)
         {
-            var buff = new StringBuilder();
-            BuildInternal(commands, buff);
-            return buff.ToString();
+            var script = new Script();
+            BuildInternal(commands, script);
+            return script;
         }
 
-        public string BuildTransaction(IEnumerable<BaseCommand> commands)
+        public void BuildInternal(IEnumerable<BaseCommand> commands, Script script)
         {
-            var buff = new StringBuilder();
-            buff.Append(@"SET XACT_ABORT ON;
-BEGIN TRANSACTION;
-
-");
-
-            BuildInternal(commands, buff);
-
-            buff.Append(@"
-
-COMMIT TRANSACTION;
-SET XACT_ABORT OFF;
-");
-            return buff.ToString();
-        }
-
-        public void BuildInternal(IEnumerable<BaseCommand> commands, StringBuilder buff)
-        {
+            int parmIndex = 0;
             foreach (var command in commands)
             {
                 if (command is UpdateCommand)
                 {
-                    AppendUpdateCommand(buff, command as UpdateCommand);
+                    AppendUpdateCommand(script, command as UpdateCommand, ref parmIndex);
                 }
                 else if (command is InsertCommand)
                 {
-                    AppendInsertCommand(buff, command as InsertCommand);
+                    AppendInsertCommand(script, command as InsertCommand, ref parmIndex);
                 }
                 else if (command is DeleteCommand)
                 {
-                    AppendDeleteCommand(buff, command as DeleteCommand);
+                    AppendDeleteCommand(script, command as DeleteCommand, ref parmIndex);
                 }
             }
         }
 
-        private static void AppendUpdateCommand(StringBuilder buff, UpdateCommand command)
+        private static void AppendUpdateCommand(Script script, UpdateCommand command, ref int parmIndex)
         {
-            buff.Append(string.Format(@"UPDATE {0}
+            script.Buffer.Append(string.Format(@"UPDATE {0}
 SET ", command.TableName));
 
             int count = 0;
@@ -70,19 +54,21 @@ SET ", command.TableName));
             {
                 if (count > 0)
                 {
-                    buff.Append(@",
+                    script.Buffer.Append(@",
     ");
                 }
-                buff.Append(string.Format(@"[{0}] = '{1}'", operation.ColumnName, operation.Value));
+                script.Buffer.Append(string.Format(@"[{0}] = ", operation.ColumnName));
+                FormatWithParm(script, "{0}", ref parmIndex, operation.Value);
                 ++count;
             }
 
-            buff.Append(string.Format(@"
-WHERE {0} = '{1}';
-", command.PrimaryKeyColumn, command.PrimaryKey));
+            script.Buffer.Append(string.Format(@"
+WHERE {0} = ", command.PrimaryKeyColumn));
+            FormatWithParm(script, @"{0};
+", ref parmIndex, command.PrimaryKey);
         }
 
-        private static void AppendDeleteCommand(StringBuilder buff, DeleteCommand command)
+        private static void AppendDeleteCommand(Script script, DeleteCommand command, ref int parmIndex)
         {
             var operation = command.Operation;
             if (operation.ValueMetadata != null)
@@ -91,27 +77,28 @@ WHERE {0} = '{1}';
                 {
                     //  Remove record in link table; don't touch either entity table
 
-                    buff.Append(string.Format(
+                    script.Buffer.Append(string.Format(
                         @"DELETE FROM {0}
-WHERE {1} = {2} AND {3} = {4};
-", 
+WHERE {1} = ", 
                         operation.OwnerPropertyMetadata.GetAttribute<ManyToManyAttribute>().LinkTableName,
-                        operation.OwnerPrimaryKeyColumn,
-                        operation.OwnerPrimaryKey,
-                        operation.ValueMetadata.PrimaryKey.Prop.Name,
-                        operation.ValueMetadata.GetPrimaryKeyValue(operation.Value)));
+                        operation.OwnerPrimaryKeyColumn));
+                    FormatWithParm(script, "{0} AND ", ref parmIndex, operation.OwnerPrimaryKey);
+                    script.Buffer.Append(string.Format("{0} = ", operation.ValueMetadata.PrimaryKey.Prop.Name));
+                    FormatWithParm(script, @"{0};
+", ref parmIndex, operation.ValueMetadata.GetPrimaryKeyValue(operation.Value));
                 }
                 else if (operation.OwnerPropertyMetadata.HasAttribute<OneToManyAttribute>()
                     && !operation.ValueMetadata.HasAttribute<ReferenceDataAttribute>())
                 {
                     //  DELETE the value from the other table
-                    buff.Append(string.Format(
+
+                    script.Buffer.Append(string.Format(
                         @"DELETE FROM {0}
-WHERE {1} = {2};
-",
+WHERE {1} = ",
                         operation.ValueMetadata.TableName,
-                        operation.ValueMetadata.PrimaryKey.Prop.Name,
-                        operation.ValueMetadata.GetPrimaryKeyValue(operation.Value)));
+                        operation.ValueMetadata.PrimaryKey.Prop.Name));
+                    FormatWithParm(script, @"{0};
+", ref parmIndex, operation.ValueMetadata.GetPrimaryKeyValue(operation.Value));
                 }
             }
             else
@@ -124,32 +111,33 @@ WHERE {1} = {2};
             }
         }
 
-        private void AppendInsertCommand(StringBuilder buff, InsertCommand command) {
+        private void AppendInsertCommand(Script script, InsertCommand command, ref int parmIndex) {
             var operation = command.Operation;
             if (operation.ValueMetadata != null) {
                 if (operation.OwnerPropertyMetadata.HasAttribute<ManyToManyAttribute>()) {
-                    //  Remove record in link table; don't touch either entity table
+                    //  INSERT record in link table; don't touch either entity table
 
-                    buff.Append(string.Format(
+                    script.Buffer.Append(string.Format(
                         @"INSERT INTO {0} (
-    {1}, {3}
+    {1}, {2}
 ) VALUES (
-    {2}, {4}
-);
-",
+    ",
                         operation.OwnerPropertyMetadata.GetAttribute<ManyToManyAttribute>().LinkTableName,
                         operation.OwnerPrimaryKeyColumn,
-                        operation.OwnerPrimaryKey,
-                        operation.ValueMetadata.PrimaryKey.Prop.Name,
-                        operation.ValueMetadata.GetPrimaryKeyValue(operation.Value)));
+                        operation.ValueMetadata.PrimaryKey.Prop.Name));
+                    FormatWithParm(script, @"{0}, {1}
+);
+", ref parmIndex, operation.OwnerPrimaryKey, operation.ValueMetadata.GetPrimaryKeyValue(operation.Value));
                 }
                 else if (operation.OwnerPropertyMetadata.HasAttribute<OneToManyAttribute>()
                     && !operation.ValueMetadata.HasAttribute<ReferenceDataAttribute>()) 
                 {
-                        //  INSERT the value from the other table
+                    //  INSERT the value into the other table
                     
                     var colBuff = new StringBuilder();
                     var valBuff = new StringBuilder();
+                    var values = new ArrayList();
+                    var index = 0;
 
                     foreach (var property in operation.ValueMetadata.Properties)
                     {
@@ -173,29 +161,35 @@ WHERE {1} = {2};
 
                         colBuff.Append(property.Prop.Name);
 
+                        valBuff.Append("{");
+                        valBuff.Append(index);
+                        valBuff.Append("}");
+
                         if (property.HasAttribute<ForeignKeyReferenceAttribute>()
                             && _dtoMetadataCache.GetMetadataFor(
                                 property.GetAttribute<ForeignKeyReferenceAttribute>().ReferencedDto).TableName == operation.OwnerMetadata.TableName)
                         {
-                            valBuff.Append(operation.OwnerPrimaryKey);
+                            values.Add(operation.OwnerPrimaryKey);
                         }
                         else
                         {
-                            valBuff.Append(getter.Invoke(operation.Value, new object[0]));
+                            values.Add(getter.Invoke(operation.Value, new object[0]));
                         }
+
+                        ++index;
                     }
 
-                    buff.Append(string.Format(
+                    script.Buffer.Append(string.Format(
                     @"INSERT INTO {0} (
     {1}
 ) VALUES (
-    {2}
-);
-",
+    ",
                         operation.ValueMetadata.TableName,
-                        colBuff,
-                        valBuff));
-
+                        colBuff));
+                    FormatWithParm(script, valBuff.ToString(), ref parmIndex, values.ToArray());
+                    script.Buffer.Append(@"
+);
+");
                 }
             }
             else
@@ -206,6 +200,24 @@ WHERE {1} = {2};
                         JsonConvert.SerializeObject(command)),
                     "command");
             }
+        }
+
+        private static void FormatWithParm(
+            Script script,
+            string formatString,
+            ref int parmIndex,
+            params object [] parmValues)
+        {
+            var parmNames = new ArrayList();
+            foreach (object parmValue in parmValues)
+            {
+                string parmName = "p" + parmIndex;
+                script.Parameters[parmName] = parmValue;
+                parmNames.Add("@" + parmName);
+                ++parmIndex;
+            }
+
+            script.Buffer.Append(string.Format(formatString, parmNames.ToArray()));
         }
     }
 }
