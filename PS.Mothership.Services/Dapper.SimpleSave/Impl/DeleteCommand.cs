@@ -5,21 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Dapper.SimpleSave.Impl {
-    public class DeleteCommand : BaseCommand
+    public class DeleteCommand : BaseInsertDeleteCommand
     {
-        private readonly RemoveOperation _operation;
-
-        public DeleteCommand(RemoveOperation operation)
+        public DeleteCommand(DeleteOperation operation) : base(operation)
         {
-            _operation = operation;
-            TableName = operation.TableName;
-            PrimaryKey = operation.OwnerPrimaryKey;
-            PrimaryKeyColumn = operation.OwnerPrimaryKeyColumn;
-        }
-
-        public RemoveOperation Operation
-        {
-            get { return _operation; }
         }
     }
 }
