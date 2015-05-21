@@ -15,7 +15,7 @@ namespace Dapper.SimpleSave.Impl {
             {
                 switch (diff.DifferenceType)
                 {
-                    case DifferenceType.Added:
+                    case DifferenceType.Insertion:
                         var insertOperation = new InsertOperation
                         {
                             OwnerMetadata = diff.OwnerMetadata,
@@ -26,11 +26,11 @@ namespace Dapper.SimpleSave.Impl {
                             ValueMetadata = diff.ValueMetadata,
                             Value = diff.NewValue
                         };
-                        operations.Add(TransformInsertOrRemove(insertOperation));
+                        operations.Add(Transform(insertOperation));
                         break;
 
-                    case DifferenceType.Removed:
-                        var removeOperation = new RemoveOperation
+                    case DifferenceType.Deletion:
+                        var removeOperation = new DeleteOperation
                         {
                             OwnerMetadata = diff.OwnerMetadata,
                             OwnerPropertyMetadata = diff.OwnerPropertyMetadata,
@@ -40,10 +40,10 @@ namespace Dapper.SimpleSave.Impl {
                             ValueMetadata = diff.ValueMetadata,
                             Value = diff.OldValue
                         };
-                        operations.Add(TransformInsertOrRemove(removeOperation));
+                        operations.Add(Transform(removeOperation));
                         break;
 
-                    case DifferenceType.Changed:
+                    case DifferenceType.Update:
                         operations.Add(new UpdateOperation {
                             ColumnName = diff.OwnerPropertyMetadata.Prop.Name,
                             Value = diff.NewValue,
@@ -61,30 +61,30 @@ namespace Dapper.SimpleSave.Impl {
             return operations;
         }
 
-        private BaseOperation TransformInsertOrRemove(RemoveOperation insertOrRemoveOperation)
+        private BaseOperation Transform(BaseInsertDeleteOperation baseInsertDelete)
         {
-            if (insertOrRemoveOperation.ValueMetadata != null)
+            if (baseInsertDelete.ValueMetadata != null)
             {
-                if (insertOrRemoveOperation.OwnerPropertyMetadata.HasAttribute<ManyToManyAttribute>())
+                if (baseInsertDelete.OwnerPropertyMetadata.HasAttribute<ManyToManyAttribute>())
                 {
-                    //  Remove record in link table; don't touch either entity table
-                    return insertOrRemoveOperation;
+                    //  INSERT or DELETE record in link table; don't touch either entity table
+                    return baseInsertDelete;
                 }
 
-                if (insertOrRemoveOperation.OwnerPropertyMetadata.HasAttribute<OneToManyAttribute>()
-                    && !insertOrRemoveOperation.ValueMetadata.HasAttribute<ReferenceDataAttribute>())
+                if (baseInsertDelete.OwnerPropertyMetadata.HasAttribute<OneToManyAttribute>()
+                    && !baseInsertDelete.ValueMetadata.HasAttribute<ReferenceDataAttribute>())
                 {
-                    //  DELETE the value from the other table
-                    return insertOrRemoveOperation;
+                    //  INSERT or DELETE the value from the other table
+                    return baseInsertDelete;
                 }
             }
 
             return new UpdateOperation {
-                ColumnName = insertOrRemoveOperation.OwnerPropertyMetadata.Prop.Name,
-                Value = insertOrRemoveOperation.Value,
-                OwnerPrimaryKeyColumn = insertOrRemoveOperation.OwnerPrimaryKeyColumn,
-                OwnerPrimaryKey = insertOrRemoveOperation.OwnerPrimaryKey,
-                TableName = insertOrRemoveOperation.TableName
+                ColumnName = baseInsertDelete.OwnerPropertyMetadata.Prop.Name,
+                Value = baseInsertDelete.Value,
+                OwnerPrimaryKeyColumn = baseInsertDelete.OwnerPrimaryKeyColumn,
+                OwnerPrimaryKey = baseInsertDelete.OwnerPrimaryKey,
+                TableName = baseInsertDelete.TableName
             };
         }
 
@@ -103,9 +103,9 @@ namespace Dapper.SimpleSave.Impl {
                 {
                     results.Add(new InsertCommand(operation as InsertOperation));
                 }
-                else if (operation is RemoveOperation)
+                else if (operation is DeleteOperation)
                 {
-                    results.Add(new DeleteCommand(operation as RemoveOperation));
+                    results.Add(new DeleteCommand(operation as DeleteOperation));
                 }
             }
 

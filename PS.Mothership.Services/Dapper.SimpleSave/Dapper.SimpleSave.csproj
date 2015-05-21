@@ -52,6 +52,8 @@
   <ItemGroup>
     <Compile Include="ForeignKeyReferenceAttribute.cs" />
     <Compile Include="Impl\BaseCommand.cs" />
+    <Compile Include="Impl\BaseInsertDeleteCommand.cs" />
+    <Compile Include="Impl\BaseInsertDeleteOperation.cs" />
     <Compile Include="Impl\BaseMetadata.cs" />
     <Compile Include="Impl\BaseOperation.cs" />
     <Compile Include="Impl\DeleteCommand.cs" />
@@ -65,7 +67,7 @@
     <Compile Include="Impl\MemberInfoExtensions.cs" />
     <Compile Include="Impl\OperationBuilder.cs" />
     <Compile Include="Impl\PropertyMetadata.cs" />
-    <Compile Include="Impl\RemoveOperation.cs" />
+    <Compile Include="Impl\DeleteOperation.cs" />
     <Compile Include="Impl\ScriptBuilder.cs" />
     <Compile Include="Impl\TypeExtensions.cs" />
     <Compile Include="Impl\UpdateCommand.cs" />

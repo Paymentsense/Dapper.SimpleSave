@@ -156,7 +156,7 @@ namespace Dapper.SimpleSave.Tests
             var counts = CountItemsByType(operations);
             CheckCount(counts, typeof(InsertOperation), expectedInsertOperations);
             CheckCount(counts, typeof(UpdateOperation), expectedUpdateOperations);
-            CheckCount(counts, typeof(RemoveOperation), expectedDeleteOperations);
+            CheckCount(counts, typeof(DeleteOperation), expectedDeleteOperations);
 
             Assert.AreEqual(expectedCommandCount, commands.Count(), "Unexpected number of commands.");
             counts = CountItemsByType(commands);

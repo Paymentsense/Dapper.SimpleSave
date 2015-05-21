@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Dapper.SimpleSave.Impl {
-    public class InsertOperation : RemoveOperation
+    public class InsertOperation : BaseInsertDeleteOperation
     {
         
     }

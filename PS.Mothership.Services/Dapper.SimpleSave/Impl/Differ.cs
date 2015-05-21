@@ -164,7 +164,7 @@ namespace Dapper.SimpleSave.Impl
             {
                 differences.Add(new Difference
                 {
-                    DifferenceType = DifferenceType.Removed,
+                    DifferenceType = DifferenceType.Deletion,
                     OwnerId = objKey,
                     OwnerPropertyMetadata = prop,
                     OwnerMetadata = metadata,
@@ -179,7 +179,7 @@ namespace Dapper.SimpleSave.Impl
             {
                 differences.Add(new Difference
                 {
-                    DifferenceType = DifferenceType.Added,
+                    DifferenceType = DifferenceType.Insertion,
                     OwnerId = objKey,
                     OwnerPropertyMetadata = prop,
                     OwnerMetadata = metadata,
@@ -272,7 +272,7 @@ namespace Dapper.SimpleSave.Impl
 
                 differences.Add(new Difference
                 {
-                    DifferenceType = DifferenceType.Added,
+                    DifferenceType = DifferenceType.Insertion,
                     OwnerId = objKey,
                     OwnerPropertyMetadata = prop,
                     OwnerMetadata = metadata,
@@ -285,7 +285,7 @@ namespace Dapper.SimpleSave.Impl
             {
                 differences.Add(new Difference
                 {
-                    DifferenceType = DifferenceType.Removed,
+                    DifferenceType = DifferenceType.Deletion,
                     OwnerId = objKey,
                     OwnerPropertyMetadata = prop,
                     OwnerMetadata = metadata,
@@ -323,7 +323,7 @@ namespace Dapper.SimpleSave.Impl
             {
                 OwnerPropertyMetadata = prop,
                 OwnerId = objKey,
-                DifferenceType = DifferenceType.Changed,
+                DifferenceType = DifferenceType.Update,
                 OwnerMetadata = metadata,
                 ValueMetadata = _dtoMetadataCache.GetMetadataFor(prop.Prop.PropertyType),
                 NewValue = newValue,
