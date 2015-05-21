@@ -20,9 +20,20 @@ namespace Dapper.SimpleSave.Impl
             return Diff(oldObject, newObject, typeof (T));
         }
 
+        public void Diff<T>(T oldObject, T newObject, IList<Difference> target)
+        {
+            Diff(oldObject, newObject, typeof (T), target);
+        }
+
         public IList<Difference> Diff(object oldObject, object newObject, Type handleAsType)
         {
             var differences = new List<Difference>();
+            Diff(oldObject, newObject, handleAsType, differences);
+            return differences;
+        }
+
+        public void Diff(object oldObject, object newObject, Type handleAsType, IList<Difference> target)
+        {
             var metadata = _dtoMetadataCache.GetMetadataFor(handleAsType);
 
             var objKey = metadata.GetPrimaryKeyValue(oldObject);
@@ -37,19 +48,17 @@ namespace Dapper.SimpleSave.Impl
 
             foreach (var prop in metadata.Properties) {
                 if (prop.IsString || prop.IsNumericType || prop.IsEnum) {
-                    DiffSimpleValue(oldObject, newObject, prop, differences, objKey, metadata);
+                    DiffSimpleValue(oldObject, newObject, prop, target, objKey, metadata);
                 } else if (prop.IsGenericDictionary) {
-                    DiffDictionary(oldObject, newObject, handleAsType, prop, differences, objKey, metadata);
+                    DiffDictionary(oldObject, newObject, handleAsType, prop, target, objKey, metadata);
                 } else if (prop.IsEnumerable) {
-                    DiffEnumerable(oldObject, newObject, prop, differences, objKey, metadata);
+                    DiffEnumerable(oldObject, newObject, prop, target, objKey, metadata);
                 } else if (prop.IsReferenceType) {
-                    DiffReferenceType(oldObject, newObject, prop, differences, objKey, metadata);
+                    DiffReferenceType(oldObject, newObject, prop, target, objKey, metadata);
                 } else {
-                    DiffSimpleValue(oldObject, newObject, prop, differences, objKey, metadata);
+                    DiffSimpleValue(oldObject, newObject, prop, target, objKey, metadata);
                 }
             }
-
-            return differences;
         }
 
         private void DiffDictionary(
@@ -57,7 +66,7 @@ namespace Dapper.SimpleSave.Impl
             object newObject,
             Type handleAsType,
             PropertyMetadata prop,
-            List<Difference> differences,
+            IList<Difference> differences,
             int objKey,
             DtoMetadata metadata)
         {
@@ -96,7 +105,7 @@ namespace Dapper.SimpleSave.Impl
             T oldObject,
             T newObject,
             PropertyMetadata prop,
-            List<Difference> differences,
+            IList<Difference> differences,
             int objKey,
             DtoMetadata metadata)
         {
@@ -140,7 +149,7 @@ namespace Dapper.SimpleSave.Impl
             object oldObject,
             object newObject,
             PropertyMetadata prop,
-            List<Difference> differences,
+            IList<Difference> differences,
             int objKey,
             DtoMetadata metadata,
             Type itemType)
@@ -250,7 +259,7 @@ namespace Dapper.SimpleSave.Impl
             T oldObject,
             T newObject,
             PropertyMetadata prop,
-            List<Difference> differences,
+            IList<Difference> differences,
             int objKey,
             DtoMetadata metadata)
         {
@@ -307,7 +316,7 @@ namespace Dapper.SimpleSave.Impl
             T oldObject,
             T newObject,
             PropertyMetadata prop,
-            List<Difference> differences,
+            IList<Difference> differences,
             int objKey,
             DtoMetadata metadata)
         {
@@ -331,7 +340,7 @@ namespace Dapper.SimpleSave.Impl
             });
         }
 
-        private bool AreEqual(object value1, object value2)
+        private static bool AreEqual(object value1, object value2)
         {
             if (value1 == value2)
             {
