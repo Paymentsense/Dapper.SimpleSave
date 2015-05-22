@@ -28,9 +28,9 @@ namespace Dapper.SimpleSave.Impl {
 
         public IEnumerable<PropertyMetadata> Properties { get; set; }
 
-        public int GetPrimaryKeyValue(object obj)
+        public int? GetPrimaryKeyValue(object obj)
         {
-            return (int) PrimaryKey.GetValue(obj);
+            return (int?) PrimaryKey.GetValue(obj);
         }
 
         private void InitProperties()

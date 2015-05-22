@@ -11,7 +11,7 @@ namespace Dapper.SimpleSave.Impl {
         //public object NewParentObject { get; set; }
         public DtoMetadata OwnerMetadata { get; set; }
         
-        public int OwnerId { get; set; }
+        public int? OwnerId { get; set; }
         public PropertyMetadata OwnerPropertyMetadata { get; set; }
 
         public DifferenceType DifferenceType { get; set; }

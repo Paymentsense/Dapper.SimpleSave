@@ -122,6 +122,10 @@ namespace Dapper.SimpleSave.Tests
 
         private static UserDto GetDto(string name)
         {
+            if (null == name)
+            {
+                return null;
+            }
             var field = typeof (ThrowawayTests).GetField(name, BindingFlags.NonPublic | BindingFlags.Static);
             return (UserDto) field.GetValue(null);
         }
@@ -129,6 +133,8 @@ namespace Dapper.SimpleSave.Tests
         [TestCase("JohnSmith", "ZargonRemovedDepartment", 4, 4, 0, 3, 1, 2, 0, 1, 1)]
         [TestCase("JohnSmith", "ZargonAddedDepartment", 4, 4, 1, 3, 0, 2, 1, 1, 0)]
         [TestCase("JohnSmith", "ZargonComplexUpdates", 7, 7, 3, 3, 1, 5, 3, 1, 1)]
+        [TestCase(null, "JohnSmith", 1, 1, 1, 0, 0, 1, 1, 0, 0)]
+        [TestCase(null, "ZargonComplexUpdates", 1, 6, 4, 2, 0, 6, 4, 2, 0)]
         public void multi_level_updates_generates_correct_sql(
             string oldUserFieldName,
             string newUserFieldName,
@@ -165,10 +171,10 @@ namespace Dapper.SimpleSave.Tests
             CheckCount(counts, typeof(DeleteCommand), expectedDeleteCommands);
 
             var scriptBuilder = new ScriptBuilder(cache);
-            var transactionScript = scriptBuilder.BuildTransaction(commands);
+            var transactionScript = scriptBuilder.Build(commands);
 
             Assert.IsNotNull(transactionScript, "#badtimes - null transaction script");
-            Assert.IsTrue(transactionScript.Length > 0, "#badtimes - empty transaction script");
+            Assert.IsTrue(transactionScript.Buffer.Length > 0, "#badtimes - empty transaction script");
         }
 
         private void CheckCount(IDictionary<Type, int> counts, Type type, int expectedCount)

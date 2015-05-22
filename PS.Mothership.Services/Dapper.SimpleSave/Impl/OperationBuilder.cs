@@ -20,9 +20,9 @@ namespace Dapper.SimpleSave.Impl {
                         {
                             OwnerMetadata = diff.OwnerMetadata,
                             OwnerPropertyMetadata = diff.OwnerPropertyMetadata,
-                            OwnerPrimaryKeyColumn = diff.OwnerMetadata.PrimaryKey.Prop.Name,
+                            OwnerPrimaryKeyColumn = null == diff.OwnerMetadata ? null : diff.OwnerMetadata.PrimaryKey.Prop.Name,
                             OwnerPrimaryKey = diff.OwnerId,
-                            TableName = diff.OwnerMetadata.TableName,
+                            TableName = diff.OwnerMetadata == null ? null : diff.OwnerMetadata.TableName,
                             ValueMetadata = diff.ValueMetadata,
                             Value = diff.NewValue
                         };
@@ -65,6 +65,12 @@ namespace Dapper.SimpleSave.Impl {
         {
             if (baseInsertDelete.ValueMetadata != null)
             {
+                if (null == baseInsertDelete.OwnerPropertyMetadata)
+                {
+                    //  Top level INSERT
+                    return baseInsertDelete;
+                }
+
                 if (baseInsertDelete.OwnerPropertyMetadata.HasAttribute<ManyToManyAttribute>())
                 {
                     //  INSERT or DELETE record in link table; don't touch either entity table
@@ -124,11 +130,11 @@ namespace Dapper.SimpleSave.Impl {
             }
 
             UpdateCommand command;
-            commands.TryGetValue(updateOperation.OwnerPrimaryKey, out command);
+            commands.TryGetValue(updateOperation.OwnerPrimaryKey.GetValueOrDefault(), out command);
             if (null == command)
             {
                 command = new UpdateCommand();
-                commands.Add(updateOperation.OwnerPrimaryKey, command);
+                commands.Add(updateOperation.OwnerPrimaryKey.GetValueOrDefault(), command);
                 results.Add(command);
             }
             command.AddOperation(updateOperation);
