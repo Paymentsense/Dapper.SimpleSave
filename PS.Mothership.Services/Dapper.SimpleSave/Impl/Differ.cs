@@ -81,8 +81,6 @@ namespace Dapper.SimpleSave.Impl
                     }
                 }
             }
-
-            
         }
 
         private void DiffDictionary(
