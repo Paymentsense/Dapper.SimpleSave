@@ -63,7 +63,7 @@ SET ", command.TableName));
             }
 
             script.Buffer.Append(string.Format(@"
-WHERE {0} = ", command.PrimaryKeyColumn));
+WHERE [{0}] = ", command.PrimaryKeyColumn));
             FormatWithParm(script, @"{0};
 ", ref parmIndex, command.PrimaryKey);
         }
@@ -79,11 +79,11 @@ WHERE {0} = ", command.PrimaryKeyColumn));
 
                     script.Buffer.Append(string.Format(
                         @"DELETE FROM {0}
-WHERE {1} = ", 
+WHERE [{1}] = ", 
                         operation.OwnerPropertyMetadata.GetAttribute<ManyToManyAttribute>().LinkTableName,
                         operation.OwnerPrimaryKeyColumn));
                     FormatWithParm(script, "{0} AND ", ref parmIndex, operation.OwnerPrimaryKey);
-                    script.Buffer.Append(string.Format("{0} = ", operation.ValueMetadata.PrimaryKey.Prop.Name));
+                    script.Buffer.Append(string.Format("[{0}] = ", operation.ValueMetadata.PrimaryKey.Prop.Name));
                     FormatWithParm(script, @"{0};
 ", ref parmIndex, operation.ValueMetadata.GetPrimaryKeyValue(operation.Value));
                 }
@@ -94,7 +94,7 @@ WHERE {1} = ",
 
                     script.Buffer.Append(string.Format(
                         @"DELETE FROM {0}
-WHERE {1} = ",
+WHERE [{1}] = ",
                         operation.ValueMetadata.TableName,
                         operation.ValueMetadata.PrimaryKey.Prop.Name));
                     FormatWithParm(script, @"{0};
@@ -114,12 +114,13 @@ WHERE {1} = ",
         private void AppendInsertCommand(Script script, InsertCommand command, ref int parmIndex) {
             var operation = command.Operation;
             if (operation.ValueMetadata != null) {
-                if (operation.OwnerPropertyMetadata.HasAttribute<ManyToManyAttribute>()) {
+                if (null != operation.OwnerPropertyMetadata
+                    && operation.OwnerPropertyMetadata.HasAttribute<ManyToManyAttribute>()) {
                     //  INSERT record in link table; don't touch either entity table
 
                     script.Buffer.Append(string.Format(
                         @"INSERT INTO {0} (
-    {1}, {2}
+    [{1}], [{2}]
 ) VALUES (
     ",
                         operation.OwnerPropertyMetadata.GetAttribute<ManyToManyAttribute>().LinkTableName,
@@ -129,8 +130,9 @@ WHERE {1} = ",
 );
 ", ref parmIndex, operation.OwnerPrimaryKey, operation.ValueMetadata.GetPrimaryKeyValue(operation.Value));
                 }
-                else if (operation.OwnerPropertyMetadata.HasAttribute<OneToManyAttribute>()
-                    && !operation.ValueMetadata.HasAttribute<ReferenceDataAttribute>()) 
+                else if (null == operation.OwnerPropertyMetadata
+                    || (operation.OwnerPropertyMetadata.HasAttribute<OneToManyAttribute>()
+                    && !operation.ValueMetadata.HasAttribute<ReferenceDataAttribute>())) 
                 {
                     //  INSERT the value into the other table
                     
@@ -143,7 +145,7 @@ WHERE {1} = ",
                     {
                         if (property.IsPrimaryKey)
                         {
-                            continue;
+                            continue;   //  TODO: return PK from script and associate with object
                         }
 
                         var getter = property.Prop.GetGetMethod();
@@ -159,7 +161,7 @@ WHERE {1} = ",
                             valBuff.Append(@", ");
                         }
 
-                        colBuff.Append(property.Prop.Name);
+                        colBuff.Append("[" + property.Prop.Name + "]");
 
                         valBuff.Append("{");
                         valBuff.Append(index);

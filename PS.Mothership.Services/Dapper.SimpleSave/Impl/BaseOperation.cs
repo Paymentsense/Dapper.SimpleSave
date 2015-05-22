@@ -15,7 +15,7 @@ namespace Dapper.SimpleSave.Impl {
 
         public string OwnerPrimaryKeyColumn { get; set; }
 
-        public int OwnerPrimaryKey { get; set; }
+        public int? OwnerPrimaryKey { get; set; }
 
         public object Value { get; set; }
     }

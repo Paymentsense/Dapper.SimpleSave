@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading;
 
 namespace Dapper.SimpleSave.Impl
@@ -35,30 +36,53 @@ namespace Dapper.SimpleSave.Impl
         public void Diff(object oldObject, object newObject, Type handleAsType, IList<Difference> target)
         {
             var metadata = _dtoMetadataCache.GetMetadataFor(handleAsType);
+            var doReferenceShortcut = false;
+            if (null == oldObject)
+            {
+                if (null == newObject)
+                {
+                    return;
+                }
 
-            var objKey = metadata.GetPrimaryKeyValue(oldObject);
-
-            if (objKey != metadata.GetPrimaryKeyValue(newObject)) {
-                throw new ArgumentException(string.Format(
-                    "{0}: primary key does not match - for {1} does not match {2}",
-                    handleAsType,
-                    objKey,
-                    metadata.GetPrimaryKeyValue(newObject)));
+                doReferenceShortcut = true;
+            }
+            else if (null == newObject)
+            {
+                doReferenceShortcut = true;
             }
 
-            foreach (var prop in metadata.Properties) {
-                if (prop.IsString || prop.IsNumericType || prop.IsEnum) {
-                    DiffSimpleValue(oldObject, newObject, prop, target, objKey, metadata);
-                } else if (prop.IsGenericDictionary) {
-                    DiffDictionary(oldObject, newObject, handleAsType, prop, target, objKey, metadata);
-                } else if (prop.IsEnumerable) {
-                    DiffEnumerable(oldObject, newObject, prop, target, objKey, metadata);
-                } else if (prop.IsReferenceType) {
-                    DiffReferenceType(oldObject, newObject, prop, target, objKey, metadata);
-                } else {
-                    DiffSimpleValue(oldObject, newObject, prop, target, objKey, metadata);
+            if (doReferenceShortcut)
+            {
+                DiffReferenceType(oldObject, newObject, null, target, metadata.GetPrimaryKeyValue(oldObject ?? newObject), metadata);
+            }
+            else
+            {
+                var objKey = metadata.GetPrimaryKeyValue(oldObject);
+
+                if (objKey != metadata.GetPrimaryKeyValue(newObject)) {
+                    throw new ArgumentException(string.Format(
+                        "{0}: primary key does not match - for {1} does not match {2}",
+                        handleAsType,
+                        objKey,
+                        metadata.GetPrimaryKeyValue(newObject)));
+                }
+
+                foreach (var prop in metadata.Properties) {
+                    if (prop.IsString || prop.IsNumericType || prop.IsEnum) {
+                        DiffSimpleValue(oldObject, newObject, prop, target, objKey, metadata);
+                    } else if (prop.IsGenericDictionary) {
+                        DiffDictionary(oldObject, newObject, handleAsType, prop, target, objKey, metadata);
+                    } else if (prop.IsEnumerable) {
+                        DiffEnumerable(oldObject, newObject, prop, target, objKey, metadata);
+                    } else if (prop.IsReferenceType) {
+                        DiffReferenceType(oldObject, newObject, prop, target, objKey, metadata);
+                    } else {
+                        DiffSimpleValue(oldObject, newObject, prop, target, objKey, metadata);
+                    }
                 }
             }
+
+            
         }
 
         private void DiffDictionary(
@@ -67,7 +91,7 @@ namespace Dapper.SimpleSave.Impl
             Type handleAsType,
             PropertyMetadata prop,
             IList<Difference> differences,
-            int objKey,
+            int? objKey,
             DtoMetadata metadata)
         {
             var dictType = prop.Prop.PropertyType;
@@ -106,7 +130,7 @@ namespace Dapper.SimpleSave.Impl
             T newObject,
             PropertyMetadata prop,
             IList<Difference> differences,
-            int objKey,
+            int? objKey,
             DtoMetadata metadata)
         {
             Type itemType = null;
@@ -150,7 +174,7 @@ namespace Dapper.SimpleSave.Impl
             object newObject,
             PropertyMetadata prop,
             IList<Difference> differences,
-            int objKey,
+            int? objKey,
             DtoMetadata metadata,
             Type itemType)
         {
@@ -260,17 +284,26 @@ namespace Dapper.SimpleSave.Impl
             T newObject,
             PropertyMetadata prop,
             IList<Difference> differences,
-            int objKey,
+            int? objKey,
             DtoMetadata metadata)
         {
-            var getter = prop.Prop.GetGetMethod();
-            if (null == getter)
-            {
-                return;
-            }
+            MethodInfo getter = null;
 
-            var oldPropValue = null == oldObject ? null : getter.Invoke(oldObject, new object[0]);
-            var newPropValue = null == newObject ? null : getter.Invoke(newObject, new object[0]);
+            if (null != prop)
+            {
+                getter = prop.Prop.GetGetMethod();
+                if (null == getter) {
+                    return;
+                }
+            }
+            
+            //  TODO: remove duplication
+            var oldPropValue = null == oldObject
+                ? null
+                : null == getter? oldObject : getter.Invoke(oldObject, new object[0]);
+            var newPropValue = null == newObject
+                ? null
+                : null == getter ? newObject : getter.Invoke(newObject, new object[0]);
 
             if (null == oldPropValue)
             {
@@ -284,8 +317,8 @@ namespace Dapper.SimpleSave.Impl
                     DifferenceType = DifferenceType.Insertion,
                     OwnerId = objKey,
                     OwnerPropertyMetadata = prop,
-                    OwnerMetadata = metadata,
-                    ValueMetadata = _dtoMetadataCache.GetMetadataFor(prop.Prop.PropertyType),
+                    OwnerMetadata = null == prop? null : metadata,
+                    ValueMetadata = null == prop ? metadata : _dtoMetadataCache.GetMetadataFor(prop.Prop.PropertyType),
                     NewValue = newPropValue,
                     OldValue = null
                 });
@@ -297,8 +330,8 @@ namespace Dapper.SimpleSave.Impl
                     DifferenceType = DifferenceType.Deletion,
                     OwnerId = objKey,
                     OwnerPropertyMetadata = prop,
-                    OwnerMetadata = metadata,
-                    ValueMetadata = _dtoMetadataCache.GetMetadataFor(prop.Prop.PropertyType),
+                    OwnerMetadata = null == prop ? null : metadata,
+                    ValueMetadata = null == prop ? metadata : _dtoMetadataCache.GetMetadataFor(prop.Prop.PropertyType),
                     NewValue = null,
                     OldValue = oldPropValue
                 });
@@ -317,7 +350,7 @@ namespace Dapper.SimpleSave.Impl
             T newObject,
             PropertyMetadata prop,
             IList<Difference> differences,
-            int objKey,
+            int? objKey,
             DtoMetadata metadata)
         {
             var oldValue = prop.GetValue(oldObject);
