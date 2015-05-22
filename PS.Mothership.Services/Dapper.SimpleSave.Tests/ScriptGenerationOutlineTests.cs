@@ -13,10 +13,10 @@ namespace Dapper.SimpleSave.Tests
 {
 
     [TestFixture]
-    public class ThrowawayTests
+    public class ScriptGenerationOutlineTests
     {
 
-        private static readonly UserDto JohnSmith = new UserDto {
+        public static readonly UserDto JohnSmith = new UserDto {
             UserKey = 1,
             FirstName = "John",
             LastName = "Smith",
@@ -38,7 +38,7 @@ namespace Dapper.SimpleSave.Tests
                 })
         };
 
-        private static readonly UserDto ZargonRemovedDepartment = new UserDto() {
+        public static readonly UserDto ZargonRemovedDepartment = new UserDto() {
             UserKey = 1,
             FirstName = "Zargon",
             LastName = "Smith",
@@ -55,7 +55,7 @@ namespace Dapper.SimpleSave.Tests
                 })
         };
 
-        private static readonly UserDto ZargonAddedDepartment = new UserDto() {
+        public static readonly UserDto ZargonAddedDepartment = new UserDto() {
             UserKey = 1,
             FirstName = "Zargon",
             LastName = "Smith",
@@ -82,7 +82,7 @@ namespace Dapper.SimpleSave.Tests
                 })
         };
 
-        private static readonly UserDto ZargonComplexUpdates = new UserDto() {
+        public static readonly UserDto ZargonComplexUpdates = new UserDto() {
             UserKey = 1,
             FirstName = "Zargon",
             LastName = "Smith",
@@ -120,22 +120,24 @@ namespace Dapper.SimpleSave.Tests
             })
         };
 
-        private static UserDto GetDto(string name)
+        public static UserDto GetDto(string name)
         {
             if (null == name)
             {
                 return null;
             }
-            var field = typeof (ThrowawayTests).GetField(name, BindingFlags.NonPublic | BindingFlags.Static);
+            var field = typeof (ScriptGenerationOutlineTests).GetField(name, BindingFlags.Public | BindingFlags.Static);
             return (UserDto) field.GetValue(null);
         }
 
+        [TestCase(null, "JohnSmith", 1, 1, 1, 0, 0, 1, 1, 0, 0)]
+        [TestCase(null, "ZargonComplexUpdates", 5, 5, 5, 0, 0, 5, 5, 0, 0)]
         [TestCase("JohnSmith", "ZargonRemovedDepartment", 4, 4, 0, 3, 1, 2, 0, 1, 1)]
         [TestCase("JohnSmith", "ZargonAddedDepartment", 4, 4, 1, 3, 0, 2, 1, 1, 0)]
         [TestCase("JohnSmith", "ZargonComplexUpdates", 7, 7, 3, 3, 1, 5, 3, 1, 1)]
-        [TestCase(null, "JohnSmith", 1, 1, 1, 0, 0, 1, 1, 0, 0)]
-        [TestCase(null, "ZargonComplexUpdates", 1, 6, 4, 2, 0, 6, 4, 2, 0)]
-        public void multi_level_updates_generates_correct_sql(
+        [TestCase("JohnSmith", null, 1, 1, 0, 0, 1, 1, 0, 0, 1)]
+        [TestCase("ZargonComplexUpdates", null, 5, 5, 0, 0, 5, 5, 0, 0, 5)]
+        public void creates_updates_and_deletes_generate_correct_script_shape(
             string oldUserFieldName,
             string newUserFieldName,
             int expectedDifferenceCount,
