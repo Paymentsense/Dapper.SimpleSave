@@ -76,9 +76,24 @@ namespace Dapper.SimpleSave.Impl
 
         public bool IsString { get; private set; }
 
+        public string ColumName
+        {
+            get
+            {
+                return HasAttribute<ColumnAttribute>()
+                    ? GetAttribute<ColumnAttribute>().Name
+                    : Prop.Name;
+            }
+        }
+
         public object GetValue(object source)
         {
             return Prop.GetGetMethod().Invoke(source, new object[0]);
+        }
+
+        public void SetValue(object source, object value)
+        {
+            Prop.GetSetMethod().Invoke(source, new[] {value});
         }
 
         public void InitDictionary()

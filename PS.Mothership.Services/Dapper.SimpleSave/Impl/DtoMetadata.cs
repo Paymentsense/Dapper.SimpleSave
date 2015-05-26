@@ -33,6 +33,11 @@ namespace Dapper.SimpleSave.Impl {
             return (int?) PrimaryKey.GetValue(obj);
         }
 
+        public void SetPrimaryKey(object obj, int? value)
+        {
+            PrimaryKey.SetValue(obj, value);
+        }
+
         private void InitProperties()
         {
             var target = new List<PropertyMetadata>();

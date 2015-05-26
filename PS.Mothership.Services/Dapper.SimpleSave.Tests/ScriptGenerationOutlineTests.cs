@@ -23,6 +23,41 @@ namespace Dapper.SimpleSave.Tests
             PhoneNumber = "0207 1234567",
             EmailAddress = "john.smith@paymentsense.com",
             Username = "john.smith",
+            Password = "TODO",
+            PasswordSalt = "TODO",
+            Position = new PositionDto
+            {
+                PositionKey = 5,
+                Name = "Employee"
+            },
+            Department = new List<DepartmentDto>(new []
+                {
+                    new DepartmentDto
+                    {
+                        DepartmentKey = 1,
+                        Name = "The Flying Squad"
+                    },
+                    new DepartmentDto
+                    {
+                        DepartmentKey = 2,
+                        Name = "The Pancake Landing Squad"
+                    } 
+                })
+        };
+
+        public static readonly UserDto JohnSmithPositionChange = new UserDto {
+            UserKey = 1,
+            FirstName = "John",
+            LastName = "Smith",
+            PhoneNumber = "0207 1234567",
+            EmailAddress = "john.smith@paymentsense.com",
+            Username = "john.smith",
+            Password = "TODO",
+            PasswordSalt = "TODO",
+            Position = new PositionDto {
+                PositionKey = 4,
+                Name = "Team Leader"
+            },
             Department = new List<DepartmentDto>(new []
                 {
                     new DepartmentDto
@@ -45,6 +80,12 @@ namespace Dapper.SimpleSave.Tests
             PhoneNumber = "0207 666 6666",
             EmailAddress = "john.smith@paymentsense.com",
             Username = "zargon.smith",
+            Password = "TODO",
+            PasswordSalt = "TODO",
+            Position = new PositionDto {
+                PositionKey = 5,
+                Name = "Employee"
+            },
             Department = new List<DepartmentDto>(new []
                 {
                     new DepartmentDto
@@ -62,6 +103,12 @@ namespace Dapper.SimpleSave.Tests
             PhoneNumber = "0207 666 6666",
             EmailAddress = "john.smith@paymentsense.com",
             Username = "zargon.smith",
+            Password = "TODO",
+            PasswordSalt = "TODO",
+            Position = new PositionDto {
+                PositionKey = 5,
+                Name = "Employee"
+            },
             Department = new List<DepartmentDto>(new []
                 {
                     new DepartmentDto
@@ -89,6 +136,12 @@ namespace Dapper.SimpleSave.Tests
             PhoneNumber = "0207 666 6666",
             EmailAddress = "john.smith@paymentsense.com",
             Username = "zargon.smith",
+            Password = "TODO",
+            PasswordSalt = "TODO",
+            Position = new PositionDto {
+                PositionKey = 5,
+                Name = "Employee"
+            },
             Department = new List<DepartmentDto>(new []
             {
                 new DepartmentDto
@@ -130,13 +183,14 @@ namespace Dapper.SimpleSave.Tests
             return (UserDto) field.GetValue(null);
         }
 
-        [TestCase(null, "JohnSmith", 1, 1, 1, 0, 0, 1, 1, 0, 0)]
-        [TestCase(null, "ZargonComplexUpdates", 5, 5, 5, 0, 0, 5, 5, 0, 0)]
+        [TestCase(null, "JohnSmith", 4, 4, 3, 1, 0, 4, 3, 1, 0)]
+        [TestCase(null, "ZargonComplexUpdates", 6, 6, 5, 1, 0, 6, 5, 1, 0)]
         [TestCase("JohnSmith", "ZargonRemovedDepartment", 4, 4, 0, 3, 1, 2, 0, 1, 1)]
         [TestCase("JohnSmith", "ZargonAddedDepartment", 4, 4, 1, 3, 0, 2, 1, 1, 0)]
         [TestCase("JohnSmith", "ZargonComplexUpdates", 7, 7, 3, 3, 1, 5, 3, 1, 1)]
-        [TestCase("JohnSmith", null, 1, 1, 0, 0, 1, 1, 0, 0, 1)]
-        [TestCase("ZargonComplexUpdates", null, 5, 5, 0, 0, 5, 5, 0, 0, 5)]
+        [TestCase("JohnSmith", null, 4, 4, 0, 1, 3, 4, 0, 1, 3)]
+        [TestCase("JohnSmith", "JohnSmithPositionChange", 1, 1, 0, 1, 0, 1, 0, 1, 0)]
+        [TestCase("ZargonComplexUpdates", null, 6, 6, 0, 1, 5, 6, 0, 1, 5)]
         public void creates_updates_and_deletes_generate_correct_script_shape(
             string oldUserFieldName,
             string newUserFieldName,
@@ -176,7 +230,11 @@ namespace Dapper.SimpleSave.Tests
             var transactionScript = scriptBuilder.Build(commands);
 
             Assert.IsNotNull(transactionScript, "#badtimes - null transaction script");
-            Assert.IsTrue(transactionScript.Buffer.Length > 0, "#badtimes - empty transaction script");
+            Assert.IsTrue(transactionScript.Count > 0, "Should be at least one script.");
+            foreach (var script in transactionScript)
+            {
+                Assert.IsTrue(script.Buffer.Length > 0, "#badtimes - empty transaction script");                
+            }
         }
 
         private void CheckCount(IDictionary<Type, int> counts, Type type, int expectedCount)

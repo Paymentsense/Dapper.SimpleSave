@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Dapper.SimpleSave.Impl {
-    public class BaseOperation
+    public abstract class BaseOperation
     {
         public DtoMetadata OwnerMetadata { get; set; }
 

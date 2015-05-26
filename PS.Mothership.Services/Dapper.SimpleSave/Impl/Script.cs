@@ -18,5 +18,8 @@ namespace Dapper.SimpleSave.Impl {
         public IDictionary<string, object> Parameters { get; private set; }
 
         public object Config { get { return Parameters; } }
+
+        public object InsertedValue { get; set; }
+        public DtoMetadata InsertedValueMetadata { get; set; }
     }
 }

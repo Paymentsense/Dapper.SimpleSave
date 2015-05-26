@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Tracing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -17,18 +18,25 @@ namespace Dapper.SimpleSave.Impl {
             _dtoMetadataCache = dtoMetadataCache;
         }
 
-        public Script Build(IEnumerable<BaseCommand> commands)
+        public IList<Script> Build(IEnumerable<BaseCommand> commands)
         {
-            var script = new Script();
-            BuildInternal(commands, script);
-            return script;
+            var scripts = new List<Script>();
+            BuildInternal(commands, scripts);
+            return scripts;
         }
 
-        public void BuildInternal(IEnumerable<BaseCommand> commands, Script script)
+        public void BuildInternal(IEnumerable<BaseCommand> commands, IList<Script> scripts)
         {
             int parmIndex = 0;
+            Script script = null;
             foreach (var command in commands)
             {
+                if (null == script)
+                {
+                    script = new Script();
+                    scripts.Add(script);
+                }
+
                 if (command is UpdateCommand)
                 {
                     AppendUpdateCommand(script, command as UpdateCommand, ref parmIndex);
@@ -36,6 +44,12 @@ namespace Dapper.SimpleSave.Impl {
                 else if (command is InsertCommand)
                 {
                     AppendInsertCommand(script, command as InsertCommand, ref parmIndex);
+
+                    script.Buffer.Append(@"
+SELECT SCOPE_IDENTITY();
+");
+
+                    script = null;
                 }
                 else if (command is DeleteCommand)
                 {
@@ -65,7 +79,13 @@ SET ", command.TableName));
             script.Buffer.Append(string.Format(@"
 WHERE [{0}] = ", command.PrimaryKeyColumn));
             FormatWithParm(script, @"{0};
-", ref parmIndex, command.PrimaryKey);
+", ref parmIndex, new Func<object>(() => command.PrimaryKey));
+            //GetPossiblyUnknownPrimaryKeyValue(command.PrimaryKey));
+        }
+
+        private static object GetPossiblyUnknownPrimaryKeyValue(int? primaryKey)
+        {
+            return null == primaryKey ? (object) "@insertedPk" : primaryKey;
         }
 
         private static void AppendDeleteCommand(Script script, DeleteCommand command, ref int parmIndex)
@@ -128,10 +148,14 @@ WHERE [{1}] = ",
                         operation.OwnerPropertyMetadata.GetAttribute<ManyToManyAttribute>().LinkTableName,
                         operation.OwnerPrimaryKeyColumn,
                         operation.ValueMetadata.PrimaryKey.Prop.Name));
-                    FormatWithParm(script, @"{0}, {1}
+                        FormatWithParm(script, @"{0}, {1}
 );
-", ref parmIndex, operation.OwnerPrimaryKey, operation.ValueMetadata.GetPrimaryKeyValue(operation.Value));
-                }
+",
+                            ref parmIndex,
+                            operation.OwnerPrimaryKey,
+                            new Func<object>(() => operation.ValueMetadata.GetPrimaryKeyValue(operation.Value)));
+                        //GetPossiblyUnknownPrimaryKeyValue(operation.ValueMetadata.GetPrimaryKeyValue(operation.Value)));
+                    }
                 else if (null == operation.OwnerPropertyMetadata
                     || (operation.OwnerPropertyMetadata.HasAttribute<OneToManyAttribute>()
                     && !operation.ValueMetadata.HasAttribute<ReferenceDataAttribute>())) 
@@ -152,35 +176,12 @@ WHERE [{1}] = ",
 
                         var getter = property.Prop.GetGetMethod();
 
-                        if (getter == null)
+                        if (getter == null || property.HasAttribute<ManyToManyAttribute>() || ! property.IsSaveable)
                         {
                             continue;
                         }
 
-                        if (colBuff.Length > 0)
-                        {
-                            colBuff.Append(@", ");
-                            valBuff.Append(@", ");
-                        }
-
-                        colBuff.Append("[" + property.Prop.Name + "]");
-
-                        valBuff.Append("{");
-                        valBuff.Append(index);
-                        valBuff.Append("}");
-
-                        if (property.HasAttribute<ForeignKeyReferenceAttribute>()
-                            && _dtoMetadataCache.GetMetadataFor(
-                                property.GetAttribute<ForeignKeyReferenceAttribute>().ReferencedDto).TableName == operation.OwnerMetadata.TableName)
-                        {
-                            values.Add(operation.OwnerPrimaryKey);
-                        }
-                        else
-                        {
-                            values.Add(getter.Invoke(operation.Value, new object[0]));
-                        }
-
-                        ++index;
+                        AppendPropertyToInsertStatement(colBuff, valBuff, property, ref index, operation, values, getter);
                     }
 
                     script.Buffer.Append(string.Format(
@@ -194,6 +195,8 @@ WHERE [{1}] = ",
                     script.Buffer.Append(@"
 );
 ");
+                    script.InsertedValue = operation.Value;
+                    script.InsertedValueMetadata = operation.ValueMetadata;
                 }
             }
             else
@@ -204,6 +207,50 @@ WHERE [{1}] = ",
                         JsonConvert.SerializeObject(command)),
                     "command");
             }
+        }
+
+        private void AppendPropertyToInsertStatement(StringBuilder colBuff, StringBuilder valBuff, PropertyMetadata property,
+            ref int index, BaseInsertDeleteOperation operation, ArrayList values, MethodInfo getter)
+        {
+            if (colBuff.Length > 0)
+            {
+                colBuff.Append(@", ");
+                valBuff.Append(@", ");
+            }
+
+            colBuff.Append("[" + property.ColumName + "]");
+
+            valBuff.Append("{");
+            valBuff.Append(index);
+            valBuff.Append("}");
+
+            if (property.HasAttribute<ForeignKeyReferenceAttribute>()
+                && _dtoMetadataCache.GetMetadataFor(
+                    property.GetAttribute<ForeignKeyReferenceAttribute>().ReferencedDto).TableName ==
+                operation.OwnerMetadata.TableName)
+            {
+                values.Add(
+                    new Func<object>(() => operation.OwnerPrimaryKey));
+                //GetPossiblyUnknownPrimaryKeyValue(operation.OwnerPrimaryKey));
+            }
+            else if (property.HasAttribute<ManyToOneAttribute>())
+            {
+                object propValue = property.GetValue(operation.Value);
+                DtoMetadata propMetadata = _dtoMetadataCache.GetMetadataFor(property.Prop.PropertyType);
+                values.Add(
+                    new Func<object>(
+                        () =>
+                            null == propValue || null == propMetadata
+                                ? null
+                                : propMetadata.GetPrimaryKeyValue(propValue)));
+                //GetPossiblyUnknownPrimaryKeyValue(null == propValue || null == propMetadata ? null : propMetadata.GetPrimaryKeyValue(propValue)));
+            }
+            else
+            {
+                values.Add(getter.Invoke(operation.Value, new object[0]));
+            }
+
+            ++index;
         }
 
         private static void FormatWithParm(

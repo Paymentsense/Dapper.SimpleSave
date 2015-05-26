@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ColumnAttribute.cs" />
     <Compile Include="ForeignKeyReferenceAttribute.cs" />
     <Compile Include="Impl\BaseCommand.cs" />
     <Compile Include="Impl\BaseInsertDeleteCommand.cs" />

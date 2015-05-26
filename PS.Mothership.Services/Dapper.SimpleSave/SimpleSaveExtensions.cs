@@ -23,20 +23,48 @@ namespace Dapper.SimpleSave {
             var commands = operationBuilder.Coalesce(operations);
 
             var scriptBuilder = new ScriptBuilder(_dtoMetadataCache);
-            var script = scriptBuilder.Build(commands);
+            var scripts = scriptBuilder.Build(commands);
 
             using (var transaction = connection.BeginTransaction())
             {
                 try
                 {
-                    var commandDefinition = new CommandDefinition(
-                        script.Buffer.ToString(),
-                        script.Parameters,
-                        transaction,
-                        30,
-                        CommandType.Text,
-                        CommandFlags.Buffered | CommandFlags.NoCache);
-                    connection.Execute(commandDefinition);
+                    int? insertedPk = null;
+                    for (int index = 0, count = scripts.Count; index < count; ++index)
+                    {
+                        var script = scripts[index];
+
+                        //  Resolve PKs.
+                        foreach (string key in script.Parameters.Keys)
+                        {
+                            var value = script.Parameters[key];
+                            if (value is Func<object>)
+                            {
+                                script.Parameters[key] = (value as Func<object>)();
+                            }
+                        }
+
+                        var commandDefinition = new CommandDefinition(
+                            script.Buffer.ToString(),
+                            script.Parameters,
+                            transaction,
+                            30,
+                            CommandType.Text,
+                            CommandFlags.Buffered | CommandFlags.NoCache);
+                        if (index < count - 1)
+                        {
+                            insertedPk = connection.ExecuteScalar(commandDefinition) as int?;
+                            if (null != insertedPk && null != script.InsertedValue)
+                            {
+                                script.InsertedValueMetadata.SetPrimaryKey(script.InsertedValue, insertedPk);
+                            }
+                        }
+                        else
+                        {
+                            connection.Execute(commandDefinition);                            
+                        }
+                    
+                    }
                     transaction.Commit();
                 }
                 catch (Exception)
