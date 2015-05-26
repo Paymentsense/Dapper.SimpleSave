@@ -73,7 +73,8 @@ WHERE [{0}] = ", command.PrimaryKeyColumn));
             var operation = command.Operation;
             if (operation.ValueMetadata != null)
             {
-                if (operation.OwnerPropertyMetadata.HasAttribute<ManyToManyAttribute>())
+                if (null != operation.OwnerPropertyMetadata
+                    && operation.OwnerPropertyMetadata.HasAttribute<ManyToManyAttribute>())
                 {
                     //  Remove record in link table; don't touch either entity table
 
@@ -87,8 +88,9 @@ WHERE [{1}] = ",
                     FormatWithParm(script, @"{0};
 ", ref parmIndex, operation.ValueMetadata.GetPrimaryKeyValue(operation.Value));
                 }
-                else if (operation.OwnerPropertyMetadata.HasAttribute<OneToManyAttribute>()
-                    && !operation.ValueMetadata.HasAttribute<ReferenceDataAttribute>())
+                else if (null == operation.OwnerPropertyMetadata
+                    || (operation.OwnerPropertyMetadata.HasAttribute<OneToManyAttribute>()
+                    && !operation.ValueMetadata.HasAttribute<ReferenceDataAttribute>()))
                 {
                     //  DELETE the value from the other table
 

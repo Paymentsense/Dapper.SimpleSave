@@ -34,9 +34,9 @@ namespace Dapper.SimpleSave.Impl {
                         {
                             OwnerMetadata = diff.OwnerMetadata,
                             OwnerPropertyMetadata = diff.OwnerPropertyMetadata,
-                            OwnerPrimaryKeyColumn = diff.OwnerMetadata.PrimaryKey.Prop.Name,
+                            OwnerPrimaryKeyColumn = null == diff.OwnerMetadata ? null : diff.OwnerMetadata.PrimaryKey.Prop.Name,
                             OwnerPrimaryKey = diff.OwnerId,
-                            TableName = diff.OwnerMetadata.TableName,
+                            TableName = diff.OwnerMetadata == null ? null : diff.OwnerMetadata.TableName,
                             ValueMetadata = diff.ValueMetadata,
                             Value = diff.OldValue
                         };
