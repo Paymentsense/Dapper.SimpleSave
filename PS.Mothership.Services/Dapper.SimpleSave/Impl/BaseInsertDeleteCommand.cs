@@ -13,13 +13,17 @@ namespace Dapper.SimpleSave.Impl {
         {
             _operation = operation;
             TableName = operation.TableName;
-            PrimaryKey = operation.OwnerPrimaryKey;
             PrimaryKeyColumn = operation.OwnerPrimaryKeyColumn;
         }
 
         public BaseInsertDeleteOperation Operation
         {
             get { return _operation; }
+        }
+
+        public override int? PrimaryKey
+        {
+            get { return _operation.OwnerPrimaryKey; }
         }
     }
 }

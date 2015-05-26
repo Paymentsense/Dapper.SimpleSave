@@ -21,7 +21,7 @@ namespace Dapper.SimpleSave.Impl {
                             OwnerMetadata = diff.OwnerMetadata,
                             OwnerPropertyMetadata = diff.OwnerPropertyMetadata,
                             OwnerPrimaryKeyColumn = null == diff.OwnerMetadata ? null : diff.OwnerMetadata.PrimaryKey.Prop.Name,
-                            OwnerPrimaryKey = diff.OwnerId,
+                            Owner = diff.Owner,
                             TableName = diff.OwnerMetadata == null ? null : diff.OwnerMetadata.TableName,
                             ValueMetadata = diff.ValueMetadata,
                             Value = diff.NewValue
@@ -35,7 +35,7 @@ namespace Dapper.SimpleSave.Impl {
                             OwnerMetadata = diff.OwnerMetadata,
                             OwnerPropertyMetadata = diff.OwnerPropertyMetadata,
                             OwnerPrimaryKeyColumn = null == diff.OwnerMetadata ? null : diff.OwnerMetadata.PrimaryKey.Prop.Name,
-                            OwnerPrimaryKey = diff.OwnerId,
+                            Owner = diff.Owner,
                             TableName = diff.OwnerMetadata == null ? null : diff.OwnerMetadata.TableName,
                             ValueMetadata = diff.ValueMetadata,
                             Value = diff.OldValue
@@ -49,7 +49,9 @@ namespace Dapper.SimpleSave.Impl {
                             ValueMetadata = diff.ValueMetadata,
                             Value = diff.NewValue,
                             OwnerPrimaryKeyColumn = diff.OwnerMetadata.PrimaryKey.Prop.Name,
-                            OwnerPrimaryKey = diff.OwnerId,
+                            Owner = diff.Owner,
+                            OwnerMetadata = diff.OwnerMetadata,
+                            OwnerPropertyMetadata = diff.OwnerPropertyMetadata,
                             TableName = diff.OwnerMetadata.TableName
                         });
                         break;
@@ -91,7 +93,9 @@ namespace Dapper.SimpleSave.Impl {
                 Value = baseInsertDelete.Value,
                 ValueMetadata = baseInsertDelete.ValueMetadata,
                 OwnerPrimaryKeyColumn = baseInsertDelete.OwnerPrimaryKeyColumn,
-                OwnerPrimaryKey = baseInsertDelete.OwnerPrimaryKey,
+                Owner = baseInsertDelete.Owner,
+                OwnerMetadata = baseInsertDelete.OwnerMetadata,
+                OwnerPropertyMetadata = baseInsertDelete.OwnerPropertyMetadata,
                 TableName = baseInsertDelete.TableName
             };
         }

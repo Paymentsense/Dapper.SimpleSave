@@ -42,12 +42,21 @@ namespace Dapper.SimpleSave.Impl {
             }
 
             TableName = operation.TableName;
-            PrimaryKey = operation.OwnerPrimaryKey;
             PrimaryKeyColumn = operation.OwnerPrimaryKeyColumn;
 
             _operations.Add(operation);
         }
 
-        public IEnumerable<UpdateOperation> Operations { get { return _operations; } } 
+        public IEnumerable<UpdateOperation> Operations { get { return _operations; } }
+
+        public override int? PrimaryKey
+        {
+            get
+            {
+                return null == _operations || _operations.Count == 0
+                    ? null
+                    : _operations[0].OwnerPrimaryKey;
+            }
+        }
     }
 }

@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 namespace Dapper.SimpleSave.Impl {
     public abstract class BaseOperation
     {
+        public object Owner { get; set; }
+
         public DtoMetadata OwnerMetadata { get; set; }
 
         public PropertyMetadata OwnerPropertyMetadata { get; set; }
@@ -15,7 +17,15 @@ namespace Dapper.SimpleSave.Impl {
 
         public string OwnerPrimaryKeyColumn { get; set; }
 
-        public int? OwnerPrimaryKey { get; set; }
+        public int? OwnerPrimaryKey
+        {
+            get
+            {
+                return null == Owner
+                    ? null
+                    : (null == OwnerMetadata ? null : OwnerMetadata.GetPrimaryKeyValue(Owner));
+            }
+        }
 
         public DtoMetadata ValueMetadata { get; set; }
 

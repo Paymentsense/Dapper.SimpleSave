@@ -9,7 +9,7 @@ namespace Dapper.SimpleSave.Impl {
     {
         public string TableName { get; protected set; }
 
-        public int? PrimaryKey { get; protected set; }
+        public abstract int? PrimaryKey { get;}
 
         public string PrimaryKeyColumn { get; protected set; }
  
