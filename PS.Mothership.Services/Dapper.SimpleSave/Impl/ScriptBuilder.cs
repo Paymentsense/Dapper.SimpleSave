@@ -72,7 +72,30 @@ SET ", command.TableName));
     ");
                 }
                 script.Buffer.Append(string.Format(@"[{0}] = ", operation.ColumnName));
-                FormatWithParm(script, "{0}", ref parmIndex, operation.Value);
+                bool useKey = false;
+
+                if (null != operation.ValueMetadata) {
+                    if ((null != operation.OwnerPropertyMetadata
+                     && (operation.OwnerPropertyMetadata.HasAttribute<OneToOneAttribute>()
+                         || operation.OwnerPropertyMetadata.HasAttribute<ManyToOneAttribute>())))
+                    {
+                        useKey = true;
+                    }
+                    else if (operation.ValueMetadata.HasAttribute<ReferenceDataAttribute>())
+                    {
+                        useKey = true;
+                    }
+
+                }
+
+                if (useKey)
+                {
+                    FormatWithParm(script, "{0}", ref parmIndex, operation.ValueMetadata.GetPrimaryKeyValue(operation.Value));
+                }
+                else
+                {
+                    FormatWithParm(script, "{0}", ref parmIndex, operation.Value);
+                }
                 ++count;
             }
 
@@ -81,11 +104,6 @@ WHERE [{0}] = ", command.PrimaryKeyColumn));
             FormatWithParm(script, @"{0};
 ", ref parmIndex, new Func<object>(() => command.PrimaryKey));
             //GetPossiblyUnknownPrimaryKeyValue(command.PrimaryKey));
-        }
-
-        private static object GetPossiblyUnknownPrimaryKeyValue(int? primaryKey)
-        {
-            return null == primaryKey ? (object) "@insertedPk" : primaryKey;
         }
 
         private static void AppendDeleteCommand(Script script, DeleteCommand command, ref int parmIndex)
@@ -218,7 +236,7 @@ WHERE [{1}] = ",
                 valBuff.Append(@", ");
             }
 
-            colBuff.Append("[" + property.ColumName + "]");
+            colBuff.Append("[" + property.ColumnName + "]");
 
             valBuff.Append("{");
             valBuff.Append(index);

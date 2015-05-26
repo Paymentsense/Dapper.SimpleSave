@@ -76,7 +76,7 @@ namespace Dapper.SimpleSave.Impl
 
         public bool IsString { get; private set; }
 
-        public string ColumName
+        public string ColumnName
         {
             get
             {

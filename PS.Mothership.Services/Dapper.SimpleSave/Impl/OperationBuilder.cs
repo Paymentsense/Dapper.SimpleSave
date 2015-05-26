@@ -45,7 +45,8 @@ namespace Dapper.SimpleSave.Impl {
 
                     case DifferenceType.Update:
                         operations.Add(new UpdateOperation {
-                            ColumnName = diff.OwnerPropertyMetadata.Prop.Name,
+                            ColumnName = diff.OwnerPropertyMetadata.ColumnName,
+                            ValueMetadata = diff.ValueMetadata,
                             Value = diff.NewValue,
                             OwnerPrimaryKeyColumn = diff.OwnerMetadata.PrimaryKey.Prop.Name,
                             OwnerPrimaryKey = diff.OwnerId,
@@ -86,8 +87,9 @@ namespace Dapper.SimpleSave.Impl {
             }
 
             return new UpdateOperation {
-                ColumnName = baseInsertDelete.OwnerPropertyMetadata.Prop.Name,
+                ColumnName = baseInsertDelete.OwnerPropertyMetadata.ColumnName,
                 Value = baseInsertDelete.Value,
+                ValueMetadata = baseInsertDelete.ValueMetadata,
                 OwnerPrimaryKeyColumn = baseInsertDelete.OwnerPrimaryKeyColumn,
                 OwnerPrimaryKey = baseInsertDelete.OwnerPrimaryKey,
                 TableName = baseInsertDelete.TableName

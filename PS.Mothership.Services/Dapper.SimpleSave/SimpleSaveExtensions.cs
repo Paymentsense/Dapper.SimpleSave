@@ -29,13 +29,13 @@ namespace Dapper.SimpleSave {
             {
                 try
                 {
-                    int? insertedPk = null;
+                    object insertedPk = null;
                     for (int index = 0, count = scripts.Count; index < count; ++index)
                     {
                         var script = scripts[index];
 
-                        //  Resolve PKs.
-                        foreach (string key in script.Parameters.Keys)
+                        //  Resolve PKs (and dodge concurrent modification exception).
+                        foreach (string key in script.Parameters.Keys.ToArray())
                         {
                             var value = script.Parameters[key];
                             if (value is Func<object>)
@@ -53,10 +53,12 @@ namespace Dapper.SimpleSave {
                             CommandFlags.Buffered | CommandFlags.NoCache);
                         if (index < count - 1)
                         {
-                            insertedPk = connection.ExecuteScalar(commandDefinition) as int?;
-                            if (null != insertedPk && null != script.InsertedValue)
+                            insertedPk = connection.ExecuteScalar(commandDefinition);
+                            if (null != insertedPk && insertedPk is decimal && null != script.InsertedValue)
                             {
-                                script.InsertedValueMetadata.SetPrimaryKey(script.InsertedValue, insertedPk);
+                                script.InsertedValueMetadata.SetPrimaryKey(
+                                    script.InsertedValue,
+                                    Decimal.ToInt32((decimal) insertedPk));
                             }
                         }
                         else
@@ -72,7 +74,6 @@ namespace Dapper.SimpleSave {
                     transaction.Rollback();
                     throw;
                 }
-
             }
         }
 

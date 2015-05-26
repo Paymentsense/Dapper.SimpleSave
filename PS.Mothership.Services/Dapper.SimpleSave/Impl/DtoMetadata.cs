@@ -30,7 +30,7 @@ namespace Dapper.SimpleSave.Impl {
 
         public int? GetPrimaryKeyValue(object obj)
         {
-            return (int?) PrimaryKey.GetValue(obj);
+            return obj is Enum ? (int) obj : (int?) PrimaryKey.GetValue(obj);
         }
 
         public void SetPrimaryKey(object obj, int? value)

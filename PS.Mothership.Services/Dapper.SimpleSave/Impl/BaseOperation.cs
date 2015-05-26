@@ -17,6 +17,8 @@ namespace Dapper.SimpleSave.Impl {
 
         public int? OwnerPrimaryKey { get; set; }
 
+        public DtoMetadata ValueMetadata { get; set; }
+
         public object Value { get; set; }
     }
 }
