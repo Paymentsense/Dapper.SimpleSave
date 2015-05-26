@@ -170,7 +170,7 @@ WHERE [{1}] = ",
 );
 ",
                             ref parmIndex,
-                            operation.OwnerPrimaryKey,
+                            new Func<object>(() => operation.OwnerPrimaryKey),
                             new Func<object>(() => operation.ValueMetadata.GetPrimaryKeyValue(operation.Value)));
                         //GetPossiblyUnknownPrimaryKeyValue(operation.ValueMetadata.GetPrimaryKeyValue(operation.Value)));
                     }
