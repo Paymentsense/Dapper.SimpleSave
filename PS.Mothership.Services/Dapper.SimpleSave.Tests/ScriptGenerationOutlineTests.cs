@@ -162,7 +162,7 @@ namespace Dapper.SimpleSave.Tests
                 new DepartmentDto
                 {
                     DepartmentKey = 3,
-                    Name = "Zombie Hunters"
+                    Name = "Customer Service"
                 }
             }),
             Team = new List<TeamDto>(new []
@@ -170,7 +170,7 @@ namespace Dapper.SimpleSave.Tests
                 new TeamDto
                 {
                     TeamKey = 1,
-                    Name = "The A-Team"
+                    Name = "Kraken"
                 }
             }),
             AdditionalRoles = new List<RoleDto>(new []
@@ -178,7 +178,7 @@ namespace Dapper.SimpleSave.Tests
                 new RoleDto
                 {
                     RoleKey = 1,
-                    Name = "Howling Mad Murdoch Replacement"
+                    Name = "TeleSales"
                 }
             })
         };
