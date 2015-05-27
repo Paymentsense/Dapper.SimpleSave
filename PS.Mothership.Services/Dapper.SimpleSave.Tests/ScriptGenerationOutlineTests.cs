@@ -21,7 +21,7 @@ namespace Dapper.SimpleSave.Tests
             FirstName = "John",
             LastName = "Smith",
             CountryCode = "44",
-            PhoneNumber = "0207 1234567",
+            PersonalMobileNumber = "0777 1234567",
             EmailAddress = "john.smith@paymentsense.com",
             Username = "john.smith",
             Password = "TODO",
@@ -52,7 +52,7 @@ namespace Dapper.SimpleSave.Tests
             FirstName = "John",
             LastName = "Smith",
             CountryCode = "44",
-            PhoneNumber = "0207 1234567",
+            PersonalMobileNumber = "0777 1234567",
             EmailAddress = "john.smith@paymentsense.com",
             Username = "john.smith",
             Password = "TODO",
@@ -82,7 +82,7 @@ namespace Dapper.SimpleSave.Tests
             FirstName = "Zargon",
             LastName = "Smith",
             CountryCode = "44",
-            PhoneNumber = "0207 666 6666",
+            PersonalMobileNumber = "0777 666 6666",
             EmailAddress = "john.smith@paymentsense.com",
             Username = "zargon.smith",
             Password = "TODO",
@@ -107,7 +107,7 @@ namespace Dapper.SimpleSave.Tests
             FirstName = "Zargon",
             LastName = "Smith",
             CountryCode = "44",
-            PhoneNumber = "0207 666 6666",
+            PersonalMobileNumber = "0777 666 6666",
             EmailAddress = "john.smith@paymentsense.com",
             Username = "zargon.smith",
             Password = "TODO",
@@ -132,7 +132,7 @@ namespace Dapper.SimpleSave.Tests
                     new DepartmentDto
                     {
                         DepartmentKey = 3,
-                        Name = "Zombie Hunters"
+                        Name = "Customer Service"
                     }
                 })
         };
@@ -142,7 +142,7 @@ namespace Dapper.SimpleSave.Tests
             FirstName = "Zargon",
             LastName = "Smith",
             CountryCode = "44",
-            PhoneNumber = "0207 666 6666",
+            PersonalMobileNumber = "0777 666 6666",
             EmailAddress = "john.smith@paymentsense.com",
             Username = "zargon.smith",
             Password = "TODO",
