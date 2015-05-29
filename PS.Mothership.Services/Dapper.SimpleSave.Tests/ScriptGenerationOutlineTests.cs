@@ -77,7 +77,7 @@ namespace Dapper.SimpleSave.Tests
                 })
         };
 
-        public static readonly UserDto ZargonRemovedDepartment = new UserDto() {
+        public static readonly UserDto ZargonRemovedDepartment = new UserDto {
             UserKey = 1,
             FirstName = "Zargon",
             LastName = "Smith",
@@ -102,7 +102,7 @@ namespace Dapper.SimpleSave.Tests
                 })
         };
 
-        public static readonly UserDto ZargonAddedDepartment = new UserDto() {
+        public static readonly UserDto ZargonAddedDepartment = new UserDto {
             UserKey = 1,
             FirstName = "Zargon",
             LastName = "Smith",
@@ -137,7 +137,7 @@ namespace Dapper.SimpleSave.Tests
                 })
         };
 
-        public static readonly UserDto ZargonComplexUpdates = new UserDto() {
+        public static readonly UserDto ZargonComplexUpdates = new UserDto {
             UserKey = 1,
             FirstName = "Zargon",
             LastName = "Smith",
@@ -183,6 +183,50 @@ namespace Dapper.SimpleSave.Tests
             })
         };
 
+        public static readonly UserDto UserWithPosition = new UserDto
+        {
+            Username = "hfdgfdsgdfq.gsdfgfds",
+            EmailAddress = "hfdgfdsgdfq.gsdfgfds@paymentsense.com",
+            FirstName = "hfdgfdsgdfq",
+            LastName = "gsdfgfds",
+            Position = new PositionDto
+            {
+                PositionKey = 2,
+                Name = "Head"
+            },
+            Department = new List<DepartmentDto>(new[]
+            {
+                new DepartmentDto
+                {
+                    DepartmentKey = 1,
+                    Name = "The Flying Squad"
+                }
+            }),
+            AdditionalRoles = new List<RoleDto>(new[]
+            {
+                new RoleDto
+                {
+                    RoleKey = 1,
+                    Name = "TeleSales"
+                }
+            }),
+            Team = new List<TeamDto>(new[]
+            {
+                new TeamDto
+                {
+                    TeamKey = 0,
+                    Name = "Phoenix"
+                }
+            }),
+            PersonalMobileNumber = "543254",
+            Status = UserStatusEnum.Active,
+            OfficeNumber = new OfficeNumberDto
+            {
+                OfficeNumberKey = 4,
+                Number = "02075555555"
+            }
+        };
+
         public static UserDto GetDto(string name)
         {
             if (null == name)
@@ -201,6 +245,7 @@ namespace Dapper.SimpleSave.Tests
         [TestCase("JohnSmith", null, 4, 4, 0, 1, 3, 4, 0, 1, 3)]
         [TestCase("JohnSmith", "JohnSmithPositionChange", 1, 1, 0, 1, 0, 1, 0, 1, 0)]
         [TestCase("ZargonComplexUpdates", null, 6, 6, 0, 1, 5, 6, 0, 1, 5)]
+        [TestCase(null, "UserWithPosition", 6, 6, 4, 2, 0, 5, 4, 1, 0)]
         public void creates_updates_and_deletes_generate_correct_script_shape(
             string oldUserFieldName,
             string newUserFieldName,
@@ -244,6 +289,33 @@ namespace Dapper.SimpleSave.Tests
             foreach (var script in transactionScript)
             {
                 Assert.IsTrue(script.Buffer.Length > 0, "#badtimes - empty transaction script");                
+            }
+
+            CheckNoReferenceTypesInParameters(transactionScript);
+        }
+
+        private void CheckNoReferenceTypesInParameters(IList<Script> transactionScript)
+        {
+            foreach (var script in transactionScript)
+            {
+                foreach (var name in script.Parameters.Keys)
+                {
+                    var value = script.Parameters[name];
+                    if (null == value || value is string)
+                    {
+                        continue;
+                    }
+
+                    var type = value.GetType();
+                    if (type.IsValueType
+                        || (type.IsConstructedGenericType
+                            && type.GetGenericTypeDefinition() == typeof(Func<>)))
+                    {
+                        continue;
+                    }
+
+                    Assert.Fail("Unexpected reference type as value for parameter {0}: {1}", name, type.FullName);
+                }
             }
         }
 
