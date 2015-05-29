@@ -251,7 +251,7 @@ WHERE [{1}] = ",
                     new Func<object>(() => operation.OwnerPrimaryKey));
                 //GetPossiblyUnknownPrimaryKeyValue(operation.OwnerPrimaryKey));
             }
-            else if (property.HasAttribute<ManyToOneAttribute>())
+            else if (property.HasAttribute<ManyToOneAttribute>() || property.HasAttribute<OneToOneAttribute>())
             {
                 object propValue = property.GetValue(operation.Value);
                 DtoMetadata propMetadata = _dtoMetadataCache.GetMetadataFor(property.Prop.PropertyType);
@@ -278,15 +278,42 @@ WHERE [{1}] = ",
             params object [] parmValues)
         {
             var parmNames = new ArrayList();
-            foreach (object parmValue in parmValues)
+            for(int index = 0, count = parmValues.Length; index < count; ++index)
             {
+                object parmValue = parmValues[index];
                 string parmName = "p" + parmIndex;
+                ValidateParmValue(index, parmName, parmValue);
                 script.Parameters[parmName] = parmValue;
                 parmNames.Add("@" + parmName);
                 ++parmIndex;
             }
 
             script.Buffer.Append(string.Format(formatString, parmNames.ToArray()));
+        }
+
+        private static void ValidateParmValue(
+            int index,
+            string parmName,
+            object parmValue)
+        {
+            if (null == parmValue || parmValue is string) {
+                return;
+            }
+
+            var type = parmValue.GetType();
+            if (type.IsValueType
+                || (type.IsConstructedGenericType
+                    && type.GetGenericTypeDefinition() == typeof(Func<>))) {
+                return;
+            }
+
+            throw new ArgumentException(
+                string.Format(
+                    "Reference types other than string are not permitted as parameter values for generated SQL. Invalid value at index {0} for parameter @{1}: {2}",
+                    index,
+                    parmName,
+                    parmValue),
+                "parmValues");
         }
     }
 }
