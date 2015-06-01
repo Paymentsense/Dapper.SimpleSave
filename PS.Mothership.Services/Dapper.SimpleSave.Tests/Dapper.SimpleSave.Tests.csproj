@@ -66,6 +66,9 @@
     <Compile Include="Dto\ParentDto.cs" />
     <Compile Include="Dto\ParentReferenceDto.cs" />
     <Compile Include="Dto\ParentSpecialDto.cs" />
+    <Compile Include="ManyToManyRelationshipCommandGenerationTests.cs" />
+    <Compile Include="ManyToOneRelationshipCommandGenerationTests.cs" />
+    <Compile Include="OneToManyRelationshipCommandGenerationTests.cs" />
     <Compile Include="OneToOneRelationshipFkOnChildCommandGenerationTests.cs" />
     <Compile Include="OneToOneRelationshipFkOnParentCommandGenerationTests.cs" />
     <Compile Include="ScriptGenerationOutlineTests.cs" />
