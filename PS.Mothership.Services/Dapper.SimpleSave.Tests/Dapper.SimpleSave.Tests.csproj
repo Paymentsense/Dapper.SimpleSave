@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseTests.cs" />
     <Compile Include="Dto\BaseChildDto.cs" />
     <Compile Include="Dto\BaseParentDto.cs" />
     <Compile Include="Dto\ManyToManyChildDto.cs" />
