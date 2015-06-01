@@ -28,6 +28,22 @@
         [OneToMany]
         public OneToManySpecialChildDto OneToManySpecialChildDto { get; set; }
 
+        [ManyToOne]
         public ManyToOneChildDto ManyToOneChildDto { get; set; }
+
+        [ManyToOne]
+        public ManyToOneReferenceChildDto ManyToOneReferenceChildDto { get; set; }
+
+        [ManyToOne]
+        public ManyToOneSpecialChildDto ManyToOneSpecialChildDto { get; set; }
+
+        [ManyToMany("dbo.ManyToManyChild_Lnk")]
+        public ManyToManyChildDto ManyToManyChildDto { get; set; }
+
+        [ManyToMany("dbo.ManyToManyReferenceChild_Lnk")]
+        public ManyToManyReferenceChildDto ManyToManyReferenceChildDto { get; set; }
+
+        [ManyToMany("dbo.ManyToManySpecialChild_Lnk")]
+        public ManyToManySpecialChildDto ManyToManySpecialChildDto { get; set; }
     }
 }
