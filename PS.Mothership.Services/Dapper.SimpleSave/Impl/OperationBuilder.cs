@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Castle.Core.Internal;
 
 namespace Dapper.SimpleSave.Impl {
     public class OperationBuilder {
@@ -103,47 +104,60 @@ namespace Dapper.SimpleSave.Impl {
         public IEnumerable<BaseCommand> Coalesce(IEnumerable<BaseOperation> operations)
         {
             var results = new List<BaseCommand>();
-            var tablesToUpdates = new Dictionary<string, IDictionary<int, UpdateCommand>>();
+            string updateTableName = null;
+            int? updatePk = null;
+            var updates = new List<UpdateOperation>();
 
             foreach (var operation in operations)
             {
                 if (operation is UpdateOperation)
                 {
-                    CoalesceUpdates(operation, tablesToUpdates, results);
+                    var update = operation as UpdateOperation;
+                    if (updateTableName != update.TableName || updatePk != update.OwnerPrimaryKey)
+                    {
+                        if (null != updateTableName)
+                        {
+                            ApplyUpdate(results, updates, ref updateTableName, ref updatePk);
+                        }
+
+                        updateTableName = update.TableName;
+                        updatePk = update.OwnerPrimaryKey;
+                    }
+                    updates.Add(update);
                 }
-                else if (operation is InsertOperation)
+                else
                 {
-                    results.Add(new InsertCommand(operation as InsertOperation));
+                    ApplyUpdate(results, updates, ref updateTableName, ref updatePk);
+
+                    if (operation is InsertOperation)
+                    {
+                        results.Add(new InsertCommand(operation as InsertOperation));
+                    } else if (operation is DeleteOperation) {
+                        results.Add(new DeleteCommand(operation as DeleteOperation));
+                    }
                 }
-                else if (operation is DeleteOperation)
-                {
-                    results.Add(new DeleteCommand(operation as DeleteOperation));
-                }
+            }
+
+            if (updates.Count > 0)
+            {
+                ApplyUpdate(results, updates, ref updateTableName, ref updatePk);
             }
 
             return results;
         }
 
-        private static void CoalesceUpdates(BaseOperation operation, Dictionary<string, IDictionary<int, UpdateCommand>> tablesToUpdates, List<BaseCommand> results)
+        private void ApplyUpdate(IList<BaseCommand> results, IList<UpdateOperation> updates, ref string updateTableName, ref int? updatePk)
         {
-            var updateOperation = operation as UpdateOperation;
-            IDictionary<int, UpdateCommand> commands;
-            tablesToUpdates.TryGetValue(updateOperation.TableName, out commands);
-            if (null == commands)
+            if (updates.Count == 0)
             {
-                commands = new Dictionary<int, UpdateCommand>();
-                tablesToUpdates.Add(updateOperation.TableName, commands);
+                return;
             }
-
-            UpdateCommand command;
-            commands.TryGetValue(updateOperation.OwnerPrimaryKey.GetValueOrDefault(), out command);
-            if (null == command)
-            {
-                command = new UpdateCommand();
-                commands.Add(updateOperation.OwnerPrimaryKey.GetValueOrDefault(), command);
-                results.Add(command);
-            }
-            command.AddOperation(updateOperation);
+            var command = new UpdateCommand();
+            updates.ForEach(update => command.AddOperation(update));
+            results.Add(command);
+            updates.Clear();
+            updateTableName = null;
+            updatePk = null;
         }
     }
 }
