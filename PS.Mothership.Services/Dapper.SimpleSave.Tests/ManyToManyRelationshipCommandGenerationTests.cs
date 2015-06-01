@@ -87,11 +87,27 @@ namespace Dapper.SimpleSave.Tests {
             insert_inserts_in_parent_and_link(newDto, "ManyToManyChildDto");
         }
 
-        
-
         [Test]
-        public void update_with_no_reference_data_updates_parent() {
-            throw new NotImplementedException();
+        public void update_with_no_reference_data_updates_parent_and_child() {
+            var oldDto = new ParentDto {
+                ParentKey = 1,
+                ManyToManyChildDto = new ManyToManyChildDto()
+            };
+
+            var newDto = new ParentDto {
+                ParentKey = 1,
+                ParentName = "Wibble",
+                ManyToManyChildDto = new ManyToManyChildDto
+                {
+                    Name = "Wobble"
+                }
+            };
+
+            var cache = new DtoMetadataCache();
+            var commands = GetCommands(cache, oldDto, newDto, 2, 2, 0, 2, 0, 2, 0, 2, 0);
+            var list = new List<BaseCommand>(commands);
+
+            //  TODO: check commands
         }
 
         [Test]
@@ -110,7 +126,23 @@ namespace Dapper.SimpleSave.Tests {
 
         [Test]
         public void update_with_reference_data_in_child_updates_parent() {
-            throw new NotImplementedException();
+            var oldDto = new ParentDto {
+                ParentKey = 1,
+                ManyToManyReferenceChildDto = new ManyToManyReferenceChildDto()
+            };
+
+            var newDto = new ParentDto {
+                ParentKey = 1,
+                ParentName = "Wibble",
+                ManyToManyReferenceChildDto = new ManyToManyReferenceChildDto()
+                {
+                    Name = "Wobble"
+                }
+            };
+
+            var cache = new DtoMetadataCache();
+            var commands = GetCommands(cache, oldDto, newDto, 2, 2, 0, 2, 0, 1, 0, 1, 0);
+            var list = new List<BaseCommand>(commands);
         }
 
         [Test]
@@ -129,7 +161,22 @@ namespace Dapper.SimpleSave.Tests {
 
         [Test]
         public void update_with_special_data_in_child_updates_parent() {
-            throw new NotImplementedException();
+            var oldDto = new ParentDto {
+                ParentKey = 1,
+                ManyToManySpecialChildDto = new ManyToManySpecialChildDto()
+            };
+
+            var newDto = new ParentDto {
+                ParentKey = 1,
+                ParentName = "Wibble",
+                ManyToManySpecialChildDto = new ManyToManySpecialChildDto() {
+                    Name = "Wobble"
+                }
+            };
+
+            var cache = new DtoMetadataCache();
+            var commands = GetCommands(cache, oldDto, newDto, 2, 2, 0, 2, 0, 1, 0, 1, 0);
+            var list = new List<BaseCommand>(commands);
         }
 
         [Test]
