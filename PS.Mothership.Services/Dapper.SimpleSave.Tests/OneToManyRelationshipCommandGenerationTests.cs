@@ -130,8 +130,35 @@ namespace Dapper.SimpleSave.Tests {
         }
 
         [Test]
-        public void delete_with_no_reference_data_deletes_in_parent_and_child() {
-            throw new NotImplementedException();
+        public void delete_with_no_reference_data_deletes_in_child_and_parent() {
+            var oldDto = new ParentDto
+            {
+                ParentKey = 1,
+                OneToManyChildDto = new OneToManyChildDto()
+            };
+
+            var cache = new DtoMetadataCache();
+            var commands = GetCommands(cache, oldDto, null, 2, 2, 0, 0, 2, 2, 0, 0, 2);
+            var list = new List<BaseCommand>(commands);
+
+            Assert.AreEqual(
+                2,
+                list.Count,
+                "Unexpected number of commands.");
+
+            var command = list[0] as DeleteCommand;
+
+            Assert.AreEqual(
+                cache.GetMetadataFor(typeof(OneToManyChildDto)).TableName,
+                command.Operation.ValueMetadata.TableName,
+                "Unexpected child table name.");
+
+            command = list[1] as DeleteCommand;
+
+            Assert.AreEqual(
+                cache.GetMetadataFor(typeof(ParentDto)).TableName,
+                command.Operation.ValueMetadata.TableName,
+                "Unexpected parent table name.");
         }
 
         [Test]
@@ -173,9 +200,16 @@ namespace Dapper.SimpleSave.Tests {
         }
 
         [Test]
-        [ExpectedException(typeof(NotSupportedException))]
-        public void delete_with_reference_data_in_child_is_not_supported() {
-            throw new NotImplementedException();
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void delete_with_reference_data_in_child_is_invalid() {
+            var oldDto = new ParentDto
+            {
+                ParentKey = 1,
+                OneToManyReferenceChildDto = new OneToManyReferenceChildDto()
+            };
+
+            var cache = new DtoMetadataCache();
+            GetCommands(cache, oldDto, null, 2, 2, 0, 0, 2, 2, 0, 0, 2);
         }
 
         [Test]
@@ -281,7 +315,33 @@ namespace Dapper.SimpleSave.Tests {
 
         [Test]
         public void delete_with_special_data_in_child_updates_child_and_deletes_parent() {
-            throw new NotImplementedException();
+            var oldDto = new ParentDto
+            {
+                ParentKey = 532,
+                OneToManySpecialChildDto = new OneToManySpecialChildDto()
+            };
+
+            var cache = new DtoMetadataCache();
+            var commands = GetCommands(cache, oldDto, null, 2, 2, 0, 1, 1, 2, 0, 1, 1);
+            var list = new List<BaseCommand>(commands);
+
+            Assert.AreEqual(
+                2,
+                list.Count,
+                "Unexpected command count.");
+
+            var update = list[0] as UpdateCommand;
+
+            Assert.AreEqual(
+                cache.GetMetadataFor(typeof(OneToManySpecialChildDto)).TableName,
+                update.Operations.FirstOrDefault().ValueMetadata.TableName,
+                "Unexpected child table name.");
+
+            var delete = list[1] as DeleteCommand;
+
+            Assert.AreEqual(
+                cache.GetMetadataFor(typeof(ParentDto)).TableName,
+                delete.Operation.ValueMetadata.TableName);
         }
 
         [Test]
@@ -323,9 +383,16 @@ namespace Dapper.SimpleSave.Tests {
         }
 
         [Test]
-        [ExpectedException(typeof(NotSupportedException))]
-        public void delete_with_reference_data_in_parent_is_not_supported() {
-            throw new NotImplementedException();
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void delete_with_reference_data_in_parent_is_invalid() {
+            var oldDto = new ParentReferenceDto
+            {
+                ParentKey = 1,
+                OneToManyChildDto = new OneToManyChildDto()
+            };
+
+            var cache = new DtoMetadataCache();
+            GetCommands(cache, oldDto, null, 2, 2, 0, 0, 2, 2, 0, 0, 2);
         }
 
         [Test]
@@ -367,9 +434,17 @@ namespace Dapper.SimpleSave.Tests {
         }
 
         [Test]
-        [ExpectedException(typeof(NotSupportedException))]
-        public void delete_with_reference_data_in_parent_and_child_is_not_supported() {
-            throw new NotImplementedException();
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void delete_with_reference_data_in_parent_and_child_is_invalid()
+        {
+            var oldDto = new ParentReferenceDto
+            {
+                ParentKey = 1,
+                OneToManyReferenceChildDto = new OneToManyReferenceChildDto()
+            };
+
+            var cache = new DtoMetadataCache();
+            GetCommands(cache, oldDto, null, 2, 2, 0, 0, 2, 2, 0, 0, 2);
         }
 
         [Test]
@@ -412,9 +487,16 @@ namespace Dapper.SimpleSave.Tests {
         }
 
         [Test]
-        [ExpectedException(typeof(NotSupportedException))]
-        public void delete_with_special_data_in_parent_is_not_supported() {
-            throw new NotImplementedException();
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void delete_with_special_data_in_parent_is_invalid() {
+            var oldDto = new ParentSpecialDto
+            {
+                ParentKey = 1,
+                OneToManyChildDto = new OneToManyChildDto()
+            };
+
+            var cache = new DtoMetadataCache();
+            GetCommands(cache, oldDto, null, 2, 2, 0, 0, 2, 2, 0, 0, 2);
         }
     }
 }
