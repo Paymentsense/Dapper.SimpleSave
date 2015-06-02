@@ -146,9 +146,30 @@ namespace Dapper.SimpleSave.Tests {
         }
 
         [Test]
-        [ExpectedException(typeof(NotSupportedException))]
-        public void update_with_reference_data_in_child_is_not_supported() {
-            throw new NotImplementedException();
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void update_with_reference_data_in_child_is_invalid() {
+            var oldDto = new ParentDto
+            {
+                ParentKey = 1,
+                OneToManyReferenceChildDto = new OneToManyReferenceChildDto
+                {
+                    ChildKey = 2
+                }
+            };
+
+            var newDto = new ParentDto
+            {
+                ParentKey = 1,
+                ParentName = "ParentNameUpdated",
+                OneToManyReferenceChildDto = new OneToManyReferenceChildDto
+                {
+                    ChildKey = 2,
+                    Name = "Maximum Whoopee! Enabled"
+                }
+            };
+
+            var cache = new DtoMetadataCache();
+            GetCommands(cache, oldDto, newDto, 2, 2, 0, 2, 0, 2, 0, 2, 0);
         }
 
         [Test]
@@ -172,11 +193,90 @@ namespace Dapper.SimpleSave.Tests {
                 2,
                 list.Count,
                 "Unexpected number of commands.");
+
+            var insert = list[0] as InsertCommand;
+
+            Assert.AreEqual(
+                cache.GetMetadataFor(typeof(ParentDto)).TableName,
+                insert.Operation.ValueMetadata.TableName,
+                "Unexpected table name for parent.");
+
+            var update = list[1] as UpdateCommand;
+
+            Assert.AreEqual(
+                cache.GetMetadataFor(typeof(OneToManySpecialChildDto)).TableName,
+                update.Operations.FirstOrDefault().ValueMetadata.TableName,
+                "Unexpected table owner name for child update.");
+
+            Assert.AreEqual(
+                "OneToManySpecialChildDto",
+                update.Operations.FirstOrDefault().ColumnName,
+                "Unexpected owner's column name for child update.");
+
+            Assert.AreEqual(
+                cache.GetMetadataFor(typeof(OneToManySpecialChildDto)).TableName,
+                update.Operations.FirstOrDefault().ValueMetadata.TableName,
+                "Unexected child table name.");
         }
 
         [Test]
         public void update_with_special_data_in_child_updates_parent() {
-            throw new NotImplementedException();
+            var oldDto = new ParentDto
+            {
+                ParentKey = 1,
+                OneToManySpecialChildDto = new OneToManySpecialChildDto()
+            };
+
+            var newDto = new ParentDto
+            {
+                ParentKey = 1,
+                ParentName = "ParentNameUpdated",
+                OneToManySpecialChildDto = new OneToManySpecialChildDto()
+            };
+
+            var cache = new DtoMetadataCache();
+            var commands = GetCommands(cache, oldDto, newDto, 1, 1, 0, 1, 0, 1, 0, 1, 0);
+
+            var list = new List<BaseCommand>(commands);
+
+            var command = list[0] as UpdateCommand;
+            
+            Assert.AreEqual(
+                cache.GetMetadataFor(typeof(ParentDto)).TableName,
+                command.Operations.FirstOrDefault().TableName);
+
+            Assert.AreEqual(
+                1,
+                command.Operations.Count(),
+                "Unexpected number of operations.");
+        }
+
+        [Test]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void update_of_parent_and_non_fk_columns_in_child_with_special_data_in_child_is_invalid()
+        {
+            var oldDto = new ParentDto
+            {
+                ParentKey = 1,
+                OneToManySpecialChildDto = new OneToManySpecialChildDto
+                {
+                    ChildKey = 2
+                }
+            };
+
+            var newDto = new ParentDto
+            {
+                ParentKey = 1,
+                ParentName = "ParentNameUpdated",
+                OneToManySpecialChildDto = new OneToManySpecialChildDto
+                {
+                    ChildKey = 2,
+                    Name = "Maximum Whoopee! Enabled"
+                }
+            };
+
+            var cache = new DtoMetadataCache();
+            GetCommands(cache, oldDto, newDto, 2, 2, 0, 2, 0, 2, 0, 2, 0);
         }
 
         [Test]
@@ -196,9 +296,30 @@ namespace Dapper.SimpleSave.Tests {
         }
 
         [Test]
-        [ExpectedException(typeof(NotSupportedException))]
-        public void update_with_reference_data_in_parent_is_not_supported() {
-            throw new NotImplementedException();
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void update_with_reference_data_in_parent_is_invalid() {
+            var oldDto = new ParentReferenceDto
+            {
+                ParentKey = 1,
+                OneToManyChildDto = new OneToManyChildDto
+                {
+                    ChildKey = 2
+                }
+            };
+
+            var newDto = new ParentReferenceDto
+            {
+                ParentKey = 1,
+                ParentName = "ParentNameUpdated",
+                OneToManyChildDto = new OneToManyChildDto
+                {
+                    ChildKey = 2,
+                    Name = "Maximum Whoopee! Enabled"
+                }
+            };
+
+            var cache = new DtoMetadataCache();
+            GetCommands(cache, oldDto, newDto, 2, 2, 0, 2, 0, 2, 0, 2, 0);
         }
 
         [Test]
@@ -219,9 +340,30 @@ namespace Dapper.SimpleSave.Tests {
         }
 
         [Test]
-        [ExpectedException(typeof(NotSupportedException))]
-        public void update_with_reference_data_in_parent_and_child_is_not_supported() {
-            throw new NotImplementedException();
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void update_with_reference_data_in_parent_and_child_is_invalid() {
+            var oldDto = new ParentReferenceDto
+            {
+                ParentKey = 1,
+                OneToManyReferenceChildDto = new OneToManyReferenceChildDto
+                {
+                    ChildKey = 2
+                }
+            };
+
+            var newDto = new ParentReferenceDto
+            {
+                ParentKey = 1,
+                ParentName = "ParentNameUpdated",
+                OneToManyReferenceChildDto = new OneToManyReferenceChildDto
+                {
+                    ChildKey = 2,
+                    Name = "Maximum Whoopee! Enabled"
+                }
+            };
+
+            var cache = new DtoMetadataCache();
+            GetCommands(cache, oldDto, newDto, 2, 2, 0, 2, 0, 2, 0, 2, 0);
         }
 
         [Test]
@@ -231,15 +373,42 @@ namespace Dapper.SimpleSave.Tests {
         }
 
         [Test]
-        [ExpectedException(typeof(NotSupportedException))]
-        public void insert_with_special_data_in_parent_is_not_supported() {
-            throw new NotImplementedException();
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void insert_with_special_data_in_parent_is_invalid() {
+            var newDto = new ParentSpecialDto
+            {
+                OneToManyChildDto = new OneToManyChildDto()
+            };
+
+            var cache = new DtoMetadataCache();
+            GetCommands(cache, null, newDto, 2, 2, 2, 0, 0, 2, 2, 0, 0);
         }
 
         [Test]
-        [ExpectedException(typeof(NotSupportedException))]
-        public void update_with_special_data_in_parent_is_not_supported() {
-            throw new NotImplementedException();
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void update_with_special_data_in_parent_is_invalid() {
+            var oldDto = new ParentSpecialDto
+            {
+                ParentKey = 1,
+                OneToManyChildDto = new OneToManyChildDto
+                {
+                    ChildKey = 2
+                }
+            };
+
+            var newDto = new ParentSpecialDto
+            {
+                ParentKey = 1,
+                ParentName = "ParentNameUpdated",
+                OneToManyChildDto = new OneToManyChildDto
+                {
+                    ChildKey = 2,
+                    Name = "Maximum Whoopee! Enabled"
+                }
+            };
+
+            var cache = new DtoMetadataCache();
+            GetCommands(cache, oldDto, newDto, 2, 2, 0, 2, 0, 2, 0, 2, 0);
         }
 
         [Test]
