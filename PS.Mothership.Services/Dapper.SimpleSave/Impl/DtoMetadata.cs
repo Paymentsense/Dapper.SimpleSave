@@ -24,6 +24,11 @@ namespace Dapper.SimpleSave.Impl {
             get { return GetAttribute<ReferenceDataAttribute>() != null; }
         }
 
+        public bool HasUpdateableForeignKeys
+        {
+            get { return IsReferenceData && GetAttribute<ReferenceDataAttribute>().HasUpdateableForeignKeys;  }
+        }
+
         public PropertyMetadata PrimaryKey { get; set; }
 
         public IEnumerable<PropertyMetadata> Properties { get; set; }
