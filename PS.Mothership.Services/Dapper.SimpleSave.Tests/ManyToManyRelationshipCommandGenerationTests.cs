@@ -88,7 +88,7 @@ namespace Dapper.SimpleSave.Tests {
         }
 
         [Test]
-        public void update_with_no_reference_data_updates_parent_and_child() {
+        public void update_with_no_reference_data_updates_child_and_parent() {
             var oldDto = new ParentDto {
                 ParentKey = 1,
                 ManyToManyChildDto = new ManyToManyChildDto()
@@ -107,7 +107,28 @@ namespace Dapper.SimpleSave.Tests {
             var commands = GetCommands(cache, oldDto, newDto, 2, 2, 0, 2, 0, 2, 0, 2, 0);
             var list = new List<BaseCommand>(commands);
 
-            //  TODO: check commands
+            var command = list[0] as UpdateCommand;
+
+            Assert.AreEqual(
+                cache.GetMetadataFor(typeof(ManyToManyChildDto)).TableName,
+                command.TableName,
+                "Unexpected table name.");
+
+            Assert.AreEqual(
+                "Name",
+                command.Operations.FirstOrDefault().OwnerPropertyMetadata.ColumnName,
+                "Unexpected column name.");
+
+            command = list[1] as UpdateCommand;
+
+            Assert.AreEqual(
+                cache.GetMetadataFor(typeof(ParentDto)).TableName,
+                command.TableName,
+                "Unexpected table name.");
+
+            Assert.AreEqual(
+                "ParentName",
+                command.Operations.FirstOrDefault().OwnerPropertyMetadata.ColumnName);
         }
 
         [Test]
@@ -253,9 +274,21 @@ namespace Dapper.SimpleSave.Tests {
         }
 
         [Test]
-        [ExpectedException(typeof(NotSupportedException))]
-        public void update_with_reference_data_in_parent_is_not_supported() {
-            throw new NotImplementedException();
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void update_with_reference_data_in_parent_is_invalid() {
+            var oldDto = new ParentReferenceDto {
+                ParentKey = 1,
+                ManyToManyChildDto = new ManyToManyChildDto()
+            };
+
+            var newDto = new ParentReferenceDto {
+                ParentKey = 1,
+                ParentName = "Wibble",
+                ManyToManyChildDto = new ManyToManyChildDto()
+            };
+
+            var cache = new DtoMetadataCache();
+            GetCommands(cache, oldDto, newDto, 1, 1, 0, 1, 0, 1, 0, 1, 0);
         }
 
         [Test]
@@ -276,9 +309,21 @@ namespace Dapper.SimpleSave.Tests {
         }
 
         [Test]
-        [ExpectedException(typeof(NotSupportedException))]
-        public void update_with_reference_data_in_parent_and_child_is_not_supported() {
-            throw new NotImplementedException();
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void update_with_reference_data_in_parent_and_child_is_invalid() {
+            var oldDto = new ParentReferenceDto {
+                ParentKey = 1,
+                ManyToManyReferenceChildDto = new ManyToManyReferenceChildDto()
+            };
+
+            var newDto = new ParentReferenceDto {
+                ParentKey = 1,
+                ParentName = "Wibble",
+                ManyToManyReferenceChildDto = new ManyToManyReferenceChildDto()
+            };
+
+            var cache = new DtoMetadataCache();
+            GetCommands(cache, oldDto, newDto, 1, 1, 0, 1, 0, 1, 0, 1, 0);
         }
 
         [Test]
@@ -299,9 +344,21 @@ namespace Dapper.SimpleSave.Tests {
         }
 
         [Test]
-        [ExpectedException(typeof(NotSupportedException))]
-        public void update_with_special_data_in_parent_and_reference_data_in_child_is_not_supported() {
-            throw new NotImplementedException();
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void update_with_special_data_in_parent_and_reference_data_in_child_is_invalid() {
+            var oldDto = new ParentSpecialDto {
+                ParentKey = 1,
+                ManyToManyReferenceChildDto = new ManyToManyReferenceChildDto()
+            };
+
+            var newDto = new ParentSpecialDto {
+                ParentKey = 1,
+                ParentName = "Wibble",
+                ManyToManyReferenceChildDto = new ManyToManyReferenceChildDto()
+            };
+
+            var cache = new DtoMetadataCache();
+            GetCommands(cache, oldDto, newDto, 1, 1, 0, 1, 0, 1, 0, 1, 0);
         }
 
         [Test]
@@ -322,9 +379,21 @@ namespace Dapper.SimpleSave.Tests {
         }
 
         [Test]
-        [ExpectedException(typeof(NotSupportedException))]
-        public void update_with_special_data_in_parent_and_child_is_not_supported() {
-            throw new NotImplementedException();
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void update_with_special_data_in_parent_and_child_is_invalid() {
+            var oldDto = new ParentSpecialDto {
+                ParentKey = 1,
+                ManyToManySpecialChildDto = new ManyToManySpecialChildDto()
+            };
+
+            var newDto = new ParentSpecialDto {
+                ParentKey = 1,
+                ParentName = "Wibble",
+                ManyToManySpecialChildDto = new ManyToManySpecialChildDto()
+            };
+
+            var cache = new DtoMetadataCache();
+            GetCommands(cache, oldDto, newDto, 1, 1, 0, 1, 0, 1, 0, 1, 0);
         }
 
         [Test]
