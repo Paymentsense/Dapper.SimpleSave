@@ -33,6 +33,19 @@ namespace Dapper.SimpleSave.Impl {
 
         public IEnumerable<PropertyMetadata> Properties { get; set; }
 
+        public PropertyMetadata GetForeignKeyColumnFor(Type dtoType)
+        {
+            foreach (var property in Properties)
+            {
+                var fk = property.GetAttribute<ForeignKeyReferenceAttribute>();
+                if (null != fk && fk.ReferencedDto == dtoType)
+                {
+                    return property;
+                }
+            }
+            return null;
+        }
+
         public int? GetPrimaryKeyValue(object obj)
         {
             return obj is Enum ? (int) obj : (int?) PrimaryKey.GetValue(obj);

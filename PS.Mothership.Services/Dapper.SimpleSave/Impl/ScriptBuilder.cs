@@ -60,6 +60,49 @@ SELECT SCOPE_IDENTITY();
 
         private static void AppendUpdateCommand(Script script, UpdateCommand command, ref int parmIndex)
         {
+            var firstOp = command.Operations.FirstOrDefault();
+            if (null == firstOp)
+            {
+                throw new ArgumentException(
+                    "Cannot create UPDATE script for command with no operations.",
+                    "command");
+            }
+
+            if (null != firstOp.OwnerPropertyMetadata
+                && firstOp.OwnerPropertyMetadata.HasAttribute<OneToManyAttribute>()
+                && firstOp.ValueMetadata.IsReferenceData
+                && firstOp.ValueMetadata.HasUpdateableForeignKeys)
+            {
+                AppendReverseUpdateCommandForChildTableReferencingParent(script, command, ref parmIndex);
+            }
+            else
+            {
+                AppendStandardUpdateCommand(script, command, ref parmIndex);
+            }
+        }
+
+        private static void AppendReverseUpdateCommandForChildTableReferencingParent(
+            Script script,
+            UpdateCommand command,
+            ref int parmIndex)
+        {
+            var operation = command.Operations.FirstOrDefault();
+            script.Buffer.Append(string.Format(@"UPDATE {0}
+SET [{1}] = ",
+                operation.ValueMetadata.TableName,
+                operation.ValueMetadata.GetForeignKeyColumnFor(operation.OwnerMetadata.DtoType).ColumnName));
+
+            FormatWithParm(script, "{0}", ref parmIndex, new Func<object>(() => command.PrimaryKey));
+
+            script.Buffer.Append(string.Format(@"
+WHERE [{0}] = ", operation.ValueMetadata.PrimaryKey.ColumnName));
+
+            FormatWithParm(script, @"{0};
+", ref parmIndex, operation.ValueMetadata.GetPrimaryKeyValue(operation.Value));
+        }
+
+        private static void AppendStandardUpdateCommand(Script script, UpdateCommand command, ref int parmIndex)
+        {
             script.Buffer.Append(string.Format(@"UPDATE {0}
 SET ", command.TableName));
 
@@ -74,7 +117,8 @@ SET ", command.TableName));
                 script.Buffer.Append(string.Format(@"[{0}] = ", operation.ColumnName));
                 bool useKey = false;
 
-                if (null != operation.ValueMetadata) {
+                if (null != operation.ValueMetadata)
+                {
                     if ((null != operation.OwnerPropertyMetadata
                      && (operation.OwnerPropertyMetadata.HasAttribute<OneToOneAttribute>()
                          || operation.OwnerPropertyMetadata.HasAttribute<ManyToOneAttribute>())))
@@ -85,7 +129,6 @@ SET ", command.TableName));
                     {
                         useKey = true;
                     }
-
                 }
 
                 if (useKey)
@@ -103,7 +146,6 @@ SET ", command.TableName));
 WHERE [{0}] = ", command.PrimaryKeyColumn));
             FormatWithParm(script, @"{0};
 ", ref parmIndex, new Func<object>(() => command.PrimaryKey));
-            //GetPossiblyUnknownPrimaryKeyValue(command.PrimaryKey));
         }
 
         private static void AppendDeleteCommand(Script script, DeleteCommand command, ref int parmIndex)
@@ -194,7 +236,10 @@ WHERE [{1}] = ",
 
                         var getter = property.Prop.GetGetMethod();
 
-                        if (getter == null || property.HasAttribute<ManyToManyAttribute>() || ! property.IsSaveable)
+                        if (getter == null
+                            || property.HasAttribute<ManyToManyAttribute>()
+                            || property.HasAttribute<OneToManyAttribute>()
+                            || ! property.IsSaveable)
                         {
                             continue;
                         }
@@ -230,19 +275,8 @@ WHERE [{1}] = ",
         private void AppendPropertyToInsertStatement(StringBuilder colBuff, StringBuilder valBuff, PropertyMetadata property,
             ref int index, BaseInsertDeleteOperation operation, ArrayList values, MethodInfo getter)
         {
-            if (colBuff.Length > 0)
-            {
-                colBuff.Append(@", ");
-                valBuff.Append(@", ");
-            }
-
-            colBuff.Append("[" + property.ColumnName + "]");
-
-            valBuff.Append("{");
-            valBuff.Append(index);
-            valBuff.Append("}");
-
             if (property.HasAttribute<ForeignKeyReferenceAttribute>()
+                && null != operation.OwnerMetadata
                 && _dtoMetadataCache.GetMetadataFor(
                     property.GetAttribute<ForeignKeyReferenceAttribute>().ReferencedDto).TableName ==
                 operation.OwnerMetadata.TableName)
@@ -253,6 +287,13 @@ WHERE [{1}] = ",
             }
             else if (property.HasAttribute<ManyToOneAttribute>() || property.HasAttribute<OneToOneAttribute>())
             {
+                if (property.HasAttribute<OneToOneAttribute>() && !property.HasAttribute<ForeignKeyReferenceAttribute>())
+                {
+                    //  One to one relationship where child table references parent rather than the other way around.
+                    //  This will be saved along with the child object.
+                    return;
+                }
+
                 object propValue = property.GetValue(operation.Value);
                 DtoMetadata propMetadata = _dtoMetadataCache.GetMetadataFor(property.Prop.PropertyType);
                 values.Add(
@@ -261,12 +302,22 @@ WHERE [{1}] = ",
                             null == propValue || null == propMetadata
                                 ? null
                                 : propMetadata.GetPrimaryKeyValue(propValue)));
-                //GetPossiblyUnknownPrimaryKeyValue(null == propValue || null == propMetadata ? null : propMetadata.GetPrimaryKeyValue(propValue)));
             }
             else
             {
                 values.Add(getter.Invoke(operation.Value, new object[0]));
             }
+
+            if (colBuff.Length > 0) {
+                colBuff.Append(@", ");
+                valBuff.Append(@", ");
+            }
+
+            colBuff.Append("[" + property.ColumnName + "]");
+
+            valBuff.Append("{");
+            valBuff.Append(index);
+            valBuff.Append("}");
 
             ++index;
         }

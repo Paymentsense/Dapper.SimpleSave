@@ -82,11 +82,20 @@ namespace Dapper.SimpleSave.Impl {
                     return baseInsertDelete;
                 }
 
-                if (baseInsertDelete.OwnerPropertyMetadata.HasAttribute<OneToManyAttribute>()
-                    && !baseInsertDelete.ValueMetadata.HasAttribute<ReferenceDataAttribute>())
+                if (baseInsertDelete.OwnerPropertyMetadata.HasAttribute<OneToManyAttribute>())
                 {
-                    //  INSERT or DELETE the value from the other table
-                    return baseInsertDelete;
+                    if (!baseInsertDelete.ValueMetadata.HasAttribute<ReferenceDataAttribute>())
+                    {
+                        //  INSERT or DELETE the value from the other table
+                        return baseInsertDelete;
+                    }
+                    
+                    if (!baseInsertDelete.ValueMetadata.HasUpdateableForeignKeys)
+                    {
+                        throw new InvalidOperationException(string.Format(
+                            "You cannot INSERT into a reference data child table in a one to many relationship between a parent table and a child table where the child table does not have updateable foreign keys. Attempted to INSERT into table {0}.",
+                            baseInsertDelete.ValueMetadata.TableName));
+                    }
                 }
             }
 
@@ -136,7 +145,8 @@ namespace Dapper.SimpleSave.Impl {
                         var insert = operation as InsertOperation;
                         ValidateInsertOperation(insert);
                         results.Add(new InsertCommand(insert));
-                    } else if (operation is DeleteOperation)
+                    }
+                    else if (operation is DeleteOperation)
                     {
                         var delete = operation as DeleteOperation;
                         ValidateDeleteOperation(delete);
@@ -159,7 +169,8 @@ namespace Dapper.SimpleSave.Impl {
             if (null == tableMetadata)
             {
                 throw new ArgumentException(
-                    "Cannot INSERT without metadata for table because we don't know which table we're INSERTing into. InsertOperation.ValueMetadata must not be null.");
+                    "Cannot INSERT without metadata for table because we don't know which table we're INSERTing into. InsertOperation.ValueMetadata must not be null.",
+                    "insert");
             }
 
             // We only need to complain if somebody tries to insert into a top level table at this point.
@@ -178,7 +189,8 @@ namespace Dapper.SimpleSave.Impl {
             var tableMetadata = delete.ValueMetadata;
             if (null == tableMetadata) {
                 throw new ArgumentException(
-                    "Cannot DELETE without metadata for table because we don't know which table we're DELETE-ing into. DeleteOperation.ValueMetadata must not be null.");
+                    "Cannot DELETE without metadata for table because we don't know which table we're DELETE-ing into. DeleteOperation.ValueMetadata must not be null.",
+                    "delete");
             }
 
             // We only need to complain if somebody tries to insert into a top level table at this point.

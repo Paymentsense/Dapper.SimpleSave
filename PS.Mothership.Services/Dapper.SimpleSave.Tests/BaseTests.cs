@@ -1,11 +1,60 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Dapper.SimpleSave.Impl;
 using NUnit.Framework;
 
 namespace Dapper.SimpleSave.Tests {
     public abstract class BaseTests {
+
+        protected IEnumerable<BaseCommand> GetCommands<T>(
+            DtoMetadataCache cache,
+            T oldDto,
+            T newDto,
+            int expectedDifferenceCount,
+            int expectedOperationCount,
+            int expectedInsertOperations,
+            int expectedUpdateOperations,
+            int expectedDeleteOperations,
+            int expectedCommandCount,
+            int expectedInsertCommands,
+            int expectedUpdateCommands,
+            int expectedDeleteCommands) {
+            var differ = new Differ(cache);
+            var differences = differ.Diff(oldDto, newDto);
+
+            Assert.AreEqual(expectedDifferenceCount, differences.Count(), "Unexpected number of differences.");
+
+            var operationBuilder = new OperationBuilder();
+            var operations = operationBuilder.Build(differences);
+            var commands = operationBuilder.Coalesce(operations);
+
+            Assert.AreEqual(expectedOperationCount, operations.Count(), "Unexpected number of operations.");
+            var counts = CountItemsByType(operations);
+            CheckCount(counts, typeof(InsertOperation), expectedInsertOperations);
+            CheckCount(counts, typeof(UpdateOperation), expectedUpdateOperations);
+            CheckCount(counts, typeof(DeleteOperation), expectedDeleteOperations);
+
+            Assert.AreEqual(expectedCommandCount, commands.Count(), "Unexpected number of commands.");
+            counts = CountItemsByType(commands);
+            CheckCount(counts, typeof(InsertCommand), expectedInsertCommands);
+            CheckCount(counts, typeof(UpdateCommand), expectedUpdateCommands);
+            CheckCount(counts, typeof(DeleteCommand), expectedDeleteCommands);
+
+            var scriptBuilder = new ScriptBuilder(cache);
+            var transactionScript = scriptBuilder.Build(commands);
+
+            Assert.IsNotNull(transactionScript, "#badtimes - null transaction script");
+            Assert.IsTrue(transactionScript.Count > 0, "Should be at least one script.");
+            foreach (var script in transactionScript) {
+                Assert.IsTrue(script.Buffer.Length > 0, "#badtimes - empty transaction script");
+            }
+
+            CheckNoReferenceTypesInParameters(transactionScript);
+
+            return commands;
+        }
 
         protected void CheckCount(IDictionary<Type, int> counts, Type type, int expectedCount) {
             Assert.AreEqual(

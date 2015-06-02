@@ -37,12 +37,12 @@ namespace Dapper.SimpleSave.Tests
                     new DepartmentDto
                     {
                         DepartmentKey = 1,
-                        Name = "The Flying Squad"
+                        Name = "Field-Sales"
                     },
                     new DepartmentDto
                     {
                         DepartmentKey = 2,
-                        Name = "The Pancake Landing Squad"
+                        Name = "Pro-Support"
                     } 
                 })
         };
@@ -67,12 +67,12 @@ namespace Dapper.SimpleSave.Tests
                     new DepartmentDto
                     {
                         DepartmentKey = 1,
-                        Name = "The Flying Squad"
+                        Name = "Field-Sales"
                     },
                     new DepartmentDto
                     {
                         DepartmentKey = 2,
-                        Name = "The Pancake Landing Squad"
+                        Name = "Pro-Support"
                     } 
                 })
         };
@@ -97,7 +97,7 @@ namespace Dapper.SimpleSave.Tests
                     new DepartmentDto
                     {
                         DepartmentKey = 2,
-                        Name = "The Pancake Landing Squad"
+                        Name = "Pro-Support"
                     } 
                 })
         };
@@ -122,12 +122,12 @@ namespace Dapper.SimpleSave.Tests
                     new DepartmentDto
                     {
                         DepartmentKey = 1,
-                        Name = "The Flying Squad"
+                        Name = "Field-Sales"
                     },
                     new DepartmentDto
                     {
                         DepartmentKey = 2,
-                        Name = "The Pancake Landing Squad"
+                        Name = "Pro-Support"
                     },
                     new DepartmentDto
                     {
@@ -157,7 +157,7 @@ namespace Dapper.SimpleSave.Tests
                 new DepartmentDto
                 {
                     DepartmentKey = 2,
-                    Name = "The Pancake Landing Squad"
+                    Name = "Pro-Support"
                 },
                 new DepartmentDto
                 {
@@ -199,7 +199,7 @@ namespace Dapper.SimpleSave.Tests
                 new DepartmentDto
                 {
                     DepartmentKey = 1,
-                    Name = "The Flying Squad"
+                    Name = "Field-Sales"
                 }
             }),
             AdditionalRoles = new List<RoleDto>(new[]

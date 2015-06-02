@@ -2,21 +2,24 @@
     [Table("dbo.[Parent]")]
     public class ParentDto : BaseParentDto {
         [OneToOne]
+        [ForeignKeyReference(typeof(OneToOneChildDtoNoFk))]
         public OneToOneChildDtoNoFk OneToOneChildDtoNoFk { get; set; }
 
         [OneToOne]
+        [ForeignKeyReference(typeof(OneToOneReferenceChildDtoNoFk))]
         public OneToOneReferenceChildDtoNoFk OneToOneReferenceChildDtoNoFk { get; set; }
 
         [OneToOne]
+        [ForeignKeyReference(typeof(OneToOneSpecialChildDtoNoFk))]
         public OneToOneSpecialChildDtoNoFk OneToOneSpecialChildDtoNoFk { get; set; }
 
-        [OneToOne("ChildKey")]
+        [OneToOne("ChildKey")]  //  TODO: don't think column name is necessary
         public OneToOneChildDtoWithFk OneToOneChildDtoWithFk { get; set; }
 
-        [OneToOne("ChildKey")]
+        [OneToOne("ChildKey")]  //  TODO: don't think column name is necessary
         public OneToOneReferenceChildDtoWithFk OneToOneReferenceChildDtoWithFk { get; set; }
 
-        [OneToOne("ChildKey")]
+        [OneToOne("ChildKey")]  //  TODO: don't think column name is necessary
         public OneToOneSpecialChildDtoWithFk OneToOneSpecialChildDtoWithFk { get; set; }
 
         [OneToMany]
@@ -35,6 +38,7 @@
         public ManyToOneReferenceChildDto ManyToOneReferenceChildDto { get; set; }
 
         [ManyToOne]
+
         public ManyToOneSpecialChildDto ManyToOneSpecialChildDto { get; set; }
 
         [ManyToMany("dbo.ManyToManyChild_Lnk")]
