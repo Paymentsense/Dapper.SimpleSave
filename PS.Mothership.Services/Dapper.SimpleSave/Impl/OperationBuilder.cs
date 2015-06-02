@@ -136,8 +136,11 @@ namespace Dapper.SimpleSave.Impl {
                         var insert = operation as InsertOperation;
                         ValidateInsertOperation(insert);
                         results.Add(new InsertCommand(insert));
-                    } else if (operation is DeleteOperation) {
-                        results.Add(new DeleteCommand(operation as DeleteOperation));
+                    } else if (operation is DeleteOperation)
+                    {
+                        var delete = operation as DeleteOperation;
+                        ValidateDeleteOperation(delete);
+                        results.Add(new DeleteCommand(delete));
                     }
                 }
             }
@@ -166,6 +169,24 @@ namespace Dapper.SimpleSave.Impl {
             {
                 throw new InvalidOperationException(string.Format(
                     "You cannot INSERT into a reference data table, even if that table contains updateable foreign keys. Attempt was made to INSERT into {0}.",
+                    tableMetadata.TableName));
+            }
+        }
+
+        private void ValidateDeleteOperation(DeleteOperation delete)
+        {
+            var tableMetadata = delete.ValueMetadata;
+            if (null == tableMetadata) {
+                throw new ArgumentException(
+                    "Cannot DELETE without metadata for table because we don't know which table we're DELETE-ing into. DeleteOperation.ValueMetadata must not be null.");
+            }
+
+            // We only need to complain if somebody tries to insert into a top level table at this point.
+            // Insertions into child tables will be transformed into inserts into link tables for many to many
+            // reference data tables later.
+            if (delete.OwnerMetadata == null && tableMetadata.IsReferenceData) {
+                throw new InvalidOperationException(string.Format(
+                    "You cannot DELETE from a reference data table, even if that table contains updateable foreign keys. Attempt was made to DELETE from {0}.",
                     tableMetadata.TableName));
             }
         }

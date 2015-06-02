@@ -133,7 +133,32 @@ namespace Dapper.SimpleSave.Tests {
 
         [Test]
         public void delete_with_no_reference_data_deletes_from_link_table_and_parent() {
-            throw new NotImplementedException();
+            var oldDto = new ParentDto {
+                ParentKey = 1,
+                ManyToManyChildDto = new ManyToManyChildDto()
+            };
+
+            delete_deletes_from_link_table_and_parent(oldDto, typeof(ManyToManyChildDto));
+        }
+
+        private void delete_deletes_from_link_table_and_parent<T>(T oldDto, Type childDtoType) where T: ParentDto {
+            var cache = new DtoMetadataCache();
+            var commands = GetCommands(cache, oldDto, default(T), 2, 2, 0, 0, 2, 2, 0, 0, 2);
+            var list = new List<BaseCommand>(commands);
+
+            var command = list [0] as DeleteCommand;
+
+            Assert.AreEqual(
+                cache.GetMetadataFor(childDtoType).TableName,
+                command.Operation.ValueMetadata.TableName,
+                "Unexpected table name for child.");
+
+            command = list [1] as DeleteCommand;
+
+            Assert.AreEqual(
+                cache.GetMetadataFor(typeof(ParentDto)).TableName,
+                command.Operation.ValueMetadata.TableName,
+                "Unexpected table name for parent.");
         }
 
         [Test]
@@ -208,7 +233,12 @@ namespace Dapper.SimpleSave.Tests {
 
         [Test]
         public void delete_with_reference_data_in_child_deletes_from_link_table_and_parent() {
-            throw new NotImplementedException();
+            var oldDto = new ParentDto {
+                ParentKey = 1,
+                ManyToManyReferenceChildDto = new ManyToManyReferenceChildDto()
+            };
+
+            delete_deletes_from_link_table_and_parent(oldDto, typeof(ManyToManyReferenceChildDto));
         }
 
         [Test]
@@ -259,7 +289,12 @@ namespace Dapper.SimpleSave.Tests {
 
         [Test]
         public void delete_with_special_data_in_child_deletes_from_link_table_and_parent() {
-            throw new NotImplementedException();
+            var oldDto = new ParentDto {
+                ParentKey = 1,
+                ManyToManySpecialChildDto = new ManyToManySpecialChildDto()
+            };
+
+            delete_deletes_from_link_table_and_parent(oldDto, typeof(ManyToManySpecialChildDto));
         }
 
         [Test]
@@ -292,9 +327,14 @@ namespace Dapper.SimpleSave.Tests {
         }
 
         [Test]
-        [ExpectedException(typeof(NotSupportedException))]
-        public void delete_with_reference_data_in_child_parent_is_not_supported() {
-            throw new NotImplementedException();
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void delete_with_reference_data_in_parent_is_invalid() {
+            var oldDto = new ParentReferenceDto {
+                ParentKey = 1,
+                ManyToManyChildDto = new ManyToManyChildDto()
+            };
+
+            delete_deletes_from_link_table_and_parent(oldDto, typeof(ManyToManyChildDto));
         }
 
         [Test]
@@ -327,9 +367,14 @@ namespace Dapper.SimpleSave.Tests {
         }
 
         [Test]
-        [ExpectedException(typeof(NotSupportedException))]
-        public void delete_with_reference_data_in_child_parent_and_child_is_not_supported() {
-            throw new NotImplementedException();
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void delete_with_reference_data_in_parent_and_child_is_invalid() {
+            var oldDto = new ParentReferenceDto {
+                ParentKey = 1,
+                ManyToManyReferenceChildDto = new ManyToManyReferenceChildDto()
+            };
+
+            delete_deletes_from_link_table_and_parent(oldDto, typeof(ManyToManyReferenceChildDto));
         }
 
         [Test]
@@ -362,9 +407,14 @@ namespace Dapper.SimpleSave.Tests {
         }
 
         [Test]
-        [ExpectedException(typeof(NotSupportedException))]
-        public void delete_with_special_data_in_parent_and_reference_data_in_child_is_not_supported() {
-            throw new NotImplementedException();
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void delete_with_special_data_in_parent_and_reference_data_in_child_is_invalid() {
+            var oldDto = new ParentSpecialDto {
+                ParentKey = 1,
+                ManyToManyReferenceChildDto = new ManyToManyReferenceChildDto()
+            };
+
+            delete_deletes_from_link_table_and_parent(oldDto, typeof(ManyToManyReferenceChildDto));
         }
 
         [Test]
@@ -397,9 +447,14 @@ namespace Dapper.SimpleSave.Tests {
         }
 
         [Test]
-        [ExpectedException(typeof(NotSupportedException))]
-        public void delete_with_special_data_in_child_parent_and_child_is_not_supported() {
-            throw new NotImplementedException();
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void delete_with_special_data_in_parent_and_child_is_invalid() {
+            var oldDto = new ParentSpecialDto {
+                ParentKey = 1,
+                ManyToManySpecialChildDto = new ManyToManySpecialChildDto()
+            };
+
+            delete_deletes_from_link_table_and_parent(oldDto, typeof(ManyToManySpecialChildDto));
         }
     }
 }
