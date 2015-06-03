@@ -54,7 +54,52 @@ namespace Dapper.SimpleSave.Impl {
 
             if (!FilterOutInsertOrDelete(insertOperation))
             {
-                operations.Add(Transform(insertOperation));
+                AddInsertToListAtCorrectLocation(operations, insertOperation);
+            }
+        }
+
+        private void AddInsertToListAtCorrectLocation(IList<BaseOperation> operations, InsertOperation insertOperation)
+        {
+            var transformed = Transform(insertOperation);
+            if (transformed == insertOperation)
+            {
+                if (null != insertOperation.OwnerPropertyMetadata
+                    && insertOperation.OwnerPropertyMetadata.IsOneToOneRelationship
+                    && !insertOperation.ValueMetadata.IsReferenceData
+                    && insertOperation.OwnerPropertyMetadata.HasAttribute<ForeignKeyReferenceAttribute>())
+                {
+                    PrependInsertBeforeParentTableInsert(operations, insertOperation);
+                }
+                else
+                {
+                    operations.Add(transformed);
+                }
+            }
+            else
+            {
+                operations.Add(transformed);
+            }
+        }
+
+        private static void PrependInsertBeforeParentTableInsert(
+            IList<BaseOperation> operations,
+            InsertOperation insertOperation)
+        {
+            int index = operations.Count - 1;
+            while (index >= 0)
+            {
+                var possibleMatch = operations[index] as InsertOperation;
+                if (null != possibleMatch && possibleMatch.ValueMetadata == insertOperation.OwnerMetadata)
+                {
+                    operations.Insert(index, insertOperation);
+                    break;
+                }
+                --index;
+            }
+
+            if (index < 0)
+            {
+                operations.Add(insertOperation);
             }
         }
 
@@ -80,7 +125,10 @@ namespace Dapper.SimpleSave.Impl {
         private bool FilterOutInsertOrDelete(BaseInsertDeleteOperation insertDeleteOperation)
         {
             return insertDeleteOperation.OwnerPropertyMetadata != null
-                   && insertDeleteOperation.OwnerPropertyMetadata.IsManyToOneRelationship;
+                   && (insertDeleteOperation.OwnerPropertyMetadata.IsManyToOneRelationship
+                        || (insertDeleteOperation.OwnerPropertyMetadata.IsOneToOneRelationship
+                            && insertDeleteOperation.ValueMetadata.IsReferenceData
+                            && ! insertDeleteOperation.ValueMetadata.HasUpdateableForeignKeys));
         }
 
         private void AppendUpdateOperation(IList<BaseOperation> operations, Difference diff)
@@ -125,7 +173,22 @@ namespace Dapper.SimpleSave.Impl {
                     if (!baseInsertDelete.ValueMetadata.HasUpdateableForeignKeys)
                     {
                         throw new InvalidOperationException(string.Format(
-                            "You cannot INSERT into a reference data child table in a one to many relationship between a parent table and a child table where the child table does not have updateable foreign keys. Attempted to INSERT into table {0}.",
+                            "You cannot INSERT into a reference data child table in a one to many relationship between a parent table and a child table where the child table does not have updateable foreign keys. (Note that any INSERT satisfying these conditions would be transformed into an UPDATE on the target row in the child table.) Attempted to INSERT into table {0}.",
+                            baseInsertDelete.ValueMetadata.TableName));
+                    }
+                }
+
+                if (baseInsertDelete.OwnerPropertyMetadata.HasAttribute<OneToOneAttribute>())
+                {
+                    if (!baseInsertDelete.ValueMetadata.HasAttribute<ReferenceDataAttribute>())
+                    {
+                        return baseInsertDelete;
+                    }
+
+                    if (!baseInsertDelete.ValueMetadata.HasUpdateableForeignKeys && !baseInsertDelete.OwnerPropertyMetadata.HasAttribute<ForeignKeyReferenceAttribute>())
+                    {
+                        throw new InvalidOperationException(string.Format(
+                            "You cannot INSERT into a reference data child table in a one to one relationship between a parent table and a child table where te child table does not have updateable foreign keys. (Note that any INSERT satisfying these conditions would be transformed into an UPDATE on the target row in the child table.) Attempted to INSERT into table {0}.",
                             baseInsertDelete.ValueMetadata.TableName));
                     }
                 }
