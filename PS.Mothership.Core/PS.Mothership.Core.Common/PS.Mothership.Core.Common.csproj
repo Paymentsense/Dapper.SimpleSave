@@ -221,6 +221,7 @@
     <Compile Include="Dto\Merchant\MerchantHistoryDto.cs" />
     <Compile Include="Dto\Merchant\MerchantEventLnkDto.cs" />
     <Compile Include="Dto\Merchant\MerchantReminderTypeMetadataDto.cs" />
+    <Compile Include="Dto\Merchant\OfferDebitPriorityDto.cs" />
     <Compile Include="Dto\Merchant\OfferDefaultDto.cs" />
     <Compile Include="Dto\Event\EventTrnFullDto.cs" />
     <Compile Include="Dto\Merchant\OfferFieldItemLutDto.cs" />
