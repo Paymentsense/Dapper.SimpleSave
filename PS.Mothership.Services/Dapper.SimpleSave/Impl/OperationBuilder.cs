@@ -190,6 +190,7 @@ namespace Dapper.SimpleSave.Impl {
             return insertDeleteOperation.OwnerPropertyMetadata != null
                    && (insertDeleteOperation.OwnerPropertyMetadata.IsManyToOneRelationship
                         || (insertDeleteOperation.OwnerPropertyMetadata.IsOneToOneRelationship
+                            && insertDeleteOperation.OwnerPropertyMetadata.HasAttribute<ForeignKeyReferenceAttribute>()
                             && insertDeleteOperation.ValueMetadata.IsReferenceData
                             && ! insertDeleteOperation.ValueMetadata.HasUpdateableForeignKeys));
         }

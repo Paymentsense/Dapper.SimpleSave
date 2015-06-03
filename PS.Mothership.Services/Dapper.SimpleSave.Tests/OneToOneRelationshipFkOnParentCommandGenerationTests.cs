@@ -13,7 +13,7 @@ namespace Dapper.SimpleSave.Tests {
     public class OneToOneRelationshipFkOnParentCommandGenerationTests : BaseTests
     {
 
-        private void insert_inserts_in_child_and_maybe_parent<T>(T newDto, Type childDtoType, bool insertsInChild)
+        private void insert_maybe_inserts_in_child_and_always_in_parent<T>(T newDto, Type childDtoType, bool insertsInChild)
         {
             var counts = insertsInChild ? 2 : 1;
             var cache = new DtoMetadataCache();
@@ -46,7 +46,7 @@ namespace Dapper.SimpleSave.Tests {
                 OneToOneChildDtoNoFk = new OneToOneChildDtoNoFk()
             };
 
-            insert_inserts_in_child_and_maybe_parent(newDto, typeof(OneToOneChildDtoNoFk), true);
+            insert_maybe_inserts_in_child_and_always_in_parent(newDto, typeof(OneToOneChildDtoNoFk), true);
         }
 
         private void update_updates_in_parent_and_maybe_child<T>(
@@ -150,7 +150,7 @@ namespace Dapper.SimpleSave.Tests {
                 OneToOneReferenceChildDtoNoFk = new OneToOneReferenceChildDtoNoFk()
             };
 
-            insert_inserts_in_child_and_maybe_parent(newDto, typeof(OneToOneReferenceChildDtoNoFk), false);
+            insert_maybe_inserts_in_child_and_always_in_parent(newDto, typeof(OneToOneReferenceChildDtoNoFk), false);
         }
 
         [Test]
@@ -213,7 +213,7 @@ namespace Dapper.SimpleSave.Tests {
                 OneToOneChildDtoNoFk = new OneToOneChildDtoNoFk()
             };
 
-            insert_inserts_in_child_and_maybe_parent(newDto, typeof(OneToOneChildDtoNoFk), false);
+            insert_maybe_inserts_in_child_and_always_in_parent(newDto, typeof(OneToOneChildDtoNoFk), false);
         }
 
         [Test]
@@ -243,7 +243,7 @@ namespace Dapper.SimpleSave.Tests {
                 OneToOneChildDtoNoFk = new OneToOneChildDtoNoFk()
             };
 
-            insert_inserts_in_child_and_maybe_parent(newDto, typeof(OneToOneChildDtoNoFk), false);
+            insert_maybe_inserts_in_child_and_always_in_parent(newDto, typeof(OneToOneChildDtoNoFk), false);
         }
 
         [Test]
@@ -255,7 +255,7 @@ namespace Dapper.SimpleSave.Tests {
                 OneToOneChildDtoNoFk = new OneToOneChildDtoNoFk()
             };
 
-            insert_inserts_in_child_and_maybe_parent(newDto, typeof(OneToOneChildDtoNoFk), false);
+            insert_maybe_inserts_in_child_and_always_in_parent(newDto, typeof(OneToOneChildDtoNoFk), false);
         }
 
         [Test]
@@ -285,7 +285,7 @@ namespace Dapper.SimpleSave.Tests {
                 OneToOneChildDtoNoFk = new OneToOneChildDtoNoFk()
             };
 
-            insert_inserts_in_child_and_maybe_parent(newDto, typeof(OneToOneChildDtoNoFk), false);
+            insert_maybe_inserts_in_child_and_always_in_parent(newDto, typeof(OneToOneChildDtoNoFk), false);
         }
 
         [Test]
@@ -297,7 +297,7 @@ namespace Dapper.SimpleSave.Tests {
                 OneToOneReferenceChildDtoNoFk = new OneToOneReferenceChildDtoNoFk()
             };
 
-            insert_inserts_in_child_and_maybe_parent(newDto, typeof(OneToOneReferenceChildDtoNoFk), false);
+            insert_maybe_inserts_in_child_and_always_in_parent(newDto, typeof(OneToOneReferenceChildDtoNoFk), false);
         }
 
         [Test]
@@ -327,7 +327,7 @@ namespace Dapper.SimpleSave.Tests {
                 OneToOneReferenceChildDtoNoFk = new OneToOneReferenceChildDtoNoFk()
             };
 
-            insert_inserts_in_child_and_maybe_parent(newDto, typeof(OneToOneReferenceChildDtoNoFk), false);
+            insert_maybe_inserts_in_child_and_always_in_parent(newDto, typeof(OneToOneReferenceChildDtoNoFk), false);
         }
     }
 }
