@@ -42,7 +42,43 @@ namespace Dapper.SimpleSave.Tests {
 
         [Test]
         public void update_with_fk_on_child_no_reference_data_updates_rows_in_parent_and_child() {
-            throw new NotImplementedException();
+            var oldDto = new ParentDto()
+            {
+                ParentKey = 943982,
+                OneToOneChildDtoWithFk = new OneToOneChildDtoWithFk
+                {
+                    ParentKey = 943982
+                }
+            };
+
+            var newDto = new ParentDto()
+            {
+                ParentKey = 943982,
+                ParentName = "Breaking",
+                OneToOneChildDtoWithFk = new OneToOneChildDtoWithFk
+                {
+                    ParentKey = 943982,
+                    Name = "Bad"
+                }
+            };
+
+            var cache = new DtoMetadataCache();
+            var commands = GetCommands(cache, oldDto, newDto, 2, 2, 0, 2, 0, 2, 0, 2, 0);
+            var list = new List<BaseCommand>(commands);
+
+            var update = list[0] as UpdateCommand;
+
+            Assert.AreEqual(
+                cache.GetMetadataFor(typeof(OneToOneChildDtoWithFk)).TableName,
+                update.Operations.FirstOrDefault().OwnerMetadata.TableName,
+                "Unexpected child table name.");
+
+            update = list[1] as UpdateCommand;
+            
+            Assert.AreEqual(
+                cache.GetMetadataFor(typeof(ParentDto)).TableName,
+                update.Operations.FirstOrDefault().OwnerMetadata.TableName,
+                "Unexpected parent table name.");
         }
 
         [Test]
@@ -123,7 +159,8 @@ namespace Dapper.SimpleSave.Tests {
         }
 
         [Test]
-        public void update_with_fk_on_child_and_reference_data_in_parent_updates_parent() {
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void update_with_fk_on_child_and_reference_data_in_parent_is_invalid() {
             throw new NotImplementedException();
         }
 
