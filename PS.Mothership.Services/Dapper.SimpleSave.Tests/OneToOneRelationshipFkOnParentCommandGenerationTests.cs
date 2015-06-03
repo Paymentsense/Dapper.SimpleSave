@@ -49,10 +49,57 @@ namespace Dapper.SimpleSave.Tests {
             insert_inserts_in_child_and_maybe_parent(newDto, typeof(OneToOneChildDtoNoFk), true);
         }
 
+        private void update_updates_in_parent_and_maybe_child<T>(
+            T oldDto,
+            T newDto,
+            Type childDtoType,
+            int expectedDifferenceCount,
+            bool updatesChildDto)
+        {
+            var counts = updatesChildDto ? 2 : 1;
+            var cache = new DtoMetadataCache();
+            var commands = GetCommands(cache, oldDto, newDto, expectedDifferenceCount, counts, 0, counts, 0, counts, 0, counts, 0);
+            var list = new List<BaseCommand>(commands);
+
+            if (updatesChildDto)
+            {
+                var childUpdate = list [0] as UpdateCommand;
+
+                Assert.AreEqual(
+                    cache.GetMetadataFor(childDtoType).TableName,
+                    childUpdate.Operations.FirstOrDefault().OwnerMetadata.TableName,
+                    "Unexpected child table name.");
+            }
+
+            var parentUpdate = list [counts - 1] as UpdateCommand;
+
+            Assert.AreEqual(
+                cache.GetMetadataFor(typeof(T)).TableName,
+                parentUpdate.Operations.FirstOrDefault().OwnerMetadata.TableName,
+                "Unexpected parent table name.");
+
+        }
+
         [Test]
         public void update_with_fk_on_parent_no_reference_data_updates_rows_in_child_and_parent()
         {
-            throw new NotImplementedException();
+            var oldDto = new ParentDto
+            {
+                ParentKey = 52879,
+                OneToOneChildDtoNoFk = new OneToOneChildDtoNoFk()
+            };
+
+            var newDto = new ParentDto
+            {
+                ParentKey = 52879,
+                ParentName = "I will fight you",
+                OneToOneChildDtoNoFk = new OneToOneChildDtoNoFk
+                {
+                    Name = "On the beaches"
+                }
+            };
+
+            update_updates_in_parent_and_maybe_child(oldDto, newDto, typeof(OneToOneChildDtoNoFk), 2, true);
         }
 
         [Test]
@@ -74,7 +121,43 @@ namespace Dapper.SimpleSave.Tests {
 
         [Test]
         public void update_with_fk_on_parent_and_reference_data_in_child_updates_in_parent_only() {
-            throw new NotImplementedException();
+            var oldDto = new ParentDto
+            {
+                ParentKey = 52879,
+                OneToOneReferenceChildDtoNoFk = new OneToOneReferenceChildDtoNoFk()
+            };
+
+            var newDto = new ParentDto
+            {
+                ParentKey = 52879,
+                ParentName = "I will fight you",
+                OneToOneReferenceChildDtoNoFk = new OneToOneReferenceChildDtoNoFk()
+            };
+
+            update_updates_in_parent_and_maybe_child(oldDto, newDto, typeof(OneToOneChildDtoNoFk), 1, false);
+        }
+
+        [Test]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void update_both_with_fk_on_parent_and_reference_data_in_child_is_invalid()
+        {
+            var oldDto = new ParentDto
+            {
+                ParentKey = 52879,
+                OneToOneReferenceChildDtoNoFk = new OneToOneReferenceChildDtoNoFk()
+            };
+
+            var newDto = new ParentDto
+            {
+                ParentKey = 52879,
+                ParentName = "I will fight you",
+                OneToOneReferenceChildDtoNoFk = new OneToOneReferenceChildDtoNoFk
+                {
+                    Name = "On the beaches"
+                }
+            };
+
+            update_updates_in_parent_and_maybe_child(oldDto, newDto, typeof(OneToOneReferenceChildDtoNoFk), 2, true);
         }
 
         [Test]
@@ -95,9 +178,22 @@ namespace Dapper.SimpleSave.Tests {
         }
 
         [Test]
-        [ExpectedException(typeof(NotSupportedException))]
-        public void update_with_fk_on_parent_and_reference_data_in_parent_is_not_supported() {
-            throw new NotImplementedException();
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void update_with_fk_on_parent_and_reference_data_in_parent_is_invalid() {
+            var oldDto = new ParentReferenceDto
+            {
+                ParentKey = 52879,
+                OneToOneChildDtoNoFk = new OneToOneChildDtoNoFk()
+            };
+
+            var newDto = new ParentReferenceDto
+            {
+                ParentKey = 52879,
+                ParentName = "I will fight you",
+                OneToOneChildDtoNoFk = new OneToOneChildDtoNoFk()
+            };
+
+            update_updates_in_parent_and_maybe_child(oldDto, newDto, typeof(OneToOneChildDtoNoFk), 1, false);
         }
 
         [Test]
@@ -119,8 +215,22 @@ namespace Dapper.SimpleSave.Tests {
         }
 
         [Test]
-        public void update_with_fk_on_parent_and_special_data_in_parent_updates_parent() {
-            throw new NotImplementedException();
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void update_with_fk_on_parent_and_special_data_in_parent_is_invalid() {
+            var oldDto = new ParentSpecialDto
+            {
+                ParentKey = 52879,
+                OneToOneChildDtoNoFk = new OneToOneChildDtoNoFk()
+            };
+
+            var newDto = new ParentSpecialDto
+            {
+                ParentKey = 52879,
+                ParentName = "I will fight you",
+                OneToOneChildDtoNoFk = new OneToOneChildDtoNoFk()
+            };
+
+            update_updates_in_parent_and_maybe_child(oldDto, newDto, typeof(OneToOneChildDtoNoFk), 1, false);
         }
 
         [Test]
@@ -142,9 +252,22 @@ namespace Dapper.SimpleSave.Tests {
         }
 
         [Test]
-        [ExpectedException(typeof(NotSupportedException))]
-        public void update_with_fk_on_parent_and_reference_data_in_both_parent_and_child_is_not_supported() {
-            throw new NotImplementedException();
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void update_with_fk_on_parent_and_reference_data_in_both_parent_and_child_is_invalid() {
+            var oldDto = new ParentReferenceDto
+            {
+                ParentKey = 52879,
+                OneToOneReferenceChildDtoNoFk = new OneToOneReferenceChildDtoNoFk()
+            };
+
+            var newDto = new ParentReferenceDto
+            {
+                ParentKey = 52879,
+                ParentName = "I will fight you",
+                OneToOneReferenceChildDtoNoFk = new OneToOneReferenceChildDtoNoFk()
+            };
+
+            update_updates_in_parent_and_maybe_child(oldDto, newDto, typeof(OneToOneReferenceChildDtoNoFk), 1, false);
         }
 
         [Test]
