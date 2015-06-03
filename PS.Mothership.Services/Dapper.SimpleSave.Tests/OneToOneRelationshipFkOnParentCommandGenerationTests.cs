@@ -102,10 +102,44 @@ namespace Dapper.SimpleSave.Tests {
             update_updates_in_parent_and_maybe_child(oldDto, newDto, typeof(OneToOneChildDtoNoFk), 2, true);
         }
 
-        [Test]
-        public void delete_with_fk_on_parent_no_reference_data_deletes_rows_in_parent_and_child()
+        private void delete_deletes_from_parent_and_maybe_child<T>(
+            T oldDto,
+            Type childDtoType,
+            bool deletesFromChild)
         {
-            throw new NotImplementedException();
+            var counts = deletesFromChild ? 2 : 1;
+            var cache = new DtoMetadataCache();
+            var commands = GetCommands(cache, oldDto, default(T), 2, counts, 0, 0, counts, counts, 0, 0, counts);
+            var list = new List<BaseCommand>(commands);
+
+            var parentDelete = list [0] as DeleteCommand;
+
+            Assert.AreEqual(
+                cache.GetMetadataFor(typeof(T)).TableName,
+                parentDelete.Operation.ValueMetadata.TableName,
+                "Unexpected parent table name.");
+
+            if (deletesFromChild)
+            {
+                var childDelete = list [1] as DeleteCommand;
+
+                Assert.AreEqual(
+                    cache.GetMetadataFor(childDtoType).TableName,
+                    childDelete.Operation.ValueMetadata.TableName,
+                    "Unexpected child table name.");
+            }
+
+        }
+
+        [Test]
+        public void delete_with_fk_on_parent_no_reference_data_deletes_rows_in_child_and_parent()
+        {
+            var oldDto = new ParentDto
+            {
+                OneToOneChildDtoNoFk = new OneToOneChildDtoNoFk()
+            };
+
+            delete_deletes_from_parent_and_maybe_child(oldDto, typeof(OneToOneChildDtoNoFk), true);
         }
 
         [Test]
@@ -162,7 +196,12 @@ namespace Dapper.SimpleSave.Tests {
 
         [Test]
         public void delete_with_fk_on_parent_and_reference_data_in_child_deletes_in_parent_only() {
-            throw new NotImplementedException();
+            var oldDto = new ParentDto
+            {
+                OneToOneReferenceChildDtoNoFk = new OneToOneReferenceChildDtoNoFk()
+            };
+
+            delete_deletes_from_parent_and_maybe_child(oldDto, typeof(OneToOneReferenceChildDtoNoFk), false);
         }
 
         [Test]
@@ -197,9 +236,14 @@ namespace Dapper.SimpleSave.Tests {
         }
 
         [Test]
-        [ExpectedException(typeof(NotSupportedException))]
-        public void delete_with_fk_on_parent_and_reference_data_in_parent_is_not_supported() {
-            throw new NotImplementedException();
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void delete_with_fk_on_parent_and_reference_data_in_parent_is_invalid() {
+            var newDto = new ParentReferenceDto
+            {
+                OneToOneChildDtoNoFk = new OneToOneChildDtoNoFk()
+            };
+
+            insert_inserts_in_child_and_maybe_parent(newDto, typeof(OneToOneChildDtoNoFk), false);
         }
 
         [Test]
@@ -234,9 +278,14 @@ namespace Dapper.SimpleSave.Tests {
         }
 
         [Test]
-        [ExpectedException(typeof(NotSupportedException))]
-        public void delete_with_fk_on_parent_and_special_data_in_parent_is_not_supported() {
-            throw new NotImplementedException();
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void delete_with_fk_on_parent_and_special_data_in_parent_is_invalid() {
+            var newDto = new ParentSpecialDto
+            {
+                OneToOneChildDtoNoFk = new OneToOneChildDtoNoFk()
+            };
+
+            insert_inserts_in_child_and_maybe_parent(newDto, typeof(OneToOneChildDtoNoFk), false);
         }
 
         [Test]
@@ -271,9 +320,14 @@ namespace Dapper.SimpleSave.Tests {
         }
 
         [Test]
-        [ExpectedException(typeof(NotSupportedException))]
-        public void delete_with_fk_on_parent_and_reference_data_in_both_parent_and_child_is_not_supported() {
-            throw new NotImplementedException();
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void delete_with_fk_on_parent_and_reference_data_in_both_parent_and_child_is_invalid() {
+            var newDto = new ParentReferenceDto
+            {
+                OneToOneReferenceChildDtoNoFk = new OneToOneReferenceChildDtoNoFk()
+            };
+
+            insert_inserts_in_child_and_maybe_parent(newDto, typeof(OneToOneReferenceChildDtoNoFk), false);
         }
     }
 }

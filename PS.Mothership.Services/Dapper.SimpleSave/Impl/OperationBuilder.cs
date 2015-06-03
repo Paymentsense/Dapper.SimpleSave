@@ -118,7 +118,70 @@ namespace Dapper.SimpleSave.Impl {
 
             if (!FilterOutInsertOrDelete(deleteOperation))
             {
-                operations.Add(Transform(deleteOperation));
+                AddDeleteToListAtCorrectLocation(operations, deleteOperation);
+            }
+        }
+
+        private void AddDeleteToListAtCorrectLocation(IList<BaseOperation> operations, DeleteOperation deleteOperation)
+        {
+            var transformed = Transform(deleteOperation);
+            if (transformed == deleteOperation)
+            {
+                if (HasAnyOneToOneChildrenWithFKOnParent(deleteOperation))
+                {
+                    PrependDeleteBeforeReferencedChildTableDelete(operations, deleteOperation);
+                }
+                else
+                {
+                    operations.Add(transformed);
+                }
+            }
+            else
+            {
+                operations.Add(transformed);
+            }
+        }
+
+        private bool HasAnyOneToOneChildrenWithFKOnParent(DeleteOperation deleteOperation)
+        {
+            foreach (var property in deleteOperation.ValueMetadata.Properties)
+            {
+                if (property.IsOneToOneRelationship && property.HasAttribute<ForeignKeyReferenceAttribute>())
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private static void PrependDeleteBeforeReferencedChildTableDelete(
+            IList<BaseOperation> operations,
+            DeleteOperation deleteOperation)
+        {
+            var firstIndex = -1;
+            int index = operations.Count - 1;
+            while (index >= 0)
+            {
+                var possibleMatch = operations [index] as DeleteOperation;
+                if (null != possibleMatch
+                    && possibleMatch.OwnerMetadata == deleteOperation.ValueMetadata
+                    && possibleMatch.OwnerPropertyMetadata != null
+                    && possibleMatch.OwnerPropertyMetadata.IsOneToOneRelationship
+                    && possibleMatch.OwnerPropertyMetadata.HasAttribute<ForeignKeyReferenceAttribute>())
+                {
+                    firstIndex = index;
+                    break;
+                }
+                --index;
+            }
+
+            if (firstIndex < 0)
+            {
+                operations.Add(deleteOperation);
+            }
+            else
+            {
+                operations.Insert(firstIndex, deleteOperation);
             }
         }
 
