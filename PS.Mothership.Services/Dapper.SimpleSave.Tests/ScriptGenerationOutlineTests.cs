@@ -237,15 +237,15 @@ namespace Dapper.SimpleSave.Tests
             return (UserDto) field.GetValue(null);
         }
 
-        [TestCase(null, "JohnSmith", 4, 4, 3, 1, 0, 4, 3, 1, 0)]
-        [TestCase(null, "ZargonComplexUpdates", 6, 6, 5, 1, 0, 6, 5, 1, 0)]
+        [TestCase(null, "JohnSmith", 4, 3, 3, 0, 0, 3, 3, 0, 0)]
+        [TestCase(null, "ZargonComplexUpdates", 6, 5, 5, 0, 0, 5, 5, 0, 0)]
         [TestCase("JohnSmith", "ZargonRemovedDepartment", 4, 4, 0, 3, 1, 2, 0, 1, 1)]
         [TestCase("JohnSmith", "ZargonAddedDepartment", 4, 4, 1, 3, 0, 2, 1, 1, 0)]
         [TestCase("JohnSmith", "ZargonComplexUpdates", 7, 7, 3, 3, 1, 5, 3, 1, 1)]
-        [TestCase("JohnSmith", null, 4, 4, 0, 1, 3, 4, 0, 1, 3)]
+        [TestCase("JohnSmith", null, 4, 3, 0, 0, 3, 3, 0, 0, 3)]
         [TestCase("JohnSmith", "JohnSmithPositionChange", 1, 1, 0, 1, 0, 1, 0, 1, 0)]
-        [TestCase("ZargonComplexUpdates", null, 6, 6, 0, 1, 5, 6, 0, 1, 5)]
-        [TestCase(null, "UserWithPosition", 6, 6, 4, 2, 0, 5, 4, 1, 0)]
+        [TestCase("ZargonComplexUpdates", null, 6, 5, 0, 0, 5, 5, 0, 0, 5)]
+        [TestCase(null, "UserWithPosition", 6, 5, 4, 1, 0, 5, 4, 1, 0)]
         public void creates_updates_and_deletes_generate_correct_script_shape(
             string oldUserFieldName,
             string newUserFieldName,
