@@ -156,7 +156,6 @@
     <Compile Include="Contracts\IDiallerTaskNotificationService.cs" />
     <Compile Include="Contracts\IIdentityCheckService.cs" />
     <Compile Include="Contracts\ILoggingService.cs" />
-    <Compile Include="Contracts\IMSLogger.cs" />
     <Compile Include="Contracts\IQueueItem.cs" />
     <Compile Include="Contracts\ISchedulerManagementService.cs" />
     <Compile Include="Contracts\ISendMessageService.cs" />
@@ -185,7 +184,6 @@
     <Compile Include="Dto\Application\ApplicationDto.cs" />
     <Compile Include="Dto\Application\LocationSummaryDto.cs" />
     <Compile Include="Dto\Application\MerchantCategoryCodeDto.cs" />
-    <Compile Include="Dto\Application\OfferSummaryDto.cs" />
     <Compile Include="Dto\Application\OpportunitySummaryDto.cs" />
     <Compile Include="Dto\Application\PrincipalAddressDto.cs" />
     <Compile Include="Dto\Campaign\CampaignCallTrnDto.cs" />
@@ -223,7 +221,6 @@
     <Compile Include="Dto\Merchant\MerchantHistoryDto.cs" />
     <Compile Include="Dto\Merchant\MerchantEventLnkDto.cs" />
     <Compile Include="Dto\Merchant\MerchantReminderTypeMetadataDto.cs" />
-    <Compile Include="Dto\Merchant\OfferDebitPriorityDto.cs" />
     <Compile Include="Dto\Merchant\OfferDefaultDto.cs" />
     <Compile Include="Dto\Event\EventTrnFullDto.cs" />
     <Compile Include="Dto\Merchant\OfferFieldItemLutDto.cs" />
