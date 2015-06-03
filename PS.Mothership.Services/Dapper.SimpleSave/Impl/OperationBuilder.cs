@@ -52,21 +52,15 @@ namespace Dapper.SimpleSave.Impl {
                 Value = diff.NewValue
             };
 
-            if (!FilterOutInsert(insertOperation))
+            if (!FilterOutInsertOrDelete(insertOperation))
             {
                 operations.Add(Transform(insertOperation));
             }
         }
 
-        private bool FilterOutInsert(InsertOperation insertOperation)
-        {
-            return insertOperation.OwnerPropertyMetadata != null
-                   && insertOperation.OwnerPropertyMetadata.IsManyToOneRelationship;
-        }
-
         private void AppendDeleteOperation(IList<BaseOperation> operations, Difference diff)
         {
-            var removeOperation = new DeleteOperation
+            var deleteOperation = new DeleteOperation
             {
                 OwnerMetadata = diff.OwnerMetadata,
                 OwnerPropertyMetadata = diff.OwnerPropertyMetadata,
@@ -76,7 +70,17 @@ namespace Dapper.SimpleSave.Impl {
                 ValueMetadata = diff.ValueMetadata,
                 Value = diff.OldValue
             };
-            operations.Add(Transform(removeOperation));
+
+            if (!FilterOutInsertOrDelete(deleteOperation))
+            {
+                operations.Add(Transform(deleteOperation));
+            }
+        }
+
+        private bool FilterOutInsertOrDelete(BaseInsertDeleteOperation insertDeleteOperation)
+        {
+            return insertDeleteOperation.OwnerPropertyMetadata != null
+                   && insertDeleteOperation.OwnerPropertyMetadata.IsManyToOneRelationship;
         }
 
         private void AppendUpdateOperation(IList<BaseOperation> operations, Difference diff)
