@@ -91,9 +91,6 @@ namespace PS.Mothership.Core.Common.Contracts
 
         [OperationContract]
         IDictionary<string, string> RequestDescriptionForUnknownPhoneNumber(IList<string> unknownPhoneNumbers);
-
-        [OperationContract]
-        CallResolutionsMetadataDto GetCallResolutionsMetadata();
         
         [OperationContract]
         CallResolutionDto GetCallResolution(Guid callGuid);
