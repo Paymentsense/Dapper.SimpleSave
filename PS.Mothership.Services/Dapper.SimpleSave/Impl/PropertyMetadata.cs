@@ -41,6 +41,11 @@ namespace Dapper.SimpleSave.Impl
             get { return HasAttribute<OneToManyAttribute>(); }
         }
 
+        public bool IsManyToOneRelationship
+        {
+            get { return HasAttribute<ManyToOneAttribute>(); }
+        }
+
         public bool IsReadOnly
         {
             get { return HasAttribute<ReadOnlyAttribute>() || ! Prop.CanWrite;}

@@ -267,7 +267,9 @@ namespace Dapper.SimpleSave.Tests
 
             var operationBuilder = new OperationBuilder();
             var operations = operationBuilder.Build(differences);
-            var commands = operationBuilder.Coalesce(operations);
+
+            var commandBuilder = new CommandBuilder();
+            var commands = commandBuilder.Coalesce(operations);
 
             Assert.AreEqual(expectedOperationCount, operations.Count(), "Unexpected number of operations.");
             var counts = CountItemsByType(operations);

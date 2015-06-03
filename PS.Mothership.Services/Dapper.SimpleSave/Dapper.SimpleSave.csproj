@@ -61,6 +61,7 @@
     <Compile Include="Impl\BaseInsertDeleteOperation.cs" />
     <Compile Include="Impl\BaseMetadata.cs" />
     <Compile Include="Impl\BaseOperation.cs" />
+    <Compile Include="Impl\CommandBuilder.cs" />
     <Compile Include="Impl\DeleteCommand.cs" />
     <Compile Include="Impl\DifferenceType.cs" />
     <Compile Include="Impl\DtoMetadata.cs" />

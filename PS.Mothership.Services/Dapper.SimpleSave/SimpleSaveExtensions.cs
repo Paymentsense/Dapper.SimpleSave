@@ -20,7 +20,9 @@ namespace Dapper.SimpleSave {
 
             var operationBuilder = new OperationBuilder();
             var operations = operationBuilder.Build(differences);
-            var commands = operationBuilder.Coalesce(operations);
+
+            var commandBuilder = new CommandBuilder();
+            var commands = commandBuilder.Coalesce(operations);
 
             var scriptBuilder = new ScriptBuilder(_dtoMetadataCache);
             var scripts = scriptBuilder.Build(commands);
