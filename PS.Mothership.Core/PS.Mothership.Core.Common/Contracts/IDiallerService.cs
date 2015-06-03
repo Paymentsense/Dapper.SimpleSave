@@ -105,6 +105,9 @@ namespace PS.Mothership.Core.Common.Contracts
         CampaignCallResolutionDto SaveCampaignCallResolution(CampaignCallResolutionDto campaignCallResolutionDto);
 
         [OperationContract]
+        CallResolutionDto GetPreviousUnresolvedCallDetails(Guid userGuid, Guid sessionGuid);
+
+        [OperationContract]
         void UpdateCallRecordAnswered(Guid sipCallGuid);
     }
 }
