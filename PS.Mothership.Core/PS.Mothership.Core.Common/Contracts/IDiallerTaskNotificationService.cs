@@ -15,8 +15,8 @@ namespace PS.Mothership.Core.Common.Contracts
         ScheduledCallbackDto AddOrUpdateTask(ScheduledCallbackDto scheduledCallBackDto, EventNotificationTypeEnum notificationType);
 
         [OperationContract]
-        ReminderDto AddOrUpdateReminderTask(ReminderDto reminderDto);
-        
+        ScheduledCallbackDto AddOrUpdateReminderTask(ScheduledCallbackDto reminderDto);
+
         [OperationContract]
         void CancelTask(ScheduledCallbackDto scheduledCallBackDto);
 
@@ -45,6 +45,6 @@ namespace PS.Mothership.Core.Common.Contracts
         IList<NotificationPanelTask> FetchAllUnacknowledgedNotifications(Guid userGuid);
 
         [OperationContract]
-        void CloseEventFromNotificationCentre(Guid eventguid, Guid userGuid);
+        bool CloseEventFromNotificationCentre(Guid eventguid, Guid userGuid);
     }
 }

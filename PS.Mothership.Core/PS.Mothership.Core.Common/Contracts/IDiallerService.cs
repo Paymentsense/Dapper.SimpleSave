@@ -91,5 +91,23 @@ namespace PS.Mothership.Core.Common.Contracts
 
         [OperationContract]
         IDictionary<string, string> RequestDescriptionForUnknownPhoneNumber(IList<string> unknownPhoneNumbers);
+
+        [OperationContract]
+        CallResolutionsMetadataDto GetCallResolutionsMetadata();
+        
+        [OperationContract]
+        CallResolutionDto GetCallResolution(Guid callGuid);
+        
+        [OperationContract]
+        CallResolutionDto SaveCallResolution(CallResolutionDto callResolutionDto);
+
+        [OperationContract]
+        CampaignCallResolutionDto GetCampaignCallResolution(Guid campaignCallTrnGuid);
+       
+        [OperationContract]
+        CampaignCallResolutionDto SaveCampaignCallResolution(CampaignCallResolutionDto campaignCallResolutionDto);
+
+        [OperationContract]
+        void UpdateCallRecordAnswered(Guid sipCallGuid);
     }
 }

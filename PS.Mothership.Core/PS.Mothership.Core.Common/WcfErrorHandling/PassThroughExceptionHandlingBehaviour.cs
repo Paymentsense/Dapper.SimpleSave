@@ -1,29 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Reflection;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
 using System.ServiceModel.Description;
 using System.ServiceModel.Dispatcher;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
 using Castle.Windsor;
 using log4net;
-using PS.Mothership.Core.Common.Contracts;
-using PS.Mothership.Core.Common.Helper;
 
 namespace PS.Mothership.Core.Common.WcfErrorHandling
 {
     public class PassThroughExceptionHandlingBehaviour : Attribute, IErrorHandler,
     IEndpointBehavior, IServiceBehavior, IContractBehavior, IClientMessageInspector
     {
-        public IMSLogger Logger
-        {
-            get;
-            set;
-        }
-        
+        private static readonly ILog Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+
         public IWindsorContainer WindsorContainer
         {
             get;
@@ -108,28 +100,21 @@ namespace PS.Mothership.Core.Common.WcfErrorHandling
 
         public void ProvideFault(Exception error, MessageVersion version, ref Message fault)
         {
-
             var wcfException = error as CustomServerException;
 
             if (wcfException != null)
             {
-                Logger.Error(wcfException.UniqueKey, wcfException);
+                Log.Error(wcfException);
             }
             else
             {
-                var uniqueKey = UniqueKeyGenerator.Generate();
-
-                //create the custom wcfexception before passing that to client
-                wcfException = new CustomServerException("Unknown Error has occured. Please contact your administrator!", uniqueKey);
-
-                //log the exception
-                Logger.Error(uniqueKey, error);
+                const string unknownError = "Unknown Error has occured. Please contact your administrator!";
+                wcfException = new CustomServerException(unknownError);
+                Log.Error(unknownError, error);
             }
 
-            var user = ServiceSecurityContext.Current;
             MessageFault messageFault = MessageFault.CreateFault(new FaultCode("Sender"), new FaultReason(wcfException.Message), wcfException, new NetDataContractSerializer());
             fault = Message.CreateMessage(version, messageFault, null);
-
         }
 
         #endregion

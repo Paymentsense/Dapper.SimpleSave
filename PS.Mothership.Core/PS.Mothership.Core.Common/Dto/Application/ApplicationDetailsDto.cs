@@ -25,5 +25,8 @@ namespace PS.Mothership.Core.Common.Dto.Application
 
         [DataMember]
         public IList<ApplicationDetailPrincipalDto> ApplicationDetailPrincipal { get; set; }
+
+        [DataMember]
+        public bool IsValidated { get; set; }
     }
 }

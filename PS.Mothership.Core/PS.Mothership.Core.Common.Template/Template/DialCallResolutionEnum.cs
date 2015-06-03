@@ -13,11 +13,12 @@ namespace PS.Mothership.Core.Common.Template.Dial
        [Description("None")][EnumMember]None = 0,
        [Description("Bad Number")][EnumMember]BadNumber = 1,
        [Description("Live or Sale")][EnumMember]LiveOrSale = 2,
-       [Description("Unable to Reach Or Voicemail")][EnumMember]UnableToReach = 3,
+       [Description("Unable to Reach or Voicemail")][EnumMember]UnableToReach = 3,
        [Description("Transferred")][EnumMember]Transferred = 4,
-       [Description("InternalBusiness")][EnumMember]InternalBusiness = 5,
-       [Description("No Interest Or No Sale")][EnumMember]NoInterestOrNoSale = 6,
+       [Description("Internal Business")][EnumMember]InternalBusiness = 5,
+       [Description("No Interest or No Sale")][EnumMember]NoInterestOrNoSale = 6,
        [Description("Callback or Reminder")][EnumMember]CallbackOrReminder = 7,
+       [Description("Conference Call")][EnumMember]Conference = 8,
         
     }    
     
@@ -72,9 +73,9 @@ namespace PS.Mothership.Core.Common.Template.Dial
 							{
 								EnumValue = 3,
 								EnumName = "UnableToReach",
-								EnumDescription = "Unable to Reach Or Voicemail",
+								EnumDescription = "Unable to Reach or Voicemail",
 								CallResolutionKey = 3,
-								RecStatusKey = (GenRecStatusEnum)0
+								RecStatusKey = (GenRecStatusEnum)1
 							},
 							new DialCallResolution
 							{
@@ -88,7 +89,7 @@ namespace PS.Mothership.Core.Common.Template.Dial
 							{
 								EnumValue = 5,
 								EnumName = "InternalBusiness",
-								EnumDescription = "InternalBusiness",
+								EnumDescription = "Internal Business",
 								CallResolutionKey = 5,
 								RecStatusKey = (GenRecStatusEnum)1
 							},
@@ -96,7 +97,7 @@ namespace PS.Mothership.Core.Common.Template.Dial
 							{
 								EnumValue = 6,
 								EnumName = "NoInterestOrNoSale",
-								EnumDescription = "No Interest Or No Sale",
+								EnumDescription = "No Interest or No Sale",
 								CallResolutionKey = 6,
 								RecStatusKey = (GenRecStatusEnum)1
 							},
@@ -106,6 +107,14 @@ namespace PS.Mothership.Core.Common.Template.Dial
 								EnumName = "CallbackOrReminder",
 								EnumDescription = "Callback or Reminder",
 								CallResolutionKey = 7,
+								RecStatusKey = (GenRecStatusEnum)1
+							},
+							new DialCallResolution
+							{
+								EnumValue = 8,
+								EnumName = "Conference",
+								EnumDescription = "Conference Call",
+								CallResolutionKey = 8,
 								RecStatusKey = (GenRecStatusEnum)1
 							},
                         };

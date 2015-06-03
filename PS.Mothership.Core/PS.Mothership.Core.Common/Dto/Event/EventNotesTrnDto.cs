@@ -36,5 +36,8 @@ namespace PS.Mothership.Core.Common.Dto.Event
 
         [DataMember]
         public string EventName { get; set; }
+
+        [DataMember]
+        public string Info { get; set; }
     }
 }

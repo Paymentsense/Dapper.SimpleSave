@@ -20,10 +20,11 @@ namespace PS.Mothership.Core.Common.Template.Event
        [Description("Touch")][EnumMember]Touch = 7,
        [Description("Dialler")][EnumMember]Dialler = 8,
        [Description("Callback")][EnumMember]Callback = 9,
-       [Description("Call Resolution")][EnumMember]CallResolution = 13,
        [Description("Reminder")][EnumMember]Reminder = 10,
        [Description("System Generated")][EnumMember]SystemGenerated = 11,
        [Description("Note")][EnumMember]Note = 12,
+       [Description("SMS")][EnumMember]SMS = 13,
+       [Description("Call Resolution")][EnumMember]CallResolution = 14,
         
     }    
     
@@ -132,14 +133,6 @@ namespace PS.Mothership.Core.Common.Template.Event
 							},
 							new EventCategory
 							{
-								EnumValue = 13,
-								EnumName = "CallResolution",
-								EnumDescription = "Call Resolution",
-								EventCategoryKey = 13,
-								RecStatusKey = (GenRecStatusEnum)1
-							},
-							new EventCategory
-							{
 								EnumValue = 10,
 								EnumName = "Reminder",
 								EnumDescription = "Reminder",
@@ -160,6 +153,22 @@ namespace PS.Mothership.Core.Common.Template.Event
 								EnumName = "Note",
 								EnumDescription = "Note",
 								EventCategoryKey = 12,
+								RecStatusKey = (GenRecStatusEnum)1
+							},
+							new EventCategory
+							{
+								EnumValue = 13,
+								EnumName = "SMS",
+								EnumDescription = "SMS",
+								EventCategoryKey = 13,
+								RecStatusKey = (GenRecStatusEnum)1
+							},
+							new EventCategory
+							{
+								EnumValue = 14,
+								EnumName = "CallResolution",
+								EnumDescription = "Call Resolution",
+								EventCategoryKey = 14,
 								RecStatusKey = (GenRecStatusEnum)1
 							},
                         };

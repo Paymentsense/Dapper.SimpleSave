@@ -33,6 +33,13 @@ namespace PS.Mothership.Core.Common.Template.Event
        [Description("Offer Created")][EnumMember]OfferCreated = 20,
        [Description("Touch Merchant")][EnumMember]TouchMerchant = 21,
        [Description("Prospect Imported")][EnumMember]ProspectImported = 22,
+       [Description("Campaign Queue Item Added")][EnumMember]CampaignQueueItemAdded = 23,
+       [Description("Campaign Queue Item Removed")][EnumMember]CampaignQueueItemRemoved = 24,
+       [Description("Campaign Queue Item Updated")][EnumMember]CampaignQueueItemUpdated = 25,
+       [Description("Queue Item Added")][EnumMember]QueueItemAdded = 26,
+       [Description("Queue Item Removed")][EnumMember]QueueItemRemoved = 27,
+       [Description("Queue Item Updated")][EnumMember]QueueItemUpdated = 28,
+       [Description("Prospect Deduped")][EnumMember]ProspectDeduped = 29,
        [Description("Scheduled Callback")][EnumMember]ScheduledCallback = 30,
        [Description("1 Hr")][EnumMember]OneHour = 31,
        [Description("2 Hr")][EnumMember]TwoHours = 32,
@@ -41,25 +48,18 @@ namespace PS.Mothership.Core.Common.Template.Event
        [Description("1 Wk")][EnumMember]OneWeek = 35,
        [Description("2 Wk")][EnumMember]TwoWeeks = 36,
        [Description("Custom")][EnumMember]Custom = 37,
+       [Description("Callback Queued")][EnumMember]CallbackQueued = 38,
+       [Description("Callback Fired")][EnumMember]CallbackFired = 39,
        [Description("Callback AutoRescheduled")][EnumMember]CallbackAutoRescheduled = 40,
        [Description("Callback Accepted")][EnumMember]CallbackAccepted = 41,
        [Description("Pop Up")][EnumMember]PopUpReminderAdded = 42,
        [Description("SMS")][EnumMember]SMSReminderAdded = 43,
-       [Description("Reminder Added")][EnumMember]ReminderAdded = 45,
-       [Description("ReminderNotAcknowledged")][EnumMember]ReminderNotAcknowledged = 48,
-       [Description("Call resolved")][EnumMember]CallResolved = 49,
-       [Description("Campaign Queue Item Added")][EnumMember]CampaignQueueItemAdded = 23,
-       [Description("Campaign Queue Item Removed")][EnumMember]CampaignQueueItemRemoved = 24,
-       [Description("Campaign Queue Item Updated")][EnumMember]CampaignQueueItemUpdated = 25,
-       [Description("Queue Item Added")][EnumMember]QueueItemAdded = 26,
-       [Description("Queue Item Removed")][EnumMember]QueueItemRemoved = 27,
-       [Description("Queue Item Updated")][EnumMember]QueueItemUpdated = 28,
-       [Description("Prospect Deduped")][EnumMember]ProspectDeduped = 29,
-       [Description("Callback Fired")][EnumMember]CallbackFired = 39,
        [Description("Merchant Note Added")][EnumMember]MerchantNoteAdded = 44,
+       [Description("Reminder Added")][EnumMember]ReminderAdded = 45,
        [Description("ReminderQueued")][EnumMember]ReminderQueued = 46,
        [Description("ReminderFired")][EnumMember]ReminderFired = 47,
-       [Description("Callback Queued")][EnumMember]CallbackQueued = 38,
+       [Description("ReminderNotAcknowledged")][EnumMember]ReminderNotAcknowledged = 48,
+       [Description("Call Resolved")][EnumMember]CallResolved = 49,
         
     }    
     
@@ -102,7 +102,7 @@ namespace PS.Mothership.Core.Common.Template.Event
 								EnumName = "SMSScheduled",
 								EnumDescription = "SMS Scheduled",
 								EventTypeKey = 1,
-								EventCategoryKey = 1,
+								EventCategoryKey = 13,
 								RecStatusKey = (GenRecStatusEnum)1
 							},
 							new EventType
@@ -111,7 +111,7 @@ namespace PS.Mothership.Core.Common.Template.Event
 								EnumName = "SMSSent",
 								EnumDescription = "SMS Sent",
 								EventTypeKey = 2,
-								EventCategoryKey = 1,
+								EventCategoryKey = 13,
 								RecStatusKey = (GenRecStatusEnum)1
 							},
 							new EventType
@@ -120,7 +120,7 @@ namespace PS.Mothership.Core.Common.Template.Event
 								EnumName = "SMSReceived",
 								EnumDescription = "SMS Received",
 								EventTypeKey = 3,
-								EventCategoryKey = 1,
+								EventCategoryKey = 13,
 								RecStatusKey = (GenRecStatusEnum)1
 							},
 							new EventType
@@ -129,7 +129,7 @@ namespace PS.Mothership.Core.Common.Template.Event
 								EnumName = "SMSSendFailed",
 								EnumDescription = "SMS Send Failed",
 								EventTypeKey = 4,
-								EventCategoryKey = 1,
+								EventCategoryKey = 13,
 								RecStatusKey = (GenRecStatusEnum)1
 							},
 							new EventType
@@ -138,7 +138,7 @@ namespace PS.Mothership.Core.Common.Template.Event
 								EnumName = "SMSDelivered",
 								EnumDescription = "SMS Delivered",
 								EventTypeKey = 5,
-								EventCategoryKey = 1,
+								EventCategoryKey = 13,
 								RecStatusKey = (GenRecStatusEnum)1
 							},
 							new EventType
@@ -296,6 +296,69 @@ namespace PS.Mothership.Core.Common.Template.Event
 							},
 							new EventType
 							{
+								EnumValue = 23,
+								EnumName = "CampaignQueueItemAdded",
+								EnumDescription = "Campaign Queue Item Added",
+								EventTypeKey = 23,
+								EventCategoryKey = 8,
+								RecStatusKey = (GenRecStatusEnum)1
+							},
+							new EventType
+							{
+								EnumValue = 24,
+								EnumName = "CampaignQueueItemRemoved",
+								EnumDescription = "Campaign Queue Item Removed",
+								EventTypeKey = 24,
+								EventCategoryKey = 8,
+								RecStatusKey = (GenRecStatusEnum)1
+							},
+							new EventType
+							{
+								EnumValue = 25,
+								EnumName = "CampaignQueueItemUpdated",
+								EnumDescription = "Campaign Queue Item Updated",
+								EventTypeKey = 25,
+								EventCategoryKey = 8,
+								RecStatusKey = (GenRecStatusEnum)1
+							},
+							new EventType
+							{
+								EnumValue = 26,
+								EnumName = "QueueItemAdded",
+								EnumDescription = "Queue Item Added",
+								EventTypeKey = 26,
+								EventCategoryKey = 8,
+								RecStatusKey = (GenRecStatusEnum)1
+							},
+							new EventType
+							{
+								EnumValue = 27,
+								EnumName = "QueueItemRemoved",
+								EnumDescription = "Queue Item Removed",
+								EventTypeKey = 27,
+								EventCategoryKey = 8,
+								RecStatusKey = (GenRecStatusEnum)1
+							},
+							new EventType
+							{
+								EnumValue = 28,
+								EnumName = "QueueItemUpdated",
+								EnumDescription = "Queue Item Updated",
+								EventTypeKey = 28,
+								EventCategoryKey = 8,
+								RecStatusKey = (GenRecStatusEnum)1
+							},
+							new EventType
+							{
+								EnumValue = 29,
+								EnumName = "ProspectDeduped",
+								EnumDescription = "Prospect Deduped",
+								EventTypeKey = 29,
+								EventCategoryKey = 7,
+								RecStatusKey = (GenRecStatusEnum)1
+							},
+							new EventType
+							{
 								EnumValue = 30,
 								EnumName = "ScheduledCallback",
 								EnumDescription = "Scheduled Callback",
@@ -368,6 +431,24 @@ namespace PS.Mothership.Core.Common.Template.Event
 							},
 							new EventType
 							{
+								EnumValue = 38,
+								EnumName = "CallbackQueued",
+								EnumDescription = "Callback Queued",
+								EventTypeKey = 38,
+								EventCategoryKey = 9,
+								RecStatusKey = (GenRecStatusEnum)2
+							},
+							new EventType
+							{
+								EnumValue = 39,
+								EnumName = "CallbackFired",
+								EnumDescription = "Callback Fired",
+								EventTypeKey = 39,
+								EventCategoryKey = 9,
+								RecStatusKey = (GenRecStatusEnum)2
+							},
+							new EventType
+							{
 								EnumValue = 40,
 								EnumName = "CallbackAutoRescheduled",
 								EnumDescription = "Callback AutoRescheduled",
@@ -404,110 +485,20 @@ namespace PS.Mothership.Core.Common.Template.Event
 							},
 							new EventType
 							{
+								EnumValue = 44,
+								EnumName = "MerchantNoteAdded",
+								EnumDescription = "Merchant Note Added",
+								EventTypeKey = 44,
+								EventCategoryKey = 12,
+								RecStatusKey = (GenRecStatusEnum)1
+							},
+							new EventType
+							{
 								EnumValue = 45,
 								EnumName = "ReminderAdded",
 								EnumDescription = "Reminder Added",
 								EventTypeKey = 45,
 								EventCategoryKey = 10,
-								RecStatusKey = (GenRecStatusEnum)1
-							},
-							new EventType
-							{
-								EnumValue = 48,
-								EnumName = "ReminderNotAcknowledged",
-								EnumDescription = "ReminderNotAcknowledged",
-								EventTypeKey = 48,
-								EventCategoryKey = 10,
-								RecStatusKey = (GenRecStatusEnum)1
-							},
-							new EventType
-							{
-								EnumValue = 49,
-								EnumName = "CallResolved",
-								EnumDescription = "Call resolved",
-								EventTypeKey = 49,
-								EventCategoryKey = 13,
-								RecStatusKey = (GenRecStatusEnum)1
-							},
-							new EventType
-							{
-								EnumValue = 23,
-								EnumName = "CampaignQueueItemAdded",
-								EnumDescription = "Campaign Queue Item Added",
-								EventTypeKey = 23,
-								EventCategoryKey = 8,
-								RecStatusKey = (GenRecStatusEnum)1
-							},
-							new EventType
-							{
-								EnumValue = 24,
-								EnumName = "CampaignQueueItemRemoved",
-								EnumDescription = "Campaign Queue Item Removed",
-								EventTypeKey = 24,
-								EventCategoryKey = 8,
-								RecStatusKey = (GenRecStatusEnum)1
-							},
-							new EventType
-							{
-								EnumValue = 25,
-								EnumName = "CampaignQueueItemUpdated",
-								EnumDescription = "Campaign Queue Item Updated",
-								EventTypeKey = 25,
-								EventCategoryKey = 8,
-								RecStatusKey = (GenRecStatusEnum)1
-							},
-							new EventType
-							{
-								EnumValue = 26,
-								EnumName = "QueueItemAdded",
-								EnumDescription = "Queue Item Added",
-								EventTypeKey = 26,
-								EventCategoryKey = 8,
-								RecStatusKey = (GenRecStatusEnum)1
-							},
-							new EventType
-							{
-								EnumValue = 27,
-								EnumName = "QueueItemRemoved",
-								EnumDescription = "Queue Item Removed",
-								EventTypeKey = 27,
-								EventCategoryKey = 8,
-								RecStatusKey = (GenRecStatusEnum)1
-							},
-							new EventType
-							{
-								EnumValue = 28,
-								EnumName = "QueueItemUpdated",
-								EnumDescription = "Queue Item Updated",
-								EventTypeKey = 28,
-								EventCategoryKey = 8,
-								RecStatusKey = (GenRecStatusEnum)1
-							},
-							new EventType
-							{
-								EnumValue = 29,
-								EnumName = "ProspectDeduped",
-								EnumDescription = "Prospect Deduped",
-								EventTypeKey = 29,
-								EventCategoryKey = 7,
-								RecStatusKey = (GenRecStatusEnum)1
-							},
-							new EventType
-							{
-								EnumValue = 39,
-								EnumName = "CallbackFired",
-								EnumDescription = "Callback Fired",
-								EventTypeKey = 39,
-								EventCategoryKey = 9,
-								RecStatusKey = (GenRecStatusEnum)2
-							},
-							new EventType
-							{
-								EnumValue = 44,
-								EnumName = "MerchantNoteAdded",
-								EnumDescription = "Merchant Note Added",
-								EventTypeKey = 44,
-								EventCategoryKey = 1,
 								RecStatusKey = (GenRecStatusEnum)1
 							},
 							new EventType
@@ -530,12 +521,21 @@ namespace PS.Mothership.Core.Common.Template.Event
 							},
 							new EventType
 							{
-								EnumValue = 38,
-								EnumName = "CallbackQueued",
-								EnumDescription = "Callback Queued",
-								EventTypeKey = 38,
-								EventCategoryKey = 9,
-								RecStatusKey = (GenRecStatusEnum)2
+								EnumValue = 48,
+								EnumName = "ReminderNotAcknowledged",
+								EnumDescription = "ReminderNotAcknowledged",
+								EventTypeKey = 48,
+								EventCategoryKey = 10,
+								RecStatusKey = (GenRecStatusEnum)1
+							},
+							new EventType
+							{
+								EnumValue = 49,
+								EnumName = "CallResolved",
+								EnumDescription = "Call Resolved",
+								EventTypeKey = 49,
+								EventCategoryKey = 14,
+								RecStatusKey = (GenRecStatusEnum)1
 							},
                         };
                     

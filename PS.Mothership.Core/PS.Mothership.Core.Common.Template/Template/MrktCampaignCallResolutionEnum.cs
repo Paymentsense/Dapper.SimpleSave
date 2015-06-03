@@ -16,6 +16,7 @@ namespace PS.Mothership.Core.Common.Template.Mrkt
        [Description("Non-Lead")][EnumMember]NonLead = 3,
        [Description("Already Owned")][EnumMember]AlreadyOwned = 4,
        [Description("High Risk")][EnumMember]HighRisk = 5,
+       [Description("Conference Call")][EnumMember]Conference = 6,
         
     }    
     
@@ -88,6 +89,14 @@ namespace PS.Mothership.Core.Common.Template.Mrkt
 								EnumName = "HighRisk",
 								EnumDescription = "High Risk",
 								CampaignCallResolutionKey = 5,
+								RecStatusKey = (GenRecStatusEnum)1
+							},
+							new MrktCampaignCallResolution
+							{
+								EnumValue = 6,
+								EnumName = "Conference",
+								EnumDescription = "Conference Call",
+								CampaignCallResolutionKey = 6,
 								RecStatusKey = (GenRecStatusEnum)1
 							},
                         };

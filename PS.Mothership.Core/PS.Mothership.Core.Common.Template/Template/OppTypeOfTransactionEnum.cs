@@ -14,7 +14,6 @@ namespace PS.Mothership.Core.Common.Template.Opp
        [Description("Chip & Pin")][EnumMember]F2F = 1,
        [Description("ECOM")][EnumMember]ECOM = 2,
        [Description("MOTO")][EnumMember]MOTO = 3,
-       [Description("EPOS")][EnumMember]EPOS = 4,
        [Description("PS Connect")][EnumMember]PSConnectTerminal = 5,
        [Description("PS Connect (Ecom)")][EnumMember]PSConnectEcom = 6,
        [Description("VAR (YesPay)")][EnumMember]VARYesPay = 7,
@@ -74,14 +73,6 @@ namespace PS.Mothership.Core.Common.Template.Opp
 								EnumName = "MOTO",
 								EnumDescription = "MOTO",
 								TypeOfTransactionKey = 3,
-								RecStatusKey = (GenRecStatusEnum)1
-							},
-							new OppTypeOfTransaction
-							{
-								EnumValue = 4,
-								EnumName = "EPOS",
-								EnumDescription = "EPOS",
-								TypeOfTransactionKey = 4,
 								RecStatusKey = (GenRecStatusEnum)1
 							},
 							new OppTypeOfTransaction

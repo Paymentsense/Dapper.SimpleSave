@@ -29,5 +29,7 @@ namespace PS.Mothership.Core.Common.Dto.Dialler
         public int? RecorderCallId { get; set; }
         [DataMember]
         public Guid MerchantGuid { get; set; }
+        [DataMember]
+        public Guid ConsultOriginSipCallGuid { get; set; }
     }
 }

@@ -13,7 +13,6 @@ namespace PS.Mothership.Core.Common.Template.Usr
        [Description("None")][EnumMember]None = 0,
        [Description("Home")][EnumMember]Home = 1,
        [Description("Admin")][EnumMember]Admin = 2,
-       [Description("Task")][EnumMember]Task = 3,
        [Description("User Management")][EnumMember]UserManagement = 4,
        [Description("Role Management")][EnumMember]RoleManagement = 5,
        [Description("Group Management")][EnumMember]GroupManagement = 6,
@@ -91,19 +90,6 @@ namespace PS.Mothership.Core.Common.Template.Usr
 								ContainerName = "",
 								ResourceTypeKey = 1,
 								RecStatusKey = (GenRecStatusEnum)1
-							},
-							new UsrResource
-							{
-								EnumValue = 3,
-								EnumName = "Task",
-								EnumDescription = "Task",
-								ResourceKey = 3,
-								ActionName = "Index",
-								ControllerName = "Task",
-								Area = "",
-								ContainerName = "",
-								ResourceTypeKey = 1,
-								RecStatusKey = (GenRecStatusEnum)3
 							},
 							new UsrResource
 							{

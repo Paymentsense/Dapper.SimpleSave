@@ -14,7 +14,7 @@ namespace PS.Mothership.Core.Common.Template.Gen
        [Description("Main Line")][EnumMember]MainLine = 1,
        [Description("Mobile")][EnumMember]Mobile = 2,
        [Description("Fax")][EnumMember]Fax = 3,
-       [Description("DoNotCall")][EnumMember]DoNotCall = 4,
+       [Description("Do Not Call")][EnumMember]DoNotCall = 4,
         
     }    
     
@@ -77,7 +77,7 @@ namespace PS.Mothership.Core.Common.Template.Gen
 							{
 								EnumValue = 4,
 								EnumName = "DoNotCall",
-								EnumDescription = "DoNotCall",
+								EnumDescription = "Do Not Call",
 								PhoneNumberTypeKey = 4,
 								RecStatusKey = (GenRecStatusEnum)1
 							},

@@ -13,11 +13,11 @@ namespace PS.Mothership.Core.Common.Template.Gen
        [Description("None")][EnumMember]None = 0,
        [Description("Web Lead")][EnumMember]WebLead = 1,
        [Description("Scheduled Callback")][EnumMember]ScheduledCallback = 2,
-       [Description("Popup Reminder")][EnumMember]PopupReminder = 3,
-       [Description("SMS Reminder")][EnumMember]SMSReminder = 4,
+       [Description("PopupReminder")][EnumMember]PopupReminder = 3,
+       [Description("SMSReminder")][EnumMember]SMSReminder = 4,
        [Description("TeleSales")][EnumMember]TeleSales = 5,
-       [Description("Normal Distribution")][EnumMember]NormalDistribution = 6,
-       [Description("Customer Service")][EnumMember]CustomerService = 7,
+       [Description("NormalDistribution")][EnumMember]NormalDistribution = 6,
+       [Description("CustomerService")][EnumMember]CustomerService = 7,
         
     }    
     
@@ -72,7 +72,7 @@ namespace PS.Mothership.Core.Common.Template.Gen
 							{
 								EnumValue = 3,
 								EnumName = "PopupReminder",
-								EnumDescription = "Popup Reminder",
+								EnumDescription = "PopupReminder",
 								QueueTypeKey = 3,
 								RecStatusKey = (GenRecStatusEnum)1
 							},
@@ -80,7 +80,7 @@ namespace PS.Mothership.Core.Common.Template.Gen
 							{
 								EnumValue = 4,
 								EnumName = "SMSReminder",
-								EnumDescription = "SMS Reminder",
+								EnumDescription = "SMSReminder",
 								QueueTypeKey = 4,
 								RecStatusKey = (GenRecStatusEnum)1
 							},
@@ -96,7 +96,7 @@ namespace PS.Mothership.Core.Common.Template.Gen
 							{
 								EnumValue = 6,
 								EnumName = "NormalDistribution",
-								EnumDescription = "Normal Distribution",
+								EnumDescription = "NormalDistribution",
 								QueueTypeKey = 6,
 								RecStatusKey = (GenRecStatusEnum)1
 							},
@@ -104,7 +104,7 @@ namespace PS.Mothership.Core.Common.Template.Gen
 							{
 								EnumValue = 7,
 								EnumName = "CustomerService",
-								EnumDescription = "Customer Service",
+								EnumDescription = "CustomerService",
 								QueueTypeKey = 7,
 								RecStatusKey = (GenRecStatusEnum)1
 							},
