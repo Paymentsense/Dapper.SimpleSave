@@ -49,6 +49,7 @@
     <Compile Include="BaseTests.cs" />
     <Compile Include="Dto\BaseChildDto.cs" />
     <Compile Include="Dto\BaseOneToManyChildDto.cs" />
+    <Compile Include="Dto\BaseOneToOneChildDtoWithFk.cs" />
     <Compile Include="Dto\BaseParentDto.cs" />
     <Compile Include="Dto\ManyToManyChildDto.cs" />
     <Compile Include="Dto\ManyToManyReferenceChildDto.cs" />

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace Dapper.SimpleSave.Tests.Dto {
     [Table("dbo.OneToOneReferenceChildWithFk")]
     [ReferenceData]
-    public class OneToOneReferenceChildDtoWithFk : BaseChildDto {
+    public class OneToOneReferenceChildDtoWithFk : BaseOneToOneChildDtoWithFk
+    {
     }
 }
