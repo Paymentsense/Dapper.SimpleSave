@@ -1,6 +1,7 @@
 ﻿using System;
 
-namespace Dapper.SimpleSave {
+namespace Dapper.SimpleSave
+{
     public class ReferenceDataAttribute : Attribute
     {
         public ReferenceDataAttribute()

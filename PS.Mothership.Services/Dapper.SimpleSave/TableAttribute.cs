@@ -1,7 +1,9 @@
 ﻿using System;
 
-namespace Dapper.SimpleSave {
-    public class TableAttribute : Attribute {
+namespace Dapper.SimpleSave
+{
+    public class TableAttribute : Attribute
+    {
         public string Name { get; private set; }
 
         public TableAttribute()
