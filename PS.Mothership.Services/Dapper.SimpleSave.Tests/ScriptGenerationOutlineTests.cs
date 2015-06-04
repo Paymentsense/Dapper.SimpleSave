@@ -245,7 +245,7 @@ namespace Dapper.SimpleSave.Tests
         [TestCase("JohnSmith", null, 4, 3, 0, 0, 3, 3, 0, 0, 3)]
         [TestCase("JohnSmith", "JohnSmithPositionChange", 1, 1, 0, 1, 0, 1, 0, 1, 0)]
         [TestCase("ZargonComplexUpdates", null, 6, 5, 0, 0, 5, 5, 0, 0, 5)]
-        [TestCase(null, "UserWithPosition", 6, 5, 4, 1, 0, 5, 4, 1, 0)]
+        [TestCase(null, "UserWithPosition", 6, 4, 4, 0, 0, 4, 4, 0, 0)]
         public void creates_updates_and_deletes_generate_correct_script_shape(
             string oldUserFieldName,
             string newUserFieldName,
