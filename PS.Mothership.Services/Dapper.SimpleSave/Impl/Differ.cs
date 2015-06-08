@@ -429,7 +429,6 @@ namespace Dapper.SimpleSave.Impl
                 OwnerPropertyMetadata = prop,
                 DifferenceType = DifferenceType.Update,
                 OwnerMetadata = metadata,
-                ValueMetadata = _dtoMetadataCache.GetMetadataFor(prop.Prop.PropertyType),
                 NewValue = newValue,
                 OldValue = oldValue
             });

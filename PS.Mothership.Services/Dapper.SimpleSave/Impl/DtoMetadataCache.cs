@@ -13,6 +13,13 @@ namespace Dapper.SimpleSave.Impl {
 
         public DtoMetadata GetMetadataFor(Type type)
         {
+            if (type == typeof (string))
+            {
+                throw new ArgumentException(
+                    "DtoMetadata retrieval is not supported for strings.",
+                    "type");
+            }
+
             lock (_lock)
             {
                 DtoMetadata data;
