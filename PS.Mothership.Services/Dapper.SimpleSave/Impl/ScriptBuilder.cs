@@ -214,13 +214,12 @@ WHERE [{1}] = ",
                             ref parmIndex,
                             new Func<object>(() => operation.OwnerPrimaryKey),
                             new Func<object>(() => operation.ValueMetadata.GetPrimaryKeyValue(operation.Value)));
-                        //GetPossiblyUnknownPrimaryKeyValue(operation.ValueMetadata.GetPrimaryKeyValue(operation.Value)));
                     }
                 else if (null == operation.OwnerPropertyMetadata
                     || (operation.OwnerPropertyMetadata.HasAttribute<OneToManyAttribute>()
                     && !operation.ValueMetadata.HasAttribute<ReferenceDataAttribute>())) 
                 {
-                    //  INSERT the value into the other table
+                    //  INSERT the value into the table defined by ValueMetadat
                     
                     var colBuff = new StringBuilder();
                     var valBuff = new StringBuilder();

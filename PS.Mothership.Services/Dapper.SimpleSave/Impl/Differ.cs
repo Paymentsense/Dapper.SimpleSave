@@ -16,17 +16,23 @@ namespace Dapper.SimpleSave.Impl
             _dtoMetadataCache = dtoMetadataCache;
         }
 
+        /// <summary>
+        /// Deep diffs the two supplied objects. Either or both can be null. For <code>INSERT</code>s
+        /// it's expected that <code>oldObject</code> would be <code>null</code>. Vice versa
+        /// for <code>UPDATE</code>s.
+        /// </summary>
+        /// <typeparam name="T">Type of object.</typeparam>
+        /// <param name="oldObject">Old version of object, which is expected to be <code>null</code> for
+        /// <code>INSERT</code>s.</param>
+        /// <param name="newObject">New version of object, which is expected to be <code>null</code> for
+        /// <code>DELETE</code>s.</param>
+        /// <returns>List of differences between supplied objects, if any.</returns>
         public IList<Difference> Diff<T>(T oldObject, T newObject)
         {
             return Diff(oldObject, newObject, typeof (T));
         }
 
-        public void Diff<T>(T oldObject, T newObject, IList<Difference> target)
-        {
-            Diff(null, null, null, null, oldObject, newObject, typeof (T), target);
-        }
-
-        public IList<Difference> Diff(object oldObject, object newObject, Type handleAsType)
+        private IList<Difference> Diff(object oldObject, object newObject, Type handleAsType)
         {
             var differences = new List<Difference>();
             Diff(null, null, null, null, oldObject, newObject, handleAsType, differences);

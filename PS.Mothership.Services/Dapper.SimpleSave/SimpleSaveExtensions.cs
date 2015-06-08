@@ -32,7 +32,7 @@ namespace Dapper.SimpleSave
                             connection,
                             transaction,
                             script,
-                            index < count - 1);
+                            index == count - 1);
                     }
                     transaction.Commit();
                 }
