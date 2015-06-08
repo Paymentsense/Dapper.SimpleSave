@@ -76,7 +76,6 @@
     <Compile Include="Impl\DeleteOperation.cs" />
     <Compile Include="Impl\Script.cs" />
     <Compile Include="Impl\ScriptBuilder.cs" />
-    <Compile Include="Impl\ScriptParameter.cs" />
     <Compile Include="Impl\TypeExtensions.cs" />
     <Compile Include="Impl\UpdateCommand.cs" />
     <Compile Include="Impl\UpdateOperation.cs" />

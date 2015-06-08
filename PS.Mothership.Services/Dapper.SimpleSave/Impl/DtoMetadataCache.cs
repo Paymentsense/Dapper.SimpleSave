@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Dapper.SimpleSave.Impl {
+namespace Dapper.SimpleSave.Impl
+{
     public class DtoMetadataCache
     {
-
         private readonly IDictionary<Type, DtoMetadata> _metadata = new Dictionary<Type, DtoMetadata>();
         private readonly object _lock = new object();
 

@@ -1,16 +1,14 @@
 ﻿using System;
-using System.CodeDom;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics.Tracing;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 
 namespace Dapper.SimpleSave.Impl {
-    public class ScriptBuilder {
+    public class ScriptBuilder
+    {
         private readonly DtoMetadataCache _dtoMetadataCache;
 
         public ScriptBuilder(DtoMetadataCache dtoMetadataCache)
@@ -90,9 +88,14 @@ SELECT SCOPE_IDENTITY();
             script.Buffer.Append(string.Format(@"UPDATE {0}
 SET [{1}] = ",
                 operation.ValueMetadata.TableName,
-                operation.ValueMetadata.GetForeignKeyColumnFor(operation.OwnerMetadata.DtoType).ColumnName));
+                operation.ValueMetadata.GetForeignKeyColumnFor(
+                    operation.OwnerMetadata.DtoType).ColumnName));
 
-            FormatWithParm(script, "{0}", ref parmIndex, new Func<object>(() => command.PrimaryKey));
+            FormatWithParm(
+                script,
+                "{0}",
+                ref parmIndex,
+                new Func<object>(() => command.PrimaryKey));
 
             script.Buffer.Append(string.Format(@"
 WHERE [{0}] = ", operation.ValueMetadata.PrimaryKey.ColumnName));
@@ -101,7 +104,10 @@ WHERE [{0}] = ", operation.ValueMetadata.PrimaryKey.ColumnName));
 ", ref parmIndex, operation.ValueMetadata.GetPrimaryKeyValue(operation.Value));
         }
 
-        private static void AppendStandardUpdateCommand(Script script, UpdateCommand command, ref int parmIndex)
+        private static void AppendStandardUpdateCommand(
+            Script script,
+            UpdateCommand command,
+            ref int parmIndex)
         {
             script.Buffer.Append(string.Format(@"UPDATE {0}
 SET ", command.TableName));
@@ -133,7 +139,11 @@ SET ", command.TableName));
 
                 if (useKey)
                 {
-                    FormatWithParm(script, "{0}", ref parmIndex, operation.ValueMetadata.GetPrimaryKeyValue(operation.Value));
+                    FormatWithParm(
+                        script,
+                        "{0}",
+                        ref parmIndex,
+                        operation.ValueMetadata.GetPrimaryKeyValue(operation.Value));
                 }
                 else
                 {
@@ -163,8 +173,11 @@ WHERE [{0}] = ", command.PrimaryKeyColumn));
 WHERE [{1}] = ", 
                         operation.OwnerPropertyMetadata.GetAttribute<ManyToManyAttribute>().LinkTableName,
                         operation.OwnerPrimaryKeyColumn));
+
                     FormatWithParm(script, "{0} AND ", ref parmIndex, operation.OwnerPrimaryKey);
+
                     script.Buffer.Append(string.Format("[{0}] = ", operation.ValueMetadata.PrimaryKey.Prop.Name));
+
                     FormatWithParm(script, @"{0};
 ", ref parmIndex, operation.ValueMetadata.GetPrimaryKeyValue(operation.Value));
                 }
@@ -212,8 +225,10 @@ WHERE [{1}] = ",
 );
 ",
                             ref parmIndex,
-                            new Func<object>(() => operation.OwnerPrimaryKey),
-                            new Func<object>(() => operation.ValueMetadata.GetPrimaryKeyValue(operation.Value)));
+                            new Func<object>(
+                                () => operation.OwnerPrimaryKey),
+                            new Func<object>(
+                                () => operation.ValueMetadata.GetPrimaryKeyValue(operation.Value)));
                     }
                 else if (null == operation.OwnerPropertyMetadata
                     || (operation.OwnerPropertyMetadata.HasAttribute<OneToManyAttribute>()
@@ -243,7 +258,8 @@ WHERE [{1}] = ",
                             continue;
                         }
 
-                        AppendPropertyToInsertStatement(colBuff, valBuff, property, ref index, operation, values, getter);
+                        AppendPropertyToInsertStatement(
+                            colBuff, valBuff, property, ref index, operation, values, getter);
                     }
 
                     script.Buffer.Append(string.Format(
@@ -271,7 +287,8 @@ WHERE [{1}] = ",
             }
         }
 
-        private void AppendPropertyToInsertStatement(StringBuilder colBuff, StringBuilder valBuff, PropertyMetadata property,
+        private void AppendPropertyToInsertStatement(
+            StringBuilder colBuff, StringBuilder valBuff, PropertyMetadata property,
             ref int index, BaseInsertDeleteOperation operation, ArrayList values, MethodInfo getter)
         {
             if (property.HasAttribute<ForeignKeyReferenceAttribute>()
@@ -282,7 +299,6 @@ WHERE [{1}] = ",
             {
                 values.Add(
                     new Func<object>(() => operation.OwnerPrimaryKey));
-                //GetPossiblyUnknownPrimaryKeyValue(operation.OwnerPrimaryKey));
             }
             else if (property.HasAttribute<ManyToOneAttribute>() || property.HasAttribute<OneToOneAttribute>())
             {
@@ -359,7 +375,8 @@ WHERE [{1}] = ",
 
             throw new ArgumentException(
                 string.Format(
-                    "Reference types other than string are not permitted as parameter values for generated SQL. Invalid value at index {0} for parameter @{1}: {2}",
+                    "Reference types other than string are not permitted as parameter values for generated SQL. "
+                    + "Invalid value at index {0} for parameter @{1}: {2}",
                     index,
                     parmName,
                     parmValue),

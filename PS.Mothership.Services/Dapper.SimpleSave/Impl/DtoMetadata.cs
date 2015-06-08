@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Dapper.SimpleSave.Impl {
+namespace Dapper.SimpleSave.Impl
+{
     public class DtoMetadata : BaseMetadata
     {
         public DtoMetadata(Type type) : base(type)
@@ -26,7 +24,11 @@ namespace Dapper.SimpleSave.Impl {
 
         public bool HasUpdateableForeignKeys
         {
-            get { return IsReferenceData && GetAttribute<ReferenceDataAttribute>().HasUpdateableForeignKeys;  }
+            get
+            {
+                return IsReferenceData
+                    && GetAttribute<ReferenceDataAttribute>().HasUpdateableForeignKeys;
+            }
         }
 
         public PropertyMetadata PrimaryKey { get; set; }
@@ -60,7 +62,8 @@ namespace Dapper.SimpleSave.Impl {
         {
             var target = new List<PropertyMetadata>();
             foreach (var prop in DtoType.GetProperties(
-                BindingFlags.FlattenHierarchy | BindingFlags.Public | BindingFlags.Instance)) {
+                BindingFlags.FlattenHierarchy | BindingFlags.Public | BindingFlags.Instance))
+            {
                 var propMeta = new PropertyMetadata(prop);
                 if (!propMeta.IsSaveable)
                 {
@@ -82,12 +85,12 @@ namespace Dapper.SimpleSave.Impl {
         {
             var attr = GetAttribute<TableAttribute>();
             var name = null == attr ? null : attr.Name;
-            if (null == name)
-            {
-                //  TODO: generate names for enums and DTOs without any name specified
-            }
+            //if (null == name)
+            //{
+            //    //  TODO: generate names for enums and DTOs without any name specified
+            //    //  Hmm... looks like possibly we may not need this.
+            //}
             TableName = name;
         }
-
     }
 }

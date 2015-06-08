@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Castle.Core.Internal;
-using Castle.Core.Logging;
 
-namespace Dapper.SimpleSave.Impl {
-    public class OperationBuilder {
+namespace Dapper.SimpleSave.Impl
+{
+    public class OperationBuilder
+    {
         public IEnumerable<BaseOperation> Build(IEnumerable<Difference> differences)
         {
             var operations = new List<BaseOperation>();

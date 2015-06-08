@@ -8,7 +8,6 @@ namespace Dapper.SimpleSave
 {
     public static class SimpleSaveExtensions
     {
-
         private static readonly DtoMetadataCache _dtoMetadataCache = new DtoMetadataCache();
 
         public static void Update<T>(

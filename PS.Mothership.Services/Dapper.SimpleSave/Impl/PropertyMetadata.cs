@@ -1,13 +1,10 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 
 namespace Dapper.SimpleSave.Impl
 {
     public class PropertyMetadata : BaseMetadata
     {
-
         public PropertyInfo Prop { get; set; }
 
         public PropertyMetadata(PropertyInfo prop) : base(prop)
@@ -142,12 +139,14 @@ namespace Dapper.SimpleSave.Impl
         }
         private void InitNumericType()
         {
-            IsNumericType = IsValueType && !(IsEnumerable || IsBool || IsDateTime || IsDateTimeOffset);
+            IsNumericType = IsValueType
+                && !(IsEnumerable || IsBool || IsDateTime || IsDateTimeOffset);
         }
 
         private void InitReferenceType()
         {
-            IsReferenceType = Prop.PropertyType.IsClass || Prop.PropertyType.IsInterface;
+            IsReferenceType = Prop.PropertyType.IsClass
+                || Prop.PropertyType.IsInterface;
         }
 
         private void InitString()
