@@ -10,9 +10,9 @@ namespace Dapper.SimpleSave
         {
         }
 
-        public TableAttribute(string name)
+        public TableAttribute(string schemaQualifiedTableName)
         {
-            Name = name;
+            Name = schemaQualifiedTableName;
         }
     }
 }
