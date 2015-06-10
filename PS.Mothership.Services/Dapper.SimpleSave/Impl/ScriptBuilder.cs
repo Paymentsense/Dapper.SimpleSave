@@ -58,13 +58,7 @@ SELECT SCOPE_IDENTITY();
 
         private static void AppendUpdateCommand(Script script, UpdateCommand command, ref int paramIndex)
         {
-            var firstOp = command.Operations.FirstOrDefault();
-            if (null == firstOp)
-            {
-                throw new ArgumentException(
-                    "Cannot create UPDATE script for command with no operations.",
-                    "command");
-            }
+            var firstOp = command.Operations.First();
 
             if (null != firstOp.OwnerPropertyMetadata
                 && firstOp.OwnerPropertyMetadata.HasAttribute<OneToManyAttribute>()
