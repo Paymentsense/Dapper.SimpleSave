@@ -171,7 +171,7 @@ WHERE [{0}] = ", command.PrimaryKeyColumn));
                     script.Buffer.Append(string.Format(
                         @"DELETE FROM {0}
 WHERE [{1}] = ", 
-                        operation.OwnerPropertyMetadata.GetAttribute<ManyToManyAttribute>().LinkTableName,
+                        operation.OwnerPropertyMetadata.GetAttribute<ManyToManyAttribute>().SchemaQualifiedLinkTableName,
                         operation.OwnerPrimaryKeyColumn));
 
                     FormatWithParm(script, "{0} AND ", ref parmIndex, operation.OwnerPrimaryKey);
@@ -218,7 +218,7 @@ WHERE [{1}] = ",
     [{1}], [{2}]
 ) VALUES (
     ",
-                        operation.OwnerPropertyMetadata.GetAttribute<ManyToManyAttribute>().LinkTableName,
+                        operation.OwnerPropertyMetadata.GetAttribute<ManyToManyAttribute>().SchemaQualifiedLinkTableName,
                         operation.OwnerPrimaryKeyColumn,
                         operation.ValueMetadata.PrimaryKey.Prop.Name));
                         FormatWithParm(script, @"{0}, {1}

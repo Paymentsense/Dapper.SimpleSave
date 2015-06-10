@@ -4,11 +4,11 @@ namespace Dapper.SimpleSave
 {
     public class ManyToManyAttribute : Attribute
     {
-        public string LinkTableName { get; private set; }
+        public string SchemaQualifiedLinkTableName { get; private set; }
 
         public ManyToManyAttribute(string schemaQualifiedLinkTableName)
         {
-            LinkTableName = schemaQualifiedLinkTableName;
+            SchemaQualifiedLinkTableName = schemaQualifiedLinkTableName;
         }
     }
 }

@@ -22,8 +22,8 @@ namespace Dapper.SimpleSave.Tests {
             Assert.AreEqual(cache.GetMetadataFor(typeof(ParentDto)).TableName, command.Operation.ValueMetadata.TableName, "Unexpected table name");
             command = list [1] as InsertCommand;
             Assert.AreEqual(
-                cache.GetMetadataFor(typeof(ParentDto)).Properties.Where(p => p.ColumnName == manyToManyPropertyName).FirstOrDefault().GetAttribute<ManyToManyAttribute>().LinkTableName,
-                command.Operation.OwnerPropertyMetadata.GetAttribute<ManyToManyAttribute>().LinkTableName, "Unexpected table name");
+                cache.GetMetadataFor(typeof(ParentDto)).Properties.Where(p => p.ColumnName == manyToManyPropertyName).FirstOrDefault().GetAttribute<ManyToManyAttribute>().SchemaQualifiedLinkTableName,
+                command.Operation.OwnerPropertyMetadata.GetAttribute<ManyToManyAttribute>().SchemaQualifiedLinkTableName, "Unexpected table name");
         }
 
         [Test]
