@@ -4,7 +4,7 @@ namespace Dapper.SimpleSave
 {
     public class TableAttribute : Attribute
     {
-        public string Name { get; private set; }
+        public string SchemaQualifiedTableName { get; private set; }
 
         public TableAttribute()
         {
@@ -12,7 +12,7 @@ namespace Dapper.SimpleSave
 
         public TableAttribute(string schemaQualifiedTableName)
         {
-            Name = schemaQualifiedTableName;
+            SchemaQualifiedTableName = schemaQualifiedTableName;
         }
     }
 }
