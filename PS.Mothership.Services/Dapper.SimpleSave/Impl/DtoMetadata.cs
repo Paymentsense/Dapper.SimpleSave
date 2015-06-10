@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Dapper.SimpleSave.Impl {
+namespace Dapper.SimpleSave.Impl
+{
     public class DtoMetadata : BaseMetadata
     {
         public DtoMetadata(Type type) : base(type)
@@ -24,9 +22,31 @@ namespace Dapper.SimpleSave.Impl {
             get { return GetAttribute<ReferenceDataAttribute>() != null; }
         }
 
+        public bool HasUpdateableForeignKeys
+        {
+            get
+            {
+                return IsReferenceData
+                    && GetAttribute<ReferenceDataAttribute>().HasUpdateableForeignKeys;
+            }
+        }
+
         public PropertyMetadata PrimaryKey { get; set; }
 
         public IEnumerable<PropertyMetadata> Properties { get; set; }
+
+        public PropertyMetadata GetForeignKeyColumnFor(Type dtoType)
+        {
+            foreach (var property in Properties)
+            {
+                var fk = property.GetAttribute<ForeignKeyReferenceAttribute>();
+                if (null != fk && fk.ReferencedDto == dtoType)
+                {
+                    return property;
+                }
+            }
+            return null;
+        }
 
         public int? GetPrimaryKeyValue(object obj)
         {
@@ -42,7 +62,8 @@ namespace Dapper.SimpleSave.Impl {
         {
             var target = new List<PropertyMetadata>();
             foreach (var prop in DtoType.GetProperties(
-                BindingFlags.FlattenHierarchy | BindingFlags.Public | BindingFlags.Instance)) {
+                BindingFlags.FlattenHierarchy | BindingFlags.Public | BindingFlags.Instance))
+            {
                 var propMeta = new PropertyMetadata(prop);
                 if (!propMeta.IsSaveable)
                 {
@@ -63,13 +84,13 @@ namespace Dapper.SimpleSave.Impl {
         private void InitTableName()
         {
             var attr = GetAttribute<TableAttribute>();
-            var name = null == attr ? null : attr.Name;
-            if (null == name)
-            {
-                //  TODO: generate names for enums and DTOs without any name specified
-            }
+            var name = null == attr ? null : attr.SchemaQualifiedTableName;
+            //if (null == name)
+            //{
+            //    //  TODO: generate names for enums and DTOs without any name specified
+            //    //  Hmm... looks like possibly we may not need this.
+            //}
             TableName = name;
         }
-
     }
 }

@@ -1,6 +1,7 @@
-﻿namespace Dapper.SimpleSave.Impl {
-    [NoTable]
-    public enum DifferenceType {
+﻿namespace Dapper.SimpleSave.Impl
+{
+    public enum DifferenceType
+    {
         Insertion,
         Deletion,
         Update
