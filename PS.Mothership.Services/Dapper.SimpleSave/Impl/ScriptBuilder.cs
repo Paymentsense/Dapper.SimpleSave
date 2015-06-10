@@ -25,7 +25,7 @@ namespace Dapper.SimpleSave.Impl {
 
         public void BuildInternal(IEnumerable<BaseCommand> commands, IList<Script> scripts)
         {
-            int parmIndex = 0;
+            int paramIndex = 0;
             Script script = null;
             foreach (var command in commands)
             {
@@ -37,11 +37,11 @@ namespace Dapper.SimpleSave.Impl {
 
                 if (command is UpdateCommand)
                 {
-                    AppendUpdateCommand(script, command as UpdateCommand, ref parmIndex);
+                    AppendUpdateCommand(script, command as UpdateCommand, ref paramIndex);
                 }
                 else if (command is InsertCommand)
                 {
-                    AppendInsertCommand(script, command as InsertCommand, ref parmIndex);
+                    AppendInsertCommand(script, command as InsertCommand, ref paramIndex);
 
                     script.Buffer.Append(@"
 SELECT SCOPE_IDENTITY();
@@ -51,12 +51,12 @@ SELECT SCOPE_IDENTITY();
                 }
                 else if (command is DeleteCommand)
                 {
-                    AppendDeleteCommand(script, command as DeleteCommand, ref parmIndex);
+                    AppendDeleteCommand(script, command as DeleteCommand, ref paramIndex);
                 }
             }
         }
 
-        private static void AppendUpdateCommand(Script script, UpdateCommand command, ref int parmIndex)
+        private static void AppendUpdateCommand(Script script, UpdateCommand command, ref int paramIndex)
         {
             var firstOp = command.Operations.FirstOrDefault();
             if (null == firstOp)
@@ -71,18 +71,18 @@ SELECT SCOPE_IDENTITY();
                 && firstOp.ValueMetadata.IsReferenceData
                 && firstOp.ValueMetadata.HasUpdateableForeignKeys)
             {
-                AppendReverseUpdateCommandForChildTableReferencingParent(script, command, ref parmIndex);
+                AppendReverseUpdateCommandForChildTableReferencingParent(script, command, ref paramIndex);
             }
             else
             {
-                AppendStandardUpdateCommand(script, command, ref parmIndex);
+                AppendStandardUpdateCommand(script, command, ref paramIndex);
             }
         }
 
         private static void AppendReverseUpdateCommandForChildTableReferencingParent(
             Script script,
             UpdateCommand command,
-            ref int parmIndex)
+            ref int paramIndex)
         {
             var operation = command.Operations.FirstOrDefault();
             script.Buffer.Append(string.Format(@"UPDATE {0}
@@ -91,23 +91,23 @@ SET [{1}] = ",
                 operation.ValueMetadata.GetForeignKeyColumnFor(
                     operation.OwnerMetadata.DtoType).ColumnName));
 
-            FormatWithParm(
+            FormatWithParameter(
                 script,
                 "{0}",
-                ref parmIndex,
+                ref paramIndex,
                 new Func<object>(() => command.PrimaryKey));
 
             script.Buffer.Append(string.Format(@"
 WHERE [{0}] = ", operation.ValueMetadata.PrimaryKey.ColumnName));
 
-            FormatWithParm(script, @"{0};
-", ref parmIndex, operation.ValueMetadata.GetPrimaryKeyValue(operation.Value));
+            FormatWithParameter(script, @"{0};
+", ref paramIndex, operation.ValueMetadata.GetPrimaryKeyValue(operation.Value));
         }
 
         private static void AppendStandardUpdateCommand(
             Script script,
             UpdateCommand command,
-            ref int parmIndex)
+            ref int paramIndex)
         {
             script.Buffer.Append(string.Format(@"UPDATE {0}
 SET ", command.TableName));
@@ -139,26 +139,26 @@ SET ", command.TableName));
 
                 if (useKey)
                 {
-                    FormatWithParm(
+                    FormatWithParameter(
                         script,
                         "{0}",
-                        ref parmIndex,
+                        ref paramIndex,
                         operation.ValueMetadata.GetPrimaryKeyValue(operation.Value));
                 }
                 else
                 {
-                    FormatWithParm(script, "{0}", ref parmIndex, operation.Value);
+                    FormatWithParameter(script, "{0}", ref paramIndex, operation.Value);
                 }
                 ++count;
             }
 
             script.Buffer.Append(string.Format(@"
 WHERE [{0}] = ", command.PrimaryKeyColumn));
-            FormatWithParm(script, @"{0};
-", ref parmIndex, new Func<object>(() => command.PrimaryKey));
+            FormatWithParameter(script, @"{0};
+", ref paramIndex, new Func<object>(() => command.PrimaryKey));
         }
 
-        private static void AppendDeleteCommand(Script script, DeleteCommand command, ref int parmIndex)
+        private static void AppendDeleteCommand(Script script, DeleteCommand command, ref int paramIndex)
         {
             var operation = command.Operation;
             if (operation.ValueMetadata != null)
@@ -174,12 +174,12 @@ WHERE [{1}] = ",
                         operation.OwnerPropertyMetadata.GetAttribute<ManyToManyAttribute>().SchemaQualifiedLinkTableName,
                         operation.OwnerPrimaryKeyColumn));
 
-                    FormatWithParm(script, "{0} AND ", ref parmIndex, operation.OwnerPrimaryKey);
+                    FormatWithParameter(script, "{0} AND ", ref paramIndex, operation.OwnerPrimaryKey);
 
                     script.Buffer.Append(string.Format("[{0}] = ", operation.ValueMetadata.PrimaryKey.Prop.Name));
 
-                    FormatWithParm(script, @"{0};
-", ref parmIndex, operation.ValueMetadata.GetPrimaryKeyValue(operation.Value));
+                    FormatWithParameter(script, @"{0};
+", ref paramIndex, operation.ValueMetadata.GetPrimaryKeyValue(operation.Value));
                 }
                 else if (null == operation.OwnerPropertyMetadata
                     || (operation.OwnerPropertyMetadata.HasAttribute<OneToManyAttribute>()
@@ -192,8 +192,8 @@ WHERE [{1}] = ",
 WHERE [{1}] = ",
                         operation.ValueMetadata.TableName,
                         operation.ValueMetadata.PrimaryKey.Prop.Name));
-                    FormatWithParm(script, @"{0};
-", ref parmIndex, operation.ValueMetadata.GetPrimaryKeyValue(operation.Value));
+                    FormatWithParameter(script, @"{0};
+", ref paramIndex, operation.ValueMetadata.GetPrimaryKeyValue(operation.Value));
                 }
             }
             else
@@ -206,7 +206,7 @@ WHERE [{1}] = ",
             }
         }
 
-        private void AppendInsertCommand(Script script, InsertCommand command, ref int parmIndex) {
+        private void AppendInsertCommand(Script script, InsertCommand command, ref int paramIndex) {
             var operation = command.Operation;
             if (operation.ValueMetadata != null) {
                 if (null != operation.OwnerPropertyMetadata
@@ -221,10 +221,10 @@ WHERE [{1}] = ",
                         operation.OwnerPropertyMetadata.GetAttribute<ManyToManyAttribute>().SchemaQualifiedLinkTableName,
                         operation.OwnerPrimaryKeyColumn,
                         operation.ValueMetadata.PrimaryKey.Prop.Name));
-                        FormatWithParm(script, @"{0}, {1}
+                        FormatWithParameter(script, @"{0}, {1}
 );
 ",
-                            ref parmIndex,
+                            ref paramIndex,
                             new Func<object>(
                                 () => operation.OwnerPrimaryKey),
                             new Func<object>(
@@ -269,7 +269,7 @@ WHERE [{1}] = ",
     ",
                         operation.ValueMetadata.TableName,
                         colBuff));
-                    FormatWithParm(script, valBuff.ToString(), ref parmIndex, values.ToArray());
+                    FormatWithParameter(script, valBuff.ToString(), ref paramIndex, values.ToArray());
                     script.Buffer.Append(@"
 );
 ");
@@ -337,36 +337,36 @@ WHERE [{1}] = ",
             ++index;
         }
 
-        private static void FormatWithParm(
+        private static void FormatWithParameter(
             Script script,
             string formatString,
-            ref int parmIndex,
-            params object [] parmValues)
+            ref int paramIndex,
+            params object [] paramValues)
         {
-            var parmNames = new ArrayList();
-            for(int index = 0, count = parmValues.Length; index < count; ++index)
+            var paramNames = new ArrayList();
+            for(int index = 0, count = paramValues.Length; index < count; ++index)
             {
-                object parmValue = parmValues[index];
-                string parmName = "p" + parmIndex;
-                ValidateParmValue(index, parmName, parmValue);
-                script.Parameters[parmName] = parmValue;
-                parmNames.Add("@" + parmName);
-                ++parmIndex;
+                object paramValue = paramValues[index];
+                string paramName = "p" + paramIndex;
+                ValidateParameterValue(index, paramName, paramValue);
+                script.Parameters[paramName] = paramValue;
+                paramNames.Add("@" + paramName);
+                ++paramIndex;
             }
 
-            script.Buffer.Append(string.Format(formatString, parmNames.ToArray()));
+            script.Buffer.Append(string.Format(formatString, paramNames.ToArray()));
         }
 
-        private static void ValidateParmValue(
+        private static void ValidateParameterValue(
             int index,
-            string parmName,
-            object parmValue)
+            string paramName,
+            object paramValue)
         {
-            if (null == parmValue || parmValue is string) {
+            if (null == paramValue || paramValue is string) {
                 return;
             }
 
-            var type = parmValue.GetType();
+            var type = paramValue.GetType();
             if (type.IsValueType
                 || (type.IsConstructedGenericType
                     && type.GetGenericTypeDefinition() == typeof(Func<>))) {
@@ -378,9 +378,9 @@ WHERE [{1}] = ",
                     "Reference types other than string are not permitted as parameter values for generated SQL. "
                     + "Invalid value at index {0} for parameter @{1}: {2}",
                     index,
-                    parmName,
-                    parmValue),
-                "parmValues");
+                    paramName,
+                    paramValue),
+                "paramValue");
         }
     }
 }
