@@ -1,10 +1,10 @@
 ﻿namespace Dapper.SimpleSave.Impl
 {
-    public class BaseInsertDeleteCommand : BaseCommand
+    public abstract class BaseInsertDeleteCommand : BaseCommand
     {
         private readonly BaseInsertDeleteOperation _operation;
 
-        public BaseInsertDeleteCommand(BaseInsertDeleteOperation operation)
+        protected BaseInsertDeleteCommand(BaseInsertDeleteOperation operation)
         {
             _operation = operation;
             TableName = operation.TableName;
