@@ -18,7 +18,10 @@ namespace Dapper.SimpleSave.Impl
         /// <summary>
         /// Deep diffs the two supplied objects. Either or both can be null. For <code>INSERT</code>s
         /// it's expected that <code>oldObject</code> would be <code>null</code>. Vice versa
-        /// for <code>UPDATE</code>s.
+        /// for <code>DELETE</code>s. For <code>UPDATE</code> obviously neither should be null but
+        /// expect to be yelled at with an <see cref="ArgumentException"/> if the two objects in
+        /// question don't represent the same row (i.e., their primary key columns have different
+        /// values).
         /// </summary>
         /// <typeparam name="T">Type of object.</typeparam>
         /// <param name="oldObject">Old version of object, which is expected to be <code>null</code> for
