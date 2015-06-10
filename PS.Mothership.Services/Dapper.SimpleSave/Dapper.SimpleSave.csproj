@@ -81,7 +81,6 @@
     <Compile Include="Impl\UpdateOperation.cs" />
     <Compile Include="ManyToManyAttribute.cs" />
     <Compile Include="ManyToOneAttribute.cs" />
-    <Compile Include="NoTableAttribute.cs" />
     <Compile Include="OneToManyAttribute.cs" />
     <Compile Include="OneToOneAttribute.cs" />
     <Compile Include="PrimaryKeyAttribute.cs" />
