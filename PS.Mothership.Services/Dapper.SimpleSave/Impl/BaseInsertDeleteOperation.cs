@@ -1,6 +1,6 @@
 ﻿namespace Dapper.SimpleSave.Impl
 {
-    public class BaseInsertDeleteOperation : BaseOperation
+    public abstract class BaseInsertDeleteOperation : BaseOperation
     {
     }
 }
