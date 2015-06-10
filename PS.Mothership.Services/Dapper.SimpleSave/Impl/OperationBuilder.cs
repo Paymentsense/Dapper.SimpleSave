@@ -48,7 +48,7 @@ namespace Dapper.SimpleSave.Impl
                 Value = diff.NewValue
             };
 
-            if (!FilterOutInsertOrDelete(insertOperation))
+            if (!ShouldFilterOutForParticularCardinalitiesBecauseFkOnParent(insertOperation))
             {
                 AddInsertToListAtCorrectLocation(operations, insertOperation);
             }
@@ -112,7 +112,7 @@ namespace Dapper.SimpleSave.Impl
                 Value = diff.OldValue
             };
 
-            if (!FilterOutInsertOrDelete(deleteOperation))
+            if (!ShouldFilterOutForParticularCardinalitiesBecauseFkOnParent(deleteOperation))
             {
                 AddDeleteToListAtCorrectLocation(operations, deleteOperation);
             }
@@ -181,7 +181,7 @@ namespace Dapper.SimpleSave.Impl
             }
         }
 
-        private bool FilterOutInsertOrDelete(BaseInsertDeleteOperation insertDeleteOperation)
+        private bool ShouldFilterOutForParticularCardinalitiesBecauseFkOnParent(BaseInsertDeleteOperation insertDeleteOperation)
         {
             return insertDeleteOperation.OwnerPropertyMetadata != null
                    && (insertDeleteOperation.OwnerPropertyMetadata.IsManyToOneRelationship
