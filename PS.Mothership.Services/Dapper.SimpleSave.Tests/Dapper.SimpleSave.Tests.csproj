@@ -94,14 +94,6 @@
       <Project>{fdf235b1-118b-4458-ac68-4bf7c2c50ae4}</Project>
       <Name>Dapper.SimpleSave</Name>
     </ProjectReference>
-    <ProjectReference Include="..\PS.Mothership.Repository.Common\PS.Mothership.Repository.Common.csproj">
-      <Project>{459cf7b0-fe17-424b-b8fc-5709106ff8dd}</Project>
-      <Name>PS.Mothership.Repository.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\PS.Mothership.Repository.Configuration\PS.Mothership.Repository.Configuration.csproj">
-      <Project>{7d9a67f3-f77b-41af-a48f-dc9a83ffa308}</Project>
-      <Name>PS.Mothership.Repository.Configuration</Name>
-    </ProjectReference>
     <ProjectReference Include="..\PS.Mothership.Repository\PS.Mothership.Repository.csproj">
       <Project>{e2eda8fa-3689-44f4-a165-16b9c249090e}</Project>
       <Name>PS.Mothership.Repository</Name>
