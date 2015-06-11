@@ -1,16 +1,18 @@
 ﻿using System;
 
-namespace Dapper.SimpleSave {
-    public class TableAttribute : Attribute {
-        public string Name { get; private set; }
+namespace Dapper.SimpleSave
+{
+    public class TableAttribute : Attribute
+    {
+        public string SchemaQualifiedTableName { get; private set; }
 
         public TableAttribute()
         {
         }
 
-        public TableAttribute(string name)
+        public TableAttribute(string schemaQualifiedTableName)
         {
-            Name = name;
+            SchemaQualifiedTableName = schemaQualifiedTableName;
         }
     }
 }
