@@ -82,10 +82,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Externals\Core\PS.Mothership.Core\PS.Mothership.Core.Common.Caching\PS.Mothership.Core.Common.Caching.csproj">
-      <Project>{3da2126d-265a-412e-adb2-e2581954702e}</Project>
-      <Name>PS.Mothership.Core.Common.Caching</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Externals\Core\PS.Mothership.Core\PS.Mothership.Core.Common\PS.Mothership.Core.Common.csproj">
       <Project>{2e26f270-5fb3-447d-83b6-416a1bdbb0fc}</Project>
       <Name>PS.Mothership.Core.Common</Name>
