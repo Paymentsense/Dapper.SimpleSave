@@ -46,6 +46,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseTests.cs" />
+    <Compile Include="Dto\BaseChildDto.cs" />
+    <Compile Include="Dto\BaseOneToManyChildDto.cs" />
+    <Compile Include="Dto\BaseOneToOneChildDtoWithFk.cs" />
+    <Compile Include="Dto\BaseParentDto.cs" />
+    <Compile Include="Dto\ManyToManyChildDto.cs" />
+    <Compile Include="Dto\ManyToManyReferenceChildDto.cs" />
+    <Compile Include="Dto\ManyToManySpecialChildDto.cs" />
+    <Compile Include="Dto\ManyToOneChildDto.cs" />
+    <Compile Include="Dto\ManyToOneReferenceChildDto.cs" />
+    <Compile Include="Dto\ManyToOneSpecialChildDto.cs" />
+    <Compile Include="Dto\OneToManyChildDto.cs" />
+    <Compile Include="Dto\OneToManyReferenceChildDto.cs" />
+    <Compile Include="Dto\OneToManySpecialChildDto.cs" />
+    <Compile Include="Dto\OneToOneChildDtoNoFk.cs" />
+    <Compile Include="Dto\OneToOneChildDtoWithFk.cs" />
+    <Compile Include="Dto\OneToOneReferenceChildDtoNoFk.cs" />
+    <Compile Include="Dto\OneToOneReferenceChildDtoWithFk.cs" />
+    <Compile Include="Dto\OneToOneSpecialChildDtoNoFk.cs" />
+    <Compile Include="Dto\OneToOneSpecialChildDtoWithFk.cs" />
+    <Compile Include="Dto\ParentDto.cs" />
+    <Compile Include="Dto\ParentReferenceDto.cs" />
+    <Compile Include="Dto\ParentSpecialDto.cs" />
+    <Compile Include="ManyToManyRelationshipCommandGenerationTests.cs" />
+    <Compile Include="ManyToOneRelationshipCommandGenerationTests.cs" />
+    <Compile Include="OneToManyRelationshipCommandGenerationTests.cs" />
+    <Compile Include="OneToOneRelationshipFkOnChildCommandGenerationTests.cs" />
+    <Compile Include="OneToOneRelationshipFkOnParentCommandGenerationTests.cs" />
     <Compile Include="ScriptGenerationOutlineTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -54,10 +82,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Externals\Core\PS.Mothership.Core\PS.Mothership.Core.Common.Caching\PS.Mothership.Core.Common.Caching.csproj">
-      <Project>{3da2126d-265a-412e-adb2-e2581954702e}</Project>
-      <Name>PS.Mothership.Core.Common.Caching</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Externals\Core\PS.Mothership.Core\PS.Mothership.Core.Common\PS.Mothership.Core.Common.csproj">
       <Project>{2e26f270-5fb3-447d-83b6-416a1bdbb0fc}</Project>
       <Name>PS.Mothership.Core.Common</Name>

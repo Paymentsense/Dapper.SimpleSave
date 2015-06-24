@@ -13,7 +13,7 @@ namespace Dapper.SimpleSave.Tests
 {
 
     [TestFixture]
-    public class ScriptGenerationOutlineTests
+    public class ScriptGenerationOutlineTests : BaseTests
     {
 
         public static readonly UserDto JohnSmith = new UserDto {
@@ -37,12 +37,12 @@ namespace Dapper.SimpleSave.Tests
                     new DepartmentDto
                     {
                         DepartmentKey = 1,
-                        Name = "The Flying Squad"
+                        Name = "Field-Sales"
                     },
                     new DepartmentDto
                     {
                         DepartmentKey = 2,
-                        Name = "The Pancake Landing Squad"
+                        Name = "Pro-Support"
                     } 
                 })
         };
@@ -67,17 +67,17 @@ namespace Dapper.SimpleSave.Tests
                     new DepartmentDto
                     {
                         DepartmentKey = 1,
-                        Name = "The Flying Squad"
+                        Name = "Field-Sales"
                     },
                     new DepartmentDto
                     {
                         DepartmentKey = 2,
-                        Name = "The Pancake Landing Squad"
+                        Name = "Pro-Support"
                     } 
                 })
         };
 
-        public static readonly UserDto ZargonRemovedDepartment = new UserDto() {
+        public static readonly UserDto ZargonRemovedDepartment = new UserDto {
             UserKey = 1,
             FirstName = "Zargon",
             LastName = "Smith",
@@ -97,12 +97,12 @@ namespace Dapper.SimpleSave.Tests
                     new DepartmentDto
                     {
                         DepartmentKey = 2,
-                        Name = "The Pancake Landing Squad"
+                        Name = "Pro-Support"
                     } 
                 })
         };
 
-        public static readonly UserDto ZargonAddedDepartment = new UserDto() {
+        public static readonly UserDto ZargonAddedDepartment = new UserDto {
             UserKey = 1,
             FirstName = "Zargon",
             LastName = "Smith",
@@ -122,12 +122,12 @@ namespace Dapper.SimpleSave.Tests
                     new DepartmentDto
                     {
                         DepartmentKey = 1,
-                        Name = "The Flying Squad"
+                        Name = "Field-Sales"
                     },
                     new DepartmentDto
                     {
                         DepartmentKey = 2,
-                        Name = "The Pancake Landing Squad"
+                        Name = "Pro-Support"
                     },
                     new DepartmentDto
                     {
@@ -137,7 +137,7 @@ namespace Dapper.SimpleSave.Tests
                 })
         };
 
-        public static readonly UserDto ZargonComplexUpdates = new UserDto() {
+        public static readonly UserDto ZargonComplexUpdates = new UserDto {
             UserKey = 1,
             FirstName = "Zargon",
             LastName = "Smith",
@@ -157,12 +157,12 @@ namespace Dapper.SimpleSave.Tests
                 new DepartmentDto
                 {
                     DepartmentKey = 2,
-                    Name = "The Pancake Landing Squad"
+                    Name = "Pro-Support"
                 },
                 new DepartmentDto
                 {
                     DepartmentKey = 3,
-                    Name = "Zombie Hunters"
+                    Name = "Customer Service"
                 }
             }),
             Team = new List<TeamDto>(new []
@@ -170,7 +170,7 @@ namespace Dapper.SimpleSave.Tests
                 new TeamDto
                 {
                     TeamKey = 1,
-                    Name = "The A-Team"
+                    Name = "Kraken"
                 }
             }),
             AdditionalRoles = new List<RoleDto>(new []
@@ -178,9 +178,53 @@ namespace Dapper.SimpleSave.Tests
                 new RoleDto
                 {
                     RoleKey = 1,
-                    Name = "Howling Mad Murdoch Replacement"
+                    Name = "TeleSales"
                 }
             })
+        };
+
+        public static readonly UserDto UserWithPosition = new UserDto
+        {
+            Username = "hfdgfdsgdfq.gsdfgfds",
+            EmailAddress = "hfdgfdsgdfq.gsdfgfds@paymentsense.com",
+            FirstName = "hfdgfdsgdfq",
+            LastName = "gsdfgfds",
+            Position = new PositionDto
+            {
+                PositionKey = 2,
+                Name = "Head"
+            },
+            Department = new List<DepartmentDto>(new[]
+            {
+                new DepartmentDto
+                {
+                    DepartmentKey = 1,
+                    Name = "Field-Sales"
+                }
+            }),
+            AdditionalRoles = new List<RoleDto>(new[]
+            {
+                new RoleDto
+                {
+                    RoleKey = 1,
+                    Name = "TeleSales"
+                }
+            }),
+            Team = new List<TeamDto>(new[]
+            {
+                new TeamDto
+                {
+                    TeamKey = 0,
+                    Name = "Phoenix"
+                }
+            }),
+            PersonalMobileNumber = "543254",
+            Status = UserStatusEnum.Active,
+            OfficeNumber = new OfficeNumberDto
+            {
+                OfficeNumberKey = 4,
+                Number = "02075555555"
+            }
         };
 
         public static UserDto GetDto(string name)
@@ -193,14 +237,15 @@ namespace Dapper.SimpleSave.Tests
             return (UserDto) field.GetValue(null);
         }
 
-        [TestCase(null, "JohnSmith", 4, 4, 3, 1, 0, 4, 3, 1, 0)]
-        [TestCase(null, "ZargonComplexUpdates", 6, 6, 5, 1, 0, 6, 5, 1, 0)]
+        [TestCase(null, "JohnSmith", 4, 3, 3, 0, 0, 3, 3, 0, 0)]
+        [TestCase(null, "ZargonComplexUpdates", 6, 5, 5, 0, 0, 5, 5, 0, 0)]
         [TestCase("JohnSmith", "ZargonRemovedDepartment", 4, 4, 0, 3, 1, 2, 0, 1, 1)]
         [TestCase("JohnSmith", "ZargonAddedDepartment", 4, 4, 1, 3, 0, 2, 1, 1, 0)]
         [TestCase("JohnSmith", "ZargonComplexUpdates", 7, 7, 3, 3, 1, 5, 3, 1, 1)]
-        [TestCase("JohnSmith", null, 4, 4, 0, 1, 3, 4, 0, 1, 3)]
+        [TestCase("JohnSmith", null, 4, 3, 0, 0, 3, 3, 0, 0, 3)]
         [TestCase("JohnSmith", "JohnSmithPositionChange", 1, 1, 0, 1, 0, 1, 0, 1, 0)]
-        [TestCase("ZargonComplexUpdates", null, 6, 6, 0, 1, 5, 6, 0, 1, 5)]
+        [TestCase("ZargonComplexUpdates", null, 6, 5, 0, 0, 5, 5, 0, 0, 5)]
+        [TestCase(null, "UserWithPosition", 6, 4, 4, 0, 0, 4, 4, 0, 0)]
         public void creates_updates_and_deletes_generate_correct_script_shape(
             string oldUserFieldName,
             string newUserFieldName,
@@ -222,7 +267,9 @@ namespace Dapper.SimpleSave.Tests
 
             var operationBuilder = new OperationBuilder();
             var operations = operationBuilder.Build(differences);
-            var commands = operationBuilder.Coalesce(operations);
+
+            var commandBuilder = new CommandBuilder();
+            var commands = commandBuilder.Coalesce(operations);
 
             Assert.AreEqual(expectedOperationCount, operations.Count(), "Unexpected number of operations.");
             var counts = CountItemsByType(operations);
@@ -245,25 +292,8 @@ namespace Dapper.SimpleSave.Tests
             {
                 Assert.IsTrue(script.Buffer.Length > 0, "#badtimes - empty transaction script");                
             }
-        }
 
-        private void CheckCount(IDictionary<Type, int> counts, Type type, int expectedCount)
-        {
-            Assert.AreEqual(
-                expectedCount,
-                counts.ContainsKey(type) ? counts[type] : 0,
-                string.Format("Unexpected count for {0}", type));
-        }
-
-        private IDictionary<Type, int> CountItemsByType(IEnumerable items)
-        {
-            var results = new Dictionary<Type, int>();
-            foreach (var item in items)
-            {
-                Type type = item.GetType();
-                results[type] = results.ContainsKey(type) ? results[type] + 1 : 1;
-            }
-            return results;
+            CheckNoReferenceTypesInParameters(transactionScript);
         }
     }
 }

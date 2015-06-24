@@ -1,16 +1,14 @@
 ﻿using System;
-using System.CodeDom;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics.Tracing;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 
 namespace Dapper.SimpleSave.Impl {
-    public class ScriptBuilder {
+    public class ScriptBuilder
+    {
         private readonly DtoMetadataCache _dtoMetadataCache;
 
         public ScriptBuilder(DtoMetadataCache dtoMetadataCache)
@@ -27,7 +25,7 @@ namespace Dapper.SimpleSave.Impl {
 
         public void BuildInternal(IEnumerable<BaseCommand> commands, IList<Script> scripts)
         {
-            int parmIndex = 0;
+            int paramIndex = 0;
             Script script = null;
             foreach (var command in commands)
             {
@@ -39,11 +37,11 @@ namespace Dapper.SimpleSave.Impl {
 
                 if (command is UpdateCommand)
                 {
-                    AppendUpdateCommand(script, command as UpdateCommand, ref parmIndex);
+                    AppendUpdateCommand(script, command as UpdateCommand, ref paramIndex);
                 }
                 else if (command is InsertCommand)
                 {
-                    AppendInsertCommand(script, command as InsertCommand, ref parmIndex);
+                    AppendInsertCommand(script, command as InsertCommand, ref paramIndex);
 
                     script.Buffer.Append(@"
 SELECT SCOPE_IDENTITY();
@@ -53,12 +51,57 @@ SELECT SCOPE_IDENTITY();
                 }
                 else if (command is DeleteCommand)
                 {
-                    AppendDeleteCommand(script, command as DeleteCommand, ref parmIndex);
+                    AppendDeleteCommand(script, command as DeleteCommand, ref paramIndex);
                 }
             }
         }
 
-        private static void AppendUpdateCommand(Script script, UpdateCommand command, ref int parmIndex)
+        private static void AppendUpdateCommand(Script script, UpdateCommand command, ref int paramIndex)
+        {
+            var firstOp = command.Operations.First();
+
+            if (null != firstOp.OwnerPropertyMetadata
+                && firstOp.OwnerPropertyMetadata.HasAttribute<OneToManyAttribute>()
+                && firstOp.ValueMetadata.IsReferenceData
+                && firstOp.ValueMetadata.HasUpdateableForeignKeys)
+            {
+                AppendReverseUpdateCommandForChildTableReferencingParent(script, command, ref paramIndex);
+            }
+            else
+            {
+                AppendStandardUpdateCommand(script, command, ref paramIndex);
+            }
+        }
+
+        private static void AppendReverseUpdateCommandForChildTableReferencingParent(
+            Script script,
+            UpdateCommand command,
+            ref int paramIndex)
+        {
+            var operation = command.Operations.FirstOrDefault();
+            script.Buffer.Append(string.Format(@"UPDATE {0}
+SET [{1}] = ",
+                operation.ValueMetadata.TableName,
+                operation.ValueMetadata.GetForeignKeyColumnFor(
+                    operation.OwnerMetadata.DtoType).ColumnName));
+
+            FormatWithParameter(
+                script,
+                "{0}",
+                ref paramIndex,
+                new Func<object>(() => command.PrimaryKey));
+
+            script.Buffer.Append(string.Format(@"
+WHERE [{0}] = ", operation.ValueMetadata.PrimaryKey.ColumnName));
+
+            FormatWithParameter(script, @"{0};
+", ref paramIndex, operation.ValueMetadata.GetPrimaryKeyValue(operation.Value));
+        }
+
+        private static void AppendStandardUpdateCommand(
+            Script script,
+            UpdateCommand command,
+            ref int paramIndex)
         {
             script.Buffer.Append(string.Format(@"UPDATE {0}
 SET ", command.TableName));
@@ -74,7 +117,8 @@ SET ", command.TableName));
                 script.Buffer.Append(string.Format(@"[{0}] = ", operation.ColumnName));
                 bool useKey = false;
 
-                if (null != operation.ValueMetadata) {
+                if (null != operation.ValueMetadata)
+                {
                     if ((null != operation.OwnerPropertyMetadata
                      && (operation.OwnerPropertyMetadata.HasAttribute<OneToOneAttribute>()
                          || operation.OwnerPropertyMetadata.HasAttribute<ManyToOneAttribute>())))
@@ -85,28 +129,30 @@ SET ", command.TableName));
                     {
                         useKey = true;
                     }
-
                 }
 
                 if (useKey)
                 {
-                    FormatWithParm(script, "{0}", ref parmIndex, operation.ValueMetadata.GetPrimaryKeyValue(operation.Value));
+                    FormatWithParameter(
+                        script,
+                        "{0}",
+                        ref paramIndex,
+                        operation.ValueMetadata.GetPrimaryKeyValue(operation.Value));
                 }
                 else
                 {
-                    FormatWithParm(script, "{0}", ref parmIndex, operation.Value);
+                    FormatWithParameter(script, "{0}", ref paramIndex, operation.Value);
                 }
                 ++count;
             }
 
             script.Buffer.Append(string.Format(@"
 WHERE [{0}] = ", command.PrimaryKeyColumn));
-            FormatWithParm(script, @"{0};
-", ref parmIndex, new Func<object>(() => command.PrimaryKey));
-            //GetPossiblyUnknownPrimaryKeyValue(command.PrimaryKey));
+            FormatWithParameter(script, @"{0};
+", ref paramIndex, new Func<object>(() => command.PrimaryKey));
         }
 
-        private static void AppendDeleteCommand(Script script, DeleteCommand command, ref int parmIndex)
+        private static void AppendDeleteCommand(Script script, DeleteCommand command, ref int paramIndex)
         {
             var operation = command.Operation;
             if (operation.ValueMetadata != null)
@@ -119,12 +165,15 @@ WHERE [{0}] = ", command.PrimaryKeyColumn));
                     script.Buffer.Append(string.Format(
                         @"DELETE FROM {0}
 WHERE [{1}] = ", 
-                        operation.OwnerPropertyMetadata.GetAttribute<ManyToManyAttribute>().LinkTableName,
+                        operation.OwnerPropertyMetadata.GetAttribute<ManyToManyAttribute>().SchemaQualifiedLinkTableName,
                         operation.OwnerPrimaryKeyColumn));
-                    FormatWithParm(script, "{0} AND ", ref parmIndex, operation.OwnerPrimaryKey);
+
+                    FormatWithParameter(script, "{0} AND ", ref paramIndex, operation.OwnerPrimaryKey);
+
                     script.Buffer.Append(string.Format("[{0}] = ", operation.ValueMetadata.PrimaryKey.Prop.Name));
-                    FormatWithParm(script, @"{0};
-", ref parmIndex, operation.ValueMetadata.GetPrimaryKeyValue(operation.Value));
+
+                    FormatWithParameter(script, @"{0};
+", ref paramIndex, operation.ValueMetadata.GetPrimaryKeyValue(operation.Value));
                 }
                 else if (null == operation.OwnerPropertyMetadata
                     || (operation.OwnerPropertyMetadata.HasAttribute<OneToManyAttribute>()
@@ -137,8 +186,8 @@ WHERE [{1}] = ",
 WHERE [{1}] = ",
                         operation.ValueMetadata.TableName,
                         operation.ValueMetadata.PrimaryKey.Prop.Name));
-                    FormatWithParm(script, @"{0};
-", ref parmIndex, operation.ValueMetadata.GetPrimaryKeyValue(operation.Value));
+                    FormatWithParameter(script, @"{0};
+", ref paramIndex, operation.ValueMetadata.GetPrimaryKeyValue(operation.Value));
                 }
             }
             else
@@ -151,7 +200,7 @@ WHERE [{1}] = ",
             }
         }
 
-        private void AppendInsertCommand(Script script, InsertCommand command, ref int parmIndex) {
+        private void AppendInsertCommand(Script script, InsertCommand command, ref int paramIndex) {
             var operation = command.Operation;
             if (operation.ValueMetadata != null) {
                 if (null != operation.OwnerPropertyMetadata
@@ -163,22 +212,23 @@ WHERE [{1}] = ",
     [{1}], [{2}]
 ) VALUES (
     ",
-                        operation.OwnerPropertyMetadata.GetAttribute<ManyToManyAttribute>().LinkTableName,
+                        operation.OwnerPropertyMetadata.GetAttribute<ManyToManyAttribute>().SchemaQualifiedLinkTableName,
                         operation.OwnerPrimaryKeyColumn,
                         operation.ValueMetadata.PrimaryKey.Prop.Name));
-                        FormatWithParm(script, @"{0}, {1}
+                        FormatWithParameter(script, @"{0}, {1}
 );
 ",
-                            ref parmIndex,
-                            new Func<object>(() => operation.OwnerPrimaryKey),
-                            new Func<object>(() => operation.ValueMetadata.GetPrimaryKeyValue(operation.Value)));
-                        //GetPossiblyUnknownPrimaryKeyValue(operation.ValueMetadata.GetPrimaryKeyValue(operation.Value)));
+                            ref paramIndex,
+                            new Func<object>(
+                                () => operation.OwnerPrimaryKey),
+                            new Func<object>(
+                                () => operation.ValueMetadata.GetPrimaryKeyValue(operation.Value)));
                     }
                 else if (null == operation.OwnerPropertyMetadata
                     || (operation.OwnerPropertyMetadata.HasAttribute<OneToManyAttribute>()
                     && !operation.ValueMetadata.HasAttribute<ReferenceDataAttribute>())) 
                 {
-                    //  INSERT the value into the other table
+                    //  INSERT the value into the table defined by ValueMetadat
                     
                     var colBuff = new StringBuilder();
                     var valBuff = new StringBuilder();
@@ -194,12 +244,16 @@ WHERE [{1}] = ",
 
                         var getter = property.Prop.GetGetMethod();
 
-                        if (getter == null || property.HasAttribute<ManyToManyAttribute>() || ! property.IsSaveable)
+                        if (getter == null
+                            || property.HasAttribute<ManyToManyAttribute>()
+                            || property.HasAttribute<OneToManyAttribute>()
+                            || ! property.IsSaveable)
                         {
                             continue;
                         }
 
-                        AppendPropertyToInsertStatement(colBuff, valBuff, property, ref index, operation, values, getter);
+                        AppendPropertyToInsertStatement(
+                            colBuff, valBuff, property, ref index, operation, values, getter);
                     }
 
                     script.Buffer.Append(string.Format(
@@ -209,7 +263,7 @@ WHERE [{1}] = ",
     ",
                         operation.ValueMetadata.TableName,
                         colBuff));
-                    FormatWithParm(script, valBuff.ToString(), ref parmIndex, values.ToArray());
+                    FormatWithParameter(script, valBuff.ToString(), ref paramIndex, values.ToArray());
                     script.Buffer.Append(@"
 );
 ");
@@ -227,11 +281,43 @@ WHERE [{1}] = ",
             }
         }
 
-        private void AppendPropertyToInsertStatement(StringBuilder colBuff, StringBuilder valBuff, PropertyMetadata property,
+        private void AppendPropertyToInsertStatement(
+            StringBuilder colBuff, StringBuilder valBuff, PropertyMetadata property,
             ref int index, BaseInsertDeleteOperation operation, ArrayList values, MethodInfo getter)
         {
-            if (colBuff.Length > 0)
+            if (property.HasAttribute<ForeignKeyReferenceAttribute>()
+                && null != operation.OwnerMetadata
+                && _dtoMetadataCache.GetMetadataFor(
+                    property.GetAttribute<ForeignKeyReferenceAttribute>().ReferencedDto).TableName ==
+                operation.OwnerMetadata.TableName)
             {
+                values.Add(
+                    new Func<object>(() => operation.OwnerPrimaryKey));
+            }
+            else if (property.HasAttribute<ManyToOneAttribute>() || property.HasAttribute<OneToOneAttribute>())
+            {
+                if (property.HasAttribute<OneToOneAttribute>() && !property.HasAttribute<ForeignKeyReferenceAttribute>())
+                {
+                    //  One to one relationship where child table references parent rather than the other way around.
+                    //  This will be saved along with the child object.
+                    return;
+                }
+
+                object propValue = property.GetValue(operation.Value);
+                DtoMetadata propMetadata = _dtoMetadataCache.GetMetadataFor(property.Prop.PropertyType);
+                values.Add(
+                    new Func<object>(
+                        () =>
+                            null == propValue || null == propMetadata
+                                ? null
+                                : propMetadata.GetPrimaryKeyValue(propValue)));
+            }
+            else
+            {
+                values.Add(getter.Invoke(operation.Value, new object[0]));
+            }
+
+            if (colBuff.Length > 0) {
                 colBuff.Append(@", ");
                 valBuff.Append(@", ");
             }
@@ -242,51 +328,53 @@ WHERE [{1}] = ",
             valBuff.Append(index);
             valBuff.Append("}");
 
-            if (property.HasAttribute<ForeignKeyReferenceAttribute>()
-                && _dtoMetadataCache.GetMetadataFor(
-                    property.GetAttribute<ForeignKeyReferenceAttribute>().ReferencedDto).TableName ==
-                operation.OwnerMetadata.TableName)
-            {
-                values.Add(
-                    new Func<object>(() => operation.OwnerPrimaryKey));
-                //GetPossiblyUnknownPrimaryKeyValue(operation.OwnerPrimaryKey));
-            }
-            else if (property.HasAttribute<ManyToOneAttribute>())
-            {
-                object propValue = property.GetValue(operation.Value);
-                DtoMetadata propMetadata = _dtoMetadataCache.GetMetadataFor(property.Prop.PropertyType);
-                values.Add(
-                    new Func<object>(
-                        () =>
-                            null == propValue || null == propMetadata
-                                ? null
-                                : propMetadata.GetPrimaryKeyValue(propValue)));
-                //GetPossiblyUnknownPrimaryKeyValue(null == propValue || null == propMetadata ? null : propMetadata.GetPrimaryKeyValue(propValue)));
-            }
-            else
-            {
-                values.Add(getter.Invoke(operation.Value, new object[0]));
-            }
-
             ++index;
         }
 
-        private static void FormatWithParm(
+        private static void FormatWithParameter(
             Script script,
             string formatString,
-            ref int parmIndex,
-            params object [] parmValues)
+            ref int paramIndex,
+            params object [] paramValues)
         {
-            var parmNames = new ArrayList();
-            foreach (object parmValue in parmValues)
+            var paramNames = new ArrayList();
+            for(int index = 0, count = paramValues.Length; index < count; ++index)
             {
-                string parmName = "p" + parmIndex;
-                script.Parameters[parmName] = parmValue;
-                parmNames.Add("@" + parmName);
-                ++parmIndex;
+                object paramValue = paramValues[index];
+                string paramName = "p" + paramIndex;
+                ValidateParameterValue(index, paramName, paramValue);
+                script.Parameters[paramName] = paramValue;
+                paramNames.Add("@" + paramName);
+                ++paramIndex;
             }
 
-            script.Buffer.Append(string.Format(formatString, parmNames.ToArray()));
+            script.Buffer.Append(string.Format(formatString, paramNames.ToArray()));
+        }
+
+        private static void ValidateParameterValue(
+            int index,
+            string paramName,
+            object paramValue)
+        {
+            if (null == paramValue || paramValue is string) {
+                return;
+            }
+
+            var type = paramValue.GetType();
+            if (type.IsValueType
+                || (type.IsConstructedGenericType
+                    && type.GetGenericTypeDefinition() == typeof(Func<>))) {
+                return;
+            }
+
+            throw new ArgumentException(
+                string.Format(
+                    "Reference types other than string are not permitted as parameter values for generated SQL. "
+                    + "Invalid value at index {0} for parameter @{1}: {2}",
+                    index,
+                    paramName,
+                    paramValue),
+                "paramValue");
         }
     }
 }
