@@ -29,7 +29,7 @@ namespace Dapper.SimpleSave.Impl {
             Script script = null;
             foreach (var command in commands)
             {
-                if (null == script)
+                if (script == null)
                 {
                     script = new Script();
                     scripts.Add(script);
@@ -175,7 +175,7 @@ WHERE [{1}] = ",
                     FormatWithParameter(script, @"{0};
 ", ref paramIndex, operation.ValueMetadata.GetPrimaryKeyValue(operation.Value));
                 }
-                else if (null == operation.OwnerPropertyMetadata
+                else if (operation.OwnerPropertyMetadata == null
                     || (operation.OwnerPropertyMetadata.HasAttribute<OneToManyAttribute>()
                     && !operation.ValueMetadata.HasAttribute<ReferenceDataAttribute>()))
                 {
@@ -224,7 +224,7 @@ WHERE [{1}] = ",
                             new Func<object>(
                                 () => operation.ValueMetadata.GetPrimaryKeyValue(operation.Value)));
                     }
-                else if (null == operation.OwnerPropertyMetadata
+                else if (operation.OwnerPropertyMetadata == null
                     || (operation.OwnerPropertyMetadata.HasAttribute<OneToManyAttribute>()
                     && !operation.ValueMetadata.HasAttribute<ReferenceDataAttribute>())) 
                 {
@@ -308,7 +308,7 @@ WHERE [{1}] = ",
                 values.Add(
                     new Func<object>(
                         () =>
-                            null == propValue || null == propMetadata
+                            propValue == null || propMetadata == null
                                 ? null
                                 : propMetadata.GetPrimaryKeyValue(propValue)));
             }
@@ -356,7 +356,8 @@ WHERE [{1}] = ",
             string paramName,
             object paramValue)
         {
-            if (null == paramValue || paramValue is string) {
+            if (paramValue == null || paramValue is string)
+            {
                 return;
             }
 

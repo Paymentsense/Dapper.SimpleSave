@@ -78,7 +78,8 @@ namespace Dapper.SimpleSave.Tests {
             foreach (var script in transactionScript) {
                 foreach (var name in script.Parameters.Keys) {
                     var value = script.Parameters [name];
-                    if (null == value || value is string) {
+                    if (value == null || value is string)
+                    {
                         continue;
                     }
 
