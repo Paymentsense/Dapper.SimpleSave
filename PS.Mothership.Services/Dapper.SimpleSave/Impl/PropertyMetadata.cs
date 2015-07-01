@@ -110,7 +110,7 @@ namespace Dapper.SimpleSave.Impl
 
         private void InitEnumerable()
         {
-            IsEnumerable = Prop.PropertyType.IsEnumerable();
+            IsEnumerable = Prop.PropertyType.IsEnumerable() && typeof(string) != Prop.PropertyType;
         }
 
         private void InitValueType()

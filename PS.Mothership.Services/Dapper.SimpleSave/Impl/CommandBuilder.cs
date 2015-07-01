@@ -61,7 +61,7 @@ namespace Dapper.SimpleSave.Impl
         private void ValidateInsertOrDeleteOperation(BaseInsertDeleteOperation insert)
         {
             var tableMetadata = insert.ValueMetadata;
-            if (null == tableMetadata)
+            if (tableMetadata == null)
             {
                 throw new ArgumentException(
                     "Cannot INSERT or DELETE without metadata for table because we don't know which table we're acting on. "
@@ -96,7 +96,7 @@ namespace Dapper.SimpleSave.Impl
                             "You cannot perform UPDATEs on a reference data table with no updateable foreign keys. "
                             + "Attempt was made to UPDATE table {0}, column {1}.",
                             tableMetadata.TableName,
-                            null == columnMetadata ? "(unknown column)" : columnMetadata.ColumnName));
+                            columnMetadata == null ? "(unknown column)" : columnMetadata.ColumnName));
                     }
 
                     if (null != columnMetadata && !columnMetadata.HasAttribute<ForeignKeyReferenceAttribute>())
