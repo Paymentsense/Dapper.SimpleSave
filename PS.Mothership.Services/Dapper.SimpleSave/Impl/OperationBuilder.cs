@@ -41,7 +41,7 @@ namespace Dapper.SimpleSave.Impl
             {
                 OwnerMetadata = diff.OwnerMetadata,
                 OwnerPropertyMetadata = diff.OwnerPropertyMetadata,
-                OwnerPrimaryKeyColumn = null == diff.OwnerMetadata ? null : diff.OwnerMetadata.PrimaryKey.Prop.Name,
+                OwnerPrimaryKeyColumn = diff.OwnerMetadata == null ? null : diff.OwnerMetadata.PrimaryKey.Prop.Name,
                 Owner = diff.Owner,
                 TableName = diff.OwnerMetadata == null ? null : diff.OwnerMetadata.TableName,
                 ValueMetadata = diff.ValueMetadata,
@@ -105,7 +105,7 @@ namespace Dapper.SimpleSave.Impl
             {
                 OwnerMetadata = diff.OwnerMetadata,
                 OwnerPropertyMetadata = diff.OwnerPropertyMetadata,
-                OwnerPrimaryKeyColumn = null == diff.OwnerMetadata ? null : diff.OwnerMetadata.PrimaryKey.Prop.Name,
+                OwnerPrimaryKeyColumn = diff.OwnerMetadata == null ? null : diff.OwnerMetadata.PrimaryKey.Prop.Name,
                 Owner = diff.Owner,
                 TableName = diff.OwnerMetadata == null ? null : diff.OwnerMetadata.TableName,
                 ValueMetadata = diff.ValueMetadata,
@@ -210,7 +210,7 @@ namespace Dapper.SimpleSave.Impl
         {
             if (baseInsertDelete.ValueMetadata != null)
             {
-                if (null == baseInsertDelete.OwnerPropertyMetadata)
+                if (baseInsertDelete.OwnerPropertyMetadata == null)
                 {
                     //  Top level INSERT
                     return baseInsertDelete;
