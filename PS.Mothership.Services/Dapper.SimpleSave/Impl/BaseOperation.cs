@@ -23,7 +23,7 @@ namespace Dapper.SimpleSave.Impl {
             {
                 return null == Owner
                     ? null
-                    : (null == OwnerMetadata ? null : OwnerMetadata.GetPrimaryKeyValue(Owner));
+                    : (null == OwnerMetadata ? null : (int?)OwnerMetadata.GetPrimaryKeyValue(Owner));
             }
         }
 

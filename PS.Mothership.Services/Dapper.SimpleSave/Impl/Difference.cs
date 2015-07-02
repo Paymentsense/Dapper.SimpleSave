@@ -13,7 +13,7 @@
                 var owner = Owner;
                 return null == owner
                     ? null
-                    : (null == OwnerMetadata ? null : OwnerMetadata.GetPrimaryKeyValue(owner));
+                    : (null == OwnerMetadata ? null : (int?)OwnerMetadata.GetPrimaryKeyValue(owner));
             }
         }
         public PropertyMetadata OwnerPropertyMetadata { get; set; }

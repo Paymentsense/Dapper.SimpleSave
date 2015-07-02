@@ -48,10 +48,17 @@ namespace Dapper.SimpleSave.Impl
             return null;
         }
 
-        public int? GetPrimaryKeyValue(object obj)
+        //public int? GetPrimaryKeyValue(object obj)
+        //{
+        //    return obj is Enum ? (int)obj : (int?)PrimaryKey.GetValue(obj);
+        //}
+
+        public object GetPrimaryKeyValue(object obj)
         {
-            return obj is Enum ? (int) obj : (int?) PrimaryKey.GetValue(obj);
+            return obj is Enum ? (int)obj : PrimaryKey.GetValue(obj);
         }
+
+        
 
         public void SetPrimaryKey(object obj, int? value)
         {
