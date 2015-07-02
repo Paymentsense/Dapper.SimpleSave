@@ -54,7 +54,7 @@ namespace Dapper.SimpleSave.Impl
         {
             get
             {
-                return null == _operations || _operations.Count == 0
+                return  _operations == null || _operations.Count == 0
                     ? null
                     : _operations[0].OwnerPrimaryKey;
             }
