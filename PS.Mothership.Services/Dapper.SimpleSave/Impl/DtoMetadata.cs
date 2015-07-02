@@ -84,8 +84,8 @@ namespace Dapper.SimpleSave.Impl
         private void InitTableName()
         {
             var attr = GetAttribute<TableAttribute>();
-            var name = null == attr ? null : attr.SchemaQualifiedTableName;
-            //if (null == name)
+            var name = attr == null ? null : attr.SchemaQualifiedTableName;
+            //if (name == null)
             //{
             //    //  TODO: generate names for enums and DTOs without any name specified
             //    //  Hmm... looks like possibly we may not need this.
