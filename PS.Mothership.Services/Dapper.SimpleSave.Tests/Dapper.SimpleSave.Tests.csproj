@@ -72,6 +72,7 @@
     <Compile Include="ManyToManyRelationshipCommandGenerationTests.cs" />
     <Compile Include="ManyToOneRelationshipCommandGenerationTests.cs" />
     <Compile Include="OneToManyRelationshipCommandGenerationTests.cs" />
+    <Compile Include="OneToManyRelationshipScriptGenerationTests.cs" />
     <Compile Include="OneToOneRelationshipFkOnChildCommandGenerationTests.cs" />
     <Compile Include="OneToOneRelationshipFkOnParentCommandGenerationTests.cs" />
     <Compile Include="ScriptGenerationOutlineTests.cs" />
