@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Dapper.SimpleSave.Impl {
+namespace Dapper.SimpleSave.Impl
+{
     public class UpdateCommand : BaseCommand
     {
 
@@ -18,7 +16,8 @@ namespace Dapper.SimpleSave.Impl {
                 throw new ArgumentException(string.Format(
                     "Table name mismatch for UPDATE command. Expected: {0}. Actual: {1}.",
                     name,
-                    operation.TableName));
+                    operation.TableName),
+                    "operation");
             }
 
             var pk = PrimaryKey;
@@ -28,7 +27,8 @@ namespace Dapper.SimpleSave.Impl {
                     "Primary key mismatch for UPDATE command on table {0}. Expected: {1}. Actual: {2}.",
                     name,
                     pk,
-                    operation.OwnerPrimaryKey));
+                    operation.OwnerPrimaryKey),
+                    "operation");
             }
 
             name = PrimaryKeyColumn;
@@ -38,7 +38,8 @@ namespace Dapper.SimpleSave.Impl {
                     "Primary key column mismatch for UPDATE command on table {0}. Expected: {1}. Actual: {2}.",
                     TableName,
                     name,
-                    operation.OwnerPrimaryKeyColumn));
+                    operation.OwnerPrimaryKeyColumn),
+                    "operation");
             }
 
             TableName = operation.TableName;
@@ -53,7 +54,7 @@ namespace Dapper.SimpleSave.Impl {
         {
             get
             {
-                return null == _operations || _operations.Count == 0
+                return  _operations == null || _operations.Count == 0
                     ? null
                     : _operations[0].OwnerPrimaryKey;
             }

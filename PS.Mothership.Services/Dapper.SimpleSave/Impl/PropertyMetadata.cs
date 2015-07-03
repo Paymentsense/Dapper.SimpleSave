@@ -1,13 +1,10 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 
 namespace Dapper.SimpleSave.Impl
 {
     public class PropertyMetadata : BaseMetadata
     {
-
         public PropertyInfo Prop { get; set; }
 
         public PropertyMetadata(PropertyInfo prop) : base(prop)
@@ -39,6 +36,16 @@ namespace Dapper.SimpleSave.Impl
         public bool IsOneToManyRelationship
         {
             get { return HasAttribute<OneToManyAttribute>(); }
+        }
+
+        public bool IsManyToOneRelationship
+        {
+            get { return HasAttribute<ManyToOneAttribute>(); }
+        }
+
+        public bool IsOneToOneRelationship
+        {
+            get { return HasAttribute<OneToOneAttribute>(); }
         }
 
         public bool IsReadOnly
@@ -103,7 +110,7 @@ namespace Dapper.SimpleSave.Impl
 
         private void InitEnumerable()
         {
-            IsEnumerable = Prop.PropertyType.IsEnumerable();
+            IsEnumerable = Prop.PropertyType.IsEnumerable() && typeof(string) != Prop.PropertyType;
         }
 
         private void InitValueType()
@@ -132,12 +139,14 @@ namespace Dapper.SimpleSave.Impl
         }
         private void InitNumericType()
         {
-            IsNumericType = IsValueType && !(IsEnumerable || IsBool || IsDateTime || IsDateTimeOffset);
+            IsNumericType = IsValueType
+                && !(IsEnumerable || IsBool || IsDateTime || IsDateTimeOffset);
         }
 
         private void InitReferenceType()
         {
-            IsReferenceType = Prop.PropertyType.IsClass || Prop.PropertyType.IsInterface;
+            IsReferenceType = Prop.PropertyType.IsClass
+                || Prop.PropertyType.IsInterface;
         }
 
         private void InitString()
