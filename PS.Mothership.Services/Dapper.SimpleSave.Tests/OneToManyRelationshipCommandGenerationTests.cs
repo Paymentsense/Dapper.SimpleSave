@@ -134,7 +134,7 @@ namespace Dapper.SimpleSave.Tests {
             var oldDto = new ParentDto
             {
                 ParentKey = 1,
-                OneToManyChildDto = new [] { new OneToManyChildDto() }
+                OneToManyChildDto = new [] { new OneToManyChildDto { ChildKey = 1 }}
             };
 
             var cache = new DtoMetadataCache();
@@ -205,7 +205,7 @@ namespace Dapper.SimpleSave.Tests {
             var oldDto = new ParentDto
             {
                 ParentKey = 1,
-                OneToManyReferenceChildDto = new [] { new OneToManyReferenceChildDto() }
+                OneToManyReferenceChildDto = new [] { new OneToManyReferenceChildDto { ChildKey = 1 } }
             };
 
             var cache = new DtoMetadataCache();
@@ -258,14 +258,14 @@ namespace Dapper.SimpleSave.Tests {
             var oldDto = new ParentDto
             {
                 ParentKey = 1,
-                OneToManySpecialChildDto = new [] { new OneToManySpecialChildDto() }
+                OneToManySpecialChildDto = new [] { new OneToManySpecialChildDto { ChildKey = 1 } }
             };
 
             var newDto = new ParentDto
             {
                 ParentKey = 1,
                 ParentName = "ParentNameUpdated",
-                OneToManySpecialChildDto = new [] { new OneToManySpecialChildDto() }
+                OneToManySpecialChildDto = new [] { new OneToManySpecialChildDto { ChildKey = 1 } }
             };
 
             var cache = new DtoMetadataCache();
@@ -318,7 +318,7 @@ namespace Dapper.SimpleSave.Tests {
             var oldDto = new ParentDto
             {
                 ParentKey = 532,
-                OneToManySpecialChildDto = new [] { new OneToManySpecialChildDto() }
+                OneToManySpecialChildDto = new [] { new OneToManySpecialChildDto { ChildKey = 1 } }
             };
 
             var cache = new DtoMetadataCache();
@@ -388,7 +388,7 @@ namespace Dapper.SimpleSave.Tests {
             var oldDto = new ParentReferenceDto
             {
                 ParentKey = 1,
-                OneToManyChildDto = new [] { new OneToManyChildDto() }
+                OneToManyChildDto = new [] { new OneToManyChildDto { ChildKey = 1 }}
             };
 
             var cache = new DtoMetadataCache();
@@ -440,7 +440,7 @@ namespace Dapper.SimpleSave.Tests {
             var oldDto = new ParentReferenceDto
             {
                 ParentKey = 1,
-                OneToManyReferenceChildDto = new [] { new OneToManyReferenceChildDto() }
+                OneToManyReferenceChildDto = new [] { new OneToManyReferenceChildDto { ChildKey =1 }}
             };
 
             var cache = new DtoMetadataCache();
@@ -492,7 +492,7 @@ namespace Dapper.SimpleSave.Tests {
             var oldDto = new ParentSpecialDto
             {
                 ParentKey = 1,
-                OneToManyChildDto = new [] { new OneToManyChildDto() }
+                OneToManyChildDto = new [] { new OneToManyChildDto { ChildKey = 1 } }
             };
 
             var cache = new DtoMetadataCache();
