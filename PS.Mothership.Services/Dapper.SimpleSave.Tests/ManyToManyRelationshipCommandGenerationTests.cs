@@ -31,7 +31,7 @@ namespace Dapper.SimpleSave.Tests {
         {
             var newDto = new ParentDto
             {
-                ManyToManyChildDto = new ManyToManyChildDto()
+                ManyToManyChildDto = new [] { new ManyToManyChildDto() }
             };
 
             insert_inserts_in_parent_and_link(newDto, "ManyToManyChildDto");
@@ -41,16 +41,16 @@ namespace Dapper.SimpleSave.Tests {
         public void update_with_no_reference_data_updates_child_and_parent() {
             var oldDto = new ParentDto {
                 ParentKey = 1,
-                ManyToManyChildDto = new ManyToManyChildDto()
+                ManyToManyChildDto = new [] { new ManyToManyChildDto() }
             };
 
             var newDto = new ParentDto {
                 ParentKey = 1,
                 ParentName = "Wibble",
-                ManyToManyChildDto = new ManyToManyChildDto
+                ManyToManyChildDto = new [] { new ManyToManyChildDto
                 {
                     Name = "Wobble"
-                }
+                } }
             };
 
             var cache = new DtoMetadataCache();
@@ -85,7 +85,7 @@ namespace Dapper.SimpleSave.Tests {
         public void delete_with_no_reference_data_deletes_from_link_table_and_parent() {
             var oldDto = new ParentDto {
                 ParentKey = 1,
-                ManyToManyChildDto = new ManyToManyChildDto()
+                ManyToManyChildDto = new [] { new ManyToManyChildDto() }
             };
 
             delete_deletes_from_link_table_and_parent(oldDto, typeof(ManyToManyChildDto));
@@ -114,7 +114,7 @@ namespace Dapper.SimpleSave.Tests {
         [Test]
         public void insert_with_reference_data_in_child_inserts_in_parent_and_link_table() {
             var newDto = new ParentDto {
-                ManyToManyReferenceChildDto = new ManyToManyReferenceChildDto()
+                ManyToManyReferenceChildDto = new [] { new ManyToManyReferenceChildDto() }
             };
 
             insert_inserts_in_parent_and_link(newDto, "ManyToManyReferenceChildDto");
@@ -125,16 +125,16 @@ namespace Dapper.SimpleSave.Tests {
         public void update_parent_and_child_with_reference_data_in_child_is_invalid() {
             var oldDto = new ParentDto {
                 ParentKey = 1,
-                ManyToManyReferenceChildDto = new ManyToManyReferenceChildDto()
+                ManyToManyReferenceChildDto = new [] { new ManyToManyReferenceChildDto() }
             };
 
             var newDto = new ParentDto {
                 ParentKey = 1,
                 ParentName = "Wibble",
-                ManyToManyReferenceChildDto = new ManyToManyReferenceChildDto()
+                ManyToManyReferenceChildDto = new [] { new ManyToManyReferenceChildDto()
                 {
                     Name = "Wobble"
-                }
+                } }
             };
 
             var cache = new DtoMetadataCache();
@@ -146,13 +146,13 @@ namespace Dapper.SimpleSave.Tests {
         {
             var oldDto = new ParentDto {
                 ParentKey = 1,
-                ManyToManyReferenceChildDto = new ManyToManyReferenceChildDto()
+                ManyToManyReferenceChildDto = new [] { new ManyToManyReferenceChildDto() }
             };
 
             var newDto = new ParentDto {
                 ParentKey = 1,
                 ParentName = "Wibble",
-                ManyToManyReferenceChildDto = new ManyToManyReferenceChildDto() {}
+                ManyToManyReferenceChildDto = new [] { new ManyToManyReferenceChildDto() }
             };
 
             update_updates_parent_only(oldDto, newDto);
@@ -185,7 +185,7 @@ namespace Dapper.SimpleSave.Tests {
         public void delete_with_reference_data_in_child_deletes_from_link_table_and_parent() {
             var oldDto = new ParentDto {
                 ParentKey = 1,
-                ManyToManyReferenceChildDto = new ManyToManyReferenceChildDto()
+                ManyToManyReferenceChildDto = new [] { new ManyToManyReferenceChildDto() }
             };
 
             delete_deletes_from_link_table_and_parent(oldDto, typeof(ManyToManyReferenceChildDto));
@@ -194,7 +194,7 @@ namespace Dapper.SimpleSave.Tests {
         [Test]
         public void insert_with_special_data_in_child_inserts_in_parent_and_link_table() {
             var newDto = new ParentDto {
-                ManyToManySpecialChildDto = new ManyToManySpecialChildDto()
+                ManyToManySpecialChildDto = new [] { new ManyToManySpecialChildDto() }
             };
 
             insert_inserts_in_parent_and_link(newDto, "ManyToManySpecialChildDto");
@@ -205,15 +205,15 @@ namespace Dapper.SimpleSave.Tests {
         public void update_parent_and_non_fk_column_in_child_with_special_data_in_child_is_invalid() {
             var oldDto = new ParentDto {
                 ParentKey = 1,
-                ManyToManySpecialChildDto = new ManyToManySpecialChildDto()
+                ManyToManySpecialChildDto = new [] { new ManyToManySpecialChildDto() }
             };
 
             var newDto = new ParentDto {
                 ParentKey = 1,
                 ParentName = "Wibble",
-                ManyToManySpecialChildDto = new ManyToManySpecialChildDto() {
+                ManyToManySpecialChildDto = new [] { new ManyToManySpecialChildDto {
                     Name = "Wobble"
-                }
+                } }
             };
 
             var cache = new DtoMetadataCache();
@@ -225,13 +225,13 @@ namespace Dapper.SimpleSave.Tests {
         {
             var oldDto = new ParentDto {
                 ParentKey = 1,
-                ManyToManySpecialChildDto = new ManyToManySpecialChildDto()
+                ManyToManySpecialChildDto = new [] { new ManyToManySpecialChildDto() }
             };
 
             var newDto = new ParentDto {
                 ParentKey = 1,
                 ParentName = "Wibble",
-                ManyToManySpecialChildDto = new ManyToManySpecialChildDto()
+                ManyToManySpecialChildDto = new [] { new ManyToManySpecialChildDto() }
             };
 
             update_updates_parent_only(oldDto, newDto);
@@ -241,7 +241,7 @@ namespace Dapper.SimpleSave.Tests {
         public void delete_with_special_data_in_child_deletes_from_link_table_and_parent() {
             var oldDto = new ParentDto {
                 ParentKey = 1,
-                ManyToManySpecialChildDto = new ManyToManySpecialChildDto()
+                ManyToManySpecialChildDto = new [] { new ManyToManySpecialChildDto() }
             };
 
             delete_deletes_from_link_table_and_parent(oldDto, typeof(ManyToManySpecialChildDto));
@@ -251,7 +251,7 @@ namespace Dapper.SimpleSave.Tests {
         [ExpectedException(typeof(InvalidOperationException))]
         public void insert_with_reference_data_in_parent_is_invalid() {
             var newDto = new ParentReferenceDto() {
-                ManyToManyChildDto = new ManyToManyChildDto()
+                ManyToManyChildDto = new [] { new ManyToManyChildDto() }
             };
 
             var cache = new DtoMetadataCache();
@@ -263,13 +263,13 @@ namespace Dapper.SimpleSave.Tests {
         public void update_with_reference_data_in_parent_is_invalid() {
             var oldDto = new ParentReferenceDto {
                 ParentKey = 1,
-                ManyToManyChildDto = new ManyToManyChildDto()
+                ManyToManyChildDto = new [] { new ManyToManyChildDto() }
             };
 
             var newDto = new ParentReferenceDto {
                 ParentKey = 1,
                 ParentName = "Wibble",
-                ManyToManyChildDto = new ManyToManyChildDto()
+                ManyToManyChildDto = new [] { new ManyToManyChildDto() }
             };
 
             var cache = new DtoMetadataCache();
@@ -281,7 +281,7 @@ namespace Dapper.SimpleSave.Tests {
         public void delete_with_reference_data_in_parent_is_invalid() {
             var oldDto = new ParentReferenceDto {
                 ParentKey = 1,
-                ManyToManyChildDto = new ManyToManyChildDto()
+                ManyToManyChildDto = new [] { new ManyToManyChildDto() }
             };
 
             delete_deletes_from_link_table_and_parent(oldDto, typeof(ManyToManyChildDto));
@@ -291,7 +291,7 @@ namespace Dapper.SimpleSave.Tests {
         [ExpectedException(typeof(InvalidOperationException))]
         public void insert_with_reference_data_in_parent_and_child_is_invalid() {
             var newDto = new ParentReferenceDto() {
-                ManyToManyReferenceChildDto = new ManyToManyReferenceChildDto()
+                ManyToManyReferenceChildDto = new [] { new ManyToManyReferenceChildDto() }
             };
 
             var cache = new DtoMetadataCache();
@@ -303,13 +303,13 @@ namespace Dapper.SimpleSave.Tests {
         public void update_with_reference_data_in_parent_and_child_is_invalid() {
             var oldDto = new ParentReferenceDto {
                 ParentKey = 1,
-                ManyToManyReferenceChildDto = new ManyToManyReferenceChildDto()
+                ManyToManyReferenceChildDto = new [] { new ManyToManyReferenceChildDto() }
             };
 
             var newDto = new ParentReferenceDto {
                 ParentKey = 1,
                 ParentName = "Wibble",
-                ManyToManyReferenceChildDto = new ManyToManyReferenceChildDto()
+                ManyToManyReferenceChildDto = new [] { new ManyToManyReferenceChildDto() }
             };
 
             var cache = new DtoMetadataCache();
@@ -321,7 +321,7 @@ namespace Dapper.SimpleSave.Tests {
         public void delete_with_reference_data_in_parent_and_child_is_invalid() {
             var oldDto = new ParentReferenceDto {
                 ParentKey = 1,
-                ManyToManyReferenceChildDto = new ManyToManyReferenceChildDto()
+                ManyToManyReferenceChildDto = new [] { new ManyToManyReferenceChildDto() }
             };
 
             delete_deletes_from_link_table_and_parent(oldDto, typeof(ManyToManyReferenceChildDto));
@@ -331,7 +331,7 @@ namespace Dapper.SimpleSave.Tests {
         [ExpectedException(typeof(InvalidOperationException))]
         public void insert_with_special_data_in_parent_and_reference_data_in_child_is_invalid() {
             var newDto = new ParentSpecialDto() {
-                ManyToManyReferenceChildDto = new ManyToManyReferenceChildDto()
+                ManyToManyReferenceChildDto = new [] { new ManyToManyReferenceChildDto() }
             };
 
             var cache = new DtoMetadataCache();
@@ -343,13 +343,13 @@ namespace Dapper.SimpleSave.Tests {
         public void update_with_special_data_in_parent_and_reference_data_in_child_is_invalid() {
             var oldDto = new ParentSpecialDto {
                 ParentKey = 1,
-                ManyToManyReferenceChildDto = new ManyToManyReferenceChildDto()
+                ManyToManyReferenceChildDto = new [] { new ManyToManyReferenceChildDto() }
             };
 
             var newDto = new ParentSpecialDto {
                 ParentKey = 1,
                 ParentName = "Wibble",
-                ManyToManyReferenceChildDto = new ManyToManyReferenceChildDto()
+                ManyToManyReferenceChildDto = new [] { new ManyToManyReferenceChildDto() }
             };
 
             var cache = new DtoMetadataCache();
@@ -361,7 +361,7 @@ namespace Dapper.SimpleSave.Tests {
         public void delete_with_special_data_in_parent_and_reference_data_in_child_is_invalid() {
             var oldDto = new ParentSpecialDto {
                 ParentKey = 1,
-                ManyToManyReferenceChildDto = new ManyToManyReferenceChildDto()
+                ManyToManyReferenceChildDto = new [] { new ManyToManyReferenceChildDto() }
             };
 
             delete_deletes_from_link_table_and_parent(oldDto, typeof(ManyToManyReferenceChildDto));
@@ -371,7 +371,7 @@ namespace Dapper.SimpleSave.Tests {
         [ExpectedException(typeof(InvalidOperationException))]
         public void insert_with_special_data_in_parent_and_child_is_invalid() {
             var newDto = new ParentSpecialDto() {
-                ManyToManySpecialChildDto = new ManyToManySpecialChildDto()
+                ManyToManySpecialChildDto = new [] { new ManyToManySpecialChildDto() }
             };
 
             var cache = new DtoMetadataCache();
@@ -383,13 +383,13 @@ namespace Dapper.SimpleSave.Tests {
         public void update_with_special_data_in_parent_and_child_is_invalid() {
             var oldDto = new ParentSpecialDto {
                 ParentKey = 1,
-                ManyToManySpecialChildDto = new ManyToManySpecialChildDto()
+                ManyToManySpecialChildDto = new [] { new ManyToManySpecialChildDto() }
             };
 
             var newDto = new ParentSpecialDto {
                 ParentKey = 1,
                 ParentName = "Wibble",
-                ManyToManySpecialChildDto = new ManyToManySpecialChildDto()
+                ManyToManySpecialChildDto = new [] { new ManyToManySpecialChildDto() }
             };
 
             var cache = new DtoMetadataCache();
@@ -401,7 +401,7 @@ namespace Dapper.SimpleSave.Tests {
         public void delete_with_special_data_in_parent_and_child_is_invalid() {
             var oldDto = new ParentSpecialDto {
                 ParentKey = 1,
-                ManyToManySpecialChildDto = new ManyToManySpecialChildDto()
+                ManyToManySpecialChildDto = new [] { new ManyToManySpecialChildDto() }
             };
 
             delete_deletes_from_link_table_and_parent(oldDto, typeof(ManyToManySpecialChildDto));

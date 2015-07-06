@@ -1,6 +1,6 @@
 ﻿namespace Dapper.SimpleSave.Tests.Dto {
     [Table("dbo.ManyToManyReferenceChild")]
     [ReferenceData]
-    public class ManyToManyReferenceChildDto : BaseChildDto {
+    public class ManyToManyReferenceChildDto : BaseManyToManyChildDto {
     }
 }
