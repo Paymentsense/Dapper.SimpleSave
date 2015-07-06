@@ -76,14 +76,40 @@ namespace Dapper.SimpleSave
                 {
                     //  Allows primary key of INSERTed row to be resolved
                     //  in subsequent scripts.
-                    script.InsertedValueMetadata.SetPrimaryKey(
-                        script.InsertedValue,
-                        Decimal.ToInt32((decimal)insertedPk));
+                    SetPrimaryKeyForInsertedRowOnCorrespondingObject(
+                        script,
+                        insertedPk);
                 }
             }
             else
             {
                 connection.Execute(commandDefinition);
+            }
+        }
+
+        private static void SetPrimaryKeyForInsertedRowOnCorrespondingObject(
+            Script script,
+            object insertedPk)
+        {
+            var metadata = script.InsertedValueMetadata;
+            var type = metadata.PrimaryKey.Prop.PropertyType;
+            if (type == typeof(int?) || type == typeof(int))
+            {
+                metadata.SetPrimaryKey(
+                    script.InsertedValue,
+                    Decimal.ToInt32((decimal) insertedPk));
+            }
+            else if (type == typeof (long?) || type == typeof (long))
+            {
+                metadata.SetPrimaryKey(
+                    script.InsertedValue,
+                    Decimal.ToInt64((decimal) insertedPk));
+            }
+            else
+            {
+                metadata.SetPrimaryKey(
+                    script.InsertedValue,
+                    insertedPk);
             }
         }
 
