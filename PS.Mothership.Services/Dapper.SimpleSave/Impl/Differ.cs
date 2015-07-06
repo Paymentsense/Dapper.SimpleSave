@@ -310,7 +310,7 @@ namespace Dapper.SimpleSave.Impl
                     }
                     else
                     {
-                        results.ItemsById[(int) pk] = item;
+                        results.ItemsById[pk] = item;
                     }
                 }
             }
@@ -322,11 +322,11 @@ namespace Dapper.SimpleSave.Impl
 
             public ItemLookup()
             {
-                ItemsById = new Dictionary<int, object>();
+                ItemsById = new Dictionary<object, object>();
                 ItemsWithNoPkValue = new List<object>();
             }
 
-            public IDictionary<int, object> ItemsById { get; private set; }
+            public IDictionary<object, object> ItemsById { get; private set; }
             public IList<object> ItemsWithNoPkValue { get; private set; } 
         }
 
