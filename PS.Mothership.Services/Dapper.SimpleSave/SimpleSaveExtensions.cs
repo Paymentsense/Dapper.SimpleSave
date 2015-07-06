@@ -15,7 +15,8 @@ namespace Dapper.SimpleSave
             T oldObject,
             T newObject)
         {
-            var scripts = BuildUpdateScripts(oldObject, newObject);
+            var builder = new TransactionBuilder(_dtoMetadataCache);
+            var scripts = builder.BuildUpdateScripts(oldObject, newObject);
 
             using (var transaction = connection.BeginTransaction())
             {
@@ -51,22 +52,6 @@ namespace Dapper.SimpleSave
         public static void Delete<T>(this IDbConnection connection, T obj)
         {
             Update(connection, obj, default(T));
-        }
-
-        private static IList<Script> BuildUpdateScripts<T>(T oldObject, T newObject)
-        {
-            var differ = new Differ(_dtoMetadataCache);
-            var differences = differ.Diff(oldObject, newObject);
-
-            var operationBuilder = new OperationBuilder();
-            var operations = operationBuilder.Build(differences);
-
-            var commandBuilder = new CommandBuilder();
-            var commands = commandBuilder.Coalesce(operations);
-
-            var scriptBuilder = new ScriptBuilder(_dtoMetadataCache);
-            var scripts = scriptBuilder.Build(commands);
-            return scripts;
         }
 
         private static void ExecuteCommandForScript<T>(
