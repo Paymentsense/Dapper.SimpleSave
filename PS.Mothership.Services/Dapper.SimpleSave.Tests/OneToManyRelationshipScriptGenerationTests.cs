@@ -33,7 +33,7 @@ namespace Dapper.SimpleSave.Tests
                 "Should INSERT into parent table.");
 
             Assert.IsTrue(
-                scripts[0].Buffer.ToString().Contains("INSERT INTO dbo.OneToManyChild"),
+                scripts[1].Buffer.ToString().Contains("INSERT INTO dbo.OneToManyChild"),
                 "Should INSERT into child table.");
         }
     }
