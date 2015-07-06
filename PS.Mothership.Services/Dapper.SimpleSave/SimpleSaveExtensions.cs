@@ -71,7 +71,6 @@ namespace Dapper.SimpleSave
             {
                 var insertedPk = connection.ExecuteScalar(commandDefinition);
                 if (null != insertedPk
-                    && insertedPk is decimal
                     && null != script.InsertedValue)
                 {
                     //  Allows primary key of INSERTed row to be resolved
