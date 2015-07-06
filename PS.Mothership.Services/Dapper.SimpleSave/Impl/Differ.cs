@@ -74,9 +74,7 @@ namespace Dapper.SimpleSave.Impl
             }
             else
             {
-                var objKey = metadata.GetPrimaryKeyValue(oldObject);
-
-                if (objKey != metadata.GetPrimaryKeyValue(newObject))
+                if (!PrimaryKeyComparer.HaveSamePrimaryKeyValue(metadata, oldObject, newObject))//objKey != metadata.GetPrimaryKeyValue(newObject))
                 {
                     if (property == null)
                     {
@@ -84,8 +82,8 @@ namespace Dapper.SimpleSave.Impl
                             "Cannot diff two objects that do not represent the same row. "
                             + "{0}: primary key does not match - for {1} does not match {2}",
                             handleAsType,
-                            objKey,
-                            metadata.GetPrimaryKeyValue(newObject)));
+                            metadata.GetPrimaryKeyValueAsObject(oldObject),
+                            metadata.GetPrimaryKeyValueAsObject(newObject)));
                     }
 
                     target.Add(new Difference

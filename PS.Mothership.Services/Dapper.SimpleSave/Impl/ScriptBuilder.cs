@@ -92,13 +92,13 @@ SET [{1}] = ",
                 script,
                 "{0}",
                 ref paramIndex,
-                new Func<object>(() => command.PrimaryKey));
+                new Func<object>(() => command.PrimaryKeyAsObject));
 
             script.Buffer.Append(string.Format(@"
 WHERE [{0}] = ", operation.ValueMetadata.PrimaryKey.ColumnName));
 
             FormatWithParameter(script, @"{0};
-", ref paramIndex, operation.ValueMetadata.GetPrimaryKeyValue(operation.Value));
+", ref paramIndex, operation.ValueMetadata.GetPrimaryKeyValueAsObject(operation.Value));
         }
 
         private static void AppendStandardUpdateCommand(
@@ -140,7 +140,7 @@ SET ", command.TableName));
                         script,
                         "{0}",
                         ref paramIndex,
-                        operation.ValueMetadata.GetPrimaryKeyValue(operation.Value));
+                        operation.ValueMetadata.GetPrimaryKeyValueAsObject(operation.Value));
                 }
                 else
                 {
@@ -152,7 +152,7 @@ SET ", command.TableName));
             script.Buffer.Append(string.Format(@"
 WHERE [{0}] = ", command.PrimaryKeyColumn));
             FormatWithParameter(script, @"{0};
-", ref paramIndex, new Func<object>(() => command.PrimaryKey));
+", ref paramIndex, new Func<object>(() => command.PrimaryKeyAsObject));
         }
 
         private static void AppendDeleteCommand(Script script, DeleteCommand command, ref int paramIndex)
@@ -171,12 +171,12 @@ WHERE [{1}] = ",
                         operation.OwnerPropertyMetadata.GetAttribute<ManyToManyAttribute>().SchemaQualifiedLinkTableName,
                         operation.OwnerPrimaryKeyColumn));
 
-                    FormatWithParameter(script, "{0} AND ", ref paramIndex, operation.OwnerPrimaryKey);
+                    FormatWithParameter(script, "{0} AND ", ref paramIndex, operation.OwnerPrimaryKeyAsObject);
 
                     script.Buffer.Append(string.Format("[{0}] = ", operation.ValueMetadata.PrimaryKey.Prop.Name));
 
                     FormatWithParameter(script, @"{0};
-", ref paramIndex, operation.ValueMetadata.GetPrimaryKeyValue(operation.Value));
+", ref paramIndex, operation.ValueMetadata.GetPrimaryKeyValueAsObject(operation.Value));
                 }
                 else if (operation.OwnerPropertyMetadata == null
                     || (operation.OwnerPropertyMetadata.HasAttribute<OneToManyAttribute>()
@@ -190,7 +190,7 @@ WHERE [{1}] = ",
                         operation.ValueMetadata.TableName,
                         operation.ValueMetadata.PrimaryKey.Prop.Name));
                     FormatWithParameter(script, @"{0};
-", ref paramIndex, operation.ValueMetadata.GetPrimaryKeyValue(operation.Value));
+", ref paramIndex, operation.ValueMetadata.GetPrimaryKeyValueAsObject(operation.Value));
                 }
             }
             else
@@ -225,9 +225,9 @@ WHERE [{1}] = ",
 ",
                             ref paramIndex,
                             new Func<object>(
-                                () => operation.OwnerPrimaryKey),
+                                () => operation.OwnerPrimaryKeyAsObject),
                             new Func<object>(
-                                () => operation.ValueMetadata.GetPrimaryKeyValue(operation.Value)));
+                                () => operation.ValueMetadata.GetPrimaryKeyValueAsObject(operation.Value)));
                     }
                 else if (operation.OwnerPropertyMetadata == null
                     || (operation.OwnerPropertyMetadata.HasAttribute<OneToManyAttribute>()
@@ -330,7 +330,7 @@ OUTPUT inserted.[{0}]
                 operation.OwnerMetadata.TableName)
             {
                 values.Add(
-                    new Func<object>(() => operation.OwnerPrimaryKey));
+                    new Func<object>(() => operation.OwnerPrimaryKeyAsObject));
             }
             else if (property.HasAttribute<ManyToOneAttribute>() || property.HasAttribute<OneToOneAttribute>())
             {
@@ -348,7 +348,7 @@ OUTPUT inserted.[{0}]
                         () =>
                             propValue == null || propMetadata == null
                                 ? null
-                                : propMetadata.GetPrimaryKeyValue(propValue)));
+                                : propMetadata.GetPrimaryKeyValueAsObject(propValue)));
             }
             else
             {
