@@ -33,8 +33,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="nunit.framework, Version=2.6.3.13283, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
-      <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
+    <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="BaseTests.cs" />
     <Compile Include="Dto\BaseChildDto.cs" />
+    <Compile Include="Dto\BaseManyToManyChildDto.cs" />
     <Compile Include="Dto\BaseOneToManyChildDto.cs" />
     <Compile Include="Dto\BaseOneToOneChildDtoWithFk.cs" />
     <Compile Include="Dto\BaseParentDto.cs" />
@@ -69,9 +70,39 @@
     <Compile Include="Dto\ParentDto.cs" />
     <Compile Include="Dto\ParentReferenceDto.cs" />
     <Compile Include="Dto\ParentSpecialDto.cs" />
+    <Compile Include="GuidDtos\GuidBaseChildDto.cs" />
+    <Compile Include="GuidDtos\GuidBaseManyToManyChildDto.cs" />
+    <Compile Include="GuidDtos\GuidBaseOneToManyChildDto.cs" />
+    <Compile Include="GuidDtos\GuidBaseOneToOneChildDtoWithFk.cs" />
+    <Compile Include="GuidDtos\GuidBaseParentDto.cs" />
+    <Compile Include="GuidDtos\GuidManyToManyChildDto.cs" />
+    <Compile Include="GuidDtos\GuidManyToManyReferenceChildDto.cs" />
+    <Compile Include="GuidDtos\GuidManyToManySpecialChildDto.cs" />
+    <Compile Include="GuidDtos\GuidManyToOneChildDto.cs" />
+    <Compile Include="GuidDtos\GuidManyToOneReferenceChildDto.cs" />
+    <Compile Include="GuidDtos\GuidManyToOneSpecialChildDto.cs" />
+    <Compile Include="GuidDtos\GuidOneToManyChildDto.cs" />
+    <Compile Include="GuidDtos\GuidOneToManyReferenceChildDto.cs" />
+    <Compile Include="GuidDtos\GuidOneToManySpecialChildDto.cs" />
+    <Compile Include="GuidDtos\GuidOneToOneChildDtoNoFk.cs" />
+    <Compile Include="GuidDtos\GuidOneToOneChildDtoWithFk.cs" />
+    <Compile Include="GuidDtos\GuidOneToOneReferenceChildDtoNoFk.cs" />
+    <Compile Include="GuidDtos\GuidOneToOneReferenceChildDtoWithFk.cs" />
+    <Compile Include="GuidDtos\GuidOneToOneSpecialChildDtoNoFk.cs" />
+    <Compile Include="GuidDtos\GuidOneToOneSpecialChildDtoWithFk.cs" />
+    <Compile Include="GuidDtos\GuidParentDto.cs" />
+    <Compile Include="GuidDtos\GuidParentReferenceDto.cs" />
+    <Compile Include="GuidDtos\GuidParentSpecialDto.cs" />
+    <Compile Include="GuidManyToManyRelationshipCommandGenerationTests.cs" />
+    <Compile Include="GuidManyToOneRelationshipCommandGenerationTests.cs" />
+    <Compile Include="GuidOneToManyRelationshipCommandGenerationTests.cs" />
+    <Compile Include="GuidOneToManyRelationshipScriptGenerationTests.cs" />
+    <Compile Include="GuidOneToOneRelationshipFkOnChildCommandGenerationTests.cs" />
+    <Compile Include="GuidOneToOneRelationshipFkOnParentCommandGenerationTests.cs" />
     <Compile Include="ManyToManyRelationshipCommandGenerationTests.cs" />
     <Compile Include="ManyToOneRelationshipCommandGenerationTests.cs" />
     <Compile Include="OneToManyRelationshipCommandGenerationTests.cs" />
+    <Compile Include="OneToManyRelationshipScriptGenerationTests.cs" />
     <Compile Include="OneToOneRelationshipFkOnChildCommandGenerationTests.cs" />
     <Compile Include="OneToOneRelationshipFkOnParentCommandGenerationTests.cs" />
     <Compile Include="ScriptGenerationOutlineTests.cs" />
