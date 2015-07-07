@@ -41,11 +41,14 @@ namespace Dapper.SimpleSave.Impl {
                 }
                 else if (command is InsertCommand)
                 {
-                    AppendInsertCommand(script, command as InsertCommand, ref paramIndex);
+                    var hasNumericPk = AppendInsertCommand(script, command as InsertCommand, ref paramIndex);
 
-                    script.Buffer.Append(@"
+                    if (hasNumericPk)
+                    {
+                        script.Buffer.Append(@"
 SELECT SCOPE_IDENTITY();
 ");
+                    }
 
                     script = null;
                 }
@@ -89,13 +92,13 @@ SET [{1}] = ",
                 script,
                 "{0}",
                 ref paramIndex,
-                new Func<object>(() => command.PrimaryKey));
+                new Func<object>(() => command.PrimaryKeyAsObject));
 
             script.Buffer.Append(string.Format(@"
 WHERE [{0}] = ", operation.ValueMetadata.PrimaryKey.ColumnName));
 
             FormatWithParameter(script, @"{0};
-", ref paramIndex, operation.ValueMetadata.GetPrimaryKeyValue(operation.Value));
+", ref paramIndex, operation.ValueMetadata.GetPrimaryKeyValueAsObject(operation.Value));
         }
 
         private static void AppendStandardUpdateCommand(
@@ -137,7 +140,7 @@ SET ", command.TableName));
                         script,
                         "{0}",
                         ref paramIndex,
-                        operation.ValueMetadata.GetPrimaryKeyValue(operation.Value));
+                        operation.ValueMetadata.GetPrimaryKeyValueAsObject(operation.Value));
                 }
                 else
                 {
@@ -149,7 +152,7 @@ SET ", command.TableName));
             script.Buffer.Append(string.Format(@"
 WHERE [{0}] = ", command.PrimaryKeyColumn));
             FormatWithParameter(script, @"{0};
-", ref paramIndex, new Func<object>(() => command.PrimaryKey));
+", ref paramIndex, new Func<object>(() => command.PrimaryKeyAsObject));
         }
 
         private static void AppendDeleteCommand(Script script, DeleteCommand command, ref int paramIndex)
@@ -168,12 +171,12 @@ WHERE [{1}] = ",
                         operation.OwnerPropertyMetadata.GetAttribute<ManyToManyAttribute>().SchemaQualifiedLinkTableName,
                         operation.OwnerPrimaryKeyColumn));
 
-                    FormatWithParameter(script, "{0} AND ", ref paramIndex, operation.OwnerPrimaryKey);
+                    FormatWithParameter(script, "{0} AND ", ref paramIndex, operation.OwnerPrimaryKeyAsObject);
 
                     script.Buffer.Append(string.Format("[{0}] = ", operation.ValueMetadata.PrimaryKey.Prop.Name));
 
                     FormatWithParameter(script, @"{0};
-", ref paramIndex, operation.ValueMetadata.GetPrimaryKeyValue(operation.Value));
+", ref paramIndex, operation.ValueMetadata.GetPrimaryKeyValueAsObject(operation.Value));
                 }
                 else if (operation.OwnerPropertyMetadata == null
                     || (operation.OwnerPropertyMetadata.HasAttribute<OneToManyAttribute>()
@@ -187,7 +190,7 @@ WHERE [{1}] = ",
                         operation.ValueMetadata.TableName,
                         operation.ValueMetadata.PrimaryKey.Prop.Name));
                     FormatWithParameter(script, @"{0};
-", ref paramIndex, operation.ValueMetadata.GetPrimaryKeyValue(operation.Value));
+", ref paramIndex, operation.ValueMetadata.GetPrimaryKeyValueAsObject(operation.Value));
                 }
             }
             else
@@ -200,7 +203,9 @@ WHERE [{1}] = ",
             }
         }
 
-        private void AppendInsertCommand(Script script, InsertCommand command, ref int paramIndex) {
+        private bool AppendInsertCommand(Script script, InsertCommand command, ref int paramIndex)
+        {
+            PropertyMetadata guidPKColumn = null;
             var operation = command.Operation;
             if (operation.ValueMetadata != null) {
                 if (null != operation.OwnerPropertyMetadata
@@ -220,15 +225,15 @@ WHERE [{1}] = ",
 ",
                             ref paramIndex,
                             new Func<object>(
-                                () => operation.OwnerPrimaryKey),
+                                () => operation.OwnerPrimaryKeyAsObject),
                             new Func<object>(
-                                () => operation.ValueMetadata.GetPrimaryKeyValue(operation.Value)));
+                                () => operation.ValueMetadata.GetPrimaryKeyValueAsObject(operation.Value)));
                     }
                 else if (operation.OwnerPropertyMetadata == null
                     || (operation.OwnerPropertyMetadata.HasAttribute<OneToManyAttribute>()
                     && !operation.ValueMetadata.HasAttribute<ReferenceDataAttribute>())) 
                 {
-                    //  INSERT the value into the table defined by ValueMetadat
+                    //  INSERT the value into the table defined by ValueMetadata
                     
                     var colBuff = new StringBuilder();
                     var valBuff = new StringBuilder();
@@ -239,7 +244,27 @@ WHERE [{1}] = ",
                     {
                         if (property.IsPrimaryKey)
                         {
-                            continue;   //  TODO: return PK from script and associate with object
+                            var type = property.Prop.PropertyType;
+                            if (type != typeof (int)
+                                && type != typeof (int?)
+                                && type != typeof (long)
+                                && type != typeof (long?))
+                            {
+                                if (property.Prop.PropertyType == typeof (Guid?)
+                                    || property.Prop.PropertyType == typeof (Guid))
+                                {
+                                    guidPKColumn = property;
+                                }
+                                else
+                                {
+                                    throw new ArgumentException(string.Format(
+                                        "Unsupported primary key type {0} on entity {1}. Primary keys must be nullable ints, longs or GUIDs.",
+                                        type.FullName,
+                                        operation.ValueMetadata.DtoType.FullName));
+                                }
+                            }
+
+                            continue;
                         }
 
                         var getter = property.Prop.GetGetMethod();
@@ -259,10 +284,21 @@ WHERE [{1}] = ",
                     script.Buffer.Append(string.Format(
                     @"INSERT INTO {0} (
     {1}
-) VALUES (
-    ",
+)",
                         operation.ValueMetadata.TableName,
                         colBuff));
+
+                    if (guidPKColumn != null)
+                    {
+                        script.Buffer.Append(string.Format(@"
+OUTPUT inserted.[{0}]
+",
+                            guidPKColumn.ColumnName));
+                    }
+
+                    script.Buffer.Append(@" VALUES (
+    ");
+
                     FormatWithParameter(script, valBuff.ToString(), ref paramIndex, values.ToArray());
                     script.Buffer.Append(@"
 );
@@ -279,6 +315,8 @@ WHERE [{1}] = ",
                         JsonConvert.SerializeObject(command)),
                     "command");
             }
+
+            return guidPKColumn == null;
         }
 
         private void AppendPropertyToInsertStatement(
@@ -292,7 +330,7 @@ WHERE [{1}] = ",
                 operation.OwnerMetadata.TableName)
             {
                 values.Add(
-                    new Func<object>(() => operation.OwnerPrimaryKey));
+                    new Func<object>(() => operation.OwnerPrimaryKeyAsObject));
             }
             else if (property.HasAttribute<ManyToOneAttribute>() || property.HasAttribute<OneToOneAttribute>())
             {
@@ -310,7 +348,7 @@ WHERE [{1}] = ",
                         () =>
                             propValue == null || propMetadata == null
                                 ? null
-                                : propMetadata.GetPrimaryKeyValue(propValue)));
+                                : propMetadata.GetPrimaryKeyValueAsObject(propValue)));
             }
             else
             {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Runtime.Serialization;
 
 namespace Dapper.SimpleSave.Impl
 {
@@ -48,12 +49,27 @@ namespace Dapper.SimpleSave.Impl
             return null;
         }
 
-        public int? GetPrimaryKeyValue(object obj)
+        public object GetPrimaryKeyValueAsObject(object obj)
+        {
+            return obj is Enum ? (int) obj : PrimaryKey.GetValue(obj);
+        }
+
+        public int? GetPrimaryKeyValueAsInt(object obj)
         {
             return obj is Enum ? (int) obj : (int?) PrimaryKey.GetValue(obj);
         }
 
-        public void SetPrimaryKey(object obj, int? value)
+        public long? GetPrimaryKeyValueAsLong(object obj)
+        {
+            return obj is Enum ? (long) obj : (long?) PrimaryKey.GetValue(obj);
+        }
+
+        public Guid? GetPrimaryKeyValueAsGuid(object obj)
+        {
+            return (Guid?) PrimaryKey.GetValue(obj);
+        }
+
+        public void SetPrimaryKey(object obj, object value)
         {
             PrimaryKey.SetValue(obj, value);
         }

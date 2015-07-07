@@ -12,7 +12,7 @@ namespace Dapper.SimpleSave.Impl
             var updates = new List<UpdateOperation>();
 
             string updateTableName = null;
-            int? updatePk = null;
+            object updatePk = null;
 
             foreach (var operation in operations)
             {
@@ -21,7 +21,7 @@ namespace Dapper.SimpleSave.Impl
                     var update = operation as UpdateOperation;
                     //  If the table name, or row PK changes, we need to apply any UpdateOperations we already have as a new command
                     //  then start tracking UpdateOperations afresh, starting with this one.
-                    if (updateTableName != update.TableName || updatePk != update.OwnerPrimaryKey)
+                    if (updateTableName != update.TableName || !PrimaryKeyComparer.SuppliedPrimaryKeyValuesMatch(update.OwnerMetadata, updatePk, update.OwnerPrimaryKeyAsObject))//updatePk != update.OwnerPrimaryKey)
                     {
                         ValidateUpdateOperation(update);
                         if (null != updateTableName)
@@ -30,7 +30,7 @@ namespace Dapper.SimpleSave.Impl
                         }
 
                         updateTableName = update.TableName;
-                        updatePk = update.OwnerPrimaryKey;
+                        updatePk = update.OwnerPrimaryKeyAsObject;
                     }
                     updates.Add(update);
                 }
@@ -115,7 +115,7 @@ namespace Dapper.SimpleSave.Impl
             IList<BaseCommand> results,
             IList<UpdateOperation> updates,
             ref string updateTableName,
-            ref int? updatePk)
+            ref object updatePk)
         {
             if (updates.Count == 0)
             {
