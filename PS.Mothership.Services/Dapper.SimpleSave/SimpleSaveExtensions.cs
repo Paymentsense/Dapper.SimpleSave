@@ -16,29 +16,7 @@ namespace Dapper.SimpleSave
             T newObject,
             IDbTransaction transaction = null)
         {
-            var builder = new TransactionBuilder(_dtoMetadataCache);
-            var scripts = builder.BuildUpdateScripts(oldObject, newObject);
-
-            if (transaction == null)
-            {
-                using (var myTransaction = connection.BeginTransaction())
-                {
-                    try
-                    {
-                        ExecuteScripts<T>(connection, scripts, myTransaction);
-                        myTransaction.Commit();
-                    }
-                    catch (Exception)
-                    {
-                        myTransaction.Rollback();
-                        throw;
-                    }
-                }
-            }
-            else
-            {
-                ExecuteScripts<T>(connection, scripts, transaction);
-            }
+            UpdateInternal(connection, oldObject, newObject, false, transaction);
         }
 
         private static void ExecuteScripts<T>(IDbConnection connection, IList<Script> scripts, IDbTransaction transaction)
@@ -70,6 +48,46 @@ namespace Dapper.SimpleSave
             IDbTransaction transaction = null)
         {
             Update(connection, obj, default(T), transaction);
+        }
+
+        public static void SoftDelete<T>(
+            this IDbConnection connection,
+            T obj,
+            IDbTransaction transaction = null)
+        {
+            UpdateInternal(connection, obj, default(T), true, transaction);
+        }
+
+        private static void UpdateInternal<T>(
+            IDbConnection connection,
+            T oldObject,
+            T newObject,
+            bool softDelete = false,
+            IDbTransaction transaction = null)
+        {
+            var builder = new TransactionBuilder(_dtoMetadataCache);
+            var scripts = builder.BuildUpdateScripts(oldObject, newObject, softDelete);
+
+            if (transaction == null)
+            {
+                using (var myTransaction = connection.BeginTransaction())
+                {
+                    try
+                    {
+                        ExecuteScripts<T>(connection, scripts, myTransaction);
+                        myTransaction.Commit();
+                    }
+                    catch (Exception)
+                    {
+                        myTransaction.Rollback();
+                        throw;
+                    }
+                }
+            }
+            else
+            {
+                ExecuteScripts<T>(connection, scripts, transaction);
+            }
         }
 
         private static void ExecuteCommandForScript<T>(
