@@ -97,6 +97,8 @@
     <Compile Include="GuidManyToOneRelationshipCommandGenerationTests.cs" />
     <Compile Include="GuidOneToManyRelationshipCommandGenerationTests.cs" />
     <Compile Include="GuidOneToManyRelationshipScriptGenerationTests.cs" />
+    <Compile Include="GuidOneToOneRelationshipFkOnChildCommandGenerationTests.cs" />
+    <Compile Include="GuidOneToOneRelationshipFkOnParentCommandGenerationTests.cs" />
     <Compile Include="ManyToManyRelationshipCommandGenerationTests.cs" />
     <Compile Include="ManyToOneRelationshipCommandGenerationTests.cs" />
     <Compile Include="OneToManyRelationshipCommandGenerationTests.cs" />
