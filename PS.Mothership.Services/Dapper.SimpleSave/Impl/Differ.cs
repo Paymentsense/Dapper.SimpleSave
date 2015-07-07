@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using Castle.Core.Internal;
 
 namespace Dapper.SimpleSave.Impl
 {
@@ -244,6 +245,11 @@ namespace Dapper.SimpleSave.Impl
             var oldItems = GetItemDictionary(oldEnumerable as IEnumerable, pk);
             var newItems = GetItemDictionary(newEnumerable as IEnumerable, pk);
 
+            //  We clear this because if an old item has no PK value then it's
+            //  clearly never been saved to the database in the first place, so we
+            //  don't want to write SQL to UPDATE or DELETE it. If it exists in
+            //  the new items collection, on the other hand, we want to INSERT it.
+            oldItems.ItemsWithNoPkValue.Clear();
             AddDifferencesForItemsInOnlyOneCollection(
                 oldOwner, newOwner, metadata, prop, oldItems,
                 newItems, itemTypeMeta, DifferenceType.Deletion, differences);
@@ -260,77 +266,107 @@ namespace Dapper.SimpleSave.Impl
             object newOwner,
             DtoMetadata metadata,
             PropertyMetadata prop,
-            IDictionary<int, object> items1,
-            IDictionary<int, object> items2,
+            ItemLookup items1,
+            ItemLookup items2,
             DtoMetadata itemTypeMeta,
             DifferenceType differenceType,
             IList<Difference> differences)
         {
             var removed = FindRemovedItems(items1, items2);
 
-            foreach (var item in removed.Values)
+            Action<object> addDifference = item => differences.Add(new Difference
             {
-                differences.Add(new Difference
-                {
-                    OldOwner = oldOwner,
-                    NewOwner = newOwner,
-                    DifferenceType = differenceType,
-                    OwnerPropertyMetadata = prop,
-                    OwnerMetadata = metadata,
-                    ValueMetadata = itemTypeMeta,
-                    NewValue = DifferenceType.Insertion == differenceType ? item : null,
-                    OldValue = DifferenceType.Deletion == differenceType ? item : null
-                });
+                OldOwner = oldOwner,
+                NewOwner = newOwner,
+                DifferenceType = differenceType,
+                OwnerPropertyMetadata = prop,
+                OwnerMetadata = metadata,
+                ValueMetadata = itemTypeMeta,
+                NewValue = DifferenceType.Insertion == differenceType ? item : null,
+                OldValue = DifferenceType.Deletion == differenceType ? item : null
+            });
+
+            foreach (var item in removed.ItemsById.Values)
+            {
+                addDifference(item);
+            }
+
+            foreach (var item in removed.ItemsWithNoPkValue)
+            {
+                addDifference(item);
             }
         }
 
-        private IDictionary<int, object> GetItemDictionary(IEnumerable enumerable, PropertyMetadata pkProp)
+        private ItemLookup GetItemDictionary(IEnumerable enumerable, PropertyMetadata pkProp)
         {
-            var results = new Dictionary<int, object>();
+            var results = new ItemLookup();
             if (enumerable != null)
             {
                 var getter = pkProp.Prop.GetGetMethod();
                 foreach (var item in enumerable)
                 {
-                    results [(int)getter.Invoke(item, new object [0])] = item;
+                    var pk = getter.Invoke(item, new object[0]);
+                    if (pk == null)
+                    {
+                        results.ItemsWithNoPkValue.Add(item);
+                    }
+                    else
+                    {
+                        results.ItemsById[(int) pk] = item;
+                    }
                 }
             }
             return results;
         }
 
-        private IDictionary<int, object> FindRemovedItems(
-            IDictionary<int, object> dict1,
-            IDictionary<int, object> dict2)
+        private class ItemLookup
         {
-            if (dict1 == null)
+
+            public ItemLookup()
             {
-                return new Dictionary<int, object>();
+                ItemsById = new Dictionary<int, object>();
+                ItemsWithNoPkValue = new List<object>();
             }
 
-            if (dict2 == null)
+            public IDictionary<int, object> ItemsById { get; private set; }
+            public IList<object> ItemsWithNoPkValue { get; private set; } 
+        }
+
+        private ItemLookup FindRemovedItems(
+            ItemLookup lookup1,
+            ItemLookup lookup2)
+        {
+            if (lookup1 == null)
             {
-                return dict1;
+                return new ItemLookup();
             }
 
-            var results = new Dictionary<int, object>();
-            foreach (var key in dict1.Keys.Where(key => !dict2.ContainsKey(key)))
+            if (lookup2 == null)
             {
-                results[key] = dict1[key];
+                return lookup1;
             }
+
+            var results = new ItemLookup();
+            foreach (var key in lookup1.ItemsById.Keys.Where(key => !lookup2.ItemsById.ContainsKey(key)))
+            {
+                results.ItemsById[key] = lookup1.ItemsById[key];
+            }
+
+            lookup1.ItemsWithNoPkValue.ForEach(item => results.ItemsWithNoPkValue.Add(item));
             return results;
         }
 
         private void AddDifferencesForChangedItems(
-            IDictionary<int, object> oldItems,
-            IDictionary<int, object> newItems,
+            ItemLookup oldItems,
+            ItemLookup newItems,
             Type handleAsType,
             IList<Difference> differences)
         {
-            foreach (var key in oldItems.Keys)
+            foreach (var key in oldItems.ItemsById.Keys)
             {
-                if (newItems.ContainsKey(key))
+                if (newItems.ItemsById.ContainsKey(key))
                 {
-                    foreach (var diff in Diff(oldItems[key], newItems[key], handleAsType))
+                    foreach (var diff in Diff(oldItems.ItemsById[key], newItems.ItemsById[key], handleAsType))
                     {
                         differences.Add(diff);
                     }
