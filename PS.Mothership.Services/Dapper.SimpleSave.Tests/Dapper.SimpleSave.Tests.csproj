@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="BaseTests.cs" />
     <Compile Include="Dto\BaseChildDto.cs" />
+    <Compile Include="Dto\BaseManyToManyChildDto.cs" />
     <Compile Include="Dto\BaseOneToManyChildDto.cs" />
     <Compile Include="Dto\BaseOneToOneChildDtoWithFk.cs" />
     <Compile Include="Dto\BaseParentDto.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="ManyToManyRelationshipCommandGenerationTests.cs" />
     <Compile Include="ManyToOneRelationshipCommandGenerationTests.cs" />
     <Compile Include="OneToManyRelationshipCommandGenerationTests.cs" />
+    <Compile Include="OneToManyRelationshipScriptGenerationTests.cs" />
     <Compile Include="OneToOneRelationshipFkOnChildCommandGenerationTests.cs" />
     <Compile Include="OneToOneRelationshipFkOnParentCommandGenerationTests.cs" />
     <Compile Include="ScriptGenerationOutlineTests.cs" />

@@ -12,7 +12,7 @@ namespace Dapper.SimpleSave.Tests.Dto {
         }
 
         [PrimaryKey]
-        public int ChildKey { get; set; }
+        public int? ChildKey { get; set; }
 
         public string Name { get; set; }
     }
