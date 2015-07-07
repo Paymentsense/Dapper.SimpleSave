@@ -8,16 +8,6 @@ namespace Dapper.SimpleSave.Impl
         public object NewOwner { get; set; }
         public object Owner { get { return OldOwner ?? NewOwner; } }
         public DtoMetadata OwnerMetadata { get; set; }
-        public int? OwnerId
-        {
-            get
-            {
-                var owner = Owner;
-                return owner == null
-                    ? (int?)null
-                    : (OwnerMetadata == null ? null : (int?)OwnerMetadata.GetPrimaryKeyValue(owner));
-            }
-        }
         public PropertyMetadata OwnerPropertyMetadata { get; set; }
         public DifferenceType DifferenceType { get; set; }
         public DtoMetadata ValueMetadata { get; set; }
