@@ -31,8 +31,7 @@ namespace Dapper.SimpleSave
                         ExecuteCommandForScript<T>(
                             connection,
                             transaction,
-                            script,
-                            index == count - 1);
+                            script);
                     }
                     transaction.Commit();
                 }
@@ -57,8 +56,7 @@ namespace Dapper.SimpleSave
         private static void ExecuteCommandForScript<T>(
             IDbConnection connection,
             IDbTransaction transaction,
-            Script script,
-            bool isFinalScript)
+            Script script)
         {
             var commandDefinition = new CommandDefinition(
                 script.Buffer.ToString(),
@@ -67,22 +65,16 @@ namespace Dapper.SimpleSave
                 30,
                 CommandType.Text,
                 CommandFlags.Buffered | CommandFlags.NoCache);
-            if (!isFinalScript)
+
+            var insertedPk = connection.ExecuteScalar(commandDefinition);
+            if (null != insertedPk
+                && null != script.InsertedValue)
             {
-                var insertedPk = connection.ExecuteScalar(commandDefinition);
-                if (null != insertedPk
-                    && null != script.InsertedValue)
-                {
-                    //  Allows primary key of INSERTed row to be resolved
-                    //  in subsequent scripts.
-                    SetPrimaryKeyForInsertedRowOnCorrespondingObject(
-                        script,
-                        insertedPk);
-                }
-            }
-            else
-            {
-                connection.Execute(commandDefinition);
+                //  Allows primary key of INSERTed row to be resolved
+                //  in subsequent scripts.
+                SetPrimaryKeyForInsertedRowOnCorrespondingObject(
+                    script,
+                    insertedPk);
             }
         }
 
