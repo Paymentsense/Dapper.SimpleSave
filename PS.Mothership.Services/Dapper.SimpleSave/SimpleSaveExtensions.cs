@@ -13,44 +13,63 @@ namespace Dapper.SimpleSave
         public static void Update<T>(
             this IDbConnection connection,
             T oldObject,
-            T newObject)
+            T newObject,
+            IDbTransaction transaction = null)
         {
             var builder = new TransactionBuilder(_dtoMetadataCache);
             var scripts = builder.BuildUpdateScripts(oldObject, newObject);
 
-            using (var transaction = connection.BeginTransaction())
+            if (transaction == null)
             {
-                try
+                using (var myTransaction = connection.BeginTransaction())
                 {
-                    for (int index = 0, count = scripts.Count; index < count; ++index)
+                    try
                     {
-                        var script = scripts[index];
-
-                        ResolvePrimaryKeyValues<T>(script);
-
-                        ExecuteCommandForScript<T>(
-                            connection,
-                            transaction,
-                            script);
+                        ExecuteScripts<T>(connection, scripts, myTransaction);
+                        myTransaction.Commit();
                     }
-                    transaction.Commit();
+                    catch (Exception)
+                    {
+                        myTransaction.Rollback();
+                        throw;
+                    }
                 }
-                catch (Exception)
-                {
-                    transaction.Rollback();
-                    throw;
-                }
+            }
+            else
+            {
+                ExecuteScripts<T>(connection, scripts, transaction);
             }
         }
 
-        public static void Create<T>(this IDbConnection connection, T obj)
+        private static void ExecuteScripts<T>(IDbConnection connection, IList<Script> scripts, IDbTransaction transaction)
         {
-            Update(connection, default(T), obj);
+            for (int index = 0, count = scripts.Count; index < count; ++index)
+            {
+                var script = scripts[index];
+
+                ResolvePrimaryKeyValues<T>(script);
+
+                ExecuteCommandForScript<T>(
+                    connection,
+                    transaction,
+                    script);
+            }
         }
 
-        public static void Delete<T>(this IDbConnection connection, T obj)
+        public static void Create<T>(
+            this IDbConnection connection,
+            T obj,
+            IDbTransaction transaction = null)
         {
-            Update(connection, obj, default(T));
+            Update(connection, default(T), obj, transaction);
+        }
+
+        public static void Delete<T>(
+            this IDbConnection connection,
+            T obj,
+            IDbTransaction transaction = null)
+        {
+            Update(connection, obj, default(T), transaction);
         }
 
         private static void ExecuteCommandForScript<T>(
