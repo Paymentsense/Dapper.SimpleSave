@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,13 +18,13 @@ namespace Dapper.SimpleSave.Impl {
 
         public string OwnerPrimaryKeyColumn { get; set; }
 
-        public int? OwnerPrimaryKey
+        public object OwnerPrimaryKeyAsObject
         {
             get
             {
-                return null == Owner
+                return Owner == null
                     ? null
-                    : (null == OwnerMetadata ? null : OwnerMetadata.GetPrimaryKeyValue(Owner));
+                    : (OwnerMetadata == null ? null : OwnerMetadata.GetPrimaryKeyValueAsObject(Owner));
             }
         }
 

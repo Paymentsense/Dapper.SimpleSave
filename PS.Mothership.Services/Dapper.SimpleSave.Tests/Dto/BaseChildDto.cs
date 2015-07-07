@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Dapper.SimpleSave.Tests.Dto {
+﻿namespace Dapper.SimpleSave.Tests.Dto {
     public abstract class BaseChildDto {
         protected BaseChildDto()
         {
@@ -12,7 +6,7 @@ namespace Dapper.SimpleSave.Tests.Dto {
         }
 
         [PrimaryKey]
-        public int ChildKey { get; set; }
+        public int? ChildKey { get; set; }
 
         public string Name { get; set; }
     }

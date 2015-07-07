@@ -13,67 +13,69 @@ namespace Dapper.SimpleSave
         public static void Update<T>(
             this IDbConnection connection,
             T oldObject,
-            T newObject)
+            T newObject,
+            IDbTransaction transaction = null)
         {
-            var scripts = BuildUpdateScripts(oldObject, newObject);
+            var builder = new TransactionBuilder(_dtoMetadataCache);
+            var scripts = builder.BuildUpdateScripts(oldObject, newObject);
 
-            using (var transaction = connection.BeginTransaction())
+            if (transaction == null)
             {
-                try
+                using (var myTransaction = connection.BeginTransaction())
                 {
-                    for (int index = 0, count = scripts.Count; index < count; ++index)
+                    try
                     {
-                        var script = scripts[index];
-
-                        ResolvePrimaryKeyValues<T>(script);
-
-                        ExecuteCommandForScript<T>(
-                            connection,
-                            transaction,
-                            script,
-                            index == count - 1);
+                        ExecuteScripts<T>(connection, scripts, myTransaction);
+                        myTransaction.Commit();
                     }
-                    transaction.Commit();
+                    catch (Exception)
+                    {
+                        myTransaction.Rollback();
+                        throw;
+                    }
                 }
-                catch (Exception)
-                {
-                    transaction.Rollback();
-                    throw;
-                }
+            }
+            else
+            {
+                ExecuteScripts<T>(connection, scripts, transaction);
             }
         }
 
-        public static void Create<T>(this IDbConnection connection, T obj)
+        private static void ExecuteScripts<T>(IDbConnection connection, IList<Script> scripts, IDbTransaction transaction)
         {
-            Update(connection, default(T), obj);
+            for (int index = 0, count = scripts.Count; index < count; ++index)
+            {
+                var script = scripts[index];
+
+                ResolvePrimaryKeyValues<T>(script);
+
+                ExecuteCommandForScript<T>(
+                    connection,
+                    transaction,
+                    script);
+            }
         }
 
-        public static void Delete<T>(this IDbConnection connection, T obj)
+        public static void Create<T>(
+            this IDbConnection connection,
+            T obj,
+            IDbTransaction transaction = null)
         {
-            Update(connection, obj, default(T));
+            Update(connection, default(T), obj, transaction);
         }
 
-        private static IList<Script> BuildUpdateScripts<T>(T oldObject, T newObject)
+        public static void Delete<T>(
+            this IDbConnection connection,
+            T obj,
+            IDbTransaction transaction = null)
         {
-            var differ = new Differ(_dtoMetadataCache);
-            var differences = differ.Diff(oldObject, newObject);
-
-            var operationBuilder = new OperationBuilder();
-            var operations = operationBuilder.Build(differences);
-
-            var commandBuilder = new CommandBuilder();
-            var commands = commandBuilder.Coalesce(operations);
-
-            var scriptBuilder = new ScriptBuilder(_dtoMetadataCache);
-            var scripts = scriptBuilder.Build(commands);
-            return scripts;
+            Update(connection, obj, default(T), transaction);
         }
 
         private static void ExecuteCommandForScript<T>(
             IDbConnection connection,
             IDbTransaction transaction,
-            Script script,
-            bool isFinalScript)
+            Script script)
         {
             var commandDefinition = new CommandDefinition(
                 script.Buffer.ToString(),
@@ -82,23 +84,42 @@ namespace Dapper.SimpleSave
                 30,
                 CommandType.Text,
                 CommandFlags.Buffered | CommandFlags.NoCache);
-            if (!isFinalScript)
+
+            var insertedPk = connection.ExecuteScalar(commandDefinition);
+            if (null != insertedPk
+                && null != script.InsertedValue)
             {
-                var insertedPk = connection.ExecuteScalar(commandDefinition);
-                if (null != insertedPk
-                    && insertedPk is decimal
-                    && null != script.InsertedValue)
-                {
-                    //  Allows primary key of INSERTed row to be resolved
-                    //  in subsequent scripts.
-                    script.InsertedValueMetadata.SetPrimaryKey(
-                        script.InsertedValue,
-                        Decimal.ToInt32((decimal)insertedPk));
-                }
+                //  Allows primary key of INSERTed row to be resolved
+                //  in subsequent scripts.
+                SetPrimaryKeyForInsertedRowOnCorrespondingObject(
+                    script,
+                    insertedPk);
+            }
+        }
+
+        private static void SetPrimaryKeyForInsertedRowOnCorrespondingObject(
+            Script script,
+            object insertedPk)
+        {
+            var metadata = script.InsertedValueMetadata;
+            var type = metadata.PrimaryKey.Prop.PropertyType;
+            if (type == typeof(int?) || type == typeof(int))
+            {
+                metadata.SetPrimaryKey(
+                    script.InsertedValue,
+                    Decimal.ToInt32((decimal) insertedPk));
+            }
+            else if (type == typeof (long?) || type == typeof (long))
+            {
+                metadata.SetPrimaryKey(
+                    script.InsertedValue,
+                    Decimal.ToInt64((decimal) insertedPk));
             }
             else
             {
-                connection.Execute(commandDefinition);
+                metadata.SetPrimaryKey(
+                    script.InsertedValue,
+                    insertedPk);
             }
         }
 
