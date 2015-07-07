@@ -21,9 +21,9 @@ namespace Dapper.SimpleSave.Impl {
         {
             get
             {
-                return null == Owner
+                return Owner == null
                     ? null
-                    : (null == OwnerMetadata ? null : (int?)OwnerMetadata.GetPrimaryKeyValue(Owner));
+                    : (OwnerMetadata == null ? null : (int?)OwnerMetadata.GetPrimaryKeyValue(Owner));
             }
         }
 
