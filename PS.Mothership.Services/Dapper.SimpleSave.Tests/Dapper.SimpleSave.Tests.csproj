@@ -95,6 +95,8 @@
     <Compile Include="GuidDtos\GuidParentSpecialDto.cs" />
     <Compile Include="GuidManyToManyRelationshipCommandGenerationTests.cs" />
     <Compile Include="GuidManyToOneRelationshipCommandGenerationTests.cs" />
+    <Compile Include="GuidOneToManyRelationshipCommandGenerationTests.cs" />
+    <Compile Include="GuidOneToManyRelationshipScriptGenerationTests.cs" />
     <Compile Include="ManyToManyRelationshipCommandGenerationTests.cs" />
     <Compile Include="ManyToOneRelationshipCommandGenerationTests.cs" />
     <Compile Include="OneToManyRelationshipCommandGenerationTests.cs" />
