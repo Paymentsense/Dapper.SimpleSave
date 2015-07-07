@@ -74,9 +74,7 @@ namespace Dapper.SimpleSave.Impl
             }
             else
             {
-                var objKey = metadata.GetPrimaryKeyValue(oldObject);
-
-                if (objKey != metadata.GetPrimaryKeyValue(newObject))
+                if (!PrimaryKeyComparer.HaveSamePrimaryKeyValue(metadata, oldObject, newObject))//objKey != metadata.GetPrimaryKeyValue(newObject))
                 {
                     if (property == null)
                     {
@@ -84,8 +82,8 @@ namespace Dapper.SimpleSave.Impl
                             "Cannot diff two objects that do not represent the same row. "
                             + "{0}: primary key does not match - for {1} does not match {2}",
                             handleAsType,
-                            objKey,
-                            metadata.GetPrimaryKeyValue(newObject)));
+                            metadata.GetPrimaryKeyValueAsObject(oldObject),
+                            metadata.GetPrimaryKeyValueAsObject(newObject)));
                     }
 
                     target.Add(new Difference
@@ -312,7 +310,7 @@ namespace Dapper.SimpleSave.Impl
                     }
                     else
                     {
-                        results.ItemsById[(int) pk] = item;
+                        results.ItemsById[pk] = item;
                     }
                 }
             }
@@ -324,11 +322,11 @@ namespace Dapper.SimpleSave.Impl
 
             public ItemLookup()
             {
-                ItemsById = new Dictionary<int, object>();
+                ItemsById = new Dictionary<object, object>();
                 ItemsWithNoPkValue = new List<object>();
             }
 
-            public IDictionary<int, object> ItemsById { get; private set; }
+            public IDictionary<object, object> ItemsById { get; private set; }
             public IList<object> ItemsWithNoPkValue { get; private set; } 
         }
 
