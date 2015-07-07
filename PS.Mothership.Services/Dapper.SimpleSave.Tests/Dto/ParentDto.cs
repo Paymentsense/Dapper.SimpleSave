@@ -1,4 +1,6 @@
-﻿namespace Dapper.SimpleSave.Tests.Dto {
+﻿using System.Collections.Generic;
+
+namespace Dapper.SimpleSave.Tests.Dto {
     [Table("dbo.[Parent]")]
     public class ParentDto : BaseParentDto {
         [OneToOne]
@@ -23,13 +25,13 @@
         public OneToOneSpecialChildDtoWithFk OneToOneSpecialChildDtoWithFk { get; set; }
 
         [OneToMany]
-        public OneToManyChildDto OneToManyChildDto { get; set; }
+        public IList<OneToManyChildDto> OneToManyChildDto { get; set; }
 
         [OneToMany]
-        public OneToManyReferenceChildDto OneToManyReferenceChildDto { get; set; }
+        public IList<OneToManyReferenceChildDto> OneToManyReferenceChildDto { get; set; }
 
         [OneToMany]
-        public OneToManySpecialChildDto OneToManySpecialChildDto { get; set; }
+        public IList<OneToManySpecialChildDto> OneToManySpecialChildDto { get; set; }
 
         [ManyToOne]
         public ManyToOneChildDto ManyToOneChildDto { get; set; }
@@ -42,12 +44,12 @@
         public ManyToOneSpecialChildDto ManyToOneSpecialChildDto { get; set; }
 
         [ManyToMany("dbo.ManyToManyChild_Lnk")]
-        public ManyToManyChildDto ManyToManyChildDto { get; set; }
+        public IList<ManyToManyChildDto> ManyToManyChildDto { get; set; }
 
         [ManyToMany("dbo.ManyToManyReferenceChild_Lnk")]
-        public ManyToManyReferenceChildDto ManyToManyReferenceChildDto { get; set; }
+        public IList<ManyToManyReferenceChildDto> ManyToManyReferenceChildDto { get; set; }
 
         [ManyToMany("dbo.ManyToManySpecialChild_Lnk")]
-        public ManyToManySpecialChildDto ManyToManySpecialChildDto { get; set; }
+        public IList<ManyToManySpecialChildDto> ManyToManySpecialChildDto { get; set; }
     }
 }
