@@ -31,8 +31,7 @@ namespace Dapper.SimpleSave
                         ExecuteCommandForScript<T>(
                             connection,
                             transaction,
-                            script,
-                            index == count - 1);
+                            script);
                     }
                     transaction.Commit();
                 }
@@ -57,8 +56,7 @@ namespace Dapper.SimpleSave
         private static void ExecuteCommandForScript<T>(
             IDbConnection connection,
             IDbTransaction transaction,
-            Script script,
-            bool isFinalScript)
+            Script script)
         {
             var commandDefinition = new CommandDefinition(
                 script.Buffer.ToString(),
@@ -67,23 +65,42 @@ namespace Dapper.SimpleSave
                 30,
                 CommandType.Text,
                 CommandFlags.Buffered | CommandFlags.NoCache);
-            if (!isFinalScript)
+
+            var insertedPk = connection.ExecuteScalar(commandDefinition);
+            if (null != insertedPk
+                && null != script.InsertedValue)
             {
-                var insertedPk = connection.ExecuteScalar(commandDefinition);
-                if (null != insertedPk
-                    && insertedPk is decimal
-                    && null != script.InsertedValue)
-                {
-                    //  Allows primary key of INSERTed row to be resolved
-                    //  in subsequent scripts.
-                    script.InsertedValueMetadata.SetPrimaryKey(
-                        script.InsertedValue,
-                        Decimal.ToInt32((decimal)insertedPk));
-                }
+                //  Allows primary key of INSERTed row to be resolved
+                //  in subsequent scripts.
+                SetPrimaryKeyForInsertedRowOnCorrespondingObject(
+                    script,
+                    insertedPk);
+            }
+        }
+
+        private static void SetPrimaryKeyForInsertedRowOnCorrespondingObject(
+            Script script,
+            object insertedPk)
+        {
+            var metadata = script.InsertedValueMetadata;
+            var type = metadata.PrimaryKey.Prop.PropertyType;
+            if (type == typeof(int?) || type == typeof(int))
+            {
+                metadata.SetPrimaryKey(
+                    script.InsertedValue,
+                    Decimal.ToInt32((decimal) insertedPk));
+            }
+            else if (type == typeof (long?) || type == typeof (long))
+            {
+                metadata.SetPrimaryKey(
+                    script.InsertedValue,
+                    Decimal.ToInt64((decimal) insertedPk));
             }
             else
             {
-                connection.Execute(commandDefinition);
+                metadata.SetPrimaryKey(
+                    script.InsertedValue,
+                    insertedPk);
             }
         }
 
