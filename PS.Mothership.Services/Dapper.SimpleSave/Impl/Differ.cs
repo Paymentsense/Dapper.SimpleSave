@@ -66,9 +66,10 @@ namespace Dapper.SimpleSave.Impl
             }
             else if (newObject == null)
             {
-                if (softDelete && metadata.HasSoftDeleteSupport)
+                if (softDelete)
                 {
-                    var propertyMetaData = metadata.SoftDeleteProperty;
+                    var propertyMetaData = SoftDeleteValidator.GetValidatedSoftDeleteProperty(metadata);
+
                     var trueIndicatesDeleted =
                         propertyMetaData.GetAttribute<SoftDeleteColumnAttribute>().TrueIndicatesDeleted;
 

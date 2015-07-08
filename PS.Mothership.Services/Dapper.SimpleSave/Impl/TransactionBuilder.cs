@@ -19,7 +19,7 @@ namespace Dapper.SimpleSave.Impl
         public IList<Script> BuildUpdateScripts<T>(T oldObject, T newObject, bool softDelete = false)
         {
             var differ = new Differ(_dtoMetadataCache);
-            var differences = differ.Diff(oldObject, newObject);
+            var differences = differ.Diff(oldObject, newObject, softDelete);
 
             var operationBuilder = new OperationBuilder();
             var operations = operationBuilder.Build(differences);

@@ -19,21 +19,6 @@ namespace Dapper.SimpleSave
             UpdateInternal(connection, oldObject, newObject, false, transaction);
         }
 
-        private static void ExecuteScripts<T>(IDbConnection connection, IList<Script> scripts, IDbTransaction transaction)
-        {
-            for (int index = 0, count = scripts.Count; index < count; ++index)
-            {
-                var script = scripts[index];
-
-                ResolvePrimaryKeyValues<T>(script);
-
-                ExecuteCommandForScript<T>(
-                    connection,
-                    transaction,
-                    script);
-            }
-        }
-
         public static void Create<T>(
             this IDbConnection connection,
             T obj,
@@ -74,7 +59,14 @@ namespace Dapper.SimpleSave
                 {
                     try
                     {
-                        ExecuteScripts<T>(connection, scripts, myTransaction);
+                        ExecuteScripts(
+                            connection,
+                            scripts,
+                            oldObject,
+                            newObject,
+                            softDelete,
+                            myTransaction);
+
                         myTransaction.Commit();
                     }
                     catch (Exception)
@@ -86,15 +78,51 @@ namespace Dapper.SimpleSave
             }
             else
             {
-                ExecuteScripts<T>(connection, scripts, transaction);
+                ExecuteScripts(
+                    connection,
+                    scripts,
+                    oldObject,
+                    newObject,
+                    softDelete,
+                    transaction);
+            }
+        }
+
+        private static void ExecuteScripts<T>(
+            IDbConnection connection,
+            IList<Script> scripts,
+            T oldRootObject,
+            T newRootObject,
+            bool softDelete,
+            IDbTransaction transaction)
+        {
+            for (int index = 0, count = scripts.Count; index < count; ++index)
+            {
+                var script = scripts[index];
+
+                ResolvePrimaryKeyValues<T>(script);
+
+                ExecuteCommandForScript<T>(
+                    connection,
+                    oldRootObject,
+                    newRootObject,
+                    softDelete,
+                    transaction,
+                    script);
             }
         }
 
         private static void ExecuteCommandForScript<T>(
             IDbConnection connection,
+            T oldRootObject,
+            T newRootObject,
+            bool softDelete,
             IDbTransaction transaction,
             Script script)
         {
+            PropertyMetadata softDeletePropertyMetadata = GetMarkerPropertyMetadataIfSoftDeleting(
+                oldRootObject, newRootObject, softDelete);
+
             var commandDefinition = new CommandDefinition(
                 script.Buffer.ToString(),
                 script.Parameters,
@@ -112,6 +140,45 @@ namespace Dapper.SimpleSave
                 SetPrimaryKeyForInsertedRowOnCorrespondingObject(
                     script,
                     insertedPk);
+            }
+
+            SetSoftDeletePropertyValue(oldRootObject, softDeletePropertyMetadata);
+        }
+
+        private static PropertyMetadata GetMarkerPropertyMetadataIfSoftDeleting<T>(
+            T oldRootObject,
+            T newRootObject,
+            bool softDelete)
+        {
+            PropertyMetadata softDeletePropertyMetadata = null;
+            if (softDelete)
+            {
+                var metadata = _dtoMetadataCache.GetMetadataFor<T>();
+                if (newRootObject == null && oldRootObject != null)
+                {
+                    softDeletePropertyMetadata = SoftDeleteValidator.GetValidatedSoftDeleteProperty(metadata);
+                }
+                else
+                {
+                    throw new ArgumentException(
+                        string.Format(
+                            "Setting the soft delete flag on an INSERT or UPDATE is invalid. Attempt made to soft "
+                            + "delete on an INSERT or UPDATE of object type {0} is not permitted. You must execute "
+                            + "the SoftDelete<T>(...) method, or manually set the value of the soft "
+                            + "delete market property yourself to execute an UPDATE, instead.",
+                            metadata.DtoType.FullName),
+                        "newRootObject");
+                }
+            }
+            return softDeletePropertyMetadata;
+        }
+
+        private static void SetSoftDeletePropertyValue<T>(T oldRootObject, PropertyMetadata softDeletePropertyMetadata)
+        {
+            if (softDeletePropertyMetadata != null)
+            {
+                var attr = softDeletePropertyMetadata.GetAttribute<SoftDeleteColumnAttribute>();
+                softDeletePropertyMetadata.Prop.SetValue(oldRootObject, attr.TrueIndicatesDeleted);
             }
         }
 
