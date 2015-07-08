@@ -1,4 +1,6 @@
-﻿namespace Dapper.SimpleSave.Impl
+﻿using System;
+
+namespace Dapper.SimpleSave.Impl
 {
     public class Difference
     {
@@ -6,16 +8,6 @@
         public object NewOwner { get; set; }
         public object Owner { get { return OldOwner ?? NewOwner; } }
         public DtoMetadata OwnerMetadata { get; set; }
-        public int? OwnerId
-        {
-            get
-            {
-                var owner = Owner;
-                return owner == null
-                    ? null
-                    : (OwnerMetadata == null ? null : OwnerMetadata.GetPrimaryKeyValue(owner));
-            }
-        }
         public PropertyMetadata OwnerPropertyMetadata { get; set; }
         public DifferenceType DifferenceType { get; set; }
         public DtoMetadata ValueMetadata { get; set; }

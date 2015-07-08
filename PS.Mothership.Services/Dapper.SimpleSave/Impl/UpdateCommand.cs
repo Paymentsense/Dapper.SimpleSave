@@ -20,14 +20,14 @@ namespace Dapper.SimpleSave.Impl
                     "operation");
             }
 
-            var pk = PrimaryKey;
-            if (null != pk && operation.OwnerPrimaryKey != pk.Value)
+            var pk = PrimaryKeyAsObject;
+            if (null != pk && !PrimaryKeyComparer.SuppliedPrimaryKeyValuesMatch(operation.OwnerMetadata, pk, operation.OwnerPrimaryKeyAsObject))//operation.OwnerPrimaryKey != pk.Value)
             {
                 throw new ArgumentException(string.Format(
                     "Primary key mismatch for UPDATE command on table {0}. Expected: {1}. Actual: {2}.",
                     name,
                     pk,
-                    operation.OwnerPrimaryKey),
+                    operation.OwnerPrimaryKeyAsObject),
                     "operation");
             }
 
@@ -50,13 +50,13 @@ namespace Dapper.SimpleSave.Impl
 
         public IEnumerable<UpdateOperation> Operations { get { return _operations; } }
 
-        public override int? PrimaryKey
+        public object PrimaryKeyAsObject
         {
             get
             {
                 return  _operations == null || _operations.Count == 0
                     ? null
-                    : _operations[0].OwnerPrimaryKey;
+                    : _operations[0].OwnerPrimaryKeyAsObject;
             }
         }
     }
