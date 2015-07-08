@@ -68,6 +68,7 @@
     <Compile Include="Impl\Differ.cs" />
     <Compile Include="Impl\Difference.cs" />
     <Compile Include="Impl\DtoMetadataCache.cs" />
+    <Compile Include="Impl\DtoMetadataValidator.cs" />
     <Compile Include="Impl\InsertCommand.cs" />
     <Compile Include="Impl\InsertOperation.cs" />
     <Compile Include="Impl\MemberInfoExtensions.cs" />
