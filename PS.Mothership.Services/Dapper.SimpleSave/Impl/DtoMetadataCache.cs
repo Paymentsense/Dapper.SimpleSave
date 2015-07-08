@@ -30,7 +30,7 @@ namespace Dapper.SimpleSave.Impl
             }
         }
 
-        public DtoMetadata GetMetaDataFor<T>()
+        public DtoMetadata GetMetadataFor<T>()
         {
             return GetMetadataFor(typeof(T));
         }

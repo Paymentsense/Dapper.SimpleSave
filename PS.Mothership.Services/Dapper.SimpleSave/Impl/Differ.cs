@@ -30,15 +30,15 @@ namespace Dapper.SimpleSave.Impl
         /// <param name="newObject">New version of object, which is expected to be <code>null</code> for
         /// <code>DELETE</code>s.</param>
         /// <returns>List of differences between supplied objects, if any.</returns>
-        public IList<Difference> Diff<T>(T oldObject, T newObject)
+        public IList<Difference> Diff<T>(T oldObject, T newObject, bool softDelete = false)
         {
-            return Diff(oldObject, newObject, typeof (T));
+            return Diff(oldObject, newObject, typeof (T), softDelete);
         }
 
-        private IList<Difference> Diff(object oldObject, object newObject, Type handleAsType)
+        private IList<Difference> Diff(object oldObject, object newObject, Type handleAsType, bool softDelete)
         {
             var differences = new List<Difference>();
-            Diff(null, null, null, null, oldObject, newObject, handleAsType, differences);
+            Diff(null, null, null, null, oldObject, newObject, handleAsType, differences, softDelete);
             return differences;
         }
 
@@ -50,7 +50,8 @@ namespace Dapper.SimpleSave.Impl
             object oldObject,
             object newObject,
             Type handleAsType,
-            IList<Difference> target)
+            IList<Difference> target,
+            bool softDelete)
         {
             var metadata = _dtoMetadataCache.GetMetadataFor(handleAsType);
             var doReferenceShortcut = false;
@@ -65,6 +66,26 @@ namespace Dapper.SimpleSave.Impl
             }
             else if (newObject == null)
             {
+                if (softDelete)
+                {
+                    var propertyMetaData = SoftDeleteValidator.GetValidatedSoftDeleteProperty(metadata);
+
+                    var trueIndicatesDeleted =
+                        propertyMetaData.GetAttribute<SoftDeleteColumnAttribute>().TrueIndicatesDeleted;
+
+                    target.Add(new Difference()
+                    {
+                        DifferenceType = DifferenceType.Update,
+                        OldValue = !trueIndicatesDeleted,
+                        NewValue = trueIndicatesDeleted,
+                        ValueMetadata = null,
+                        OwnerMetadata = metadata,
+                        OwnerPropertyMetadata = propertyMetaData,
+                        OldOwner = oldObject,
+                        NewOwner = oldObject
+                    });
+                    return;
+                }
                 doReferenceShortcut = true;
             }
 
@@ -364,7 +385,7 @@ namespace Dapper.SimpleSave.Impl
             {
                 if (newItems.ItemsById.ContainsKey(key))
                 {
-                    foreach (var diff in Diff(oldItems.ItemsById[key], newItems.ItemsById[key], handleAsType))
+                    foreach (var diff in Diff(oldItems.ItemsById[key], newItems.ItemsById[key], handleAsType, false))
                     {
                         differences.Add(diff);
                     }
@@ -464,7 +485,8 @@ namespace Dapper.SimpleSave.Impl
                     oldPropValue,
                     newPropValue,
                     prop.Prop.PropertyType,
-                    differences);
+                    differences,
+                    false);
             }
         }
 

@@ -77,6 +77,7 @@
     <Compile Include="Impl\DeleteOperation.cs" />
     <Compile Include="Impl\Script.cs" />
     <Compile Include="Impl\ScriptBuilder.cs" />
+    <Compile Include="Impl\SoftDeleteValidator.cs" />
     <Compile Include="Impl\TransactionBuilder.cs" />
     <Compile Include="Impl\TypeExtensions.cs" />
     <Compile Include="Impl\UpdateCommand.cs" />
@@ -90,6 +91,7 @@
     <Compile Include="ReadOnlyAttribute.cs" />
     <Compile Include="ReferenceDataAttribute.cs" />
     <Compile Include="SimpleSaveExtensions.cs" />
+    <Compile Include="SoftDeleteColumnAttribute.cs" />
     <Compile Include="TableAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
