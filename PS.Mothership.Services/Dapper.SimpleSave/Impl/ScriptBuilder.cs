@@ -230,8 +230,9 @@ WHERE [{1}] = ",
                                 () => operation.ValueMetadata.GetPrimaryKeyValueAsObject(operation.Value)));
                     }
                 else if (operation.OwnerPropertyMetadata == null
-                    || (operation.OwnerPropertyMetadata.HasAttribute<OneToManyAttribute>()
-                    && !operation.ValueMetadata.HasAttribute<ReferenceDataAttribute>())) 
+                    || ((operation.OwnerPropertyMetadata.HasAttribute<OneToManyAttribute>()
+                        || IsOneToOneRelationshipWithFkOnParent(operation))
+                        && !operation.ValueMetadata.HasAttribute<ReferenceDataAttribute>())) 
                 {
                     //  INSERT the value into the table defined by ValueMetadata
                     
@@ -317,6 +318,34 @@ OUTPUT inserted.[{0}]
             }
 
             return guidPKColumn == null;
+        }
+
+        private static bool IsOneToOneRelationshipWithFkOnParent(BaseInsertDeleteOperation operation)
+        {
+            if (operation.OwnerPropertyMetadata.HasAttribute<OneToOneAttribute>()
+                    && operation.OwnerPropertyMetadata.HasAttribute<ForeignKeyReferenceAttribute>())
+            {
+                if (operation.OwnerPropertyMetadata.GetAttribute<ForeignKeyReferenceAttribute>().ReferencedDto
+                    == operation.ValueMetadata.DtoType)
+                {
+                    return true;
+                }
+
+                throw new ArgumentException(string.Format(
+                    "Invalid one to one relationship defined between parent {0} and child {1} "
+                    + "on property {2} of parent. "
+                    + "Parent has one to one relationship with [ForeignKeyReference] attribute "
+                    + "but type specified in [ForeignKeyReference] does not match child type. "
+                    + "Instead it is {3}. Change the type referenced by [ForeignKeyReference] "
+                    + "or change the type of the property to match that specified in "
+                    + "[ForeignKeyReference].",
+                    operation.OwnerMetadata.DtoType.FullName,
+                    operation.ValueMetadata.DtoType.FullName,
+                    operation.OwnerPropertyMetadata.Prop.Name,
+                    operation.OwnerPropertyMetadata.GetAttribute<ForeignKeyReferenceAttribute>().ReferencedDto.FullName),
+                "operation");
+            }
+            return false;
         }
 
         private void AppendPropertyToInsertStatement(
