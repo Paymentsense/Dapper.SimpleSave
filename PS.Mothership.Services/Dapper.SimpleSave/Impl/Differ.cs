@@ -53,7 +53,7 @@ namespace Dapper.SimpleSave.Impl
             IList<Difference> target,
             bool softDelete)
         {
-            var metadata = _dtoMetadataCache.GetMetadataFor(handleAsType);
+            var metadata = _dtoMetadataCache.GetValidatedMetadataFor(handleAsType);
             var doReferenceShortcut = false;
             if (oldObject == null)
             {
@@ -260,6 +260,8 @@ namespace Dapper.SimpleSave.Impl
             {
                 return;
             }
+
+            DtoMetadataValidator.ValidateAsCompatibleTable(itemTypeMeta);
 
             var oldItems = GetItemDictionary(oldEnumerable as IEnumerable, pk);
             var newItems = GetItemDictionary(newEnumerable as IEnumerable, pk);
