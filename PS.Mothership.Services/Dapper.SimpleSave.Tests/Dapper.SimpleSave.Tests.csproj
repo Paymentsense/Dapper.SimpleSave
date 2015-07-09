@@ -105,6 +105,7 @@
     <Compile Include="OneToManyRelationshipScriptGenerationTests.cs" />
     <Compile Include="OneToOneRelationshipFkOnChildCommandGenerationTests.cs" />
     <Compile Include="OneToOneRelationshipFkOnParentCommandGenerationTests.cs" />
+    <Compile Include="OneToOneRelationshipFkOnParentScriptGenerationTests.cs" />
     <Compile Include="ScriptGenerationOutlineTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SoftDeleteScriptGenerationTests.cs" />
