@@ -68,14 +68,18 @@
     <Compile Include="Impl\Differ.cs" />
     <Compile Include="Impl\Difference.cs" />
     <Compile Include="Impl\DtoMetadataCache.cs" />
+    <Compile Include="Impl\DtoMetadataValidator.cs" />
     <Compile Include="Impl\InsertCommand.cs" />
     <Compile Include="Impl\InsertOperation.cs" />
     <Compile Include="Impl\MemberInfoExtensions.cs" />
     <Compile Include="Impl\OperationBuilder.cs" />
+    <Compile Include="Impl\PrimaryKeyComparer.cs" />
     <Compile Include="Impl\PropertyMetadata.cs" />
     <Compile Include="Impl\DeleteOperation.cs" />
     <Compile Include="Impl\Script.cs" />
     <Compile Include="Impl\ScriptBuilder.cs" />
+    <Compile Include="Impl\SoftDeleteValidator.cs" />
+    <Compile Include="Impl\TransactionBuilder.cs" />
     <Compile Include="Impl\TypeExtensions.cs" />
     <Compile Include="Impl\UpdateCommand.cs" />
     <Compile Include="Impl\UpdateOperation.cs" />
@@ -88,6 +92,7 @@
     <Compile Include="ReadOnlyAttribute.cs" />
     <Compile Include="ReferenceDataAttribute.cs" />
     <Compile Include="SimpleSaveExtensions.cs" />
+    <Compile Include="SoftDeleteColumnAttribute.cs" />
     <Compile Include="TableAttribute.cs" />
   </ItemGroup>
   <ItemGroup>

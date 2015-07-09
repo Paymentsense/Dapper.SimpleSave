@@ -229,7 +229,7 @@ namespace Dapper.SimpleSave.Tests
 
         public static UserDto GetDto(string name)
         {
-            if (null == name)
+            if (name == null)
             {
                 return null;
             }

@@ -1,4 +1,6 @@
-﻿namespace Dapper.SimpleSave.Impl
+﻿using System;
+
+namespace Dapper.SimpleSave.Impl
 {
     public abstract class BaseInsertDeleteCommand : BaseCommand
     {
@@ -14,11 +16,6 @@
         public BaseInsertDeleteOperation Operation
         {
             get { return _operation; }
-        }
-
-        public override int? PrimaryKey
-        {
-            get { return _operation.OwnerPrimaryKey; }
         }
     }
 }

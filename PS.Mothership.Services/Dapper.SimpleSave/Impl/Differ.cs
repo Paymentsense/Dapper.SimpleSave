@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using Castle.Core.Internal;
 
 namespace Dapper.SimpleSave.Impl
 {
@@ -29,15 +30,15 @@ namespace Dapper.SimpleSave.Impl
         /// <param name="newObject">New version of object, which is expected to be <code>null</code> for
         /// <code>DELETE</code>s.</param>
         /// <returns>List of differences between supplied objects, if any.</returns>
-        public IList<Difference> Diff<T>(T oldObject, T newObject)
+        public IList<Difference> Diff<T>(T oldObject, T newObject, bool softDelete = false)
         {
-            return Diff(oldObject, newObject, typeof (T));
+            return Diff(oldObject, newObject, typeof (T), softDelete);
         }
 
-        private IList<Difference> Diff(object oldObject, object newObject, Type handleAsType)
+        private IList<Difference> Diff(object oldObject, object newObject, Type handleAsType, bool softDelete)
         {
             var differences = new List<Difference>();
-            Diff(null, null, null, null, oldObject, newObject, handleAsType, differences);
+            Diff(null, null, null, null, oldObject, newObject, handleAsType, differences, softDelete);
             return differences;
         }
 
@@ -49,21 +50,42 @@ namespace Dapper.SimpleSave.Impl
             object oldObject,
             object newObject,
             Type handleAsType,
-            IList<Difference> target)
+            IList<Difference> target,
+            bool softDelete)
         {
-            var metadata = _dtoMetadataCache.GetMetadataFor(handleAsType);
+            var metadata = _dtoMetadataCache.GetValidatedMetadataFor(handleAsType);
             var doReferenceShortcut = false;
-            if (null == oldObject)
+            if (oldObject == null)
             {
-                if (null == newObject)
+                if (newObject == null)
                 {
                     return;
                 }
 
                 doReferenceShortcut = true;
             }
-            else if (null == newObject)
+            else if (newObject == null)
             {
+                if (softDelete)
+                {
+                    var propertyMetaData = SoftDeleteValidator.GetValidatedSoftDeleteProperty(metadata);
+
+                    var trueIndicatesDeleted =
+                        propertyMetaData.GetAttribute<SoftDeleteColumnAttribute>().TrueIndicatesDeleted;
+
+                    target.Add(new Difference()
+                    {
+                        DifferenceType = DifferenceType.Update,
+                        OldValue = !trueIndicatesDeleted,
+                        NewValue = trueIndicatesDeleted,
+                        ValueMetadata = null,
+                        OwnerMetadata = metadata,
+                        OwnerPropertyMetadata = propertyMetaData,
+                        OldOwner = oldObject,
+                        NewOwner = oldObject
+                    });
+                    return;
+                }
                 doReferenceShortcut = true;
             }
 
@@ -73,18 +95,16 @@ namespace Dapper.SimpleSave.Impl
             }
             else
             {
-                var objKey = metadata.GetPrimaryKeyValue(oldObject);
-
-                if (objKey != metadata.GetPrimaryKeyValue(newObject))
+                if (!PrimaryKeyComparer.HaveSamePrimaryKeyValue(metadata, oldObject, newObject))//objKey != metadata.GetPrimaryKeyValue(newObject))
                 {
-                    if (null == property)
+                    if (property == null)
                     {
                         throw new ArgumentException(string.Format(
                             "Cannot diff two objects that do not represent the same row. "
                             + "{0}: primary key does not match - for {1} does not match {2}",
                             handleAsType,
-                            objKey,
-                            metadata.GetPrimaryKeyValue(newObject)));
+                            metadata.GetPrimaryKeyValueAsObject(oldObject),
+                            metadata.GetPrimaryKeyValueAsObject(newObject)));
                     }
 
                     target.Add(new Difference
@@ -154,13 +174,13 @@ namespace Dapper.SimpleSave.Impl
             var itemType = args [1];
 
             var values = dictType.GetProperty("Values");
-            if (null == values)
+            if (values == null)
             {
                 return;
             }
 
             var getter = values.GetGetMethod();
-            if (null == getter)
+            if (getter == null)
             {
                 return;
             }
@@ -168,8 +188,8 @@ namespace Dapper.SimpleSave.Impl
             DiffEnumerable(
                 oldObject,
                 newObject,
-                null == oldObject ? new ArrayList() : getter.Invoke(oldObject, new object[0]),
-                null == newObject ? new ArrayList() : getter.Invoke(newObject, new object[0]),
+                oldObject == null ? new ArrayList() : getter.Invoke(oldObject, new object[0]),
+                newObject == null ? new ArrayList() : getter.Invoke(newObject, new object[0]),
                 prop,
                 differences,
                 metadata,
@@ -198,8 +218,8 @@ namespace Dapper.SimpleSave.Impl
             DiffEnumerable(
                 oldObject,
                 newObject,
-                null == oldObject ? new ArrayList() : getter.Invoke(oldObject, new object [0]),
-                null == newObject ? new ArrayList() : getter.Invoke(newObject, new object [0]),
+                oldObject == null ? new ArrayList() : getter.Invoke(oldObject, new object[0]),
+                newObject == null ? new ArrayList() : getter.Invoke(newObject, new object[0]),
                 prop,
                 differences,
                 metadata,
@@ -236,14 +256,21 @@ namespace Dapper.SimpleSave.Impl
         {
             var itemTypeMeta = _dtoMetadataCache.GetMetadataFor(itemType);
             var pk = itemTypeMeta.PrimaryKey;
-            if (null == pk)
+            if (pk == null)
             {
                 return;
             }
 
+            DtoMetadataValidator.ValidateAsCompatibleTable(itemTypeMeta);
+
             var oldItems = GetItemDictionary(oldEnumerable as IEnumerable, pk);
             var newItems = GetItemDictionary(newEnumerable as IEnumerable, pk);
 
+            //  We clear this because if an old item has no PK value then it's
+            //  clearly never been saved to the database in the first place, so we
+            //  don't want to write SQL to UPDATE or DELETE it. If it exists in
+            //  the new items collection, on the other hand, we want to INSERT it.
+            oldItems.ItemsWithNoPkValue.Clear();
             AddDifferencesForItemsInOnlyOneCollection(
                 oldOwner, newOwner, metadata, prop, oldItems,
                 newItems, itemTypeMeta, DifferenceType.Deletion, differences);
@@ -260,77 +287,107 @@ namespace Dapper.SimpleSave.Impl
             object newOwner,
             DtoMetadata metadata,
             PropertyMetadata prop,
-            IDictionary<int, object> items1,
-            IDictionary<int, object> items2,
+            ItemLookup items1,
+            ItemLookup items2,
             DtoMetadata itemTypeMeta,
             DifferenceType differenceType,
             IList<Difference> differences)
         {
             var removed = FindRemovedItems(items1, items2);
 
-            foreach (var item in removed.Values)
+            Action<object> addDifference = item => differences.Add(new Difference
             {
-                differences.Add(new Difference
-                {
-                    OldOwner = oldOwner,
-                    NewOwner = newOwner,
-                    DifferenceType = differenceType,
-                    OwnerPropertyMetadata = prop,
-                    OwnerMetadata = metadata,
-                    ValueMetadata = itemTypeMeta,
-                    NewValue = DifferenceType.Insertion == differenceType ? item : null,
-                    OldValue = DifferenceType.Deletion == differenceType ? item : null
-                });
+                OldOwner = oldOwner,
+                NewOwner = newOwner,
+                DifferenceType = differenceType,
+                OwnerPropertyMetadata = prop,
+                OwnerMetadata = metadata,
+                ValueMetadata = itemTypeMeta,
+                NewValue = DifferenceType.Insertion == differenceType ? item : null,
+                OldValue = DifferenceType.Deletion == differenceType ? item : null
+            });
+
+            foreach (var item in removed.ItemsById.Values)
+            {
+                addDifference(item);
+            }
+
+            foreach (var item in removed.ItemsWithNoPkValue)
+            {
+                addDifference(item);
             }
         }
 
-        private IDictionary<int, object> GetItemDictionary(IEnumerable enumerable, PropertyMetadata pkProp)
+        private ItemLookup GetItemDictionary(IEnumerable enumerable, PropertyMetadata pkProp)
         {
-            var results = new Dictionary<int, object>();
+            var results = new ItemLookup();
             if (enumerable != null)
             {
                 var getter = pkProp.Prop.GetGetMethod();
                 foreach (var item in enumerable)
                 {
-                    results [(int)getter.Invoke(item, new object [0])] = item;
+                    var pk = getter.Invoke(item, new object[0]);
+                    if (pk == null)
+                    {
+                        results.ItemsWithNoPkValue.Add(item);
+                    }
+                    else
+                    {
+                        results.ItemsById[pk] = item;
+                    }
                 }
             }
             return results;
         }
 
-        private IDictionary<int, object> FindRemovedItems(
-            IDictionary<int, object> dict1,
-            IDictionary<int, object> dict2)
+        private class ItemLookup
         {
-            if (null == dict1)
+
+            public ItemLookup()
             {
-                return new Dictionary<int, object>();
-            }
-            
-            if (null == dict2)
-            {
-                return dict1;
+                ItemsById = new Dictionary<object, object>();
+                ItemsWithNoPkValue = new List<object>();
             }
 
-            var results = new Dictionary<int, object>();
-            foreach (var key in dict1.Keys.Where(key => !dict2.ContainsKey(key)))
+            public IDictionary<object, object> ItemsById { get; private set; }
+            public IList<object> ItemsWithNoPkValue { get; private set; } 
+        }
+
+        private ItemLookup FindRemovedItems(
+            ItemLookup lookup1,
+            ItemLookup lookup2)
+        {
+            if (lookup1 == null)
             {
-                results[key] = dict1[key];
+                return new ItemLookup();
             }
+
+            if (lookup2 == null)
+            {
+                return lookup1;
+            }
+
+            var results = new ItemLookup();
+            foreach (var key in lookup1.ItemsById.Keys.Where(key => !lookup2.ItemsById.ContainsKey(key)))
+            {
+                results.ItemsById[key] = lookup1.ItemsById[key];
+            }
+
+            lookup1.ItemsWithNoPkValue.ForEach(item => results.ItemsWithNoPkValue.Add(item));
             return results;
         }
 
         private void AddDifferencesForChangedItems(
-            IDictionary<int, object> oldItems,
-            IDictionary<int, object> newItems,
+            ItemLookup oldItems,
+            ItemLookup newItems,
             Type handleAsType,
             IList<Difference> differences)
         {
-            foreach (var key in oldItems.Keys)
+            foreach (var key in oldItems.ItemsById.Keys)
             {
-                if (newItems.ContainsKey(key))
+                if (newItems.ItemsById.ContainsKey(key))
                 {
-                    foreach (var diff in Diff(oldItems[key], newItems[key], handleAsType))
+                    foreach (var diff in Diff(oldItems.ItemsById[key], newItems.ItemsById[key], handleAsType, false))
                     {
                         differences.Add(diff);
                     }
@@ -350,7 +407,8 @@ namespace Dapper.SimpleSave.Impl
             if (null != prop)
             {
                 getter = prop.Prop.GetGetMethod();
-                if (null == getter) {
+                if (getter == null)
+                {
                     return;
                 }
             }
@@ -358,9 +416,9 @@ namespace Dapper.SimpleSave.Impl
             var oldPropValue = GetPropertyValueFrom(oldObject, getter);
             var newPropValue = GetPropertyValueFrom(newObject, getter);
 
-            if (null == oldPropValue)
+            if (oldPropValue == null)
             {
-                if (null == newPropValue)
+                if (newPropValue == null)
                 {
                     return;
                 }
@@ -373,8 +431,8 @@ namespace Dapper.SimpleSave.Impl
                         : newObject,
                     DifferenceType = DifferenceType.Insertion,
                     OwnerPropertyMetadata = prop,
-                    OwnerMetadata = null == prop? null : metadata,
-                    ValueMetadata = null == prop
+                    OwnerMetadata = prop == null ? null : metadata,
+                    ValueMetadata = prop == null
                         ? metadata
                         : _dtoMetadataCache.GetMetadataFor(prop.Prop.PropertyType),
                     OldValue = null,
@@ -391,7 +449,7 @@ namespace Dapper.SimpleSave.Impl
                         : newPropValue,
                     differences);
             }
-            else if (null == newPropValue)
+            else if (newPropValue == null)
             {
                 DiffProperties(
                     ReferenceEquals(oldObject, oldPropValue)
@@ -411,8 +469,8 @@ namespace Dapper.SimpleSave.Impl
                     NewOwner = newObject,
                     DifferenceType = DifferenceType.Deletion,
                     OwnerPropertyMetadata = prop,
-                    OwnerMetadata = null == prop ? null : metadata,
-                    ValueMetadata = null == prop
+                    OwnerMetadata = prop == null ? null : metadata,
+                    ValueMetadata = prop == null
                         ? metadata
                         : _dtoMetadataCache.GetMetadataFor(prop.Prop.PropertyType),
                     OldValue = oldPropValue,
@@ -429,15 +487,16 @@ namespace Dapper.SimpleSave.Impl
                     oldPropValue,
                     newPropValue,
                     prop.Prop.PropertyType,
-                    differences);
+                    differences,
+                    false);
             }
         }
 
         private static object GetPropertyValueFrom<T>(T oldObject, MethodInfo getter)
         {
-            return null == oldObject
+            return oldObject == null
                 ? null
-                : null == getter ? oldObject : getter.Invoke(oldObject, new object [0]);
+                : getter == null ? oldObject : getter.Invoke(oldObject, new object[0]);
         }
 
         private void DiffSimpleValue<T>(
@@ -447,7 +506,7 @@ namespace Dapper.SimpleSave.Impl
             IList<Difference> differences,
             DtoMetadata metadata)
         {
-            if (null == oldObject || null == newObject)
+            if (oldObject == null || newObject == null)
             {
                 //  Don't need to diff simple values where an object has been created or deleted.
                 return;
