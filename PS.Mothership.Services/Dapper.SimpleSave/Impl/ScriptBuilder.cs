@@ -325,7 +325,7 @@ OUTPUT inserted.[{0}]
         {
             if (property.HasAttribute<ForeignKeyReferenceAttribute>()
                 && null != operation.OwnerMetadata
-                && _dtoMetadataCache.GetMetadataFor(
+                && _dtoMetadataCache.GetValidatedMetadataFor(
                     property.GetAttribute<ForeignKeyReferenceAttribute>().ReferencedDto).TableName ==
                 operation.OwnerMetadata.TableName)
             {
@@ -342,7 +342,7 @@ OUTPUT inserted.[{0}]
                 }
 
                 object propValue = property.GetValue(operation.Value);
-                DtoMetadata propMetadata = _dtoMetadataCache.GetMetadataFor(property.Prop.PropertyType);
+                DtoMetadata propMetadata = _dtoMetadataCache.GetValidatedMetadataFor(property.Prop.PropertyType);
                 values.Add(
                     new Func<object>(
                         () =>

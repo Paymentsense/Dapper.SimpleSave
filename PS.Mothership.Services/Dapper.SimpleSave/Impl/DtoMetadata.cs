@@ -74,6 +74,10 @@ namespace Dapper.SimpleSave.Impl
             PrimaryKey.SetValue(obj, value);
         }
 
+        public bool HasSoftDeleteSupport { get { return SoftDeleteProperty != null; } }
+
+        public PropertyMetadata SoftDeleteProperty { get; private set; }
+
         private void InitProperties()
         {
             var target = new List<PropertyMetadata>();
@@ -89,6 +93,11 @@ namespace Dapper.SimpleSave.Impl
                 if (propMeta.IsPrimaryKey)
                 {
                     PrimaryKey = propMeta;
+                }
+
+                if (propMeta.HasAttribute<SoftDeleteColumnAttribute>())
+                {
+                    SoftDeleteProperty = propMeta;
                 }
 
                 target.Add(propMeta);
