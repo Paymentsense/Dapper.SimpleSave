@@ -30,9 +30,21 @@ namespace Dapper.SimpleSave.Impl
             }
         }
 
-        public DtoMetadata GetMetaDataFor<T>()
+        public DtoMetadata GetMetadataFor<T>()
         {
             return GetMetadataFor(typeof(T));
+        }
+
+        public DtoMetadata GetValidatedMetadataFor(Type type)
+        {
+            var metadata = GetMetadataFor(type);
+            DtoMetadataValidator.ValidateAsCompatibleTable(metadata);
+            return metadata;
+        }
+
+        public DtoMetadata GetValidatedMetadataFor<T>()
+        {
+            return GetValidatedMetadataFor(typeof(T));
         }
 
         public bool HasMetaDataFor(Type type)
