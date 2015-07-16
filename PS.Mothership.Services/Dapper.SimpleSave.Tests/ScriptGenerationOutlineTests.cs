@@ -177,7 +177,7 @@ namespace Dapper.SimpleSave.Tests
             {
                 new RoleDto
                 {
-                    RoleKey = 1,
+                    RoleKey = 2,
                     Name = "TeleSales"
                 }
             })
