@@ -1,4 +1,5 @@
-﻿using Dapper.SimpleSave.Tests.Dto;
+﻿using System;
+using Dapper.SimpleSave.Tests.Dto;
 using NUnit.Framework;
 
 namespace Dapper.SimpleSave.Tests
@@ -19,6 +20,51 @@ namespace Dapper.SimpleSave.Tests
 
             scripts.AssertFragment(0, "INSERT INTO dbo.[Parent]");
             scripts.AssertFragment(1, "INSERT INTO dbo.OneToManyChild");
+        }
+
+        [Test]
+        public void insert_child_with_existing_parent_sets_parent_pk_as_fk_value_on_child()
+        {
+            var oldDto = new ParentDto
+            {
+                ParentKey = 1,
+                OneToManyChildDto = new[]
+                {
+                    new OneToManyChildDto
+                    {
+                        ChildKey = 2,
+                        ParentDtoKey = 1
+                    }
+                }
+            };
+
+            var scripts = Generate(
+                oldDto,
+                new ParentDto
+                {
+                    ParentKey = 1,
+                    OneToManyChildDto = new []
+                    {
+                        new OneToManyChildDto
+                        {
+                            ChildKey = 2,
+                            ParentDtoKey = 1
+                        },
+                        new OneToManyChildDto
+                        {
+                            ChildKey = 3,
+                            ParentDtoKey = 1
+                        }
+                    }
+                },
+                1);
+
+            scripts.AssertFragment(0, "INSERT INTO dbo.OneToManyChild");
+
+            Assert.AreEqual(
+                1,
+                ((Func<object>) scripts[0].Parameters["p0"])(),
+                "Invalid FK value in child - should be same as parent key.");
         }
     }
 }
