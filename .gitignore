@@ -79,6 +79,12 @@ packages/
 /Externals/Core/PS.Mothership.Core/PS.Mothership.Core.Common.Template/Template/*Enum.cs
 UpgradeLog*.htm
 *.jf
-*.json
+
+#NPM
 node_modules/
+
+#bower
 bower_components/
+
+#css
+*.css
