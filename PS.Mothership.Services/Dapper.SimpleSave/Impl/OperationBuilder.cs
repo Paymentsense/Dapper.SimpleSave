@@ -48,7 +48,11 @@ namespace Dapper.SimpleSave.Impl
                 Value = diff.NewValue
             };
 
-            if (!ShouldFilterOutForParticularCardinalitiesBecauseFkOnParent(insertOperation))
+            if (IsViableParentUpdateOnManyToOneRelationship(insertOperation, diff))
+            {
+                AddUpdateOnParentTableForInsertDeleteOfManyToOneChildRow(operations, diff, insertOperation);
+            }
+            else if (!ShouldFilterOutForParticularCardinalitiesBecauseFkOnParent(insertOperation))
             {
                 AddInsertToListAtCorrectLocation(operations, insertOperation);
             }
@@ -112,10 +116,43 @@ namespace Dapper.SimpleSave.Impl
                 Value = diff.OldValue
             };
 
-            if (!ShouldFilterOutForParticularCardinalitiesBecauseFkOnParent(deleteOperation))
+            if (IsViableParentUpdateOnManyToOneRelationship(deleteOperation, diff))
+            {
+               AddUpdateOnParentTableForInsertDeleteOfManyToOneChildRow(operations, diff, deleteOperation);
+            }
+            else if (!ShouldFilterOutForParticularCardinalitiesBecauseFkOnParent(deleteOperation))
             {
                 AddDeleteToListAtCorrectLocation(operations, deleteOperation);
             }
+        }
+
+        private static void AddUpdateOnParentTableForInsertDeleteOfManyToOneChildRow(
+            IList<BaseOperation> operations,
+            Difference diff,
+            BaseInsertDeleteOperation insertOperation)
+        {
+            var updateOperation = new UpdateOperation
+            {
+                OwnerMetadata = insertOperation.OwnerMetadata,
+                OwnerPropertyMetadata = insertOperation.OwnerPropertyMetadata,
+                OwnerPrimaryKeyColumn = insertOperation.OwnerPrimaryKeyColumn,
+                Owner = insertOperation.Owner,
+                TableName = insertOperation.TableName,
+                ColumnName = diff.OwnerPropertyMetadata.ColumnName,
+                ValueMetadata = diff.ValueMetadata,
+                Value = diff.NewValue
+            };
+            operations.Add(updateOperation);
+        }
+
+        private bool IsViableParentUpdateOnManyToOneRelationship(
+            BaseInsertDeleteOperation insertDeleteOperation,
+            Difference diff)
+        {
+            return insertDeleteOperation.OwnerMetadata != null
+                   && insertDeleteOperation.OwnerPropertyMetadata.IsManyToOneRelationship
+                   && diff.OldOwner != null
+                   && diff.NewOwner != null;
         }
 
         private void AddDeleteToListAtCorrectLocation(IList<BaseOperation> operations, DeleteOperation deleteOperation)
