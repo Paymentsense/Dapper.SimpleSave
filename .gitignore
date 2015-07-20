@@ -80,3 +80,5 @@ packages/
 UpgradeLog*.htm
 *.jf
 *.json
+node_modules/
+bower_components/
