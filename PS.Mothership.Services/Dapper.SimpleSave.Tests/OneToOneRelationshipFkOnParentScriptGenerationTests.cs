@@ -1,5 +1,4 @@
-﻿using Dapper.SimpleSave.Impl;
-using Dapper.SimpleSave.Tests.Dto;
+﻿using Dapper.SimpleSave.Tests.Dto;
 using Dapper.SimpleSave.Tests.GuidDtos;
 using NUnit.Framework;
 
@@ -7,58 +6,36 @@ namespace Dapper.SimpleSave.Tests
 {
 
     [TestFixture]
-    public class OneToOneRelationshipFkOnParentScriptGenerationTests
+    public class OneToOneRelationshipFkOnParentScriptGenerationTests : BaseScriptGenerationTests
     {
         [Test]
         public void insert_with_fk_on_parent_no_reference_data_inserts_rows_in_child_and_parent()
         {
-            var newDto = new ParentDto
-            {
-                OneToOneChildDtoNoFk = new OneToOneChildDtoNoFk()
-            };
+            var scripts = Generate(
+                null,
+                new ParentDto
+                {
+                    OneToOneChildDtoNoFk = new OneToOneChildDtoNoFk()
+                },
+                2);
 
-            var cache = new DtoMetadataCache();
-            var builder = new TransactionBuilder(cache);
-            var scripts = builder.BuildUpdateScripts(null, newDto);
-            
-            Assert.AreEqual(
-                2,
-                scripts.Count,
-                "Unexpected number of scripts.");
-
-            Assert.IsTrue(
-                scripts[0].Buffer.ToString().Contains("INSERT INTO dbo.OneToOneChildNoFk"),
-                "Should INSERT into child table.");
-
-            Assert.IsTrue(
-                scripts[1].Buffer.ToString().Contains("INSERT INTO dbo.[Parent]"),
-                "Should INSERT into parent table.");
+            scripts.AssertFragment(0, "INSERT INTO dbo.OneToOneChildNoFk");
+            scripts.AssertFragment(1, "INSERT INTO dbo.[Parent]");
         }
 
         [Test]
         public void insert_with_fk_on_parent_no_reference_data_inserts_rows_in_child_and_parent_with_guid_pks()
         {
-            var newDto = new GuidParentDto
-            {
-                OneToOneChildDtoNoFk = new GuidOneToOneChildDtoNoFk()
-            };
+            var scripts = Generate(
+                null,
+                new GuidParentDto
+                {
+                    OneToOneChildDtoNoFk = new GuidOneToOneChildDtoNoFk()
+                },
+                2);
 
-            var cache = new DtoMetadataCache();
-            var builder = new TransactionBuilder(cache);
-            var scripts = builder.BuildUpdateScripts(null, newDto);
-            
-            Assert.AreEqual(
-                2,
-                scripts.Count,
-                "Unexpected number of scripts.");
-
-            Assert.IsTrue(
-                scripts[0].Buffer.ToString().Contains("INSERT INTO dbo.GuidOneToOneChildNoFk"),
-                "Should INSERT into child table.");
-
-            Assert.IsTrue(
-                scripts[1].Buffer.ToString().Contains("INSERT INTO dbo.[GuidParent]"),
-                "Should INSERT into parent table.");
+            scripts.AssertFragment(0, "INSERT INTO dbo.GuidOneToOneChildNoFk");
+            scripts.AssertFragment(1, "INSERT INTO dbo.[GuidParent]");
         }
     }
 }
