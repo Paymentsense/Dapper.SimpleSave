@@ -29,6 +29,9 @@ namespace Dapper.SimpleSave.Impl
         /// <code>INSERT</code>s.</param>
         /// <param name="newObject">New version of object, which is expected to be <code>null</code> for
         /// <code>DELETE</code>s.</param>
+        /// <param name="softDelete">Indicates whether any deletion at the root level should be treated
+        /// as a soft delete. If so, the soft delete will be performed, and no further changes will
+        /// be made.</param>
         /// <returns>List of differences between supplied objects, if any.</returns>
         public IList<Difference> Diff<T>(T oldObject, T newObject, bool softDelete = false)
         {
@@ -404,92 +407,94 @@ namespace Dapper.SimpleSave.Impl
         {
             MethodInfo getter = null;
 
-            if (null != prop)
-            {
-                getter = prop.Prop.GetGetMethod();
-                if (getter == null)
-                {
-                    return;
-                }
-            }
-            
-            var oldPropValue = GetPropertyValueFrom(oldObject, getter);
-            var newPropValue = GetPropertyValueFrom(newObject, getter);
+           if (null != prop)
+           {
+               getter = prop.Prop.GetGetMethod();
+               if (getter == null)
+               {
+                   return;
+               }
+           }
+           
+           var oldPropValue = GetPropertyValueFrom(oldObject, getter);
+           var newPropValue = GetPropertyValueFrom(newObject, getter);
 
-            if (oldPropValue == null)
-            {
-                if (newPropValue == null)
-                {
-                    return;
-                }
+           if (oldPropValue == null)
+           {
+               if (newPropValue == null)
+               {
+                   return;
+               }
 
-                differences.Add(new Difference
-                {
-                    OldOwner = oldObject,
-                    NewOwner = ReferenceEquals(newObject, newPropValue)
-                        ? (object) null
-                        : newObject,
-                    DifferenceType = DifferenceType.Insertion,
-                    OwnerPropertyMetadata = prop,
-                    OwnerMetadata = prop == null ? null : metadata,
-                    ValueMetadata = prop == null
-                        ? metadata
-                        : _dtoMetadataCache.GetMetadataFor(prop.Prop.PropertyType),
-                    OldValue = null,
-                    NewValue = newPropValue
-                });
+               differences.Add(new Difference
+               {
+                   OldOwner = oldObject,
+                   NewOwner = ReferenceEquals(newObject, newPropValue)
+                       ? (object) null
+                       : newObject,
+                   DifferenceType = DifferenceType.Insertion,
+                   OwnerPropertyMetadata = prop,
+                   OwnerMetadata = prop == null ? null : metadata,
+                   ValueMetadata = prop == null
+                       ? metadata
+                       : _dtoMetadataCache.GetMetadataFor(prop.Prop.PropertyType),
+                   OldValue = null,
+                   NewValue = newPropValue
+               });
 
-                DiffProperties(
-                    ReferenceEquals(newObject, newPropValue)
-                        ? metadata
-                        : _dtoMetadataCache.GetMetadataFor(prop.Prop.PropertyType),
-                    oldObject,
-                    ReferenceEquals(newObject, newPropValue)
-                        ? newObject
-                        : newPropValue,
-                    differences);
-            }
-            else if (newPropValue == null)
-            {
-                DiffProperties(
-                    ReferenceEquals(oldObject, oldPropValue)
-                        ? metadata :
-                        _dtoMetadataCache.GetMetadataFor(prop.Prop.PropertyType),
-                    ReferenceEquals(oldObject, oldPropValue)
-                        ? oldObject
-                        : oldPropValue,
-                    newObject,
-                    differences);
+               DiffProperties(
+                   ReferenceEquals(newObject, newPropValue)
+                       ? metadata
+                       : _dtoMetadataCache.GetMetadataFor(prop.Prop.PropertyType),
+                   ReferenceEquals(newObject, newPropValue)
+                       ? oldObject
+                       : oldPropValue,
+                   ReferenceEquals(newObject, newPropValue)
+                       ? newObject
+                       : newPropValue,
+                   differences);
+           }
+           else if (newPropValue == null)
+           {
+               DiffProperties(
+                   ReferenceEquals(oldObject, oldPropValue)
+                       ? metadata :
+                       _dtoMetadataCache.GetMetadataFor(prop.Prop.PropertyType),
+                   ReferenceEquals(oldObject, oldPropValue)
+                       ? oldObject
+                       : oldPropValue,
+                   newPropValue,
+                   differences);
 
-                differences.Add(new Difference
-                {
-                    OldOwner = ReferenceEquals(oldObject, oldPropValue)
-                        ? (object) null
-                        : oldObject,
-                    NewOwner = newObject,
-                    DifferenceType = DifferenceType.Deletion,
-                    OwnerPropertyMetadata = prop,
-                    OwnerMetadata = prop == null ? null : metadata,
-                    ValueMetadata = prop == null
-                        ? metadata
-                        : _dtoMetadataCache.GetMetadataFor(prop.Prop.PropertyType),
-                    OldValue = oldPropValue,
-                    NewValue = null
-                });
-            }
-            else
-            {
-                Diff(
-                    ReferenceEquals(oldObject, oldPropValue) ? (object) null : oldObject,
-                    ReferenceEquals(newObject, newPropValue) ? (object) null : newObject,
-                    metadata,
-                    prop,
-                    oldPropValue,
-                    newPropValue,
-                    prop.Prop.PropertyType,
-                    differences,
-                    false);
-            }
+               differences.Add(new Difference
+               {
+                   OldOwner = ReferenceEquals(oldObject, oldPropValue)
+                       ? (object) null
+                       : oldObject,
+                   NewOwner = newObject,
+                   DifferenceType = DifferenceType.Deletion,
+                   OwnerPropertyMetadata = prop,
+                   OwnerMetadata = prop == null ? null : metadata,
+                   ValueMetadata = prop == null
+                       ? metadata
+                       : _dtoMetadataCache.GetMetadataFor(prop.Prop.PropertyType),
+                   OldValue = oldPropValue,
+                   NewValue = null
+               });
+           }
+           else
+           {
+               Diff(
+                   ReferenceEquals(oldObject, oldPropValue) ? (object) null : oldObject,
+                   ReferenceEquals(newObject, newPropValue) ? (object) null : newObject,
+                   metadata,
+                   prop,
+                   oldPropValue,
+                   newPropValue,
+                   prop.Prop.PropertyType,
+                   differences,
+                   false);
+           }
         }
 
         private static object GetPropertyValueFrom<T>(T oldObject, MethodInfo getter)

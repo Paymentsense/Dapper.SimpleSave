@@ -140,7 +140,9 @@ SET ", command.TableName));
                         script,
                         "{0}",
                         ref paramIndex,
-                        operation.ValueMetadata.GetPrimaryKeyValueAsObject(operation.Value));
+                        operation.Value == null
+                            ? DBNull.Value
+                            : operation.ValueMetadata.GetPrimaryKeyValueAsObject(operation.Value));
                 }
                 else
                 {
@@ -423,7 +425,7 @@ OUTPUT inserted.[{0}]
             string paramName,
             object paramValue)
         {
-            if (paramValue == null || paramValue is string)
+            if (paramValue == null || paramValue is string || paramValue is DBNull)
             {
                 return;
             }
