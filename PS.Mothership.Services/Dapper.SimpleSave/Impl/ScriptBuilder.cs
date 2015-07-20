@@ -181,7 +181,8 @@ WHERE [{1}] = ",
 ", ref paramIndex, operation.ValueMetadata.GetPrimaryKeyValueAsObject(operation.Value));
                 }
                 else if (operation.OwnerPropertyMetadata == null
-                    || (operation.OwnerPropertyMetadata.HasAttribute<OneToManyAttribute>()
+                    || ((operation.OwnerPropertyMetadata.HasAttribute<OneToManyAttribute>()
+                        || operation.OwnerPropertyMetadata.HasAttribute<OneToOneAttribute>())
                     && !operation.ValueMetadata.HasAttribute<ReferenceDataAttribute>()))
                 {
                     //  DELETE the value from the other table
