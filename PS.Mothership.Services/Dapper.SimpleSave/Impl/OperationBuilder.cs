@@ -52,6 +52,10 @@ namespace Dapper.SimpleSave.Impl
             {
                 AddUpdateOnParentTableForInsertDeleteOfManyToOneChildRow(operations, diff, insertOperation);
             }
+            //else if (IsChildInsertOnOneToOneWithFkInParent(insertOperation))
+            //{
+
+            //}
             else if (!ShouldFilterOutForParticularCardinalitiesBecauseFkOnParent(insertOperation))
             {
                 AddInsertToListAtCorrectLocation(operations, insertOperation);
@@ -217,6 +221,15 @@ namespace Dapper.SimpleSave.Impl
                 operations.Insert(firstIndex, deleteOperation);
             }
         }
+
+        //private bool IsChildInsertOnOneToOneWithFkInParent(BaseInsertDeleteOperation insertDeleteOperation)
+        //{
+        //    return insertDeleteOperation.OwnerPropertyMetadata != null
+        //           && (insertDeleteOperation.OwnerPropertyMetadata.IsOneToOneRelationship
+        //                && insertDeleteOperation.OwnerPropertyMetadata.HasAttribute<ForeignKeyReferenceAttribute>()
+        //                && ! insertDeleteOperation.ValueMetadata.IsReferenceData
+        //                && ! insertDeleteOperation.ValueMetadata.HasUpdateableForeignKeys);
+        //}
 
         private bool ShouldFilterOutForParticularCardinalitiesBecauseFkOnParent(BaseInsertDeleteOperation insertDeleteOperation)
         {

@@ -37,5 +37,48 @@ namespace Dapper.SimpleSave.Tests
             scripts.AssertFragment(0, "INSERT INTO dbo.GuidOneToOneChildNoFk");
             scripts.AssertFragment(1, "INSERT INTO dbo.[GuidParent]");
         }
+
+        [Test]
+        public void insert_child_with_fk_on_parent_and_existing_parent_inserts_child_and_updates_parent()
+        {
+            var scripts = Generate(
+                new ParentDto
+                {
+                    ParentKey = 1,
+                },
+                new ParentDto
+                {
+                    ParentKey = 1,
+                    OneToOneChildDtoNoFk = new OneToOneChildDtoNoFk
+                    {
+                        ChildKey = 2
+                    }
+                },
+                2);
+
+            scripts.AssertFragment(0, "INSERT INTO dbo.OneToOneChildNoFk");
+            scripts.AssertFragment(1, "UPDATE dbo.[Parent] SET");
+        }
+
+        [Test]
+        public void insert_reference_child_with_fk_on_parent_and_existing_parent_inserts_child_and_updates_parent()
+        {
+            var scripts = Generate(
+                new ParentDto
+                {
+                    ParentKey = 1,
+                },
+                new ParentDto
+                {
+                    ParentKey = 1,
+                    OneToOneReferenceChildDtoNoFk = new OneToOneReferenceChildDtoNoFk
+                    {
+                        ChildKey = 2
+                    }
+                },
+                1);
+
+            scripts.AssertFragment(1, "UPDATE dbo.[Parent] SET");
+        }
     }
 }
