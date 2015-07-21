@@ -48,7 +48,15 @@ namespace Dapper.SimpleSave.Impl
                 Value = diff.NewValue
             };
 
-            if (!ShouldFilterOutForParticularCardinalitiesBecauseFkOnParent(insertOperation))
+            if (IsViableParentUpdateOnManyToOneRelationship(insertOperation, diff))
+            {
+                AddUpdateOnParentTableForInsertDeleteOfManyToOneChildRow(operations, diff, insertOperation);
+            }
+            else if (IsViableParentUpdateOnOneToOneWithFkInParent(insertOperation, diff))
+            {
+                AddUpdateOnParentTableForInsertDeleteOfOneToOneChildRow(operations, diff, insertOperation);
+            }
+            else if (!ShouldFilterOutForParticularCardinalitiesBecauseFkOnParent(insertOperation))
             {
                 AddInsertToListAtCorrectLocation(operations, insertOperation);
             }
@@ -112,9 +120,68 @@ namespace Dapper.SimpleSave.Impl
                 Value = diff.OldValue
             };
 
-            if (!ShouldFilterOutForParticularCardinalitiesBecauseFkOnParent(deleteOperation))
+            if (IsViableParentUpdateOnManyToOneRelationship(deleteOperation, diff))
+            {
+               AddUpdateOnParentTableForInsertDeleteOfManyToOneChildRow(operations, diff, deleteOperation);
+            }
+            else if (IsViableParentUpdateOnOneToOneWithFkInParent(deleteOperation, diff))
+            {
+                AddUpdateOnParentTableForInsertDeleteOfOneToOneChildRow(operations, diff, deleteOperation);
+            }
+            else if (!ShouldFilterOutForParticularCardinalitiesBecauseFkOnParent(deleteOperation))
             {
                 AddDeleteToListAtCorrectLocation(operations, deleteOperation);
+            }
+        }
+
+        private static void AddUpdateOnParentTableForInsertDeleteOfManyToOneChildRow(
+            IList<BaseOperation> operations,
+            Difference diff,
+            BaseInsertDeleteOperation insertOperation)
+        {
+            var updateOperation = new UpdateOperation
+            {
+                OwnerMetadata = insertOperation.OwnerMetadata,
+                OwnerPropertyMetadata = insertOperation.OwnerPropertyMetadata,
+                OwnerPrimaryKeyColumn = insertOperation.OwnerPrimaryKeyColumn,
+                Owner = insertOperation.Owner,
+                TableName = insertOperation.TableName,
+                ColumnName = diff.OwnerPropertyMetadata.ColumnName,
+                ValueMetadata = diff.ValueMetadata,
+                Value = diff.NewValue
+            };
+            operations.Add(updateOperation);
+        }
+
+        private static void AddUpdateOnParentTableForInsertDeleteOfOneToOneChildRow(IList<BaseOperation> operations, Difference diff,
+            BaseInsertDeleteOperation insertDeleteOperation)
+        {
+            var updateOperation = new UpdateOperation
+            {
+                OwnerMetadata = insertDeleteOperation.OwnerMetadata,
+                OwnerPropertyMetadata = insertDeleteOperation.OwnerPropertyMetadata,
+                OwnerPrimaryKeyColumn = insertDeleteOperation.OwnerPrimaryKeyColumn,
+                Owner = insertDeleteOperation.Owner,
+                TableName = insertDeleteOperation.OwnerMetadata.TableName,
+                ColumnName = diff.OwnerPropertyMetadata.ColumnName,
+                ValueMetadata = diff.ValueMetadata,
+                Value = diff.NewValue
+            };
+
+            if (insertDeleteOperation is DeleteOperation)
+            {
+                operations.Add(updateOperation);
+            }
+
+            if (!insertDeleteOperation.ValueMetadata.IsReferenceData)
+            {
+                operations.Add(insertDeleteOperation);
+            }
+
+            //  If it's an INSERT add the update here
+            if (insertDeleteOperation is InsertOperation)
+            {
+                operations.Add(updateOperation);
             }
         }
 
@@ -179,6 +246,27 @@ namespace Dapper.SimpleSave.Impl
             {
                 operations.Insert(firstIndex, deleteOperation);
             }
+        }
+
+        private bool IsViableParentUpdateOnManyToOneRelationship(
+            BaseInsertDeleteOperation insertDeleteOperation,
+            Difference diff)
+        {
+            return insertDeleteOperation.OwnerMetadata != null
+                   && insertDeleteOperation.OwnerPropertyMetadata.IsManyToOneRelationship
+                   && diff.OldOwner != null
+                   && diff.NewOwner != null;
+        }
+
+        private bool IsViableParentUpdateOnOneToOneWithFkInParent(
+            BaseInsertDeleteOperation insertDeleteOperation,
+            Difference diff)
+        {
+            return insertDeleteOperation.OwnerPropertyMetadata != null
+                   && diff.OldOwner != null
+                   && diff.NewOwner != null
+                   && (insertDeleteOperation.OwnerPropertyMetadata.IsOneToOneRelationship
+                        && insertDeleteOperation.OwnerPropertyMetadata.HasAttribute<ForeignKeyReferenceAttribute>());
         }
 
         private bool ShouldFilterOutForParticularCardinalitiesBecauseFkOnParent(BaseInsertDeleteOperation insertDeleteOperation)

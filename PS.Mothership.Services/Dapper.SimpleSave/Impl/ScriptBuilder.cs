@@ -140,7 +140,9 @@ SET ", command.TableName));
                         script,
                         "{0}",
                         ref paramIndex,
-                        operation.ValueMetadata.GetPrimaryKeyValueAsObject(operation.Value));
+                        operation.Value == null
+                            ? DBNull.Value
+                            : operation.ValueMetadata.GetPrimaryKeyValueAsObject(operation.Value));
                 }
                 else
                 {
@@ -179,7 +181,8 @@ WHERE [{1}] = ",
 ", ref paramIndex, operation.ValueMetadata.GetPrimaryKeyValueAsObject(operation.Value));
                 }
                 else if (operation.OwnerPropertyMetadata == null
-                    || (operation.OwnerPropertyMetadata.HasAttribute<OneToManyAttribute>()
+                    || ((operation.OwnerPropertyMetadata.HasAttribute<OneToManyAttribute>()
+                        || operation.OwnerPropertyMetadata.HasAttribute<OneToOneAttribute>())
                     && !operation.ValueMetadata.HasAttribute<ReferenceDataAttribute>()))
                 {
                     //  DELETE the value from the other table
@@ -423,7 +426,7 @@ OUTPUT inserted.[{0}]
             string paramName,
             object paramValue)
         {
-            if (paramValue == null || paramValue is string)
+            if (paramValue == null || paramValue is string || paramValue is DBNull)
             {
                 return;
             }
