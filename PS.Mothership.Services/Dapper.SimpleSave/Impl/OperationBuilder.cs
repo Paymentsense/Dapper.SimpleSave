@@ -52,6 +52,10 @@ namespace Dapper.SimpleSave.Impl
             {
                 AddUpdateOnParentTableForInsertDeleteOfManyToOneChildRow(operations, diff, insertOperation);
             }
+            else if (IsViableParentUpdateOnOneToOneWithFkInParent(insertOperation, diff))
+            {
+                AddUpdateOnParentTableForInsertDeleteOfOneToOneChildRow(operations, diff, insertOperation);
+            }
             else if (!ShouldFilterOutForParticularCardinalitiesBecauseFkOnParent(insertOperation))
             {
                 AddInsertToListAtCorrectLocation(operations, insertOperation);
@@ -120,6 +124,10 @@ namespace Dapper.SimpleSave.Impl
             {
                AddUpdateOnParentTableForInsertDeleteOfManyToOneChildRow(operations, diff, deleteOperation);
             }
+            else if (IsViableParentUpdateOnOneToOneWithFkInParent(deleteOperation, diff))
+            {
+                AddUpdateOnParentTableForInsertDeleteOfOneToOneChildRow(operations, diff, deleteOperation);
+            }
             else if (!ShouldFilterOutForParticularCardinalitiesBecauseFkOnParent(deleteOperation))
             {
                 AddDeleteToListAtCorrectLocation(operations, deleteOperation);
@@ -145,14 +153,36 @@ namespace Dapper.SimpleSave.Impl
             operations.Add(updateOperation);
         }
 
-        private bool IsViableParentUpdateOnManyToOneRelationship(
-            BaseInsertDeleteOperation insertDeleteOperation,
-            Difference diff)
+        private static void AddUpdateOnParentTableForInsertDeleteOfOneToOneChildRow(IList<BaseOperation> operations, Difference diff,
+            BaseInsertDeleteOperation insertDeleteOperation)
         {
-            return insertDeleteOperation.OwnerMetadata != null
-                   && insertDeleteOperation.OwnerPropertyMetadata.IsManyToOneRelationship
-                   && diff.OldOwner != null
-                   && diff.NewOwner != null;
+            var updateOperation = new UpdateOperation
+            {
+                OwnerMetadata = insertDeleteOperation.OwnerMetadata,
+                OwnerPropertyMetadata = insertDeleteOperation.OwnerPropertyMetadata,
+                OwnerPrimaryKeyColumn = insertDeleteOperation.OwnerPrimaryKeyColumn,
+                Owner = insertDeleteOperation.Owner,
+                TableName = insertDeleteOperation.OwnerMetadata.TableName,
+                ColumnName = diff.OwnerPropertyMetadata.ColumnName,
+                ValueMetadata = diff.ValueMetadata,
+                Value = diff.NewValue
+            };
+
+            if (insertDeleteOperation is DeleteOperation)
+            {
+                operations.Add(updateOperation);
+            }
+
+            if (!insertDeleteOperation.ValueMetadata.IsReferenceData)
+            {
+                operations.Add(insertDeleteOperation);
+            }
+
+            //  If it's an INSERT add the update here
+            if (insertDeleteOperation is InsertOperation)
+            {
+                operations.Add(updateOperation);
+            }
         }
 
         private void AddDeleteToListAtCorrectLocation(IList<BaseOperation> operations, DeleteOperation deleteOperation)
@@ -216,6 +246,27 @@ namespace Dapper.SimpleSave.Impl
             {
                 operations.Insert(firstIndex, deleteOperation);
             }
+        }
+
+        private bool IsViableParentUpdateOnManyToOneRelationship(
+            BaseInsertDeleteOperation insertDeleteOperation,
+            Difference diff)
+        {
+            return insertDeleteOperation.OwnerMetadata != null
+                   && insertDeleteOperation.OwnerPropertyMetadata.IsManyToOneRelationship
+                   && diff.OldOwner != null
+                   && diff.NewOwner != null;
+        }
+
+        private bool IsViableParentUpdateOnOneToOneWithFkInParent(
+            BaseInsertDeleteOperation insertDeleteOperation,
+            Difference diff)
+        {
+            return insertDeleteOperation.OwnerPropertyMetadata != null
+                   && diff.OldOwner != null
+                   && diff.NewOwner != null
+                   && (insertDeleteOperation.OwnerPropertyMetadata.IsOneToOneRelationship
+                        && insertDeleteOperation.OwnerPropertyMetadata.HasAttribute<ForeignKeyReferenceAttribute>());
         }
 
         private bool ShouldFilterOutForParticularCardinalitiesBecauseFkOnParent(BaseInsertDeleteOperation insertDeleteOperation)
