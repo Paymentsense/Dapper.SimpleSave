@@ -141,8 +141,8 @@ SET ", command.TableName));
                         "{0}",
                         ref paramIndex,
                         operation.Value == null
-                            ? DBNull.Value
-                            : operation.ValueMetadata.GetPrimaryKeyValueAsObject(operation.Value));
+                            ? (object) DBNull.Value
+                            : new Func<object>(() => operation.ValueMetadata.GetPrimaryKeyValueAsObject(operation.Value)));
                 }
                 else
                 {
