@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Dapper.SimpleSave.Tests")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Dapper.SimpleSave makes it easy to save complex object hierarchies to a relational database.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Microsoft")]
+[assembly: AssemblyCompany("Paymentsense")]
 [assembly: AssemblyProduct("Dapper.SimpleSave.Tests")]
-[assembly: AssemblyCopyright("Copyright © Microsoft 2015")]
+[assembly: AssemblyCopyright("Copyright © Paymentsense 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
