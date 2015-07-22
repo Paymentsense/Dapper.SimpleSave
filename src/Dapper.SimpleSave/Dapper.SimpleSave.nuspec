@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <licenseUrl>https://github.com/Paymentsense/Dapper.SimpleSave/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/Paymentsense/Dapper.SimpleSave</projectUrl>
+    <!--<iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl>-->
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <!--<releaseNotes>Summary of changes made in this release of the package.</releaseNotes>-->
+    <copyright>Copyright PaymentSense 2015</copyright>
+    <tags>Dapper</tags>
+    <dependencies>
+      <dependency id="Dapper" version="1.42" />
+    </dependencies>
+  </metadata>
+</package>
