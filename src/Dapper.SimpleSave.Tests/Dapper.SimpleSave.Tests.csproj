@@ -92,7 +92,6 @@
     <Compile Include="OneToOneRelationshipFkOnChildCommandGenerationTests.cs" />
     <Compile Include="OneToOneRelationshipFkOnParentCommandGenerationTests.cs" />
     <Compile Include="OneToOneRelationshipFkOnParentScriptGenerationTests.cs" />
-    <Compile Include="ScriptGenerationOutlineTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScriptsAssertions.cs" />
     <Compile Include="SoftDeleteScriptGenerationTests.cs" />
@@ -102,17 +101,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Externals\Core\PS.Mothership.Core\PS.Mothership.Core.Common\PS.Mothership.Core.Common.csproj">
-      <Project>{2e26f270-5fb3-447d-83b6-416a1bdbb0fc}</Project>
-      <Name>PS.Mothership.Core.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Dapper.SimpleSave\Dapper.SimpleSave.csproj">
       <Project>{fdf235b1-118b-4458-ac68-4bf7c2c50ae4}</Project>
       <Name>Dapper.SimpleSave</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\PS.Mothership.Repository\PS.Mothership.Repository.csproj">
-      <Project>{e2eda8fa-3689-44f4-a165-16b9c249090e}</Project>
-      <Name>PS.Mothership.Repository</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
