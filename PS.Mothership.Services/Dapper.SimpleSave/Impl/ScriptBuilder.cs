@@ -98,7 +98,7 @@ SET [{1}] = ",
 WHERE [{0}] = ", operation.ValueMetadata.PrimaryKey.ColumnName));
 
             FormatWithParameter(script, @"{0};
-", ref paramIndex, operation.ValueMetadata.GetPrimaryKeyValueAsObject(operation.Value));
+", ref paramIndex, new Func<object>(() => operation.ValueMetadata.GetPrimaryKeyValueAsObject(operation.Value)));
         }
 
         private static void AppendStandardUpdateCommand(
@@ -173,12 +173,12 @@ WHERE [{1}] = ",
                         operation.OwnerPropertyMetadata.GetAttribute<ManyToManyAttribute>().SchemaQualifiedLinkTableName,
                         operation.OwnerPrimaryKeyColumn));
 
-                    FormatWithParameter(script, "{0} AND ", ref paramIndex, operation.OwnerPrimaryKeyAsObject);
+                    FormatWithParameter(script, "{0} AND ", ref paramIndex, new Func<object>(() => operation.OwnerPrimaryKeyAsObject));
 
                     script.Buffer.Append(string.Format("[{0}] = ", operation.ValueMetadata.PrimaryKey.Prop.Name));
 
                     FormatWithParameter(script, @"{0};
-", ref paramIndex, operation.ValueMetadata.GetPrimaryKeyValueAsObject(operation.Value));
+", ref paramIndex, new Func<object>(() => operation.ValueMetadata.GetPrimaryKeyValueAsObject(operation.Value)));
                 }
                 else if (operation.OwnerPropertyMetadata == null
                     || ((operation.OwnerPropertyMetadata.HasAttribute<OneToManyAttribute>()
@@ -193,7 +193,7 @@ WHERE [{1}] = ",
                         operation.ValueMetadata.TableName,
                         operation.ValueMetadata.PrimaryKey.Prop.Name));
                     FormatWithParameter(script, @"{0};
-", ref paramIndex, operation.ValueMetadata.GetPrimaryKeyValueAsObject(operation.Value));
+", ref paramIndex, new Func<object>(() => operation.ValueMetadata.GetPrimaryKeyValueAsObject(operation.Value)));
                 }
             }
             else
