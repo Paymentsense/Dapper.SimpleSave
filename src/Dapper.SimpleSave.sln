@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dapper.SimpleSave", "Dapper.SimpleSave\Dapper.SimpleSave.csproj", "{FDF235B1-118B-4458-AC68-4BF7C2C50AE4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dapper.SimpleSave.Tests", "Dapper.SimpleSave.Tests\Dapper.SimpleSave.Tests.csproj", "{EED8324B-BC45-49B3-AE03-DA56615672AA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{64332AFB-8915-4E85-9760-EF103BE3B080}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FDF235B1-118B-4458-AC68-4BF7C2C50AE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDF235B1-118B-4458-AC68-4BF7C2C50AE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EED8324B-BC45-49B3-AE03-DA56615672AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EED8324B-BC45-49B3-AE03-DA56615672AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
