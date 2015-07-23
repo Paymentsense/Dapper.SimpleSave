@@ -2,6 +2,8 @@
 
 Dapper.SimpleSave makes it easy to save complex object hierarchies to a relational database.
 
+[![Build status](https://ci.appveyor.com/api/projects/status/a4wyo6k561cn16ut?svg=true)](https://ci.appveyor.com/project/PaymentSense/dapper-simplesave)
+
 ##How can Dapper.SimpleSave help me?
 
 [Dapper](https://github.com/StackExchange/dapper-dot-net) makes it really easy to load rows from a database into POCOs.
