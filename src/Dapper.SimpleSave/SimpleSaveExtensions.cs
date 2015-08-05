@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using Castle.Core.Internal;
 using Dapper.SimpleSave.Impl;
 
 namespace Dapper.SimpleSave
@@ -10,13 +11,78 @@ namespace Dapper.SimpleSave
     {
         private static readonly DtoMetadataCache _dtoMetadataCache = new DtoMetadataCache();
 
+        private static ISimpleSaveLogger _logger = new Log4NetSimpleSaveLogger();
+
+        public static ISimpleSaveLogger Logger
+        {
+            get { return _logger; }
+            set
+            {
+                if (value == null)
+                {
+                    throw new ArgumentNullException(
+                        "value",
+                        "Specifying a null ISimpleSaveLogger is not permitted.");
+                }
+                _logger = value;
+            }
+        }
+
+        public static void UpdateAll<T>(
+            this IDbConnection connection,
+            IEnumerable<Tuple<T, T>> oldAndNewObjects,
+            IDbTransaction transaction = null)
+        {
+            UpdateInternal(connection, oldAndNewObjects, false, transaction);
+        }
+
+        public static void UpdateAll<T>(
+            this IDbConnection connection,
+            IEnumerable<T> newObjects,
+            Func<T, T> mapNewObjectToOldObject,
+            IDbTransaction transaction = null)
+        {
+            UpdateAll(
+                connection,
+                newObjects.Select(
+                    newObject => Tuple.Create(mapNewObjectToOldObject(newObject), newObject)),
+                transaction);
+        }
+
+        public static void UpdateAllMappingFromOldObjects<T>(
+            this IDbConnection connection,
+            IEnumerable<T> oldObjects,
+            Func<T, T> mapOldObjectToNewObject,
+            IDbTransaction transaction = null)
+        {
+            UpdateAll(
+                connection,
+                oldObjects.Select(
+                    oldObject => Tuple.Create(oldObject, mapOldObjectToNewObject(oldObject))),
+                transaction);
+        }
+
         public static void Update<T>(
             this IDbConnection connection,
             T oldObject,
             T newObject,
             IDbTransaction transaction = null)
         {
-            UpdateInternal(connection, oldObject, newObject, false, transaction);
+            UpdateAll(
+                connection,
+                new [] {Tuple.Create(oldObject, newObject)},
+                transaction);
+        }
+
+        public static void CreateAll<T>(
+            this IDbConnection connection,
+            IEnumerable<T> newObjects,
+            IDbTransaction transaction = null)
+        {
+            UpdateAll(
+                connection,
+                newObjects.Select(obj => Tuple.Create(default(T), obj)),
+                transaction);
         }
 
         public static void Create<T>(
@@ -27,6 +93,17 @@ namespace Dapper.SimpleSave
             Update(connection, default(T), obj, transaction);
         }
 
+        public static void DeleteAll<T>(
+            this IDbConnection connection,
+            IEnumerable<T> oldObjects,
+            IDbTransaction transaction = null)
+        {
+            UpdateAll(
+                connection,
+                oldObjects.Select(obj => Tuple.Create(obj, default(T))),
+                transaction);
+        }
+
         public static void Delete<T>(
             this IDbConnection connection,
             T obj,
@@ -35,23 +112,41 @@ namespace Dapper.SimpleSave
             Update(connection, obj, default(T), transaction);
         }
 
+        public static void SoftDeleteAll<T>(
+            this IDbConnection connection,
+            IEnumerable<T> objects,
+            IDbTransaction transaction = null)
+        {
+            UpdateInternal(
+                connection,
+                objects.Select(obj => Tuple.Create(obj, default(T))),
+                true,
+                transaction);
+        }
+
         public static void SoftDelete<T>(
             this IDbConnection connection,
             T obj,
             IDbTransaction transaction = null)
         {
-            UpdateInternal(connection, obj, default(T), true, transaction);
+            SoftDelete(
+                connection,
+                new [] { obj },
+                transaction);
         }
 
         private static void UpdateInternal<T>(
             IDbConnection connection,
-            T oldObject,
-            T newObject,
+            IEnumerable<Tuple<T, T>> oldAndNewObjects,
             bool softDelete = false,
             IDbTransaction transaction = null)
         {
             var builder = new TransactionBuilder(_dtoMetadataCache);
-            var scripts = builder.BuildUpdateScripts(oldObject, newObject, softDelete);
+            IDictionary<Tuple<T, T>, IList<Script>> scripts = new Dictionary<Tuple<T, T>, IList<Script>>();
+            foreach (var pair in oldAndNewObjects)
+            {
+                scripts[pair] = builder.BuildUpdateScripts(pair.Item1, pair.Item2, softDelete);
+            }
 
             if (transaction == null)
             {
@@ -59,17 +154,15 @@ namespace Dapper.SimpleSave
                 {
                     try
                     {
-                        ExecuteScripts(
+                        ExecuteScriptsForTuples(
                             connection,
+                            oldAndNewObjects,
                             scripts,
-                            oldObject,
-                            newObject,
                             softDelete,
                             myTransaction);
 
                         myTransaction.Commit();
-                    }
-                    catch (Exception)
+                    } catch (Exception)
                     {
                         myTransaction.Rollback();
                         throw;
@@ -78,11 +171,29 @@ namespace Dapper.SimpleSave
             }
             else
             {
+                ExecuteScriptsForTuples(
+                    connection,
+                    oldAndNewObjects,
+                    scripts,
+                    softDelete,
+                    transaction);
+            }
+        }
+
+        private static void ExecuteScriptsForTuples<T>(
+            IDbConnection connection,
+            IEnumerable<Tuple<T, T>> oldAndNewObjects,
+            IDictionary<Tuple<T, T>, IList<Script>> scripts,
+            bool softDelete,
+            IDbTransaction transaction)
+        {
+            foreach (var pair in oldAndNewObjects)
+            {
                 ExecuteScripts(
                     connection,
-                    scripts,
-                    oldObject,
-                    newObject,
+                    scripts[pair],
+                    pair.Item1,
+                    pair.Item2,
                     softDelete,
                     transaction);
             }
@@ -120,6 +231,7 @@ namespace Dapper.SimpleSave
             IDbTransaction transaction,
             Script script)
         {
+            _logger.LogPreExecution(script);
             PropertyMetadata softDeletePropertyMetadata = GetMarkerPropertyMetadataIfSoftDeleting(
                 oldRootObject, newRootObject, softDelete);
 
@@ -143,6 +255,7 @@ namespace Dapper.SimpleSave
             }
 
             SetSoftDeletePropertyValue(oldRootObject, softDeletePropertyMetadata);
+            _logger.LogPostExecution(script);
         }
 
         private static PropertyMetadata GetMarkerPropertyMetadataIfSoftDeleting<T>(

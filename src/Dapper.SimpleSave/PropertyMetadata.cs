@@ -1,7 +1,8 @@
 using System;
 using System.Reflection;
+using Dapper.SimpleSave.Impl;
 
-namespace Dapper.SimpleSave.Impl
+namespace Dapper.SimpleSave
 {
     public class PropertyMetadata : BaseMetadata
     {

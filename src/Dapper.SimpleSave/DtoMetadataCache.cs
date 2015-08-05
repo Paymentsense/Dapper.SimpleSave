@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using Dapper.SimpleSave.Impl;
 
-namespace Dapper.SimpleSave.Impl
+namespace Dapper.SimpleSave
 {
     public class DtoMetadataCache
     {

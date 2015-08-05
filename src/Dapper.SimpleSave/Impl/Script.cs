@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Dapper.SimpleSave.Impl
 {
-    public class Script
+    public class Script : IScript
     {
         public Script()
         {

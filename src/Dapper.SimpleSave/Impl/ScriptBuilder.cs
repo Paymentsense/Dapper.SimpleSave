@@ -50,12 +50,18 @@ SELECT SCOPE_IDENTITY();
 ");
                     }
 
+                    SimpleSaveExtensions.Logger.LogBuilt(script);
                     script = null;
                 }
                 else if (command is DeleteCommand)
                 {
                     AppendDeleteCommand(script, command as DeleteCommand, ref paramIndex);
                 }
+            }
+
+            if (script != null)
+            {
+                SimpleSaveExtensions.Logger.LogBuilt(script);
             }
         }
 

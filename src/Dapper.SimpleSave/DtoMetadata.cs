@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
-using System.Runtime.Serialization;
+using Dapper.SimpleSave.Impl;
 
-namespace Dapper.SimpleSave.Impl
+namespace Dapper.SimpleSave
 {
     public class DtoMetadata : BaseMetadata
     {

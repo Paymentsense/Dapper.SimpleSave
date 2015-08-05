@@ -25,6 +25,9 @@
       <HintPath>..\packages\Dapper.1.42\lib\net45\Dapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -48,17 +51,20 @@
     <Compile Include="Impl\CommandBuilder.cs" />
     <Compile Include="Impl\DeleteCommand.cs" />
     <Compile Include="Impl\DifferenceType.cs" />
-    <Compile Include="Impl\DtoMetadata.cs" />
+    <Compile Include="DtoMetadata.cs" />
     <Compile Include="Impl\Differ.cs" />
     <Compile Include="Impl\Difference.cs" />
-    <Compile Include="Impl\DtoMetadataCache.cs" />
+    <Compile Include="DtoMetadataCache.cs" />
     <Compile Include="Impl\DtoMetadataValidator.cs" />
     <Compile Include="Impl\InsertCommand.cs" />
     <Compile Include="Impl\InsertOperation.cs" />
+    <Compile Include="Impl\Log4NetSimpleSaveLogger.cs" />
+    <Compile Include="IScript.cs" />
     <Compile Include="Impl\MemberInfoExtensions.cs" />
     <Compile Include="Impl\OperationBuilder.cs" />
     <Compile Include="Impl\PrimaryKeyComparer.cs" />
-    <Compile Include="Impl\PropertyMetadata.cs" />
+    <Compile Include="ISimpleSaveLogger.cs" />
+    <Compile Include="PropertyMetadata.cs" />
     <Compile Include="Impl\DeleteOperation.cs" />
     <Compile Include="Impl\Script.cs" />
     <Compile Include="Impl\ScriptBuilder.cs" />
