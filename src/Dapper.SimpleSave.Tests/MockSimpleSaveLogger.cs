@@ -12,7 +12,7 @@ namespace Dapper.SimpleSave.Tests
             get { return _scripts; }
         }
 
-        public override void LogPreExecution(IScript script)
+        public override void LogBuilt(IScript script)
         {
             _scripts.Add(script);
             base.LogPreExecution(script);

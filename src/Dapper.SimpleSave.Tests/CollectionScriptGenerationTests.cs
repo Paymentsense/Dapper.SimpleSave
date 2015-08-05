@@ -23,9 +23,16 @@ namespace Dapper.SimpleSave.Tests
             var logger = new MockSimpleSaveLogger();
             SimpleSaveExtensions.Logger = logger;
 
-            using (IDbConnection connection = new SqlConnection())  //  TODO: localdb connection
+            try
             {
-                connection.CreateAll((IEnumerable<ParentDto>) dtos);
+                using (IDbConnection connection = new SqlConnection())  //  TODO: localdb connection
+                {
+                    connection.CreateAll((IEnumerable<ParentDto>) dtos);
+                }
+            }
+            catch (InvalidOperationException)
+            {
+                //  Because we haven't opened the connection (deliberately - we don't care; we just want to inspect the scripts)
             }
 
             var scripts = logger.Scripts;
@@ -35,12 +42,12 @@ namespace Dapper.SimpleSave.Tests
             {
                 var sql = script.Buffer.ToString();
 
-                Assert.IsTrue(sql.Contains("INSERT dbo.[Parent]"), "No insert on parent.");
+                Assert.IsTrue(sql.Contains("INSERT INTO dbo.[Parent]"), "No insert on parent.");
 
                 Assert.AreEqual(1, Regex.Matches(sql, "INSERT").Count, "Unexpected number of INSERTs.");
                 Assert.AreEqual(0, Regex.Matches(sql, "UPDATE").Count, "Should be no UPDATEs.");
                 Assert.AreEqual(0, Regex.Matches(sql, "DELETE").Count, "Should be no DELETEs.");
-                Assert.AreEqual(0, Regex.Matches(sql, "SELECT").Count, "Should be no SELECTs.");
+                Assert.AreEqual(1, Regex.Matches(sql, "SELECT").Count, "Should be one SELECT to return inserted IDENTITY value.");
             }
         }
 
@@ -56,9 +63,16 @@ namespace Dapper.SimpleSave.Tests
             var logger = new MockSimpleSaveLogger();
             SimpleSaveExtensions.Logger = logger;
 
-            using (IDbConnection connection = new SqlConnection())  //  TODO: localdb connection
+            try
             {
-                connection.UpdateAll(updates);
+                using (IDbConnection connection = new SqlConnection())
+                {
+                    connection.UpdateAll(updates);
+                }
+            }
+            catch (InvalidOperationException)
+            {
+                //  Because we haven't opened the connection (deliberately - we don't care; we just want to inspect the scripts)
             }
 
             var scripts = logger.Scripts;

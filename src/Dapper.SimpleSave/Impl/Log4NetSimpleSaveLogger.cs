@@ -3,19 +3,48 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using log4net;
+using Newtonsoft.Json;
 
 namespace Dapper.SimpleSave.Impl
 {
     public class Log4NetSimpleSaveLogger : ISimpleSaveLogger
     {
+        private static readonly ILog Logger = LogManager.GetLogger(typeof(Log4NetSimpleSaveLogger));
+
+        private string BuildMessage(IScript script, string message)
+        {
+            return string.Format(@"{0}:
+{1}
+with parameters:
+{2}",
+                    message,
+                    script.Buffer,
+                    JsonConvert.SerializeObject(script.Parameters));
+        }
+ 
+        public virtual void LogBuilt(IScript script)
+        {
+            if (Logger.IsDebugEnabled)
+            {
+                Logger.Debug(BuildMessage(script, "Built script"));
+            }
+        }
+
         public virtual void LogPreExecution(IScript script)
         {
-            //  TODO: log me
+            if (Logger.IsInfoEnabled)
+            {
+                Logger.Info(BuildMessage(script, "Executing script"));
+            }
         }
 
         public virtual void LogPostExecution(IScript script)
         {
-            //  TODO: log me
+            if (Logger.IsInfoEnabled)
+            {
+                Logger.Info(BuildMessage(script, "Executed script"));
+            }
         }
     }
 }
