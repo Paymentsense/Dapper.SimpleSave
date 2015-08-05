@@ -11,12 +11,55 @@ namespace Dapper.SimpleSave
     {
         private static readonly DtoMetadataCache _dtoMetadataCache = new DtoMetadataCache();
 
-        public static void Update<T>(
+        private static ISimpleSaveLogger _logger = new Log4NetSimpleSaveLogger();
+
+        public static ISimpleSaveLogger Logger
+        {
+            get { return _logger; }
+            set
+            {
+                if (value == null)
+                {
+                    throw new ArgumentNullException(
+                        "value",
+                        "Specifying a null ISimpleSaveLogger is not permitted.");
+                }
+                _logger = value;
+            }
+        }
+
+        public static void UpdateAll<T>(
             this IDbConnection connection,
             IEnumerable<Tuple<T, T>> oldAndNewObjects,
             IDbTransaction transaction = null)
         {
             UpdateInternal(connection, oldAndNewObjects, false, transaction);
+        }
+
+        public static void UpdateAll<T>(
+            this IDbConnection connection,
+            IEnumerable<T> newObjects,
+            Func<T, T> mapNewObjectToOldObject,
+            IDbTransaction transaction = null)
+        {
+            UpdateAll(
+                connection,
+                newObjects.Select(
+                    newObject => Tuple.Create(mapNewObjectToOldObject(newObject), newObject)),
+                transaction);
+        }
+
+        public static void UpdateAllMappingFromOldObjects<T>(
+            this IDbConnection connection,
+            IEnumerable<T> oldObjects,
+            Func<T, T> mapOldObjectToNewObject,
+            IDbTransaction transaction = null)
+        {
+            UpdateAll(
+                connection,
+                oldObjects.Select(
+                    oldObject => Tuple.Create(oldObject, mapOldObjectToNewObject(oldObject))),
+                transaction);
         }
 
         public static void Update<T>(
@@ -25,17 +68,18 @@ namespace Dapper.SimpleSave
             T newObject,
             IDbTransaction transaction = null)
         {
-            var target = new List<Tuple<T, T>>();
-            target.Add(Tuple.Create(oldObject, newObject));
-            Update(connection, target, transaction);
+            UpdateAll(
+                connection,
+                new [] {Tuple.Create(oldObject, newObject)},
+                transaction);
         }
 
-        public static void Create<T>(
+        public static void CreateAll<T>(
             this IDbConnection connection,
             IEnumerable<T> newObjects,
             IDbTransaction transaction = null)
         {
-            Update(
+            UpdateAll(
                 connection,
                 newObjects.Select(obj => Tuple.Create(default(T), obj)),
                 transaction);
@@ -49,12 +93,12 @@ namespace Dapper.SimpleSave
             Update(connection, default(T), obj, transaction);
         }
 
-        public static void Delete<T>(
+        public static void DeleteAll<T>(
             this IDbConnection connection,
             IEnumerable<T> oldObjects,
             IDbTransaction transaction = null)
         {
-            Update(
+            UpdateAll(
                 connection,
                 oldObjects.Select(obj => Tuple.Create(obj, default(T))),
                 transaction);
@@ -68,7 +112,7 @@ namespace Dapper.SimpleSave
             Update(connection, obj, default(T), transaction);
         }
 
-        public static void SoftDelete<T>(
+        public static void SoftDeleteAll<T>(
             this IDbConnection connection,
             IEnumerable<T> objects,
             IDbTransaction transaction = null)
@@ -187,6 +231,7 @@ namespace Dapper.SimpleSave
             IDbTransaction transaction,
             Script script)
         {
+            _logger.LogPreExecution(script);
             PropertyMetadata softDeletePropertyMetadata = GetMarkerPropertyMetadataIfSoftDeleting(
                 oldRootObject, newRootObject, softDelete);
 
@@ -210,6 +255,7 @@ namespace Dapper.SimpleSave
             }
 
             SetSoftDeletePropertyValue(oldRootObject, softDeletePropertyMetadata);
+            _logger.LogPostExecution(script);
         }
 
         private static PropertyMetadata GetMarkerPropertyMetadataIfSoftDeleting<T>(

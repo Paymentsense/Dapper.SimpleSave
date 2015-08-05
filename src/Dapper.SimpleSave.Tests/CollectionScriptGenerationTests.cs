@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -18,10 +20,15 @@ namespace Dapper.SimpleSave.Tests
         {
             var dtos = new List<ParentDto>() {new ParentDto {ParentKey = 1}, new ParentDto {ParentKey = 2}};
 
-            var cache = new DtoMetadataCache();
-            var builder = new TransactionBuilder(cache);
-            var scripts = builder.BuildUpdateScripts(new List<ParentDto>(), dtos);
+            var logger = new MockSimpleSaveLogger();
+            SimpleSaveExtensions.Logger = logger;
 
+            using (IDbConnection connection = new SqlConnection())  //  TODO: localdb connection
+            {
+                connection.CreateAll((IEnumerable<ParentDto>) dtos);
+            }
+
+            var scripts = logger.Scripts;
             Assert.AreEqual(2, scripts.Count, "Unexpected number of scripts.");
 
             foreach (var script in scripts)
@@ -40,12 +47,21 @@ namespace Dapper.SimpleSave.Tests
         [Test]
         public void collection_update_generates_update_for_all()
         {
-            var oldDtos = new List<ParentDto>() {new ParentDto { ParentKey = 1, IsActive = false }, new ParentDto { ParentKey = 2, IsActive = true } };
-            var newDtos = new List<ParentDto>() {new ParentDto { ParentKey = 1, IsActive = true}, new ParentDto { ParentKey = 2 , IsActive = false} };
+            var updates = new List<Tuple<ParentDto, ParentDto>>()
+            {
+                Tuple.Create(new ParentDto { ParentKey = 1, IsActive = false }, new ParentDto { ParentKey = 1, IsActive = true}),
+                Tuple.Create(new ParentDto { ParentKey = 2, IsActive = true }, new ParentDto { ParentKey = 2 , IsActive = false})
+            };
+            
+            var logger = new MockSimpleSaveLogger();
+            SimpleSaveExtensions.Logger = logger;
 
-            var cache = new DtoMetadataCache();
-            var builder = new TransactionBuilder(cache);
-            var scripts = builder.BuildUpdateScripts(oldDtos, newDtos);
+            using (IDbConnection connection = new SqlConnection())  //  TODO: localdb connection
+            {
+                connection.UpdateAll(updates);
+            }
+
+            var scripts = logger.Scripts;
 
             Assert.AreEqual(2, scripts.Count, "Unexpected number of scripts.");
 
