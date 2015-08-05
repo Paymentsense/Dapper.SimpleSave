@@ -51,7 +51,7 @@ namespace Dapper.SimpleSave
 
         public bool IsReadOnly
         {
-            get { return HasAttribute<ReadOnlyAttribute>() || ! Prop.CanWrite;}
+            get { return HasAttribute<SimpleSaveIgnoreAttribute>() || ! Prop.CanWrite;}
         }
 
         public bool IsPublic

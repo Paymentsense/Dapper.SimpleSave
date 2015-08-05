@@ -82,6 +82,7 @@
     <Compile Include="ReadOnlyAttribute.cs" />
     <Compile Include="ReferenceDataAttribute.cs" />
     <Compile Include="SimpleSaveExtensions.cs" />
+    <Compile Include="SimpleSaveIgnoreAttribute.cs" />
     <Compile Include="SoftDeleteColumnAttribute.cs" />
     <Compile Include="TableAttribute.cs" />
   </ItemGroup>
