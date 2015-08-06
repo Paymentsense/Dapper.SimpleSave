@@ -153,10 +153,18 @@ Taking our UserDto above as an example, the final decorated version looks like t
 Use these `IDbConnection` extension methods to save a single object:
 
 ```C# 
-public static void Create<T>(this IDbConnection connection, T obj, IDbTransaction transaction = null);
-public static void Update<T>(this IDbConnection connection, T oldObject, T newObject, IDbTransaction transaction = null);
-public static void Delete<T>(this IDbConnection connection, T obj, IDbTransaction transaction = null);
-public static void SoftDelete<T>(this IDbConnection connection, T obj, IDbTransaction transaction = null);
+public static void Create<T>(
+    this IDbConnection connection, T obj, IDbTransaction transaction = null);
+    
+public static void Update<T>(
+    this IDbConnection connection, T oldObject,
+    T newObject, IDbTransaction transaction = null);
+    
+public static void Delete<T>(
+    this IDbConnection connection, T obj, IDbTransaction transaction = null);
+    
+public static void SoftDelete<T>(
+    this IDbConnection connection, T obj, IDbTransaction transaction = null);
 ```
 
 To save an object, all you have to do is call the appropriate method.
@@ -180,12 +188,29 @@ When you soft delete only the root record will be marked as soft deleted. Child 
 Use these `IDbConnection` extension methods to save collections of objects:
 
 ```C#
-public static void CreateAll<T>(this IDbConnection connection, IEnumerable<T> newObjects, IDbTransaction transaction = null);
-public static void UpdateAll<T>(this IDbConnection connection, IEnumerable<Tuple<T, T>> oldAndNewObjects, IDbTransaction transaction = null);
-public static void UpdateAll<T>(this IDbConnection connection, IEnumerable<T> newObjects, Func<T, T> mapNewObjectToOldObject, IDbTransaction transaction = null);
-public static void UpdateAllMappingFromOldObjects<T>(this IDbConnection connection, IEnumerable<T> oldObjects, Func<T, T> mapOldObjectToNewObject, IDbTransaction transaction = null);
-public static void DeleteAll<T>(this IDbConnection connection, IEnumerable<T> oldObjects, IDbTransaction transaction = null);
-public static void SoftDeleteAll<T>(this IDbConnection connection, IEnumerable<T> objects, IDbTransaction transaction = null);
+public static void CreateAll<T>(
+    this IDbConnection connection, IEnumerable<T> newObjects,
+    IDbTransaction transaction = null);
+    
+public static void UpdateAll<T>(
+    this IDbConnection connection, IEnumerable<Tuple<T, T>> oldAndNewObjects,
+    IDbTransaction transaction = null);
+    
+public static void UpdateAll<T>(
+    this IDbConnection connection, IEnumerable<T> newObjects,
+    Func<T, T> mapNewObjectToOldObject, IDbTransaction transaction = null);
+    
+public static void UpdateAllMappingFromOldObjects<T>(
+    this IDbConnection connection, IEnumerable<T> oldObjects,
+    Func<T, T> mapOldObjectToNewObject, IDbTransaction transaction = null);
+    
+public static void DeleteAll<T>(
+    this IDbConnection connection, IEnumerable<T> oldObjects,
+    IDbTransaction transaction = null);
+    
+public static void SoftDeleteAll<T>(
+    this IDbConnection connection, IEnumerable<T> objects,
+    IDbTransaction transaction = null);
 ```
 
 The same principles, particularly with respect to transactions, apply here as to the single object methods.
