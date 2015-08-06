@@ -148,26 +148,55 @@ Taking our UserDto above as an example, the final decorated version looks like t
 
 ##IDBConnection extension methods
 
-###Extension methods for saving single objects###
+###Extension methods for saving single objects
 
-Use any of the following `IDbConnection` extension methods to save a single object:
+Use these `IDbConnection` extension methods to save a single object:
 
 ```C# 
-    public static void Create<T>(this IDbConnection connection, T obj, IDbTransaction transaction = null)
-    public static void Update<T>(this IDbConnection connection, T oldObject, T newObject, IDbTransaction transaction = null)
-    public static void Delete<T>(this IDbConnection connection, T obj, IDbTransaction transaction = null)
-    public static void SoftDelete<T>(this IDbConnection connection, T obj, IDbTransaction transaction = null)
+public static void Create<T>(this IDbConnection connection, T obj, IDbTransaction transaction = null);
+public static void Update<T>(this IDbConnection connection, T oldObject, T newObject, IDbTransaction transaction = null);
+public static void Delete<T>(this IDbConnection connection, T obj, IDbTransaction transaction = null);
+public static void SoftDelete<T>(this IDbConnection connection, T obj, IDbTransaction transaction = null);
 ```
-
-If you do not pass in a transaction, Dapper.SimpleSave will create a transaction to encapsulate all the operations required to create, update, or delete the object you supply to the method.
-
-###Extension methods for saving collections of objects###
 
 To save an object, all you have to do is call the appropriate method.
 
 When using the Update<T> method, you must supply both the old version of the object and the new version (see below for an explanation of why). If you only supply the old version you will end up deleting the object. If you supply only the new version, you'll create a new object in the database. (Today's challenge: without looking at the code, see if you can figure out how Create<T> and Delete<T> are implemented.)
 
-All of the above methods are transactional - i.e., all row changes that need to be made in the database will either succeed in totality, or all of them will fail. If a transaction fails for any reason an exception will be thrown. Often this will be a SqlException, but there are other things that can go wrong - for example, Dapper.SimpleSave does perform some basic validation checks on your entities - so don't assume you'll only see SqlExceptions out of these methods.
+If you do not pass in a transaction, Dapper.SimpleSave will create a transaction to encapsulate all the operations required to create, update, or delete the object you supply to the method.
+
+In the case where Dapper.SimpleSave creates the transaction for you, all row changes that need to be made in the database will either succeed in totality, or all of them will fail. If a transaction fails for any reason an exception will be thrown. Often this will be a SqlException, but there are other things that can go wrong - for example, Dapper.SimpleSave does perform some basic validation checks on your entities - so don't assume you'll only see SqlExceptions out of these methods.
+
+If you supply the transaction yourself, you'll still get the exception, but it becomes your responsibility to decide what to do about it - i.e., whether to rollback the transaction or not.
+
+####A brief word on `SoftDelete<T>(...)`
+
+Use `SoftDelete<T>(...)` when, rather than actually deleting records, you only want to mark them as deleted by setting a `BIT`/`bool` value on a column. You need to mark the property corresponding to this column with the `[SoftDeleteColumn]` attribute.
+
+When you soft delete only the root record will be marked as soft deleted. Child records in other tables will be untouched. This is because, say you want to undo the soft delete, it becomes possible to restore the entire hierarchy or records. If we recursively soft deleted we'd lose information about any child records that may or may not have been separately soft deleted.
+
+###Extension methods for saving collections of objects
+
+Use these `IDbConnection` extension methods to save collections of objects:
+
+```C#
+public static void CreateAll<T>(this IDbConnection connection, IEnumerable<T> newObjects, IDbTransaction transaction = null);
+public static void UpdateAll<T>(this IDbConnection connection, IEnumerable<Tuple<T, T>> oldAndNewObjects, IDbTransaction transaction = null);
+public static void UpdateAll<T>(this IDbConnection connection, IEnumerable<T> newObjects, Func<T, T> mapNewObjectToOldObject, IDbTransaction transaction = null);
+public static void UpdateAllMappingFromOldObjects<T>(this IDbConnection connection, IEnumerable<T> oldObjects, Func<T, T> mapOldObjectToNewObject, IDbTransaction transaction = null);
+public static void DeleteAll<T>(this IDbConnection connection, IEnumerable<T> oldObjects, IDbTransaction transaction = null);
+public static void SoftDeleteAll<T>(this IDbConnection connection, IEnumerable<T> objects, IDbTransaction transaction = null);
+```
+
+The same principles, particularly with respect to transactions, apply here as to the single object methods.
+
+If you don't supply a transaction, instead leaving Dapper.SimpleSave to create it for you, either all the objects in the collection will be saved, or none of them will (if an error occurs). If a transaction is rolled back the exception that caused the rollback is rethrown so you'll know about it.
+
+If you supply the transaction Dapper.SimpleSave will allow exceptions to bubble up to you but won't rollback when they occur - that responsibility becomes yours.
+
+Similarly `SoftDeleteAll<T>(...)` will mark all root records in the collection as soft deleted. Remember to add the `[SoftDeleteColumn]` attribute to the relevant property on your `T`s.
+
+###General points on working with the extension methods
 
 It's perfectly OK to do partial creates/updates if you have a DTO that represents part of your object hierarchy. For example, we might define a BasicUserDto that contains only name, email, username, and office phone number details for faster retrieval of only these values via Dapper, and faster saving via Dapper.SimpleSave. Obviously you're on dangerous ground if you try to use one of these 'partial entities' to create new rows because you might be missing properties corresponding to NOT NULL columns with no defaults defined, in which case you'll get an error back from the database.
 
