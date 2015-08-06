@@ -95,7 +95,7 @@ At the moment you need to decorate any objects you want to save to your database
 * **`[Column(name)]`** - not needed in most cases but, if your database column name differs from the property name in code, mark it with this attribute and pass in the name of the column in the database.
 * **`[SimpleSaveIgnore]`** - mark any columns you don't want saved to the database with this. For example, you might want to ignore any computed columns.
 * **`[ReadOnly]`** - this attribute has been deprecated and replaced by `[SimpleSaveIgnore]`. If you continue to use the `[ReadOnly]` attribute you'll get a compile time error that asks you to use `[SimpleSaveIgnore]` instead.
-* **`[SoftDeleteColumn(trueIndicatesDeleted)]`** - for situations where you need to support soft deletion of database records, mark the column that indicates whether or not a record is live or deleted with this attribute. Only columns of type `BIT` (i.e., mapping to `bool` in C#, are supported). You can optionally pass a parameter indicating whether `true` (or 1) indicates the record has been deleted, or `false` (i.e., 0, the default).
+* **`[SoftDeleteColumn(trueIndicatesDeleted)]`** - for situations where you need to support soft deletion of database records, mark the column that indicates whether or not a record is live or deleted with this attribute. Only columns of type `BIT` (i.e., mapping to `bool` in C#) are supported. You can optionally pass a parameter indicating whether `true` (or 1) indicates the record has been deleted, or `false` (i.e., 0, the default).
 
 ###Relationship cardinality attributes
 
