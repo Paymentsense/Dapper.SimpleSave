@@ -95,6 +95,7 @@ At the moment you need to decorate any objects you want to save to your database
 * **`[Column(name)]`** - not needed in most cases but, if your database column name differs from the property name in code, mark it with this attribute and pass in the name of the column in the database.
 * **`[SimpleSaveIgnore]`** - mark any columns you don't want saved to the database with this. For example, you might want to ignore any computed columns.
 * **`[ReadOnly]`** - this attribute has been deprecated and replaced by `[SimpleSaveIgnore]`. If you continue to use the `[ReadOnly]` attribute you'll get a compile time error that asks you to use `[SimpleSaveIgnore]` instead.
+* **`[SoftDeleteColumn(trueIndicatesDeleted)]`** - for situations where you need to support soft deletion of database records, mark the column that indicates whether or not a record is live or deleted with this attribute. Only columns of type `BIT` (i.e., mapping to `bool` in C#, are supported). You can optionally pass a parameter indicating whether `true` (or 1) indicates the record has been deleted, or `false` (i.e., 0, the default).
 
 ###Relationship cardinality attributes
 
@@ -147,13 +148,20 @@ Taking our UserDto above as an example, the final decorated version looks like t
 
 ##IDBConnection extension methods
 
-We define the following extension methods on IDbConnection:
+###Extension methods for saving single objects###
+
+Use any of the following `IDbConnection` extension methods to save a single object:
 
 ```C# 
-    public static void Create<T>(this IDbConnection connection, T obj) // TODO: these also accept transactions
-    public static void Update<T>(this IDbConnection connection, T oldObject, T newObject)
-    public static void Delete<T>(this IDbConnection connection, T obj)
+    public static void Create<T>(this IDbConnection connection, T obj, IDbTransaction transaction = null)
+    public static void Update<T>(this IDbConnection connection, T oldObject, T newObject, IDbTransaction transaction = null)
+    public static void Delete<T>(this IDbConnection connection, T obj, IDbTransaction transaction = null)
+    public static void SoftDelete<T>(this IDbConnection connection, T obj, IDbTransaction transaction = null)
 ```
+
+If you do not pass in a transaction, Dapper.SimpleSave will create a transaction to encapsulate all the operations required to create, update, or delete the object you supply to the method.
+
+###Extension methods for saving collections of objects###
 
 To save an object, all you have to do is call the appropriate method.
 
