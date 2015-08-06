@@ -39,7 +39,7 @@ This can be seen in Figure 1, below.
 
 In code, however, we don't really want to be dealing with the hassle of link tables. Something more OO would be better:
 
-
+```C#
     public class UserDto
     {
         ....
@@ -53,7 +53,7 @@ In code, however, we don't really want to be dealing with the hassle of link tab
         public IList<RoleDto> AdditionalRoles { get; set; }
         public IList<TeamDto> Team { get; set; }
     }
-
+```
 
 Note the absence of anything resembling the modelling of link tables.
 
@@ -89,25 +89,26 @@ At the moment you need to decorate any objects you want to save to your database
 
 ###Basic attributes:
 
-* **[Table(schemaQualifiedTableName)]** - every type you want to save should be decorated with this attribute. We've only tested it on classes, but it ought to work with interfaces (it may not honour the contract at the moment), and structs too. You must qualify the table name with its schema, e.g., "[user].[USER_MST]". We recommend the use of square braces around identifiers to avoid running into potential issues with T-SQL reserved words, of which there are a surprisingly large number.
-* **[ReferenceData]** - add this attribute to any type representing a table that contains reference data that is not intended to be updated. Dapper.SimpleSave will not try to save entities marked as such to the database, unless you use the constructor overload that takes a bool indicating whether or not the table has updateable foreign keys. If so, i.e., you passed in true, it will allow the update of columns containing foreign key values only.
-* **[PrimaryKey]** - mark the property used as the primary key, which must be an int?, long?, or GUID? with this attribute.
-* **[Column(name)]** - not needed in most cases but, if your database column name differs from the property name in code, mark it with this attribute and pass in the name of the column in the database.
-* **[SimpleSaveIgnore]** - mark any columns you don't want saved to the database with this.
-* **[ReadOnly]** - this attribute has been deprecated and replaced by `[SimpleSaveIgnore]`. If you continue to use the `[ReadOnly]` attribute you'll get a compile time error that asks you to use `[SimpleSaveIgnore]` instead.
+* **`[Table(schemaQualifiedTableName)]`** - every type you want to save should be decorated with this attribute. We've only tested it on classes, but it ought to work with interfaces (it may not honour the contract at the moment), and structs too. You must qualify the table name with its schema, e.g., "[user].[USER_MST]". We recommend the use of square braces around identifiers to avoid running into potential issues with T-SQL reserved words, of which there are a surprisingly large number.
+* **`[ReferenceData]`** - add this attribute to any type representing a table that contains reference data that is not intended to be updated. Dapper.SimpleSave will not try to save entities marked as such to the database, unless you use the constructor overload that takes a bool indicating whether or not the table has updateable foreign keys. If so, i.e., you passed in true, it will allow the update of columns containing foreign key values only.
+* **`[PrimaryKey]`** - mark the property used as the primary key, which must be an int?, long?, or GUID? with this attribute.
+* **`[Column(name)]`** - not needed in most cases but, if your database column name differs from the property name in code, mark it with this attribute and pass in the name of the column in the database.
+* **`[SimpleSaveIgnore]`** - mark any columns you don't want saved to the database with this.
+* **`[ReadOnly]`** - this attribute has been deprecated and replaced by `[SimpleSaveIgnore]`. If you continue to use the `[ReadOnly]` attribute you'll get a compile time error that asks you to use `[SimpleSaveIgnore]` instead.
 
 ###Relationship cardinality attributes
 
-* **[ManyToMany(schemaQualifiedLinkTableName)]** - mark enumerable properties with a many to many relationship with the underlying entity with this. Dapper.SimpleSave will not try to update the underlying entity at all, but rather will add or remove records in the specified link table. In a many to many relationship Dapper.SimpleSave will assume that child records should not be modified since other records in the parent table may depend on them. If you need to update items in the enumerable you should define a different DTO type for this purpose.
-* **[ManyToOne]** - mark any properties representing many to one relationships with this attribute. Dapper.SimpleSave will assume the foreign key is in the column corresponding to the marked property. It's fine to use the [Column] attribute to specify a different name for the underlying column if it doesn't match the property name. Again, since other records can depend upon the child object, Dapper.SimpleSave will not try to modify child rows. If you need to modify the child rows define another DTO type for this purpose.
-* **[OneToMany]** - mark any properties representing one to many relationships with this attribute. Dapper.SimpleSave will look for the foreign key in the child object.
-* **[OneToOne]** - one to one relationships can be defined with the foreign key either on the parent or the child. Therefore, if the property is also marked with a [ForeignKey] (see below), Dapper.SimpleSave will assume there is an underlying column containing the foreign key value (again, renaming with [Column] is fine) in the parent entity. Otherwise it will assume the foreign key is in the child entity and you should supply the name of the FK column to the constructor for [OneToOne], and mark the appropriate property on the child type with a [ForeignKey] attribute.
-* **[ForeignKey(Type referencedDto)]** - in practice, rarely needed. Marks a property as a foreign key relationship with the specified DTO. Generally only needed for one to one relationships.
+* **`[ManyToMany(schemaQualifiedLinkTableName)]`** - mark enumerable properties with a many to many relationship with the underlying entity with this. Dapper.SimpleSave will not try to update the underlying entity at all, but rather will add or remove records in the specified link table. In a many to many relationship Dapper.SimpleSave will assume that child records should not be modified since other records in the parent table may depend on them. If you need to update items in the enumerable you should define a different DTO type for this purpose.
+* **`[ManyToOne]`** - mark any properties representing many to one relationships with this attribute. Dapper.SimpleSave will assume the foreign key is in the column corresponding to the marked property. It's fine to use the [Column] attribute to specify a different name for the underlying column if it doesn't match the property name. Again, since other records can depend upon the child object, Dapper.SimpleSave will not try to modify child rows. If you need to modify the child rows define another DTO type for this purpose.
+* **`[OneToMany]`** - mark any properties representing one to many relationships with this attribute. Dapper.SimpleSave will look for the foreign key in the child object.
+* **`[OneToOne]`** - one to one relationships can be defined with the foreign key either on the parent or the child. Therefore, if the property is also marked with a `[ForeignKey]` (see below), Dapper.SimpleSave will assume there is an underlying column containing the foreign key value (again, renaming with `[Column]` is fine) in the parent entity. Otherwise it will assume the foreign key is in the child entity and you should supply the name of the FK column to the constructor for `[OneToOne]`, and mark the appropriate property on the child type with a `[ForeignKey]` attribute.
+* **`[ForeignKey(Type referencedDto)]`** - in practice, rarely needed. Marks a property as a foreign key relationship with the specified DTO. Generally only needed for one to one relationships.
 
 ###Example: decorating UserDto
 
 Taking our UserDto above as an example, the final decorated version looks like this:
 
+```c#
     [Table("[user].USER_MST")]
     public class UserDto
     {
@@ -142,15 +143,18 @@ Taking our UserDto above as an example, the final decorated version looks like t
         [ManyToMany("[user].USER_TEAM_LNK")]
         public IList<TeamDto> Team { get; set; }
     }
+```
 
 ##IDBConnection extension methods
 
 We define the following extension methods on IDbConnection:
- 
+
+```C# 
     public static void Create<T>(this IDbConnection connection, T obj) // TODO: these also accept transactions
     public static void Update<T>(this IDbConnection connection, T oldObject, T newObject)
     public static void Delete<T>(this IDbConnection connection, T obj)
- 
+```
+
 To save an object, all you have to do is call the appropriate method.
 
 When using the Update<T> method, you must supply both the old version of the object and the new version (see below for an explanation of why). If you only supply the old version you will end up deleting the object. If you supply only the new version, you'll create a new object in the database. (Today's challenge: without looking at the code, see if you can figure out how Create<T> and Delete<T> are implemented.)
