@@ -93,7 +93,7 @@ At the moment you need to decorate any objects you want to save to your database
 * **`[ReferenceData]`** - add this attribute to any type representing a table that contains reference data that is not intended to be updated. Dapper.SimpleSave will not try to save entities marked as such to the database, unless you use the constructor overload that takes a bool indicating whether or not the table has updateable foreign keys. If so, i.e., you passed in true, it will allow the update of columns containing foreign key values only.
 * **`[PrimaryKey]`** - mark the property used as the primary key, which must be an int?, long?, or GUID? with this attribute.
 * **`[Column(name)]`** - not needed in most cases but, if your database column name differs from the property name in code, mark it with this attribute and pass in the name of the column in the database.
-* **`[SimpleSaveIgnore]`** - mark any columns you don't want saved to the database with this.
+* **`[SimpleSaveIgnore]`** - mark any columns you don't want saved to the database with this. For example, you might want to ignore any computed columns.
 * **`[ReadOnly]`** - this attribute has been deprecated and replaced by `[SimpleSaveIgnore]`. If you continue to use the `[ReadOnly]` attribute you'll get a compile time error that asks you to use `[SimpleSaveIgnore]` instead.
 
 ###Relationship cardinality attributes
