@@ -8,9 +8,9 @@ using Newtonsoft.Json;
 
 namespace Dapper.SimpleSave.Impl
 {
-    public class Log4NetSimpleSaveLogger : ISimpleSaveLogger
+    public class BasicSimpleSaveLogger : ISimpleSaveLogger
     {
-        private static readonly ILog Logger = LogManager.GetLogger(typeof(Log4NetSimpleSaveLogger));
+        private static readonly ILog Logger = LogManager.GetLogger(typeof(BasicSimpleSaveLogger));
 
         private string BuildMessage(IScript script, string message)
         {
@@ -22,7 +22,9 @@ with parameters:
                     script.Buffer,
                     JsonConvert.SerializeObject(script.Parameters));
         }
- 
+
+        public ILog Wrapped { get { return Logger; } }
+
         public virtual void LogBuilt(IScript script)
         {
             if (Logger.IsDebugEnabled)

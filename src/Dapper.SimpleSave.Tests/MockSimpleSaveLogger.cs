@@ -3,7 +3,7 @@ using Dapper.SimpleSave.Impl;
 
 namespace Dapper.SimpleSave.Tests
 {
-    public class MockSimpleSaveLogger : Log4NetSimpleSaveLogger
+    public class MockSimpleSaveLogger : BasicSimpleSaveLogger
     {
         private IList<IScript> _scripts = new List<IScript>();
 

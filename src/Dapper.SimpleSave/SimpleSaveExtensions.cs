@@ -11,7 +11,7 @@ namespace Dapper.SimpleSave
     {
         private static readonly DtoMetadataCache _dtoMetadataCache = new DtoMetadataCache();
 
-        private static ISimpleSaveLogger _logger = new Log4NetSimpleSaveLogger();
+        private static ISimpleSaveLogger _logger = new BasicSimpleSaveLogger();
 
         public static ISimpleSaveLogger Logger
         {
@@ -162,8 +162,15 @@ namespace Dapper.SimpleSave
                             myTransaction);
 
                         myTransaction.Commit();
-                    } catch (Exception)
+                    }
+                    catch (Exception ex)
                     {
+                        if (Logger.Wrapped.IsErrorEnabled)
+                        {
+                            Logger.Wrapped.Error(
+                                string.Format("Error executing internal transaction: {0}", ex.Message),
+                                ex);
+                        }
                         myTransaction.Rollback();
                         throw;
                     }
@@ -171,12 +178,25 @@ namespace Dapper.SimpleSave
             }
             else
             {
-                ExecuteScriptsForTuples(
-                    connection,
-                    oldAndNewObjects,
-                    scripts,
-                    softDelete,
-                    transaction);
+                try
+                {
+                    ExecuteScriptsForTuples(
+                        connection,
+                        oldAndNewObjects,
+                        scripts,
+                        softDelete,
+                        transaction);
+                }
+                catch (Exception ex)
+                {
+                    if (Logger.Wrapped.IsErrorEnabled)
+                    {
+                        Logger.Wrapped.Error(
+                            string.Format("Error executing external transaction: {0}", ex.Message),
+                            ex);
+                    }
+                    throw;
+                }
             }
         }
 
