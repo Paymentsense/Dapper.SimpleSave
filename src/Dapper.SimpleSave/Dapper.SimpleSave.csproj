@@ -58,7 +58,7 @@
     <Compile Include="Impl\DtoMetadataValidator.cs" />
     <Compile Include="Impl\InsertCommand.cs" />
     <Compile Include="Impl\InsertOperation.cs" />
-    <Compile Include="Impl\Log4NetSimpleSaveLogger.cs" />
+    <Compile Include="Impl\BasicSimpleSaveLogger.cs" />
     <Compile Include="IScript.cs" />
     <Compile Include="Impl\MemberInfoExtensions.cs" />
     <Compile Include="Impl\OperationBuilder.cs" />
