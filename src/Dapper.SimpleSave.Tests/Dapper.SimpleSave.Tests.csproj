@@ -36,6 +36,7 @@
     <Compile Include="BaseScriptGenerationTests.cs" />
     <Compile Include="BaseTests.cs" />
     <Compile Include="CollectionScriptGenerationTests.cs" />
+    <Compile Include="ContextualReferenceDataTests.cs" />
     <Compile Include="Dto\BaseChildDto.cs" />
     <Compile Include="Dto\BaseManyToManyChildDto.cs" />
     <Compile Include="Dto\BaseOneToManyChildDto.cs" />
