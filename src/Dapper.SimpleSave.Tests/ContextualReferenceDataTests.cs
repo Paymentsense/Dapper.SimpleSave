@@ -10,28 +10,101 @@ using NUnit.Framework;
 
 namespace Dapper.SimpleSave.Tests
 {
+    [TestFixture]
     public class ContextualReferenceDataTests : BaseTests
     {
+        //[Test]
+        //public void insert_with_fk_on_existing_child_no_reference_data_inserts_parent_and_not_child()
+        //{
+        //    var newDto = new ContextualReferenceDataParentDto()
+        //    {
+        //        OneToOneChildDtoWithFk = new OneToOneChildDtoWithFk { ChildKey = 943982 }
+        //    };
+
+        //    var cache = new DtoMetadataCache();
+        //    var commands = GetCommands(cache, null, newDto, 2, 2, 2, 0, 0, 2, 2, 0, 0);
+        //    var list = new List<BaseCommand>(commands);
+
+        //    var parentInsert = list[0] as InsertCommand;
+
+        //    Assert.AreEqual(
+        //        cache.GetMetadataFor(typeof(ContextualReferenceDataParentDto)).TableName,
+        //        parentInsert.Operation.ValueMetadata.TableName,
+        //        "Unexpected parent table name.");
+
+        //    Assert.That(list.Count, Is.EqualTo(1));
+        //}
+
         [Test]
         public void insert_with_fk_on_existing_child_no_reference_data_inserts_parent_and_not_child()
         {
+            var logger = CreateMockLogger();
+
             var newDto = new ContextualReferenceDataParentDto()
             {
-                OneToOneChildDtoWithFk = new OneToOneChildDtoWithFk { ChildKey = 943982 }
+                OneToOneChildDtoWithFk = new OneToOneChildDtoWithFk
+                {
+                    ChildKey = 100,
+                    Name = "You, sir, are drunk!"
+                }
             };
 
-            var cache = new DtoMetadataCache();
-            var commands = GetCommands(cache, null, newDto, 2, 2, 2, 0, 0, 2, 2, 0, 0);
-            var list = new List<BaseCommand>(commands);
+            try
+            {
+                using (var connection = new SqlConnection())
+                {
+                    connection.Create(newDto);
+                }
+            }
+            catch (InvalidOperationException)
+            {
+                // Do nothing because we deliberately didn't open the connection
+            }
 
-            var parentInsert = list[0] as InsertCommand;
+            var scripts = logger.Scripts;
+            Assert.AreEqual(2, scripts.Count, "Unexpected number of scripts.");
 
-            Assert.AreEqual(
-                cache.GetMetadataFor(typeof(ContextualReferenceDataParentDto)).TableName,
-                parentInsert.Operation.ValueMetadata.TableName,
-                "Unexpected parent table name.");
+            var sql = scripts[0].Buffer.ToString();
+            Assert.IsTrue(sql.Contains("INSERT INTO dbo.[ContextualReferenceDataParent]"), "No INSERT on parent.");
 
-            Assert.That(list.Count, Is.EqualTo(1));
+            sql = scripts[1].Buffer.ToString();
+            Assert.IsTrue(sql.Contains("UPDATE dbo.OneToOneChildWithFk"), "Should be an UPDATE on child.");
+        }
+
+        [Test]
+        public void insert_with_fk_on_existing_special_child_inserts_parent_and_not_child()
+        {
+            var logger = CreateMockLogger();
+
+            var newDto = new ParentDto()
+            {
+                OneToOneSpecialChildDtoWithFk = new OneToOneSpecialChildDtoWithFk
+                {
+                    ChildKey = 100,
+                    Name = "You, sir, are drunk!"
+                }
+            };
+
+            try
+            {
+                using (var connection = new SqlConnection())
+                {
+                    connection.Create(newDto);
+                }
+            }
+            catch (InvalidOperationException)
+            {
+                // Do nothing because we deliberately didn't open the connection
+            }
+
+            var scripts = logger.Scripts;
+            Assert.AreEqual(2, scripts.Count, "Unexpected number of scripts.");
+
+            var sql = scripts[0].Buffer.ToString();
+            Assert.IsTrue(sql.Contains("INSERT INTO dbo.[Parent]"), "No INSERT on parent.");
+
+            sql = scripts[1].Buffer.ToString();
+            Assert.IsTrue(sql.Contains("UPDATE dbo.OneToOneSpecialChildDtoWithFk"), "Should be an UPDATE on child.");
         }
 
         [Test]
