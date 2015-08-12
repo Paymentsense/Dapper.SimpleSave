@@ -68,6 +68,40 @@ namespace Dapper.SimpleSave.Tests
             Assert.IsTrue(!sql.Contains("INSERT INTO dbo.OneToOneChildNoFk"), "Should be no INSERT on child.");
         }
 
+        [Test]
+        public void insert_existing_reference_data_child_with_fk_on_parent_inserts_parent_and_not_child()
+        {
+            var logger = CreateMockLogger();
+
+            var newDto = new ParentDto
+            {
+                OneToOneReferenceChildDtoNoFk = new OneToOneReferenceChildDtoNoFk
+                {
+                    ChildKey = 100,
+                    Name = "You, sir, are drunk!"
+                }
+            };
+
+            try
+            {
+                using (var connection = new SqlConnection())
+                {
+                    connection.Create(newDto);
+                }
+            }
+            catch (InvalidOperationException)
+            {
+                // Do nothing because we deliberately didn't open the connection
+            }
+
+            var scripts = logger.Scripts;
+            Assert.AreEqual(1, scripts.Count, "Unexpected number of scripts.");
+
+            var sql = scripts[0].Buffer.ToString();
+            Assert.IsTrue(sql.Contains("INSERT INTO dbo.[Parent]"), "No INSERT on parent.");
+            Assert.IsTrue(!sql.Contains("INSERT INTO dbo.OneToOneReferenceChildNoFk"), "Should be no INSERT on child.");
+        }
+
         private MockSimpleSaveLogger CreateMockLogger()
         {
             var logger = new MockSimpleSaveLogger();

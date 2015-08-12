@@ -71,7 +71,7 @@ SELECT SCOPE_IDENTITY();
 
             if (null != firstOp.OwnerPropertyMetadata
                 && firstOp.OwnerPropertyMetadata.HasAttribute<OneToManyAttribute>()
-                && firstOp.ValueMetadata.IsReferenceData
+                && (firstOp.ValueMetadata.IsReferenceData || firstOp.OwnerPropertyMetadata.HasAttribute<ReferenceDataAttribute>())
                 && firstOp.ValueMetadata.HasUpdateableForeignKeys)
             {
                 AppendReverseUpdateCommandForChildTableReferencingParent(script, command, ref paramIndex);

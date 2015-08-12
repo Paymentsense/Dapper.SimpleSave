@@ -69,7 +69,7 @@ namespace Dapper.SimpleSave.Impl
             {
                 if (null != insertOperation.OwnerPropertyMetadata
                     && insertOperation.OwnerPropertyMetadata.IsOneToOneRelationship
-                    && !insertOperation.ValueMetadata.IsReferenceData
+                    && (!insertOperation.ValueMetadata.IsReferenceData && !insertOperation.OwnerPropertyMetadata.HasAttribute<ReferenceDataAttribute>())
                     && insertOperation.OwnerPropertyMetadata.HasAttribute<ForeignKeyReferenceAttribute>())
                 {
                     PrependInsertBeforeParentTableInsert(operations, insertOperation);
@@ -173,7 +173,7 @@ namespace Dapper.SimpleSave.Impl
                 operations.Add(updateOperation);
             }
 
-            if (!insertDeleteOperation.ValueMetadata.IsReferenceData)
+            if (!insertDeleteOperation.ValueMetadata.IsReferenceData && !insertDeleteOperation.OwnerPropertyMetadata.HasAttribute<ReferenceDataAttribute>())
             {
                 operations.Add(insertDeleteOperation);
             }
@@ -275,7 +275,7 @@ namespace Dapper.SimpleSave.Impl
                    && (insertDeleteOperation.OwnerPropertyMetadata.IsManyToOneRelationship
                         || (insertDeleteOperation.OwnerPropertyMetadata.IsOneToOneRelationship
                             && insertDeleteOperation.OwnerPropertyMetadata.HasAttribute<ForeignKeyReferenceAttribute>()
-                            && insertDeleteOperation.ValueMetadata.IsReferenceData
+                            && (insertDeleteOperation.ValueMetadata.IsReferenceData || insertDeleteOperation.OwnerPropertyMetadata.HasAttribute<ReferenceDataAttribute>())
                             && ! insertDeleteOperation.ValueMetadata.HasUpdateableForeignKeys));
         }
 
