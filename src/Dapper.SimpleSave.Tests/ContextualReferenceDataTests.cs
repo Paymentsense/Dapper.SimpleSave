@@ -14,7 +14,7 @@ namespace Dapper.SimpleSave.Tests
         [Test]
         public void insert_with_fk_on_existing_child_no_reference_data_inserts_parent_and_not_child()
         {
-            var newDto = new ParentDto()
+            var newDto = new ContextualReferenceDataParentDto()
             {
                 OneToOneChildDtoWithFk = new OneToOneChildDtoWithFk { ChildKey = 943982 }
             };
@@ -26,7 +26,7 @@ namespace Dapper.SimpleSave.Tests
             var parentInsert = list[0] as InsertCommand;
 
             Assert.AreEqual(
-                cache.GetMetadataFor(typeof(ParentDto)).TableName,
+                cache.GetMetadataFor(typeof(ContextualReferenceDataParentDto)).TableName,
                 parentInsert.Operation.ValueMetadata.TableName,
                 "Unexpected parent table name.");
 

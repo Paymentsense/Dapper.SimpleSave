@@ -42,6 +42,7 @@
     <Compile Include="Dto\BaseOneToManyChildDto.cs" />
     <Compile Include="Dto\BaseOneToOneChildDtoWithFk.cs" />
     <Compile Include="Dto\BaseParentDto.cs" />
+    <Compile Include="Dto\ContextualReferenceDataParentDto.cs" />
     <Compile Include="Dto\ManyToManyChildDto.cs" />
     <Compile Include="Dto\ManyToManyReferenceChildDto.cs" />
     <Compile Include="Dto\ManyToManySpecialChildDto.cs" />
