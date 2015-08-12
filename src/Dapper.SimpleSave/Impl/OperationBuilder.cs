@@ -312,13 +312,17 @@ namespace Dapper.SimpleSave.Impl
 
                 if (baseInsertDelete.OwnerPropertyMetadata.HasAttribute<OneToManyAttribute>())
                 {
-                    if (!baseInsertDelete.ValueMetadata.HasAttribute<ReferenceDataAttribute>())
+                    if (!baseInsertDelete.ValueMetadata.HasAttribute<ReferenceDataAttribute>()
+                        && !baseInsertDelete.OwnerPropertyMetadata.HasAttribute<ReferenceDataAttribute>())
                     {
                         //  INSERT or DELETE the value from the other table
                         return baseInsertDelete;
                     }
                     
-                    if (!baseInsertDelete.ValueMetadata.HasUpdateableForeignKeys)
+                    if ((baseInsertDelete.ValueMetadata.HasAttribute<ReferenceDataAttribute>()
+                            && !baseInsertDelete.ValueMetadata.HasUpdateableForeignKeys)
+                        || (baseInsertDelete.OwnerPropertyMetadata.HasAttribute<ReferenceDataAttribute>()
+                            && !baseInsertDelete.OwnerPropertyMetadata.GetAttribute<ReferenceDataAttribute>().HasUpdateableForeignKeys))
                     {
                         throw new InvalidOperationException(string.Format(
                             "You cannot INSERT into a reference data child table in a one to many relationship between a parent table and a child table where the child table does not have updateable foreign keys. (Note that any INSERT satisfying these conditions would be transformed into an UPDATE on the target row in the child table.) Attempted to INSERT into table {0}.",
@@ -328,12 +332,17 @@ namespace Dapper.SimpleSave.Impl
 
                 if (baseInsertDelete.OwnerPropertyMetadata.HasAttribute<OneToOneAttribute>())
                 {
-                    if (!baseInsertDelete.ValueMetadata.HasAttribute<ReferenceDataAttribute>())
+                    if (!baseInsertDelete.ValueMetadata.HasAttribute<ReferenceDataAttribute>()
+                        && !baseInsertDelete.OwnerPropertyMetadata.HasAttribute<ReferenceDataAttribute>())
                     {
                         return baseInsertDelete;
                     }
 
-                    if (!baseInsertDelete.ValueMetadata.HasUpdateableForeignKeys && !baseInsertDelete.OwnerPropertyMetadata.HasAttribute<ForeignKeyReferenceAttribute>())
+                    if (((baseInsertDelete.ValueMetadata.HasAttribute<ReferenceDataAttribute>()
+                            && !baseInsertDelete.ValueMetadata.HasUpdateableForeignKeys)
+                        || (baseInsertDelete.OwnerPropertyMetadata.HasAttribute<ReferenceDataAttribute>()
+                            && !baseInsertDelete.OwnerPropertyMetadata.GetAttribute<ReferenceDataAttribute>().HasUpdateableForeignKeys))
+                        && !baseInsertDelete.OwnerPropertyMetadata.HasAttribute<ForeignKeyReferenceAttribute>())
                     {
                         throw new InvalidOperationException(string.Format(
                             "You cannot INSERT into a reference data child table in a one to one relationship between a parent table and a child table where te child table does not have updateable foreign keys. (Note that any INSERT satisfying these conditions would be transformed into an UPDATE on the target row in the child table.) Attempted to INSERT into table {0}.",

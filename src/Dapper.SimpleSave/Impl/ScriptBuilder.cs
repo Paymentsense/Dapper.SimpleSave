@@ -130,7 +130,8 @@ SET ", command.TableName));
                 {
                     if ((null != operation.OwnerPropertyMetadata
                      && (operation.OwnerPropertyMetadata.HasAttribute<OneToOneAttribute>()
-                         || operation.OwnerPropertyMetadata.HasAttribute<ManyToOneAttribute>())))
+                         || operation.OwnerPropertyMetadata.HasAttribute<ManyToOneAttribute>()
+                         || operation.OwnerPropertyMetadata.HasAttribute<ReferenceDataAttribute>())))
                     {
                         useKey = true;
                     }
@@ -189,7 +190,8 @@ WHERE [{1}] = ",
                 else if (operation.OwnerPropertyMetadata == null
                     || ((operation.OwnerPropertyMetadata.HasAttribute<OneToManyAttribute>()
                         || operation.OwnerPropertyMetadata.HasAttribute<OneToOneAttribute>())
-                    && !operation.ValueMetadata.HasAttribute<ReferenceDataAttribute>()))
+                    && !operation.ValueMetadata.HasAttribute<ReferenceDataAttribute>()
+                    && !operation.OwnerPropertyMetadata.HasAttribute<ReferenceDataAttribute>()))
                 {
                     //  DELETE the value from the other table
 
@@ -241,7 +243,8 @@ WHERE [{1}] = ",
                 else if (operation.OwnerPropertyMetadata == null
                     || ((operation.OwnerPropertyMetadata.HasAttribute<OneToManyAttribute>()
                         || IsOneToOneRelationshipWithFkOnParent(operation))
-                        && !operation.ValueMetadata.HasAttribute<ReferenceDataAttribute>())) 
+                        && !operation.ValueMetadata.HasAttribute<ReferenceDataAttribute>()
+                        && !operation.OwnerPropertyMetadata.HasAttribute<ReferenceDataAttribute>())) 
                 {
                     //  INSERT the value into the table defined by ValueMetadata
                     
