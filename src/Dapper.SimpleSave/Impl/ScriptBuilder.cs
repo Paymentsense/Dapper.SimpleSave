@@ -70,9 +70,8 @@ SELECT SCOPE_IDENTITY();
             var firstOp = command.Operations.First();
 
             if (null != firstOp.OwnerPropertyMetadata
-                && firstOp.OwnerPropertyMetadata.HasAttribute<OneToManyAttribute>()
-                && firstOp.ValueMetadata.IsReferenceData
-                && firstOp.ValueMetadata.HasUpdateableForeignKeys)
+                && (firstOp.OwnerPropertyMetadata.HasAttribute<OneToManyAttribute>() || firstOp.OwnerPropertyMetadata.HasAttribute<OneToOneAttribute>())
+                    && IsReverseUpdateWithChildReferencingParent(firstOp))
             {
                 AppendReverseUpdateCommandForChildTableReferencingParent(script, command, ref paramIndex);
             }
@@ -80,6 +79,13 @@ SELECT SCOPE_IDENTITY();
             {
                 AppendStandardUpdateCommand(script, command, ref paramIndex);
             }
+        }
+
+        private static bool IsReverseUpdateWithChildReferencingParent(UpdateOperation update)
+        {
+            return (update.ValueMetadata.IsReferenceData && update.ValueMetadata.HasUpdateableForeignKeys)
+                    || (update.OwnerPropertyMetadata.HasAttribute<ReferenceDataAttribute>()
+                        && update.OwnerPropertyMetadata.GetAttribute<ReferenceDataAttribute>().HasUpdateableForeignKeys);
         }
 
         private static void AppendReverseUpdateCommandForChildTableReferencingParent(
@@ -130,7 +136,8 @@ SET ", command.TableName));
                 {
                     if ((null != operation.OwnerPropertyMetadata
                      && (operation.OwnerPropertyMetadata.HasAttribute<OneToOneAttribute>()
-                         || operation.OwnerPropertyMetadata.HasAttribute<ManyToOneAttribute>())))
+                         || operation.OwnerPropertyMetadata.HasAttribute<ManyToOneAttribute>()
+                         || operation.OwnerPropertyMetadata.HasAttribute<ReferenceDataAttribute>())))
                     {
                         useKey = true;
                     }
@@ -189,7 +196,8 @@ WHERE [{1}] = ",
                 else if (operation.OwnerPropertyMetadata == null
                     || ((operation.OwnerPropertyMetadata.HasAttribute<OneToManyAttribute>()
                         || operation.OwnerPropertyMetadata.HasAttribute<OneToOneAttribute>())
-                    && !operation.ValueMetadata.HasAttribute<ReferenceDataAttribute>()))
+                    && !operation.ValueMetadata.HasAttribute<ReferenceDataAttribute>()
+                    && !operation.OwnerPropertyMetadata.HasAttribute<ReferenceDataAttribute>()))
                 {
                     //  DELETE the value from the other table
 
@@ -241,7 +249,8 @@ WHERE [{1}] = ",
                 else if (operation.OwnerPropertyMetadata == null
                     || ((operation.OwnerPropertyMetadata.HasAttribute<OneToManyAttribute>()
                         || IsOneToOneRelationshipWithFkOnParent(operation))
-                        && !operation.ValueMetadata.HasAttribute<ReferenceDataAttribute>())) 
+                        && !operation.ValueMetadata.HasAttribute<ReferenceDataAttribute>()
+                        && !operation.OwnerPropertyMetadata.HasAttribute<ReferenceDataAttribute>())) 
                 {
                     //  INSERT the value into the table defined by ValueMetadata
                     
