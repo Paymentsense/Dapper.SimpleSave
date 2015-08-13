@@ -167,9 +167,12 @@ namespace Dapper.SimpleSave
                     {
                         if (Logger.Wrapped.IsErrorEnabled)
                         {
-                            Logger.Wrapped.Error(
-                                string.Format("Error executing internal transaction: {0}", ex.Message),
-                                ex);
+                            Logger.Wrapped.Error(new
+                            {
+                                message = "Error executing internal transaction",
+                                exception = ex,
+                                scripts
+                            });
                         }
                         myTransaction.Rollback();
                         throw;
@@ -191,9 +194,12 @@ namespace Dapper.SimpleSave
                 {
                     if (Logger.Wrapped.IsErrorEnabled)
                     {
-                        Logger.Wrapped.Error(
-                            string.Format("Error executing external transaction: {0}", ex.Message),
-                            ex);
+                        Logger.Wrapped.Error(new
+                        {
+                            message = "Error executing external transaction",
+                            exception = ex,
+                            scripts
+                        });
                     }
                     throw;
                 }
