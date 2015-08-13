@@ -12,15 +12,14 @@ namespace Dapper.SimpleSave.Impl
     {
         private static readonly ILog Logger = LogManager.GetLogger(typeof(BasicSimpleSaveLogger));
 
-        private string BuildMessage(IScript script, string message)
+        private object BuildMessage(IScript script, string message)
         {
-            return string.Format(@"{0}:
-{1}
-with parameters:
-{2}",
-                    message,
-                    script.Buffer,
-                    JsonConvert.SerializeObject(script.Parameters));
+            return new
+            {
+                message,
+                sql = script.Buffer.ToString(),
+                parameters = script.Parameters
+            };
         }
 
         public ILog Wrapped { get { return Logger; } }
