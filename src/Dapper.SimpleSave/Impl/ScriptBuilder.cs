@@ -69,12 +69,24 @@ SELECT SCOPE_IDENTITY();
         {
             var firstOp = command.Operations.First();
 
-            if (null != firstOp.OwnerPropertyMetadata
-                && firstOp.OwnerPropertyMetadata.HasAttribute<OneToManyAttribute>()
-                && (firstOp.ValueMetadata.IsReferenceData || firstOp.OwnerPropertyMetadata.HasAttribute<ReferenceDataAttribute>())
-                && firstOp.ValueMetadata.HasUpdateableForeignKeys)
+            if (null != firstOp.OwnerPropertyMetadata)
             {
-                AppendReverseUpdateCommandForChildTableReferencingParent(script, command, ref paramIndex);
+                if (firstOp.OwnerPropertyMetadata.HasAttribute<OneToManyAttribute>()
+                    && ((firstOp.ValueMetadata.IsReferenceData && firstOp.ValueMetadata.HasUpdateableForeignKeys)
+                        || (firstOp.OwnerPropertyMetadata.HasAttribute<ReferenceDataAttribute>() && firstOp.OwnerPropertyMetadata.GetAttribute<ReferenceDataAttribute>().HasUpdateableForeignKeys)))
+                {
+                    AppendReverseUpdateCommandForChildTableReferencingParent(script, command, ref paramIndex);
+                }
+                else if (firstOp.OwnerPropertyMetadata.HasAttribute<OneToOneAttribute>()
+                    && ((firstOp.ValueMetadata.IsReferenceData && firstOp.ValueMetadata.HasUpdateableForeignKeys)
+                        || (firstOp.OwnerPropertyMetadata.HasAttribute<ReferenceDataAttribute>() && firstOp.OwnerPropertyMetadata.GetAttribute<ReferenceDataAttribute>().HasUpdateableForeignKeys)))
+                {
+                    AppendReverseUpdateCommandForChildTableReferencingParent(script, command, ref paramIndex);
+                }
+                else
+                {
+                    AppendStandardUpdateCommand(script, command, ref paramIndex);
+                }
             }
             else
             {

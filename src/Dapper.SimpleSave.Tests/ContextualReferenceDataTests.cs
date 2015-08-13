@@ -42,7 +42,7 @@ namespace Dapper.SimpleSave.Tests
 
             var newDto = new ContextualReferenceDataParentDto()
             {
-                OneToOneChildDtoWithFk = new OneToOneChildDtoWithFk
+                OneToOneChildDtoWithFk = new ContextualOneToOneChildDtoWithFk
                 {
                     ChildKey = 100,
                     Name = "You, sir, are drunk!"
@@ -68,7 +68,7 @@ namespace Dapper.SimpleSave.Tests
             Assert.IsTrue(sql.Contains("INSERT INTO dbo.[ContextualReferenceDataParent]"), "No INSERT on parent.");
 
             sql = scripts[1].Buffer.ToString();
-            Assert.IsTrue(sql.Contains("UPDATE dbo.OneToOneChildWithFk"), "Should be an UPDATE on child.");
+            Assert.IsTrue(sql.Contains("UPDATE dbo.ContextualOneToOneChildWithFk"), "Should be an UPDATE on child.");
         }
 
         [Test]
@@ -104,7 +104,7 @@ namespace Dapper.SimpleSave.Tests
             Assert.IsTrue(sql.Contains("INSERT INTO dbo.[Parent]"), "No INSERT on parent.");
 
             sql = scripts[1].Buffer.ToString();
-            Assert.IsTrue(sql.Contains("UPDATE dbo.OneToOneSpecialChildDtoWithFk"), "Should be an UPDATE on child.");
+            Assert.IsTrue(sql.Contains("UPDATE dbo.OneToOneSpecialChildWithFk"), "Should be an UPDATE on child.");
         }
 
         [Test]

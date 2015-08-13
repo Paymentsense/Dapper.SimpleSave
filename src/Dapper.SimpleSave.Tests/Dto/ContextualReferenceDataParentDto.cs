@@ -16,7 +16,7 @@ namespace Dapper.SimpleSave.Tests.Dto
 
         [OneToOne("ChildKey")]  //  TODO: don't think column name is necessary
         [ReferenceData(true)]
-        public OneToOneChildDtoWithFk OneToOneChildDtoWithFk { get; set; }
+        public ContextualOneToOneChildDtoWithFk OneToOneChildDtoWithFk { get; set; }
 
         [ManyToOne]
         [ReferenceData]
