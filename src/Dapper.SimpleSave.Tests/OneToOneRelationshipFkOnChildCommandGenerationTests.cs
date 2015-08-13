@@ -12,7 +12,6 @@ namespace Dapper.SimpleSave.Tests {
     [TestFixture]
     public class OneToOneRelationshipFkOnChildCommandGenerationTests : BaseTests
     {
-
         [Test]
         public void insert_with_fk_on_child_no_reference_data_inserts_rows_in_parent_and_child()
         {
