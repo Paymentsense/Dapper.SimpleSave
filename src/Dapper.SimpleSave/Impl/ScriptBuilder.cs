@@ -67,11 +67,7 @@ SELECT SCOPE_IDENTITY();
 
         private static void AppendUpdateCommand(Script script, UpdateCommand command, ref int paramIndex)
         {
-            var firstOp = command.Operations.First();
-
-            if (null != firstOp.OwnerPropertyMetadata
-                && (firstOp.OwnerPropertyMetadata.HasAttribute<OneToManyAttribute>() || firstOp.OwnerPropertyMetadata.HasAttribute<OneToOneAttribute>())
-                    && IsReverseUpdateWithChildReferencingParent(firstOp))
+            if (ReverseUpdateHelper.IsReverseUpdateWithChildReferencingParent(command.Operations.First()))
             {
                 AppendReverseUpdateCommandForChildTableReferencingParent(script, command, ref paramIndex);
             }
@@ -79,13 +75,6 @@ SELECT SCOPE_IDENTITY();
             {
                 AppendStandardUpdateCommand(script, command, ref paramIndex);
             }
-        }
-
-        private static bool IsReverseUpdateWithChildReferencingParent(UpdateOperation update)
-        {
-            return (update.ValueMetadata.IsReferenceData && update.ValueMetadata.HasUpdateableForeignKeys)
-                    || (update.OwnerPropertyMetadata.HasAttribute<ReferenceDataAttribute>()
-                        && update.OwnerPropertyMetadata.GetAttribute<ReferenceDataAttribute>().HasUpdateableForeignKeys);
         }
 
         private static void AppendReverseUpdateCommandForChildTableReferencingParent(
