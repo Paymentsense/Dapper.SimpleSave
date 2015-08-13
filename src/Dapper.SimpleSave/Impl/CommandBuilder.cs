@@ -19,9 +19,16 @@ namespace Dapper.SimpleSave.Impl
                 if (operation is UpdateOperation)
                 {
                     var update = operation as UpdateOperation;
+                    var newMetadata = GetNewUpdateMetadata(update);
+                    var newTableName = GetNewUpdateTableName(update);
+                    var newPrimaryKeyValue = GetNewUpdatePrimaryKeyValue(update);
                     //  If the table name, or row PK changes, we need to apply any UpdateOperations we already have as a new command
                     //  then start tracking UpdateOperations afresh, starting with this one.
-                    if (updateTableName != update.TableName || !PrimaryKeyComparer.SuppliedPrimaryKeyValuesMatch(update.OwnerMetadata, updatePk, update.OwnerPrimaryKeyAsObject))//updatePk != update.OwnerPrimaryKey)
+                    if (updateTableName != newTableName
+                        || !PrimaryKeyComparer.SuppliedPrimaryKeyValuesMatch(
+                                newMetadata,
+                                updatePk,
+                                newPrimaryKeyValue))
                     {
                         ValidateUpdateOperation(update);
                         if (null != updateTableName)
@@ -29,8 +36,8 @@ namespace Dapper.SimpleSave.Impl
                             ApplyUpdatesSoFarAsNewCommand(results, updates, ref updateTableName, ref updatePk);
                         }
 
-                        updateTableName = update.TableName;
-                        updatePk = update.OwnerPrimaryKeyAsObject;
+                        updateTableName = newTableName;
+                        updatePk = newPrimaryKeyValue;
                     }
                     updates.Add(update);
                 }
@@ -56,6 +63,27 @@ namespace Dapper.SimpleSave.Impl
             }
 
             return results;
+        }
+
+        private DtoMetadata GetNewUpdateMetadata(UpdateOperation update)
+        {
+            return ReverseUpdateHelper.IsReverseUpdateWithChildReferencingParent(update)
+                ? update.ValueMetadata
+                : update.OwnerMetadata;
+        }
+
+        private string GetNewUpdateTableName(UpdateOperation update)
+        {
+            return ReverseUpdateHelper.IsReverseUpdateWithChildReferencingParent(update)
+                ? update.ValueMetadata.TableName
+                : update.TableName;
+        }
+
+        private object GetNewUpdatePrimaryKeyValue(UpdateOperation update)
+        {
+            return ReverseUpdateHelper.IsReverseUpdateWithChildReferencingParent(update)
+                ? update.ValueMetadata.GetPrimaryKeyValueAsObject(update.Value)
+                : update.OwnerPrimaryKeyAsObject;
         }
 
         private void ValidateInsertOrDeleteOperation(BaseInsertDeleteOperation insert)
