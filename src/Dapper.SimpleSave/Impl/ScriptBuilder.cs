@@ -69,29 +69,23 @@ SELECT SCOPE_IDENTITY();
         {
             var firstOp = command.Operations.First();
 
-            if (null != firstOp.OwnerPropertyMetadata)
+            if (null != firstOp.OwnerPropertyMetadata
+                && (firstOp.OwnerPropertyMetadata.HasAttribute<OneToManyAttribute>() || firstOp.OwnerPropertyMetadata.HasAttribute<OneToOneAttribute>())
+                    && IsReverseUpdateWithChildReferencingParent(firstOp))
             {
-                if (firstOp.OwnerPropertyMetadata.HasAttribute<OneToManyAttribute>()
-                    && ((firstOp.ValueMetadata.IsReferenceData && firstOp.ValueMetadata.HasUpdateableForeignKeys)
-                        || (firstOp.OwnerPropertyMetadata.HasAttribute<ReferenceDataAttribute>() && firstOp.OwnerPropertyMetadata.GetAttribute<ReferenceDataAttribute>().HasUpdateableForeignKeys)))
-                {
-                    AppendReverseUpdateCommandForChildTableReferencingParent(script, command, ref paramIndex);
-                }
-                else if (firstOp.OwnerPropertyMetadata.HasAttribute<OneToOneAttribute>()
-                    && ((firstOp.ValueMetadata.IsReferenceData && firstOp.ValueMetadata.HasUpdateableForeignKeys)
-                        || (firstOp.OwnerPropertyMetadata.HasAttribute<ReferenceDataAttribute>() && firstOp.OwnerPropertyMetadata.GetAttribute<ReferenceDataAttribute>().HasUpdateableForeignKeys)))
-                {
-                    AppendReverseUpdateCommandForChildTableReferencingParent(script, command, ref paramIndex);
-                }
-                else
-                {
-                    AppendStandardUpdateCommand(script, command, ref paramIndex);
-                }
+                AppendReverseUpdateCommandForChildTableReferencingParent(script, command, ref paramIndex);
             }
             else
             {
                 AppendStandardUpdateCommand(script, command, ref paramIndex);
             }
+        }
+
+        private static bool IsReverseUpdateWithChildReferencingParent(UpdateOperation update)
+        {
+            return (update.ValueMetadata.IsReferenceData && update.ValueMetadata.HasUpdateableForeignKeys)
+                    || (update.OwnerPropertyMetadata.HasAttribute<ReferenceDataAttribute>()
+                        && update.OwnerPropertyMetadata.GetAttribute<ReferenceDataAttribute>().HasUpdateableForeignKeys);
         }
 
         private static void AppendReverseUpdateCommandForChildTableReferencingParent(
