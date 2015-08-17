@@ -124,7 +124,7 @@ namespace Dapper.SimpleSave.Impl
                 }
                 else
                 {
-                    DiffProperties(metadata, oldObject, newObject, target);                    
+                    DiffProperties(metadata, oldObject, newObject, target, property);                    
                 }
             }
         }
@@ -133,10 +133,31 @@ namespace Dapper.SimpleSave.Impl
             DtoMetadata metadata,
             object oldObject,
             object newObject,
-            IList<Difference> target)
+            IList<Difference> target,
+            PropertyMetadata parentPropertyMetadata = null)
         {
+            if ((metadata.IsReferenceData && !metadata.HasUpdateableForeignKeys)
+                || (parentPropertyMetadata != null
+                    && parentPropertyMetadata.HasAttribute<ReferenceDataAttribute>()
+                    && !parentPropertyMetadata.GetAttribute<ReferenceDataAttribute>().HasUpdateableForeignKeys))
+            {
+                return;
+            }
+
             foreach (var prop in metadata.Properties)
             {
+                if (metadata.IsReferenceData && !prop.HasAttribute<ForeignKeyReferenceAttribute>())
+                {
+                    continue;
+                }
+
+                if (parentPropertyMetadata != null
+                    && parentPropertyMetadata.HasAttribute<ReferenceDataAttribute>() &&
+                    !prop.HasAttribute<ForeignKeyReferenceAttribute>())
+                {
+                    continue;
+                }
+
                 if (prop.IsString || prop.IsNumericType || prop.IsEnum)
                 {
                     DiffSimpleValue(oldObject, newObject, prop, target, metadata);
@@ -452,7 +473,8 @@ namespace Dapper.SimpleSave.Impl
                    ReferenceEquals(newObject, newPropValue)
                        ? newObject
                        : newPropValue,
-                   differences);
+                   differences,
+                   prop);
            }
            else if (newPropValue == null)
            {
@@ -464,7 +486,8 @@ namespace Dapper.SimpleSave.Impl
                        ? oldObject
                        : oldPropValue,
                    newPropValue,
-                   differences);
+                   differences,
+                   prop);
 
                differences.Add(new Difference
                {
