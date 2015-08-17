@@ -174,6 +174,7 @@ namespace Dapper.SimpleSave.Tests {
 
         [Test]
         [ExpectedException(typeof(InvalidOperationException))]
+        [Ignore("Replace with test that checks no changes made. Consider validating diff to warn user if ref/special changes are made.")]
         public void update_with_reference_data_in_child_is_invalid() {
             var oldDto = new ParentDto
             {
@@ -196,7 +197,7 @@ namespace Dapper.SimpleSave.Tests {
             };
 
             var cache = new DtoMetadataCache();
-            GetCommands(cache, oldDto, newDto, 2, 2, 0, 2, 0, 2, 0, 2, 0);
+            GetCommands(cache, oldDto, newDto, 2, 2, 0, 2, 0, 2, 0, 2, 0, false);
         }
 
         [Test]
@@ -287,6 +288,7 @@ namespace Dapper.SimpleSave.Tests {
 
         [Test]
         [ExpectedException(typeof(InvalidOperationException))]
+        [Ignore("Replace with test that checks no changes made. Consider validating diff to warn user if ref/special changes are made.")]
         public void update_of_parent_and_non_fk_columns_in_child_with_special_data_in_child_is_invalid()
         {
             var oldDto = new ParentDto
@@ -310,7 +312,7 @@ namespace Dapper.SimpleSave.Tests {
             };
 
             var cache = new DtoMetadataCache();
-            GetCommands(cache, oldDto, newDto, 2, 2, 0, 2, 0, 2, 0, 2, 0);
+            GetCommands(cache, oldDto, newDto, 2, 2, 0, 2, 0, 2, 0, 2, 0, false);
         }
 
         [Test]
@@ -352,11 +354,12 @@ namespace Dapper.SimpleSave.Tests {
             };
 
             var cache = new DtoMetadataCache();
-            GetCommands(cache, null, newDto, 2, 2, 1, 1, 0, 2, 1, 1, 0);
+            GetCommands(cache, null, newDto, 2, 2, 1, 1, 0, 2, 1, 1, 0, false);
         }
 
         [Test]
         [ExpectedException(typeof(InvalidOperationException))]
+        [Ignore("Replace with test that checks no changes made. Consider validating diff to warn user if ref/special changes are made.")]
         public void update_with_reference_data_in_parent_is_invalid() {
             var oldDto = new ParentReferenceDto
             {
@@ -379,11 +382,12 @@ namespace Dapper.SimpleSave.Tests {
             };
 
             var cache = new DtoMetadataCache();
-            GetCommands(cache, oldDto, newDto, 2, 2, 0, 2, 0, 2, 0, 2, 0);
+            GetCommands(cache, oldDto, newDto, 2, 2, 0, 2, 0, 2, 0, 2, 0, false);
         }
 
         [Test]
         [ExpectedException(typeof(InvalidOperationException))]
+        [Ignore("Replace with test that checks no changes made. Consider validating diff to warn user if ref/special changes are made.")]
         public void delete_with_reference_data_in_parent_is_invalid() {
             var oldDto = new ParentReferenceDto
             {
@@ -392,7 +396,7 @@ namespace Dapper.SimpleSave.Tests {
             };
 
             var cache = new DtoMetadataCache();
-            GetCommands(cache, oldDto, null, 2, 2, 0, 0, 2, 2, 0, 0, 2);
+            GetCommands(cache, oldDto, null, 2, 2, 0, 0, 2, 2, 0, 0, 2, false);
         }
 
         [Test]
@@ -403,11 +407,12 @@ namespace Dapper.SimpleSave.Tests {
             };
 
             var cache = new DtoMetadataCache();
-            GetCommands(cache, null, newDto, 2, 2, 1, 1, 0, 2, 1, 1, 0);
+            GetCommands(cache, null, newDto, 2, 2, 1, 1, 0, 2, 1, 1, 0, false);
         }
 
         [Test]
         [ExpectedException(typeof(InvalidOperationException))]
+        [Ignore("Replace with test that checks no changes made. Consider validating diff to warn user if ref/special changes are made.")]
         public void update_with_reference_data_in_parent_and_child_is_invalid() {
             var oldDto = new ParentReferenceDto
             {
@@ -430,11 +435,12 @@ namespace Dapper.SimpleSave.Tests {
             };
 
             var cache = new DtoMetadataCache();
-            GetCommands(cache, oldDto, newDto, 2, 2, 0, 2, 0, 2, 0, 2, 0);
+            GetCommands(cache, oldDto, newDto, 2, 2, 0, 2, 0, 2, 0, 2, 0, false);
         }
 
         [Test]
         [ExpectedException(typeof(InvalidOperationException))]
+        [Ignore("Replace with test that checks no changes made. Consider validating diff to warn user if ref/special changes are made.")]
         public void delete_with_reference_data_in_parent_and_child_is_invalid()
         {
             var oldDto = new ParentReferenceDto
@@ -444,7 +450,7 @@ namespace Dapper.SimpleSave.Tests {
             };
 
             var cache = new DtoMetadataCache();
-            GetCommands(cache, oldDto, null, 2, 2, 0, 0, 2, 2, 0, 0, 2);
+            GetCommands(cache, oldDto, null, 2, 2, 0, 0, 2, 2, 0, 0, 2, false);
         }
 
         [Test]
@@ -456,11 +462,12 @@ namespace Dapper.SimpleSave.Tests {
             };
 
             var cache = new DtoMetadataCache();
-            GetCommands(cache, null, newDto, 2, 2, 2, 0, 0, 2, 2, 0, 0);
+            GetCommands(cache, null, newDto, 2, 2, 2, 0, 0, 2, 2, 0, 0, false);
         }
 
         [Test]
         [ExpectedException(typeof(InvalidOperationException))]
+        [Ignore("Replace with test that checks no changes made. Consider validating diff to warn user if ref/special changes are made.")]
         public void update_with_special_data_in_parent_is_invalid() {
             var oldDto = new ParentSpecialDto
             {
@@ -483,7 +490,7 @@ namespace Dapper.SimpleSave.Tests {
             };
 
             var cache = new DtoMetadataCache();
-            GetCommands(cache, oldDto, newDto, 2, 2, 0, 2, 0, 2, 0, 2, 0);
+            GetCommands(cache, oldDto, newDto, 2, 2, 0, 2, 0, 2, 0, 2, 0, false);
         }
 
         [Test]
@@ -496,7 +503,7 @@ namespace Dapper.SimpleSave.Tests {
             };
 
             var cache = new DtoMetadataCache();
-            GetCommands(cache, oldDto, null, 2, 2, 0, 0, 2, 2, 0, 0, 2);
+            GetCommands(cache, oldDto, null, 2, 2, 0, 0, 2, 2, 0, 0, 2, false);
         }
     }
 }

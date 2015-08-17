@@ -20,6 +20,10 @@
     <Reference Include="log4net">
       <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
       <Private>True</Private>
@@ -102,8 +106,21 @@
     <Compile Include="OneToOneRelationshipFkOnParentCommandGenerationTests.cs" />
     <Compile Include="OneToOneRelationshipFkOnParentScriptGenerationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RealisticDtos\CountryDto.cs" />
+    <Compile Include="RealisticDtos\CurrencyCodeDto.cs" />
+    <Compile Include="RealisticDtos\DepartmentDto.cs" />
+    <Compile Include="RealisticDtos\GroupDto.cs" />
+    <Compile Include="RealisticDtos\PhoneNumberDto.cs" />
+    <Compile Include="RealisticDtos\PhoneNumberTypeEnum.cs" />
+    <Compile Include="RealisticDtos\PositionDto.cs" />
+    <Compile Include="RealisticDtos\RecStatusEnum.cs" />
+    <Compile Include="RealisticDtos\RoleDto.cs" />
+    <Compile Include="RealisticDtos\TeamDto.cs" />
+    <Compile Include="RealisticDtos\UserDto.cs" />
+    <Compile Include="RealisticDtos\UserStatusEnum.cs" />
     <Compile Include="ScriptsAssertions.cs" />
     <Compile Include="SoftDeleteScriptGenerationTests.cs" />
+    <Compile Include="UserDtoTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

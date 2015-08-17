@@ -152,12 +152,5 @@ namespace Dapper.SimpleSave.Tests
             Assert.IsTrue(sql.Contains("INSERT INTO dbo.[Parent]"), "No INSERT on parent.");
             Assert.IsTrue(!sql.Contains("INSERT INTO dbo.OneToOneReferenceChildNoFk"), "Should be no INSERT on child.");
         }
-
-        private MockSimpleSaveLogger CreateMockLogger()
-        {
-            var logger = new MockSimpleSaveLogger();
-            SimpleSaveExtensions.Logger = logger;
-            return logger;
-        }
     }
 }
