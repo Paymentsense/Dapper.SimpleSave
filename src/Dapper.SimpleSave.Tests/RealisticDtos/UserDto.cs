@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 
 namespace Dapper.SimpleSave.Tests.RealisticDtos
 {
@@ -26,8 +27,12 @@ namespace Dapper.SimpleSave.Tests.RealisticDtos
 
         public string Username { get; set; }
 
+        [JsonIgnore]
+        [XmlIgnore]
         public string Password { get; set; }
 
+        [JsonIgnore]
+        [XmlIgnore]
         public string PasswordSalt { get; set; }
 
         [Column("UserStatusKey")]
@@ -97,5 +102,10 @@ namespace Dapper.SimpleSave.Tests.RealisticDtos
         public DateTimeOffset? DeactivatedDate { get; set; }
 
         public bool IsUserCreatedByHr { get; set; }
+
+        public override string ToString()
+        {
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
+        }
     }
 }

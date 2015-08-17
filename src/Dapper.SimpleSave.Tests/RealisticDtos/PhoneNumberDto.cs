@@ -8,7 +8,6 @@ namespace Dapper.SimpleSave.Tests.RealisticDtos
         [PrimaryKey]
         public int? PhoneNumberKey { get; set; }
 
-        //  [PrimaryKey] - TODO: remove me, although this used to be true
         [SimpleSaveIgnore]
         public Guid? PhoneGUID { get; set; }
 

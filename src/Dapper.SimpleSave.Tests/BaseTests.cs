@@ -94,5 +94,13 @@ namespace Dapper.SimpleSave.Tests {
                 }
             }
         }
+
+        protected MockSimpleSaveLogger CreateMockLogger()
+        {
+            var logger = new MockSimpleSaveLogger();
+            SimpleSaveExtensions.Logger = logger;
+            return logger;
+        }
+
     }
 }
