@@ -20,11 +20,15 @@ namespace Dapper.SimpleSave.Tests {
             int expectedCommandCount,
             int expectedInsertCommands,
             int expectedUpdateCommands,
-            int expectedDeleteCommands) {
+            int expectedDeleteCommands,
+            bool assertOnCounts = true) {
             var differ = new Differ(cache);
             var differences = differ.Diff(oldDto, newDto);
 
-            Assert.AreEqual(expectedDifferenceCount, differences.Count(), "Unexpected number of differences.");
+            if (assertOnCounts)
+            {
+                Assert.AreEqual(expectedDifferenceCount, differences.Count(), "Unexpected number of differences.");
+            }
 
             var operationBuilder = new OperationBuilder();
             var operations = operationBuilder.Build(differences);
@@ -32,17 +36,20 @@ namespace Dapper.SimpleSave.Tests {
             var commandBuilder = new CommandBuilder();
             var commands = commandBuilder.Coalesce(operations);
 
-            Assert.AreEqual(expectedOperationCount, operations.Count(), "Unexpected number of operations.");
-            var counts = CountItemsByType(operations);
-            CheckCount(counts, typeof(InsertOperation), expectedInsertOperations);
-            CheckCount(counts, typeof(UpdateOperation), expectedUpdateOperations);
-            CheckCount(counts, typeof(DeleteOperation), expectedDeleteOperations);
+            if (assertOnCounts)
+            {
+                Assert.AreEqual(expectedOperationCount, operations.Count(), "Unexpected number of operations.");
+                var counts = CountItemsByType(operations);
+                CheckCount(counts, typeof (InsertOperation), expectedInsertOperations);
+                CheckCount(counts, typeof (UpdateOperation), expectedUpdateOperations);
+                CheckCount(counts, typeof (DeleteOperation), expectedDeleteOperations);
 
-            Assert.AreEqual(expectedCommandCount, commands.Count(), "Unexpected number of commands.");
-            counts = CountItemsByType(commands);
-            CheckCount(counts, typeof(InsertCommand), expectedInsertCommands);
-            CheckCount(counts, typeof(UpdateCommand), expectedUpdateCommands);
-            CheckCount(counts, typeof(DeleteCommand), expectedDeleteCommands);
+                Assert.AreEqual(expectedCommandCount, commands.Count(), "Unexpected number of commands.");
+                counts = CountItemsByType(commands);
+                CheckCount(counts, typeof (InsertCommand), expectedInsertCommands);
+                CheckCount(counts, typeof (UpdateCommand), expectedUpdateCommands);
+                CheckCount(counts, typeof (DeleteCommand), expectedDeleteCommands);
+            }
 
             var scriptBuilder = new ScriptBuilder(cache);
             var transactionScript = scriptBuilder.Build(commands);
@@ -94,5 +101,13 @@ namespace Dapper.SimpleSave.Tests {
                 }
             }
         }
+
+        protected MockSimpleSaveLogger CreateMockLogger()
+        {
+            var logger = new MockSimpleSaveLogger();
+            SimpleSaveExtensions.Logger = logger;
+            return logger;
+        }
+
     }
 }
