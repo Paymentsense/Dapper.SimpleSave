@@ -120,6 +120,7 @@ SET ", command.TableName));
                 }
                 script.Buffer.Append(string.Format(@"[{0}] = ", operation.ColumnName));
                 bool useKey = false;
+                string fkTargetColumn = null;
 
                 if (null != operation.ValueMetadata)
                 {
@@ -128,7 +129,15 @@ SET ", command.TableName));
                          || operation.OwnerPropertyMetadata.HasAttribute<ManyToOneAttribute>()
                          || operation.OwnerPropertyMetadata.HasAttribute<ReferenceDataAttribute>())))
                     {
-                        useKey = true;
+                        var manyToOne = operation.OwnerPropertyMetadata.GetAttribute<ManyToOneAttribute>();
+                        if (manyToOne != null && manyToOne.ForeignKeyTargetColumnName != null)
+                        {
+                            fkTargetColumn = manyToOne.ForeignKeyTargetColumnName;
+                        }
+                        else
+                        {
+                            useKey = true;
+                        }
                     }
                     else if (operation.ValueMetadata.HasAttribute<ReferenceDataAttribute>())
                     {
@@ -145,6 +154,28 @@ SET ", command.TableName));
                         operation.Value == null
                             ? (object) DBNull.Value
                             : new Func<object>(() => operation.ValueMetadata.GetPrimaryKeyValueAsObject(operation.Value)));
+                }
+                else if (fkTargetColumn != null)
+                {
+
+                    var property = operation.ValueMetadata[fkTargetColumn];
+                    if (property == null)
+                    {
+                        throw new ArgumentException(string.Format(
+                            "Cannot UPDATE foreign key relationship for non existent target column '{0}'"
+                            + " specified from column '{1}' on type '{2}'.",
+                            fkTargetColumn,
+                            operation.OwnerPropertyMetadata.ColumnName,
+                            operation.ValueMetadata.DtoType));
+                    }
+
+                    FormatWithParameter(
+                        script,
+                        "{0}",
+                        ref paramIndex,
+                        operation.Value == null
+                            ? (object) DBNull.Value
+                            : new Func<object>(() => property.GetValue(operation.Value)));
                 }
                 else
                 {
@@ -367,6 +398,30 @@ OUTPUT inserted.[{0}]
             {
                 values.Add(
                     new Func<object>(() => operation.OwnerPrimaryKeyAsObject));
+            }
+            else if (property.HasAttribute<ManyToOneAttribute>() && property.GetAttribute<ManyToOneAttribute>().ForeignKeyTargetColumnName != null)
+            {
+                var propValue = property.GetValue(operation.Value);
+                var propTypeMetadata = _dtoMetadataCache.GetValidatedMetadataFor(property.Prop.PropertyType);
+                if (null != propValue && null != propTypeMetadata)
+                {
+                    var targetName = property.GetAttribute<ManyToOneAttribute>().ForeignKeyTargetColumnName;
+                    var fkTargetProperty = propTypeMetadata[targetName];
+                    if (fkTargetProperty == null)
+                    {
+                        throw new ArgumentException(string.Format(
+                            "Cannot INSERT foreign key value for non existent target column '{0}'"
+                            + " specified from column '{1}'.",
+                            targetName,
+                            property.ColumnName));
+                    }
+
+                    values.Add(new Func<object>(() => fkTargetProperty.GetValue(propValue)));
+                }
+                else
+                {
+                    values.Add(new Func<object>(() => null));
+                }
             }
             else if (property.HasAttribute<ManyToOneAttribute>() || property.HasAttribute<OneToOneAttribute>())
             {

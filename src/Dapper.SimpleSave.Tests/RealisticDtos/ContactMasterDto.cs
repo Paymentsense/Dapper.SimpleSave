@@ -22,10 +22,10 @@ namespace Dapper.SimpleSave.Tests.RealisticDtos
         [ManyToOne, Column("EmailAddressGuid")]
         public EmailAddressMasterDto EmailAddress { get; set; }
 
-        [ManyToOne, Column("MainPhoneGuid")]
+        [ManyToOne("PhoneGUID"), Column("MainPhoneGuid")]
         public PhoneNumberDto MainPhone { get; set; }
 
-        [ManyToOne, Column("MobilePhoneGuid")]
+        [ManyToOne("PhoneGUID"), Column("MobilePhoneGuid")]
         public PhoneNumberDto MobilePhone { get; set; }
 
         public bool IsPrimaryContact { get; set; }

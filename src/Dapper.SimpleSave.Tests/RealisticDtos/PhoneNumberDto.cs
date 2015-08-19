@@ -8,7 +8,6 @@ namespace Dapper.SimpleSave.Tests.RealisticDtos
         [PrimaryKey]
         public int? PhoneNumberKey { get; set; }
 
-        [SimpleSaveIgnore]
         public Guid? PhoneGuid { get; set; }
 
         [ManyToOne]
