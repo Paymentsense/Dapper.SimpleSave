@@ -7,6 +7,8 @@ namespace Dapper.SimpleSave
 {
     public class DtoMetadata : BaseMetadata
     {
+        private IDictionary<string, PropertyMetadata> _propertiesByCaseInsensitiveColumnName = new Dictionary<string, PropertyMetadata>(StringComparer.CurrentCultureIgnoreCase); 
+
         public DtoMetadata(Type type) : base(type)
         {
             DtoType = type;
@@ -35,6 +37,16 @@ namespace Dapper.SimpleSave
         public PropertyMetadata PrimaryKey { get; set; }
 
         public IEnumerable<PropertyMetadata> Properties { get; set; }
+
+        public PropertyMetadata this[string propertyColumnNameCaseInsensitive]
+        {
+            get
+            {
+                PropertyMetadata property;
+                _propertiesByCaseInsensitiveColumnName.TryGetValue(propertyColumnNameCaseInsensitive, out property);
+                return property;
+            }
+        }
 
         public PropertyMetadata GetForeignKeyColumnFor(Type dtoType)
         {
@@ -101,6 +113,7 @@ namespace Dapper.SimpleSave
                 }
 
                 target.Add(propMeta);
+                _propertiesByCaseInsensitiveColumnName[propMeta.ColumnName] = propMeta;
             }
 
             Properties = target;
