@@ -9,7 +9,7 @@ namespace Dapper.SimpleSave.Tests.RealisticDtos
         public int? PhoneNumberKey { get; set; }
 
         [SimpleSaveIgnore]
-        public Guid? PhoneGUID { get; set; }
+        public Guid? PhoneGuid { get; set; }
 
         [ManyToOne]
         [Column("CountryKey")]
