@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Transactions;
 using Castle.Core.Internal;
 using Dapper.SimpleSave.Impl;
 
@@ -148,7 +149,13 @@ namespace Dapper.SimpleSave
                 scripts[pair] = builder.BuildUpdateScripts(pair.Item1, pair.Item2, softDelete);
             }
 
+            Transaction ambient = null;
             if (transaction == null)
+            {
+                ambient = Transaction.Current;
+            }
+
+            if (transaction == null && ambient == null)
             {
                 using (var myTransaction = connection.BeginTransaction())
                 {
