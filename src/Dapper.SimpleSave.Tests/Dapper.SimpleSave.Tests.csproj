@@ -101,12 +101,14 @@
     <Compile Include="ManyToOneRelationshipCommandGenerationTests.cs" />
     <Compile Include="ManyToOneRelationshipScriptGenerationTests.cs" />
     <Compile Include="MockSimpleSaveLogger.cs" />
+    <Compile Include="NonDbAssignedPrimaryKeyTests.cs" />
     <Compile Include="OneToManyRelationshipCommandGenerationTests.cs" />
     <Compile Include="OneToManyRelationshipScriptGenerationTests.cs" />
     <Compile Include="OneToOneRelationshipFkOnChildCommandGenerationTests.cs" />
     <Compile Include="OneToOneRelationshipFkOnParentCommandGenerationTests.cs" />
     <Compile Include="OneToOneRelationshipFkOnParentScriptGenerationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RealisticDtos\AuthorisationFee.cs" />
     <Compile Include="RealisticDtos\ContactMasterDto.cs" />
     <Compile Include="RealisticDtos\CountryDto.cs" />
     <Compile Include="RealisticDtos\CurrencyCodeDto.cs" />
