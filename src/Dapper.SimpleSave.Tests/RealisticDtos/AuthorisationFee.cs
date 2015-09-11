@@ -3,7 +3,7 @@
     [Table("[opp].[AUTHORISATION_FEE_LUT]")]
     public class AuthorisationFee
     {
-        [PrimaryKey(false)]
+        [PrimaryKey(true)]
         public int? FieldItemKey { get; set; }
 
         public decimal Value { get; set; }

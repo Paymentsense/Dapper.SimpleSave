@@ -280,7 +280,7 @@ WHERE [{1}] = ",
                     {
                         if (property.IsPrimaryKey)
                         {
-                            isPkAssignedByRdbms = property.GetAttribute<PrimaryKeyAttribute>().AutoAssignedByRdbms;
+                            isPkAssignedByRdbms = !property.GetAttribute<PrimaryKeyAttribute>().IsUserAssigned;
                             if (isPkAssignedByRdbms)
                             {
                                 var type = property.Prop.PropertyType;
