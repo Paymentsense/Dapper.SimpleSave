@@ -4,15 +4,15 @@ namespace Dapper.SimpleSave
 {
     public class PrimaryKeyAttribute : Attribute
     {
-        public PrimaryKeyAttribute() : this(true)
+        public PrimaryKeyAttribute() : this(false)
         {
         }
 
-        public PrimaryKeyAttribute(bool autoAssignedByRdbms)
+        public PrimaryKeyAttribute(bool isUserAssigned)
         {
-            AutoAssignedByRdbms = autoAssignedByRdbms;
+            IsUserAssigned = isUserAssigned;
         }
 
-        public bool AutoAssignedByRdbms { get; private set; }
+        public bool IsUserAssigned { get; private set; }
     }
 }

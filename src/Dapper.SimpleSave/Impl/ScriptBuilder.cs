@@ -41,17 +41,13 @@ namespace Dapper.SimpleSave.Impl {
                 }
                 else if (command is InsertCommand)
                 {
-                    var hasNumericPk = AppendInsertCommand(script, command as InsertCommand, ref paramIndex);
+                    var isPkAssignedByRdbms = AppendInsertCommand(script, command as InsertCommand, ref paramIndex);
 
-                    if (hasNumericPk)
+                    if (isPkAssignedByRdbms)    //  Don't need to terminate batch with user assigned PK
                     {
-                        script.Buffer.Append(@"
-SELECT SCOPE_IDENTITY();
-");
+                        SimpleSaveExtensions.Logger.LogBuilt(script);
+                        script = null;
                     }
-
-                    SimpleSaveExtensions.Logger.LogBuilt(script);
-                    script = null;
                 }
                 else if (command is DeleteCommand)
                 {
@@ -242,6 +238,7 @@ WHERE [{1}] = ",
 
         private bool AppendInsertCommand(Script script, InsertCommand command, ref int paramIndex)
         {
+            bool isPkAssignedByRdbms = true;
             PropertyMetadata guidPKColumn = null;
             var operation = command.Operation;
             if (operation.ValueMetadata != null) {
@@ -283,27 +280,31 @@ WHERE [{1}] = ",
                     {
                         if (property.IsPrimaryKey)
                         {
-                            var type = property.Prop.PropertyType;
-                            if (type != typeof (int)
-                                && type != typeof (int?)
-                                && type != typeof (long)
-                                && type != typeof (long?))
+                            isPkAssignedByRdbms = !property.GetAttribute<PrimaryKeyAttribute>().IsUserAssigned;
+                            if (isPkAssignedByRdbms)
                             {
-                                if (property.Prop.PropertyType == typeof (Guid?)
-                                    || property.Prop.PropertyType == typeof (Guid))
+                                var type = property.Prop.PropertyType;
+                                if (type != typeof (int)
+                                    && type != typeof (int?)
+                                    && type != typeof (long)
+                                    && type != typeof (long?))
                                 {
-                                    guidPKColumn = property;
+                                    if (property.Prop.PropertyType == typeof (Guid?)
+                                        || property.Prop.PropertyType == typeof (Guid))
+                                    {
+                                        guidPKColumn = property;
+                                    }
+                                    else
+                                    {
+                                        throw new ArgumentException(string.Format(
+                                            "Unsupported primary key type {0} on entity {1}. Primary keys must be nullable ints, longs or GUIDs.",
+                                            type.FullName,
+                                            operation.ValueMetadata.DtoType.FullName));
+                                    }
                                 }
-                                else
-                                {
-                                    throw new ArgumentException(string.Format(
-                                        "Unsupported primary key type {0} on entity {1}. Primary keys must be nullable ints, longs or GUIDs.",
-                                        type.FullName,
-                                        operation.ValueMetadata.DtoType.FullName));
-                                }
-                            }
 
-                            continue;
+                                continue;
+                            }
                         }
 
                         var getter = property.Prop.GetGetMethod();
@@ -327,7 +328,7 @@ WHERE [{1}] = ",
                         operation.ValueMetadata.TableName,
                         colBuff));
 
-                    if (guidPKColumn != null)
+                    if (guidPKColumn != null && isPkAssignedByRdbms)
                     {
                         script.Buffer.Append(string.Format(@"
 OUTPUT inserted.[{0}]
@@ -355,7 +356,14 @@ OUTPUT inserted.[{0}]
                     "command");
             }
 
-            return guidPKColumn == null;
+            if (guidPKColumn == null && isPkAssignedByRdbms)
+            {
+                script.Buffer.Append(@"
+SELECT SCOPE_IDENTITY();
+");
+            }
+
+            return isPkAssignedByRdbms;
         }
 
         private static bool IsOneToOneRelationshipWithFkOnParent(BaseInsertDeleteOperation operation)
