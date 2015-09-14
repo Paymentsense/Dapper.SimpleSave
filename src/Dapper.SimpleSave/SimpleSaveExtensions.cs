@@ -10,7 +10,7 @@ namespace Dapper.SimpleSave
 {
     public static class SimpleSaveExtensions
     {
-        private static readonly DtoMetadataCache _dtoMetadataCache = new DtoMetadataCache();
+        public static readonly DtoMetadataCache MetadataCache = new DtoMetadataCache();
 
         private static ISimpleSaveLogger _logger = new BasicSimpleSaveLogger();
 
@@ -142,7 +142,7 @@ namespace Dapper.SimpleSave
             bool softDelete = false,
             IDbTransaction transaction = null)
         {
-            var builder = new TransactionBuilder(_dtoMetadataCache);
+            var builder = new TransactionBuilder(MetadataCache);
             IDictionary<Tuple<T, T>, IList<Script>> scripts = new Dictionary<Tuple<T, T>, IList<Script>>();
             foreach (var pair in oldAndNewObjects)
             {
@@ -299,7 +299,7 @@ namespace Dapper.SimpleSave
             PropertyMetadata softDeletePropertyMetadata = null;
             if (softDelete)
             {
-                var metadata = _dtoMetadataCache.GetMetadataFor<T>();
+                var metadata = MetadataCache.GetMetadataFor<T>();
                 if (newRootObject == null && oldRootObject != null)
                 {
                     softDeletePropertyMetadata = SoftDeleteValidator.GetValidatedSoftDeleteProperty(metadata);

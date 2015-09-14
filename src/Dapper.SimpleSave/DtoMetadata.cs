@@ -18,7 +18,7 @@ namespace Dapper.SimpleSave
 
         public Type DtoType { get; set; }
 
-        public string TableName { get; set; }
+        public string TableName { get; private set; }
 
         public bool IsReferenceData
         {
