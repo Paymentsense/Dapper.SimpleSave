@@ -10,7 +10,7 @@ namespace Dapper.SimpleSave
 {
     public static class SimpleSaveExtensions
     {
-        private static readonly DtoMetadataCache _dtoMetadataCache = new DtoMetadataCache();
+        public static readonly DtoMetadataCache _dtoMetadataCache = new DtoMetadataCache();
 
         private static ISimpleSaveLogger _logger = new BasicSimpleSaveLogger();
 
