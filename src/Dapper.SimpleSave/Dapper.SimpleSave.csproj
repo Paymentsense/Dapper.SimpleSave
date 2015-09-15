@@ -61,6 +61,7 @@
     <Compile Include="Impl\InsertOperation.cs" />
     <Compile Include="Impl\BasicSimpleSaveLogger.cs" />
     <Compile Include="Impl\ReverseUpdateHelper.cs" />
+    <Compile Include="Impl\ScriptTrackingSimpleSaveLogger.cs" />
     <Compile Include="IScript.cs" />
     <Compile Include="Impl\MemberInfoExtensions.cs" />
     <Compile Include="Impl\OperationBuilder.cs" />

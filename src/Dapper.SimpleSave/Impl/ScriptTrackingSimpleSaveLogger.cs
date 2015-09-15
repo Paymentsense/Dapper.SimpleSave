@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
-using Dapper.SimpleSave.Impl;
 
-namespace Dapper.SimpleSave.Tests
+namespace Dapper.SimpleSave.Impl
 {
-    public class MockSimpleSaveLogger : BasicSimpleSaveLogger
+    public class ScriptTrackingSimpleSaveLogger : BasicSimpleSaveLogger
     {
         private IList<IScript> _scripts = new List<IScript>();
 
