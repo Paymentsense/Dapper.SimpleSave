@@ -144,7 +144,7 @@ namespace Dapper.SimpleSave.Impl
                 return;
             }
 
-            foreach (var prop in metadata.Properties)
+            foreach (var prop in metadata.WriteableProperties)
             {
                 if (metadata.IsReferenceData && !prop.HasAttribute<ForeignKeyReferenceAttribute>())
                 {

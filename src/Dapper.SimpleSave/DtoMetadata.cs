@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Reflection;
 using Dapper.SimpleSave.Impl;
 
@@ -7,7 +8,7 @@ namespace Dapper.SimpleSave
 {
     public class DtoMetadata : BaseMetadata
     {
-        private IDictionary<string, PropertyMetadata> _propertiesByCaseInsensitiveColumnName = new Dictionary<string, PropertyMetadata>(StringComparer.CurrentCultureIgnoreCase); 
+        private IDictionary<string, PropertyMetadata> _propertiesByCaseInsensitiveColumnName = new Dictionary<string, PropertyMetadata>(StringComparer.CurrentCultureIgnoreCase);
 
         public DtoMetadata(Type type) : base(type)
         {
@@ -36,7 +37,9 @@ namespace Dapper.SimpleSave
 
         public PropertyMetadata PrimaryKey { get; set; }
 
-        public IEnumerable<PropertyMetadata> Properties { get; set; }
+        public IEnumerable<PropertyMetadata> WriteableProperties { get; set; }
+
+        public IEnumerable<PropertyMetadata> AllProperties { get; set; } 
 
         public PropertyMetadata this[string propertyColumnNameCaseInsensitive]
         {
@@ -50,7 +53,7 @@ namespace Dapper.SimpleSave
 
         public PropertyMetadata GetForeignKeyColumnFor(Type dtoType)
         {
-            foreach (var property in Properties)
+            foreach (var property in WriteableProperties)
             {
                 var fk = property.GetAttribute<ForeignKeyReferenceAttribute>();
                 if (null != fk && fk.ReferencedDto == dtoType)
@@ -92,11 +95,15 @@ namespace Dapper.SimpleSave
 
         private void InitProperties()
         {
-            var target = new List<PropertyMetadata>();
+            var writeable = new List<PropertyMetadata>();
+            var all = new List<PropertyMetadata>();
             foreach (var prop in DtoType.GetProperties(
                 BindingFlags.FlattenHierarchy | BindingFlags.Public | BindingFlags.Instance))
             {
                 var propMeta = new PropertyMetadata(prop);
+                all.Add(propMeta);
+                _propertiesByCaseInsensitiveColumnName[propMeta.ColumnName] = propMeta;
+
                 if (!propMeta.IsSaveable)
                 {
                     continue;
@@ -112,11 +119,11 @@ namespace Dapper.SimpleSave
                     SoftDeleteProperty = propMeta;
                 }
 
-                target.Add(propMeta);
-                _propertiesByCaseInsensitiveColumnName[propMeta.ColumnName] = propMeta;
+                writeable.Add(propMeta);
             }
 
-            Properties = target;
+            WriteableProperties = writeable;
+            AllProperties = all;
         }
 
         private void InitTableName()
