@@ -276,7 +276,7 @@ WHERE [{1}] = ",
                     var values = new ArrayList();
                     var index = 0;
 
-                    foreach (var property in operation.ValueMetadata.Properties)
+                    foreach (var property in operation.ValueMetadata.WriteableProperties)
                     {
                         if (property.IsPrimaryKey)
                         {

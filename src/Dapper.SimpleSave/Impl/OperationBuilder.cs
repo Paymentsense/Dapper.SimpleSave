@@ -207,7 +207,7 @@ namespace Dapper.SimpleSave.Impl
 
         private bool HasAnyOneToOneChildrenWithFKOnParent(DeleteOperation deleteOperation)
         {
-            foreach (var property in deleteOperation.ValueMetadata.Properties)
+            foreach (var property in deleteOperation.ValueMetadata.WriteableProperties)
             {
                 if (property.IsOneToOneRelationship && property.HasAttribute<ForeignKeyReferenceAttribute>())
                 {
