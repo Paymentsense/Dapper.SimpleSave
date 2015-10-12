@@ -317,19 +317,52 @@ namespace Dapper.SimpleSave.Impl
             DifferenceType differenceType,
             IList<Difference> differences)
         {
+            ReferenceDataAttribute refData = null;
+            if (itemTypeMeta.HasAttribute<ReferenceDataAttribute>())
+            {
+                refData = itemTypeMeta.GetAttribute<ReferenceDataAttribute>();
+            }
+            else if (prop.HasAttribute<ReferenceDataAttribute>())
+            {
+                refData = prop.GetAttribute<ReferenceDataAttribute>();
+            }
+
             var removed = FindRemovedItems(items1, items2);
 
-            Action<object> addDifference = item => differences.Add(new Difference
+            Action<object> addDifference = item =>
             {
-                OldOwner = oldOwner,
-                NewOwner = newOwner,
-                DifferenceType = differenceType,
-                OwnerPropertyMetadata = prop,
-                OwnerMetadata = metadata,
-                ValueMetadata = itemTypeMeta,
-                NewValue = DifferenceType.Insertion == differenceType ? item : null,
-                OldValue = DifferenceType.Deletion == differenceType ? item : null
-            });
+                if (refData == null && differenceType == DifferenceType.Deletion)
+                {
+                    DiffProperties(
+                       itemTypeMeta,
+                       item,
+                       null,
+                       differences,
+                       prop);
+                }
+
+                differences.Add(new Difference
+                {
+                    OldOwner = oldOwner,
+                    NewOwner = newOwner,
+                    DifferenceType = differenceType,
+                    OwnerPropertyMetadata = prop,
+                    OwnerMetadata = metadata,
+                    ValueMetadata = itemTypeMeta,
+                    NewValue = DifferenceType.Insertion == differenceType ? item : null,
+                    OldValue = DifferenceType.Deletion == differenceType ? item : null
+                });
+
+                if (refData == null && differenceType == DifferenceType.Insertion)
+                {
+                   DiffProperties(
+                       itemTypeMeta,
+                       null,
+                       item,
+                       differences,
+                       prop);
+                }
+            };
 
             foreach (var item in removed.ItemsById.Values)
             {

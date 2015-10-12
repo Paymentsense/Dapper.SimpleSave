@@ -265,7 +265,7 @@ WHERE [{1}] = ",
                     }
                 else if (operation.OwnerPropertyMetadata == null
                     || ((operation.OwnerPropertyMetadata.HasAttribute<OneToManyAttribute>()
-                        || IsOneToOneRelationshipWithFkOnParent(operation))
+                        || operation.OwnerPropertyMetadata.HasAttribute<OneToOneAttribute>())//IsOneToOneRelationshipWithFkOnParent(operation)) //  Because 1:1 with FK on child is like 1:N, and we already handle 1:1 with FK on parent anyway
                         && !operation.ValueMetadata.HasAttribute<ReferenceDataAttribute>()
                         && !operation.OwnerPropertyMetadata.HasAttribute<ReferenceDataAttribute>())) 
                 {
@@ -366,6 +366,8 @@ SELECT SCOPE_IDENTITY();
             return isPkAssignedByRdbms;
         }
 
+        //  TODO: I'm wondering whether to reinstate this check purely for the purpose of validation
+        //  and similarly to add one for the situation where the FK column is on the child table.
         private static bool IsOneToOneRelationshipWithFkOnParent(BaseInsertDeleteOperation operation)
         {
             if (operation.OwnerPropertyMetadata.HasAttribute<OneToOneAttribute>()
