@@ -20,7 +20,7 @@ namespace Dapper.SimpleSave.Tests
         {
             var dtos = new List<ParentDto>() {new ParentDto {ParentKey = 1}, new ParentDto {ParentKey = 2}};
 
-            var logger = new MockSimpleSaveLogger();
+            var logger = new ScriptTrackingSimpleSaveLogger();
             SimpleSaveExtensions.Logger = logger;
 
             try
@@ -60,7 +60,7 @@ namespace Dapper.SimpleSave.Tests
                 Tuple.Create(new ParentDto { ParentKey = 2, IsActive = true }, new ParentDto { ParentKey = 2 , IsActive = false})
             };
             
-            var logger = new MockSimpleSaveLogger();
+            var logger = new ScriptTrackingSimpleSaveLogger();
             SimpleSaveExtensions.Logger = logger;
 
             try

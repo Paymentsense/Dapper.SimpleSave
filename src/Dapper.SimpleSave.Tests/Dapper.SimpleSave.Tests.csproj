@@ -100,7 +100,6 @@
     <Compile Include="ManyToManyRelationshipCommandGenerationTests.cs" />
     <Compile Include="ManyToOneRelationshipCommandGenerationTests.cs" />
     <Compile Include="ManyToOneRelationshipScriptGenerationTests.cs" />
-    <Compile Include="MockSimpleSaveLogger.cs" />
     <Compile Include="NonDbAssignedPrimaryKeyTests.cs" />
     <Compile Include="OneToManyRelationshipCommandGenerationTests.cs" />
     <Compile Include="OneToManyRelationshipScriptGenerationTests.cs" />

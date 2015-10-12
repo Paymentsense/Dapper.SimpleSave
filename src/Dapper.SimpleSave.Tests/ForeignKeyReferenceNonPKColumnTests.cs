@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using Dapper.SimpleSave.Impl;
 using Dapper.SimpleSave.Tests.RealisticDtos;
 using NUnit.Framework;
 
@@ -16,7 +17,7 @@ namespace Dapper.SimpleSave.Tests
         [Test]
         public void insert_contact_referencing_phone_numbers_sets_guid_values_not_ints_on_fk_columns()
         {
-            var logger = new MockSimpleSaveLogger();
+            var logger = new ScriptTrackingSimpleSaveLogger();
             SimpleSaveExtensions.Logger = logger;
 
             try

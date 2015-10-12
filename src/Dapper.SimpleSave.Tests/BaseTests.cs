@@ -102,9 +102,9 @@ namespace Dapper.SimpleSave.Tests {
             }
         }
 
-        protected MockSimpleSaveLogger CreateMockLogger()
+        protected ScriptTrackingSimpleSaveLogger CreateMockLogger()
         {
-            var logger = new MockSimpleSaveLogger();
+            var logger = new ScriptTrackingSimpleSaveLogger();
             SimpleSaveExtensions.Logger = logger;
             return logger;
         }
