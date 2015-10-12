@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using log4net;
+﻿using log4net;
 using Newtonsoft.Json;
 
 namespace Dapper.SimpleSave.Impl
@@ -18,7 +13,7 @@ namespace Dapper.SimpleSave.Impl
             {
                 message,
                 sql = script.Buffer.ToString(),
-                parameters = script.Parameters
+                parameters = JsonConvert.SerializeObject(script.Parameters)
             };
         }
 
