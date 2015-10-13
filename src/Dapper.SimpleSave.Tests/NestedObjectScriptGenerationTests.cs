@@ -42,6 +42,7 @@ namespace Dapper.SimpleSave.Tests
                             }
                         },
                         LocationReference = "Our Pimpin' HQ",
+                        TradingAddress = new FullAddressDto()   //  We want this one blank.
                     }
                 }
             };
@@ -69,12 +70,13 @@ namespace Dapper.SimpleSave.Tests
             }
 
             var scripts = logger.Scripts;
-            Assert.AreEqual(4, scripts.Count, "Unexpected number of scripts.");
+            Assert.AreEqual(5, scripts.Count, "Unexpected number of scripts.");
 
             Assert.IsTrue(scripts[0].Buffer.ToString().Contains("INSERT INTO [app].[APPLICATION_MST]"));
             Assert.IsTrue(scripts[1].Buffer.ToString().Contains("INSERT INTO [app].[LEGAL_INFO_MST]"));
             Assert.IsTrue(scripts[2].Buffer.ToString().Contains("INSERT INTO [app].[LOCATION_MST]"));
             Assert.IsTrue(scripts[3].Buffer.ToString().Contains("INSERT INTO [opp].[OPPORTUNITY_MST]"));
+            Assert.IsTrue(scripts[4].Buffer.ToString().Contains("INSERT INTO [gen].[ADDRESS_MST]"));
         }
     }
 }

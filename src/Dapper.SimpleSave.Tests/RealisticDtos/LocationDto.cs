@@ -26,5 +26,10 @@ namespace Dapper.SimpleSave.Tests.RealisticDtos
         public string BusinessName { get; set; }
 
         public string LocationReference { get; set; }
+
+        [Column("TradingAddressGUID")]
+        [OneToOne]
+        //[ForeignKeyReference(typeof(AddressDto))]
+        public FullAddressDto TradingAddress { get; set; }
     }
 }
