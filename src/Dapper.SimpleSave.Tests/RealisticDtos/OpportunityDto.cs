@@ -23,5 +23,11 @@ namespace Dapper.SimpleSave.Tests.RealisticDtos
         public Guid? PartnerGuid { get; set; }
 
         public string AcquirerLocationMID { get; set; }
+
+        [OneToOne]
+        [Column("CurrentOfferGuid")]
+        [SimpleSaveIgnore]
+        public OfferDto CurrentOffer { get; set; }
+
     }
 }

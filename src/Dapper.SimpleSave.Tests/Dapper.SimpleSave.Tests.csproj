@@ -119,6 +119,8 @@
     <Compile Include="RealisticDtos\CurrencyCodeDto.cs" />
     <Compile Include="RealisticDtos\DepartmentDto.cs" />
     <Compile Include="RealisticDtos\EmailAddressMasterDto.cs" />
+    <Compile Include="RealisticDtos\EquipmentOfferTrnDao.cs" />
+    <Compile Include="RealisticDtos\EquipmentOptionTrnDao.cs" />
     <Compile Include="RealisticDtos\FullAddressDto.cs" />
     <Compile Include="RealisticDtos\GenAddressTypesEnum.cs" />
     <Compile Include="RealisticDtos\GenCountryEnum.cs" />
@@ -126,6 +128,7 @@
     <Compile Include="RealisticDtos\LegalInfoDto.cs" />
     <Compile Include="RealisticDtos\LocationDto.cs" />
     <Compile Include="RealisticDtos\MerchantLegalInfoDto.cs" />
+    <Compile Include="RealisticDtos\OfferDto.cs" />
     <Compile Include="RealisticDtos\OpportunityDto.cs" />
     <Compile Include="RealisticDtos\PhoneNumberDto.cs" />
     <Compile Include="RealisticDtos\PhoneNumberTypeEnum.cs" />

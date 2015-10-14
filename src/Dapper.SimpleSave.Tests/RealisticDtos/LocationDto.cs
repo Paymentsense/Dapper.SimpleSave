@@ -29,6 +29,7 @@ namespace Dapper.SimpleSave.Tests.RealisticDtos
 
         [Column("TradingAddressGUID")]
         [OneToOne]
+        [ForeignKeyReference(typeof(FullAddressDto))]
         //[ForeignKeyReference(typeof(AddressDto))]
         public FullAddressDto TradingAddress { get; set; }
     }
