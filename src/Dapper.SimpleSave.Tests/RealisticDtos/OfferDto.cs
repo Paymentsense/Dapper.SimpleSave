@@ -17,10 +17,18 @@ namespace Dapper.SimpleSave.Tests.RealisticDtos
         [PrimaryKey]
         public Guid? OfferGuid { get; set; }
 
+        [ManyToOne]
+        [Column("GatewayOfferGuid")]
+        //[ForeignKeyReference(typeof(GatewayOfferDto))]
+        public GatewayOfferDto GatewayOffer { get; set; }
+
         [ForeignKeyReference(typeof(OpportunityDto))]
         public Guid? OpportunityGuid { get; set; }
 
         public string OfferReference { get; set; }
+
+        [OneToOne("OfferGuid")]
+        public AcquiringOfferTrnDao AcquiringOffer { get; set; }
 
         [OneToMany]
         public IList<EquipmentOfferTrnDao> Equipment { get; set; }
