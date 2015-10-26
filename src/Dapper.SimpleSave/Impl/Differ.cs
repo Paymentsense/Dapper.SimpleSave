@@ -328,12 +328,16 @@ namespace Dapper.SimpleSave.Impl
             }
 
             var manyToMany = prop.GetAttribute<ManyToManyAttribute>();
+            var manyToOne = prop.GetAttribute<ManyToOneAttribute>();
 
             var removed = FindRemovedItems(items1, items2);
 
             Action<object> addDifference = item =>
             {
-                if (refData == null && manyToMany == null && differenceType == DifferenceType.Deletion)
+                if (refData == null
+                    && manyToMany == null
+                    && manyToOne == null
+                    && differenceType == DifferenceType.Deletion)
                 {
                     DiffProperties(
                        itemTypeMeta,
@@ -356,7 +360,7 @@ namespace Dapper.SimpleSave.Impl
                 });
 
                 if (refData == null
-                    && (manyToMany == null || itemTypeMeta.GetPrimaryKeyValueAsObject(item) == null)
+                    && ((manyToMany == null && manyToOne == null) || itemTypeMeta.GetPrimaryKeyValueAsObject(item) == null)
                     && differenceType == DifferenceType.Insertion)
                 {
                    DiffProperties(
