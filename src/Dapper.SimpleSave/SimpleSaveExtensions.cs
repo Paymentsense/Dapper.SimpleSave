@@ -143,7 +143,7 @@ namespace Dapper.SimpleSave
             IDbTransaction transaction = null)
         {
             var builder = new TransactionBuilder(MetadataCache);
-            IDictionary<Tuple<T, T>, IList<Script>> scripts = new Dictionary<Tuple<T, T>, IList<Script>>();
+            IDictionary<Tuple<T, T>, IList<IScript>> scripts = new Dictionary<Tuple<T, T>, IList<IScript>>();
             foreach (var pair in oldAndNewObjects)
             {
                 scripts[pair] = builder.BuildUpdateScripts(pair.Item1, pair.Item2, softDelete);
@@ -216,7 +216,7 @@ namespace Dapper.SimpleSave
         private static void ExecuteScriptsForTuples<T>(
             IDbConnection connection,
             IEnumerable<Tuple<T, T>> oldAndNewObjects,
-            IDictionary<Tuple<T, T>, IList<Script>> scripts,
+            IDictionary<Tuple<T, T>, IList<IScript>> scripts,
             bool softDelete,
             IDbTransaction transaction)
         {
@@ -234,7 +234,7 @@ namespace Dapper.SimpleSave
 
         private static void ExecuteScripts<T>(
             IDbConnection connection,
-            IList<Script> scripts,
+            IList<IScript> scripts,
             T oldRootObject,
             T newRootObject,
             bool softDelete,
@@ -262,7 +262,7 @@ namespace Dapper.SimpleSave
             T newRootObject,
             bool softDelete,
             IDbTransaction transaction,
-            Script script)
+            IScript script)
         {
             _logger.LogPreExecution(script);
             PropertyMetadata softDeletePropertyMetadata = GetMarkerPropertyMetadataIfSoftDeleting(
@@ -329,7 +329,7 @@ namespace Dapper.SimpleSave
         }
 
         private static void SetPrimaryKeyForInsertedRowOnCorrespondingObject(
-            Script script,
+            IScript script,
             object insertedPk)
         {
             var metadata = script.InsertedValueMetadata;
@@ -354,7 +354,7 @@ namespace Dapper.SimpleSave
             }
         }
 
-        private static void ResolvePrimaryKeyValues<T>(Script script)
+        private static void ResolvePrimaryKeyValues<T>(IScript script)
         {
             // ToArray() dodges exception due to concurrent modification
             foreach (string key in script.Parameters.Keys.ToArray())

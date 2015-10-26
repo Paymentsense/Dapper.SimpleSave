@@ -7,7 +7,16 @@ namespace Dapper.SimpleSave.Impl
     {
         private static readonly ILog Logger = LogManager.GetLogger(typeof(BasicSimpleSaveLogger));
 
-        private object BuildMessage(IScript script, string message)
+        private object BuildInfoMessage(IScript script, string message)
+        {
+            return new
+            {
+                message,
+                sql = script.Buffer.ToString(),
+            };
+        }
+
+        private object BuildDebugMessage(IScript script, string message)
         {
             return new
             {
@@ -23,24 +32,30 @@ namespace Dapper.SimpleSave.Impl
         {
             if (Logger.IsDebugEnabled)
             {
-                Logger.Debug(BuildMessage(script, "Built script"));
+                Logger.Debug(BuildDebugMessage(script, "Built script"));
+            }
+        }
+
+        private void Log(IScript script, string message)
+        {
+            if (Logger.IsDebugEnabled)
+            {
+                Logger.Debug(BuildDebugMessage(script, message));
+            }
+            else if (Logger.IsInfoEnabled)
+            {
+                Logger.Info(BuildInfoMessage(script, message));
             }
         }
 
         public virtual void LogPreExecution(IScript script)
         {
-            if (Logger.IsInfoEnabled)
-            {
-                Logger.Info(BuildMessage(script, "Executing script"));
-            }
+            Log(script, "Executing script");
         }
 
         public virtual void LogPostExecution(IScript script)
         {
-            if (Logger.IsInfoEnabled)
-            {
-                Logger.Info(BuildMessage(script, "Executed script"));
-            }
+            Log(script, "Executed script");
         }
     }
 }

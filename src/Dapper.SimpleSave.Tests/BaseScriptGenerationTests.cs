@@ -6,7 +6,7 @@ namespace Dapper.SimpleSave.Tests
 {
     public abstract class BaseScriptGenerationTests
     {
-        protected IList<Script> Generate<T>(T oldDto, T newDto, int expectedScriptCount)
+        protected IList<IScript> Generate<T>(T oldDto, T newDto, int expectedScriptCount)
         {
             var cache = new DtoMetadataCache();
             var builder = new TransactionBuilder(cache);

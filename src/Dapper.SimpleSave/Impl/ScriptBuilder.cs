@@ -16,14 +16,14 @@ namespace Dapper.SimpleSave.Impl {
             _dtoMetadataCache = dtoMetadataCache;
         }
 
-        public IList<Script> Build(IEnumerable<BaseCommand> commands)
+        public IList<IScript> Build(IEnumerable<BaseCommand> commands)
         {
-            var scripts = new List<Script>();
+            var scripts = new List<IScript>();
             BuildInternal(commands, scripts);
             return scripts;
         }
 
-        public void BuildInternal(IEnumerable<BaseCommand> commands, IList<Script> scripts)
+        public void BuildInternal(IEnumerable<BaseCommand> commands, IList<IScript> scripts)
         {
             int paramIndex = 0;
             Script script = null;

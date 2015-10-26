@@ -81,7 +81,7 @@ namespace Dapper.SimpleSave.Tests {
             return results;
         }
 
-        protected void CheckNoReferenceTypesInParameters(IList<Script> transactionScript) {
+        protected void CheckNoReferenceTypesInParameters(IList<IScript> transactionScript) {
             foreach (var script in transactionScript) {
                 foreach (var name in script.Parameters.Keys) {
                     var value = script.Parameters [name];

@@ -40,6 +40,8 @@
   <ItemGroup>
     <Compile Include="BaseScriptGenerationTests.cs" />
     <Compile Include="BaseTests.cs" />
+    <Compile Include="RealisticDtos\CampaignDto.cs" />
+    <Compile Include="RealisticDtos\TeleAppointerDto.cs" />
     <Compile Include="TestScripts\CollectionScriptGenerationTests.cs" />
     <Compile Include="TestScripts\ContextualReferenceDataTests.cs" />
     <Compile Include="Dto\BaseChildDto.cs" />
@@ -100,6 +102,7 @@
     <Compile Include="TestCommands\GuidOneToOneRelationshipFkOnParentCommandGenerationTests.cs" />
     <Compile Include="TestCommands\ManyToManyRelationshipCommandGenerationTests.cs" />
     <Compile Include="TestCommands\ManyToOneRelationshipCommandGenerationTests.cs" />
+    <Compile Include="TestScripts\ManyToManyScriptGenerationTests.cs" />
     <Compile Include="TestScripts\ManyToOneRelationshipScriptGenerationTests.cs" />
     <Compile Include="MockSimpleSaveLogger.cs" />
     <Compile Include="TestScripts\NestedObjectScriptGenerationTests.cs" />
