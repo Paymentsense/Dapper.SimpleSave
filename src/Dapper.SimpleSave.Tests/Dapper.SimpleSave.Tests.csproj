@@ -40,8 +40,8 @@
   <ItemGroup>
     <Compile Include="BaseScriptGenerationTests.cs" />
     <Compile Include="BaseTests.cs" />
-    <Compile Include="CollectionScriptGenerationTests.cs" />
-    <Compile Include="ContextualReferenceDataTests.cs" />
+    <Compile Include="TestScripts\CollectionScriptGenerationTests.cs" />
+    <Compile Include="TestScripts\ContextualReferenceDataTests.cs" />
     <Compile Include="Dto\BaseChildDto.cs" />
     <Compile Include="Dto\BaseContextualOneToOneChildDtoWithFk.cs" />
     <Compile Include="Dto\BaseManyToManyChildDto.cs" />
@@ -68,7 +68,7 @@
     <Compile Include="Dto\ParentDto.cs" />
     <Compile Include="Dto\ParentReferenceDto.cs" />
     <Compile Include="Dto\ParentSpecialDto.cs" />
-    <Compile Include="ForeignKeyReferenceNonPKColumnTests.cs" />
+    <Compile Include="TestScripts\ForeignKeyReferenceNonPKColumnTests.cs" />
     <Compile Include="GuidDtos\GuidBaseChildDto.cs" />
     <Compile Include="GuidDtos\GuidBaseManyToManyChildDto.cs" />
     <Compile Include="GuidDtos\GuidBaseOneToManyChildDto.cs" />
@@ -92,23 +92,23 @@
     <Compile Include="GuidDtos\GuidParentDto.cs" />
     <Compile Include="GuidDtos\GuidParentReferenceDto.cs" />
     <Compile Include="GuidDtos\GuidParentSpecialDto.cs" />
-    <Compile Include="GuidManyToManyRelationshipCommandGenerationTests.cs" />
-    <Compile Include="GuidManyToOneRelationshipCommandGenerationTests.cs" />
-    <Compile Include="GuidOneToManyRelationshipCommandGenerationTests.cs" />
-    <Compile Include="GuidOneToManyRelationshipScriptGenerationTests.cs" />
-    <Compile Include="GuidOneToOneRelationshipFkOnChildCommandGenerationTests.cs" />
-    <Compile Include="GuidOneToOneRelationshipFkOnParentCommandGenerationTests.cs" />
-    <Compile Include="ManyToManyRelationshipCommandGenerationTests.cs" />
-    <Compile Include="ManyToOneRelationshipCommandGenerationTests.cs" />
-    <Compile Include="ManyToOneRelationshipScriptGenerationTests.cs" />
+    <Compile Include="TestCommands\GuidManyToManyRelationshipCommandGenerationTests.cs" />
+    <Compile Include="TestCommands\GuidManyToOneRelationshipCommandGenerationTests.cs" />
+    <Compile Include="TestCommands\GuidOneToManyRelationshipCommandGenerationTests.cs" />
+    <Compile Include="TestScripts\GuidOneToManyRelationshipScriptGenerationTests.cs" />
+    <Compile Include="TestCommands\GuidOneToOneRelationshipFkOnChildCommandGenerationTests.cs" />
+    <Compile Include="TestCommands\GuidOneToOneRelationshipFkOnParentCommandGenerationTests.cs" />
+    <Compile Include="TestCommands\ManyToManyRelationshipCommandGenerationTests.cs" />
+    <Compile Include="TestCommands\ManyToOneRelationshipCommandGenerationTests.cs" />
+    <Compile Include="TestScripts\ManyToOneRelationshipScriptGenerationTests.cs" />
     <Compile Include="MockSimpleSaveLogger.cs" />
-    <Compile Include="NestedObjectScriptGenerationTests.cs" />
-    <Compile Include="NonDbAssignedPrimaryKeyTests.cs" />
-    <Compile Include="OneToManyRelationshipCommandGenerationTests.cs" />
-    <Compile Include="OneToManyRelationshipScriptGenerationTests.cs" />
-    <Compile Include="OneToOneRelationshipFkOnChildCommandGenerationTests.cs" />
-    <Compile Include="OneToOneRelationshipFkOnParentCommandGenerationTests.cs" />
-    <Compile Include="OneToOneRelationshipFkOnParentScriptGenerationTests.cs" />
+    <Compile Include="TestScripts\NestedObjectScriptGenerationTests.cs" />
+    <Compile Include="TestScripts\NonDbAssignedPrimaryKeyTests.cs" />
+    <Compile Include="TestCommands\OneToManyRelationshipCommandGenerationTests.cs" />
+    <Compile Include="TestScripts\OneToManyRelationshipScriptGenerationTests.cs" />
+    <Compile Include="TestCommands\OneToOneRelationshipFkOnChildCommandGenerationTests.cs" />
+    <Compile Include="TestCommands\OneToOneRelationshipFkOnParentCommandGenerationTests.cs" />
+    <Compile Include="TestScripts\OneToOneRelationshipFkOnParentScriptGenerationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RealisticDtos\AcquiringOfferTrnDao.cs" />
     <Compile Include="RealisticDtos\AddressDto.cs" />
@@ -149,8 +149,8 @@
     <Compile Include="RealisticDtos\UserStatusEnum.cs" />
     <Compile Include="RealisticDtos\UsrResourceEnum.cs" />
     <Compile Include="ScriptsAssertions.cs" />
-    <Compile Include="SoftDeleteScriptGenerationTests.cs" />
-    <Compile Include="UserDtoTests.cs" />
+    <Compile Include="TestScripts\SoftDeleteScriptGenerationTests.cs" />
+    <Compile Include="TestScripts\UserDtoTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

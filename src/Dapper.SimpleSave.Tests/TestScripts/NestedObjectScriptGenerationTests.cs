@@ -2,15 +2,11 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Dapper.SimpleSave.Impl;
 using Dapper.SimpleSave.Tests.RealisticDtos;
-using log4net.Repository.Hierarchy;
 using NUnit.Framework;
 
-namespace Dapper.SimpleSave.Tests
+namespace Dapper.SimpleSave.Tests.TestScripts
 {
     [TestFixture]
     public class NestedObjectScriptGenerationTests : BaseTests

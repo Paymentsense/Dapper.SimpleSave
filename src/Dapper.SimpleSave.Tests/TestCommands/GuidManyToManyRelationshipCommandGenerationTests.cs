@@ -5,7 +5,7 @@ using Dapper.SimpleSave.Impl;
 using Dapper.SimpleSave.Tests.GuidDtos;
 using NUnit.Framework;
 
-namespace Dapper.SimpleSave.Tests {
+namespace Dapper.SimpleSave.Tests.TestCommands {
 
     [TestFixture]
     public class GuidManyToManyRelationshipCommandGenerationTests : BaseTests {
