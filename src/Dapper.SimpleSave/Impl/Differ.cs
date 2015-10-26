@@ -327,11 +327,13 @@ namespace Dapper.SimpleSave.Impl
                 refData = prop.GetAttribute<ReferenceDataAttribute>();
             }
 
+            var manyToMany = prop.GetAttribute<ManyToManyAttribute>();
+
             var removed = FindRemovedItems(items1, items2);
 
             Action<object> addDifference = item =>
             {
-                if (refData == null && differenceType == DifferenceType.Deletion)
+                if (refData == null && manyToMany == null && differenceType == DifferenceType.Deletion)
                 {
                     DiffProperties(
                        itemTypeMeta,
@@ -353,7 +355,9 @@ namespace Dapper.SimpleSave.Impl
                     OldValue = DifferenceType.Deletion == differenceType ? item : null
                 });
 
-                if (refData == null && differenceType == DifferenceType.Insertion)
+                if (refData == null
+                    && (manyToMany == null || itemTypeMeta.GetPrimaryKeyValueAsObject(item) == null)
+                    && differenceType == DifferenceType.Insertion)
                 {
                    DiffProperties(
                        itemTypeMeta,

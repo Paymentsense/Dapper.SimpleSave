@@ -243,26 +243,10 @@ WHERE [{1}] = ",
             var operation = command.Operation;
             if (operation.ValueMetadata != null) {
                 if (null != operation.OwnerPropertyMetadata
-                    && operation.OwnerPropertyMetadata.HasAttribute<ManyToManyAttribute>()) {
-                    //  INSERT record in link table; don't touch either entity table
-
-                    script.Buffer.Append(string.Format(
-                        @"INSERT INTO {0} (
-    [{1}], [{2}]
-) VALUES (
-    ",
-                        operation.OwnerPropertyMetadata.GetAttribute<ManyToManyAttribute>().SchemaQualifiedLinkTableName,
-                        operation.OwnerPrimaryKeyColumn,
-                        operation.ValueMetadata.PrimaryKey.Prop.Name));
-                        FormatWithParameter(script, @"{0}, {1}
-);
-",
-                            ref paramIndex,
-                            new Func<object>(
-                                () => operation.OwnerPrimaryKeyAsObject),
-                            new Func<object>(
-                                () => operation.ValueMetadata.GetPrimaryKeyValueAsObject(operation.Value)));
-                    }
+                    && operation.OwnerPropertyMetadata.HasAttribute<ManyToManyAttribute>())
+                {
+                    InsertRecordInLinkTable(script, ref paramIndex, operation);
+                }
                 else if (operation.OwnerPropertyMetadata == null
                     || ((operation.OwnerPropertyMetadata.HasAttribute<OneToManyAttribute>()
                         || operation.OwnerPropertyMetadata.HasAttribute<OneToOneAttribute>())//IsOneToOneRelationshipWithFkOnParent(operation)) //  Because 1:1 with FK on child is like 1:N, and we already handle 1:1 with FK on parent anyway
@@ -364,6 +348,43 @@ SELECT SCOPE_IDENTITY();
             }
 
             return isPkAssignedByRdbms;
+        }
+
+        private static void InsertRecordInLinkTable(Script script, ref int paramIndex, BaseInsertDeleteOperation operation)
+        {
+            var linkTableName = operation.OwnerPropertyMetadata.GetAttribute<ManyToManyAttribute>().SchemaQualifiedLinkTableName;
+            var parentPrimaryKeyColumn = operation.OwnerPrimaryKeyColumn;
+            var childPrimaryKeyColumn = operation.ValueMetadata.PrimaryKey.Prop.Name;
+
+            var parentPrimaryKeyGetter = new Func<object>(
+                    () => operation.OwnerPrimaryKeyAsObject);
+
+            var childPrimaryKeyGetter = new Func<object>(
+                    () => operation.ValueMetadata.GetPrimaryKeyValueAsObject(operation.Value));
+
+            script.Buffer.Append(string.Format("IF NOT EXISTS (SELECT * FROM {0} WHERE [{1}] = ", linkTableName, parentPrimaryKeyColumn));
+            FormatWithParameter(script, "{0} AND ", ref paramIndex, parentPrimaryKeyGetter);
+            script.Buffer.Append(string.Format("[{0}] = ", childPrimaryKeyColumn));
+            FormatWithParameter(script, @"{0})
+BEGIN
+", ref paramIndex, childPrimaryKeyGetter);
+
+            script.Buffer.Append(string.Format(
+                @"    INSERT INTO {0} (
+        [{1}], [{2}]
+    ) VALUES (
+        ",
+                linkTableName,
+                parentPrimaryKeyColumn,
+                childPrimaryKeyColumn));
+
+            FormatWithParameter(script, @"{0}, {1}
+    );
+END
+",
+                ref paramIndex,
+                parentPrimaryKeyGetter,
+                childPrimaryKeyGetter);
         }
 
         //  TODO: I'm wondering whether to reinstate this check purely for the purpose of validation
