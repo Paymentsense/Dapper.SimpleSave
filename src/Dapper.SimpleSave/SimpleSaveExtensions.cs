@@ -360,9 +360,11 @@ namespace Dapper.SimpleSave
             foreach (string key in script.Parameters.Keys.ToArray())
             {
                 var value = script.Parameters [key];
-                if (value is Func<object>)
+                if (value.Item2 is Func<object>)
                 {
-                    script.Parameters [key] = (value as Func<object>)();
+                    script.Parameters [key] = new Tuple<Type, object>(
+                        value.Item1,
+                        (value.Item2 as Func<object>)());
                 }
             }
         }

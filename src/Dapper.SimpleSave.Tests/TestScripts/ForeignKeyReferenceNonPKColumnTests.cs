@@ -46,7 +46,7 @@ namespace Dapper.SimpleSave.Tests.TestScripts
 
         private Guid ExtractGuid(IScript script, string paramName)
         {
-            var value = script.Parameters[paramName];
+            var value = script.Parameters[paramName].Item2;
             if (value is Func<object>)
             {
                 value = ((Func<object>) value)();

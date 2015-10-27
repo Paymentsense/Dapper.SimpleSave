@@ -85,12 +85,12 @@ namespace Dapper.SimpleSave.Tests {
             foreach (var script in transactionScript) {
                 foreach (var name in script.Parameters.Keys) {
                     var value = script.Parameters [name];
-                    if (value == null || value is string)
+                    if (value.Item2 == null || value.Item2 is string)
                     {
                         continue;
                     }
 
-                    var type = value.GetType();
+                    var type = value.Item1;
                     if (type.IsValueType
                         || (type.IsConstructedGenericType
                             && type.GetGenericTypeDefinition() == typeof(Func<>))) {

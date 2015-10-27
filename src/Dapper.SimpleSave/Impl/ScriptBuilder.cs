@@ -61,7 +61,7 @@ namespace Dapper.SimpleSave.Impl {
             }
         }
 
-        private static void AppendUpdateCommand(Script script, UpdateCommand command, ref int paramIndex)
+        private static void AppendUpdateCommand(IScript script, UpdateCommand command, ref int paramIndex)
         {
             if (ReverseUpdateHelper.IsReverseUpdateWithChildReferencingParent(command.Operations.First()))
             {
@@ -74,7 +74,7 @@ namespace Dapper.SimpleSave.Impl {
         }
 
         private static void AppendReverseUpdateCommandForChildTableReferencingParent(
-            Script script,
+            IScript script,
             UpdateCommand command,
             ref int paramIndex)
         {
@@ -103,7 +103,7 @@ WHERE [{0}] = ", operation.ValueMetadata.PrimaryKey.ColumnName));
         }
 
         private static void AppendStandardUpdateCommand(
-            Script script,
+            IScript script,
             UpdateCommand command,
             ref int paramIndex)
         {
@@ -192,7 +192,7 @@ WHERE [{0}] = ", command.PrimaryKeyColumn));
 ", ref paramIndex, new Func<object>(() => command.PrimaryKeyAsObject));
         }
 
-        private static void AppendDeleteCommand(Script script, DeleteCommand command, ref int paramIndex)
+        private static void AppendDeleteCommand(IScript script, DeleteCommand command, ref int paramIndex)
         {
             var operation = command.Operation;
             if (operation.ValueMetadata != null)
@@ -242,7 +242,7 @@ WHERE [{1}] = ",
             }
         }
 
-        private bool AppendInsertCommand(Script script, InsertCommand command, ref int paramIndex)
+        private bool AppendInsertCommand(IScript script, InsertCommand command, ref int paramIndex)
         {
             var isPkAssignedByRdbms = true;
             var needsUpdateContingency = false;
@@ -444,17 +444,21 @@ END
             return isPkAssignedByRdbms;
         }
 
-        private static void InsertRecordInLinkTable(Script script, ref int paramIndex, BaseInsertDeleteOperation operation)
+        private static void InsertRecordInLinkTable(IScript script, ref int paramIndex, BaseInsertDeleteOperation operation)
         {
             var linkTableName = operation.OwnerPropertyMetadata.GetAttribute<ManyToManyAttribute>().SchemaQualifiedLinkTableName;
             var parentPrimaryKeyColumn = operation.OwnerPrimaryKeyColumn;
             var childPrimaryKeyColumn = operation.ValueMetadata.PrimaryKey.Prop.Name;
 
-            var parentPrimaryKeyGetter = new Func<object>(
-                    () => operation.OwnerPrimaryKeyAsObject);
+            var parentPrimaryKeyGetter = new Tuple<Type, object>(
+                operation.OwnerMetadata.PrimaryKey.Prop.PropertyType,
+                new Func<object>(
+                    () => operation.OwnerPrimaryKeyAsObject));
 
-            var childPrimaryKeyGetter = new Func<object>(
-                    () => operation.ValueMetadata.GetPrimaryKeyValueAsObject(operation.Value));
+            var childPrimaryKeyGetter = new Tuple<Type, object>(
+                operation.ValueMetadata.PrimaryKey.Prop.PropertyType,
+                new Func<object>(
+                    () => operation.ValueMetadata.GetPrimaryKeyValueAsObject(operation.Value)));
 
             script.Buffer.Append(string.Format("IF NOT EXISTS (SELECT * FROM {0} WHERE [{1}] = ", linkTableName, parentPrimaryKeyColumn));
             FormatWithParameter(script, "{0} AND ", ref paramIndex, parentPrimaryKeyGetter);
@@ -611,15 +615,15 @@ END
         }
 
         private static void FormatWithParameter(
-            Script script,
+            IScript script,
             string formatString,
             ref int paramIndex,
-            params object [] paramValues)
+            params Tuple<Type, object> [] paramValues)
         {
             var paramNames = new ArrayList();
             for(int index = 0, count = paramValues.Length; index < count; ++index)
             {
-                object paramValue = paramValues[index];
+                var paramValue = paramValues[index];
                 string paramName = "p" + paramIndex;
                 ValidateParameterValue(index, paramName, paramValue);
                 script.Parameters[paramName] = paramValue;
@@ -633,14 +637,15 @@ END
         private static void ValidateParameterValue(
             int index,
             string paramName,
-            object paramValue)
+            Tuple<Type, object> paramValue)
         {
-            if (paramValue == null || paramValue is string || paramValue is DBNull)
+            var value = paramValue.Item2;
+            if (value == null || value is string || value is DBNull)
             {
                 return;
             }
 
-            var type = paramValue.GetType();
+            var type = paramValue.Item1;
             if (type.IsValueType
                 || (type.IsConstructedGenericType
                     && type.GetGenericTypeDefinition() == typeof(Func<>))) {
@@ -653,7 +658,7 @@ END
                     + "Invalid value at index {0} for parameter @{1}: {2}",
                     index,
                     paramName,
-                    paramValue),
+                    JsonConvert.SerializeObject(paramValue)),
                 "paramValue");
         }
     }
