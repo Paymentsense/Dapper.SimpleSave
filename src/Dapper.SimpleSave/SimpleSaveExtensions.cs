@@ -333,6 +333,16 @@ namespace Dapper.SimpleSave
             object insertedPk)
         {
             var metadata = script.InsertedValueMetadata;
+            if (_logger.Wrapped.IsDebugEnabled)
+            {
+                _logger.Wrapped.Debug(string.Format(
+                    "Setting {0} primary key value of expected type {1} to type {2}, value {3}",
+                    metadata.DtoType,
+                    metadata.PrimaryKey.Prop.PropertyType,
+                    insertedPk == null ? "NULL" : insertedPk.GetType().ToString(),
+                    insertedPk));
+            }
+
             var type = metadata.PrimaryKey.Prop.PropertyType;
             if (type == typeof(int?) || type == typeof(int))
             {
