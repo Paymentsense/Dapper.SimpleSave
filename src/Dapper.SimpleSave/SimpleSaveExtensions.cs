@@ -336,12 +336,14 @@ namespace Dapper.SimpleSave
             var type = metadata.PrimaryKey.Prop.PropertyType;
             if (type == typeof(int?) || type == typeof(int))
             {
+                insertedPk = CoerceNumericPkToDecimal(insertedPk);
                 metadata.SetPrimaryKey(
                     script.InsertedValue,
                     Decimal.ToInt32((decimal) insertedPk));
             }
             else if (type == typeof (long?) || type == typeof (long))
             {
+                insertedPk = CoerceNumericPkToDecimal(insertedPk);
                 metadata.SetPrimaryKey(
                     script.InsertedValue,
                     Decimal.ToInt64((decimal) insertedPk));
@@ -352,6 +354,15 @@ namespace Dapper.SimpleSave
                     script.InsertedValue,
                     insertedPk);
             }
+        }
+
+        private static object CoerceNumericPkToDecimal(object insertedPk)
+        {
+            if (insertedPk != null && insertedPk is string)
+            {
+                insertedPk = decimal.Parse(insertedPk.ToString());
+            }
+            return insertedPk;
         }
 
         private static void ResolvePrimaryKeyValues<T>(IScript script)
