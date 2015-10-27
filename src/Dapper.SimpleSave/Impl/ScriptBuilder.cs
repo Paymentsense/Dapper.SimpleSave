@@ -238,7 +238,8 @@ WHERE [{1}] = ",
 
         private bool AppendInsertCommand(Script script, InsertCommand command, ref int paramIndex)
         {
-            bool isPkAssignedByRdbms = true;
+            var isPkAssignedByRdbms = true;
+            var needsUpdateContingency = false;
             PropertyMetadata guidPKColumn = null;
             var operation = command.Operation;
             if (operation.ValueMetadata != null) {
@@ -246,6 +247,9 @@ WHERE [{1}] = ",
                     && operation.OwnerPropertyMetadata.HasAttribute<ManyToManyAttribute>())
                 {
                     InsertRecordInLinkTable(script, ref paramIndex, operation);
+                    script.Buffer.Append(@"
+SELECT SCOPE_IDENTITY();
+");
                 }
                 else if (operation.OwnerPropertyMetadata == null
                     || ((operation.OwnerPropertyMetadata.HasAttribute<OneToManyAttribute>()
@@ -260,11 +264,35 @@ WHERE [{1}] = ",
                     var values = new ArrayList();
                     var index = 0;
 
+                    var updateCommand = new UpdateCommand();
+                    var hasPrimaryKeyValueAlready = false;
+                    string pkColumnName = null;
+
                     foreach (var property in operation.ValueMetadata.WriteableProperties)
                     {
                         if (property.IsPrimaryKey)
                         {
                             isPkAssignedByRdbms = !property.GetAttribute<PrimaryKeyAttribute>().IsUserAssigned;
+                            pkColumnName = property.ColumnName;
+
+                            var pkValue = operation.ValueMetadata.GetPrimaryKeyValueAsObject(operation.Value);
+                            if (pkValue != null)
+                            {
+                                hasPrimaryKeyValueAlready = true;
+                            }
+
+                            updateCommand.AddOperation(new UpdateOperation()
+                            {
+                                ColumnName = property.ColumnName,
+                                TableName = operation.ValueMetadata.TableName,
+                                Value = pkValue,
+                                ValueMetadata = _dtoMetadataCache.GetMetadataFor(property.Prop.PropertyType),
+                                Owner = operation.Owner,
+                                OwnerMetadata = operation.OwnerMetadata,
+                                OwnerPrimaryKeyColumn = operation.ValueMetadata.PrimaryKey.ColumnName,
+                                OwnerPropertyMetadata = property
+                            });
+
                             if (isPkAssignedByRdbms)
                             {
                                 var type = property.Prop.PropertyType;
@@ -301,8 +329,62 @@ WHERE [{1}] = ",
                             continue;
                         }
 
+                        //updateCommand.AddOperation(new UpdateOperation()
+                        //{
+                        //    ColumnName = property.ColumnName,
+                        //    TableName = operation.ValueMetadata.TableName,
+                        //    Value = operation.Value,
+                        //    ValueMetadata = operation.ValueMetadata,
+                        //    Owner = operation.Owner,
+                        //    OwnerMetadata = operation.OwnerMetadata,
+                        //    OwnerPrimaryKeyColumn = operation.OwnerPrimaryKeyColumn,
+                        //    OwnerPropertyMetadata = operation.OwnerPropertyMetadata
+                        //});
+
                         AppendPropertyToInsertStatement(
-                            colBuff, valBuff, property, ref index, operation, values, getter);
+                            colBuff, valBuff, property, ref index, operation, values, getter, updateCommand);
+                    }
+
+                    needsUpdateContingency = !isPkAssignedByRdbms || hasPrimaryKeyValueAlready;
+
+                    if (needsUpdateContingency)
+                    {
+                        script.Buffer.Append(
+                            string.Format(@"IF EXISTS (SELECT * FROM {0} WHERE [{1}] = ",
+                            operation.ValueMetadata.TableName,
+                            pkColumnName));
+
+                        //  N.B. The PK value doesn't need referencing with a function here because
+                        //  we already have a primary key value.
+                        FormatWithParameter(
+                            script,
+                            "{0}",
+                            ref paramIndex,
+                            operation.ValueMetadata.GetPrimaryKeyValueAsObject(operation.Value));
+
+                        script.Buffer.Append(@")
+BEGIN
+");
+                        AppendUpdateCommand(script, updateCommand, ref paramIndex);
+
+                        if (guidPKColumn == null)
+                        {
+                            script.Buffer.Append(string.Format(@"
+SELECT {0};
+", operation.ValueMetadata.GetPrimaryKeyValueAsObject(operation.Value)));
+                        }
+                        else
+                        {
+                            script.Buffer.Append(string.Format(@"
+SELECT '{0}';
+", operation.ValueMetadata.GetPrimaryKeyValueAsObject(operation.Value)));
+                        }
+
+                        script.Buffer.Append(@"
+END
+ELSE
+BEGIN
+");
                     }
 
                     script.Buffer.Append(string.Format(
@@ -329,6 +411,20 @@ OUTPUT inserted.[{0}]
 ");
                     script.InsertedValue = operation.Value;
                     script.InsertedValueMetadata = operation.ValueMetadata;
+
+                    if (guidPKColumn == null && isPkAssignedByRdbms)
+                    {
+                        script.Buffer.Append(@"
+SELECT SCOPE_IDENTITY();
+");
+                    }
+
+                    if (needsUpdateContingency)
+                    {
+                        script.Buffer.Append(@"
+END
+");
+                    }
                 }
             }
             else
@@ -339,14 +435,6 @@ OUTPUT inserted.[{0}]
                         JsonConvert.SerializeObject(command)),
                     "command");
             }
-
-            if (guidPKColumn == null && isPkAssignedByRdbms)
-            {
-                script.Buffer.Append(@"
-SELECT SCOPE_IDENTITY();
-");
-            }
-
             return isPkAssignedByRdbms;
         }
 
@@ -418,17 +506,25 @@ END
         }
 
         private void AppendPropertyToInsertStatement(
-            StringBuilder colBuff, StringBuilder valBuff, PropertyMetadata property,
-            ref int index, BaseInsertDeleteOperation operation, ArrayList values, MethodInfo getter)
+            StringBuilder colBuff,
+            StringBuilder valBuff,
+            PropertyMetadata property,
+            ref int index,
+            BaseInsertDeleteOperation operation,
+            ArrayList values,
+            MethodInfo getter,
+            UpdateCommand updateCommand)
         {
+            object columnValueForUpdate = null;
+
             if (property.HasAttribute<ForeignKeyReferenceAttribute>()
                 && null != operation.OwnerMetadata
                 && _dtoMetadataCache.GetValidatedMetadataFor(
                     property.GetAttribute<ForeignKeyReferenceAttribute>().ReferencedDto).TableName ==
                 operation.OwnerMetadata.TableName)
             {
-                values.Add(
-                    new Func<object>(() => operation.OwnerPrimaryKeyAsObject));
+                columnValueForUpdate = new Func<object>(() => operation.OwnerPrimaryKeyAsObject);
+                values.Add(columnValueForUpdate);
             }
             else if (property.HasAttribute<ManyToOneAttribute>() && property.GetAttribute<ManyToOneAttribute>().ForeignKeyTargetColumnName != null)
             {
@@ -447,11 +543,13 @@ END
                             property.ColumnName));
                     }
 
-                    values.Add(new Func<object>(() => fkTargetProperty.GetValue(propValue)));
+                    columnValueForUpdate = new Func<object>(() => fkTargetProperty.GetValue(propValue));
+                    values.Add(columnValueForUpdate);
                 }
                 else
                 {
-                    values.Add(new Func<object>(() => null));
+                    columnValueForUpdate = new Func<object>(() => null);
+                    values.Add(columnValueForUpdate);
                 }
             }
             else if (property.HasAttribute<ManyToOneAttribute>() || property.HasAttribute<OneToOneAttribute>())
@@ -465,17 +563,32 @@ END
 
                 object propValue = property.GetValue(operation.Value);
                 DtoMetadata propMetadata = _dtoMetadataCache.GetValidatedMetadataFor(property.Prop.PropertyType);
-                values.Add(
-                    new Func<object>(
+                columnValueForUpdate = new Func<object>(
                         () =>
                             propValue == null || propMetadata == null
                                 ? null
-                                : propMetadata.GetPrimaryKeyValueAsObject(propValue)));
+                                : propMetadata.GetPrimaryKeyValueAsObject(propValue));
+                values.Add(columnValueForUpdate);
             }
             else
             {
-                values.Add(getter.Invoke(operation.Value, new object[0]));
+                columnValueForUpdate = getter.Invoke(operation.Value, new object[0]);
+                values.Add(columnValueForUpdate);
             }
+
+            updateCommand.AddOperation(new UpdateOperation()
+            {
+                ColumnName = property.ColumnName,
+                TableName = operation.ValueMetadata.TableName,
+                Value = columnValueForUpdate,
+                ValueMetadata = property.IsString || property.IsNumericType || property.IsEnum || ! property.IsReferenceType
+                    ? null
+                    : _dtoMetadataCache.GetMetadataFor(property.Prop.PropertyType),
+                Owner = operation.Owner,
+                OwnerMetadata = operation.OwnerMetadata,
+                OwnerPrimaryKeyColumn = operation.ValueMetadata.PrimaryKey.ColumnName,
+                OwnerPropertyMetadata = property
+            });
 
             if (colBuff.Length > 0) {
                 colBuff.Append(@", ");
