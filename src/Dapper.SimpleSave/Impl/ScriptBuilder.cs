@@ -328,17 +328,17 @@ SELECT SCOPE_IDENTITY();
                                 hasPrimaryKeyValueAlready = true;
                             }
 
-                            updateCommand.AddOperation(new UpdateOperation()
-                            {
-                                ColumnName = property.ColumnName,
-                                TableName = operation.ValueMetadata.TableName,
-                                Value = pkValue,
-                                ValueMetadata = _dtoMetadataCache.GetMetadataFor(property.Prop.PropertyType),
-                                Owner = operation.Owner,
-                                OwnerMetadata = operation.OwnerMetadata,
-                                OwnerPrimaryKeyColumn = operation.ValueMetadata.PrimaryKey.ColumnName,
-                                OwnerPropertyMetadata = property
-                            });
+                            //updateCommand.AddOperation(new UpdateOperation()
+                            //{
+                            //    ColumnName = property.ColumnName,
+                            //    TableName = operation.ValueMetadata.TableName,
+                            //    Value = pkValue,
+                            //    ValueMetadata = _dtoMetadataCache.GetMetadataFor(property.Prop.PropertyType),
+                            //    Owner = operation.Owner,
+                            //    OwnerMetadata = operation.OwnerMetadata,
+                            //    OwnerPrimaryKeyColumn = operation.ValueMetadata.PrimaryKey.ColumnName,
+                            //    OwnerPropertyMetadata = property
+                            //});
 
                             if (isPkAssignedByRdbms)
                             {

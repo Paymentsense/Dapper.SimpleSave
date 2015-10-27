@@ -37,7 +37,7 @@ namespace Dapper.SimpleSave.Tests.TestScripts
                 guid,
                 string.Format("Invalid main phone GUID: {0}", guid));
 
-            guid = ExtractGuid(script, "p10");
+            guid = ExtractGuid(script, "p9");
             Assert.AreEqual(
                 SamplePopulatedDtos.Contact.MobilePhone.PhoneGuid,
                 guid,
