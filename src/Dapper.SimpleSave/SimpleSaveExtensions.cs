@@ -368,7 +368,15 @@ namespace Dapper.SimpleSave
 
         private static object CoerceNumericPkToDecimal(object insertedPk)
         {
-            if (insertedPk != null && insertedPk is string)
+            if (insertedPk is int)
+            {
+                insertedPk = (decimal) (int) insertedPk;
+            }
+            else if (insertedPk is long)
+            {
+                insertedPk = (decimal) (long) insertedPk;
+            }
+            else if (insertedPk != null && insertedPk is string)
             {
                 insertedPk = decimal.Parse(insertedPk.ToString());
             }
