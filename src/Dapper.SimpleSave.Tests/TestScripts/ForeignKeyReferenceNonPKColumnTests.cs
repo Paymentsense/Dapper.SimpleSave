@@ -31,13 +31,13 @@ namespace Dapper.SimpleSave.Tests.TestScripts
 
             var script = scripts[0];
 
-            var guid = ExtractGuid(script, "p7");
+            var guid = ExtractGuid(script, "p9");
             Assert.AreEqual(
                 SamplePopulatedDtos.Contact.MainPhone.PhoneGuid,
                 guid,
                 string.Format("Invalid main phone GUID: {0}", guid));
 
-            guid = ExtractGuid(script, "p8");
+            guid = ExtractGuid(script, "p10");
             Assert.AreEqual(
                 SamplePopulatedDtos.Contact.MobilePhone.PhoneGuid,
                 guid,

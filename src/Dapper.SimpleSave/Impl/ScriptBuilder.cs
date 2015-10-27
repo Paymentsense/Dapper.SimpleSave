@@ -95,7 +95,11 @@ SET [{1}] = ",
 WHERE [{0}] = ", operation.ValueMetadata.PrimaryKey.ColumnName));
 
             FormatWithParameter(script, @"{0};
-", ref paramIndex, new Func<object>(() => operation.ValueMetadata.GetPrimaryKeyValueAsObject(operation.Value)));
+",
+                ref paramIndex,
+                operation.Value is Func<object>
+                    ? operation.Value
+                    : new Func<object>(() => operation.ValueMetadata.GetPrimaryKeyValueAsObject(operation.Value)));
         }
 
         private static void AppendStandardUpdateCommand(
@@ -149,7 +153,7 @@ SET ", command.TableName));
                         ref paramIndex,
                         operation.Value == null
                             ? (object) DBNull.Value
-                            : new Func<object>(() => operation.ValueMetadata.GetPrimaryKeyValueAsObject(operation.Value)));
+                            : (operation.Value is Func<object> ? operation.Value : new Func<object>(() => operation.ValueMetadata.GetPrimaryKeyValueAsObject(operation.Value))));
                 }
                 else if (fkTargetColumn != null)
                 {
@@ -171,7 +175,9 @@ SET ", command.TableName));
                         ref paramIndex,
                         operation.Value == null
                             ? (object) DBNull.Value
-                            : new Func<object>(() => property.GetValue(operation.Value)));
+                            : (operation.Value is Func<object>
+                                ? operation.Value
+                                : new Func<object>(() => property.GetValue(operation.Value))));
                 }
                 else
                 {

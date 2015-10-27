@@ -63,7 +63,7 @@ namespace Dapper.SimpleSave.Tests.TestScripts
 
             Assert.AreEqual(
                 1,
-                ((Func<object>) scripts[0].Parameters["p0"])(),
+                ((Func<object>) scripts[0].Parameters["p7"])(),
                 "Invalid FK value in child - should be same as parent key.");
         }
     }
