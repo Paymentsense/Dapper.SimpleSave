@@ -89,9 +89,11 @@ SET [{1}] = ",
                 script,
                 "{0}",
                 ref paramIndex,
-                new Tuple<Type, object>(
-                    command.Operations.First().OwnerMetadata.PrimaryKey.Prop.PropertyType,
-                    new Func<object>(() => command.PrimaryKeyAsObject)));
+                operation.Value is Tuple<Type, object>
+                    ? (Tuple<Type, object>) operation.Value
+                    : new Tuple<Type, object>(
+                        command.Operations.First().OwnerMetadata.PrimaryKey.Prop.PropertyType,
+                        new Func<object>(() => command.PrimaryKeyAsObject)));
 
             script.Buffer.Append(string.Format(@"
 WHERE [{0}] = ", operation.ValueMetadata.PrimaryKey.ColumnName));
@@ -99,11 +101,13 @@ WHERE [{0}] = ", operation.ValueMetadata.PrimaryKey.ColumnName));
             FormatWithParameter(script, @"{0};
 ",
                 ref paramIndex,
-                new Tuple<Type, object>(
-                    operation.ValueMetadata.PrimaryKey.Prop.PropertyType,
-                    operation.Value is Func<object>
-                        ? operation.Value
-                        : new Func<object>(() => operation.ValueMetadata.GetPrimaryKeyValueAsObject(operation.Value))));
+                operation.Value is Tuple<Type, object>
+                    ? (Tuple<Type, object>) operation.Value
+                    : new Tuple<Type, object>(
+                        operation.ValueMetadata.PrimaryKey.Prop.PropertyType,
+                        operation.Value is Func<object>
+                            ? operation.Value
+                            : new Func<object>(() => operation.ValueMetadata.GetPrimaryKeyValueAsObject(operation.Value))));
         }
 
         private static void AppendStandardUpdateCommand(
@@ -158,11 +162,15 @@ SET ", command.TableName));
                         script,
                         "{0}",
                         ref paramIndex,
-                        new Tuple<Type, object>(
-                            operation.ValueMetadata.PrimaryKey.Prop.PropertyType,
-                            operation.Value == null
-                                ? (object) DBNull.Value
-                                : (operation.Value is Func<object> ? operation.Value : new Func<object>(() => operation.ValueMetadata.GetPrimaryKeyValueAsObject(operation.Value)))));
+                        operation.Value is Tuple<Type, object>
+                            ? (Tuple<Type, object>) operation.Value
+                            : new Tuple<Type, object>(
+                                operation.ValueMetadata.PrimaryKey.Prop.PropertyType,
+                                operation.Value == null
+                                    ? (object) DBNull.Value
+                                    : (operation.Value is Func<object>
+                                        ? operation.Value
+                                        : new Func<object>(() => operation.ValueMetadata.GetPrimaryKeyValueAsObject(operation.Value)))));
                 }
                 else if (fkTargetColumn != null)
                 {
@@ -181,13 +189,15 @@ SET ", command.TableName));
                         script,
                         "{0}",
                         ref paramIndex,
-                        new Tuple<Type, object>(
-                            property.Prop.PropertyType,
-                            operation.Value == null
-                                ? (object) DBNull.Value
-                                : (operation.Value is Func<object>
-                                    ? operation.Value
-                                    : new Func<object>(() => property.GetValue(operation.Value)))));
+                        operation.Value is Tuple<Type, object>
+                            ? (Tuple<Type, object>) operation.Value
+                            : new Tuple<Type, object>(
+                                property.Prop.PropertyType,
+                                operation.Value == null
+                                    ? (object) DBNull.Value
+                                    : (operation.Value is Func<object>
+                                        ? operation.Value
+                                        : new Func<object>(() => property.GetValue(operation.Value)))));
                 }
                 else
                 {
@@ -195,11 +205,13 @@ SET ", command.TableName));
                         script,
                         "{0}",
                         ref paramIndex,
-                        new Tuple<Type, object>(
-                            operation.ValueMetadata == null
-                                ? (operation.Value == null ? typeof(object) : operation.Value.GetType())
-                                : operation.ValueMetadata.DtoType,
-                            operation.Value));
+                        operation.Value is Tuple<Type, object>
+                            ? (Tuple<Type, object>) operation.Value
+                            : new Tuple<Type, object>(
+                                operation.ValueMetadata == null
+                                    ? (operation.Value == null ? typeof(object) : operation.Value.GetType())
+                                    : operation.ValueMetadata.DtoType,
+                                operation.Value));
                 }
                 ++count;
             }
@@ -648,8 +660,8 @@ END
                 ValueMetadata = property.IsString || property.IsNumericType || property.IsEnum || ! property.IsReferenceType
                     ? null
                     : _dtoMetadataCache.GetMetadataFor(property.Prop.PropertyType),
-                Owner = operation.Owner,
-                OwnerMetadata = operation.OwnerMetadata,
+                Owner = operation.Value,
+                OwnerMetadata = operation.ValueMetadata,
                 OwnerPrimaryKeyColumn = operation.ValueMetadata.PrimaryKey.ColumnName,
                 OwnerPropertyMetadata = property
             });
