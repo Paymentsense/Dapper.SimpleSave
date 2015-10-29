@@ -362,7 +362,7 @@ namespace Dapper.SimpleSave
             {
                 metadata.SetPrimaryKey(
                     script.InsertedValue,
-                    insertedPk);
+                    TryToCoerceGuidPkToGuid(insertedPk));
             }
         }
 
@@ -381,6 +381,23 @@ namespace Dapper.SimpleSave
                 insertedPk = decimal.Parse(insertedPk.ToString());
             }
             return insertedPk;
+        }
+
+        private static object TryToCoerceGuidPkToGuid(object insertedPk)
+        {
+            if (insertedPk == null || insertedPk is Guid || insertedPk is Guid?)
+            {
+                return insertedPk;
+            }
+
+            try
+            {
+                return Guid.Parse(insertedPk.ToString());
+            }
+            catch (FormatException)
+            {
+                return insertedPk;
+            }
         }
 
         private static void ResolvePrimaryKeyValues<T>(IScript script)
