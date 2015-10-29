@@ -91,13 +91,18 @@ namespace Dapper.SimpleSave.Tests {
                     }
 
                     var type = value.Item1;
-                    if (type.IsValueType
-                        || (type.IsConstructedGenericType
-                            && type.GetGenericTypeDefinition() == typeof(Func<>))) {
+                    if (ScriptParameterHelper.IsSupportableParamType(type))
+                    {
                         continue;
                     }
 
-                    Assert.Fail("Unexpected reference type as value for parameter {0}: {1}", name, type.FullName);
+                    type = value.Item2.GetType();
+                    if (ScriptParameterHelper.IsSupportableParamType(type))
+                    {
+                        continue;
+                    }
+
+                    Assert.Fail("Unexpected reference type as value for parameter {0}: declared type {1}, actual type {2}.", name, type.FullName, value.Item2.GetType().FullName);
                 }
             }
         }

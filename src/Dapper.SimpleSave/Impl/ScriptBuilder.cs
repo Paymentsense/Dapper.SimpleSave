@@ -679,7 +679,7 @@ END
             {
                 var paramValue = paramValues[index];
                 string paramName = "p" + paramIndex;
-                ValidateParameterValue(index, paramName, paramValue);
+                ScriptParameterHelper.ValidateParameterValue(index, paramName, paramValue);
                 script.Parameters[paramName] = paramValue;
                 paramNames.Add("@" + paramName);
                 ++paramIndex;
@@ -688,32 +688,5 @@ END
             script.Buffer.Append(string.Format(formatString, paramNames.ToArray()));
         }
 
-        private static void ValidateParameterValue(
-            int index,
-            string paramName,
-            Tuple<Type, object> paramValue)
-        {
-            var value = paramValue.Item2;
-            if (value == null || value is string || value is DBNull)
-            {
-                return;
-            }
-
-            var type = paramValue.Item1;
-            if (type.IsValueType
-                || (type.IsConstructedGenericType
-                    && type.GetGenericTypeDefinition() == typeof(Func<>))) {
-                return;
-            }
-
-            throw new ArgumentException(
-                string.Format(
-                    "Reference types other than string are not permitted as parameter values for generated SQL. "
-                    + "Invalid value at index {0} for parameter @{1}: {2}",
-                    index,
-                    paramName,
-                    JsonConvert.SerializeObject(paramValue)),
-                "paramValue");
-        }
     }
 }
