@@ -152,7 +152,7 @@ SET ", command.TableName));
                         "{0}",
                         ref paramIndex,
                         operation.Value == null
-                            ? (object) DBNull.Value
+                            ? null
                             : (operation.Value is Func<object> ? operation.Value : new Func<object>(() => operation.ValueMetadata.GetPrimaryKeyValueAsObject(operation.Value))));
                 }
                 else if (fkTargetColumn != null)
@@ -174,7 +174,7 @@ SET ", command.TableName));
                         "{0}",
                         ref paramIndex,
                         operation.Value == null
-                            ? (object) DBNull.Value
+                            ? null
                             : (operation.Value is Func<object>
                                 ? operation.Value
                                 : new Func<object>(() => property.GetValue(operation.Value))));
@@ -635,7 +635,7 @@ END
             string paramName,
             object paramValue)
         {
-            if (paramValue == null || paramValue is string || paramValue is DBNull)
+            if (paramValue == null || paramValue is string)
             {
                 return;
             }
