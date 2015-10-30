@@ -3,6 +3,12 @@ Open source projects thrive on contributions from the developer community. Would
 
 This is a general guide about how to contribute to Dapper.SimpleSave. It is not a set of hard and fast rules. Any questions, concerns or suggestions should be raised on the [Dapper.SimpleSave Developers List](https://groups.google.com/forum/?fromgroups#!forum/dapper-simplesave-dev). TODO
 
+## Areas where we particularly need help
+
+* Documentation
+* Testing - both Dapper.SimpleSave and Dapper.SimpleLoad have been fairly well tested in the context of the app for which they were originally developed, however, their own automated test suites are somewhat lacking - particularly in the case of SimpleLoad. SimpleSave primarily needs tests that hit a real database and verify what was saved, on top of what it already has, in addition to verification of the scripts that are being created.
+* Support for RDBMS platforms other than SQL Server. In particular: Oracle, PostgreSQL, MySQL; possibly others. In theory this shouldn't bee too difficult because it just affects the script generation portion of the process. We can also take advantage of functionality, such as deferred referential integrity checks, offered by platforms such as Oracle.
+
 ## Submitting Issues
 
 Bugs should be reported in the [GitHub Issue](https://github.com/Paymentsense/Dapper.SimpleSave/issues) tracker if they have not been previously submitted.
