@@ -6,7 +6,9 @@ This is a general guide about how to contribute to Dapper.SimpleSave. It is not 
 ## Areas where we particularly need help
 
 * Documentation
+
 * Testing - both Dapper.SimpleSave and Dapper.SimpleLoad have been fairly well tested in the context of the app for which they were originally developed, however, their own automated test suites are somewhat lacking - particularly in the case of SimpleLoad. SimpleSave primarily needs tests that hit a real database and verify what was saved, on top of what it already has, in addition to verification of the scripts that are being created.
+
 * Support for RDBMS platforms other than SQL Server. In particular: Oracle, PostgreSQL, MySQL; possibly others. In theory this shouldn't bee too difficult because it just affects the script generation portion of the process. We can also take advantage of functionality, such as deferred referential integrity checks, offered by platforms such as Oracle.
 
 ## Submitting Issues
@@ -16,8 +18,11 @@ Bugs should be reported in the [GitHub Issue](https://github.com/Paymentsense/Da
 When reporting a bug or issue, please include all pertinent information. This typically includes:
 
 * Dapper.SimpleSave package installed _(Example: Dapper.SimpleSave 1.0.65)_
+
 * Development platform, including .NET and SQL Server versions and web server (if relevant)_(Example: .NET 4.5.1 with SQL Server 2014 Developer Edition on IIS Express)_
+
 * Steps to reproduce the bug/example code
+
 * Any error messages and stack trace
 
 It is also quite helpful to include the relevant portions of your log file since, if you have log4net configured, SimpleSave will write a record of scripts build and executed, along with any errors to it. Note that these are logged mostly at INFO level so you may need to tweak your log4net configuration to see them.
@@ -51,13 +56,21 @@ Contributing to SimpleSave documentation is dead simple. To make it so easy, we'
 SimpleSave follows a loose set of coding conventions. Chiefly among them:
 
 * Ensure all unit tests pass successfully
+
 * Cover additional code with passing unit tests
+
 * Try not to add any additional StyleCop warnings to the compilation process
+
+* Try to avoid breaking API changes, unless there is exceptionally good reason for them
+
+* Stick to the existing code style in terms of spaces, braces, naming conventions, etc. None of these are written down but you should be able to figure them out just by looking at the code.
+
 * Ensure your [Git autocrlf setting](https://help.github.com/articles/dealing-with-line-endings) is false because we don't like our SCM to modify files.
 
 ## Additional Resources
 
 * [General GitHub documentation](http://help.github.com/)
+
 * [GitHub pull request documentation](http://help.github.com/send-pull-requests/)
 
 TODO: nightly, milestone, and production Nuget feeds
