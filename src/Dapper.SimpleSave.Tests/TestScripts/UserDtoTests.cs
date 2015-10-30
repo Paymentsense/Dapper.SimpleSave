@@ -1,15 +1,11 @@
 ﻿using System;
-using System.CodeDom;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Dapper.SimpleSave.Tests.RealisticDtos;
 using Newtonsoft.Json;
 using NUnit.Framework;
 
-namespace Dapper.SimpleSave.Tests
+namespace Dapper.SimpleSave.Tests.TestScripts
 {
     [TestFixture]
     public class UserDtoTests : BaseTests
@@ -255,7 +251,7 @@ NEW USER
         public static readonly PhoneNumberDto MobileNumberDto = new PhoneNumberDto
         {
             PhoneNumberKey = 1,
-            PhoneGUID = new Guid("DDE36C15-F0AA-4D94-919F-D714A8366892"),
+            PhoneGuid = new Guid("DDE36C15-F0AA-4D94-919F-D714A8366892"),
             PhoneNumber = "777 1234567",
             Country = TestCountry
         };
@@ -263,7 +259,7 @@ NEW USER
         public static readonly PhoneNumberDto MobileNumberDto2 = new PhoneNumberDto
         {
             PhoneNumberKey = 1,
-            PhoneGUID = new Guid("DDE36C15-F0AA-4D94-919F-D714A8366892"),
+            PhoneGuid = new Guid("DDE36C15-F0AA-4D94-919F-D714A8366892"),
             PhoneNumber = "543254",
             Country = TestCountry
         };
@@ -271,7 +267,7 @@ NEW USER
         private static readonly PhoneNumberDto OfficeNumberDto = new PhoneNumberDto
         {
             PhoneNumberKey = 4,
-            PhoneGUID = new Guid("DDE36C15-F0AA-4D94-919F-D714A8366892"),
+            PhoneGuid = new Guid("DDE36C15-F0AA-4D94-919F-D714A8366892"),
             PhoneNumber = "02075555555",
             Country = TestCountry
         };

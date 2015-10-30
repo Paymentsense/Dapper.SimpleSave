@@ -1,24 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Dapper.SimpleSave.Impl;
-using Dapper.SimpleSave.Tests.GuidDtos;
+using Dapper.SimpleSave.Tests.Dto;
 using NUnit.Framework;
 
-namespace Dapper.SimpleSave.Tests {
+namespace Dapper.SimpleSave.Tests.TestCommands {
 
     [TestFixture]
-    public class GuidOneToOneRelationshipFkOnChildCommandGenerationTests : BaseTests
+    public class OneToOneRelationshipFkOnChildCommandGenerationTests : BaseTests
     {
-
         [Test]
         public void insert_with_fk_on_child_no_reference_data_inserts_rows_in_parent_and_child()
         {
-            var newDto = new GuidParentDto()
+            var newDto = new ParentDto()
             {
-                OneToOneChildDtoWithFk = new GuidOneToOneChildDtoWithFk()
+                OneToOneChildDtoWithFk = new OneToOneChildDtoWithFk()
             };
 
             var cache = new DtoMetadataCache();
@@ -28,38 +25,36 @@ namespace Dapper.SimpleSave.Tests {
             var parentInsert = list [0] as InsertCommand;
 
             Assert.AreEqual(
-                cache.GetMetadataFor(typeof(GuidParentDto)).TableName,
+                cache.GetMetadataFor(typeof(ParentDto)).TableName,
                 parentInsert.Operation.ValueMetadata.TableName,
                 "Unexpected parent table name.");
 
             var childInsert = list [1] as InsertCommand;
 
             Assert.AreEqual(
-                cache.GetMetadataFor(typeof(GuidOneToOneChildDtoWithFk)).TableName,
+                cache.GetMetadataFor(typeof(OneToOneChildDtoWithFk)).TableName,
                 childInsert.Operation.ValueMetadata.TableName,
                 "Unexpected child table name.");
         }
 
         [Test]
-        public void update_with_fk_on_child_no_reference_data_updates_rows_in_parent_and_child()
-        {
-            var parentKey = Guid.NewGuid();
-            var oldDto = new GuidParentDto()
+        public void update_with_fk_on_child_no_reference_data_updates_rows_in_parent_and_child() {
+            var oldDto = new ParentDto()
             {
-                ParentKey = parentKey,
-                OneToOneChildDtoWithFk = new GuidOneToOneChildDtoWithFk
+                ParentKey = 943982,
+                OneToOneChildDtoWithFk = new OneToOneChildDtoWithFk
                 {
-                    ParentKey = parentKey
+                    ParentKey = 943982
                 }
             };
 
-            var newDto = new GuidParentDto()
+            var newDto = new ParentDto()
             {
-                ParentKey = parentKey,
+                ParentKey = 943982,
                 ParentName = "Breaking",
-                OneToOneChildDtoWithFk = new GuidOneToOneChildDtoWithFk
+                OneToOneChildDtoWithFk = new OneToOneChildDtoWithFk
                 {
-                    ParentKey = parentKey,
+                    ParentKey = 943982,
                     Name = "Bad"
                 }
             };
@@ -71,23 +66,23 @@ namespace Dapper.SimpleSave.Tests {
             var update = list[0] as UpdateCommand;
 
             Assert.AreEqual(
-                cache.GetMetadataFor(typeof(GuidOneToOneChildDtoWithFk)).TableName,
+                cache.GetMetadataFor(typeof(OneToOneChildDtoWithFk)).TableName,
                 update.Operations.FirstOrDefault().OwnerMetadata.TableName,
                 "Unexpected child table name.");
 
             update = list[1] as UpdateCommand;
             
             Assert.AreEqual(
-                cache.GetMetadataFor(typeof(GuidParentDto)).TableName,
+                cache.GetMetadataFor(typeof(ParentDto)).TableName,
                 update.Operations.FirstOrDefault().OwnerMetadata.TableName,
                 "Unexpected parent table name.");
         }
 
         [Test]
         public void delete_with_fk_on_child_no_reference_data_deletes_rows_in_child_and_parent() {
-            var oldDto = new GuidParentDto()
+            var oldDto = new ParentDto()
             {
-                OneToOneChildDtoWithFk = new GuidOneToOneChildDtoWithFk()
+                OneToOneChildDtoWithFk = new OneToOneChildDtoWithFk()
             };
 
             var cache = new DtoMetadataCache();
@@ -97,22 +92,22 @@ namespace Dapper.SimpleSave.Tests {
             var delete = list[0] as DeleteCommand;
 
             Assert.AreEqual(
-                cache.GetMetadataFor(typeof(GuidOneToOneChildDtoWithFk)).TableName,
+                cache.GetMetadataFor(typeof(OneToOneChildDtoWithFk)).TableName,
                 delete.Operation.ValueMetadata.TableName);
 
             delete = list[1] as DeleteCommand;
 
             Assert.AreEqual(
-                cache.GetMetadataFor(typeof(GuidParentDto)).TableName,
+                cache.GetMetadataFor(typeof(ParentDto)).TableName,
                 delete.Operation.ValueMetadata.TableName);
         }
 
         [Test]
         [ExpectedException(typeof(InvalidOperationException))]
         public void insert_with_fk_on_child_and_reference_data_in_child_is_invalid() {
-            var newDto = new GuidParentDto()
+            var newDto = new ParentDto()
             {
-                OneToOneReferenceChildDtoWithFk = new GuidOneToOneReferenceChildDtoWithFk()
+                OneToOneReferenceChildDtoWithFk = new OneToOneReferenceChildDtoWithFk()
             };
 
             var cache = new DtoMetadataCache();
@@ -122,25 +117,23 @@ namespace Dapper.SimpleSave.Tests {
         [Test]
         [ExpectedException(typeof(InvalidOperationException))]
         [Ignore("Replace with test that checks no changes made. Consider validating diff to warn user if ref/special changes are made.")]
-        public void update_both_with_fk_on_child_and_reference_data_in_child_is_invalid()
-        {
-            var parentKey = Guid.NewGuid();
-            var oldDto = new GuidParentDto()
+        public void update_both_with_fk_on_child_and_reference_data_in_child_is_invalid() {
+            var oldDto = new ParentDto()
             {
-                ParentKey = parentKey,
-                OneToOneReferenceChildDtoWithFk = new GuidOneToOneReferenceChildDtoWithFk
+                ParentKey = 943982,
+                OneToOneReferenceChildDtoWithFk = new OneToOneReferenceChildDtoWithFk
                 {
-                    ParentKey = parentKey
+                    ParentKey = 943982
                 }
             };
 
-            var newDto = new GuidParentDto()
+            var newDto = new ParentDto()
             {
-                ParentKey = parentKey,
+                ParentKey = 943982,
                 ParentName = "Breaking",
-                OneToOneReferenceChildDtoWithFk = new GuidOneToOneReferenceChildDtoWithFk
+                OneToOneReferenceChildDtoWithFk = new OneToOneReferenceChildDtoWithFk
                 {
-                    ParentKey = parentKey,
+                    ParentKey = 943982,
                     Name = "Bad"
                 }
             };
@@ -158,7 +151,7 @@ namespace Dapper.SimpleSave.Tests {
             var command = list [0] as UpdateCommand;
 
             Assert.AreEqual(
-                cache.GetMetadataFor(typeof(GuidParentDto)).TableName,
+                cache.GetMetadataFor(typeof(ParentDto)).TableName,
                 command.Operations.FirstOrDefault().OwnerMetadata.TableName,
                 "Unexpected parent table name.");
         }
@@ -166,23 +159,22 @@ namespace Dapper.SimpleSave.Tests {
         [Test]
         public void update_parent_with_fk_on_child_and_reference_data_in_child_updates_parent()
         {
-            var parentKey = Guid.NewGuid();
-            var oldDto = new GuidParentDto()
+            var oldDto = new ParentDto()
             {
-                ParentKey = parentKey,
-                OneToOneReferenceChildDtoWithFk = new GuidOneToOneReferenceChildDtoWithFk
+                ParentKey = 943982,
+                OneToOneReferenceChildDtoWithFk = new OneToOneReferenceChildDtoWithFk
                 {
-                    ParentKey = parentKey
+                    ParentKey = 943982
                 }
             };
 
-            var newDto = new GuidParentDto()
+            var newDto = new ParentDto()
             {
-                ParentKey = parentKey,
+                ParentKey = 943982,
                 ParentName = "Breaking",
-                OneToOneReferenceChildDtoWithFk = new GuidOneToOneReferenceChildDtoWithFk
+                OneToOneReferenceChildDtoWithFk = new OneToOneReferenceChildDtoWithFk
                 {
-                    ParentKey = parentKey
+                    ParentKey = 943982
                 }
             };
 
@@ -191,15 +183,13 @@ namespace Dapper.SimpleSave.Tests {
 
         [Test]
         [ExpectedException(typeof(InvalidOperationException))]
-        public void delete_with_fk_on_child_and_reference_data_in_child_is_invalid()
-        {
-            var parentKey = Guid.NewGuid();
-            var oldDto = new GuidParentDto()
+        public void delete_with_fk_on_child_and_reference_data_in_child_is_invalid() {
+            var oldDto = new ParentDto()
             {
-                ParentKey = parentKey,
-                OneToOneReferenceChildDtoWithFk = new GuidOneToOneReferenceChildDtoWithFk
+                ParentKey = 5321,
+                OneToOneReferenceChildDtoWithFk = new OneToOneReferenceChildDtoWithFk
                 {
-                    ParentKey = parentKey
+                    ParentKey = 5321
                 }
             };
 
@@ -209,9 +199,9 @@ namespace Dapper.SimpleSave.Tests {
 
         [Test]
         public void insert_with_fk_on_child_and_special_data_in_child_inserts_in_parent_and_updates_child() {
-            var newDto = new GuidParentDto()
+            var newDto = new ParentDto()
             {
-                OneToOneSpecialChildDtoWithFk = new GuidOneToOneSpecialChildDtoWithFk()
+                OneToOneSpecialChildDtoWithFk = new OneToOneSpecialChildDtoWithFk()
             };
 
             var cache = new DtoMetadataCache();
@@ -221,38 +211,36 @@ namespace Dapper.SimpleSave.Tests {
             var parentInsert = list [0] as InsertCommand;
 
             Assert.AreEqual(
-                cache.GetMetadataFor(typeof(GuidParentDto)).TableName,
+                cache.GetMetadataFor(typeof(ParentDto)).TableName,
                 parentInsert.Operation.ValueMetadata.TableName,
                 "Unexpected parent table name.");
 
             var childUpdate = list [1] as UpdateCommand;
 
             Assert.AreEqual(
-                cache.GetMetadataFor(typeof(GuidOneToOneSpecialChildDtoWithFk)).TableName,
+                cache.GetMetadataFor(typeof(OneToOneSpecialChildDtoWithFk)).TableName,
                 childUpdate.Operations.FirstOrDefault().ValueMetadata.TableName,
                 "Unexpected child table name.");
         }
 
         [Test]
-        public void update_with_fk_on_child_and_special_data_in_child_updates_parent()
-        {
-            var parentKey = Guid.NewGuid();
-            var oldDto = new GuidParentDto()
+        public void update_with_fk_on_child_and_special_data_in_child_updates_parent() {
+            var oldDto = new ParentDto()
             {
-                ParentKey = parentKey,
-                OneToOneSpecialChildDtoWithFk = new GuidOneToOneSpecialChildDtoWithFk
+                ParentKey = 943982,
+                OneToOneSpecialChildDtoWithFk = new OneToOneSpecialChildDtoWithFk
                 {
-                    ParentKey = parentKey
+                    ParentKey = 943982
                 }
             };
 
-            var newDto = new GuidParentDto()
+            var newDto = new ParentDto()
             {
-                ParentKey = parentKey,
+                ParentKey = 943982,
                 ParentName = "Breaking",
-                OneToOneSpecialChildDtoWithFk = new GuidOneToOneSpecialChildDtoWithFk
+                OneToOneSpecialChildDtoWithFk = new OneToOneSpecialChildDtoWithFk
                 {
-                    ParentKey = parentKey
+                    ParentKey = 943982
                 }
             };
 
@@ -261,9 +249,9 @@ namespace Dapper.SimpleSave.Tests {
 
         [Test]
         public void delete_with_fk_on_child_and_special_data_in_child_updates_child_and_deletes_parent() {
-            var oldDto = new GuidParentDto()
+            var oldDto = new ParentDto()
             {
-                OneToOneSpecialChildDtoWithFk = new GuidOneToOneSpecialChildDtoWithFk()
+                OneToOneSpecialChildDtoWithFk = new OneToOneSpecialChildDtoWithFk()
             };
 
             var cache = new DtoMetadataCache();
@@ -273,22 +261,22 @@ namespace Dapper.SimpleSave.Tests {
             var update = list [0] as UpdateCommand;
 
             Assert.AreEqual(
-                cache.GetMetadataFor(typeof(GuidOneToOneSpecialChildDtoWithFk)).TableName,
+                cache.GetMetadataFor(typeof(OneToOneSpecialChildDtoWithFk)).TableName,
                 update.Operations.FirstOrDefault().ValueMetadata.TableName);
 
             var delete = list [1] as DeleteCommand;
 
             Assert.AreEqual(
-                cache.GetMetadataFor(typeof(GuidParentDto)).TableName,
+                cache.GetMetadataFor(typeof(ParentDto)).TableName,
                 delete.Operation.ValueMetadata.TableName);
         }
 
         [Test]
         [ExpectedException(typeof(InvalidOperationException))]
         public void insert_with_fk_on_child_and_reference_data_in_parent_is_invalid() {
-            var newDto = new GuidParentReferenceDto
+            var newDto = new ParentReferenceDto
             {
-                OneToOneChildDtoWithFk = new GuidOneToOneChildDtoWithFk()
+                OneToOneChildDtoWithFk = new OneToOneChildDtoWithFk()
             };
 
             var cache = new DtoMetadataCache();
@@ -298,25 +286,23 @@ namespace Dapper.SimpleSave.Tests {
         [Test]
         [ExpectedException(typeof(InvalidOperationException))]
         [Ignore("Replace with test that checks no changes made. Consider validating diff to warn user if ref/special changes are made.")]
-        public void update_with_fk_on_child_and_reference_data_in_parent_is_invalid()
-        {
-            var parentKey = Guid.NewGuid();
-            var oldDto = new GuidParentReferenceDto()
+        public void update_with_fk_on_child_and_reference_data_in_parent_is_invalid() {
+            var oldDto = new ParentReferenceDto()
             {
-                ParentKey = parentKey,
-                OneToOneChildDtoWithFk = new GuidOneToOneChildDtoWithFk
+                ParentKey = 943982,
+                OneToOneChildDtoWithFk = new OneToOneChildDtoWithFk
                 {
-                    ParentKey = parentKey
+                    ParentKey = 943982
                 }
             };
 
-            var newDto = new GuidParentReferenceDto()
+            var newDto = new ParentReferenceDto()
             {
-                ParentKey = parentKey,
+                ParentKey = 943982,
                 ParentName = "Breaking",
-                OneToOneChildDtoWithFk = new GuidOneToOneChildDtoWithFk
+                OneToOneChildDtoWithFk = new OneToOneChildDtoWithFk
                 {
-                    ParentKey = parentKey
+                    ParentKey = 943982
                 }
             };
 
@@ -325,15 +311,13 @@ namespace Dapper.SimpleSave.Tests {
 
         [Test]
         [ExpectedException(typeof(InvalidOperationException))]
-        public void delete_with_fk_on_child_and_reference_data_in_parent_is_invalid()
-        {
-            var parentKey = Guid.NewGuid();
-            var oldDto = new GuidParentReferenceDto
+        public void delete_with_fk_on_child_and_reference_data_in_parent_is_invalid() {
+            var oldDto = new ParentReferenceDto
             {
-                ParentKey = parentKey,
-                OneToOneChildDtoWithFk = new GuidOneToOneChildDtoWithFk
+                ParentKey = 43432,
+                OneToOneChildDtoWithFk = new OneToOneChildDtoWithFk
                 {
-                    ParentKey = parentKey
+                    ParentKey = 43432
                 }
             };
 
@@ -344,9 +328,9 @@ namespace Dapper.SimpleSave.Tests {
         [Test]
         [ExpectedException(typeof(InvalidOperationException))]
         public void insert_with_fk_on_child_and_reference_data_in_both_parent_and_child_is_invalid() {
-            var newDto = new GuidParentReferenceDto
+            var newDto = new ParentReferenceDto
             {
-                OneToOneReferenceChildDtoWithFk = new GuidOneToOneReferenceChildDtoWithFk()
+                OneToOneReferenceChildDtoWithFk = new OneToOneReferenceChildDtoWithFk()
             };
 
             var cache = new DtoMetadataCache();
@@ -356,25 +340,23 @@ namespace Dapper.SimpleSave.Tests {
         [Test]
         [ExpectedException(typeof(InvalidOperationException))]
         [Ignore("Replace with test that checks no changes made. Consider validating diff to warn user if ref/special changes are made.")]
-        public void update_with_fk_on_child_and_reference_data_in_both_parent_and_child_is_invalid()
-        {
-            var parentKey = Guid.NewGuid();
-            var oldDto = new GuidParentReferenceDto()
+        public void update_with_fk_on_child_and_reference_data_in_both_parent_and_child_is_invalid() {
+            var oldDto = new ParentReferenceDto()
             {
-                ParentKey = parentKey,
-                OneToOneReferenceChildDtoWithFk = new GuidOneToOneReferenceChildDtoWithFk
+                ParentKey = 943982,
+                OneToOneReferenceChildDtoWithFk = new OneToOneReferenceChildDtoWithFk
                 {
-                    ParentKey = parentKey
+                    ParentKey = 943982
                 }
             };
 
-            var newDto = new GuidParentReferenceDto()
+            var newDto = new ParentReferenceDto()
             {
-                ParentKey = parentKey,
+                ParentKey = 943982,
                 ParentName = "Breaking",
-                OneToOneReferenceChildDtoWithFk = new GuidOneToOneReferenceChildDtoWithFk
+                OneToOneReferenceChildDtoWithFk = new OneToOneReferenceChildDtoWithFk
                 {
-                    ParentKey = parentKey
+                    ParentKey = 943982
                 }
             };
 
@@ -383,15 +365,13 @@ namespace Dapper.SimpleSave.Tests {
 
         [Test]
         [ExpectedException(typeof(InvalidOperationException))]
-        public void delete_with_fk_on_child_and_reference_data_in_both_parent_and_child_is_invalid()
-        {
-            var parentKey = Guid.NewGuid();
-            var oldDto = new GuidParentReferenceDto
+        public void delete_with_fk_on_child_and_reference_data_in_both_parent_and_child_is_invalid() {
+            var oldDto = new ParentReferenceDto
             {
-                ParentKey = parentKey,
-                OneToOneReferenceChildDtoWithFk = new GuidOneToOneReferenceChildDtoWithFk
+                ParentKey = 43432,
+                OneToOneReferenceChildDtoWithFk = new OneToOneReferenceChildDtoWithFk
                 {
-                    ParentKey = parentKey
+                    ParentKey = 43432
                 }
             };
 

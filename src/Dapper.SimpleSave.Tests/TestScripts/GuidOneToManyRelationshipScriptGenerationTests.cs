@@ -2,7 +2,7 @@
 using Dapper.SimpleSave.Tests.GuidDtos;
 using NUnit.Framework;
 
-namespace Dapper.SimpleSave.Tests
+namespace Dapper.SimpleSave.Tests.TestScripts
 {
     [TestFixture]
     public class GuidOneToManyRelationshipScriptGenerationTests : BaseScriptGenerationTests

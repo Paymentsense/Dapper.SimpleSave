@@ -1,7 +1,7 @@
 ﻿using Dapper.SimpleSave.Tests.Dto;
 using NUnit.Framework;
 
-namespace Dapper.SimpleSave.Tests
+namespace Dapper.SimpleSave.Tests.TestScripts
 {
 
     [TestFixture]

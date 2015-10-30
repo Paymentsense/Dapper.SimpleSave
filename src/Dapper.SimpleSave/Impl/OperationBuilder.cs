@@ -207,7 +207,7 @@ namespace Dapper.SimpleSave.Impl
 
         private bool HasAnyOneToOneChildrenWithFKOnParent(DeleteOperation deleteOperation)
         {
-            foreach (var property in deleteOperation.ValueMetadata.Properties)
+            foreach (var property in deleteOperation.ValueMetadata.WriteableProperties)
             {
                 if (property.IsOneToOneRelationship && property.HasAttribute<ForeignKeyReferenceAttribute>())
                 {
@@ -269,14 +269,26 @@ namespace Dapper.SimpleSave.Impl
                         && insertDeleteOperation.OwnerPropertyMetadata.HasAttribute<ForeignKeyReferenceAttribute>());
         }
 
-        private bool ShouldFilterOutForParticularCardinalitiesBecauseFkOnParent(BaseInsertDeleteOperation insertDeleteOperation)
+        private bool ShouldFilterOutForParticularCardinalitiesBecauseFkOnParent(
+            BaseInsertDeleteOperation insertDeleteOperation)
         {
-            return insertDeleteOperation.OwnerPropertyMetadata != null
-                   && (insertDeleteOperation.OwnerPropertyMetadata.IsManyToOneRelationship
-                        || (insertDeleteOperation.OwnerPropertyMetadata.IsOneToOneRelationship
-                            && insertDeleteOperation.OwnerPropertyMetadata.HasAttribute<ForeignKeyReferenceAttribute>()
-                            && (insertDeleteOperation.ValueMetadata.IsReferenceData || insertDeleteOperation.OwnerPropertyMetadata.HasAttribute<ReferenceDataAttribute>())
-                            && ! insertDeleteOperation.ValueMetadata.HasUpdateableForeignKeys));
+            if (insertDeleteOperation.OwnerPropertyMetadata != null)
+            {
+                if (insertDeleteOperation.OwnerPropertyMetadata.IsManyToOneRelationship)
+                {
+                    return true;
+                }
+
+                if (insertDeleteOperation.OwnerPropertyMetadata.IsOneToOneRelationship
+                    && insertDeleteOperation.OwnerPropertyMetadata.HasAttribute<ForeignKeyReferenceAttribute>()
+                    && (insertDeleteOperation.ValueMetadata.IsReferenceData || insertDeleteOperation.OwnerPropertyMetadata.HasAttribute<ReferenceDataAttribute>())
+                    && ! insertDeleteOperation.ValueMetadata.HasUpdateableForeignKeys)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         private void AppendUpdateOperation(IList<BaseOperation> operations, Difference diff)

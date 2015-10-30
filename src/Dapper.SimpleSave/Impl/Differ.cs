@@ -144,7 +144,7 @@ namespace Dapper.SimpleSave.Impl
                 return;
             }
 
-            foreach (var prop in metadata.Properties)
+            foreach (var prop in metadata.WriteableProperties)
             {
                 if (metadata.IsReferenceData && !prop.HasAttribute<ForeignKeyReferenceAttribute>())
                 {
@@ -317,19 +317,60 @@ namespace Dapper.SimpleSave.Impl
             DifferenceType differenceType,
             IList<Difference> differences)
         {
+            ReferenceDataAttribute refData = null;
+            if (itemTypeMeta.HasAttribute<ReferenceDataAttribute>())
+            {
+                refData = itemTypeMeta.GetAttribute<ReferenceDataAttribute>();
+            }
+            else if (prop.HasAttribute<ReferenceDataAttribute>())
+            {
+                refData = prop.GetAttribute<ReferenceDataAttribute>();
+            }
+
+            var manyToMany = prop.GetAttribute<ManyToManyAttribute>();
+            var manyToOne = prop.GetAttribute<ManyToOneAttribute>();
+
             var removed = FindRemovedItems(items1, items2);
 
-            Action<object> addDifference = item => differences.Add(new Difference
+            Action<object> addDifference = item =>
             {
-                OldOwner = oldOwner,
-                NewOwner = newOwner,
-                DifferenceType = differenceType,
-                OwnerPropertyMetadata = prop,
-                OwnerMetadata = metadata,
-                ValueMetadata = itemTypeMeta,
-                NewValue = DifferenceType.Insertion == differenceType ? item : null,
-                OldValue = DifferenceType.Deletion == differenceType ? item : null
-            });
+                if (refData == null
+                    && manyToMany == null
+                    && manyToOne == null
+                    && differenceType == DifferenceType.Deletion)
+                {
+                    DiffProperties(
+                       itemTypeMeta,
+                       item,
+                       null,
+                       differences,
+                       prop);
+                }
+
+                differences.Add(new Difference
+                {
+                    OldOwner = oldOwner,
+                    NewOwner = newOwner,
+                    DifferenceType = differenceType,
+                    OwnerPropertyMetadata = prop,
+                    OwnerMetadata = metadata,
+                    ValueMetadata = itemTypeMeta,
+                    NewValue = DifferenceType.Insertion == differenceType ? item : null,
+                    OldValue = DifferenceType.Deletion == differenceType ? item : null
+                });
+
+                if (refData == null
+                    && ((manyToMany == null && manyToOne == null) || itemTypeMeta.GetPrimaryKeyValueAsObject(item) == null)
+                    && differenceType == DifferenceType.Insertion)
+                {
+                   DiffProperties(
+                       itemTypeMeta,
+                       null,
+                       item,
+                       differences,
+                       prop);
+                }
+            };
 
             foreach (var item in removed.ItemsById.Values)
             {

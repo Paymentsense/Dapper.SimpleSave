@@ -2,7 +2,7 @@
 using Dapper.SimpleSave.Tests.Dto;
 using NUnit.Framework;
 
-namespace Dapper.SimpleSave.Tests
+namespace Dapper.SimpleSave.Tests.TestScripts
 {
     [TestFixture]
     public class OneToManyRelationshipScriptGenerationTests : BaseScriptGenerationTests
@@ -63,7 +63,7 @@ namespace Dapper.SimpleSave.Tests
 
             Assert.AreEqual(
                 1,
-                ((Func<object>) scripts[0].Parameters["p0"])(),
+                ((Func<object>) scripts[0].Parameters["p6"])(),
                 "Invalid FK value in child - should be same as parent key.");
         }
     }

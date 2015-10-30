@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Transactions;
 using Castle.Core.Internal;
 using Dapper.SimpleSave.Impl;
 
@@ -9,7 +10,7 @@ namespace Dapper.SimpleSave
 {
     public static class SimpleSaveExtensions
     {
-        private static readonly DtoMetadataCache _dtoMetadataCache = new DtoMetadataCache();
+        public static readonly DtoMetadataCache MetadataCache = new DtoMetadataCache();
 
         private static ISimpleSaveLogger _logger = new BasicSimpleSaveLogger();
 
@@ -141,14 +142,20 @@ namespace Dapper.SimpleSave
             bool softDelete = false,
             IDbTransaction transaction = null)
         {
-            var builder = new TransactionBuilder(_dtoMetadataCache);
-            IDictionary<Tuple<T, T>, IList<Script>> scripts = new Dictionary<Tuple<T, T>, IList<Script>>();
+            var builder = new TransactionBuilder(MetadataCache);
+            IDictionary<Tuple<T, T>, IList<IScript>> scripts = new Dictionary<Tuple<T, T>, IList<IScript>>();
             foreach (var pair in oldAndNewObjects)
             {
                 scripts[pair] = builder.BuildUpdateScripts(pair.Item1, pair.Item2, softDelete);
             }
 
+            Transaction ambient = null;
             if (transaction == null)
+            {
+                ambient = Transaction.Current;
+            }
+
+            if (transaction == null && ambient == null)
             {
                 using (var myTransaction = connection.BeginTransaction())
                 {
@@ -209,7 +216,7 @@ namespace Dapper.SimpleSave
         private static void ExecuteScriptsForTuples<T>(
             IDbConnection connection,
             IEnumerable<Tuple<T, T>> oldAndNewObjects,
-            IDictionary<Tuple<T, T>, IList<Script>> scripts,
+            IDictionary<Tuple<T, T>, IList<IScript>> scripts,
             bool softDelete,
             IDbTransaction transaction)
         {
@@ -227,7 +234,7 @@ namespace Dapper.SimpleSave
 
         private static void ExecuteScripts<T>(
             IDbConnection connection,
-            IList<Script> scripts,
+            IList<IScript> scripts,
             T oldRootObject,
             T newRootObject,
             bool softDelete,
@@ -255,7 +262,7 @@ namespace Dapper.SimpleSave
             T newRootObject,
             bool softDelete,
             IDbTransaction transaction,
-            Script script)
+            IScript script)
         {
             _logger.LogPreExecution(script);
             PropertyMetadata softDeletePropertyMetadata = GetMarkerPropertyMetadataIfSoftDeleting(
@@ -292,7 +299,7 @@ namespace Dapper.SimpleSave
             PropertyMetadata softDeletePropertyMetadata = null;
             if (softDelete)
             {
-                var metadata = _dtoMetadataCache.GetMetadataFor<T>();
+                var metadata = MetadataCache.GetMetadataFor<T>();
                 if (newRootObject == null && oldRootObject != null)
                 {
                     softDeletePropertyMetadata = SoftDeleteValidator.GetValidatedSoftDeleteProperty(metadata);
@@ -322,19 +329,31 @@ namespace Dapper.SimpleSave
         }
 
         private static void SetPrimaryKeyForInsertedRowOnCorrespondingObject(
-            Script script,
+            IScript script,
             object insertedPk)
         {
             var metadata = script.InsertedValueMetadata;
+            if (_logger.Wrapped.IsDebugEnabled)
+            {
+                _logger.Wrapped.Debug(string.Format(
+                    "Setting {0} primary key value of expected type {1} to type {2}, value {3}",
+                    metadata.DtoType,
+                    metadata.PrimaryKey.Prop.PropertyType,
+                    insertedPk == null ? "NULL" : insertedPk.GetType().ToString(),
+                    insertedPk));
+            }
+
             var type = metadata.PrimaryKey.Prop.PropertyType;
             if (type == typeof(int?) || type == typeof(int))
             {
+                insertedPk = CoerceNumericPkToDecimal(insertedPk);
                 metadata.SetPrimaryKey(
                     script.InsertedValue,
                     Decimal.ToInt32((decimal) insertedPk));
             }
             else if (type == typeof (long?) || type == typeof (long))
             {
+                insertedPk = CoerceNumericPkToDecimal(insertedPk);
                 metadata.SetPrimaryKey(
                     script.InsertedValue,
                     Decimal.ToInt64((decimal) insertedPk));
@@ -343,11 +362,45 @@ namespace Dapper.SimpleSave
             {
                 metadata.SetPrimaryKey(
                     script.InsertedValue,
-                    insertedPk);
+                    TryToCoerceGuidPkToGuid(insertedPk));
             }
         }
 
-        private static void ResolvePrimaryKeyValues<T>(Script script)
+        private static object CoerceNumericPkToDecimal(object insertedPk)
+        {
+            if (insertedPk is int)
+            {
+                insertedPk = (decimal) (int) insertedPk;
+            }
+            else if (insertedPk is long)
+            {
+                insertedPk = (decimal) (long) insertedPk;
+            }
+            else if (insertedPk != null && insertedPk is string)
+            {
+                insertedPk = decimal.Parse(insertedPk.ToString());
+            }
+            return insertedPk;
+        }
+
+        private static object TryToCoerceGuidPkToGuid(object insertedPk)
+        {
+            if (insertedPk == null || insertedPk is Guid || insertedPk is Guid?)
+            {
+                return insertedPk;
+            }
+
+            try
+            {
+                return Guid.Parse(insertedPk.ToString());
+            }
+            catch (FormatException)
+            {
+                return insertedPk;
+            }
+        }
+
+        private static void ResolvePrimaryKeyValues<T>(IScript script)
         {
             // ToArray() dodges exception due to concurrent modification
             foreach (string key in script.Parameters.Keys.ToArray())

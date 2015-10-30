@@ -5,7 +5,7 @@ using Dapper.SimpleSave.Tests.Dto;
 using Dapper.SimpleSave.Tests.GuidDtos;
 using NUnit.Framework;
 
-namespace Dapper.SimpleSave.Tests
+namespace Dapper.SimpleSave.Tests.TestScripts
 {
 
     [TestFixture]
@@ -83,7 +83,7 @@ namespace Dapper.SimpleSave.Tests
                 "DELETE FROM dbo.GuidOneToOneChildNoFk");
         }
 
-        private static void AssertOnDeletes(IList<Script> scripts, string parentDeleteSqlFragment, string childDeleteSqlFragment)
+        private static void AssertOnDeletes(IList<IScript> scripts, string parentDeleteSqlFragment, string childDeleteSqlFragment)
         {
             var parentIndex = scripts.AssertFragment(0, parentDeleteSqlFragment);
             var childIndex = scripts.AssertFragment(0, childDeleteSqlFragment);

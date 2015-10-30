@@ -2,21 +2,17 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using Dapper.SimpleSave.Impl;
 using Dapper.SimpleSave.Tests.Dto;
 using NUnit.Framework;
 
-namespace Dapper.SimpleSave.Tests
+namespace Dapper.SimpleSave.Tests.TestScripts
 {
     [TestFixture]
     public class CollectionScriptGenerationTests : BaseTests
     {
         [Test]
-        public void collection_insert_generates_insert_for_all()
+        public void collection_insert_with_pks_generates_insert_for_all_with_update_contingencies()
         {
             var dtos = new List<ParentDto>() {new ParentDto {ParentKey = 1}, new ParentDto {ParentKey = 2}};
 
@@ -45,9 +41,9 @@ namespace Dapper.SimpleSave.Tests
                 Assert.IsTrue(sql.Contains("INSERT INTO dbo.[Parent]"), "No insert on parent.");
 
                 Assert.AreEqual(1, Regex.Matches(sql, "INSERT").Count, "Unexpected number of INSERTs.");
-                Assert.AreEqual(0, Regex.Matches(sql, "UPDATE").Count, "Should be no UPDATEs.");
+                Assert.AreEqual(1, Regex.Matches(sql, "UPDATE").Count, "Should be one UPDATE.");
                 Assert.AreEqual(0, Regex.Matches(sql, "DELETE").Count, "Should be no DELETEs.");
-                Assert.AreEqual(1, Regex.Matches(sql, "SELECT").Count, "Should be one SELECT to return inserted IDENTITY value.");
+                Assert.AreEqual(3, Regex.Matches(sql, "SELECT").Count, "Should be three SELECTs - one to check for existence of row, and two for returning PK value of INSERTED/UPDATED row.");
             }
         }
 
