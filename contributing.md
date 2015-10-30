@@ -5,7 +5,7 @@ This is a general guide about how to contribute to Dapper.SimpleSave. It is not 
 
 ## Areas where we particularly need help
 
-* Documentation
+* Documentation - you won't need to read very far to realise that this is something I suck at, so I'd really appreciate your help if you're good at it.
 
 * Testing - both Dapper.SimpleSave and Dapper.SimpleLoad have been fairly well tested in the context of the app for which they were originally developed, however, their own automated test suites are somewhat lacking - particularly in the case of SimpleLoad. SimpleSave primarily needs tests that hit a real database and verify what was saved, on top of what it already has, in addition to verification of the scripts that are being created.
 
