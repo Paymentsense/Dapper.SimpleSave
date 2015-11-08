@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Security.Permissions;
 using System.Transactions;
 using Castle.Core.Internal;
 using Dapper.SimpleSave.Impl;
@@ -26,6 +27,17 @@ namespace Dapper.SimpleSave
                         "Specifying a null ISimpleSaveLogger is not permitted.");
                 }
                 _logger = value;
+            }
+        }
+
+        public static event EventHandler<DifferenceEventArgs> DifferenceProcessed;
+
+        internal static void OnDifferenceProcessed(DifferenceEventArgs args)
+        {
+            var handlers = DifferenceProcessed;
+            if (handlers != null)
+            {
+                handlers(typeof(SimpleSaveExtensions), args);
             }
         }
 

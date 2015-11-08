@@ -43,7 +43,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ColumnAttribute.cs" />
+    <Compile Include="DifferenceEventArgs.cs" />
     <Compile Include="ForeignKeyReferenceAttribute.cs" />
+    <Compile Include="Impl\Ancestor.cs" />
     <Compile Include="Impl\BaseCommand.cs" />
     <Compile Include="Impl\BaseInsertDeleteCommand.cs" />
     <Compile Include="Impl\BaseInsertDeleteOperation.cs" />
@@ -54,7 +56,7 @@
     <Compile Include="Impl\DifferenceType.cs" />
     <Compile Include="DtoMetadata.cs" />
     <Compile Include="Impl\Differ.cs" />
-    <Compile Include="Impl\Difference.cs" />
+    <Compile Include="Difference.cs" />
     <Compile Include="DtoMetadataCache.cs" />
     <Compile Include="Impl\DtoMetadataValidator.cs" />
     <Compile Include="Impl\InsertCommand.cs" />
