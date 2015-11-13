@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Security.Permissions;
 using System.Transactions;
 using Castle.Core.Internal;
@@ -14,6 +15,14 @@ namespace Dapper.SimpleSave
         public static readonly DtoMetadataCache MetadataCache = new DtoMetadataCache();
 
         private static ISimpleSaveLogger _logger = new BasicSimpleSaveLogger();
+
+        static SimpleSaveExtensions()
+        {
+            LogBuiltScripts = false;
+            LogScriptsPreExecution = true;
+            LogScriptsPostExecution = false;
+            ExecutionTimeWarningEmitThresholdMilliseconds = 100;
+        }
 
         public static ISimpleSaveLogger Logger
         {
@@ -29,6 +38,11 @@ namespace Dapper.SimpleSave
                 _logger = value;
             }
         }
+
+        public static bool LogBuiltScripts { get; set; }
+        public static bool LogScriptsPreExecution { get; set; }
+        public static bool LogScriptsPostExecution { get; set; }
+        public static long ExecutionTimeWarningEmitThresholdMilliseconds { get; set; }
 
         public static event EventHandler<DifferenceEventArgs> DifferenceProcessed;
 
@@ -277,6 +291,8 @@ namespace Dapper.SimpleSave
             IScript script)
         {
             _logger.LogPreExecution(script);
+
+
             PropertyMetadata softDeletePropertyMetadata = GetMarkerPropertyMetadataIfSoftDeleting(
                 oldRootObject, newRootObject, softDelete);
 
@@ -288,7 +304,10 @@ namespace Dapper.SimpleSave
                 CommandType.Text,
                 CommandFlags.Buffered | CommandFlags.NoCache);
 
+            var startTime = DateTime.Now.Ticks;
             var insertedPk = connection.ExecuteScalar(commandDefinition);
+            var totalTime = (DateTime.Now.Ticks - startTime) / TimeSpan.TicksPerMillisecond;
+
             if (null != insertedPk
                 && null != script.InsertedValue)
             {
@@ -300,7 +319,9 @@ namespace Dapper.SimpleSave
             }
 
             SetSoftDeletePropertyValue(oldRootObject, softDeletePropertyMetadata);
+
             _logger.LogPostExecution(script);
+            _logger.LogExecutionTime(totalTime);
         }
 
         private static PropertyMetadata GetMarkerPropertyMetadataIfSoftDeleting<T>(

@@ -30,7 +30,7 @@ namespace Dapper.SimpleSave.Impl
 
         public virtual void LogBuilt(IScript script)
         {
-            if (Logger.IsDebugEnabled)
+            if (SimpleSaveExtensions.LogBuiltScripts && Logger.IsDebugEnabled)
             {
                 Logger.Debug(BuildDebugMessage(script, "Built script"));
             }
@@ -50,12 +50,40 @@ namespace Dapper.SimpleSave.Impl
 
         public virtual void LogPreExecution(IScript script)
         {
-            Log(script, "Executing script");
+            if (SimpleSaveExtensions.LogScriptsPreExecution)
+            {
+                Log(script, "Executing script");
+            }
         }
 
         public virtual void LogPostExecution(IScript script)
         {
-            Log(script, "Executed script");
+            if (SimpleSaveExtensions.LogScriptsPostExecution)
+            {
+                Log(script, "Executed script");
+            }
+        }
+
+        public virtual void LogExecutionTime(long executionTimeMilliseconds)
+        {
+            if (executionTimeMilliseconds > SimpleSaveExtensions.ExecutionTimeWarningEmitThresholdMilliseconds)
+            {
+                if (Logger.IsWarnEnabled)
+                {
+                    Logger.Warn(string.Format(
+                        "SIMPLESAVE SCRIPT EXECUTED IN {0}ms",
+                        executionTimeMilliseconds));
+                }
+            }
+            else
+            {
+                if (Logger.IsInfoEnabled)
+                {
+                    Logger.Info(string.Format(
+                        "SimpleSave script executed in {0}ms",
+                        executionTimeMilliseconds));
+                }
+            }
         }
     }
 }
