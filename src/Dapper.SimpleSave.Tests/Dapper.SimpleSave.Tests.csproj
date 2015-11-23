@@ -41,6 +41,7 @@
     <Compile Include="BaseScriptGenerationTests.cs" />
     <Compile Include="BaseTests.cs" />
     <Compile Include="RealisticDtos\CampaignDto.cs" />
+    <Compile Include="RealisticDtos\DateTimePropertiesDto.cs" />
     <Compile Include="RealisticDtos\TeleAppointerDto.cs" />
     <Compile Include="TestScripts\CollectionScriptGenerationTests.cs" />
     <Compile Include="TestScripts\ContextualReferenceDataTests.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="Dto\ParentDto.cs" />
     <Compile Include="Dto\ParentReferenceDto.cs" />
     <Compile Include="Dto\ParentSpecialDto.cs" />
+    <Compile Include="TestScripts\DateTimePropertyTests.cs" />
     <Compile Include="TestScripts\ForeignKeyReferenceNonPKColumnTests.cs" />
     <Compile Include="GuidDtos\GuidBaseChildDto.cs" />
     <Compile Include="GuidDtos\GuidBaseManyToManyChildDto.cs" />
