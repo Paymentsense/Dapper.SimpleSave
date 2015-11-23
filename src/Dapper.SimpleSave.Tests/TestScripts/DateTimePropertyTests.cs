@@ -53,10 +53,20 @@ namespace Dapper.SimpleSave.Tests.TestScripts
 
             var scripts = logger.Scripts;
             Assert.AreEqual(1, scripts.Count, "Unexpected number of scripts.");
+            var sql = scripts[0].Buffer.ToString();
+            Assert.AreEqual(sql.IndexOf("[DateTimeProperty]"), sql.LastIndexOf("[DateTimeProperty]"), "Should only be one occurence of [DateTimeProperty].");
+            Assert.AreEqual(sql.IndexOf("[DateTimeOffsetProperty]"), sql.LastIndexOf("[DateTimeOffsetProperty]"), "Should only be one occurence of [DateTimeOffsetProperty].");
         }
 
         void SimpleSaveExtensions_DifferenceProcessed(object sender, DifferenceEventArgs e)
         {
+            var diff = e.Difference;
+            var obj = diff.NewOwner as DateTimePropertiesDto;
+            if (obj != null)
+            {
+                obj.DateTimeOffsetProperty = DateTimeOffset.Now.AddHours(10);
+            }
+            
             e.FurtherChangesMade();
         }
     }
