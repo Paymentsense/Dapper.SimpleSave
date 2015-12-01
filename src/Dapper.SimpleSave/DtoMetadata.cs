@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Net;
 using System.Reflection;
 using Dapper.SimpleSave.Impl;
+using log4net;
 
 namespace Dapper.SimpleSave
 {
     public class DtoMetadata : BaseMetadata
     {
+        private static readonly ILog Logger = LogManager.GetLogger(typeof(DtoMetadata));
+
         private IDictionary<string, PropertyMetadata> _propertiesByCaseInsensitiveColumnName = new Dictionary<string, PropertyMetadata>(StringComparer.CurrentCultureIgnoreCase);
 
         public DtoMetadata(Type type) : base(type)
@@ -95,7 +97,7 @@ namespace Dapper.SimpleSave
 
         private void InitProperties()
         {
-            var writeable = new List<PropertyMetadata>();
+            IList<PropertyMetadata> writeable = new List<PropertyMetadata>();
             var all = new List<PropertyMetadata>();
             foreach (var prop in DtoType.GetProperties(
                 BindingFlags.FlattenHierarchy | BindingFlags.Public | BindingFlags.Instance))
@@ -122,8 +124,106 @@ namespace Dapper.SimpleSave
                 writeable.Add(propMeta);
             }
 
+            writeable = DeduplicateWriteableProperties(writeable);
             WriteableProperties = writeable;
             AllProperties = all;
+        }
+
+        private IList<PropertyMetadata> DeduplicateWriteableProperties(IList<PropertyMetadata> source)
+        {
+            var byName = new Dictionary<string, PropertyMetadata>();
+            for (var index = source.Count - 1; index >= 0; --index)
+            {
+                var metadata = source[index];
+                var name = metadata.ColumnName;
+                if (byName.ContainsKey(name))
+                {
+                    var stored = byName[name];
+                    var storedDeclaringType = stored.Prop.DeclaringType;
+                    var myDeclaringType = metadata.Prop.DeclaringType;
+                    if (storedDeclaringType != myDeclaringType)
+                    {
+                        if (storedDeclaringType.IsAssignableFrom(myDeclaringType))
+                        {
+                            //  Stored type is the base class; let's replace the property,
+                            //  and warn.
+                            byName[name] = metadata;
+                            FireWarningOrExceptionOnDuplicate(string.Format(
+                                "Types {0} and {1} both contain properties mapped to column '{2}'. Properties "
+                                + "are '{3}' and '{4}' respectively. SimpleSave will use the most specific "
+                                + "definition: {1}.{4}",
+                                storedDeclaringType,
+                                myDeclaringType,
+                                name,
+                                stored.Prop.Name,
+                                metadata.Prop.Name));
+                        }
+                        else if (myDeclaringType.IsAssignableFrom(storedDeclaringType))
+                        {
+                            //  We've already stored the subclass, but we've found a duplicate
+                            //  (duplicate is the base class), so let's log a warning.
+                            FireWarningOrExceptionOnDuplicate(string.Format(
+                                "Types {0} and {1} both contain properties mapped to column '{2}'. Properties "
+                                + "are '{3}' and '{4}' respectively. SimpleSave will use the most specific "
+                                + "definition: {1}.{4}",
+                                myDeclaringType,
+                                storedDeclaringType,
+                                name,
+                                metadata.Prop.Name,
+                                stored.Prop.Name));
+                        }
+                        else
+                        {
+                            //  This is a weird situation that might occur with interface inheritance, or if
+                            //  two completely different properties have been mapped to the same column. Again,
+                            //  let's just warn. Really we're just picking one of the properties at random here
+                            //  (i.e., the first one we run into, and the order isn't guaranteed).
+                            FireWarningOrExceptionOnDuplicate(string.Format(
+                                "Types {0} and {1} both contain properties mapped to column '{2}'. Properties "
+                                + "are '{3}' and '{4}' respectively. SimpleSave will use: {1}.{4}",
+                                myDeclaringType,
+                                storedDeclaringType,
+                                name,
+                                metadata.Prop.Name,
+                                stored.Prop.Name));
+                        }
+                    }
+                    else
+                    {
+                        //  Very much belt and braces - same property, same declaring type, but why's
+                        //  it duplicated?
+                        source.RemoveAt(index);
+                    }
+                }
+                else
+                {
+                    byName.Add(name, metadata);
+                }
+            }
+
+            //  We do all this because I don't want to reorder the properties in the source collection.
+            var deduped = new HashSet<PropertyMetadata>(byName.Values);
+            for (var index = source.Count - 1; index >= 0; --index)
+            {
+                if (!deduped.Contains(source[index]))
+                {
+                    source.RemoveAt(index);
+                }
+            }
+
+            return source;
+        }
+
+        private static void FireWarningOrExceptionOnDuplicate(string message)
+        {
+            if (SimpleSaveExtensions.ThrowOnMultipleWriteablePropertiesAgainstSameColumn)
+            {
+                throw new InvalidOperationException(message);
+            }
+            else if (Logger.IsWarnEnabled)
+            {
+                Logger.Warn(message);
+            }
         }
 
         private void InitTableName()

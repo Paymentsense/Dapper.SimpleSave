@@ -40,6 +40,7 @@
   <ItemGroup>
     <Compile Include="BaseScriptGenerationTests.cs" />
     <Compile Include="BaseTests.cs" />
+    <Compile Include="Metadata\MultiplePropertiesSameColumnTests.cs" />
     <Compile Include="RealisticDtos\CampaignDto.cs" />
     <Compile Include="RealisticDtos\DateTimePropertiesDto.cs" />
     <Compile Include="RealisticDtos\TeleAppointerDto.cs" />

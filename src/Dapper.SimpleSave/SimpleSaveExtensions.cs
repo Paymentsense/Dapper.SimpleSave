@@ -22,6 +22,7 @@ namespace Dapper.SimpleSave
             LogScriptsPreExecution = true;
             LogScriptsPostExecution = false;
             ExecutionTimeWarningEmitThresholdMilliseconds = 100;
+            ThrowOnMultipleWriteablePropertiesAgainstSameColumn = true;
         }
 
         public static ISimpleSaveLogger Logger
@@ -43,6 +44,7 @@ namespace Dapper.SimpleSave
         public static bool LogScriptsPreExecution { get; set; }
         public static bool LogScriptsPostExecution { get; set; }
         public static long ExecutionTimeWarningEmitThresholdMilliseconds { get; set; }
+        public static bool ThrowOnMultipleWriteablePropertiesAgainstSameColumn { get; set; }
 
         public static event EventHandler<DifferenceEventArgs> DifferenceProcessed;
 
