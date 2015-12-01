@@ -111,6 +111,7 @@ WHERE [{0}] = ", operation.ValueMetadata.PrimaryKey.ColumnName));
 SET ", command.TableName));
 
             int count = 0;
+            var columnsSeenBefore = CreateColumnsSeenBefore();
             foreach (var operation in command.Operations)
             {
                 if (count > 0)
@@ -118,6 +119,10 @@ SET ", command.TableName));
                     script.Buffer.Append(@",
     ");
                 }
+
+                CheckAndThrowIfThisColumnHasBeenSeenBefore(
+                    columnsSeenBefore, command.TableName, operation.ColumnName, command);
+
                 script.Buffer.Append(string.Format(@"[{0}] = ", operation.ColumnName));
                 bool useKey = false;
                 string fkTargetColumn = null;
@@ -274,6 +279,7 @@ SELECT SCOPE_IDENTITY();
                     var hasPrimaryKeyValueAlready = false;
                     string pkColumnName = null;
 
+                    var columnsSeenBefore = CreateColumnsSeenBefore();
                     foreach (var property in operation.ValueMetadata.WriteableProperties)
                     {
                         if (property.IsPrimaryKey)
@@ -346,6 +352,9 @@ SELECT SCOPE_IDENTITY();
                         //    OwnerPrimaryKeyColumn = operation.OwnerPrimaryKeyColumn,
                         //    OwnerPropertyMetadata = operation.OwnerPropertyMetadata
                         //});
+
+                        CheckAndThrowIfThisColumnHasBeenSeenBefore(
+                            columnsSeenBefore, operation.ValueMetadata.TableName, property.ColumnName, command);
 
                         AppendPropertyToInsertStatement(
                             colBuff, valBuff, property, ref index, operation, values, getter, updateCommand);
@@ -655,6 +664,32 @@ END
                     paramName,
                     paramValue),
                 "paramValue");
+        }
+
+        private static ISet<string> CreateColumnsSeenBefore()
+        {
+            return SimpleSaveExtensions.IsRdbmsCaseSensitive
+                ? new HashSet<string>()
+                : new HashSet<string>(StringComparer.CurrentCultureIgnoreCase);
+        }
+
+        private static void CheckAndThrowIfThisColumnHasBeenSeenBefore(
+            ISet<string> columnsSeenBefore,
+            string tableName,
+            string columnName,
+            BaseCommand command)
+        {
+            if (columnsSeenBefore.Contains(columnName))
+            {
+                throw new InvalidOperationException(string.Format(
+                    "Something has gone terribly wrong. We are trying to UPDATE table '{0}' by "
+                    + "setting the value of column '{1}' more than once. Command details: {2}",
+                    tableName,
+                    columnName,
+                    JsonConvert.SerializeObject(command, Formatting.Indented)));
+            }
+
+            columnsSeenBefore.Add(columnName);
         }
     }
 }
