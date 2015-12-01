@@ -11,6 +11,8 @@ namespace Dapper.SimpleSave.Impl
             var results = new List<BaseCommand>();
             var updates = new List<UpdateOperation>();
 
+            var updateColumns = CreateUpdateColumnSet();
+            DtoMetadata updateMetadata = null;
             string updateTableName = null;
             object updatePk = null;
 
@@ -25,10 +27,12 @@ namespace Dapper.SimpleSave.Impl
                     //  If the table name, or row PK changes, we need to apply any UpdateOperations we already have as a new command
                     //  then start tracking UpdateOperations afresh, starting with this one.
                     if (updateTableName != newTableName
+                        || updateMetadata != newMetadata
                         || !PrimaryKeyComparer.SuppliedPrimaryKeyValuesMatch(
                                 newMetadata,
                                 updatePk,
-                                newPrimaryKeyValue))
+                                newPrimaryKeyValue)
+                        || updateColumns.Contains(update.ColumnName))
                     {
                         ValidateUpdateOperation(update);
                         if (null != updateTableName)
@@ -36,14 +40,26 @@ namespace Dapper.SimpleSave.Impl
                             ApplyUpdatesSoFarAsNewCommand(results, updates, ref updateTableName, ref updatePk);
                         }
 
+                        updateColumns = CreateUpdateColumnSet();
+                        updateMetadata = newMetadata;
                         updateTableName = newTableName;
                         updatePk = newPrimaryKeyValue;
                     }
+
+                    //  TODO: replace UPDATE on same column
+
+                    updateColumns.Add(update.ColumnName);
                     updates.Add(update);
                 }
                 else
                 {
                     ApplyUpdatesSoFarAsNewCommand(results, updates, ref updateTableName, ref updatePk);
+
+                    updateColumns = CreateUpdateColumnSet();
+                    updateMetadata = null;
+                    updateTableName = null;
+                    updatePk = null;
+
                     ValidateInsertOrDeleteOperation((BaseInsertDeleteOperation) operation);
 
                     if (operation is InsertOperation)
@@ -63,6 +79,13 @@ namespace Dapper.SimpleSave.Impl
             }
 
             return results;
+        }
+
+        private ISet<string> CreateUpdateColumnSet()
+        {
+            return SimpleSaveExtensions.IsRdbmsCaseSensitive
+                ? new HashSet<string>()
+                : new HashSet<string>(StringComparer.CurrentCultureIgnoreCase);
         }
 
         private DtoMetadata GetNewUpdateMetadata(UpdateOperation update)
