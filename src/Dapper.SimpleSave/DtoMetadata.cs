@@ -216,12 +216,17 @@ namespace Dapper.SimpleSave
 
         private static void FireWarningOrExceptionOnDuplicate(string message)
         {
+            message += " You should either [SimpleSaveIgnore], or remove, one of the properties.";
+
             if (SimpleSaveExtensions.ThrowOnMultipleWriteablePropertiesAgainstSameColumn)
             {
                 throw new InvalidOperationException(message);
             }
             else if (Logger.IsWarnEnabled)
             {
+                message += " If you don't, unexpected or undesirable behaviour may result. For example, "
+                        + "if the values of these two properties are different, only one will be saved to "
+                        + "the database. You should not rely on which one it will be.";
                 Logger.Warn(message);
             }
         }
