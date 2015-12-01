@@ -124,12 +124,17 @@ namespace Dapper.SimpleSave
                 writeable.Add(propMeta);
             }
 
-            writeable = DeduplicateWriteableProperties(writeable);
+            if (HasAttribute<TableAttribute>())
+            {
+                //  If this type represents a table then we want to deduplicate properties
+                //  mapped to columns, otherwise we don't really care.
+                writeable = DeduplicateWriteablePropertiesMappedToColumns(writeable);
+            }
             WriteableProperties = writeable;
             AllProperties = all;
         }
 
-        private IList<PropertyMetadata> DeduplicateWriteableProperties(IList<PropertyMetadata> source)
+        private IList<PropertyMetadata> DeduplicateWriteablePropertiesMappedToColumns(IList<PropertyMetadata> source)
         {
             var byName = new Dictionary<string, PropertyMetadata>();
             for (var index = source.Count - 1; index >= 0; --index)
