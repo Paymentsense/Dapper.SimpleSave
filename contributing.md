@@ -1,19 +1,19 @@
 # How to Contribute
-Open source projects thrive on contributions from the developer community. Would like to get involved? There is plenty that you can do to help!
+Open source projects thrive on contributions from the developer community. Would you like to get involved? There is plenty that you can do to help!
 
-This is a general guide about how to contribute to Dapper.SimpleSave. It is not a set of hard and fast rules. Any questions, concerns or suggestions should be raised on the [Dapper.SimpleSave Developers List](https://groups.google.com/forum/?fromgroups#!forum/dapper-simplesave-dev). TODO
+This is a general guide about how to contribute to Dapper.SimpleSave. It is not a set of hard and fast rules. Please raise any questions on the [Dapper.SimpleSave Developers List](https://groups.google.com/forum/#!forum/dappersimplesave-developers).
 
 ## Areas where we particularly need help
 
 * Documentation - you won't need to read very far to realise that this is something I suck at, so I'd really appreciate your help if you're good at it.
 
-* Testing - both Dapper.SimpleSave and Dapper.SimpleLoad have been fairly well tested in the context of the app for which they were originally developed, however, their own automated test suites are somewhat lacking - particularly in the case of SimpleLoad. SimpleSave primarily needs tests that hit a real database and verify what was saved, on top of what it already has, in addition to verification of the scripts that are being created.
+* Testing - both Dapper.SimpleSave and Dapper.SimpleLoad have been fairly well tested in the context of the app for which they were originally developed. However, their own automated test suites are somewhat lacking - particularly in the case of SimpleLoad. SimpleSave primarily needs tests that hit a real database and verify what was saved, on top of what it already has, in addition to verification of the scripts that are being created.
 
 * Support for RDBMS platforms other than SQL Server. In particular: Oracle, PostgreSQL, MySQL; possibly others. In theory this shouldn't bee too difficult because it just affects the script generation portion of the process. We can also take advantage of functionality, such as deferred referential integrity checks, offered by platforms such as Oracle.
 
 ## Submitting Issues
 
-Bugs should be reported in the [GitHub Issue](https://github.com/Paymentsense/Dapper.SimpleSave/issues) tracker if they have not been previously submitted.
+Bugs and feature requests should be reported in the [GitHub Issue](https://github.com/Paymentsense/Dapper.SimpleSave/issues) tracker if they have not been previously submitted. If there's already an issue filed please feel free to add more detail or contribute to the discussion on that issue.
 
 When reporting a bug or issue, please include all pertinent information. This typically includes:
 
@@ -27,15 +27,15 @@ When reporting a bug or issue, please include all pertinent information. This ty
 
 It is also quite helpful to include the relevant portions of your log file since, if you have log4net configured, SimpleSave will write a record of scripts build and executed, along with any errors to it. Note that these are logged mostly at INFO level so you may need to tweak your log4net configuration to see them.
 
-Bugs will be addressed as soon as humanly possible, but please allow ample time. For quicker responses, you may also choose to implement and contribute the bug fix.
+Bugs will be addressed as soon as humanly possible, but please allow ample time. For quicker responses, you may also choose to implement and contribute the bug fix via a pull request.
 
 ## Fixing Issues
 
-Dapper.SimpleSave maintains several issues that are good for first-timers [tagged as Jump In on GitHub](https://github.com/Paymentsense/Dapper.SimpleSave/issues?labels=Jump+In&milestone=&page=1&sort=updated&state=open). If one peaks your interest, feel free to work on it and let us know if you need any help doing so.
+Dapper.SimpleSave often maintains several issues that are good for first-timers [tagged as Jump In on GitHub](https://github.com/Paymentsense/Dapper.SimpleSave/issues?labels=Jump+In&milestone=&page=1&sort=updated&state=open). If one peaks your interest, feel free to work on it and let us know if you need any help doing so.
 
 ## New Features
 
-For those looking to get more deeply involved, [reach out](/Community) (TODO) to find out about our current efforts and how you can help. Medium or large contribution should begin by sending a message to the [Dapper.SimpleSave Developers List](https://groups.google.com/forum/?fromgroups#!forum/dapper-simplesave-dev) or should start as a basic pull request so that a discussion can be started. (TODO)
+For those looking to get more deeply involved, [reach out](https://groups.google.com/forum/#!forum/dappersimplesave-developers) to find out about our current efforts and how you can help. Medium or large contributions should begin by sending a message to the [Dapper.SimpleSave Developers List](https://groups.google.com/forum/#!forum/dappersimplesave-developers) or should start as a basic pull request so that a discussion can be started. (TODO)
 
 The message should describe the contribution you are interested in making, and any initial thoughts on implementation. This will allow the community to discuss and become involved with you from the get go. If you receive positive feedback on the mailing list, go ahead and start implementation! You should also sign and return the Contributor License agreement, which is required for the Dapper.SimpleSave team to accept your contribution.
 
@@ -73,4 +73,3 @@ SimpleSave follows a loose set of coding conventions. Chiefly among them:
 
 * [GitHub pull request documentation](http://help.github.com/send-pull-requests/)
 
-TODO: nightly, milestone, and production Nuget feeds
