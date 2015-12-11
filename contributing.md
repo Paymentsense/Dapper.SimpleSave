@@ -31,7 +31,7 @@ Bugs will be addressed as soon as humanly possible, but please allow ample time.
 
 ## Fixing Issues
 
-Dapper.SimpleSave often maintains several issues that are good for first-timers [tagged as Jump In on GitHub](https://github.com/Paymentsense/Dapper.SimpleSave/issues?labels=Jump+In&milestone=&page=1&sort=updated&state=open). If one peaks your interest, feel free to work on it and let us know if you need any help doing so.
+Dapper.SimpleSave often maintains several issues that are good for first-timers [tagged as Jump In on GitHub](https://github.com/Paymentsense/Dapper.SimpleSave/issues?labels=Jump+In&milestone=&page=1&sort=updated&state=open). If one piques your interest, feel free to work on it and let us know if you need any help doing so.
 
 ## New Features
 
