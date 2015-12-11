@@ -35,7 +35,7 @@ Dapper.SimpleSave often maintains several issues that are good for first-timers 
 
 ## New Features
 
-For those looking to get more deeply involved, [reach out](https://groups.google.com/forum/#!forum/dappersimplesave-developers) to find out about our current efforts and how you can help. Medium or large contributions should begin by sending a message to the [Dapper.SimpleSave Developers List](https://groups.google.com/forum/#!forum/dappersimplesave-developers) or should start as a basic pull request so that a discussion can be started. (TODO)
+For those looking to get more deeply involved, [reach out](https://groups.google.com/forum/#!forum/dappersimplesave-developers) to find out about our current efforts and how you can help. Medium or large contributions should begin by sending a message to the [Dapper.SimpleSave Developers List](https://groups.google.com/forum/#!forum/dappersimplesave-developers) or should start as a basic pull request so that a discussion can be started.
 
 The message should describe the contribution you are interested in making, and any initial thoughts on implementation. This will allow the community to discuss and become involved with you from the get go. If you receive positive feedback on the mailing list, go ahead and start implementation! You should also sign and return the [Contributor License Agreement](https://www.clahub.com/agreements/Paymentsense/Dapper.SimpleSave), which is required for the Dapper.SimpleSave team to accept your contribution.
 
