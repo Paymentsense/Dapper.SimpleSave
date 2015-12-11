@@ -25,7 +25,7 @@ When reporting a bug or issue, please include all pertinent information. This ty
 
 * Any error messages and stack trace
 
-It is also quite helpful to include the relevant portions of your log file since, if you have log4net configured, SimpleSave will write a record of scripts build and executed, along with any errors to it. Note that these are logged mostly at INFO level so you may need to tweak your log4net configuration to see them.
+It is also quite helpful to include the relevant portions of your log file since, if you have log4net configured, SimpleSave will write a record of scripts build and executed, along with any errors, to it. Note that these are logged mostly at INFO level so you may need to tweak your log4net configuration to see them.
 
 Bugs will be addressed as soon as humanly possible, but please allow ample time. For quicker responses, you may also choose to implement and contribute the bug fix via a pull request.
 
