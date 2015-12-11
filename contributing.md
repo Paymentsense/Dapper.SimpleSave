@@ -65,7 +65,7 @@ SimpleSave follows a loose set of coding conventions. Chiefly among them:
 
 * Stick to the existing code style in terms of spaces, braces, naming conventions, etc. None of these are written down but you should be able to figure them out just by looking at the code.
 
-* Ensure your [Git autocrlf setting](https://help.github.com/articles/dealing-with-line-endings) is false because we don't like our SCM to modify files.
+* Ensure your [Git autocrlf setting](https://help.github.com/articles/dealing-with-line-endings) is **false** because we don't like our SCM to modify files.
 
 ## Additional Resources
 
