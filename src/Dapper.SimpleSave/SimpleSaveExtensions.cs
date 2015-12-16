@@ -61,6 +61,22 @@ namespace Dapper.SimpleSave
 
         public static void UpdateAll<T>(
             this IDbConnection connection,
+            IList<T> oldObjects,
+            IList<T> newObjects,
+            IDbTransaction transaction = null)
+        {
+            if (oldObjects.Count != newObjects.Count)
+            {
+                throw new ArgumentException(string.Format(
+                    "Mismatch between length of old object list ({0}) and length of new object list."));
+            }
+
+            var target = oldObjects.Zip(newObjects, Tuple.Create);
+            UpdateAll(connection, target, transaction);
+        }
+
+        public static void UpdateAll<T>(
+            this IDbConnection connection,
             IEnumerable<Tuple<T, T>> oldAndNewObjects,
             IDbTransaction transaction = null)
         {
