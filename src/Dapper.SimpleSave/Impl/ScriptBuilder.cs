@@ -599,8 +599,8 @@ END
                 ValueMetadata = property.IsString || property.IsNumericType || property.IsEnum || ! property.IsReferenceType
                     ? null
                     : _dtoMetadataCache.GetMetadataFor(property.Prop.PropertyType),
-                Owner = operation.Owner,
-                OwnerMetadata = operation.OwnerMetadata,
+                Owner = operation.Value,
+                OwnerMetadata = operation.ValueMetadata,
                 OwnerPrimaryKeyColumn = operation.ValueMetadata.PrimaryKey.ColumnName,
                 OwnerPropertyMetadata = property
             });
