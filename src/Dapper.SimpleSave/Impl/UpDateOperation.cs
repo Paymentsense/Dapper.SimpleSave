@@ -8,7 +8,7 @@
     /// </summary>
     public class UpdateOperation : BaseOperation
     {
-        public string ColumnName { get; set; }
-
+        public string ColumnName { get { return ColumnPropertyMetadata.ColumnName; } }
+        public PropertyMetadata ColumnPropertyMetadata { get; set; }
     }
 }

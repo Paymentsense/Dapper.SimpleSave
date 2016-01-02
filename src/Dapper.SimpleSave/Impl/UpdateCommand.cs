@@ -21,7 +21,11 @@ namespace Dapper.SimpleSave.Impl
             }
 
             var pk = PrimaryKeyAsObject;
-            if (null != pk && !PrimaryKeyComparer.SuppliedPrimaryKeyValuesMatch(operation.OwnerMetadata, pk, operation.OwnerPrimaryKeyAsObject))//operation.OwnerPrimaryKey != pk.Value)
+            if (null != pk
+                && !PrimaryKeyComparer.SuppliedPrimaryKeyValuesMatch(
+                    operation.OwnerMetadata,
+                    pk,
+                    operation.OwnerPrimaryKeyAsObject))//operation.OwnerPrimaryKey != pk.Value)
             {
                 throw new ArgumentException(string.Format(
                     "Primary key mismatch for UPDATE command on table {0}. Expected: {1}. Actual: {2}.",

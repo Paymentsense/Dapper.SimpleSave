@@ -146,7 +146,7 @@ namespace Dapper.SimpleSave.Impl
                 OwnerPrimaryKeyColumn = insertOperation.OwnerPrimaryKeyColumn,
                 Owner = insertOperation.Owner,
                 TableName = insertOperation.TableName,
-                ColumnName = diff.OwnerPropertyMetadata.ColumnName,
+                ColumnPropertyMetadata = diff.OwnerPropertyMetadata,
                 ValueMetadata = diff.ValueMetadata,
                 Value = diff.NewValue
             };
@@ -163,7 +163,7 @@ namespace Dapper.SimpleSave.Impl
                 OwnerPrimaryKeyColumn = insertDeleteOperation.OwnerPrimaryKeyColumn,
                 Owner = insertDeleteOperation.Owner,
                 TableName = insertDeleteOperation.OwnerMetadata.TableName,
-                ColumnName = diff.OwnerPropertyMetadata.ColumnName,
+                ColumnPropertyMetadata = diff.OwnerPropertyMetadata,
                 ValueMetadata = diff.ValueMetadata,
                 Value = diff.NewValue
             };
@@ -295,7 +295,7 @@ namespace Dapper.SimpleSave.Impl
         {
             operations.Add(new UpdateOperation
             {
-                ColumnName = diff.OwnerPropertyMetadata.ColumnName,
+                ColumnPropertyMetadata = diff.OwnerPropertyMetadata,
                 ValueMetadata = diff.ValueMetadata,
                 Value = diff.NewValue,
                 OwnerPrimaryKeyColumn = diff.OwnerMetadata.PrimaryKey.Prop.Name,
@@ -364,7 +364,7 @@ namespace Dapper.SimpleSave.Impl
             }
 
             return new UpdateOperation {
-                ColumnName = baseInsertDelete.OwnerPropertyMetadata.ColumnName,
+                ColumnPropertyMetadata = baseInsertDelete.OwnerPropertyMetadata,
                 Value = baseInsertDelete.Value,
                 ValueMetadata = baseInsertDelete.ValueMetadata,
                 OwnerPrimaryKeyColumn = baseInsertDelete.OwnerPrimaryKeyColumn,

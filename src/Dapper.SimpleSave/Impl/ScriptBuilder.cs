@@ -79,17 +79,25 @@ namespace Dapper.SimpleSave.Impl {
             ref int paramIndex)
         {
             var operation = command.Operations.FirstOrDefault();
+            var fkPropertyMetadata = operation.ValueMetadata.GetForeignKeyColumnFor(
+                operation.OwnerMetadata.DtoType);
             script.Buffer.Append(string.Format(@"UPDATE {0}
 SET [{1}] = ",
                 operation.ValueMetadata.TableName,
-                operation.ValueMetadata.GetForeignKeyColumnFor(
-                    operation.OwnerMetadata.DtoType).ColumnName));
+                fkPropertyMetadata.ColumnName));
 
+            var valueFunc = new Func<object>(() => command.PrimaryKeyAsObject);
+            var wireUpAction = new Action(() =>
+            {
+                //  This will wire the correct FK column value into the child object.
+                fkPropertyMetadata.Prop.SetValue(operation.Value, valueFunc());
+            });
             FormatWithParameter(
                 script,
                 "{0}",
                 ref paramIndex,
-                new Func<object>(() => command.PrimaryKeyAsObject));
+                wireUpAction,
+                valueFunc);
 
             script.Buffer.Append(string.Format(@"
 WHERE [{0}] = ", operation.ValueMetadata.PrimaryKey.ColumnName));
@@ -97,6 +105,7 @@ WHERE [{0}] = ", operation.ValueMetadata.PrimaryKey.ColumnName));
             FormatWithParameter(script, @"{0};
 ",
                 ref paramIndex,
+                null,   //  Don't need to do any wire up for this since we already have the PK on the child.
                 operation.Value is Func<object>
                     ? operation.Value
                     : new Func<object>(() => operation.ValueMetadata.GetPrimaryKeyValueAsObject(operation.Value)));
@@ -152,13 +161,26 @@ SET ", command.TableName));
 
                 if (useKey)
                 {
+                    var valueFunc = operation.Value == null
+                        ? null
+                        : (operation.Value is Func<object>
+                            ? (Func<object>) operation.Value
+                            : () => operation.ValueMetadata.GetPrimaryKeyValueAsObject(operation.Value));
+
+                    var wireUpAction = valueFunc == null
+                        ? null
+                        : new Action(() =>
+                        {
+                            //  Here we're setting the foreign key pointing at the child object on the owner.
+                            operation.ColumnPropertyMetadata.Prop.SetValue(operation.Owner, valueFunc());
+                        });
+
                     FormatWithParameter(
                         script,
                         "{0}",
                         ref paramIndex,
-                        operation.Value == null
-                            ? null
-                            : (operation.Value is Func<object> ? operation.Value : new Func<object>(() => operation.ValueMetadata.GetPrimaryKeyValueAsObject(operation.Value))));
+                        wireUpAction,
+                        valueFunc);
                 }
                 else if (fkTargetColumn != null)
                 {
@@ -174,19 +196,35 @@ SET ", command.TableName));
                             operation.ValueMetadata.DtoType));
                     }
 
+                    var valueFunc = operation.Value == null
+                        ? null
+                        : (operation.Value is Func<object>
+                            ? (Func<object>) operation.Value
+                            : () => property.GetValue(operation.Value));
+
+                    var wireUpAction = valueFunc == null
+                        ? null
+                        : new Action(() =>
+                        {
+                            //  Here we're setting the foreign key pointing at the child's fkTargetColumn object on the owner.
+                            operation.ColumnPropertyMetadata.Prop.SetValue(operation.Owner, valueFunc());
+                        });
+
                     FormatWithParameter(
                         script,
                         "{0}",
                         ref paramIndex,
-                        operation.Value == null
-                            ? null
-                            : (operation.Value is Func<object>
-                                ? operation.Value
-                                : new Func<object>(() => property.GetValue(operation.Value))));
+                        wireUpAction,
+                        valueFunc);
                 }
                 else
                 {
-                    FormatWithParameter(script, "{0}", ref paramIndex, operation.Value);
+                    FormatWithParameter(
+                        script,
+                        "{0}",
+                        ref paramIndex,
+                        null,   //  Standard column value so no wire-up required
+                        operation.Value);
                 }
                 ++count;
             }
@@ -194,7 +232,10 @@ SET ", command.TableName));
             script.Buffer.Append(string.Format(@"
 WHERE [{0}] = ", command.PrimaryKeyColumn));
             FormatWithParameter(script, @"{0};
-", ref paramIndex, new Func<object>(() => command.PrimaryKeyAsObject));
+",
+                ref paramIndex,
+                null,   //  No need to wire this up to anything else.
+                new Func<object>(() => command.PrimaryKeyAsObject));
         }
 
         private static void AppendDeleteCommand(Script script, DeleteCommand command, ref int paramIndex)
@@ -213,12 +254,20 @@ WHERE [{1}] = ",
                         operation.OwnerPropertyMetadata.GetAttribute<ManyToManyAttribute>().SchemaQualifiedLinkTableName,
                         operation.OwnerPrimaryKeyColumn));
 
-                    FormatWithParameter(script, "{0} AND ", ref paramIndex, new Func<object>(() => operation.OwnerPrimaryKeyAsObject));
+                    FormatWithParameter(
+                        script,
+                        "{0} AND ",
+                        ref paramIndex,
+                        null,   //  No wire up required for DELETE from link table.
+                        new Func<object>(() => operation.OwnerPrimaryKeyAsObject));
 
                     script.Buffer.Append(string.Format("[{0}] = ", operation.ValueMetadata.PrimaryKey.Prop.Name));
 
                     FormatWithParameter(script, @"{0};
-", ref paramIndex, new Func<object>(() => operation.ValueMetadata.GetPrimaryKeyValueAsObject(operation.Value)));
+",
+                        ref paramIndex,
+                        null,   //  No wire up required for DELETE from link table.
+                        new Func<object>(() => operation.ValueMetadata.GetPrimaryKeyValueAsObject(operation.Value)));
                 }
                 else if (operation.OwnerPropertyMetadata == null
                     || ((operation.OwnerPropertyMetadata.HasAttribute<OneToManyAttribute>()
@@ -234,7 +283,12 @@ WHERE [{1}] = ",
                         operation.ValueMetadata.TableName,
                         operation.ValueMetadata.PrimaryKey.Prop.Name));
                     FormatWithParameter(script, @"{0};
-", ref paramIndex, new Func<object>(() => operation.ValueMetadata.GetPrimaryKeyValueAsObject(operation.Value)));
+",
+                        ref paramIndex,
+                        null,   //  Methinks no wire-up required here either, although with 1:1 relationships where the FK is on the
+                                //  child there's always the possibility we might need to set the column value on the parent to null.
+                                //  Possible TODO
+                        new Func<object>(() => operation.ValueMetadata.GetPrimaryKeyValueAsObject(operation.Value)));
                 }
             }
             else
@@ -357,7 +411,7 @@ SELECT SCOPE_IDENTITY();
                             columnsSeenBefore, operation.ValueMetadata.TableName, property.ColumnName, command);
 
                         AppendPropertyToInsertStatement(
-                            colBuff, valBuff, property, ref index, operation, values, getter, updateCommand);
+                            script, colBuff, valBuff, property, ref index, operation, values, getter, updateCommand);
                     }
 
                     needsUpdateContingency = !isPkAssignedByRdbms || hasPrimaryKeyValueAlready;
@@ -375,6 +429,7 @@ SELECT SCOPE_IDENTITY();
                             script,
                             "{0}",
                             ref paramIndex,
+                            null, //  No wire-up required for the IF EXISTS value
                             operation.ValueMetadata.GetPrimaryKeyValueAsObject(operation.Value));
 
                         script.Buffer.Append(@")
@@ -420,7 +475,7 @@ OUTPUT inserted.[{0}]
                     script.Buffer.Append(@" VALUES (
     ");
 
-                    FormatWithParameter(script, valBuff.ToString(), ref paramIndex, values.ToArray());
+                    FormatWithParameter(script, valBuff.ToString(), ref paramIndex, null, values.ToArray());
                     script.Buffer.Append(@"
 );
 ");
@@ -466,11 +521,11 @@ END
                     () => operation.ValueMetadata.GetPrimaryKeyValueAsObject(operation.Value));
 
             script.Buffer.Append(string.Format("IF NOT EXISTS (SELECT * FROM {0} WHERE [{1}] = ", linkTableName, parentPrimaryKeyColumn));
-            FormatWithParameter(script, "{0} AND ", ref paramIndex, parentPrimaryKeyGetter);
+            FormatWithParameter(script, "{0} AND ", ref paramIndex, null, parentPrimaryKeyGetter);
             script.Buffer.Append(string.Format("[{0}] = ", childPrimaryKeyColumn));
             FormatWithParameter(script, @"{0})
 BEGIN
-", ref paramIndex, childPrimaryKeyGetter);
+", ref paramIndex, null, childPrimaryKeyGetter);
 
             script.Buffer.Append(string.Format(
                 @"    INSERT INTO {0} (
@@ -486,6 +541,7 @@ BEGIN
 END
 ",
                 ref paramIndex,
+                null,   //  No wire-up required for link table
                 parentPrimaryKeyGetter,
                 childPrimaryKeyGetter);
         }
@@ -521,6 +577,7 @@ END
         }
 
         private void AppendPropertyToInsertStatement(
+            Script script,
             StringBuilder colBuff,
             StringBuilder valBuff,
             PropertyMetadata property,
@@ -591,9 +648,17 @@ END
                 values.Add(columnValueForUpdate);
             }
 
+            if (columnValueForUpdate is Func<object>)
+            {
+                script.WireUpActions.Add(() =>
+                {
+                    property.Prop.SetValue(operation.Value, ((Func<object>)columnValueForUpdate)());
+                });
+            }
+
             updateCommand.AddOperation(new UpdateOperation()
             {
-                ColumnName = property.ColumnName,
+                ColumnPropertyMetadata = property,
                 TableName = operation.ValueMetadata.TableName,
                 Value = columnValueForUpdate,
                 ValueMetadata = property.IsString || property.IsNumericType || property.IsEnum || ! property.IsReferenceType
@@ -623,6 +688,7 @@ END
             Script script,
             string formatString,
             ref int paramIndex,
+            Action wireUpAction,
             params object [] paramValues)
         {
             var paramNames = new ArrayList();
@@ -637,6 +703,11 @@ END
             }
 
             script.Buffer.Append(string.Format(formatString, paramNames.ToArray()));
+
+            if (wireUpAction != null)
+            {
+                script.WireUpActions.Add(wireUpAction);
+            }
         }
 
         private static void ValidateParameterValue(

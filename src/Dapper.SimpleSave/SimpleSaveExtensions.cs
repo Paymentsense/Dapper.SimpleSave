@@ -286,6 +286,7 @@ namespace Dapper.SimpleSave
             bool softDelete,
             IDbTransaction transaction)
         {
+            var wireUpActions = new List<Action>();
             for (int index = 0, count = scripts.Count; index < count; ++index)
             {
                 var script = scripts[index];
@@ -299,6 +300,13 @@ namespace Dapper.SimpleSave
                     softDelete,
                     transaction,
                     script);
+
+                wireUpActions.AddRange(script.WireUpActions);
+            }
+
+            foreach (var action in wireUpActions)
+            {
+                action();
             }
         }
 
