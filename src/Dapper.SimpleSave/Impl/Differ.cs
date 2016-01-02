@@ -134,6 +134,9 @@ namespace Dapper.SimpleSave.Impl
                     //  TODO: Bart - Possibly this may be needed? Hard to see how we wouldn't need to do this
                     //DiffReferenceType(oldObject, null, null, target, metadata);
                     //DiffReferenceType(null, newObject, null, target, metadata);
+                    //  TODO: Bart - or more likely this, below.
+                    DiffProperties(metadata, oldObject, null, target, ancestors, property);
+                    DiffProperties(metadata, null, newObject, target, ancestors, property);
                 }
                 else
                 {
