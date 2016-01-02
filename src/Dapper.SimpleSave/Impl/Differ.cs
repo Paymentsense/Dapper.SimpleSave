@@ -590,6 +590,12 @@ namespace Dapper.SimpleSave.Impl
             }
             else
             {
+                ancestors.Add(new Ancestor
+                {
+                    OldObject = oldObject,
+                    NewObject = newObject
+                });
+
                 Diff(
                     ReferenceEquals(oldObject, oldPropValue) ? (object) null : oldObject,
                     ReferenceEquals(newObject, newPropValue) ? (object) null : newObject,
