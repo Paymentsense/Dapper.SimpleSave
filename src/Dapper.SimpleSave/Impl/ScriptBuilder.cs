@@ -89,8 +89,12 @@ SET [{1}] = ",
             var valueFunc = new Func<object>(() => command.PrimaryKeyAsObject);
             var wireUpAction = new Action(() =>
             {
-                //  This will wire the correct FK column value into the child object.
-                fkPropertyMetadata.Prop.SetValue(operation.Value, valueFunc());
+                object newPropertyValue = valueFunc();
+                if (CanAssignToProperty(newPropertyValue, fkPropertyMetadata))
+                {
+                    //  This will wire the correct FK column value into the child object.
+                    fkPropertyMetadata.Prop.SetValue(operation.Value, newPropertyValue);
+                }
             });
             FormatWithParameter(
                 script,
@@ -171,8 +175,12 @@ SET ", command.TableName));
                         ? null
                         : new Action(() =>
                         {
-                            //  Here we're setting the foreign key pointing at the child object on the owner.
-                            operation.ColumnPropertyMetadata.Prop.SetValue(operation.Owner, valueFunc());
+                            var newPropertyValue = valueFunc();
+                            if (CanAssignToProperty(newPropertyValue, operation.ColumnPropertyMetadata))
+                            {
+                                //  Here we're setting the foreign key pointing at the child object on the owner.
+                                operation.ColumnPropertyMetadata.Prop.SetValue(operation.Owner, newPropertyValue);
+                            }
                         });
 
                     FormatWithParameter(
@@ -206,8 +214,12 @@ SET ", command.TableName));
                         ? null
                         : new Action(() =>
                         {
-                            //  Here we're setting the foreign key pointing at the child's fkTargetColumn object on the owner.
-                            operation.ColumnPropertyMetadata.Prop.SetValue(operation.Owner, valueFunc());
+                            var newPropertyValue = valueFunc();
+                            if (CanAssignToProperty(newPropertyValue, operation.ColumnPropertyMetadata))
+                            {
+                                //  Here we're setting the foreign key pointing at the child's fkTargetColumn object on the owner.
+                                operation.ColumnPropertyMetadata.Prop.SetValue(operation.Owner, newPropertyValue);
+                            }
                         });
 
                     FormatWithParameter(
@@ -652,7 +664,11 @@ END
             {
                 script.WireUpActions.Add(() =>
                 {
-                    property.Prop.SetValue(operation.Value, ((Func<object>)columnValueForUpdate)());
+                    object newPropertyValue = ((Func<object>) columnValueForUpdate)();
+                    if (CanAssignToProperty(newPropertyValue, property))
+                    {
+                        property.Prop.SetValue(operation.Value, newPropertyValue);
+                    }
                 });
             }
 
@@ -682,6 +698,27 @@ END
             valBuff.Append("}");
 
             ++index;
+        }
+
+        private static bool CanAssignToProperty(object newPropertyValue, PropertyMetadata property)
+        {
+            var canAssign = false;
+            var propertyType = property.Prop.PropertyType;
+            if (newPropertyValue == null)
+            {
+                if (!propertyType.IsValueType
+                    ||
+                    (propertyType.IsValueType && propertyType.IsGenericType &&
+                     propertyType.GetGenericTypeDefinition() == typeof (Nullable<>)))
+                {
+                    canAssign = true;
+                }
+            }
+            else if (propertyType.IsAssignableFrom(newPropertyValue.GetType()))
+            {
+                canAssign = true;
+            }
+            return canAssign;
         }
 
         private static void FormatWithParameter(
