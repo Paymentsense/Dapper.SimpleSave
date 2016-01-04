@@ -5,7 +5,6 @@ namespace Dapper.SimpleSave.Impl
 {
     public class UpdateCommand : BaseCommand
     {
-
         private readonly IList<UpdateOperation> _operations = new List<UpdateOperation>();
 
         public void AddOperation(UpdateOperation operation)

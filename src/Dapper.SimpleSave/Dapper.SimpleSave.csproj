@@ -59,6 +59,7 @@
     <Compile Include="Difference.cs" />
     <Compile Include="DtoMetadataCache.cs" />
     <Compile Include="Impl\DtoMetadataValidator.cs" />
+    <Compile Include="Impl\ExplicitTransitiveBackReferenceResolver.cs" />
     <Compile Include="Impl\InsertCommand.cs" />
     <Compile Include="Impl\InsertOperation.cs" />
     <Compile Include="Impl\BasicSimpleSaveLogger.cs" />

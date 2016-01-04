@@ -24,6 +24,7 @@ namespace Dapper.SimpleSave
             ExecutionTimeWarningEmitThresholdMilliseconds = 100;
             ThrowOnMultipleWriteablePropertiesAgainstSameColumn = true;
             IsRdbmsCaseSensitive = false;
+            IsExplicitBackReferenceResolutionEnabled = true;
         }
 
         public static ISimpleSaveLogger Logger
@@ -47,6 +48,7 @@ namespace Dapper.SimpleSave
         public static long ExecutionTimeWarningEmitThresholdMilliseconds { get; set; }
         public static bool ThrowOnMultipleWriteablePropertiesAgainstSameColumn { get; set; }
         public static bool IsRdbmsCaseSensitive { get; set; }
+        public static bool IsExplicitBackReferenceResolutionEnabled { get; set; }
 
         public static event EventHandler<DifferenceEventArgs> DifferenceProcessed;
 
@@ -307,6 +309,12 @@ namespace Dapper.SimpleSave
             foreach (var action in wireUpActions)
             {
                 action();
+            }
+
+            if (IsExplicitBackReferenceResolutionEnabled)
+            {
+                var resolver = new ExplicitTransitiveBackReferenceResolver(MetadataCache);
+                resolver.Resolve(newRootObject);
             }
         }
 
