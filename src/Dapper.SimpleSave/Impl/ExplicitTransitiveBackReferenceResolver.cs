@@ -47,7 +47,7 @@ namespace Dapper.SimpleSave.Impl
             ancestorsFastLookup.Add(obj);
             foreach (var property in metadata.WriteableProperties)
             {
-                if (property.HasAttribute<SimpleSaveIgnoreAttribute>())
+                if (property.HasAttribute<SimpleSaveIgnoreAttribute>() || property.HasAttribute<DoNotAutoWireExplicitTransitiveBackReferenceAttribute>())
                 {
                     continue;
                 }

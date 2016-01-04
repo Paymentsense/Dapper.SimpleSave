@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="ColumnAttribute.cs" />
     <Compile Include="DifferenceEventArgs.cs" />
+    <Compile Include="DoNotAutowireExplicitTransitiveBackReferenceAttribute.cs" />
     <Compile Include="ForeignKeyReferenceAttribute.cs" />
     <Compile Include="Impl\Ancestor.cs" />
     <Compile Include="Impl\BaseCommand.cs" />
