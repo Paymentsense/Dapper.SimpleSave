@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,7 +26,7 @@ namespace Dapper.SimpleSave.Impl
 
         private void Resolve(object obj, IList<Tuple<object, DtoMetadata>> ancestors, ISet<object> ancestorsFastLookup)
         {
-            if (obj == null || ancestorsFastLookup.Contains(obj))
+            if (obj == null || obj is string || ancestorsFastLookup.Contains(obj))
             {
                 return;
             }
@@ -36,10 +37,27 @@ namespace Dapper.SimpleSave.Impl
                 return;
             }
 
+            var refData = metadata.GetAttribute<ReferenceDataAttribute>();
+            if (refData != null && !refData.HasUpdateableForeignKeys)
+            {
+                return;
+            }
+
             ancestors.Add(new Tuple<object, DtoMetadata>(obj, metadata));
             ancestorsFastLookup.Add(obj);
             foreach (var property in metadata.WriteableProperties)
             {
+                if (property.HasAttribute<SimpleSaveIgnoreAttribute>())
+                {
+                    continue;
+                }
+
+                refData = property.GetAttribute<ReferenceDataAttribute>();
+                if (refData != null && !refData.HasUpdateableForeignKeys)
+                {
+                    continue;
+                }
+
                 var fkAttribute = property.GetAttribute<ForeignKeyReferenceAttribute>();
                 var drill = true;
                 if (fkAttribute != null)
@@ -51,14 +69,28 @@ namespace Dapper.SimpleSave.Impl
                         drill = false;
                     }
                 }
-                else if (property.IsValueType)
+                else if (property.IsValueType || property.IsString)
                 {
                     drill = false;
                 }
 
                 if (drill)
                 {
-                    Resolve(property.GetValue(obj), ancestors, ancestorsFastLookup);
+                    if (property.IsEnumerable)
+                    {
+                        var children = property.GetValue(obj) as IEnumerable;
+                        if (children != null)
+                        {
+                            foreach (var child in children)
+                            {
+                                Resolve(child, ancestors, ancestorsFastLookup);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Resolve(property.GetValue(obj), ancestors, ancestorsFastLookup);
+                    }
                 }
             }
 
