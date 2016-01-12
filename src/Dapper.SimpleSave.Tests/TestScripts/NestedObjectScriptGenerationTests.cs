@@ -151,6 +151,106 @@ namespace Dapper.SimpleSave.Tests.TestScripts
         }
 
         [Test]
+        public void delete_offer_deletes_acquiring_offer_first()
+        {
+            var offerGuid = Guid.NewGuid();
+            var equipmentOfferGuid = Guid.NewGuid();
+            var offer = new OfferDto
+            {
+                OfferGuid = offerGuid,
+                Equipment = new List<EquipmentOfferTrnDao>
+                {
+                    new EquipmentOfferTrnDao
+                    {
+                        EquipmentOfferGuid = equipmentOfferGuid,
+                        OfferGuid = offerGuid,
+                        EquipmentOptions = new List<EquipmentOptionTrnDao>
+                        {
+                            new EquipmentOptionTrnDao
+                            {
+                                EquipmentOptionTrnGuid = Guid.NewGuid(),
+                                EquipmentOfferGuid = equipmentOfferGuid,
+                                Quantity = 23
+                            }
+                        }
+                    }
+                },
+                OfferReference = "Test offer",
+                OpportunityGuid = Guid.NewGuid(),
+                GatewayOffer = new GatewayOfferDto
+                {
+                    GatewayOfferGuid = Guid.NewGuid(),
+                    IsBilledYearly = true,
+                    PeriodicCharge = (decimal) 53.7
+                },
+                AcquiringOffer = new AcquiringOfferTrnDao
+                {
+                    AcquiringOfferKey = 37,
+                    OfferGuid = offerGuid,
+                    CardTransactionPerAnnum = 789,
+                    CreditCardTurnoverMonthly = 10000,
+                    DebitCardTransactionMonthly = 2000,
+                    DebitCardTransactionPercentage = 27,
+                    TypeOfTransaction = new TypeOfTransactionLutDao
+                    {
+                        TypeOfTransactionEnumKey = OppTypeOfTransactionEnum.EPOS,
+                        DisplayOrder = 1,
+                        FieldItem = new FieldItemLutDao
+                        {
+                            FieldItemKey = 37,
+                            Description = "Boo!",
+                            DisplayOrder = 13,
+                            Name = "Banana",
+                            OverrideResourceKey = UsrResourceEnum.MerchantSearch
+                        }
+                    }
+                }
+            };
+
+            var logger = new MockSimpleSaveLogger();
+            SimpleSaveExtensions.Logger = logger;
+            
+            try
+            {
+                using (IDbConnection connection = new SqlConnection())
+                {
+                    connection.Delete(offer);
+                }
+            }
+            catch (InvalidOperationException)
+            {
+                //  Don't care
+            }
+
+            var scripts = logger.Scripts;
+            Assert.AreEqual(1, scripts.Count, "Unexpected number of scripts.");
+
+            var sql = scripts[0].Buffer.ToString();
+
+            Assert.IsTrue(
+                sql.IndexOf("DELETE FROM [opp].[ACQUIRING_OFFER_TRN]") < sql.IndexOf("DELETE FROM [opp].[OFFER_TRN]"),
+                "Should delete from ACQUIRING_OFFER_TRN before OFFER_TRN");
+
+            Assert.IsTrue(
+                sql.IndexOf("DELETE FROM [opp].[OFFER_TRN]") < sql.IndexOf("DELETE FROM [opp].[GATEWAY_OFFER_TRN]"),
+                "Should delete from OFFER_TRN before GATEWAY_OFFER_TRN");
+
+            //  This is what the WRONG script looks like
+            /*
+             DELETE FROM [opp].[OFFER_TRN]
+WHERE [OfferGuid] = @p0;
+DELETE FROM [opp].[GATEWAY_OFFER_TRN]
+WHERE [GatewayOfferGuid] = @p1;
+DELETE FROM [opp].[ACQUIRING_OFFER_TRN]
+WHERE [AcquiringOfferKey] = @p2;
+DELETE FROM [opp].[EQUIPMENT_OPTION_TRN]
+WHERE [EquipmentOptionTrnGuid] = @p3;
+DELETE FROM [opp].[EQUIPMENT_OFFER_TRN]
+WHERE [EquipmentOfferGuid] = @p4;
+             */
+        }
+
+        [Test]
         public void insert_offer_with_gateway_offer_should_only_insert_offer()
         {
             var offer = new OfferDto
