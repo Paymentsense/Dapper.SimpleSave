@@ -357,7 +357,7 @@ namespace Dapper.SimpleSave
             SetSoftDeletePropertyValue(oldRootObject, softDeletePropertyMetadata);
 
             _logger.LogPostExecution(script);
-            _logger.LogExecutionTime(totalTime);
+            _logger.LogExecutionTime(totalTime, script);
         }
 
         private static PropertyMetadata GetMarkerPropertyMetadataIfSoftDeleting<T>(

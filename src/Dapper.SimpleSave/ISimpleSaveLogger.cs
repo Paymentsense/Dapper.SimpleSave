@@ -9,6 +9,6 @@ namespace Dapper.SimpleSave
         void LogBuilt(IScript script);
         void LogPreExecution(IScript script);
         void LogPostExecution(IScript script);
-        void LogExecutionTime(long executionTimeMilliseconds);
+        void LogExecutionTime(long executionTimeMilliseconds, IScript script);
     }
 }

@@ -1,4 +1,5 @@
-﻿using log4net;
+﻿using System;
+using log4net;
 using Newtonsoft.Json;
 
 namespace Dapper.SimpleSave.Impl
@@ -64,15 +65,20 @@ namespace Dapper.SimpleSave.Impl
             }
         }
 
-        public virtual void LogExecutionTime(long executionTimeMilliseconds)
+        public virtual void LogExecutionTime(long executionTimeMilliseconds, IScript script)
         {
             if (executionTimeMilliseconds > SimpleSaveExtensions.ExecutionTimeWarningEmitThresholdMilliseconds)
             {
                 if (Logger.IsWarnEnabled)
                 {
                     Logger.Warn(string.Format(
-                        "SIMPLESAVE SCRIPT EXECUTED IN {0}ms",
-                        executionTimeMilliseconds));
+                        @"SIMPLESAVE SCRIPT EXECUTED IN {0}ms:
+{1}
+CALLING STACK TRACE:
+{2}",
+                        executionTimeMilliseconds,
+                        script.Buffer,
+                        Environment.StackTrace));
                 }
             }
             else
