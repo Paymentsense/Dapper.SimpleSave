@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Security.Permissions;
 using System.Transactions;
 using Castle.Core.Internal;
 using Dapper.SimpleSave.Impl;
+using Newtonsoft.Json;
 
 namespace Dapper.SimpleSave
 {
@@ -25,6 +27,7 @@ namespace Dapper.SimpleSave
             ThrowOnMultipleWriteablePropertiesAgainstSameColumn = true;
             IsRdbmsCaseSensitive = false;
             IsExplicitBackReferenceResolutionEnabled = true;
+            LogParametersOnScriptExecutionException = true;
         }
 
         public static ISimpleSaveLogger Logger
@@ -49,6 +52,7 @@ namespace Dapper.SimpleSave
         public static bool ThrowOnMultipleWriteablePropertiesAgainstSameColumn { get; set; }
         public static bool IsRdbmsCaseSensitive { get; set; }
         public static bool IsExplicitBackReferenceResolutionEnabled { get; set; }
+        public static bool LogParametersOnScriptExecutionException { get; set; }
 
         public static event EventHandler<DifferenceEventArgs> DifferenceProcessed;
 
@@ -295,15 +299,34 @@ namespace Dapper.SimpleSave
 
                 ResolvePrimaryKeyValues<T>(script);
 
-                ExecuteCommandForScript<T>(
-                    connection,
-                    oldRootObject,
-                    newRootObject,
-                    softDelete,
-                    transaction,
-                    script);
+                try
+                {
+                    ExecuteCommandForScript<T>(
+                        connection,
+                        oldRootObject,
+                        newRootObject,
+                        softDelete,
+                        transaction,
+                        script);
 
-                wireUpActions.AddRange(script.WireUpActions);
+                    wireUpActions.AddRange(script.WireUpActions);
+                }
+                catch (Exception ex)
+                {
+                    if (Logger.Wrapped.IsFatalEnabled)
+                    {
+                        Logger.Wrapped.Fatal(string.Format(
+                            @"Exception executing SQL: {0}
+Script:
+{1}
+Parameters:
+{2}",
+                            ex.Message,
+                            script.Buffer,
+                            LogParametersOnScriptExecutionException ? JsonConvert.SerializeObject(script.Parameters, Formatting.Indented) : "LOGGING DISABLED"), ex);
+                    }
+                    throw;
+                }
             }
 
             foreach (var action in wireUpActions)
