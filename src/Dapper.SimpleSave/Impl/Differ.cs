@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Castle.Core.Internal;
 
 namespace Dapper.SimpleSave.Impl
 {
@@ -475,7 +474,10 @@ namespace Dapper.SimpleSave.Impl
                 results.ItemsById[key] = lookup1.ItemsById[key];
             }
 
-            lookup1.ItemsWithNoPkValue.ForEach(item => results.ItemsWithNoPkValue.Add(item));
+            foreach (var item in lookup1.ItemsWithNoPkValue)
+            {
+                results.ItemsWithNoPkValue.Add(item);
+            }
             return results;
         }
 

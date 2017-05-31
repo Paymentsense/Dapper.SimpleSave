@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Castle.Core.Internal;
 
 namespace Dapper.SimpleSave.Impl
 {
@@ -173,7 +172,10 @@ namespace Dapper.SimpleSave.Impl
                 return;
             }
             var command = new UpdateCommand();
-            updates.ForEach(update => command.AddOperation(update));
+            foreach (var update in updates)
+            {
+                command.AddOperation(update);
+            }
             results.Add(command);
             updates.Clear();
             updateTableName = null;
