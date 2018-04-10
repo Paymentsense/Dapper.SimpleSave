@@ -181,7 +181,7 @@ namespace Dapper.SimpleSave
             T obj,
             IDbTransaction transaction = null)
         {
-            SoftDelete(
+            SoftDeleteAll(
                 connection,
                 new [] { obj },
                 transaction);
